@@ -1,0 +1,30 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("assets/deals/css/city-activities.css")|raw }}" >
+{% endblock %}
+{% block body %}
+    <section class="container city_activites_container">
+	{% for itemMain in mainEntityArray %}
+	    <div class="row margin_top_30 margin_bottom_10">
+		<div class="col-xs-12">
+		    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{itemMain.name|raw}}</h1>
+		</div>
+	    </div>
+	    <div class="row new_margin">
+		{% for subItemMain in itemMain.subItem %}
+		    <a href="{{ subItemMain.link|raw }}" title="{{ subItemMain.namealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 new_padding">
+			<img class="width-100" src="{{ subItemMain.img }}" alt="{{ subItemMain.namealt|raw }}">
+			<h2 class="image_title">{{ subItemMain.name|raw }}<br/><span>{{'activities'|trans}}</span></h2>
+		    </a>
+		    {% if (loop.index%4)==0 %}
+			<div class="clearfix visible-lg visible-md"></div>
+		    {% endif %}		
+		    {% if (loop.index%2)==0 %}
+			<div class="clearfix visible-sm"></div>
+		    {% endif %}
+		{% endfor %}
+	    </div>	    
+	{% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,48 @@
+DealBundle\Entity\DealApiSupplier:
+    type: entity
+    table: deal_api_supplier
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: true
+            length: 255
+            column: email
+        name:
+            type: string
+            nullable: true
+            length: 255
+            column: name
+        creationTime:
+            type: datetime
+            nullable: true
+            column: creation_time
+        staticUrl:
+            type: string
+            nullable: true
+            length: 255
+            column: static_url
+        dynamicUrl:
+            type: string
+            nullable: true
+            length: 255
+            column: dynamic_url
+        service:
+            type: string
+            nullable: true
+            length: 255
+            column: service            
+    lifecycleCallbacks: {  }

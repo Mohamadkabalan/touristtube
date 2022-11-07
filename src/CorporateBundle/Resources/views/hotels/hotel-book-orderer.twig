@@ -1,0 +1,60 @@
+<div class="row margin_top_20 contactcontainer">
+    <div class="col-xs-12">
+	<p class="commun_black_bold font_weight_normal font_24 yellow_arrow"><i class="fas fa-angle-right"></i> {{'Contact details'|trans}}</p>
+    </div>
+    <div class="col-xs-12 hotel_book_new_inputconatiner">
+	<div class="row new_small_margin">
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<div class="title_radio_form">
+		    <label class="">{{''|trans}}</label>
+		    <label class="radio-inline">{{'Title'|trans}}* </label>
+		    <label class="radio-inline"><input type="radio" name="title" value="0" {% if orderer.title is not defined or orderer.title == 0 %}checked="checked"{% endif %}/>{{'Mr.'|trans}}</label>
+		    <label class="radio-inline"><input type="radio" name="title" value="1" {% if orderer.title is defined and orderer.title == 1 %}checked="checked"{% endif %}/>{{'Ms.'|trans}} / {{'Mrs.'|trans}}</label>
+		</div>
+	    </div>
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<label class="">{{'First name'|trans}}</label>
+		<input class="hotel_book_input textOnly required" data-alert="Contact first name"  placeholder="{{'First name'|trans}}*" name="firstName" id="firstName" value="{% if orderer.firstName is defined%}{{ orderer.firstName }}{% endif %}" required="true" type="text"/>
+	    </div>
+	    <div class="clearfix visible-sm"></div>
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<label class="">{{'Last name'|trans}}</label>
+		<input class="hotel_book_input textOnly required" data-alert="Contact last name" placeholder="{{'Last name'|trans}}*" name="lastName" id="lastName" value="{% if orderer.lastName is defined %}{{ orderer.lastName }}{% endif %}" required="true" type="text"/>
+	    </div>
+	    <div class="clearfix hidden-sm"></div>
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<label class="">{{'Country of residence'|trans}}</label>
+		<select id="country" class="dropdown select_country selectback inputRequired required" data-alert="Contact country of residence" name="country" required="true">
+		    <option value="0">{{'Country of Residence'|trans}} *</option>
+		    {% for country in countryList %}
+			<option value="{{country.iso3}}" {% if orderer.iso3Country is defined and country.iso3 == orderer.iso3Country %}selected{% endif %}>{{country.name}}</option>
+		    {% endfor %}
+		</select>
+	    </div>
+	    <div class="clearfix visible-sm"></div>
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<label class="">{{'Country code'|trans}}</label>
+		<select id="mobileCountryCodeSelect" class="dropdown select_mobile_country_code">
+		    {% set countryDialingCodeMap = {} %}
+		    {% for mobileCountryCode in mobileCountryCodeList %}
+			{% set countryDialingCodeMap = countryDialingCodeMap|merge({(mobileCountryCode.iso3): (mobileCountryCode.dialingCode)}) %}
+			<option value="{{mobileCountryCode.iso3}}" {% if orderer.iso3Country is defined and mobileCountryCode.iso3 == orderer.iso3Country %}selected{% endif %}>{{mobileCountryCode.dialingCodeToString}}</option>
+		    {% endfor %}
+		</select>
+		<input type="hidden" name="mobileCountryCode" value="{% if orderer.iso3Country is defined and orderer.iso3Country is not empty %}{{countryDialingCodeMap[orderer.iso3Country]}}{% endif %}"/>
+		<script type="text/javascript">
+		    var countryDialingCodeMap = '{{countryDialingCodeMap|json_encode()|raw()}}';
+		</script>
+	    </div>
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<label class="">{{'Mobile'|trans}}</label>
+		<input class="hotel_book_input mobile-input" placeholder="{{'Mobile'|trans}} *" name="mobile" id="mobile" value="{% if orderer.phone is defined %}{{ orderer.phone }}{% else %}{{''}}{% endif %}" required="true" type="number" minLength="6"/>
+	    </div>
+	    <div class="clearfix visible-sm"></div>
+	    <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+		<label class="">{{'Email'|trans}}</label>
+		<input class="hotel_book_input required" data-alert="Contact email" placeholder="{{'Email address'}}*" name="email" id="email" value="{% if orderer.email is defined %}{{ orderer.email }}{% endif %}" required="true" type="email"/>
+	    </div>
+	</div>
+    </div>
+</div>

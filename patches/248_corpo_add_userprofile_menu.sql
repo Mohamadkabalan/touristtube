@@ -1,0 +1,2 @@
+INSERT INTO `corpo_admin_menu` (`id`, `name`, `order`, `url`, `type`, `parent_id`, `published`, `enable_for_mobile`, `mobile_trigger_method`, `path`) VALUES
+(23, 'User Profiles', 14, '/corporate/admin/userProfiles', 4, 20, 1, 0, NULL, NULL);

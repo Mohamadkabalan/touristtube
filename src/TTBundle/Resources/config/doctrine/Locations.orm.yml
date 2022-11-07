@@ -1,0 +1,118 @@
+TTBundle\Entity\Locations:
+    type: entity
+    table: locations
+    indexes:
+        name:
+            columns:
+                - name
+        tags:
+            columns:
+                - tags
+        class_category:
+            columns:
+                - class_category
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        type:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        province:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        long:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        lat:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        tags:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        classCategory:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: class_category
+        classType:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: class_type
+        classSubcategory:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: class_subcategory
+        address:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        postcode:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        oldId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: old_id
+        countryCode:
+            type: string
+            nullable: true
+            length: 5
+            options:
+                fixed: false
+            column: country_code
+    lifecycleCallbacks: {  }

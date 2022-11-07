@@ -1,0 +1,43 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-accountTypeList.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'List Of Account Types'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'List Of Account Types'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+            <div class="col-xs-12 nopad margin_top_10">
+                <a href="{{ generateLangRoute(LanguageGet, '_corpo_accountType_add') }}" id="" class="addbut_style" rel="nofollow">{{'Add+'|trans}}</a>
+            </div>
+            <div class="col-xs-12 nopad margin_top_20">
+                <section class="content">
+                    <table id="accountTypeTbl" align="center" class="dataTable table table-striped table-bordered" cellspacing="0" width="100%" 
+                        ajax_url 					= "{{ path('_corpo_account_type_datatable') }}" 
+                        default_order_column_id  	= "id_ID"
+                        default_order_direction  	= "asc"
+                    >
+                        <thead>
+                            <tr>
+                                <th id="id_ID" dbname="cat__id" width="80px">{{'Id'|trans }}</th>
+                                <th id="name_ID" dbname="cat__name" >{{'Name'|trans }}</th>
+                                <th id="createdBy_ID" dbname="FullName" >{{'Created By'|trans }}</th>
+								<th id="createdAt_ID" dbname="cat__created_at" width="80px">{{'Created At'|trans }}</th>
+								<th id="status_ID" dbname="is_active" cell_handler="statusCellHandler" width="80px">{{'Status'|trans }}</th>
+                                <th id="actions" dbname="actions" skipDb="true" cell_handler="actionCellHandler" width="80px">{{'Actions'|trans }}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br><br>
+                </section>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,958 @@
+#left {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+#right{
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 255px;
+    overflow: hidden;
+}
+.mar-top-40{
+    margin-top: 40px;
+}
+.compflimg {
+    position: absolute;
+    left: 20px;
+    top: -39px;
+}
+#left a {
+    color: black;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    text-decoration: none;
+}
+.borderrdiv {
+    border-right: 1px solid black;
+    width: 1px;
+    height: 24px;
+    float: left;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+div.tabslide {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.active{
+    background-color: #42c2de;
+    font-weight: bold;
+    color: white !important;
+}
+.blueresume{
+    background-color: rgb(66,194,222);
+    min-height: 80px;
+}
+.greyresume{
+    background-color: rgb(240,243,244);
+    /*    min-height: 620px;*/
+    padding: 17px 40px;
+}
+.padlefresume{
+    padding-top: 10px;
+}
+.padrightresume{
+    padding-right: 0;
+    padding-top: 40px;
+}
+.departresume{
+    padding-left: 54px;
+    padding-top: 21px;
+    color: white;
+    font-size: 12px;
+}
+.destinationresume{
+    padding-left: 98px;
+    padding-top: 21px;
+    color: white;
+    font-size: 12px;
+}
+.cityresume{
+    padding-left: 54px;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: -2px;
+}
+.destinationcityresume{
+    padding-left: 98px;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: -2px;  
+}
+.textdiv{
+    float: left;
+    list-style: none;
+}
+.imgdiv{
+    float: left;
+    padding-left: 52px;
+    padding-top: 25px;
+}
+.departureimg{
+    float: left;
+    padding-top: 45px;
+    padding-left: 35px;
+}
+.textdivresume {
+    position: relative;
+}
+.flight-fields{
+    position: relative;
+}
+.flight-fields div.flight-field{
+    padding-left: 20px;
+    position: relative;
+    z-index: 1;
+}
+.textdivresume .flights-border-link{
+    position: absolute;
+    width: 2px;
+    background: #c9c9c9;
+    height: 85px;
+    top:12px;
+    left: 6px;
+    padding: 0;
+}
+.dateresume{
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    padding-left: 20px;
+}
+.stop-border-link{
+    background: #e9e9e9 none repeat scroll 0 0;
+    height: 127px;
+    left: 6px;
+    position: absolute;
+    top: -27px;
+    width: 2px;
+    z-index: 0;
+}
+.multi-destination-container .stop-border-link{
+    top: -24px;
+}
+.locdepartresume{   
+    color: black;
+    font-size: 14px;
+    margin-top: 13px;
+}
+.locdepartresume2{
+    padding-top: 40px;
+    font-size: 14px;
+    color: black;
+}
+.destresume{
+    color: black;
+    font-size: 14px;
+    margin-top: 38px;
+}
+.stopsresume{
+    color: black;
+    font-size: 14px;
+    min-height: 32px;
+    padding: 30px 48px;
+    margin-left: -9px;
+    position: relative;
+    z-index: 1;
+}
+.stop-wrap{
+    position: relative;
+}
+.spanfirstresume{
+    color: #6a6969;
+    font-size: 14px;
+    padding-left: 5px;
+}
+.firstnumbresume{
+    font-size: 14px;
+    color: #6a6969;
+    margin-top: -4px;
+}
+.timedestresume{
+    font-size: 14px;
+    color: #6a6969;
+    margin-top: -4px;
+}
+.box-container{
+    border: 5px solid rgb(232,232,232);
+    margin-top: 25px;
+    margin-bottom: 5px;
+    padding: 20px 37px;
+}
+.textariastyle{
+    min-height: 122px;
+    background-color: rgb(234,234,234);
+    border: none;
+    color: black;
+    font-size: 16px;
+    margin: 5px 1px;
+    padding: 6px;
+    width: 100%;
+}
+.radio-inline, .checkbox-inline {
+    margin-left: 34px;
+    font-size: 16px;
+    color: black;
+}
+.radiomargin{
+    padding-right: 86px;
+}
+.labelstyle {
+    color: black;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    max-width: 100%;
+}
+.labelstylelung{
+    color: black;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    max-width: 100%;
+    padding-left: 33px;
+}
+.fiveleftmar{
+    margin-left: 34px !important;
+}
+.downinputtext2{
+    color: #848484;
+    font-size: 13px;
+    padding-left: 34px;
+    margin-top: -5px;
+}
+.labelstyle2{
+    margin-left: 10px;
+}
+.newform input{
+    margin-right: 20px;
+}
+.form-control1 {
+    background-color: rgb(234, 234, 234);
+    background-image: none;
+    border: medium none;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 35px;
+    line-height: 1.42857;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    border-radius: 0;
+    padding-left: 5px;
+}
+.form-control2 {
+    background-color: rgb(234, 234, 234);
+    background-image: none;
+    border: medium none;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 35px;
+    line-height: 1.42857;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    border-radius: 0;
+    padding-left: 15px;
+}
+.form-control1:focus, .form-control2:focus{
+    border-color: #66afe9;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+}
+.nopadresume{
+    padding-left: 0px;
+    padding-right: 5px;
+
+}
+.downinputtext{
+    color: #848484;
+    font-size: 13px;
+}
+.floatingleftdiv{
+    float: left;
+}
+.nostyleul{
+    list-style: none;
+}
+.greylistyle{
+    color:#848484;
+    font-size: 14px;
+    margin-bottom: 4px;
+    margin-top: 2px;
+    clear: both;
+}
+.flight-info{
+    height: 24px;
+    padding: 0 40px;
+    float: left;
+}
+.baggage-info{
+    float: left;
+    padding-left: 35px;
+}
+.nostyleul .greylistyle:last-child .flight-info{
+    background-position: 0 100%; 
+}
+.secdivmargin{
+    border-left: 1px solid rgb(227,227,227);
+    margin-left: -68px;
+    height: 57px;
+}
+.selectback{
+    padding-left: 4px;
+}
+.selectback2{
+    padding-left: 4px;
+}
+.editstyle{
+    width: 101%;
+}
+.padlz{
+    padding-left: 0;
+}
+.padrz{
+    padding-right: 0;
+}
+.padtz{
+    padding-top: 0;
+}
+.blueheaderdiv{
+    height: 45px;
+    background-color: rgb(0,48,76);
+    padding: 0;
+    margin-top: 25px;
+}
+.paymentresume{
+    font-size: 32px;
+    color: white;
+    padding-left: 12px;
+}
+.paypadz{
+    margin-left: -10px;
+}
+.paymentimgclass{
+    margin-left: 20px;
+    margin-top: 29px;
+}
+.padzsmdiv{
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.sndcolmarg{
+    margin-left: 16px;
+}
+.botborder{
+    border-bottom: 1px solid rgb(217,217,217);
+}
+
+.Secureresume{
+    color: black;
+    font-size: 16px;
+}
+.payfloatrleft{
+    float: left;
+    width: 80px;
+    margin-left: 29px;
+}
+.visastyle{
+    padding-top: 11px;
+}
+.textfloatleftres{
+    float: left;
+}
+.warningtextstyle{
+    font-size: 14px;
+    color: black;
+}
+.marglefimres{
+    margin-left: 18px;
+}
+.marglefimres2{
+    margin-left: 25px;
+}
+
+.greylastdiv{
+    background-color: rgb(240,243,244);
+    margin-top: 25px;
+    min-height: 374px;
+}
+.flt{
+    float: left;
+    font-size: 14px;
+    color: black;
+    padding-top: 24px;
+    padding-left: 30px;
+}
+.frt{
+    float: right;
+    font-size: 28px;
+    color: #010101;
+    padding-right: 27px;
+    padding-top: 21px;
+}
+.padlrbluediv{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.bluebigdiv{
+    background-color: rgb(66,194,222);
+    min-height: 160px;  
+}
+.npsmdiv{
+    padding: 0;
+}
+.bigdivpadlr{
+    padding: 0 32px 0 36px;
+}
+.bigdivpadlr2{
+    padding-right: 36px;
+}
+.depstyle{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+.depstyle2{
+    font-size: 14px;
+    color: white;
+}
+.marginleftdiv{
+    margin-left: 31px;
+    padding-right: 29px;
+    text-align: justify;
+}
+.butbluebut{
+    position: relative;
+    text-align: center;
+    line-height: 38px;
+    width: 135px;
+    height: 38px;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-right: 36px;
+    margin-bottom: 15px;   
+    float: right;
+}
+.alstdiv{
+    background-color: rgb(0,183,217);
+    border: 0 none;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+}
+.alstdiv:hover{
+    color: white;
+    text-decoration: none; 
+}
+.mobile-input{
+    margin-top: 28px;
+}
+.gender-wrapper label{
+    color: #000000;
+    font-size: 16px;
+    margin: 0 40px 0 10px;
+    font-weight: normal;
+}
+.dob select{
+    border: medium none;
+    border-radius: 0;
+    color: #555;
+    padding-left: 5px;
+    padding-right: 16px;
+    font-size: 14px;
+    height: 35px;
+    line-height: 1.42857;
+    margin-right: 2px;
+    width: 90px;
+}
+.clear{
+    clear: both;
+}
+.form-group-wrap{
+    margin-right: 36px;
+}
+.error ul li{
+    color: red;
+    list-style: outside none none;
+}
+.form-errors ul{
+    margin-top: 40px;
+}
+.terms-wrap{
+    padding: 10px 56px;
+}
+.createacctxt{
+    font-size: 20px;
+    color: #00b7d9;
+}
+.optionalacc{
+    font-size: 23px;
+    color: #00b7d9;
+}
+.enterpasstxt{
+    color: black;
+    font-size: 16px;
+}
+.padding-top-10{
+    padding-top: 10px;
+}
+.createpassconf{
+    color: black;
+    font-size: 16px;
+}
+.chanospaces{
+    color: black;
+    font-size: 13px;
+}
+.password{
+    background: rgb(233, 233, 233);
+    border: medium none;
+    border-radius: 0;
+    padding-left: 4px; 
+    height: 38px;
+}
+.confemailwarning{
+    font-size: 13px;
+    color: black;
+    margin-top: 18px;
+}
+.termsncond{
+    color: #00b7d9;
+    font-size: 16px;
+}
+.price_error{
+    margin-top: 20px;
+    color: #ffffff;
+    background: rgb(66, 194, 222);
+    padding: 20px;
+    font-size: 16px;
+}
+.price_error a{
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.price_error a:hover{
+    color: #6a6969;
+}
+.error-container{
+    margin-top: 40px;
+    padding: 10px;
+}
+.floatlefttext{
+    float: left;
+}
+.floatrighttext{
+    float: right;
+    padding-right: 54px;
+}
+.newimgdiv{
+    width: 65px;
+    margin-left: -32px;
+}
+.newimgdiv img{
+    left: 50%;
+    margin-left: -32px;
+    margin-top: -16px;
+    position: absolute;
+    top: 50%;
+}
+.absoultetextdiv{
+    left: 50%;
+    margin-left: -32px;
+    margin-top: -11px;
+    position: absolute;
+    top: 50%;
+
+}
+.multi-destination-container-wrap .multi-bottom-container{
+    margin-bottom: 60px;
+}
+.multi-destination-container-wrap .multi-bottom-container:last-child{
+    margin-bottom: 20px;
+}
+.borderbluediv{
+    border-top: 7px solid #00b7d9;
+    margin-top: 30px;
+    padding-bottom: 15px;
+}
+.borderbluepadding{
+    padding-left: 0;
+    padding-right: 0;
+}
+.backtobooklist ,.backtobooklist:hover{
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    line-height: 29px;
+}
+.greyborderdiv_hoteldetailed{
+    border-top: 2px solid #dadada; 
+}
+.padlr-30{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.firstsection{
+    padding-top: 20px;
+    display: none;
+}
+.sndsection{
+    padding-top: 20px;
+}
+.blackboldtext{
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-top: 10px;
+}
+.blacknormaltext{
+    color: black;
+    font-size: 16px;
+    line-height: 30px;
+    padding-bottom: 10px;
+}
+.manageoptions{
+    list-style: none;
+    line-height: 30px;
+    padding-bottom: 10px;
+}
+.manageoptions li{
+    display: inline-block;
+    width: auto;
+    color: #00b7d9;
+    font-size: 16px;
+}
+.manageoptions li a ,.manageoptions li a:hover{
+    color: #00b7d9;
+    text-decoration: none;
+}
+.manageoptions li.liborder{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.padtop15{
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+.padbut10{
+    padding-bottom: 10px;
+}
+.smallineh{
+    line-height: 10px;
+}
+.padleft37{
+    padding-left: 37px;
+}
+.padbut30{
+    padding-bottom: 30px;
+}
+.viewreceipt , .viewreceipt:hover{
+    color: #00b7d9;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 5px;
+    font-weight: normal;
+}
+.addfees , .addfees:hover{
+    color: #00b7d9;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: normal;
+}
+.lineh20{
+    line-height: 20px;
+}
+.padtop20{
+    padding-top: 20px;
+}
+.fontwb{
+    font-weight: bold;
+}
+.textwithbluebullet{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 28px;
+    color: black;
+    font-size: 16px;
+}
+.bigpadtextclass{
+    padding-bottom: 10px;
+}
+.padtop10{
+    padding-top: 10px;
+}
+.padbut0{
+    padding-bottom: 0;
+}
+.travelersclasstext{
+    padding-left: 45px;
+    color: black;
+    font-size: 32px;
+    float: left;
+}
+.cancellalltext{
+    float: right;
+    color: #00b7d9;
+    font-size: 16px;
+    margin-top: 14px;
+    cursor: pointer;
+    padding-right: 115px;
+}
+.divwithbordergrey{
+    border: 5px solid #e8e8e8;
+    min-height: 83px;
+    padding-left: 45px;
+    padding-right: 42px;
+    margin-bottom: 10px;
+}
+.nametravtext{
+    float: left;
+    font-size: 16px;
+    color: black;
+    padding-right: 50px;
+    line-height: 78px;
+}
+.adutrav{
+    float: left;
+    font-size: 16px;
+    color: black;
+    line-height: 78px;
+}
+.cancelreserv{
+    color: #00b7d9;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    line-height: 78px;
+}
+@media  (max-width:767px){
+    .bigdivpadlr2{
+        padding-left: 36px;
+    }
+    .bigdivpadlr{
+        padding-right: 36px;
+    }
+    .pagination ul li a{font-size: 17px;}
+    .bag-search .search-btn{
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .padrightresume{
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+    .padlefresume{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+    }
+    .departresume{
+        padding-left: 12px;
+    }
+    .cityresume{
+        padding-left: 12px;
+    }
+    .radiomargin{
+        padding-right: 80px !important;
+    }
+    .labelstyle2{
+        margin-left: 0px;
+    }
+    .paymentimgclass{
+        margin-left: 34px;
+        margin-top: 0px;
+    }
+    .sndcolmarg{
+        margin-left: 0px;
+    }
+    .form-errors{
+        padding-left: 15px;
+    }
+    .smalpadleft0{
+        padding-left: 0;
+    }
+    .floatrighttext{
+        padding-right: 12px;
+    }
+    .dob select{
+        width: 60px;
+    }
+
+}
+@media  (min-width:768px){
+    .bigleftpad0{
+        margin-left: -5px;
+    }
+}
+@media  (max-width:991px){    
+    .containerresume{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .imgdiv{
+        padding-left: 52px;
+    }
+    .sndimd{
+        padding-left: 0 !important;
+    }
+    .destinationcityresume{
+        padding-left: 48px;
+    }
+    .destinationresume{
+        padding-left: 48px;
+    }
+    .secdivmargin{
+        margin-left: 3px;
+        border-left: none;
+    }
+    /*    .baggage-info, .flight-info{
+            float: none;
+        }*/
+    .greylistyle {
+        margin-bottom: 20px;
+    }
+}
+@media (min-width:691px) and (max-width:767px){
+    .padrightresume{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    /*    .padlefresume{
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 10px;
+        }*/
+}
+@media (min-width:423px) and (max-width:767px){
+    .imgdiv{
+        padding-left: 48px;
+    }
+    .destinationcityresume{
+        padding-left: 42px;
+    }
+    .destinationresume{
+        padding-left: 42px;
+    }
+}
+@media (min-width:320px) and (max-width:365px){
+    .imgdiv{
+        padding-left: 34px;
+    }
+    .destinationcityresume{
+        padding-left: 28px;
+    }
+    .destinationresume{
+        padding-left: 28px;
+    }
+}
+@media (min-width:768px) and (max-width:991px){
+    .smalfont{
+        font-size: 11px;
+    }
+    .padzsmdiv{
+        margin-top: 4px;
+    }  
+    .padright20{
+        padding-right: 20px ;
+    }
+    .padleft20{
+        padding-left: 20px;
+    }
+    .dob select {
+        width: 78px;
+    }
+}
+@media (max-width:767px){
+    .greylistyle{
+        margin-bottom: 20px;
+    }
+    .padright20{
+        padding-right: 40px;
+    }
+    .padleft20{
+        padding-left: 40px;
+    }
+    .borderbluepadding{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .padding-lr-10{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .blacknormaltext{
+        line-height: 20px;
+    }
+    .smallineh{
+        line-height: 10px;
+    }
+}
+@media (min-width:320px) and (max-width:477px){
+    .smalfont{
+        font-size: 11px;
+    }
+    .flight-info{
+        margin-bottom: 20px;
+    }
+}
+@media (min-width:320px) and (max-width:384px){
+    .smaldivmargin{
+        margin-top: 12px;
+    }
+}
+@media (min-width:320px) and (max-width:345px){
+    .bigdivpadlr2{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .bigdivpadlr{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+@media (min-width:320px) and (max-width:540px){
+    .padright20{
+        padding-right: 10px;
+    }
+    .padleft20{
+        padding-left: 10px;
+    }
+}
+@media (max-width:350px){
+    #left a {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+@media (max-width:515px){
+    .divwithbordergrey{
+        padding-left: 5px;
+        padding-right: 0;
+    }
+    .nametravtext{
+        padding-right: 5px;
+    }
+    .cancellalltext{
+        padding-right: 30px;
+    }
+}

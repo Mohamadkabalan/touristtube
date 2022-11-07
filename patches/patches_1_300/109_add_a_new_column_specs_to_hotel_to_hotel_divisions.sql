@@ -1,0 +1,1 @@
+ALTER TABLE hotel_to_hotel_divisions ADD COLUMN specs json NULL DEFAULT NULL AFTER hotel_division_id;

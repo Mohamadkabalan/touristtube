@@ -1,0 +1,202 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block body %}
+    <a href="" id="picfancyboxbutton" rel="nofollow" class="hidden"></a>
+    <section class="container channel-container" data-id="{{channel_id|raw}}">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_27">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Channels'|trans}} | <span>{{'create a new channel'|trans}}</span></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-lg-8 col-md-10 col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <p class="gridinfotext"><span>{{'Channel name:'|trans}}</span>{{name|raw}}</p>
+                            </div>
+			    {% if channelcateg !='' %}
+				<div class="col-xs-12 nopad">
+				    <p class="gridinfotext"><span>{{'Category:'|trans}}</span>{{channelcateg|raw}}</p>
+				</div>
+			    {% endif %}
+			    {% if country_name !='' %}
+				<div class="col-xs-12 nopad">
+				    <p class="gridinfotext"><span>{{'Country:'|trans}}</span>{{country_name|raw}}</p>
+				</div>
+			    {% endif %}
+			    {% if creatby !='' %}
+				<div class="col-xs-12 nopad">
+				    <p class="gridinfotext"><span>{{'Created by:'|trans}}</span>{{creatby|raw}}</p>
+				</div>
+			    {% endif %}
+			    {% if creaton !='' %}
+				<div class="col-xs-12 nopad">
+				    <p class="gridinfotext"><span>{{'Created on:'|trans}}</span>{{creaton|raw}}</p>
+				</div>
+			    {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="row border_top_but_row_7 margin_top_32 no-margin"></div>
+            </div>
+            <div id="uploadContainer1" class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title"><span>1. </span>{{'Update photo'|trans}}</h2>
+                    </div>		    
+                    <div id="channel_profile" class="col-md-3 col-sm-4 col-xs-6 nopad channel_update_img">
+			<div class="cropperUpload" 
+			    data-title="{{'Choose a profile photo. Select file from your computer, or drag and drop file here.
+                            minimum dimensions: 230 x 230 pxls'|trans}}"
+			    data-image-url="{{channelslogo_initial|raw}}" 
+			    data-popup-title="{{'Crop the image'|trans}}" 
+			    data-cancel-label="{{'Cancel'|trans}}" 
+			    data-save-label="{{'Save'|trans}}" 
+			    data-aspect-ratio="1" 
+			    data-width="230"
+			    data-height="230"
+			    data-extra-form-data='{"channel_id":{{channel_id|raw}},"which_uploader":"channel_profile"}' 
+			    data-submit-url="{{generateLangURL(LanguageGet,'/ajax/image-crop-save')}}"
+		   ></div>
+                    </div>
+                </div>
+            </div>
+            <div id="uploadContainer2" class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title"><span>2. </span>{{'Update Cover photo'|trans}}</h2>
+                    </div>
+                    <div id="channel_cover" class="col-sm-8 col-xs-12 nopad channel_update_img">
+			<div class="cropperUpload" 
+			    data-title="{{'Choose a cover photo. Select file from your computer, or drag and drop file here.
+                            minimum dimensions: 800 x 256 pxls'|trans}}"
+			    data-image-url="{{cover_photo_initial|raw}}" 
+			    data-popup-title="{{'Crop the image'|trans}}" 
+			    data-cancel-label="{{'Cancel'|trans}}" 
+			    data-save-label="{{'Save'|trans}}" 
+			    data-aspect-ratio="3.125" 
+			    data-width="800"
+			    data-height="256"
+			    data-extra-form-data='{"channel_id":{{channel_id|raw}},"which_uploader":"channel_cover"}' 
+			    data-submit-url="{{generateLangURL(LanguageGet,'/ajax/image-crop-save')}}"
+		   ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title"><span>3. </span>{{'About your Channel'|trans}}</h2>
+                    </div>
+                    <div class="col-sm-7 col-xs-12 nopad graytxtarea">
+                        <textarea name="about" rows="4" cols="50" placeholder="{{'About your Channel'|trans}}">{{about|raw}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad channel_input_commun">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title"><span>4. </span>{{'Add a slogan'|trans}}</h2>
+                    </div>
+                    <div class="col-sm-7 col-xs-12 nopad graytxtarea">
+			<input name="slogan" maxlength="110" autocomplete="off" type="text" placeholder="{{'Add a slogan'|trans}}" value="{{slogan|raw}}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad channel_input_commun">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title"><span>5. </span>{{'Add a keywords'|trans}}</h2>
+                    </div>
+                    <div class="col-sm-7 col-xs-12 nopad graytxtarea">
+			<input name="keywords" autocomplete="off" type="text" placeholder="{{'Add a keywords'|trans}}" value="{{keywords|raw}}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad channel_input_commun">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title"><span>6. </span>{{'TT Channel URL'|trans}}</h2>
+                        <p class="section_common_greytxt">{{'Create a unique URL for people to find you on TouristTube'|trans}}</p>
+                    </div>
+                    <div class="col-sm-7 col-xs-12 nopad graytxtarea">
+			<span>{{subdomain_link|raw}}/</span>
+			<input class="channel_url_text" name="channel_url" maxlength="60" autocomplete="off" type="text" placeholder="{{'TT Channel URL'|trans}}" value="{{channel_url_text|raw}}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad input_chanel_inp_app">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title float_left"><span>7. </span>{{'Add customized links'|trans}}</h2>
+                        <button class="btn btn-remove-add_cch btn_add_cch" type="button">+</button>
+                    </div>
+                    <div class="social_container social_container1" placeholder="{{'Add customized links'|trans}}">
+			{% if customized_array|length ==0 %}
+			    <div class="col-xs-12 nopad social_item">
+				<div class="row no-margin">
+				    <div class="col-sm-6 col-xs-12 nopad">
+					<input class="social_input" autocomplete="off" type="text" placeholder="{{'Add customized links'|trans}}" data-id="0" value=""/><button class="btn btn-remove-add_cch btn_remove_cch" type="button">-</button>
+				    </div>
+				</div>
+			    </div>
+			{% endif %} 
+			{% for item in customized_array %}
+			    <div class="col-xs-12 nopad social_item">
+				<div class="row no-margin">
+				    <div class="col-sm-6 col-xs-12 nopad">
+					<input class="social_input" autocomplete="off" type="text" placeholder="{{'Add customized links'|trans}}" data-id="{{item.id|raw}}" value="{{item.link|raw}}"/><button class="btn btn-remove-add_cch btn_remove_cch" type="button">-</button>
+				    </div>
+				</div>
+			    </div>			    
+			{% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad input_chanel_inp_app">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="section_title float_left"><span>8. </span>{{'Add social links'|trans}}</h2>
+                        <button class="btn btn-remove-add_cch btn_add_cch" type="button">+</button>
+                    </div>
+                    <div class="social_container social_container2" placeholder="{{'Add social links'|trans}}">
+			{% if social_array|length ==0 %}
+			    <div class="col-xs-12 nopad social_item">
+				<div class="row no-margin">
+				    <div class="col-sm-6 col-xs-12 nopad">
+					<input class="social_input" autocomplete="off" type="text" placeholder="{{'Add social links'|trans}}" data-id="0" value=""/><button class="btn btn-remove-add_cch btn_remove_cch" type="button">-</button>
+				    </div>
+				</div>
+			    </div>
+			{% endif %} 
+			{% for item in social_array %}
+			    <div class="col-xs-12 nopad social_item">
+				<div class="row no-margin">
+				    <div class="col-sm-6 col-xs-12 nopad">
+					<input class="social_input" autocomplete="off" type="text" placeholder="{{'Add social links'|trans}}" data-id="{{item.id|raw}}" value="{{item.link|raw}}"/><button class="btn btn-remove-add_cch btn_remove_cch" type="button">-</button>
+				    </div>
+				</div>
+			    </div>			    
+			{% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad margin_top_20">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <button id="" class="btn yellow_search_common_button info_save_changes">{{'Save changes'|trans}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad margin_top_32">
+                <a class="goto_chanel_link" href="{{channel_url|raw}}" title="{{namealt|raw}}">{{'Go to my Channel'|trans}}<span><i class="fas fa-angle-double-right angleright_black"></i></span></a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

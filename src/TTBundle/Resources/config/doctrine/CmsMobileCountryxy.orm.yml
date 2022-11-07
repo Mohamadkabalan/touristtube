@@ -1,0 +1,40 @@
+TTBundle\Entity\CmsMobileCountryxy:
+    type: entity
+    table: cms_mobile_countryXY
+    indexes:
+        country_code:
+            columns:
+                - country_code
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+            column: country_code
+        x:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        'y':
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        iscenter:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

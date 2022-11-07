@@ -1,0 +1,105 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/pages/css/review.css")|raw }}" > 
+{% endblock %}
+{% block pagenewjs %}
+        <script type="text/javascript" src="{{ asset("/assets/pages/js/review.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container review_main_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Review and rate'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_top_20">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <h2 class="font-16 black">{{'View or add a review about hotels, points of interest, airports, or restaurants you visited.'|trans}}</h2> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <h3 class="font-17 black margin_bottom_15 margin_top_10">{{'what would you like to review?'|trans}}</h3>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad review_radio_container">
+                                <label class="radioOpt" data-type="{{ SOCIAL_ENTITY_HOTEL|raw }}" data-str="{{'Enter hotel name'|trans}}" for="hotel">
+                                    <input name="optradio" class="place" id="hotel" value="1" type="radio" checked>
+                                    {{'hotel'|trans}}
+                                </label>
+                            </div>
+                            <div class="col-xs-12 nopad review_radio_container">
+                                <label class="radioOpt" data-type="{{ SOCIAL_ENTITY_LANDMARK|raw }}" data-str="{{'Enter point of interest name'|trans}}" for="point_of_interest">
+                                    <input name="optradio" class="place" id="point_of_interest" value="3" type="radio">
+                                    {{'point of interest'|trans}}
+                                </label>
+                            </div>
+			    <div class="col-xs-12 nopad review_radio_container">
+                                <label class="radioOpt" data-type="{{ SOCIAL_ENTITY_AIRPORT|raw }}" data-str="{{'Enter airport name'|trans}}" for="airport">
+                                    <input name="optradio" class="place" id="airport" value="4" type="radio">
+                                    {{'airport'|trans}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_top_15">
+                    <div class="col-xs-12 nopad">
+                        <div class="row newrowmargin5">
+                            <div class="col-sm-5 col-xs-12 newcolpadding5 review_input_common">
+				<input type = "text" placeholder="{{'enter hotel name'|trans}}"  class="searchDesc form-control nameOfPlace col-lg-8 col-md-8 col-sm-8 col-xs-12" id = "name" data-type="{{ SOCIAL_ENTITY_HOTEL|raw }}">
+                            </div>
+                            {#<div class="col-sm-2 col-xs-12 newcolpadding5">
+				<input type="hidden" id="reviewUrl" name="reviewUrl" value="#">
+                                <button id="searchButton" class="btn common_yellow_but" type="" >{{'Search'|trans}}</button>
+                            </div>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_50 row_double_border margin_bottom_5"></div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row newrowmargin5">
+                    <div class="col-sm-4 col-xs-12 newcolpadding5">
+                        <img src="{{ generateMediaURL('/media/images/ratepic1.jpg') }}" alt="{{'airports'|trans}}" class="width100">
+                    </div>
+                    <div class="col-sm-4 col-xs-12 newcolpadding5">
+                        <img src="{{ generateMediaURL('/media/images/ratepic2.jpg') }}" alt="{{'hotels'|trans}}" class="width100">
+                    </div>
+                    <div class="col-sm-4 col-xs-12 newcolpadding5">
+                        <img src="{{ generateMediaURL('/media/images/ratepic3.jpg') }}" alt="{{'retaurants'|trans}}" class="width100">
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h4 class="font-27 light_black">{{'Find the best hotels and the best restaurants on TouristTube'|trans}}</h4>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <p class="text-justify grey font-16">{{'You are booking a hotel or restaurant for a vacation or date. The pictures on the website look magnificent, with well-arranged furniture, artwork, plump pillows, and fluffy towels and so on. However, you are sceptical. We have all had that unfortunate moment when after opening the door of what was described as the among the best hotels or best restaurants only to discover that it is far from what we expected. How can a consumer avoid the constant misleading marketing today and make sure they get their money’s worth.
+
+            One place to start your search is perusing hotel reviews and restaurant reviews that have been left by any previous patrons. That will provide you the first-hand information from people who have recently visited the respective hotels or restaurants and what they think about those places. Tourist Tube offers a place where you can find the best hotels and best restaurants by creating a platform for people to share their reviews. Here are a few reasons to check out our best hotel reviews:
+
+            Avoid confusion when planning your trip – The number of restaurants and hotels available today is simply uncountable. Thus, it can get confusing to find the right option when choosing the best hotels and best restaurants. By reading out hotel and restaurant reviews, making your decision becomes much easier. 
+
+            Informative hotel and restaurant reviews – The main aim of our hotel and restaurant reviews is to provide users with credible information about the condition of the facilities, services provided, must see sights and location among other features. You will also learn about how the staffs treat guests and whether or not the establishment can be ranked among the best hotels. 
+
+            Helps you plan your visit – After reading our reliable restaurant and hotel reviews of the best restaurants and hotels, it is easy to plan your trip. Some reviews usually suggest the most suitable time to go to a certain place and this is quite helpful, particularly since it reduces the likelihood of experiencing bad weather. Likewise, you can also reschedule your visit if you find that the hotel you chose is not among the best hotels, but it has gotten negative reviews.
+            Travellers and tourists just want to have a good time when travelling a place where they can relax and get great hospitality. With Tourist Tube, you can find an honest source of hotel reviews and restaurant reviews, which will help you easily, gather important information about various destinations all over the world. Research shows that people are increasingly depending on these reviews, thus finding a reliable source is a great way to ensuring you only use the best hotels and restaurants on your trip.'|trans|nl2br}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

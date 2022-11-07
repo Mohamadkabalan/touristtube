@@ -1,0 +1,186 @@
+_best_restaurants_home:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/"
+    defaults: { _controller: RestaurantBundle:Restaurant:bestRestaurantsHome, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Best restaurants in 360 virtual tour | Tourist Tube", seodescription: "searching for a restaurant? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_restaurants_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/best-restaurants"
+    defaults: { _controller: RestaurantBundle:Restaurant:bestRestaurants, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Best restaurants in 360 virtual tour | Tourist Tube", seodescription: "searching for a restaurant? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_restaurants:
+    path:      "/best-restaurants"
+    defaults: { _controller: RestaurantBundle:Restaurant:bestRestaurantsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurant_details_360:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/360-restaurant-{name}-{city}-{id}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantDetails360, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "View %s in 360 Virtual Tour | Tourist Tube", seodescription: "Take a real feel and look of the %s in a 360 virtual tour view and make your online reservation with one of the best restaurants in %s today.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        city: ".*"
+        subdomain_suffix: ".*"
+
+_360_restaurant_page_redirect:
+    path:      "/360-restaurant-{name}-{city}-{id}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantDetails360Redirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurant_360_photos_vr:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/360-photos-vr/360-restaurant-{name}-{city}-{id}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantDetails360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Best restaurants in 360 virtual tour | Tourist Tube", seodescription: "searching for a restaurant? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        city: ".*"
+        subdomain_suffix: ".*"
+
+_restaurant_360_photos_vr_redirect:
+    path:      "/360-photos-vr/360-restaurant-{name}-{city}-{id}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantDetails360FullTourRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurants_search_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/restaurants-search"
+    defaults: { _controller: RestaurantBundle:Restaurant:bestRestaurantsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurants_search:
+    path:      "/restaurants-search"
+    defaults: { _controller: RestaurantBundle:Restaurant:bestRestaurantsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurants_in_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/restaurants-in{dest}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsIn, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "restaurants in %s Tourist Tube", seodescription: "searching for the best restaurants in %s? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurants_in:
+    path:      "/restaurants-in{dest}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsInRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurants_in1_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/restaurants-in{dest}/{srch}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsIn, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", srch: "", seotitle: "restaurants in %s Tourist Tube", seodescription: "searching for the best restaurants in %s? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurants_in1:
+    path:      "/restaurants-in{dest}/{srch}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsInRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", srch: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_restaurantsReview_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/{name}-review-R{srch}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "want to know about %s restaurant review, best solution to find restaurants on the web is tourist tube", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+
+_restaurantsReview:
+    path:      "/{name}-review-R{srch}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsReviewRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+        
+_old_restaurantsReview:
+    path:      "/restaurant-review/id/{srch}/{name}"
+    defaults: { _controller: RestaurantBundle:Restaurant:oldrestaurantsReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "want to know about %s restaurant review, best solution to find restaurants on the web is tourist tube", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+
+_restaurants_near_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/restaurants-near-by{dest}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsNearBy, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Restaurants Near By %s Tourist Tube", seodescription: "searching for restaurants near by %s? Visit us now on Tourist Tube and find the nearest restaurants.", seokeywords: "", dest: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        dest: ".*"
+
+_restaurants_near:
+    path:      "/restaurants-near-by{dest}"
+    defaults: { _controller: RestaurantBundle:Restaurant:restaurantsNearByRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", dest: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        dest: ".*"
+
+_prefix_hotel_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/{catName}-{qr}-{l}_{np}_C{c}"
+    defaults: { _controller: RestaurantBundle:Restaurant:prefixHotel, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s  Tourist Tube", seodescription: "%1$s, searching for %2$s? want to find the best %2$s on the net", seokeywords: "", catName: "", qr: "" ,l: "", np: "", c: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        catName: ".*"
+        l: "[a-z]?"
+        np: "\d*"
+        c: "\d*"
+
+_prefix_hotel:
+    path:      "/{catName}-{qr}-{l}_{np}_C{c}"
+    defaults: { _controller: RestaurantBundle:Restaurant:prefixHotelRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", catName: "", qr: "" ,l: "", np: "", c: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        catName: ".*"
+        l: "[a-z]?"
+        np: "\d*"
+        c: "\d*"
+
+_search_restaurant_target_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path: "/search-restaurants-{srch}"
+    defaults: { _controller: RestaurantBundle:Restaurant:searchRestaurantResult, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Search %s Restaurant Tourist Tube", seodescription: "searching for %s restaurant? local restaurants? restaurants in your area? Your best solution to find restaurants on the web is tourist tube web visit us now", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_search_restaurant_target:
+    path: "/search-restaurants-{srch}"
+    defaults: { _controller: RestaurantBundle:Restaurant:searchRestaurantResultRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"

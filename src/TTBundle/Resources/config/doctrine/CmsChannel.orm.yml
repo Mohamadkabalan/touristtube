@@ -1,0 +1,253 @@
+TTBundle\Entity\CmsChannel:
+    type: entity
+    table: cms_channel
+    repositoryClass: TTBundle\Repository\ChannelRepository
+    indexes:
+        owner_id:
+            columns:
+                - owner_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelName:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: channel_name
+        logo:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+                comment: 'large logo'
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        ownerId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                comment: 'the user that owns the channel'
+            column: owner_id
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '0'
+        smallDescription:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: small_description
+        channelUrl:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+            column: channel_url
+        header:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        bg:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        defaultLink:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: default_link
+        slogan:
+            type: string
+            nullable: false
+            length: 110
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        city:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+        street:
+            type: string
+            nullable: false
+            length: 254
+            options:
+                fixed: false
+        zipCode:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: zip_code
+        phone:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        category:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        keywords:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        deactivatedTs:
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+            column: deactivated_ts
+        bgcolor:
+            type: string
+            nullable: false
+            length: 6
+            options:
+                fixed: false
+        coverlink:
+            type: string
+            nullable: false
+            length: 254
+            options:
+                fixed: false
+        coverId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: cover_id
+        profileId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: profile_id
+        sloganId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: slogan_id
+        infoId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: info_id
+        hidecreatedon:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        hidecreatedby:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        hidelocation:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        channelVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_visible
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_shares
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_comments
+        notificationEmail:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: notification_email
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        channelType:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_type
+    lifecycleCallbacks: {  }

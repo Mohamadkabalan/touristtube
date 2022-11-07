@@ -1,0 +1,258 @@
+TTBundle\Entity\CmsUsersPrivacy:
+    type: entity
+    table: cms_users_privacy
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        emailNotifications:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_notifications
+        tuberNotifications:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_notifications
+        emailCommentedcontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_commentedcontent
+        tuberCommentedcontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_commentedcontent
+        tuberLikedcontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_likedcontent
+        tuberSharedcontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_sharedcontent
+        tuberRatedmedia:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_ratedmedia
+        emailMentionedcomment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_mentionedcomment
+        tuberMentionedcomment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_mentionedcomment
+        tuberLikedcomment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_likedcomment
+        emailJoinedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_joinedevent
+        tuberJoinedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_joinedevent
+        emailCommentedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_commentedevent
+        tuberCommentedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_commentedevent
+        tuberLikedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_likedevent
+        tuberSharedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_sharedevent
+        emailCommentedecho:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_commentedecho
+        tuberCommentedecho:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_commentedecho
+        tuberLikedecho:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_likedecho
+        tuberReechoedecho:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_reechoedecho
+        emailInvitedchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_invitedchannel
+        tuberInvitedchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_invitedchannel
+        emailInvitedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_invitedevent
+        tuberInvitedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_invitedevent
+        emailFriendrequest:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_friendrequest
+        tuberFriendrequest:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_friendrequest
+        tuberAddedfriend:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_addedfriend
+        tuberFollowed:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_followed
+        emailUpdatedcanceledevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_updatedcanceledevent
+        tuberUpdatedcanceledevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: tuber_updatedcanceledevent
+        emailNewstt:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_newsTT
+        emailUpdatesMedia:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_updates_media
+        privacyLikesrates:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_likesrates
+        privacySharescomments:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_sharescomments
+        privacyChannelcreated:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_channelcreated
+        privacyChannelevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_channelevent
+        privacyFriends:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_friends
+        privacyEventsharescomments:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_eventsharescomments
+        privacyGuestsInvite:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_guests_invite
+    lifecycleCallbacks: {  }

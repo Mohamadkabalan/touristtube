@@ -1,0 +1,36 @@
+TTBundle\Entity\CmsUsersPermissions:
+    type: entity
+    table: cms_users_permissions
+    indexes:
+        user_id:
+            columns:
+                - user_id
+                - permission_type
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        permissionType:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+            column: permission_type
+        permissionValue:
+            type: boolean
+            nullable: false
+            column: permission_value
+    lifecycleCallbacks: {  }

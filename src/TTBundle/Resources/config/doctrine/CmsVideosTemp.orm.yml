@@ -1,0 +1,92 @@
+TTBundle\Entity\CmsVideosTemp:
+    type: entity
+    table: cms_videos_temp
+    repositoryClass: TTBundle\Repository\PhotosVideosRepository
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        catalog_id:
+            columns:
+                - catalog_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        filename:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        uploadTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: upload_ts
+        vpath:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        thumb:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        catalogId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: catalog_id
+        imageVideo:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: true
+            column: image_video
+        channelid:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        pendingData:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: pending_data
+        privacyValue:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: privacy_value
+        privacyArray:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: privacy_array
+    lifecycleCallbacks: {  }

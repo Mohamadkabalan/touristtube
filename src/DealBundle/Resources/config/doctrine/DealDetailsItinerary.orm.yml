@@ -1,0 +1,94 @@
+DealBundle\Entity\DealDetailsItinerary:
+    type: entity
+    table: deal_details_itinerary
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealDetailsId:
+            type: integer
+            nullable: false
+            column: deal_details_id
+        title:
+            type: string
+            nullable: true
+            length: 255
+            column: title
+        description:
+            type: string
+            nullable: true
+            column: description
+        breakfastInclude:
+            type: integer
+            nullable: false
+            column: breakfast_include
+        lunchInclude:
+            type: integer
+            nullable: false
+            column: lunch_include
+        dinnerInclude:
+            type: integer
+            nullable: false
+            column: dinner_include
+        hotelCode:
+            type: string
+            nullable: true
+            length: 100
+            column: hotel_code
+        hotelName:
+            type: string
+            nullable: true
+            length: 100
+            column: hotel_name
+        itemCode:
+            type: string
+            nullable: true
+            length: 100
+            column: item_code
+        itemType:
+            type: string
+            nullable: true
+            length: 100
+            column: item_type
+        start:
+            type: datetime
+            nullable: true
+            column: start
+        end:
+            type: datetime
+            nullable: true
+            column: end
+        duration:
+            type: string
+            nullable: true
+            length: 100
+            column: duration
+        status:
+            type: string
+            nullable: true
+            length: 100
+            column: status
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP            
+            column: updated_at    
+    lifecycleCallbacks: {  }

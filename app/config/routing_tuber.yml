@@ -1,0 +1,68 @@
+_ajax_account_check_user:
+    path:      "/ajax/account-check-user"
+    defaults:  { _controller: TTBundle:Tuber:updateAccountCheckUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_account_info:
+    path:      "/ajax/account-info"
+    defaults:  { _controller: TTBundle:Tuber:updateAccountInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_account_settings:
+    path:      "/ajax/account-settings"
+    defaults:  { _controller: TTBundle:Tuber:updateAccountSettings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_account_info_locale:
+    host: "{_locale}.{domain}"
+    path:      "/account/info"
+    defaults:  { _controller: TTBundle:Tuber:accountInfo, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_account_info:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/account/info"
+    defaults:  { _controller: TTBundle:Tuber:accountInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_account_settings_locale:
+    host: "{_locale}.{domain}"
+    path:      "/account/settings"
+    defaults:  { _controller: TTBundle:Tuber:accountSettings, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_account_settings:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/account/settings"
+    defaults:  { _controller: TTBundle:Tuber:accountSettings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_account_sharing_locale:
+    host: "{_locale}.{domain}"
+    path:      "/account/sharing"
+    defaults:  { _controller: TTBundle:Tuber:accountSharing, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_account_sharing:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/account/sharing"
+    defaults:  { _controller: TTBundle:Tuber:accountSharing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

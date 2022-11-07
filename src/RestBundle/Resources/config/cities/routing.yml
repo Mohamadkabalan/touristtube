@@ -1,0 +1,5 @@
+_rest_cities:
+    path:      "/api/cities/search"
+    defaults: { _controller: RestBundle:cities\Cities:search }
+    requirements:
+        methods: GET

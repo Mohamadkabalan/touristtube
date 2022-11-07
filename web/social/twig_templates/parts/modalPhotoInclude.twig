@@ -1,0 +1,7 @@
+{# Twig template for modal_photo_include#}
+{% if modalIncludeCondition == true %}
+    <script type="text/javascript" src="{{ ("assets/photos_videos/js/video-page-behavior.js")|link }}"></script>
+    <script type="text/javascript" src="{{ ("js/jquery.jqplugin.1.0.2.js")|link }}"></script>
+    <script type="text/javascript" src="{{ ("js/video.js")|link }}"></script>
+    <script type="text/javascript" src="{{ ("js/zoom.js")|link }}"></script>
+{% endif %}

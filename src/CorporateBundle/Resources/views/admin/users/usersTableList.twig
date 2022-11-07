@@ -1,0 +1,32 @@
+<!-- Main content -->
+<section class="content">
+    <table id="usersTbl" align="center" class="dataTable table table-striped table-bordered" cellspacing="0"
+        ajax_url 					= "{{ path('_corpo_users_datatable') }}" 
+        default_order_column_id  	= "id_ID"
+        default_order_direction  	= "asc"
+        parameters = "slug,affiliateUserId"
+        width="100%"
+    >
+        <thead>
+            <tr>
+                <th id="id_ID" dbname="cu__id">{{'Id'|trans }}</th>
+                <th id="FullName_ID" dbname="FullName">{{'User'|trans }}</th>
+                <th id="AccountName_ID" dbname="ca__name" width="100px">{{'Account'|trans }}</th>
+                <th id="gender_ID" dbname="gender" classname="dt-body-center">{{'Gender'|trans }}</th>
+                <th id="YourEmail_ID" dbname="YourEmail">{{'Email'|trans }}</th>
+                <th id="YourCountry_ID" dbname="YourCountry" classname="dt-body-center" width="70px">{{'Country'|trans }}</th>
+                <th id="accountId_ID" dbname="corpo_account_id" visible="false" classname="dt-body-right">{{'Account Id'|trans }}</th>
+                {%  if slug == 'users' %}
+                <th id="allowApprove_ID" dbname="allow_approval_all_user" cell_handler="allowedToApproveCellHandler" width="100px">{{'Allowed to Approve'|trans }}</th>
+                {% endif %}
+                {%  if slug == 'sales' %}
+                <th id="companyId_ID" dbname="company__companyId" visible="false" search="false">{{'Company'|trans }}</th>
+                <th id="agencyId_ID" dbname="agency__agencyId" visible="false" search="false">{{'Agency'|trans }}</th>
+                <th id="rAgencyId_ID" dbname="rAgency__rAgencyId" visible="false" search="false">{{'Retail Agency'|trans }}</th>
+                {% endif %}
+                <th id="actions" dbname="actions" skipDb="true" cell_handler="actionCellHandler" width="300px">{{'Actions'|trans }}</th>
+            </tr>
+        </thead>
+    </table>
+    <br><br>
+</section>

@@ -1,0 +1,42 @@
+DealBundle\Entity\DealTopAttractions:
+    type: entity
+    table: deal_top_attractions
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: string
+            nullable: false
+            length: 255
+        cityId:
+            type: integer
+            nullable: true
+            length: 11
+            column: city_id   
+        dealApiSupplierId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: deal_api_supplier_id  
+        imageUrl:
+            type: string
+            nullable: true
+            length: 255
+            column: image_url              
+    lifecycleCallbacks: {  }

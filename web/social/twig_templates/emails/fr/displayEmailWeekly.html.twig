@@ -1,0 +1,78 @@
+{# empty Twig template #}
+<body>
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+{{head}}
+{% for Arr in htmlArr %}
+{% if Arr.countArr>0 %}
+{{Arr.displayPartHead}}    
+<tr>
+<td>
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="46"></td>
+<td>
+<table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+{% if Arr.mediaTitle == 'NETWORK'%}
+<tr  height="30" >
+<td height="30"  width="552"></td>
+</tr>
+<tr  height="28" >
+<td height="28"  width="552">
+{{Arr.displayimages}}
+</td>
+</tr>
+<tr  height="29" >
+<td height="29"  width="552"></td>
+</tr>
+{{Arr.displaysocial}}
+</table>
+</td>
+<td width="37"></td>
+</tr>
+</table>
+</td>
+</tr>
+{% else %}
+<tr  height="33" >
+<td height="33"  width="552"></td>
+</tr>
+<tr  height="76" >
+<td height="76"  width="552">
+{{Arr.displyimages}}
+</td>
+</tr>
+<tr  height="17" >
+<td height="17"  width="552"></td>
+</tr>
+{% if Arr.mediaTitle == 'JOURNALS' or Arr.mediaTitle == 'EVENTS' %}
+{{Arr.displaysocial}}
+{% else %}
+{{Arr.displaysocial}} 
+{% endif %}
+<tr  height="27" >
+<td height="27"  width="552"></td>
+</tr>
+</table>
+</td>
+<td width="37"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="3" bgcolor="#FFFFFF" width="633">
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="3">
+<tr>
+<td width="595" bgcolor="#E0E0E0" height="3"></td>
+<td></td>
+</tr>
+</table>
+</td>
+</tr>
+{% endif %}
+{% endif %}
+{% endfor %}
+{{displayfoot}}
+</table>
+</body>

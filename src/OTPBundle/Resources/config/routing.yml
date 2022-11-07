@@ -1,0 +1,28 @@
+app:
+    resource: '@OTPBundle/Controller/'
+    type: annotation
+    
+otpRoute:
+    path:      /otp/generateCode/{module_id}/{reservation_id}/{user_id}
+    defaults: { _controller: OTPBundle:OTP:generateCode, user_id: 0, seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        module_id: '\d+'
+        reservation_id: '\d+'
+        user_id: '\d+'
+        
+verifyOtpRoute:
+    path:    /otp/verifyCode/{id}
+    defaults: { _controller: OTPBundle:OTP:verifyCode }
+    
+resendCodeRoute:
+    path:   /otp/resendCode/{module_id}/{reservation_id}/{gen_id}/{user_id}
+    defaults: { _controller: OTPBundle:OTP:resendCode, user_id: 0, seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        module_id: '\d+'
+        reservation_id: '\d+'
+        user_id: '\d+'
+
+    
+defaultOTPCallback:
+    path: /otp/redirect/{module_id}/{reservation_id}/{user_id}
+    defaults: { _controller: OTPBundle:OTP:defaultCallBack }

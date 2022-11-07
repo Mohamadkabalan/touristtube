@@ -1,0 +1,138 @@
+TTBundle\Entity\CmsJournalsItems:
+    type: entity
+    table: cms_journals_items
+    indexes:
+        journal_id:
+            columns:
+                - journal_id
+        latitude:
+            columns:
+                - latitude
+                - longitude
+        city_id:
+            columns:
+                - city_id
+                - location_id
+                - location_name
+        location_id:
+            columns:
+                - location_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        journalId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: journal_id
+        picVpath:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: pic_vpath
+        itemPic:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: item_pic
+        itemDesc:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: item_desc
+        itemOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: item_order
+        itemTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: item_ts
+        defaultPic:
+            type: boolean
+            nullable: false
+            column: default_pic
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        cityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_id
+        locationId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: location_id
+        locationName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: location_name
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        keywords:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,31 @@
+TTBundle\Entity\CmsQueriesLog:
+    type: entity
+    table: cms_queries_log
+    indexes:
+        query_string:
+            columns:
+                - query_string
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        queryString:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+            column: query_string
+        queryTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: query_ts
+    lifecycleCallbacks: {  }

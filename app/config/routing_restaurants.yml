@@ -1,0 +1,14 @@
+_best_restaurants_restaurants:
+    host: "restaurants{subdomain_suffix}.{domain}"
+    path:      "/best-restaurants"
+    defaults:  { _controller: TTBundle:Restaurants:bestRestaurants, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "best restaurants | Tourist Tube", seodescription: "searching for a restaurant? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "best restaurants, restaurant reviews, local restaurants, restaurant review, restaurant finder, restaurant week, italian restaurant" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_restaurants:
+    path:      "/best-restaurants"
+    defaults:  { _controller: TTBundle:Restaurants:bestRestaurantsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "best restaurants | Tourist Tube", seodescription: "searching for a restaurant? local restaurants? Your best solution to find restaurants on the web is tourist tube", seokeywords: "best restaurants, restaurant reviews, local restaurants, restaurant review, restaurant finder, restaurant week, italian restaurant" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

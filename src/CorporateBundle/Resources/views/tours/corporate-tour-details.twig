@@ -1,0 +1,511 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/slick/css/slick.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/slick/css/slick-theme.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-tour-details.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/slick.min.js")|raw }}"></script>
+    <script>
+        var lat = {{ (details['latitude'] is defined and details['latitude']|trim != '')  ? details['latitude'] : 0 }};
+        var long = {{ (details['longitude'] is defined and details['longitude']|trim != '')  ? details['longitude'] : 0 }};
+    </script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/deals/corporate-tour-details.js")|raw }}"></script>
+    <script src="https:///maps.googleapis.com/maps/api/js?callback=myMap&sensor=true&key={{ (mapKey is defined)  ? mapKey }}"></script>
+{% endblock %}
+{% block title %}{{'Attractions Details'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="row">
+            {% include '@Corporate/tours/corporate-deals-common-header.twig' %}
+        </div>
+	{% if details['errorMessage'] is defined and details['errorMessage'] != '' %}
+	    <div class ="row">
+		<div class="col-xs-12 nopad">
+		    <p class="dealErrMsg">
+			{% if details['errorCode'] is defined and details['errorCode'] == 203 %}
+			    {{'Tour is not available.'| trans}}
+			{% else %}
+			    {{details['errorMessage']}}
+			{% endif %}
+		    </p>
+		    <p class="dealErrMsgSub">{{'Please'|trans}} <a href="{{ (returnUrl is defined)  ? returnUrl : '' }}">{{'click here'|trans}}</a> {{'to return to deals section'|trans}}</p>
+		</div>
+	    </div>
+	{% else %}
+	    <div class ="row">
+		<div class="col-xs-12">
+		    <h1 class="headingtitlestyle_dat">{{ (details['dealName'] is defined)  ? details['dealName'] }}</h1>
+		</div>
+		<div class="col-xs-12">
+		    <ul class="dealsattlist">
+			<li class=""><a href="#">{{'Free cancellation'|trans}}</a></li>
+			<li class="liwborderdat"><img class="imgborgerul" src="{{ generateMediaURL('/media/images/deals-attractive/barlistdatt.png') }}" alt="title"/></li>
+			<li class=""><a href="#">{{'No booking or credit card fees'|trans}}</a> </li>
+			<li class="liwborderdat"><img class="imgborgerul" src="{{ generateMediaURL('/media/images/deals-attractive/barlistdatt.png') }}" alt="title"/></li>
+			<li class=""><a href="#">{{'Mobile voucher accepted'|trans}}</a></li>
+		    </ul>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="slider-for opacity0">
+			    {% for deal_image in details['dealMainImages'] %}
+				<div class="imagefirstbut bgheight" style="background-image: url('{{deal_image}}');"></div>
+			    {% endfor %}
+			</div>
+			{% if details['dealThumbImages']|length > 1 %}
+			    <div class="slider-nav hidden-ms hidden-xs">
+				{% for deal_image in details['dealThumbImages'] %}
+				    <div class="mediathumb">
+					<div class="mediathumbcontainer"><img src="{{ asset(deal_image) }}" alt="{{'title'}}"/></div>
+					<div class="mediathumbbk"></div>
+				    </div>
+				{% endfor %}
+			    </div>
+			{% endif %}
+			{% if details['dealHighlights'] is defined and details['dealHighlights']|striptags|length %}
+			    <div class="col-xs-12 nopad padtop25">
+				<h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Highlights'|trans}}</h2>
+				<div class="smxsbordercollapse"></div>
+				<div class="smxscollapsable_dat">
+				    <p class="subtitlegreytext_dat">
+					{% autoescape %}
+					    {{ details['dealHighlights'] | raw}}
+					{% endautoescape %}
+				    </p>
+				</div>
+			    </div>
+			{% endif %}
+			<div class="col-xs-12 nopad padtop25">
+			    <h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Specifications'|trans}}</h2>
+			    <div class="smxsbordercollapse"></div>
+			    <div class="smxscollapsable_dat">
+				<div class="col-xs-12 nopad">
+				    <div class="smallfirstdiv">
+					<p class="boldblacktitle_dat">{{'Type:'|trans}}</p>
+				    </div>
+				    <div class="largesnddiv">
+					<p class="descsnddiv_dat">{{ details['specifications']['type']}}</p>
+				    </div>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <div class="smallfirstdiv">
+					<p class="boldblacktitle_dat">{{'Departs From:'|trans}}</p>
+				    </div>
+				    <div class="largesnddiv">
+					<p class="descsnddiv_dat">{{ details['specifications']['departsFrom'] }}</p>
+				    </div>
+				</div>
+				{% if details['startingPlace'] is defined and details['startingPlace'] %}
+				    <div class="col-xs-12 nopad">
+					<div class="smallfirstdiv">
+					    <p class="boldblacktitle_dat">{{'Meeting Point:'|trans}}</p>
+					</div>
+					<div class="largesnddiv">
+					    <p class="descsnddiv_dat">{{ details['specifications']['meetingPoint']}}</p>
+					</div>
+				    </div>
+				{% endif %}
+				{% if details['specifications']['duration'] is defined and details['specifications']['duration'] %}
+				    <div class="col-xs-12 nopad">
+					<div class="smallfirstdiv">
+					    <p class="boldblacktitle_dat">{{'Duration:'|trans}}</p>
+					</div>
+					<div class="largesnddiv">
+					    <p class="descsnddiv_dat">{{ details['specifications']['duration']}}</p>
+					</div>
+				    </div>
+				{% endif %}
+				<div class="col-xs-12 nopad">
+				    <div class="smallfirstdiv">
+					<p class="boldblacktitle_dat">{{'Product Code:'|trans}}</p>
+				    </div>
+				    <div class="largesnddiv">
+					<p class="descsnddiv_dat">{{ details['specifications']['productCode'] }}</p>
+				    </div>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <div class="smallfirstdiv">
+					<p class="boldblacktitle_dat">{{'Voucher info:'|trans}}</p>
+				    </div>
+				    <div class="largesnddiv">
+					<p class="descsnddiv_dat">{{ details['specifications']['voucherinfo'] }}</p>
+				    </div>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <div class="smallfirstdiv">
+					<p class="boldblacktitle_dat">{{'Languages:'|trans}}</p>
+				    </div>
+				    <div class="largesnddiv">
+					<img src="{{ asset(details['specifications']['languageFlag']) }}" alt="{{'title'}}"/></p>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="col-xs-12 nopad padtop25">
+			    <h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Description'|trans}}</h2>
+			    <div class="smxsbordercollapse"></div>
+			    <div class="smxscollapsable_dat">
+				<p class="subtitlegreytext_dat">
+				    {{ (details['dealDescription'] is defined)  ? details['dealDescription'] | raw }}
+				</p>
+			    </div>
+			</div>
+			{% if details['inclusion'] is defined and details['inclusion']|length > 0 %}
+			    <div class="col-xs-12 nopad padtop25">
+				<h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Includes'|trans}}</h2>
+				<div class="smxsbordercollapse"></div>
+				<div class="smxscollapsable_dat">
+				    <p class="subtitlegreytext_dat">
+					{{ details['inclusion'] | raw }}
+				    </p>
+				</div>
+			    </div>
+			{% endif %}
+			<div class="col-xs-12 nopad padtop25">
+			    <h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Cancellation Policy'|trans}}</h2>
+			    <div class="smxsbordercollapse"></div>
+			    <div class="smxscollapsable_dat">
+				<p class="subtitlegreytext_dat">
+				    {% if details['cancellationPolicy'] is defined %}
+					{% for cp in details['cancellationPolicy'] %}
+					    {{cp|raw}}<br>
+					{% endfor %}
+				    {% else %}
+					{{'None'|trans}}
+				    {% endif %}
+				</p>
+			    </div>
+			</div>
+			{% if details['changePolicy'] is defined and details['changePolicy']|length > 0 %}
+			    <div class="col-xs-12 nopad padtop25">
+				<h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Change Policy'|trans}}</h2>
+				<div class="smxsbordercollapse"></div>
+				<div class="smxscollapsable_dat">
+				    <p class="subtitlegreytext_dat">
+					{{ details['changePolicy'] }}
+				    </p>
+				</div>
+			    </div>
+			{% endif %}
+			{% if details['directions'] is defined and details['directions']|length > 0 %}
+			    <div class="col-xs-12 nopad padtop25">
+				<h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Location and direction'|trans}}</h2>
+				<div class="smxsbordercollapse"></div>
+				<div class="smxscollapsable_dat">
+				    {% for drKey, drVal in details['directions'] %}
+					{% if drVal['image'] is defined and drVal['image']%}
+					    <div class="smallfirstdiv">
+						<img src="{{drVal['image']}}" />
+					    </div>
+					{% endif %}
+					{% if drVal['image'] is defined and drVal['image']%}<div class="largesnddiv">{% endif %}
+					    {% if drVal['title'] is defined and drVal['title']%}<b><p>{{drVal['title']|raw}}</p></b><br/>{% endif %}
+					    <p>{% autoescape %}{{drVal['description']|raw}}{% endautoescape %}</p><br/>
+					    {% if drVal['image'] is defined and drVal['image']%}</div>{% endif %}
+					{% endfor %}
+				</div>
+			    </div>
+			{% endif %}
+			<div class="col-xs-12 nopad padtop25">
+			    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad">
+				<h2 class="subtitleblue_dat">{{'Price & Options'|trans}}</h2>
+			    </div>
+			    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad selectoptionprice_container">
+				<select id="priceOptionSelect" class="selectoptionprice_dat" name="priceOptionSelect" required="required">
+				    {% for poKey,poVal in details['priceOptions'] %}
+					{% set opDate = poKey|split('_') %}
+					<option value="{{poKey}}">{{opDate[0]|date("F d, Y")}} {{'to'|trans}} {{opDate[1]|date("F d, Y")}}</option>
+				    {% endfor %}
+				</select>
+			    </div>
+			</div>
+			{% set showFirst = true %}
+			{% for poKey,poVal in details['priceOptions'] %}
+			    <div id="option_{{poKey}}" class="col-xs-12 nopad priceOptions {{(showFirst)  ? 'showOption' : 'hideOption' }}">
+				{% for po in poVal %}
+				    <div class="col-xs-12 nopad bordereddiv_priceandop">
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 nopad">
+					    <p class="pinkbigtext_dat">
+						{{ (po['optionLabel'] != '') ? po['optionLabel']| capitalize }}
+
+						{% if(po['optionGroupMinPax'] > 0) %}
+						    For {{ po['optionGroupMinPax'] }}
+						    {{(po['optionGroupMaxPax'] > po['optionGroupMinPax'])  ? 'to ' ~ po['optionGroupMaxPax'] }}
+						    {{(po['optionGroupMaxPax'] == 1)  ? 'Person' : 'Persons' }}
+						{% endif %}
+					    </p>
+					    <p class="pinksmaltext_dat">{{po['optionAvailableDays']}}</p>
+					</div>
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 nopad">
+					    {% for unitKey,unitVal in po['Units'] %}
+						<p class="pperadblacktext_dat clearBoth">{{unitVal['unitLabel'] |trans}} ({{unitVal['ageText']|trans}})<span class="a_price newprice_dat price-convert" data-price="{{unitVal['optionPrice']}}"><span class="currency-convert-text">{{unitVal['optionPriceCurrency']}}</span> <span class="price-convert-text">{{unitVal['optionPrice']}}</span></span></p>
+						    {% endfor %}
+					</div>
+				    </div>
+				    {% set showFirst = false %}
+				{% endfor %}
+			    </div>
+			{% endfor %}
+			{% if details['notes'] is defined and details['notes']|length > 0 %}
+			    <div class="col-xs-12 nopad padtop25">
+				<h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Notes'|trans}}</h2>
+				<div class="smxsbordercollapse"></div>
+				<div class="smxscollapsable_dat">
+				    <p class="subtitlegreytext_dat">
+					{% for nKey, nVal in details['notes'] %}
+					    {% if nKey > 1 %}
+						<br />
+					    {% endif %}
+					    {% for nKey2, nVal2 in nVal %}
+						{% if nKey2 == 0 %}
+						    <b>{{nVal2['title']}}</b>
+						    <br />
+						    <u>{{nVal2['info']}}</u>
+						    {% endif %}
+
+					    <ul class="subtitlegreytext_ul"><li>{{nVal2['note']}}</li></ul>
+						    {% if nVal2['pdfPath']|trim != '' %}
+						<ul class="subtitlegreytext_ul"><li>{{nVal2['pdfPath']}}</li></ul>
+						    {% endif %}
+						    {% if nKey2 == 0 %}
+						    {% endif %}
+						{% endfor %}
+					    {% endfor %}
+				    </p>
+				</div>
+			    </div>
+			{% endif %}
+			{% if details['faq'] is defined and details['faq']|length > 0 %}
+			    <div class="col-xs-12 nopad padtop25">
+				<h2 class="subtitleblue_dat collapsablesubtit_dat">{{'Frequently Asked Questions'|trans}}</h2>
+				<div class="smxsbordercollapse"></div>
+				<div class="smxscollapsable_dat">
+				    <p class="subtitlegreytext_dat">
+				    <ul  class="subtitlegreytext_ul">
+					{% for fKey, fVal in details['faq'] %}
+					    <li><b>{{fVal['question']}}</b>
+						<p>{{fVal['answer']}}</p>
+					    </li>
+					{% endfor %}
+				    </ul>
+				    </p>
+				</div>
+			    </div>
+			{% endif %}
+			{% if details['reviews'] is defined and details['reviews'] %}
+			    <div class="col-xs-12 nopad padtop25">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad">
+				    <h2 class="subtitleblue_dat">{{'Tour Reviews'|trans}}</h2>
+				</div>
+				{% if details['reviews']|length > 1 %}
+				    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad selectoptionprice_container">
+					<select id="reviewSorting" class="selectoptionprice_dat" name="reviewSorting" required="required">
+					    <option value="rating_desc" selected="selected">{{'View by Rating (High to Low)'|trans}}</option>
+					    <option value="rating_asc">{{'View by Rating (Low to High)'|trans}}</option>
+					    <option value="date_desc">{{'View by Date (Newest to Oldest)'|trans}}</option>
+					    <option value="date_asc">{{'View by Date (Oldest to Newest)'|trans}}</option>
+					</select>
+				    </div>
+				{% endif %}
+			    </div>
+			    <input id="reviewPath" type="hidden" value="{{ generateLangRoute(LanguageGet,'_corporate_getActivityReviews') }}">
+			    <input id="activityId" type="hidden" value="{{ details['productCode'] }}">
+			    <input id="apiId" type="hidden" value="{{ apiId }}">
+			    <div id="reviewContainer">
+				{% for review in details['reviews'] %}
+				    <div class="col-xs-12 nopad padtop20 reviewList">
+					<div class="greycontainer_dat">
+					    <div class="col-xs-12 nopad">
+						<div class="imagecircletxtcont_dat">
+						    <img class="greycircle_dat" src="{{ generateMediaURL('/media/images/greycircle_hoteldetailed.png') }}" alt="greycircle">
+						    <p class="textingreycircle_dat">{{ review.rating|raw }}</p>
+						</div>
+						<p class="nextcircletext_dat">{{ review.owner|raw|trim }}<span class="wherefromgreytext_dat">{{'From'|trans}} {{review.country|raw}}, {{review.date|date("m/d/Y")}}</span></p>
+						<div class="col-xs-12 nopad">
+						    <p class="ingreytext_dat">{{ review.comment|raw }}</p>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				{% endfor %}
+				<div id="loadMoreBtn" class="col-xs-12 nopad padtop20">
+				    <div class="loadmore_dat">
+					{{'load more'|trans}}
+				    </div>
+				</div>
+			    </div>
+			{% endif %}
+			{% if details['topDeals'] %}
+			    <div class="col-xs-12 nopad padtop25">
+				<div class="col-xs-12 nopad">
+				    <h2 class="subtitleblue_dat">{{'Our travelers also loved'|trans}}</h2>
+				</div>
+				<div class="col-xs-12 nopad">
+				    {% for topList in details['topDeals'] %}
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 unfivhf">
+					    <div class="greydivimgallcontainer">
+						<div class="greydivimgcontainer_dat">
+						    <img class="imginsidegreycont_dat" src="{{ topList.imagePath|raw }}" alt="{{'title'}}"/>
+						    <img class="onimgabsoluteplus" src="{{ generateMediaURL('/media/images/deals-attractive/absoluteadd.png') }}" alt="{{'title'}}"/>
+						</div>
+						<div class="divtextunderimg_dat">
+						    <p class="textoneunimgstyle_dat"><a href="{{ topList.urlPath|raw }}">{{ topList.dealName|length > 100 ? topList.dealName|slice(0, 100) ~ '...' : topList.dealName}}</a></p>
+						    <p class="hoursunimtext">{{ topList.durationText|raw }}</p>
+						    <p class="loctext_dat">{{ topList.cityName|raw }}</p>
+						    <div class="col-xs-12 nopad">
+							<img class="starsgreytext_dat" src="{{ generateMediaURL('/media/images/deals-attractive/starsgreytext_dat.png') }}" alt="{{'title'}}"/>
+						    </div>
+						    <div class="col-xs-12 nopad">
+							<p class="pricegreyutext_dat"><span class="a_price price-convert" data-price="{{ topList.priceBeforePromo|raw }}"><span class="currency-convert-text">{{topList.currency}}</span> <span class="price-convert-text">{{ topList.formattedPriceBeforePromo|raw }}</span></span></p>
+						    </div>
+						    <div class="col-xs-12 nopad">
+							<p class="vouchertextgreydiv_dat">{{'E-voucher accepted'|trans}}</p>
+						    </div>
+						</div>
+					    </div>
+					</div>
+				    {% endfor %}
+				</div>
+			    </div>
+			{% endif %}
+		    </div>
+		    <div id="priceOptions" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 floatrightdivconatainer">
+			<div class="col-xs-12 nopad bordereddiv_dealsatt">
+			    <form method="POST" action="{{ path('_corporate_getMandatoryFields') }}" autocomplete="off">
+				<input type="hidden" id="startingPlace" name="startingPlace" value="{{details['startingPlace']}}" />
+				<input type="hidden" id="dealHighlights" name="dealHighlights" value="{{details['dealHighlights']}}" />
+				<input type="hidden" id="cancellationData" name="cancellationData" value="{{details['cancellationData']}}" />
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+				    <p class="seadatetextbold_datt"><span class="formYellowNumbers">1</span>{{'Select travel date'|trans}}</p>
+				    <div class="selectdatecont_dealsatt">
+					<input type="hidden" id="packageId" name="packageId" value="{{packageId}}">
+					<input type="hidden" id="tourCode" name="tourCode" value="{{details['productCode']}}">
+					<input id="priceDetailsPath" type="hidden" value="{{ generateLangRoute(LanguageGet,'_corporate_getTourPriceDetails') }}">
+					<input id="quoteBookingPath" type="hidden" value="{{ generateLangRoute(LanguageGet,'_corporate_quoteBooking') }}">
+					<span id="datesDealsContainer" style="float:left; width: 100%;">
+					    <div id="fromContainerH" class="tourDateBox margin0 marginrightten firstdate">
+						<input type="text" id="bookingDate" name="bookingDate" class="selectdateinput_dealsatt" placeholder="{{'Please choose your date'|trans}}"  autocomplete="off" value="">
+					    </div>
+					</span>
+				    </div>
+				    <br /><br />
+				    <p class="changedatetext_dealsatt">{{'Can I change my date after booking?'|trans}}</p>
+				    <p class="changedatetext_dealsatt1">{{"Yes! *
+You can change your date after booking.
+Once confirmed, you will receive a voucher with all the information about your activity including the provider's local contact details, which you can contact if you have any question or if you need to change the date. We will try our best to accommodate your request.
+
+*Subject to availability.
+Fees might apply. Please check our terms and conditions for more information."|trans|nl2br}}</p>
+				</div>
+				<div id="bookingBox" class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+				    <div class="col-xs-12 nopad paddhorborder_dealsatt hidden-sm">
+					<div class="col-xs-12 nopad inhorborderstyle_datt"></div>
+				    </div>
+				    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+					<p class="start_datt_smalltext">{{'Starting at'|trans}}</p>
+					<p class="start_datt_largetext"><span class="a_price price-convert" data-price="{{ (details['dealPrice'] is defined)  ? details['dealPrice'] }}"><span class="currency-convert-text">{{ (details['dealCurrency'] is defined)  ? details['dealCurrency'] }}</span> <span class="price-convert-text">{{ (details['formattedDealPrice'] is defined)  ? details['formattedDealPrice'] }}</span></span></p>
+					<p class="pricegarlogo_datt">{{'Best Price Guaranteed'|trans}}</p>
+					<p class="destdate_datt">{{'Please select your desired tour date'|trans}}</p>
+				    </div>
+				    <div class="col-xs-12 nopad paddhorborder_dealsatt visible-sm">
+					<div class="col-xs-12 nopad inhorborderstyle_datt"></div>
+				    </div>
+				    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+					<div class="col-xs-12 nopad textalligncenter">
+					    <button name="viewBookingPage" type="submit" class="buynowbut_datt" disabled>{{'buy now'|trans}}</button>
+					</div>
+				    </div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+				    <div class="col-xs-12 nopad">
+					<p class="confemailtextstyle_datt">{{'you’ll receive your confirmation and voucher by email.'|trans}} </p>
+				    </div>
+				</div>
+				{#				<div class="col-xs-12 nopad paddhorborder_dealsatt newborderpadbut hidden-sm">
+								    <div class="col-xs-12 nopad inhorborderstyle_datt"></div>
+								</div>#}
+				{#				<div class="col-xs-12 nopad">
+								    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad textalligncenter">
+									<div class="addtobagdivcont">
+									    <a href="#" class="addtobagtextstyle">{{'Add to tour bag'|trans}} </a>
+									</div>
+								    </div>
+								</div>#}
+			    </form>
+			</div>
+			<div class="col-xs-12 nopad bordereddiv_dealsatt">
+			    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+				<p class="resontt_datt">{{'Why ToursitTube?'|trans}}</p>
+				<ul class="whyttlist_dtt">
+				    <li class="">{{'Easy booking'|trans}}</li>
+				    <li class="">{{'Instant confirmation'|trans}}</li>
+				    <li class="">{{'Reschedule anytime'|trans}}</li>
+				    <li class="">{{'Best price guaranteed'|trans}}</li>
+				    <li class="">{{'24/5 Customer support'|trans}}</li>
+				</ul>
+			    </div>
+			    <div class="col-xs-12 nopad paddhorborder_dealsatt hidden-sm">
+				<div class="col-xs-12 nopad inhorborderstyle_datt"></div>
+			    </div>
+			    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+				<p class="needhelp_dat">{{'Need Help?'|trans}}<span class="contus_dat"> <a href="{{ generateLangRoute(LanguageGet,'_contact') }}" class=""> {{'Contact Us'|trans}}</a></span></p>
+				<div class="col-xs-12 nopad paddhorborder_dealsatt hidden-sm">
+				    <div class="col-xs-12 nopad inhorborderstyle_datt extrabordmarbut"></div>
+				</div>
+				<p class="secpay_datt">{{'Secure & simple payments'|trans}}</p>
+				<p class="protectpay_datt">{{'All our card payments are protected by thawte to give you peace of mind'|trans}}</p>
+				<div class="col-xs-12 nopad textalligncenter">
+				    <div class="paymimgs_dat_cont">
+					<a href="#" class="payimgssingle"><img src="{{ generateMediaURL('/media/images/deals-attractive/visa_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle"><img src="{{ generateMediaURL('/media/images/deals-attractive/mastercard_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle"><img src="{{ generateMediaURL('/media/images/deals-attractive/americnexpress_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle"><img src="{{ generateMediaURL('/media/images/deals-attractive/discover_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle"><img src="{{ generateMediaURL('/media/images/deals-attractive/jcb_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row">
+		<div id="map" class="col-xs-12 nopad">
+		</div>
+	    </div>
+	    <div class="row">
+		<div class="col-xs-12 nopad padtop10">
+		    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 unfivhf nopad">
+			    <div class="xxstextalcenter">
+				<p class="commontextwizimgprefooter_dat lowesttoup_dat">{{'Lowest Tour Prices'|trans}}</p>
+			    </div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 unfivhf nopad">
+			    <div class="xxstextalcenter">
+				<p class="commontextwizimgprefooter_dat rescanytime_dat">{{'Reschedule anytime'|trans}}</p>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 unfivhf nopad">
+			    <div class="xxstextalcenter">
+				<p class="commontextwizimgprefooter_dat instantconf_dat">{{'Instant confirmation'|trans}}</p>
+			    </div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 unfivhf nopad">
+			    <div class="xxstextalcenter">
+				<p class="commontextwizimgprefooter_dat fullsupport_dat">{{'24/5 customer support'|trans}}</p>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,141 @@
+<script type="text/javascript">
+    var ccRequired = {% if reservationDetails.ccRequired %}true{% else %}false{% endif %};
+    var ccCodeRequired = {% if reservationDetails.ccCodeRequired is defined and reservationDetails.ccCodeRequired %}true{% else%}false{% endif %};
+    var currentMonthYear = [{{ccValidityInfo.currentMonth}}, {{ccValidityInfo.currentYear|slice(2,2)}}];
+</script>
+
+<input type="hidden" name="ccRequired" value="{{reservationDetails.ccRequired}}" />
+<input type="hidden" name="ccCodeRequired" value="{% if reservationDetails.ccCodeRequired is defined and reservationDetails.ccCodeRequired is not empty %}{{reservationDetails.ccCodeRequired}}{% endif %}"/>
+
+{% set requestType = (requestType is defined) ? requestType : 'booking'|trans %}
+{% set disclaimerFull = (disclaimerFull is defined) ? disclaimerFull : 'Your card will not be charged - it is only needed to guarantee your booking'|trans %}
+
+<div class="row">
+    <div class="col-xs-12">
+	<div class="row margin_top_30">
+	    <div class="col-sm-9 col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Card details'|trans}}</h1>
+	    </div>
+	    <div class="col-sm-3 col-xs-12 currencyselectbox_top">
+		<div class="currency_top_but">
+		    <p class="curtext_hp"><span>{{currency_symbol.symbol|raw}}</span> {{selected_currency|raw}}</p>
+		</div>
+	    </div>
+	</div>
+	<div class="row margin_top_25">
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+		<label class="">{{'Card type'|trans}}</label>
+		<select id="ccType" name="ccType" data-alert="Card type" tabindex="" class="select_commun {% if reservationDetails.ccRequired %}required{% endif %}" {% if reservationDetails.ccRequired %}required="true"{% endif %}>
+		    <option value="">{{'Card Type'|trans}}{%  if reservationDetails.ccRequired %} *{% endif %}</option>
+		    {% for card in hotelDetails.creditCardDetails %}
+			<option value="{{ card.code }}">{{ card.name }}</option>
+		    {% endfor %}
+		</select>
+	    </div>
+	</div>
+	<div class="row margin_top_30">
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+		<label class="">{{'Card holder'|trans}}</label>
+		<input id="ccCardHolder" name="ccCardHolder" data-alert="Card holder" class="hotel_payment_input textOnly {% if reservationDetails.ccRequired %}required{% endif %}" placeholder="{{'Cardholder'|trans}}{% if reservationDetails.ccRequired %} *{% endif %}" value="{% if creditCard.cardHolder is defined %}{{ creditCard.cardHolder }}{% endif %}" {% if reservationDetails.ccRequired %}required="true"{% endif %} type="text" autocomplete="off"/>
+	    </div>
+	</div>
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<label class="">{{'Card number'|trans}}</label>
+	    </div>
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+		{% set ccNumber = '' %}
+		{% if creditCard.creditCardNumber is defined and creditCard.creditCardNumber is not empty %}
+		    {% set ccNumber = creditCard.creditCardNumber %}
+		{% elseif creditCard.number is defined and creditCard.number is not empty %}
+		    {% set ccNumber = creditCard.number %}
+		{% endif %}
+		<input id="ccNumber" name="ccNumber" data-alert="Card number" class="hotel_payment_input {% if reservationDetails.ccRequired %}required{% endif %}" placeholder="{{'Card Number'|trans}}{% if reservationDetails.ccRequired %} *{% endif %}" value="{{ ccNumber }}" type="number" data-value="{{ ccNumber }}" {% if reservationDetails.ccRequired %}required="true"{% endif %} autocomplete="off"/>
+	    </div>
+	    <div class="col-lg-7 col-md-6 col-sm-4 hidden-xs lock_img_container">
+		<img src="{{ generateMediaURL('/media/images/hotel_payment_new/lock_logo.png') }}" alt="lock_logo">
+	    </div>
+	</div>
+	<div class="row margin_top_25">
+	    <div class="col-xs-12">
+		<label class="">{{'Expiry date'|trans}}{% if reservationDetails.ccRequired %} *{% endif %}</label>
+	    </div>
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+		<div class="row row_margin_5 ccexpirationhldr">
+		    <div class="col-sm-4 col-xs-6 col_padding_5 ccvalidmonth">
+			{% set selectedMonth = ccValidityInfo.currentMonth %}
+
+			{% if creditCard.expiryDateMonth is defined and creditCard.expiryDateMonth is not empty %}
+			    {% set selectedMonth = creditCard.expiryDateMonth %}
+			{% elseif creditCard.validMonth is defined and creditCard.validMonth is not empty %}
+			    {% set selectedMonth = creditCard.validMonth %}
+			{% endif %}
+
+			<select id="ccExpiryMonth" name="ccExpiryMonth" tabindex="" class="ccValidOnly select_commun select_grey" {% if reservationDetails.ccRequired %}required="true"{% endif %} type="number" max="12">
+			    {% for m in ccValidityInfo.monthList %}
+				<option value="{{loop.index}}"  {% if selectedMonth == loop.index %}selected{% endif %}>{{m}}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		    <div class="col-sm-4 col-xs-6 col_padding_5 ccvalidyear">
+			{% set selectedYear = ccValidityInfo.currentYear %}
+			{% if creditCard.expiryDateYear is defined and creditCard.expiryDateYear is not empty %}
+			    {% set selectedYear = creditCard.expiryDateYear %}
+			{% elseif creditCard.validYear is defined and creditCard.validYear is not empty %}
+			    {% set selectedYear = creditCard.validYear %}
+			{% endif %}
+			<select id="ccExpiryYear" name="ccExpiryYear" tabindex="" class="ccValidOnly select_commun select_grey" {% if reservationDetails.ccRequired %}required="true"{% endif %} type="number">
+			    {% for y in ccValidityInfo.currentYear..ccValidityInfo.currentYear+10 %}
+				{% set yearVal = y|slice(2,2) %}
+				<option value="{{yearVal}}" {% if y == selectedYear %}selected{% endif %}>{{y}}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row margin_top_25">
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+		<label class="">{{'Card CVC'|trans}}</label>
+		<input id="ccCVC" name="ccCVC" data-alert="Card CVC" class="hotel_payment_input {% if reservationDetails.ccRequired %}required{% endif %}" placeholder="{{'CVC code'|trans}}{% if reservationDetails.ccRequired %} *{% endif %}" value="" {% if reservationDetails.ccRequired %}required="true"{% endif %} type="number" autocomplete="off"/>
+	    </div>
+	</div>
+
+	<div class="row margin_top_25">
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 label_terms_cond_agree">
+		{% if not reservationDetails.prePaymentRequired %}
+		    {{disclaimerFull}}<br/>
+		{% endif %}
+	    </div>
+	</div>
+
+	<div class="row margin_top_25">
+	    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 label_terms_cond_agree termshldr">
+		<label for="agree_terms" id="terms_note">
+		    <input name="terms" value="1" required="true" type="checkbox" id="agree_terms"/>
+		    {{'I agree with the '|trans}} <span><a target="_blank" href="{{ generateLangRoute(LanguageGet,'_corporate_terms_and_conditions') }}" title="{{'Terms and Conditions'|trans}}" class="termsncond">{{'terms and conditions'|trans}} </a></span>{{'and the '|trans}} <span><a target="_blank" href="{{ generateLangRoute(LanguageGet,'_corporate_privacy_policy') }}" title="{{'Privacy Policy'|trans}}" class="termsncond">{{'privacy policy'|trans}}</a></span>
+		</label>
+	    </div>
+	</div>
+	{% if onePage is not defined %}
+	    <div class="row margin_top_50">
+		<div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+		    <div class="row row_margin_5">
+			<div class="col-xs-6 col_padding_5">
+			    <button class="btn btn_payment backbut" type="button">{{'Back'|trans}}</button>
+			</div>
+			<div class="col-xs-6 col_padding_5">
+			    <button class="btn btn_payment padding_top_4" type="submit">
+				{{'Reserve'|trans}}<br/>
+				<p class="price_style_txt price-convert" data-price="{{reservationDetails.grandTotalPriceInclusiveHotelAmount}}">
+				    <span>{{'for'|trans}} </span>		
+				    {{reservationDetails.grandTotalPriceInclusiveHotelDisplay|raw}}
+				</p>
+			    </button>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	{% endif %}
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block title %}{{'Flight Booking'|trans}}{% endblock %}
+{% block body %}
+    <section class="container hotel_reviews_container">
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{"Book your Flight"|trans}}</h1>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+			{% set isCorporate = 1 %}
+			{% include "default/searchinput3.twig" %}
+	    </div>
+	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% if is_owner == 1 %}
+    <div class="post postbk-2" title="" href="">
+        <a rel="nofollow" title="{{'create album'|trans}}" href="">
+            <img class="albums-img" src="{{ generateMediaURL('/media/images/createAlbum.png') }}" alt="{{'create album'|trans}}">
+        </a>
+        <p class="albums-text">create album</p>
+    </div>
+{% endif %}
+{% for category in albumlist_array %}
+    <div class="post">
+        <div class="image-albums-style">
+            <a title="{{ category.titlealt|raw }}" href="{{ category.link|raw }}">
+                <img class="" src="{{ category.image|raw }}" alt="{{ category.titlealt|raw }}">
+            </a>
+            <div class="plus-albums-style"><span>+{{ category.count|raw }}</span></div>
+        </div>
+        <div class="postbk">
+            <h2 class="albums-title">{{ category.title|raw }}</h2>
+            <p class="text-details-albums">{{ category.desc|raw }}</p>
+            <a rel="nofollow" title="" href="#"><img class="like-albumstyle" src="{{ generateMediaURL('/media/images/like-trans-albums.png') }}" alt="{{'like'|trans}}"></a>
+            <span class="numb-likes-left-pad">{{ category.likes|raw }}</span>
+            <a rel="nofollow" title="" href="#"><img class="share-album-style" src="{{ generateMediaURL('/media/images/comment-trans-albums.png') }}" alt="{{'comment'|trans}}"></a>
+            <span class="numb-shares-left-pad">{{ category.comments|raw }}</span>
+            <a rel="nofollow" title="" href="#"><img class="comments-album-style" src="{{ generateMediaURL('/media/images/share-trans-albums.png') }}" alt="{{'share'|trans}}"></a>
+            <span class="numb-comments-left-pad">{{ category.shares|raw }}</span>
+            {% if is_owner == 1 %}
+                <a rel="nofollow" title="" href="#"><img class="edit-albums-small" src="{{ generateMediaURL('/media/images/edit-albums-small.png') }}" alt="{{'edit'|trans}}"></a>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

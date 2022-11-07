@@ -1,0 +1,702 @@
+.pagination.pagerWrapper {
+    padding: 0;
+    margin:0;
+}
+.bookDataContainer{
+    width: 100%;
+    position: relative;
+    display: block;
+    float: left;
+}
+.pagerWrapper {
+    cursor: pointer;
+}
+.pagination {
+    border-radius: 4px;
+    display: inline-block;
+}
+.first_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll 0 3px;
+    height: 15px;
+    width: 12px;
+}
+.prev_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll -12px 3px;
+    height: 15px;
+    width: 12px;
+}
+
+
+.next_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll -27px 3px;
+    height: 15px;
+    width: 12px;
+}
+.last_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll -38px 3px;
+    height: 15px;
+    width: 12px;
+}
+.pag-float-right{
+    float: right;
+}
+.startuptext_allbooking{
+    color: #191919;
+    font-size: 16px;
+    text-decoration: underline;
+}
+.redphonelink ,.redphonelink:hover{
+    color: #ce0000;
+    font-size: 16px;
+    text-decoration: underline;
+}
+.padding-top-60{
+    margin-top: 60px;
+}
+.filter-back{
+    background-color: #f2f4f6;
+    padding: 10px;
+    height: auto;
+    float: left;
+    width: 100%;
+}
+.padding-left-zero{
+    padding-left: 0;
+}
+.filterbytext{
+    font-size: 25px;
+    color: black;
+    background: url("/media/images/filterbyimg.png") no-repeat 0px center;
+    padding-left: 20px;
+}
+.filtersection .filterinput_allbooking{
+    background: url("/media/images/flech-out.png") no-repeat scroll right 5px center;
+    background-color: white;
+    font-size: 16px;
+    color: black;
+    border: 1px solid #c7c7c7;
+    padding-left: 20px;
+    width: 100%;
+    height: 38px;
+}
+.borderdivsection{
+    border-top: 1px solid #dadada;
+    width: 100%;
+    float: left;
+}
+.bordereddiv{
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 8px;
+}
+.padding-top-20{
+    padding-top: 20px;
+}
+.imgdivallsizespad{
+    padding: 10px 10px 10px 0;
+}
+.fullwidth{
+    width: 100%;
+    height: 100px !important;
+}
+.container {
+    padding: 0 10px;
+}
+.chekindiv{
+    width: 100px;
+    height: 89px;
+    background-color: #f1f1f1;
+    padding-left: 13px;
+    padding-top: 5px;
+    float: right;
+    line-height: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.chekoutdiv{
+    width: 100px;
+    height: 89px;
+    background-color: #f1f1f1;
+    padding-left: 13px;
+    padding-top: 5px;
+    float: right;
+    line-height: 20px;
+    position: absolute;
+    right: 0;
+    top: 93px;
+}
+.checktext_albook{
+    font-size: 11px;
+    font-weight: bold;
+    color: #00b7d9;
+}
+.day_num_albook{
+    color: #c6c6c6;
+    font-size: 30px;
+    font-weight: bold;
+}
+.month_albook{
+    font-size: 13px;
+    color: black;
+}
+.day_allbook{
+    font-size: 13px;
+    color: black;
+}
+.pointer {
+    cursor: pointer;
+}
+.displayPagination {
+    display: inline-block;
+}
+.hotel_title_style_allbook {
+    color: #00304c;
+    font-size: 22px;
+    line-height: 18px;
+    padding-top: 10px;
+}
+.bookingnumb_albook{
+    color: #535353;
+    font-size: 13px;
+    padding-right: 5px;
+}
+.bookingnumb_numb_albook{
+    color: #010101;
+    font-size: 13px;
+    padding-right: 17px;
+}
+.pincode_allbook{
+    color: #535353;
+    font-size: 13px;
+    padding-right: 5px;
+
+}
+.pincode_numb_allbook{
+    color: #010101;
+    font-size: 13px;
+    padding-right: 12px;
+    background: url("/media/images/lock_allbook.png") no-repeat right center;
+}
+.booknumbp_allbook{
+    line-height: 20px;
+    padding-top: 10px;
+}
+.traveltypeinput .traveltype_allbooking{
+    background: url("/media/images/downwhitearrow_allbook.png") no-repeat scroll right 5px center;
+    background-color: #343434;
+    font-size: 14px;
+    color: white;
+    border: none;
+    padding-left: 8px;
+    min-width: 163px;
+    height: 20px;
+    margin-top: 5px;
+}
+.lbpprice_allbook{
+    color: black;
+    font-size: 20px;
+    padding-right: 20px;
+}
+.usprice_allbook{
+    color: black;
+    font-size: 16px;
+}
+.lbpus_allbook{
+    padding-top: 5px;
+}
+.viewdetails_allbook ,.viewdetails_allbook:hover{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: black;
+    font-size: 14px;
+    text-decoration: none;
+    z-index: 100;
+}
+.bar_allbook{
+    position: absolute;
+    left: 90px;
+    bottom: 0;
+    color: black;
+    font-size: 14px;
+    z-index: 100;
+}
+.clicktobookagain ,.clicktobookagain:hover{
+    position: absolute;
+    left: 102px;
+    bottom: 0;
+    color: white;
+    font-size: 14px;
+    background-color: #00b7d9;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    z-index: 2;
+    min-width: 163px;
+}
+.cancelled_allbook{
+    position: absolute;
+    left: 274px;
+    bottom: -6px;
+    font-size: 22px;
+    color: #ce0000;
+}
+.showmore_expand_allbook{
+    background-color: #d8d8d8;
+    height: 28px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 28px;
+}
+.showmore_expand_allbook_flight,.showmore_expand_allbook_deals{
+    background-color: #d8d8d8;
+    height: 28px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 28px;
+}
+.othethiddendivs ,.paginationsection ,.othethiddendivs_flight, .dealBookingList{
+    display: none;
+}
+.absolutebackground{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0.6;
+    z-index: 1;
+}
+.containerpad{
+    padding-left: 8px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.allbook_firstdiv_marginbut{
+    margin-bottom: 20px;
+}
+.companynamelarge{
+    font-size: 22px;
+    color: black;
+    line-height: 45px;
+    padding-left: 50px;
+}
+.airline-logo{
+    float: left;
+    margin-top: 5px;
+}
+.mixtext{
+    font-size: 16px;
+    padding-left: 5px;
+}
+.departurefirst-ul ,.departuresnd-ul{
+    list-style: none;
+    line-height: 23px;
+    height: 23px;
+}
+.departurefirst-ul li ,.departuresnd-ul li{
+    display: table-cell;
+    line-height: 23px;
+    height: 23px;
+}
+.firstli_allbook{
+    width: 75px;
+    font-size: 14px;
+    color: black;
+    padding-right: 5px;
+}
+.borderedli_allbooking{
+    background: rgba(0, 0, 0, 0) url("/media/images/allbookgreyborder.png") no-repeat scroll 0 7px;
+    height: 23px;
+    padding-left: 0;
+    padding-right: 5px;
+}
+.sndli_allbook{
+    width: 204px;
+    font-size: 14px;
+    color: black;
+}
+.flight-details{
+    min-height: 30px;
+}
+.sndli_allbook-snd{
+    width: 174px;
+    font-size: 14px;
+    color: black;
+}
+.thirdli_allbook-snd{
+    width: 74px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+.forthli_allbook-snd{
+    width: 31px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+}
+.sndli_allbook_span{
+    font-weight: bold;
+}
+.thirdli_allbook{
+    width: 44px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+}
+.forthli_allbook{
+    width: 45px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+.departuresnd ,.departurefirst{
+    float: left;
+}
+.padingleft_50{
+    padding-left: 50px;
+}
+.absolutedeparture{
+    position: absolute;
+    top: -15px;
+    left: 50px;
+    color: #00b7d9;
+    font-size: 14px;
+}
+.margin-top-15{
+    margin-top: 15px;
+}
+.absolute_price{
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    height: 89px;
+    position: absolute;
+    right: -5px;
+    text-align: center;
+    top: -75px;
+    width: 115px;
+    padding-top: 20px;
+}
+.margin-top-22{
+    margin-top: 22px;
+}
+.stylebooknf{
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+.flightul_mybookings{
+    list-style: none;
+}
+.flightul_mybookings li{
+    display: inline-block;
+}
+.flights_viewdetails ,.flights_viewdetails:hover{
+    color: black;
+    font-size: 14px;
+    text-decoration: none;
+}
+.bar_mybookings{
+    background: rgba(0, 0, 0, 0) url("/media/images/bar_mybookings.png") no-repeat scroll 0 0;
+    height: 13px;
+    margin-left: 10px;
+    padding-right: 5px;
+    width: 2px;
+}
+.flight_bookaflight{
+    padding-left: 9px;
+    width: 163px;
+    height: 20px;
+    line-height: 20px;
+    color: white;
+    font-size: 14px;
+    background-color: #00b7d9;
+}
+.flightul_mybookings li.flight_cancel{
+    font-size: 22px;
+    color: #ce0000;
+}
+@media (min-width:992px) and (max-width:1199px){
+    .sndli_allbook {
+        min-width: 198px;
+    }
+    .thirdli_allbook {
+        width: 24px;
+    }
+    .forthli_allbook {
+        width: 43px;
+    }
+    .sndli_allbook-snd {
+        min-width: 158px;
+    }
+    .padingleft_50 {
+        padding-left: 0px;
+    }
+    .thirdli_allbook-snd {
+        width: 49px;
+    }
+    .firstli_allbook {
+        width: 71px;
+    }
+    .forthli_allbook-snd {
+        width: 10px;
+    }
+    .absolutedeparture {
+        left: 0;
+    }
+}
+@media (min-width:768px) and (max-width:991px){
+    .imgdivallsizespad {
+        padding: 10px 10px 10px 0;
+    }
+    .sndli_allbook {
+        min-width: 203px;
+    }
+    .thirdli_allbook {
+        width: 24px;
+    }
+    .forthli_allbook {
+        width: 49px;
+    }
+    .sndli_allbook-snd {
+        min-width: 169px;
+    }
+    .padingleft_50 {
+        padding-left: 0px;
+    }
+    .thirdli_allbook-snd {
+        width: 55px;
+    }
+    .firstli_allbook {
+        width: 71px;
+    }
+    .forthli_allbook-snd {
+        width: 10px;
+    }
+
+}
+@media (min-width:992px){
+    .filter-back{
+        min-height: 604px;
+    }
+}
+@media (min-width:768px){
+    .min-heightdiv{
+        min-height: 184px;
+    }
+    .lbpus_allbook {
+        margin-bottom: 20px;
+    }
+}
+@media (min-width:320px) and (max-width:991px){
+    .filtersection .filterinput_allbooking{
+        width: 264px;
+    }
+    .smxsalpadleftz{
+        padding-left: 0;
+    }
+    .min-heightdiv{
+        min-height: 184px;
+    }
+    .smalxspadlfz{
+        padding-left: 0;
+    }
+}
+@media (max-width:380px){
+    .hotel_title_style_allbook {
+        line-height: 24px;
+    }
+}
+@media (max-width:991px){
+    .containerpad{
+        padding-left: 0px;
+    }
+    .absolute_price {
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+    }
+}
+@media (max-width:767px){
+    .viewdetails_allbook ,.viewdetails_allbook:hover{
+        bottom: 5px;
+    }
+    .bar_allbook{
+        bottom: 5px;
+    }
+    .clicktobookagain ,.clicktobookagain:hover{
+        bottom: 5px;
+    }
+    .cancelled_allbook{
+        bottom: -1px;
+    }
+    .imgdivallsizespad{
+        padding: 10px 0px 10px 0;
+    }
+    .lbpus_allbook {
+        margin-bottom: 45px;
+    }
+    .min-heightdiv {
+        padding-bottom: 25px;
+    }
+    .departuresnd, .departurefirst {
+        width: 100%;
+    }
+    .sndli_allbook-snd {
+        padding-left: 80px;
+    }
+    .departurefirst{
+        margin-bottom: 11px;
+    }
+    .sndli_allbook-snd {
+        min-width: 293px;
+    }
+    .thirdli_allbook {
+        width: 49px;
+    }
+    .thirdli_allbook-snd {
+        width: auto;
+    }
+    .padingleft_50 {
+        padding-left: 0px;
+    }
+    .absolutedeparture {
+        left: 0;
+    }
+    .stylebooknf {
+        text-align: left;
+    }
+    .departuresnd-ul{
+        margin-bottom: 15px;
+    }
+    .departurefirst-ul, .departuresnd-ul {
+        height: 33px;
+        margin-top: 18px;
+    }
+}
+@media (min-width:768px) and (max-width:1199px){
+    .absolute_price {
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+    }
+    .absolutedeparture {
+        left: 0;
+        top: -14px;
+    }
+    .departurefirst-ul, .departuresnd-ul {
+        height: 55px;
+    }
+}
+@media (min-width:320px) and (max-width:550px){
+    .xxsmalnewstyle {
+        width: 100%;
+    }
+    .lbpus_allbook {
+        margin-bottom: 15px;
+    }
+    .chekindiv {
+        float: left;
+        height: 52px;
+        margin-bottom: 15px;
+        position: relative;
+        width: 100%;
+        padding-left: 0px;
+    }
+    .chekoutdiv {
+        float: left;
+        height: 52px;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding-left: 0px;
+    }
+    .paddingrightdivxxs{
+        float: left;
+        padding-right: 5px;
+        width: 50%;
+    }
+    .paddingleftdivxxs{
+        float: left;
+        padding-left: 5px;
+        width: 50%;
+    }
+    .checktext_albook {
+        left: 20px;
+        position: absolute;
+        top: 0;
+    }
+    .day_num_albook {
+        left: 19px;
+        position: absolute;
+        top: 22px;
+    }
+    .month_albook {
+        left: 85px;
+        position: absolute;
+        top: 15px;
+    }
+    .day_allbook {
+        left: 85px;
+        position: absolute;
+        top: 28px;
+    }
+    .min-heightdiv {
+        padding-bottom: 10px;
+    }
+}
+@media (min-width:320px) and (max-width:440px){
+    .sndli_allbook {
+        min-width: 101px;
+    }
+    .sndli_allbook-snd {
+        padding-left: 0px;
+    }
+    .sndli_allbook-snd {
+        min-width: 177px;
+    }
+    /*    .thirdli_allbook-snd {
+            width: 46px;
+        }*/
+    .absolute_price {
+        margin-top: 26px;
+    }
+}
+@media (min-width:320px) and (max-width:400px){
+    .canceleddiv .chekindiv {
+        margin-bottom: 40px;
+    }
+    .canceleddiv .viewdetails_allbook, .canceleddiv .viewdetails_allbook:hover {
+        bottom: 30px;
+    }
+    .canceleddiv .bar_allbook{
+        bottom: 30px;
+    }
+    .canceleddiv .clicktobookagain ,.canceleddiv .clicktobookagain:hover{
+        bottom: 30px;
+    }
+    .canceleddiv .cancelled_allbook{
+        bottom: -1px;
+        left: 0;
+    }
+    .stylebooknf .cancelled_allbook {
+        bottom: -26px;
+        left: 0;
+    }
+}

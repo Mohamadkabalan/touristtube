@@ -1,0 +1,1 @@
+ALTER TABLE hotel_reservation ADD dialing_code INT NULL DEFAULT NULL AFTER country;

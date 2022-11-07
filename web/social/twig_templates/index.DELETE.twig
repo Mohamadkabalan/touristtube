@@ -1,0 +1,318 @@
+{% include "topHeader.twig" %}
+<!-- header part -->
+
+<section class="trip_search">
+    <div class="container">
+        <div class="trip_search_box">
+            <div class="text trance_bg" >{{ 'Discover Destinations<br/>and Plan your Trip'|lang|raw}} </div>
+        </div>
+        <div class="trip_search_box">
+            <div class="seacr_pannel">                
+                <div id="searchcontid" class="search-bar"> 
+                    <img width="18" height="24" class="search-croseimg" src="images/map_marker.png" alt="{{ 'destination'|lang }}"/>
+                    <span class="search-crose">clean</span>
+                    <span class="search-crose search-crose1">clean</span>
+                    <input type="text" name="city" class="search searchlocation" placeholder="{{ 'Search for your destination'|lang }}">
+                    <div class="search-for-container">
+                        <img width="22" height="22" class="search-croseimg1" src="images/previewSocial.png" alt="{{ 'destination'|lang }}"/>
+                        <input type="text" name="searchfor" class="search searchfor" placeholder="{{ 'What are you searching for?'|lang }}">
+                        <div class="search-static">
+                            <div class="search-static-items">
+                                <div class="itemspiccontent">
+                                    <img width="44" height="43" alt="location" src="{{ 'images/search/search_static1.png'|link }}" class="search-static-items-pic">
+                                </div>
+                                <div class="itemstextcontent">{{'Where is London?'|lang}}</div>
+                            </div>
+                            <div class="search-static-items">
+                                <div class="itemspiccontent itemspiccontent1">
+                                    <img width="44" height="43" alt="location" src="{{ 'images/search/search_static2.png'|link }}" class="search-static-items-pic">
+                                </div>
+                                <div class="itemstextcontent">{{'Hotels in London'|lang}}</div>
+                            </div>
+                            <div class="search-static-items">
+                                <div class="itemspiccontent itemspiccontent2">
+                                    <img width="44" height="43" alt="location" src="{{ 'images/search/search_static2.png'|link }}" class="search-static-items-pic">
+                                </div>
+                                <div class="itemstextcontent">{{'Restaurants in London'|lang}}</div>
+                            </div>
+                            <div class="search-static-items">
+                                <div class="itemspiccontent itemspiccontent3">
+                                    <img width="44" height="43" alt="location" src="{{ 'images/search/search_static2.png'|link }}" class="search-static-items-pic">
+                                </div>
+                                <div class="itemstextcontent">{{'Things to do in London'|lang}}</div>
+                            </div>
+                            <div class="search-static-items">
+                                <div class="itemspiccontent itemspiccontent4">
+                                    <img width="44" height="43" alt="location" src="{{ 'images/search/search_static2.png'|link }}" class="search-static-items-pic">
+                                </div>
+                                <div class="itemstextcontent">{{'Photos / Videos of London'|lang}}</div>
+                            </div>
+                            <div class="search-static-items">
+                                <div class="itemspiccontent itemspiccontent5">
+                                    <img width="44" height="43" alt="location" src="{{ 'images/search/search_static2.png'|link }}" class="search-static-items-pic">
+                                </div>
+                                <div class="itemstextcontent">{{'Channels about London'|lang}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-btn"> {{ 'Find'|lang }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="trendsBar">
+        <div class="container">
+            <div class="trendContainer">
+              <div class="trendTitle"> {{ 'TRENDS'|lang }}</div>
+                <div id="TrendsDesc" class="trendsDesc mscroller_horz">
+                    <ul class="scroller">
+                      {% for trend in trendsAll %}
+                          {{ trend|raw }}
+                      {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- trip search  -->
+
+<section>
+    <div class="maincontent">
+        <div class="section_group tthome290">
+            <a href="{{ things_to_do_link|raw }}" class="section_group_col1">
+                <div class="img_box" > 
+                    <img src="images/things-to-do.jpg" alt="{{ 'things to do'|lang }}">
+                    <h2 class="heading">{{'things to do'|lang }}</h2>
+                </div>
+                <div class="img_descp">
+                    <p class="para">{{ 'The best things to do in any desired city, including attractions & tours, free activities and entertainment'|lang }}</p>
+                </div>
+            </a>
+            <a href="{{ review_link|raw }}" class="section_group_col1">
+                <div class="img_box" > <img src="images/review-rate.jpg" alt="{{ 'review & rate'|lang }}">
+                    <h2 class="heading">{{'review & rate'|lang }}</h2>
+                </div>
+                <div class="img_descp">
+                    <p class="para">{{ 'View or add a review about hotels, points of interest, airports, or restaurants you visited.'|lang }}</p>
+                </div>
+            </a>
+            <a href="{{ register_link|raw }}" class="section_group_col1">
+                <div class="img_box" > <img src="images/join-online.jpg" alt="{{ 'join our online active community'|lang }}">
+                    <h2 class="heading">{{'join our online active community'|lang }}</h2>
+                </div>
+                <div class="img_descp">
+                    <p class="para">{{ 'The best things to do in any desired city, including attractions & tours, free activities and entertainment'|lang }}</p>
+                </div>
+            </a>
+            <a href="{{ create_channel_link|raw }}" class="section_group_col1">
+                <div class="img_box" > <img src="images/create-channel.jpg" alt="{{ 'create channel'|lang }}">
+                    <h2 class="heading">{{'create channel'|lang }}</h2>
+                </div>
+                <div class="img_descp">
+                    <p class="para">{{ 'The best things to do in any desired city, including attractions & tours, free activities and entertainment'|lang }}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- block boxs -->
+<section class="trip-plan">
+    <div class="trip-plan_row bg_white">
+        <div class="container">
+            <h2 class="heading">{{ '...that’s what it takes'|lang }}</h2>
+        </div>
+    </div>
+    <div class="trip-plan_row bg_gray">
+        <div class="container">
+            <div class="plan_box">
+                <div class="img_box" > <img src="images/trip-discover.png" alt="{{ 'Discover'|lang }}"> </div>
+                <div class="img_descp"> <a  href="{{ discover_link|raw }}" class="heading"> &raquo;  {{ 'Discover'|lang }}</a>
+                  <p class="para">{{ 'A helpful tool for anyone who is making travel plans.'|lang }} <br>
+                    {{ 'Discover a new country, save your favorite restaurants, hotels and touristic places'|lang }} </p>
+                </div>
+            </div>
+            <!-- discover -->
+
+            <div class="plan_box">
+                <div class="img_box" > <img src="images/trip-plan.png" alt="{{ 'Plan your Trip'|lang }}"> </div>
+                <div class="img_descp"> <a href="{{ logo_link|raw }}" class="heading"> &raquo; {{ 'Plan your Trip'|lang }}</a>
+                  <p class="para"> {{ 'Get recommendations from your trusted contacts and from experts on best trips with TT Planner .'|lang }} <br>
+                    {{ 'Excursions, eating & drinking, shops, attractions,..everything’s ready; So pack and go!'|lang }} </p>
+                </div>
+            </div>
+            <!-- plan to trip-->
+
+            <div class="plan_box">
+                <div class="img_box" > <img src="images/trip-reviewrate.png" alt="{{ 'Review & Rate'|lang }}"> </div>
+                <div class="img_descp"> <a href="{{ review_link|raw }}" class="heading"> &raquo;  {{ 'Review & Rate'|lang }}</a>
+                  <p class="para"> {{ 'Pick your next Outing and Rate it! Choose places for everyday going out with TT Discover and share you appreciations of restaurants, hotels, and venues you visited with Reviews and Ratings.'|lang }} </p>
+                </div>
+            </div>
+            <!-- review & rate-->
+
+            <div class="plan_box noborder">
+                <div class="img_box" > <img src="images/trip-upload.png" alt="{{ 'Upload Photos & Videos'|lang }}"> </div>
+                <div class="img_descp"> <a href="{{ upload_link|raw }}" class="heading"> &raquo; {{ 'Upload Photos & Videos'|lang }} </a>
+                  <p class="para"> - {{ 'Become a Tourist Tuber'|lang }}<br>
+                    - {{ 'Upload your content'|lang }}<br>
+                    - {{ 'Build your Community'|lang }}<br>
+                    - {{ 'Share your precious moments travel plans.'|lang }} </p>
+                </div>
+            </div>
+            <!-- photo upload --> 
+
+        </div>
+    </div>
+</section>
+<!-- trip plan -->
+
+<section class="media-row">
+    <div class="maincontent">
+        <div class="section_group tthome290">
+            <div class="heading-row"> <a href="{{ ttmedia_link|raw }}" class="heading"> {{'media'|lang}}</a> <span class="lgtxt">| 2.5+</span> <span class="smltxt"> {{ 'million of photos and videos by travelers from all over the world'|lang }}</span> </div>
+            {% for photo in photosAll %}
+                <a href="{{ photo.link|raw }}" class="section_group_col1 section_group_gal">
+                {% if loop.index == 1  %}    
+                        <div class="mainVertical mainhover">                             
+                {% else %}
+                        <div class="main mainhover">
+                {% endif %}
+                        <div class="capitalfirst"> {{ photo.title|raw }} </div>
+                        <div class="detail">
+                            <ul>
+                                <li><span class="mediaInfoYellow">{{ photo.like_value|raw }}</span><br>{{ photo.like_value_str|raw }}</li>
+                                <li><span class="mediaInfoYellow">{{ photo.nb_comments|raw }}</span><br>{{ photo.nb_comments_str|raw }}</li>
+                                <li><span class="mediaInfoYellow">{{ photo.nb_shares|raw }}</span><br>{{ photo.nb_shares_str|raw }}</li>
+                                <li>
+                                    <span class="mediaInfoYellow">{{ photo.nb_ratings|raw }}</span><br>{{ photo.nb_rating_str|raw }}
+                                    <span class="listVideoRating insidevideolistrating{{ photo.rating|raw }}3"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% if loop.index == 1  %}
+                        <img src="{{ photo.image|raw }}" class="imgVertical" alt=""/>
+                    {% else %}
+                        <img src="{{ photo.image|raw }}" class="imgHorizental" alt=""/>
+                    {% endif %}
+                </a>
+            {% endfor %}
+            <p class="media_smttxt"> {{ 'Get recommendations from your trusted contacts and from experts on best trips with TT Planner .'|lang }}<br>{{ 'Excursions, eating & drinking, shops, attractions,..everything’s ready;'|lang }}<br>{{ 'So pack and go!'|lang }}</p>
+        </div>
+        <div class="section_group tthome290">
+            <div class="heading-row"> <a href="{{ ttexplore_link|raw }}" class="heading">{{ 'explore'|lang }}</a> <span class="lgtxt">| California </span> <span class="smltxt"> -Port Harbor</span> </div>
+            <script type="text/javascript" src="{{ 'jwplayer/jwplayer.js?v=7.8.2'|link }}"></script>
+            <script type="text/javascript">jwplayer.key="5BF7jaLushMRXxwL4oDpC1ldCscI8upqkfv5Uu68J44=";</script>
+            <script type="text/javascript" src="{{ ("js/video-page-behavior.js")|link }}"></script>
+            <script type="text/javascript">
+                ThumbPath = '';                      
+                $(document).ready(function() {                    
+                    var regWidth = 592;
+                    var regHeight = 337;         
+                    EmbedFlashJW('flashcontent', '{{ res_list|raw }}', regWidth, regHeight,'' , {{ vindeoInfoId|raw }},0,0,false); 
+                    $(document).on('click',".section_group_video" ,function(){
+                        EmbedFlashJW('flashcontent', $(this).attr('data-list'), regWidth, regHeight,'' , $(this).attr('data-id'),0,0,false);
+                    });                    
+                });
+            </script>
+            <div id="flashcontent"></div>
+            <div class="video-samples">
+            {% for video in videosAll%}
+                {% if loop.index > 1 %}                    
+                    <div data-list="{{ video.res_list|raw }}" data-id="{{ video.vindeoInfoId|raw }}" class="section_group_col1 section_group_video">
+                        <div class="enlarge enlarge_video"></div>
+                        <img src="{{ video.img|raw }}" alt="{{ video.title|raw }}" class="video-imgs">
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="travelar-block">
+                <a href="http://blog.touristtube.com/"  class="heading">{{ 'traveler blog'|lang }}</a>
+                <div class="blog-img"> <img src="images/travelerblog-pic.jpg" alt=""> </div>
+                <div class="blog-descp">
+                    <h3 class="inner-heading">{{ 'Paris,<br/>the capital of Gastronomy'|lang|raw }}</h3>
+                    <p class="para">{{ 'It is difficult to try to define Parisian gastronomy because the capital devours with gourmandise wines and exotic delicacies. However, it is in the bakery that one really feels the beating heart of the capital. Cradle of the “baguette�? which was invented in the XVIth century, it will migrate to the province only towards the middle of the XXth century. As to Parisian patisserie, it exalts light pastes...'|lang }}</p>
+                    <a href="http://blog.touristtube.com/"  class="link"> &raquo; {{ 'click to read more'|lang }}</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- media -->
+
+<section class="poplar-desti_row">
+    <div class="container">
+        <h2 class="heading">{{ 'popular destinations'|lang }}</h2>
+        <div class="placestostay-row">
+            <h3  class="heading">{{ 'places to stay'|lang }}</h3>
+        </div>
+        <div class="link_descrp">
+            <p> United States & Canada</p>
+            {% for statehotel in statesHotelsAll %}
+                <ul>
+                    <li><a href="{{ statehotel.stateHotelLink|raw }}" >{{ statehotel.stateHotelName|raw }}</a></li>  
+                </ul>
+            {% endfor %}
+              </ul>
+            <p> Europe</p>
+            {% for europehotel in europeHotelsAll %}
+                <ul>
+                    <li><a href="{{ europehotel.europeHotelLink|raw }}" >{{ europehotel.europeHotelName|raw }}</a></li>  
+                </ul>
+            {% endfor %}
+            <p> Asia/Pacific & Australia</p>
+            {% for asiahotel in asiaHotelsAll %}
+                <ul>
+                    <li><a href="{{ asiahotel.asiaHotelLink|raw }}" >{{ asiahotel.asiaHotelName|raw }}</a></li>  
+                </ul>
+            {% endfor %}
+            <p> Africa | Middle East</p>
+            {% for africahotel in africaHotelsAll %}
+                <ul>
+                    <li><a href="{{ africahotel.africaHotelLink|raw }}" >{{ africahotel.africaHotelName|raw }}</a></li>  
+                </ul>
+            {% endfor %}
+        </div>
+        <!-- places to stay -->
+        <div class=" food-eat-row">
+            <h3  class="heading">{{ 'best food to eat'|lang }}</h3>
+        </div>
+        <div class="link_descrp">
+            {% for Cuisine in CuisineAll %}
+                <ul>
+                    <li><a href="{{ Cuisine.link|raw }}" >{{ Cuisine.name|raw }}</a></li>  
+                </ul>
+            {% endfor %}            
+        </div>
+        <!-- best food to eat -->
+
+        <div class=" thingstodo-row">
+            <h3  class="heading">{{ 'things to do'|lang }}</h3>
+        </div>
+        <div class="link_descrp">
+            {% for thingstodo in thingstodoListAll %}
+                <ul>
+                    <li><a href="{{ thingstodo.page_link|raw }}" >{{ thingstodo.title|raw }}</a></li>  
+                </ul>
+            {% endfor %}
+        </div>
+        <!-- best food to eat -->
+
+        <div class=" categories-row">
+            <h3  class="heading">{{ 'Categories'|lang }}</h3>
+        </div>
+        <div class="link_descrp">
+            {% for category in catArray %}
+                <ul>
+                  <li><a href="{{ category.link|raw }}" >{{ category.name|raw }}</a></li>
+                </ul>
+            {% endfor %}
+        </div>
+        <!-- best food to eat --> 
+    </div>
+</section>
+<!-- popular destinations -->
+
+{% include "footer.twig" %}
+<!-- footer part -->

@@ -1,0 +1,157 @@
+TTBundle\Entity\Deal:
+    type: entity
+    table: deal
+    indexes:
+        currency_id:
+            columns:
+                - currency_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        currencyId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: currency_id
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '0'
+        highlights:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        subtitle:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        summaryTitle:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: summary_title
+        summary:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        hotelSummaryTitle:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: hotel_summary_title
+        hotelSummary:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: hotel_summary
+        tourFromDate:
+            type: date
+            nullable: false
+            options:
+                fixed: false
+            column: tour_from_date
+        tourToDate:
+            type: date
+            nullable: false
+            options:
+                fixed: false
+            column: tour_to_date
+        minDays:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: min_days
+        maxDays:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: max_days
+        termsConditions:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: terms_conditions
+        optionalTermsConditions:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: optional_terms_conditions
+        dealIncludes:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: deal_includes
+        dealNotInclude:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: deal_not_include
+        dealerId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: dealer_id
+        tourRoute:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: tour_route
+        category:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        orderDisplay:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: order_display
+    lifecycleCallbacks: {  }

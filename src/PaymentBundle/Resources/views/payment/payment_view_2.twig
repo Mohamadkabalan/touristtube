@@ -1,0 +1,137 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+{#    <link rel="stylesheet" type="text/css" href="{{ asset("/css/payment-all.css")|raw }}" >   #}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/flight-breadcrumb.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/validator/1.17/jquery.validate.min.js")|raw }}"></script>
+    <script>
+	var redirectURL = '/flight-booking?timedOut=1';
+    </script>
+ <script type="text/javascript" src="{{ asset("/assets/payment/js/payment-all.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/payment/js/purl.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="flightAllSection">
+
+        <div class="container containerFirstAll">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 divstepspad hidden-sm hidden-xs flight-breadcrumb">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 firststep hidden-xs">
+                    <div class="bullet">
+                        <p>1</p>
+                    </div>
+                    <p class="number-step-text">{{'Select your flight'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sndstep hidden-xs">
+                    <div class="bullet">
+                        <p>2</p>
+                    </div>
+                    <p class="number-step-text">{{'Enter your details'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 thirdstep blue_bullet">
+                    <div class="bullet">
+                        <p>3</p>
+                    </div>
+                    <p class="number-step-text">{{'Confirm your payment'|trans}}</p>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <p class="paymentresume">Payment</p>
+            </div>   
+           {% if form.server_error_callback.vars.errors|length %}
+ 		<div class="alert alert-danger" role="alert">
+	  				{{ form_errors(form.server_error_callback) }}
+				</div>
+            {% endif %}
+            <form action="" method="POST" novalidate="">
+                <div class="box-container paymentcontainer col-xs-12">                    
+                    <div class="botborder">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <img src="{{ generateMediaURL('/media/images/paymentpics.png') }}" alt="{{'payment'|trans}}">
+                        </div>
+                        <div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							  <div class="form-group col-md-6 mb-3 {% if form.cardholder.vars.errors|length %}has-error {% endif %} ">
+								<label class="control-label" for="cc-name"><b>Name on card</b></label>
+								{{ form_widget(form.cardholder, {'attr': { 'class':'form-control  selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback'}})}}
+								<div {% if form.cardholder.vars.errors|length %} style="color:red" {% endif %}>
+									{{ form_errors(form.cardholder) }}
+								</div>	
+							  </div>
+                            </div>
+						
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								  <div class="form-group col-md-6 mb-3 {% if form.cardnumber.vars.errors|length %}has-error {% endif %} ">
+									<label class="control-label" for="cc-number"><b>Credit card number</b></label>
+									{{ form_widget(form.cardnumber, {'attr': { 'class':'form-control selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback'}})}}
+									<div {% if form.cardnumber.vars.errors|length %} style="color:red" {% endif %}>
+									  {{ form_errors(form.cardnumber) }}
+									</div>
+								  </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							  <div class="form-group col-md-4 {% if form.card_expire_month.vars.errors|length %}has-error {% endif %} ">
+								<label class="control-label" for="cc-expiration"><b>Expiration</b></label>
+								{{ form_widget(form.card_expire_month, {'attr': { 'class':'form-control expire-month select-expiry-date selectcomm_copayment'}})}}
+								<div {% if form.card_expire_month.vars.errors|length %} style="color:red" {% endif %}>
+								  {{ form_errors(form.card_expire_month) }}
+								</div>
+							  </div>
+							  <div class="form-group col-md-4 {% if form.card_expire_year.vars.errors|length %}has-error {% endif %} ">
+								<label class="control-label" for="cc-expiration">&nbsp;</label>
+								{{ form_widget(form.card_expire_year, {'attr': { 'class':'form-control expire-year select-expiry-date selectcomm_copayment'}})}}
+								<div {% if form.card_expire_year.vars.errors|length %} style="color:red" {% endif %}>
+								  {{ form_errors(form.card_expire_year) }}
+								</div>
+							  </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								  <div class="form-group col-md-3 mb-3 {% if form.cvv.vars.errors|length %}has-error {% endif %} ">
+									<label class="control-label" for="cc-expiration"><b>CVV</b></label>
+									{{ form_widget(form.cvv, {'attr': { 'class':'form-control smaldivmargin padsm cvv_corppayment'}})}}
+									<div {% if form.cvv.vars.errors|length %} style="color:red" {% endif %}>
+									  {{ form_errors(form.cvv) }}
+									</div>
+								  </div>
+                            </div>
+                        </div>
+                    </div>
+				<hr class="mb-4">
+				{# Token CSRF #}
+				{{ form_widget(form._token) }}
+                  
+                    <div class="col-xs-12">
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+                            <img class="" src="{{ generateMediaURL('/media/images/secureres.png') }}" alt="{{'secure'|trans}}">
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+                            <p class="warningtextstyle">{{"The data transmitted are coded using SSL (Secure Socket Layer) technology."|trans}} <br />
+                                {{"The session in progress on this site is secure and protected by maximum privacy."|trans}}</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="terms-wrap">
+                        <div class="checkbox checkbox-terms form-group-wrap">
+                            <div>
+                                {{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br/>
+                                {{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br/>
+                                {{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - {{'Expected reply within 24 hours.'|trans}}
+                                <br/>
+                                <br/>
+                                {{"By submitting this form, you confirm that you have read, agreed and accepted the"|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'terms & conditions'|trans}}" target="_blank">{{"terms and conditions"|trans}}</a> {{"and the"|trans}} <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'privacy policy'|trans}}" target="_blank">{{"privacy policy"|trans}}</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <input value="{{'submit'|trans}}" type="submit" class="bluesbmit">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </form>
+  
+        </div> 
+    </section>
+{% endblock %}

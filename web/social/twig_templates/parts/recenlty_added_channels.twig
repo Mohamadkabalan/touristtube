@@ -1,0 +1,24 @@
+{# recently added channels Twig template #}
+{% if allChannelsTrue == true %}
+<div id="ChannelRight_data3" class="txt channel_txt1 paddingtop0">
+    <h1 class="font16 yellow lineheight16 h1Style mostActiveCH">{{ 'RECENLTY ADDED<br />CHANNELS'|lang|raw }}</h1>
+    <div class="list margintop15">
+        <ul>
+              {% for mostAc in mostActChanArr %}
+            <li>
+                <a href="{{ mostAc.channelMainLink|raw }}" title="{{ mostAc.chName|raw }}">
+                    <img {{ mostAc.imgSize|raw }} src="{{ mostAc.imgSrc|raw }}" alt="{{ mostAc.chName|raw }}">
+                </a>
+                <div class="channelpopUp popUp">
+                    <a href="{{ mostAc.channelMainLink|raw }}" title="{{ mostAc.chName|raw }}">
+                        <img width="100" height="100" src="{{ mostAc.loLogo|raw }}" class="imgborder0" alt="{{ mostAc.chName|raw }}">
+                    </a><br />{{ mostAc.chName|raw }}
+                            {{ mostAc.btn|raw }}
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,77 @@
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        addAutoCompleteListCurrentCity('location-form');
+    });
+</script>
+{% set defaultValues = {'country': '', 'cityId': 0, 'cityName':'', 'id': 0, 'type':'', 'album':'', 'data_type':'', 'category':'', 'title':'', 'description':'' } %}
+{% if usedValues is defined %}
+    {% set usedValues = defaultValues|merge(usedValues) %}
+{% else %}
+    {% set usedValues = defaultValues %}
+{% endif %}
+
+<div class="row no-margin add_media_container" data-temp="{{temp_id|raw}}" data-id="{{usedValues.id|raw}}" data-type="{{usedValues.type|raw}}">
+    <div class="col-xs-12 nopad">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div id="location-form" class="row small_row_margin">
+                    <div class="col-sm-6 col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                        <label class="form-check-label">{{'Country'|trans}}*</label>
+                        <select id="country" name="country" class="channel_input_commun" required>
+                            <option value="">{{'Country'|trans}}*</option>
+                            {% for item in countries_list %}
+                                <option value="{{item.code|raw}}" {% if usedValues.country == item.code  %} selected='selected' {% endif %}>{{item.name|raw}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                        <label class="form-check-label">{{'City'|trans}}*</label>
+                        <input class="form-control" type="text" name="city" placeholder="{{'City'|trans}}*" data-id="{{usedValues.cityId|raw}}" value="{{usedValues.cityName|raw}}" required >
+                    </div>
+                    <div class="col-sm-6 col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                        <label class="form-check-label">{{'Category'|trans}}*</label>
+                        <select name="category" class="channel_input_commun" required>
+                            <option value="">{{'Category'|trans}}*</option>
+                            {% for item in cat_array %}
+                                <option value="{{item.id|raw}}" {% if usedValues.category == item.id  %} selected='selected'{% endif %}>{{item.name|raw}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if usedValues.type=="albums" %}
+                        <div class="col-sm-6 col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                            <label class="form-check-label">{{'Title'|trans}}*</label>
+                            <input class="form-control" type="text" name="name" placeholder="{{'Title'|trans}}*" maxlength="100" value="{{usedValues.title|raw}}" required >
+                        </div>
+                    {% else %}
+                        <div class="col-sm-6 col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                            <label class="form-check-label">{{'Add to album'|trans}}</label>
+                            <select name="album_pop" class="channel_input_commun">
+                                <option value="">{{'Choose album'|trans}}</option>
+                                {% for item in album_array %}
+                                    <option value="{{item.id|raw}}"{% if item.id == usedValues.album %} selected="selected"{% endif %}>{{item.name|raw}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                            <label class="form-check-label">{{'Title'|trans}}*</label>
+                            <input class="form-control" type="text" name="name" placeholder="{{'Title'|trans}}*" maxlength="100" value="{{usedValues.title|raw}}" required >
+                        </div>
+                    {% endif %} 
+                    <div class="col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                        <label class="form-check-label">{{'Description'|trans}}</label>
+                        <textarea name="description" class="col-xs-12" placeholder="{{'Description'|trans}}"> {{usedValues.description|raw}} </textarea>
+                    </div>
+                    <div class="col-xs-12 small_col_padding form-group channel_input_commun popup_input">
+                        <p class="error_hints"></p>
+                    </div>
+                </div>
+                <div class="row small_row_margin">
+                    <div class="col-sm-6 col-xs-12 small_col_padding">
+                        <button type="button" class="col-xs-12 btn create_but{% if usedValues.id>0 %} edit_media_but{% else %} create_media_but{% endif %}">{{'save'|trans}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

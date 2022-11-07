@@ -1,0 +1,12 @@
+{% if hotelDetails.trustyou.good_to_know_list is defined and hotelDetails.trustyou.good_to_know_list is not empty %}
+    <div class="col-xs-12 accordion">
+	<p class="black_wzarrow_subtitles margin_top_10"><i class="fas fa-angle-right fa-lg"></i>{{'Review Highlights'|trans}}</p>
+    </div>
+    <div class="col-xs-12 panel open">
+	<ul class="landmarks_list">
+	    {% for good_to_know in hotelDetails.trustyou.good_to_know_list %}
+		<li>{{good_to_know.text}}</li>
+		{% endfor %}
+	</ul>
+    </div>
+{% endif %}

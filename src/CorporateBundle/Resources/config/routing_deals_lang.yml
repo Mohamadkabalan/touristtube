@@ -1,0 +1,264 @@
+_corporate_tourDetails_activities_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/activities/{city}/{dealName}/{packageId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateTourDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_dealSearch_activities_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/activities"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateSearchActivities, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_tourDetails_tours_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/tours/{city}/{dealName}/{packageId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateTourDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_dealSearch_tours_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/tours"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateSearchTours, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_dealSearch_attractions_dealName_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/deals/attractions/{dealName}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateDealNameSearchAttractions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_tourDetails_attractions_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/attractions/{city}/{dealName}/{packageId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateTourDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_dealSearch_attractions_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/corporate/attractions"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateSearchAttractions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_attractions_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateAttractions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_dealSearch_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/corporate/deals-and-activities"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateDealSearchAll, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+
+_corporate_attractions_search_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/attractions-search"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateAttractionsSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_activities_and_deals_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/activities-and-deals"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateActivitiesAndDeals, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_airport_transport_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/transport/airport"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateAirportTransport, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_book_now_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/book-now"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateBookNow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_cityDealSearch_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/corporate/activities/{city}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateDealSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "all", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_corporateGetLoadMore_lang:
+    path: "/{_locale}/corporate/ajax/deals/corporateGetLoadMore"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateGetLoadMore, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "all", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_tourDetails_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/corporate/deals/tourDetails-{packageId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateTourDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+_corporate_attractionsForm_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/corporate/deals/attractions-form"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateAttractionsForm, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_getTourPriceDetails_lang:
+    path: "/{_locale}/corporate/ajax/deals/getTourPriceDetails"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporatePriceDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_getActivityReviews_lang:
+    path: "/{_locale}/corporate/ajax/deals/getActivityReviews"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateActivityReviews, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_deals_booking_details_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/booking-details-{bookingId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateDealsBookingDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_deals_booking_process_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/corporate/deals/processBooking"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateProcessBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corpo_payment_deals_proceed_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/proceed/payment/{module_id}/{reservation_id}/{user_id}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateProceedPayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", accountId: "", userId: "", transactionUserId: "", requestServicesDetailsId: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_proceed_booking_with_approval_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/corporate/deals/reservation/approve/{reservationId}/{accountId}/{userId}/{transactionUserId}/{requestServicesDetailsId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:proceedBookingWithApproval, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", accountId: "", userId: "", transactionUserId: "", requestServicesDetailsId: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_deals_booking_approval_details_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/reservation/approval/{reservationId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateDealsBookingApprovalDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+
+_corporate_airport_cities_listing_lang:
+    path:      "/{_locale}/corporate/ajax/deals/airport-cities-listing"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateAirportCitiesListing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_airport_listing_lang:
+    path:      "/{_locale}/corporate/ajax/deals/airport-listing"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateAirportCitiesListing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_airport_vehicles_listing_lang:
+    path:      "/{_locale}/corporate/ajax/deals/airport-vehicles-listing"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateGetTransportVehicles, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_book_transport_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/book-transport"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateBookTransport, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_dealBookingDetails_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/deals-booking-details-{bookingId}"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateViewBookingDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_quoteBooking_lang:
+    path:      "/{_locale}/corporate/ajax/deals/quote-booking"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateQuoteBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_getMandatoryFields_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/deals/get-mandatory-fields"
+    defaults: { _controller: CorporateBundle:PackagesCorpo:corporateGetMandatoryFields, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

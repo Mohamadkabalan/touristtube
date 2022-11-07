@@ -1,0 +1,48 @@
+TTBundle\Entity\CmsUsersEventJoin:
+    type: entity
+    table: cms_users_event_join
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        eventId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: event_id
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        guests:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+    lifecycleCallbacks: {  }

@@ -1,0 +1,111 @@
+_corporate_flight_details:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/details"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:corporateFlightDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_flight:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:corporateFlight, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets�and discount flights to destinations around the world.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_flight_search:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/search"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:flightBookingResult, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking result | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_next_flight:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/next-flight"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:multipleDestinationView, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking result | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_flight_review_trip:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/review-trip"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:flightReviewTrip, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking result | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_book_flight_new:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/book_new"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:bookAvailableFlightNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "book flight | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_book_flight:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/book"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:bookAvailableFlight, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "book flight | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_corporate_flight_cancelation:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/cancelation"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:flightCancelation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight cancelation | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_flight_issue_ticket:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/issue-ticket"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:issueAirTicket, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_corporate_flight_controller_service:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flight/pnr-submission"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:pnrFormSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+#_corporate_flight_approval_checker:
+#    host: "corporate{subdomain_suffix}.{domain}"
+#    path:      "/corporate/flight-approval-checker"
+#    defaults: { _controller: CorporateBundle:FlightsCorpo:approvalChecker, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1}
+#    requirements:
+#        domain: "[^/]+"
+#        subdomain_suffix: ".*"
+        
+_corporate_flight_check:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flights/reservation/approve/{reservationId}/{moduleId}/{accountId}/{transactionUserId}/{requestServicesDetailsId}"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:flightAvailabilityChecker, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", moduleId: "", accountId: "", transactionUserId: "", requestServicesDetailsId: "", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_flight_reservation_details:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flights/reservation/approval/{reservationId}"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:corporateFlightReservationDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, reservationId: "", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corpo_payment_flights_proceed:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/corporate/flights/proceed/payment/{module_id}/{reservation_id}/{user_id}"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:corporateProceedPayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", accountId: "", userId: "", transactionUserId: "", requestServicesDetailsId: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

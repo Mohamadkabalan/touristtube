@@ -1,0 +1,124 @@
+NewFlightBundle\Entity\PassengerDetail:
+    type: entity
+    table: passenger_detail
+    indexes:
+        pnr_id:
+            columns:
+                - pnr_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: first_name
+        surname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        type:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+        gender:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+        dateOfBirth:
+            type: datetime
+            nullable: false
+            column: dob
+        fareCalcLine:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: fare_calc_line
+        ticketNumber:
+            type: string
+            length: 100
+            options:
+                fixed: false
+            column: ticket_number
+        ticketRph:
+            type: string
+            length: 2
+            options:
+                fixed: false
+            column: ticket_rph
+        ticketStatus:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: ticket_status
+        passportNo:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: passport_no
+        passportExpiry:
+            type: datetime
+            options:
+                fixed: false
+            column: passport_expiry
+        passportIssueCountry:
+            type: string
+            length: 2
+            options:
+                fixed: false
+            column: passport_issue_country
+        passportNationalityCountry:
+            type: string
+            length: 2
+            options:
+                fixed: false
+            column: passport_nationality_country
+        idNo:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: id_no
+        leavingBaggageInfo:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: leaving_baggage_info
+        returningBaggageInfo:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: returning_baggage_info
+    manyToOne:
+        passengerNameRecord:
+            targetEntity: PassengerNameRecord
+            cascade: [persist]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: passengerDetails
+            joinColumns:
+                pnr_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

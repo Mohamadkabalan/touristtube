@@ -1,0 +1,70 @@
+TTBundle\Entity\CmsSocialInvites:
+    type: entity
+    table: cms_social_invites
+    indexes:
+        from_user:
+            columns:
+                - from_user
+        invite_fk:
+            columns:
+                - entity_id
+        channel_id:
+            columns:
+                - channel_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fromUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: from_user
+        allUsers:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: all_users
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        msg:
+            type: string
+            nullable: false
+            length: 512
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        channelId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: channel_id
+    lifecycleCallbacks: {  }

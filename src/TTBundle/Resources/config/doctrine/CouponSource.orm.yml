@@ -1,0 +1,27 @@
+TTBundle\Entity\CouponSource:
+    type: entity
+    table: coupon_source
+    repositoryClass: TTBundle\Repository\TTRepository
+    id:
+        entityTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+            column: entity_type_id
+    fields:
+        sourceSpecs:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: source_specs
+        helperText:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

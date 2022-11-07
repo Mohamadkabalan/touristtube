@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title itemprop="name">{{pageTitle|raw}} Tourist Tube</title>
+<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery-1.9.1.min.js"></script>
+<script src="{{ asset("/assets/common/tt/js/vtour/tt_360_tour.js")|raw }}"></script>
+<script>
+	    $(document).ready(function () {
+		new TTTour("pano", {usePositionAbsolute: false, showThumbnail: false, autoload: true, params: {id: {{id|raw}}, type: "{{type|raw}}", name: "{{name|raw}}", countrycode: "{{country|raw}}", group: "{{cat_id|raw}}", groupName: "", division: "{{div_id}}", divisionName: "", subdivision: "{{sub_division_id|raw}}"}});
+	    });
+	</script>
+<style>
+html, body, #pano {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+</style>
+</head>
+<body>
+	<div id="pano"></div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<ul class="nostylebutstyle">
+    {# <li class="col-lg-2 col-md-2 col-sm-4 hidden-xs firstli">
+        <p class="texttabs"> Packages</p>
+        <div class="col-lg-12 col-md-12 hidden-sm hidden-xs nopad" id="first">
+            <div class="absolutediv">
+                <img class="pinkarrow" src="{{ generateMediaURL('/media/images/pinkarrowdown.png') }}" alt="{{'pinkarrow'|trans}}">
+                <p class="bestbuytitle">Best Buy</p>
+                <div class="col-xs-12 nopad">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <img class="" src="{{ generateMediaURL('/media/images/dealslidepic1.png') }}" alt="{{'slidepic1'|trans}}">
+                        <p class="citystyle">Thailand</p>
+                        <p class="pricetrip"><span class="smalfrom"> from</span> $479.395</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <img class="" src="{{ generateMediaURL('/media/images/Andaman.jpg') }}" alt="{{'slidepic1'|trans}}">
+                        <p class="citystyle">Andaman</p>
+                        <p class="pricetrip"><span class="smalfrom"> from</span> $192.125</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <img class="" src="{{ generateMediaURL('/media/images/Honeymoon.jpg') }}" alt="{{'slidepic1'|trans}}">
+                        <p class="citystyle">Turkey</p>
+                        <p class="pricetrip"><span class="smalfrom"> from</span> $1234.241</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <div class="borderinsidediv"></div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Discover Europe</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Singapore</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Singapore</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Bali</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Discover Europe</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Singapore</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Singapore</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopad">
+                        <p class="citystyle">Bali</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>#}
+    <li class="col-lg-2 col-md-3 col-sm-4 hidden-xs">
+	<a class="texttabs{{ (type is defined and type == 'tours') ? ' texttabsSelected'}}" href="{{tourURL|raw}}" title="{{'Tours'|trans}}">{{'Tours'|trans}}</a>
+    </li>
+    <li class="col-lg-2 col-md-3 col-sm-4 hidden-xs">
+	<a class="texttabs{{ (type is defined and type == 'activities') ? ' texttabsSelected'}}" href="{{activityURL}}" title="{{'Activities'|trans}}">{{'Activities'|trans}}</a>
+    </li>
+    <li class="col-lg-2 col-md-3 col-sm-4 hidden-xs">
+	<a class="texttabs{{ (type is defined and type == 'attractions') ? ' texttabsSelected'}}" href="{{attractionsURL}}" title="{{'attractions'|trans}}">{{'attractions'|trans}}</a>
+    </li>
+</ul>
+<div class="expand">
+    <div class="col-xs-12 visible-xs text-allign-center">
+        <img class="" src="{{ generateMediaURL('/media/images/flecheup.png') }}" alt="{{'flecheup'|trans}}">
+        <button class="butcomonstyle" type="button">{{'Packages'|trans}}</button>
+        <img class="" src="{{ generateMediaURL('/media/images/flechedown.png') }}" alt="{{'flechedown'|trans}}">
+    </div>
+</div>
+<div class="allbutdiv">
+    <div class="col-xs-12 visible-xs text-allign-center snddivbutstyle">
+	<a class="texttabs{{ (type is defined and type == 'tours') ? ' texttabsSelected'}}" href="{{tourURL|raw}}" title="{{'Tours'|trans}}">{{'Tours'|trans}}</a>
+	<a class="texttabs{{ (type is defined and type == 'activities') ? ' texttabsSelected'}}" href="{{activityURL}}" title="{{'Cruises'|trans}}">{{'Cruises'|trans}}</a>
+	<a class="texttabs{{ (type is defined and type == 'attractions') ? ' texttabsSelected'}}" href="{{attractionsURL}}" title="{{'attractions'|trans}}">{{'attractions'|trans}}</a>
+    </div>
+</div>

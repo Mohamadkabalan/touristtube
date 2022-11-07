@@ -1,0 +1,67 @@
+TTBundle\Entity\CmsSosialStory:
+    type: entity
+    table: cms_sosial_story
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: user_id
+        channelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: channel_id
+        entityGroup:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: entity_group
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_comments
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_shares
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: like_value
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

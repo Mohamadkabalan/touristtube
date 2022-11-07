@@ -1,0 +1,13 @@
+_rest_otp_generate_code:
+    path:      "/api/otp/generate"
+    defaults: { _controller: RestBundle:otp\Otp:generateCode }
+    requirements:
+        methods: GET
+        
+_rest_otp_verify_code:
+    path:     "/api/otp/verify"
+    defaults: { _controller: RestBundle:otp\Otp:verifyCode }
+    
+_rest_otp_resend_code:
+    path:     "/api/otp/resend"
+    defaults: { _controller: RestBundle:otp\Otp:resendCode }

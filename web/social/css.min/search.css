@@ -1,0 +1,689 @@
+body{
+	height: auto;
+}
+.SearchHeader{
+	width: 27px;
+	height: 27px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-right: 1px solid #1f1f1f;
+	border-bottom: 1px solid #1f1f1f;
+	background-color: #3f3f3f;
+	display: inline-block;
+	position: relative;
+}
+.SearchHeader:hover{
+	background-color: #e3b721;
+}
+.SearchHeader.Active{
+	background-color: #e3b721;
+}
+.SearchHeader.selected{
+	/**same as .Active**/
+	background-color: #e3b721;
+}
+.SearchOrder{
+	position: absolute;
+	right: 10px;
+	width: 88px;
+	height: 22px;
+	background-image: url('../images/profile_header/dropdown.png');
+	background-color: #ebebeb;
+	background-repeat: no-repeat;
+	background-position: 90% center;
+	color: black;
+	font-size: 12px;
+	top: 13px;
+	cursor: pointer;
+	padding-left: 5px;
+	line-height: 20px;
+	text-transform: lowercase;
+}
+.SearchHeaderOrderDropdown{
+	list-style: none;
+	background-color: #C2C2C2;
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	color: #3f3f3f;
+	width: 93px;
+	position: absolute;
+	top: 32px;
+	right: 10px;
+	z-index: 10;
+	display: none;
+}
+.SearchHeaderOrderDropdown li:first-child{
+	border-top: 1px solid black;
+}
+.SearchHeaderOrderDropdown li{
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-transform: lowercase;
+	/*border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;*/
+}
+.SearchHeaderOrderDropdown li:hover{
+	background-color: #606060;
+	color: white;
+}
+.SearchHeaderOrderDropdown li a{
+	text-decoration: none;
+	color: inherit;
+}
+.SearchHeaderListView{
+	background-image: url('../images/profile_header/list_view.png');
+}
+.SearchHeaderThumbView{
+	background-image: url('../images/profile_header/thumb_view.png');
+}
+.SearchHeaderViewModes{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	top: 10px;
+	right: 7px;
+}
+.SearchHeaderViewModes li{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+#sort-by li{
+	cursor: pointer;
+}
+#SearchResultLoadMore{
+	background-image: url(../images/load_more_bg.png);
+	width: 179px;
+	height: 34px;
+	margin:0 auto;
+	color: #686868;
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+	z-index: 110;
+	text-decoration: none;
+	display: block;
+}
+#SearchResultLoadMore .notActive{display: none}
+#SearchResultLoadPrev{
+	background-image: url(../images/load_more_bg.png);
+	width: 179px;
+	height: 34px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #686868;
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+	z-index: 110;
+	text-decoration: none;
+	position: relative;
+	top: -31px;
+	left: -185px;
+}
+.SearchHoverBox{
+	position:absolute;
+	z-index:10;
+	top:0px;
+	left:0px;
+	width: 191px;
+	height: 109px;
+}
+img.SearchHoverIcon{
+	width: 23px;
+	height: 23px;
+	position: absolute;
+	top: -50px;
+	left: 85px;
+	border: 0px;
+}
+
+/*** copied from profile_header.css ***/
+.SearchHeaderOver {
+	position:absolute;
+	top:34px;
+	left: 19px;
+	height: 23px;
+	width: 270px;
+	display:none;
+	z-index:150;
+	overflow:hidden;
+}
+.SearchHeaderOverin {
+	position:absolute;
+	top:0;
+	right: 0;
+	height: 18px;
+	width: auto;
+	padding-left:11px;
+	padding-right:11px;
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:center;
+	line-height:18px;
+	background-color:#838383;
+	float:left;
+	text-transform:lowercase;
+}
+.icons-overtik {
+	position:absolute;
+	top:18px;
+	right: 0;
+	height: 4px;
+	width: 12px;
+	margin:0;
+	padding:0;
+	float:left;
+	background-image: url('../images/icons-overtik.png');
+	background-repeat: no-repeat;
+}
+.fl{float: left;position: relative !important;height: 750px;}
+.fr{float: right;position: relative !important}
+#CategoriesTTL_search{
+    display: block;
+    float: left;
+    height: auto;
+    line-height: 20px;
+    position: relative;
+}
+#CategoriesTTL_search.CategoriesTTL_searchTT{
+    text-transform: none;
+    width: 100%;
+}
+/*
+#searchPagination{position:absolute;z-index:999;right:220px;bottom:12px;font-size: 10px; font-weight: bold;}
+#searchPagination .pagelinks,
+#searchPagination .pagelinks a{color: #FFFFFF}
+#searchPagination .pagelinks a.current{color: #CEA113}
+#searchPagination .pagelinks a:hover{color: #CEA113}
+#searchPagination .pagelinks a{margin: 0 5px }
+*/
+
+.searchPaginationClass{position:absolute;z-index:999;right:220px;bottom:12px;font-size: 10px; font-weight: bold;}
+.searchPaginationClass .pagelinks,
+.searchPaginationClass .pagelinks a{color: #FFFFFF}
+.searchPaginationClass .pagelinks a.current{color: #CEA113}
+.searchPaginationClass .pagelinks a:hover{color: #CEA113}
+.searchPaginationClass .pagelinks a{margin: 0 5px }
+
+
+
+#container .searchPaginationClass{position:absolute;z-index:999;right:13px;bottom:0px;font-size: 12px; font-weight: bold;}
+#container .searchPaginationClass .pagelinks,
+#container .searchPaginationClass .pagelinks a{color: #2d2d2d}
+#container .searchPaginationClass .pagelinks a.current{color: #CEA113}
+#container .searchPaginationClass .pagelinks a:hover{color: #CEA113}
+#container .searchPaginationClass .pagelinks a{margin: 0 5px }
+
+#headerNavProfile .did_you_mean{
+	display: block;
+	position: absolute;
+	z-index: 999;
+	top: 80px;
+	right: 0;
+	color: #000;
+        width: auto;
+}
+#headerNavProfile .did_you_mean a{color: #CEA113;text-decoration: underline;font-style: italic;}
+#container{width: 774px;padding-bottom: 30px; float: right;margin:45px 4px 0 0 }
+#container.debug{width: 800px;margin:54px 0 0 0 }
+/* overrides the same classes in css/all.css */
+.mediainfodesc{ height:27px;overflow: hidden;}
+.mediainfodesc a{ color: #dcaf1a;}
+.mediainfottl{height: 13px;overflow: hidden; max-width: 550px;}
+
+.category_review_container{
+    position: relative;
+    width: 100%;
+    height:566px;
+    margin-bottom: 90px;
+}
+.category_review_container2{
+    position: relative;
+    width: 100%;
+    height:87px;
+    margin-bottom: 15px;
+}
+.category_review_top{
+    position: relative;
+    width: 100%;
+    height:87px;
+    background-color: #efefef;
+    margin-bottom: 2px;
+}
+.category_review_top2{
+    position: relative;
+    width: 100%;
+    height:87px;
+    margin-bottom: 2px;
+}
+.category_review_pagination ul{
+    position: relative;
+    width: 100%;
+    height:10px;
+    margin-bottom: 6px;
+    padding-left: 55px;
+    padding-top: 30px;
+    color: #5f5f5f;
+    font-size: 12px;
+    list-style-type: none;
+    text-align: center;
+}
+.category_review_pagination ul li{
+    float: left;
+    display: inline;
+}
+.category_review_alphabet{
+    color: #5f5f5f;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 17px;
+    text-decoration: none;
+}
+.category_review_alphabet a{
+    color: #5f5f5f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.category_review_alphabet a:hover{
+    color: #cea113;
+    text-decoration: none;
+}
+.category_review_alphabet_selected{
+    color: #cea113;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 17px;
+    text-decoration: none;
+}
+.category_review_alphabet_selected a{
+    color: #cea113;
+    font-weight: bold;
+    text-decoration: none;
+}
+.category_review_alphabet_selected a:hover{
+    color: #cea113;
+    text-decoration: none;
+}
+.category_review_top_info{
+    position: relative;
+    width: 100%;
+    height:41px;
+}
+.category_review_top_img{
+    position: relative;
+    float: left;
+    height:41px;
+    width: 60px;
+}
+.category_review_img{
+    float: right;
+}
+.category_review_title{
+    float: right;
+    width: 81px;
+    margin-top: 15px;
+    margin-left: 11px;
+    text-align: left;
+    color: #5f5f5f;
+    font-weight: bold;
+    font-size: 12px;
+}
+.category_review_top_title{
+    float:left;
+}
+.category_review_border{
+    float: right;
+    width: 607px;
+    margin-top: 23px;
+    background-color: #eac31a;
+    height:4px;
+}
+.category_review_content{
+    position: relative;
+    height:439px;
+    margin-bottom: 2px;
+}
+.category_review_footer{
+    position: relative;
+    width: 100%;
+    height:36px;
+    background-color: #efefef;
+}
+.category_review_footer_info{
+    float: left;
+    font-size: 13px;
+    color: #010101;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 18px;
+    margin-top: 10px;
+}
+.category_review_footer_info a{
+    color: #010101;
+    text-decoration: none;
+}
+.category_review_footer_info a:href{
+    color: #010101;
+    text-decoration: none;
+}
+.category_review_content_container{
+    position: relative;
+    width:100%;
+}
+.category_review_content_left_container{
+    position: relative;
+    float: left;
+    width: 627px;
+    height:145px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    background-color: #efefef;
+}
+.category_review_content_right_container{
+    position: relative;
+    float: left;
+    width: 145px;
+    height:145px;
+    margin-bottom: 2px;
+    background-color: #efefef;
+}
+.category_review_content_right_title{
+    position: relative;
+    width: 100%;
+    color:#010101;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 43px;
+    text-align: center;
+}
+.category_review_content_right_rate{
+    position: relative;
+    width: 100%;
+    height: 48px;
+    background-image: url('../images/hotels/star-rating.png');
+    background-repeat: no-repeat;
+    margin-top: 5px;
+    text-align: center;
+    margin-left: 48px;
+}
+.category_review_content_rate_value{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    width: 52px;
+    height: 48px;
+    padding-top: 18px;
+}
+.category_review_content_info{
+    position: relative;
+    width: 100%;
+    margin-left: 18px;
+    margin-top: 18px;
+}
+.category_review_content_info_img{
+    position: relative;
+    float: left;
+    width: 175px;
+    height: 109px;
+    margin-right: 10px;
+}
+.review_image{
+    width: 175px;
+    height: 109px;
+    
+}
+.category_review_content_info_desc{
+    position: relative;
+    float: left;
+    width: 420px;
+    height: 109px;
+}
+.category_review_content_info_title{
+    position: relative;
+    width: 100%;
+    float: left;
+    color: #686868;
+    margin-top: -3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    overflow: hidden;
+    height: 15px;
+    line-height: 15px;
+}
+.category_review_content_info_title a{
+    color: #686868;
+    font-weight: bold;
+    text-decoration: none;
+}
+.category_review_content_info_title a:href{
+    color: #686868;
+    font-weight: bold;
+    text-decoration: none;
+}
+.category_review_content_map_info{
+   clear: both;
+    float: left;
+    margin-top: 2px;
+    max-height: 33px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.category_review_content_all_info{
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+.category_review_content_map_icon{
+    float: left;
+    width: 14px;
+    height: 19px;
+}
+.category_review_content_map_location{
+    float: left;
+    color: #686868;
+    font-size: 11px;
+    width: 285px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.category_review_content_map_img{
+    position: absolute;
+    width: 255px;
+    height: 61px;
+    bottom: 0px;
+    left:20px;
+    background-color: #000000;
+}
+.category_new_info{
+    position: relative;
+    float: left;
+    margin-top: 10px;
+}
+.category_new_title{
+    float: left;
+    width: 110px;
+    height: 15px;
+    color: #5f5f5f;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+.category_new_title_border{
+    float: left;
+    width: 650px;
+    margin-left: 10px;
+    border:2px solid #eac31a;
+    margin-top: 8px;
+}
+.element{
+    border-left:2px solid #eac31a;
+    padding-left: 11px;
+    width: 774px;
+}
+.mediaInfo{
+    width: 546px;
+}
+.element_album.element2 {
+	display:block;
+	float:left;
+	overflow: hidden;
+	width: 902px;
+	height: 106px;
+	margin-bottom: 9px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.element2 div{
+	float:left;
+}
+.search_review_container{
+    position: relative;
+    width: 100%;
+    float: left;
+}
+.search_review_info{
+    position: relative;
+    width: 100%;
+    height: 130px;
+    margin-top: 18px;
+    border-bottom: 2px solid #e1e1e1;
+}
+.search_review_info2{
+    position: relative;
+    width: 100%;
+    height: 130px;
+    margin-top: 18px;
+}
+.search_review_pagination ul{
+    position: relative;
+    width: 100%;
+    height:10px;
+    margin-bottom: 6px;
+    padding-left: 55px;
+    padding-top: 30px;
+    color: #5f5f5f;
+    font-size: 12px;
+    list-style-type: none;
+    text-align: center;
+}
+.search_review_pagination ul li{
+    float: left;
+    display: inline;
+}
+.search_review_alphabet{
+    color: #5f5f5f;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 17px;
+    text-decoration: none;
+}
+.search_review_alphabet a{
+    color: #5f5f5f;
+    text-decoration: none;
+}
+.search_review_alphabet a:href{
+    color: #5f5f5f;
+    text-decoration: none;
+}
+.search_review_top_info{
+    position: relative;
+    width: 100%;
+    height:41px;
+}
+.search_review_top_img{
+    position: relative;
+    float: left;
+    height:41px;
+    width: 50px;
+}
+.search_review_img{
+    float: right;
+}
+.search_review_title{
+    float: right;
+    width: 101px;
+    margin-top: 15px;
+    margin-left: 11px;
+    text-align: left;
+    color: #5f5f5f;
+    font-weight: bold;
+    font-size: 12px;
+}
+.search_review_top_title{
+    float:left;
+}
+.search_review_border{
+    float: right;
+    width: 607px;
+    margin-top: 23px;
+    background-color: #eac31a;
+    height: 4px;
+}
+.search_review_left_info{
+    position: relative;
+    float: left;
+    width: 627px;
+    height:110px;
+    margin-bottom: 16px;
+    background-color: #ffffff;
+}
+.search_review_right_info{
+    position: relative;
+    float: left;
+    width: 145px;
+    height:110px;
+    margin-bottom: 16px;
+    border-left: 2px solid #e1e1e1;
+    background-color: #ffffff;
+}
+.search_review_content_right_title{
+    position: relative;
+    width: 100%;
+    color:#010101;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 20px;
+    text-align: center;
+}
+.search_review_content_right_rate{
+    position: relative;
+    width: 100%;
+    height: 48px;
+    background-image: url('../images/hotels/star-rating.png');
+    background-repeat: no-repeat;
+    margin-top: 5px;
+    text-align: center;
+    margin-left: 48px;
+}
+.search_review_content_rate_value{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    width: 52px;
+    height: 48px;
+    padding-top: 18px;
+}
+.search_review_content_info{
+    position: relative;
+    width: 100%;
+    margin-left: 18px;
+}
+#Categories{
+    top:45px;
+}

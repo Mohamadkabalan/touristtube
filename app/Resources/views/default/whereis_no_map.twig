@@ -1,0 +1,215 @@
+{% extends 'base_no_ga.html.twig' %}
+	{% block googlemaps %}
+	{% endblock %}
+	{% block pagenewjs %}
+		<script type="text/javascript">
+			var regWidth;
+			var regHeight = 315;
+			var map;
+			var marker_array=[];
+			var markersArrayData=[];
+			{% if whereistype==2 %}
+				var zoomvalue=4;
+			{% else %}
+				var zoomvalue=8;            
+			{% endif %}
+				$(window).bind('resize',function(){
+						regWidth = $('#flashcontent').parent().width();
+						var playerInstance = jwplayer("flashcontent");
+						playerInstance.resize(regWidth,regHeight);
+				});
+			ThumbPath = '';
+			$(document).ready(function() {
+				//google.maps.event.addDomListener(window, 'load', initialize);  
+				window.addEventListener('load', initialize);
+			});
+			function initialize() {
+					{% if vindeoInfoId>0 %}                    
+						regWidth = $('#flashcontent').parent().width();                     
+						EmbedFlashJW('flashcontent', '{{ res_list|raw }}', regWidth, regHeight, '{{res_listimg|raw}}', {{ vindeoInfoId|raw }}, 0,0,false);
+					{% endif %}
+			}
+		</script>
+	{% endblock %}
+{% block structureddatablock %}  
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "{{ structurePlaceType|raw }}",
+        "name" : "{{where_name|striptags|replace({'Where is ': ''})|replace({'?' : ','})}}",
+        "url": "{{subdomain_link|raw}}{{ app.request.getRequestUri() }}",
+        {% if description != '' %}
+        "description": "{{ description|nl2br }}",
+        {% else %} 
+        "description": "{{realname|raw}} is a {{ structurePlaceType|raw }}",  
+        {% endif %}        
+        "geo": { 
+        "@type": "GeoCoordinates",
+        "latitude": "{{where_latitude|raw}}",
+        "longitude": "{{where_longitude|raw}}"
+      }
+    }
+</script>
+{% endblock %}
+{% block body %}
+    <section class="media-row">
+  <div class="container">
+    <div class="heading-row col-lg-12">
+        {{where_name|raw}}
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="col-xs-12 col-md-9 col-lg-9" id="divMainStyle">
+          <p class="where-maptxt">{{ description|nl2br }}</p>
+        </div>
+        <div class=" col-xs-12 col-md-3 col-lg-3 li-hotels">
+          <ul>
+            {% if hotelscount>0 %}
+                <li class="li-clr li-clr1"><a href="{{ hotel_link|raw }}" title="{{ 'hotels'|trans }}" class="li-clr-a"><img src="{{ generateMediaURL('/media/images/where-is-hotel.png') }}" alt="{{'hotels'|trans}}"><span class="first-ltr">{{'Hotels'|trans}} </span>{#<span class="scnd-ltr">({{hotelscount|raw}})</span>#} </a> </li>
+            {% endif %}  
+            {% if restcount>0 %}  
+                <li class="li-clr li-clr2"><a href="{{ restaurant_link|raw }}" title="{{ 'restaurants'|trans }}" class="li-clr-a"><img src="{{ generateMediaURL('/media/images/where-is-rest.png') }}" alt="{{'restaurants'|trans}}"><span class="first-ltr">{{'Restaurants'|trans}} </span>{#<span class="scnd-ltr"> ({{restcount|raw}})</span>#} </a> </li>
+            {% endif %}  
+	    {% if todoLinkName!='' %}
+		<li class="li-clr li-clr3"><a href="{{ todoLink|raw }}" title="{{ todoLinkName|raw }}" class="li-clr-a"><img src="{{ generateMediaURL('/media/images/where-is-things.png') }}" alt="{{todoLinkName|raw}}"><span class="first-ltr">{{todoLinkName|raw}}</span></a></li>
+	    {% endif %}
+            {% if mediacount>0 %} 
+            <li class="li-clr li-clr4"><a href="{{ media_link|raw }}" title="{{ 'photos and videos'|trans }}" class="li-clr-a"><img src="{{ generateMediaURL('/media/images/where-is-photo.png') }}" alt="{{'photos and videos'|trans}}"><span class="first-ltr">{{'Photos & videos'|trans}} </span>{#<span class="scnd-ltr">({{mediacount|raw}})</span>#} </a> </li>
+            {% endif %} 
+            {% if channelcount>0 %}
+            <li class="li-clr li-clr5"><a href="{{ channel_link|raw }}" title="{{ 'channels'|trans }}" class="li-clr-a"><img src="{{ generateMediaURL('/media/images/where-is-chnl.png') }}" alt="{{'channels'|trans}}"><span class="first-ltr">{{'Channels'|trans}}</span>{#<span class="scnd-ltr"> ({{channelcount|raw}})</span>#} </a> </li>
+            {% endif %}	    
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% if videos_array|length>0 %}
+<section class="media-row">
+  <div class="container">
+    <div class="heading-row-photo col-lg-12">
+        <h1 class="heading"><a href="{{ mediaImageLink|raw }}" title="{{ 'Photos from traveler'|trans }}"> {{'Photos from traveler'|trans}}</a> </h1>
+      <h1 class="lgtxt">|</h1>
+      <h1 class="smltxt">{{'what’s in'|trans}} {{realname|raw}}?</h1>
+    </div>
+    <div class="row">
+    {% for photo in videos_array %}
+        <a href="{{photo.link|raw}}" title="{{ photo.titlealt|raw }}" class="col-xs-6 col-md-3 col-lg-3 where-img"> <img src="{{photo.image|raw}}" class="img-where" alt="{{ photo.titlealt|raw }}"> </a>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+<section class="media-row">
+  <div class="container">
+    <div class="row">
+    {% if hotels_array %}  
+      <div class="col-xs-6 col-md-3 col-lg-3 where-htl">
+        <ul>
+          <li>
+            <h1 class="where-heading"><a href="{{ hotelsInLink|raw }}" title="{{'hotels in'|trans}} {{realname|raw}}">{{'Hotels in'|trans}} {{realname|raw}}</a></h1>            
+          </li>
+          {% for itemsdata in hotels_array %}
+            <li class="htl-li"><a href="{{ itemsdata.link|raw }}" title="{{ itemsdata.namealt|raw }}">{{ itemsdata.name|raw }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if restos_array %}  
+      <div class="col-xs-6 col-md-3 col-lg-3 where-rest">
+        <ul class="first">
+          <li>
+                <h1 class="where-heading"><a href="{{ restaurantsInLink|raw }}" title="{{'restaurants in'|trans}} {{realname|raw}}">{{'Restaurants in'|trans}} {{realname|raw}}</a></h1>            
+          </li>
+          {% for itemsdata in restos_array %}
+                <li class="htl-li"><a href="{{ itemsdata.link|raw }}" title="{{ itemsdata.namealt|raw }}">{{ itemsdata.name|raw }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if pois_array %}
+      <div class="col-xs-12 col-md-6 col-lg-6 where-things">
+        <ul>
+          <li>
+{#            <h1 class="where-heading"><a href="{{ thingsToDoInLink|raw }}" title="{{'things to do in'}} {{realname|raw}}">{{'things to do in'}} {{realname|raw}}</a></h1>#}
+             
+            <h1 class="where-heading">{{'Things to do in'|trans}} {{realname|raw}}</h1>
+            
+          </li>
+          {% for itemsdata in pois_array %}
+                <li class="ldn-things">
+                  <a href="{{ itemsdata.link|raw }}" title="{{ itemsdata.namealt|raw }}"> 
+                      <div class="row">
+                      <div class="col-lg-4 col-xs-6 ldn-thingsimgcont"><img src="{{ itemsdata.image|raw }}" class="where_is_img" alt="{{ itemsdata.namealt|raw }}"></div>
+                        <div class="col-lg-8 col-xs-6">
+                            <h2 class="ldn-heading">{{ itemsdata.name|raw }}</h2>
+                            <p>{{ itemsdata.description|raw }}</p>
+                        </div>
+                      </div>  
+                  </a>
+                </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+</section>
+{% if places_array|length>0 %}
+    <section class="media-row">
+      <div class="container">
+        <div class="heading-row-place col-lg-12">
+          <h1 class="heading">{{'Places to see'|trans}} </h1>
+          <h1 class="lgtxt">|</h1>
+          <h1 class="smltxt">{{realname|raw}}</h1>
+        </div>
+        <div class="row place">
+        {% for itemsdata in places_array %}
+            {% if ( (loop.index-1)%10)==0  %}
+            <div class="col-xs-10 col-sm-8 col-md-3 col-lg-3 where-img">
+              <ul>
+            {% endif  %}
+                <li class="htl-li"><a href="{{ itemsdata.link|raw }}" title="{{ itemsdata.namealt|raw }}">{{ itemsdata.name|raw }}</a></li>
+            {% if ((loop.index-1)%10)==9  %}
+              </ul>
+            </div>
+            {% endif  %}
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+{% endif  %}
+<section class="media-row">
+  <div class="container">
+    <div class="row">
+    {% if special_poiss_array|length > 0 %}
+      <a href="{{special_poiss_array.link}}" title="{{special_poiss_array.namealt}}">
+        <div class=" col-xs-12 col-md-6 col-lg-6">
+          <div class="col-xs-6 col-md-6 col-lg-6" id="divMainStyle">
+              {% if special_poiss_array.imagebig  %} 
+                  <div style="background-image: url('{{ special_poiss_array.imagebig|raw }}');" class="img-ldn {{special_poiss_array.imageclass|raw}}"></div>
+              {% endif %}
+          </div>
+          <div class="col-xs-6 col-md-6 col-lg-6 video-ldn">
+            <h1><span>{{'Things to do'}}</span><br><span  class="spanMainStyle"> {{special_poiss_array.name}}</span></h1>
+            <p>{{special_poiss_array.description}}</p>
+          </div>
+        </div>
+      </a>
+    {% endif  %}
+    {% if vindeoInfoId>0 %}
+      <div class="col-xs-12 col-md-6 col-md-6 col-lg-6 video-things">
+        <ul>
+          <li>
+            <h1 class="video-heading"><a href="{{ mediaVideoLink|raw }}" title="{{ 'video from travelers'|trans }}">{{ 'Video from travelers'|trans}}</a></h1>
+          </li>
+        </ul>
+          <div id="flashcontent"></div>    
+      </div>
+    {% endif  %}
+    </div>
+  </div>
+  </div>
+</section>
+{% endblock %}

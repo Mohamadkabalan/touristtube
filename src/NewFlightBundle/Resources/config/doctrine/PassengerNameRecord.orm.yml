@@ -1,0 +1,142 @@
+NewFlightBundle\Entity\PassengerNameRecord:
+    type: entity
+    table: passenger_name_record
+    indexes:
+        pnr:
+            columns:
+                - pnr
+    uniqueConstraints:
+        pnr_2:
+            columns:
+                - pnr
+    oneToMany:
+        passengerDetails:
+            targetEntity: PassengerDetail
+            mappedBy: passengerNameRecord
+            cascade: [persist]
+        flightDetails:
+            targetEntity: FlightDetail
+            mappedBy: passengerNameRecord
+            cascade: [persist]
+    oneToOne:
+        flightInfo:
+            targetEntity: FlightInfo
+            mappedBy: passengerNameRecord
+            cascade: [persist]
+        payment:
+            targetEntity: PaymentBundle\Entity\Payment
+            cascade: [persist]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: passengerNameRecord
+            joinColumns:
+                payment_uuid:
+                    referencedColumnName: uuid
+            orphanRemoval: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        pnr:
+            type: string
+            nullable: false
+            length: 11
+            options:
+                fixed: false
+        paymentUUID:
+            type: string
+            nullable: false
+            length: 36
+            options:
+                fixed: false
+            column: payment_uuid
+        userId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: user_id
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: first_name
+        surname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        countryOfResidence:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+            column: country_of_residence
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        mobile:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        mobileCountryCode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+            column: country_dial_code
+        alternativeNumber:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: alternative_number
+        specialRequirement:
+            type: string
+            nullable: flase
+            options:
+                fixed: false
+            column: special_requirement
+        status:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        isCorporateSite:
+            type: boolean
+            nullable: false
+            options:
+                default: false
+            column: is_corporate_site
+        membershipId:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: membership_id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,187 @@
+{# twig file for profile_TTpage_visited_places_detailed.php #}
+
+<script type="text/javascript">
+    userGlobalID({{userId|raw}});
+    var city_id = '{{cid|raw}}';
+</script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCrxIysSaXDyJxGenBvXJIfqIFclyatYfo&amp;sensor=false&amp;libraries=places"></script>
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="sharepopup"></div>
+<div id="right_container" data-real="{{usmd|raw}}">
+    <div class="visited_places_part0" data-country="{{country_name|raw}}" data-id="{{cid|raw}}" data-city="{{city_name|raw}}" data-state="{{state_name}}">
+        <div class="visited_places_part0_top">
+            <a id="visited_places_title" href="{{userProfileLink~'/visited-places'}}">{{visits_text|raw}}
+                <span class="yellow">({{visited_places_array_count|raw}})</span></a>
+            <div class="visited_places_titre">{{titre_visited|raw}}</div>
+            {% if USER_PRIVACY_PUBLIC in privacy_list_arr or is_owner==1 %}
+                <a href="#sharepopup" rel="nofollow" class="visited_places_item_share"></a>
+            {% endif %}
+        </div>
+        <div class="visited_places_part0_map box_shadow">
+            <div id="visited_places_googlemap" class="visited_places_googlemap">
+                <style>
+                    #googlemap_places{
+                        width:100%;
+                        height:100%;
+                    }
+                    #chatContainer{
+                        z-index:100 !important;
+                    }
+                </style>
+                <script type="text/javascript">
+                    var map;
+                    $(document).ready(function(){
+                        var image = new google.maps.MarkerImage({{"/images/map_marker.png"|link}});
+                        var mapOptions = {
+                            center: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+                            zoom: 6,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+                        map = new google.maps.Map(document.getElementById("googlemap_places"),mapOptions);
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+                            map: map,
+                            icon: image,
+                            title: '{{titre_map|raw}}'
+                        });
+                    });
+                </script>
+                <div id="googlemap_places"></div>
+            </div>
+        </div>
+    </div>
+    {% if data_photo_count>0 or data_video_count>0 %}
+        <div class="visited_places_part1">
+            {% if data_photo_count>0 %}
+                <div class="visited_places_media_holder">
+                    <div class="visited_places_part2_titre">{{'photos'|lang}}</div>
+                    <div class="prev_btn prev_btn_photo inactive"></div>
+                    <div class="next_btn next_btn_photo {% if data_photo_count<=12 %} {{'inactive'}} {% endif %}"></div>
+                    <div class="visited_places_media_container">
+                        <div class="visited_places_media_content">
+                            {% for item in data_photoArr %}
+                                <a class="visited_places_media_item" href="{{item.page_link|raw}}">
+                                    <div class="visited_places_media_border visited_places_media_border_over"></div>
+                                    <img class="visited_places_media_pic" src="{{item.impathss|raw}}" alt="{{item.title|raw}}" />
+                                </a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if data_video_count>0 %}
+                <div class="visited_places_media_holder{% if data_photo_count > 0 %} {{'marginleft88'}} {% endif %}">
+                    <div class="visited_places_part2_titre">{{'videos'|lang}}</div>
+                    <div class="prev_btn prev_btn_video inactive"></div>
+                    <div class="next_btn next_btn_video{% if data_video_count<=12 %} {{' inactive'}}{% endif %}"></div>
+                    <div class="visited_places_media_container">
+                        <div class="visited_places_media_content">
+                            {% for item in data_videoArr %}
+                                <a class="visited_places_media_item" href="{{item.page_link|raw}}">
+                                    <div class="visited_places_media_border1 visited_places_media_border_over"></div>
+                                    <img class="visited_places_media_pic" src="{{item.impathss|raw}}" alt="{{item.title|raw}}" />
+                                </a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if data_discover_hotel|length >0 %}
+        <div class="visited_places_part2 visited_places_part2_hotels" data-left="0">
+            <div class="visited_places_part2_titre">{{'hotels'|lang}}</div>
+            <div class="prev_btn inactive prev_btn_discover"></div>
+            <div class="next_btn inactive next_btn_discover"></div>
+            <div class="visited_places_part2_container">
+                <div class="visited_places_part2_content">
+                    {% for item in discoverHotelArr %}
+                        <div class="visited_places_part2_item">
+                            <a class="visited_places_part2_img" href="{{item.page_link|raw}}">
+                                <img class="visited_places_part2_pic" src="{{item.link~'thumb/'~item.img|raw}}" alt="{{item.name|raw}}" />
+                            </a>
+                            <div class="visited_places_part2_left">
+                                <div class="visited_places_part2_text">{{item.name|raw}}</div>
+                                <div class="visited_places_part2_stars insidevideolistrating{{item.stars|raw}}3"></div>
+                                <div class="visited_places_part2_rate">{{item.rating_value|raw}}</div>
+                            </div>
+                            <div class="visited_places_part2_middle">
+                                <div class="visited_places_part2_review">{{'Review'|lang}}</div>
+                                <div class="visited_places_part2_seperator"></div>
+                                <div class="visited_places_part2_time">{{item.create_ts|raw}}</div>
+                                <div class="visited_places_part2_title">{{item.title|raw}}</div>
+                                <div class="visited_places_part2_description">{{item.description|raw}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if data_discover_restaurant|length > 0 %}
+        <div class="visited_places_part2 visited_places_part2_restaurants" data-left="0">
+            <div class="visited_places_part2_titre">{{'restaurants'|lang}}</div>
+            <div class="prev_btn inactive prev_btn_discover"></div>
+            <div class="next_btn inactive next_btn_discover"></div>
+            <div class="visited_places_part2_container">
+                <div class="visited_places_part2_content">
+                    {% for item in discoverRestaurantArr%}
+                        <div class="visited_places_part2_item">
+                            <a class="visited_places_part2_img" href="{{item.page_link|raw}}">
+                                <img class="visited_places_part2_pic" src="{{item.link~'thumb/'~item.img|raw}}" alt="{{item.name|raw}}" />
+                            </a>
+                            <div class="visited_places_part2_left">
+                                <div class="visited_places_part2_text">{{item.name|raw}}</div>
+                                <div class="visited_places_part2_rate">{{item.rating_value|raw}}</div>
+                            </div>
+                            <div class="visited_places_part2_middle">
+                                <div class="visited_places_part2_review">{{'Review'|lang}}</div>
+                                <div class="visited_places_part2_seperator"></div>
+                                <div class="visited_places_part2_time">{{item.create_ts|raw}}</div>
+                                <div class="visited_places_part2_title">{{item.title|raw}}</div>
+                                <div class="visited_places_part2_description">{{item.description|raw}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if data_discover_poi|length > 0 %}
+        <div class="visited_places_part2 visited_places_part2_pois" data-left="0">
+            <div class="visited_places_part2_titre">{{'Points of interest'|lang}}</div>
+            <div class="prev_btn inactive prev_btn_discover"></div>
+            <div class="next_btn inactive next_btn_discover"></div>
+            <div class="visited_places_part2_container">
+                <div class="visited_places_part2_content">
+
+                    {% for item in discoverPoiArr %}
+                        <div class="visited_places_part2_item">
+                            <a class="visited_places_part2_img" href="{{item.page_link|raw}}">
+                                <img class="visited_places_part2_pic" src="{{item.link~'thumb/'~item.img|raw}}" alt="{{item.name|raw}}" />
+                            </a>
+                            <div class="visited_places_part2_left">
+                                <div class="visited_places_part2_text">{{item.name|raw}}</div>
+                                <div class="visited_places_part2_rate">{{item.rating_value|raw}}</div>
+                            </div>
+                            <div class="visited_places_part2_middle">
+                                <div class="visited_places_part2_review">{{'Review'|lang}}</div>
+                                <div class="visited_places_part2_seperator"></div>
+                                <div class="visited_places_part2_time">{{item.create_ts|raw}}</div>
+                                <div class="visited_places_part2_title">{{item.title|raw}}</div>
+                                <div class="visited_places_part2_description">{{item.description|raw}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div> <!-- right_container -->

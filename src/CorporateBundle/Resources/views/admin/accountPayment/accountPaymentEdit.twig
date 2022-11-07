@@ -1,0 +1,74 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-accountPaymentEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'List Of Account Payments Add/Edit'|trans}}{% endblock %}
+{% block body %}
+
+    {% set defaultValues  = {'al_id':0 ,'al_accountId': accountId, 'al_userId': 0, 'al_requestDetailId': 0, 'al_paymentDate': '', 'al_currencyCode': 0, 'al_amount': 0, 'accountName': accountName, 'userName':'', 'currencyName':'', 'al_description':'', 'currencyCode':''} %}
+
+    {% set accountPayment = defaultValues|merge(accountPayment) %}
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'List Of Account Payments'|trans}} / <span class="add_edit">add/edit</span></h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_account_payment_addSubmit') }}">
+		<div class="col-lg-10 col-xs-12 nopad margin_top_40">
+		    <div class="row corporate_small_row_margin">
+			{#{% if autoClose == true %}
+			    <input type="hidden" id="autoClose" name="autoClose" value="true" />
+			{% endif %}#}
+			<input type="hidden" class="id" name="id" value="{{accountPayment.al_id|raw}}" />
+			<input type="hidden" class="userId" name="userId" value="{{userId|raw}}" />
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Date'|trans}}</label>
+			    <input autocomplete="off" data-toggle="daterangepicker" type="text" class="col-xs-12 account_range_picker isSingle" name="paymentDate"  value="{{accountPayment.al_paymentDate|date("m/d/Y")}}" readonly="readonly" placeholder="{{'Date'|trans}}" >
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="accountNameLabel" class="form-check-label">{{'Account'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="accountCode" id="account" value="{{accountPayment.accountName|raw}}" data-value-id="{{accountPayment.al_accountId|raw}}" placeholder="{{'Search for parent account'|trans}}*" required/>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'User'|trans}}</label>
+			    <input type="text" class="col-xs-12" name="user" data-toggle="ttautocompleteUser" id="user" value="{{userName|raw}}" placeholder="{{'Search for user'|trans}}"  disabled/>
+			</div>
+			<div class="clearfix visible-lg visible-md"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="currencyNameLabel" class="form-check-label">{{'Currency'|trans}}*</label>
+			    <input type="text" class="col-xs-12" id="currency" name="currencyCode" value="{{accountPayment.currencyCode|raw}}" data-value-id="{{accountPayment.al_currencyCode|raw}}" placeholder="{{'Search for currency'|trans}}*" required label="#currencyNameLabel" data-toggle="ttautocompleteCurrency"/>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="amountLabel" class="form-check-label">{{'Amount'|trans}}*</label>
+			    <input type="text" class="col-xs-12 number" name="amount" id="amount" value="{{accountPayment.al_amount|raw}}" placeholder="{{'Amount'|trans}}*" required label="#amountLabel"/>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Description'|trans}}</label>
+			    <textarea name="description" class="col-xs-12" placeholder="{{'Description'|trans}}">{{accountPayment.al_description|raw}}</textarea>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="clearfix visible-lg visible-md"></div>
+			{% if app.request.get('error') %}
+			    <div class="alert-danger col-xs-12 corporate_small_col_padding lofaff">
+				{{app.request.get('error')}}
+			    </div>
+			{% endif %}
+		    </div>
+		    <div class="row corporate_small_row_margin">
+			<div class="col-xs-12 corporate_small_col_padding margin_top_20">
+			    <a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corpo_account_payment') }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+			    <button data-role="button" data-type="validate" type="button" class="btn submit_yellow" onclick="submitForm()">{{'Submit'|trans}}</button>
+			</div>
+		    </div>
+		</div>
+	    </form>
+        </div>
+    </section>
+{% endblock %}

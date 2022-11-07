@@ -1,0 +1,37 @@
+TTBundle\Entity\DealDayMedia:
+    type: entity
+    table: deal_day_media
+    indexes:
+        day_id:
+            columns:
+                - day_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dayId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: day_id
+        path:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fileName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: file_name
+    lifecycleCallbacks: {  }

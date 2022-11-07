@@ -1,0 +1,1 @@
+UPDATE `hotel_selected_city` SET `city_id` = '389133' WHERE `hotel_selected_city`.`id` = 31;

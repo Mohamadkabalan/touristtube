@@ -1,0 +1,94 @@
+services:
+#    flight.example:
+#        class: FlightBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    SabreAirTicketRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreAirTicketRequest
+    SabreCloseSessionRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreCloseSessionRequest
+    SabreCommandRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreCommandRequest
+    SabreContextChangeRQ:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreContextChangeRQ
+    SabreCreateBargainRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreCreateBargainRequest
+    SabreCreateSessionRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreCreateSessionRequest
+    SabreDeletePriceQuote:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreDeletePriceQuote
+    SabreDesignatePrinterRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreDesignatePrinterRequest
+    SabreEndTransactionRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreEndTransactionRequest
+    SabreEnhancedAirBookRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreEnhancedAirBookRequest
+    SabreOTACancelRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreOTACancelRequest
+    SabrePassengerDetailsActions:
+        class: FlightBundle\vendors\sabre\requests\v1\SabrePassengerDetailsActions
+    SabrePassengerDetailsRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabrePassengerDetailsRequest
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+    SabreQueueAccessRQ:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreQueueAccessRQ
+    SabreRefreshSessionRequest:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreRefreshSessionRequest
+    SabreTravelItineraryReadRQ:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreTravelItineraryReadRQ
+    SabreRetrieveItineraryRQ:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreRetrieveItineraryRQ
+    SabreVoidAirTicketRQ:
+        class: FlightBundle\vendors\sabre\requests\v1\SabreVoidAirTicketRQ
+    SabreServices:
+        class: FlightBundle\Services\SabreServices
+        arguments: ['@app.utils', '@SabreCreateSessionRequest', '@SabreCreateBargainRequest', '@SabreEnhancedAirBookRequest', '@SabrePassengerDetailsRequest', '@SabreTravelItineraryReadRQ','@SabreCloseSessionRequest','@SabreDesignatePrinterRequest','@SabreAirTicketRequest','@SabreEndTransactionRequest','@SabreOTACancelRequest','@SabreVoidAirTicketRQ', '@SabreRefreshSessionRequest', '@SabreCommandRequest', '@SabrePassengerDetailsActions', '@SabreQueueAccessRQ', '@doctrine.orm.entity_manager','@templating','@EmailServices','@SabreContextChangeRQ', '@SabreDeletePriceQuote', '@service_container', '@PassengerNormaliser', @security.context,'@SabreRetrieveItineraryRQ']
+    FlightRepositoryServices:
+        class: FlightBundle\Repository\Flight\FlightRepositoryServices
+        arguments: [ @doctrine.orm.entity_manager, @service_container, '@FlightController' ]
+    CommonRepositoryServices:
+        class: FlightBundle\Repository\Common\CommonRepositoryServices
+        arguments: [ @doctrine.orm.entity_manager ]
+        
+    FlightController:
+        class: FlightBundle\Controller\FlightController
+        calls:
+            - [ setContainer, [ @service_container ]]
+    FlightServices:
+        class: FlightBundle\Services\FlightServices
+        arguments: [ '@FlightController', '@PassengerNormaliser', '@doctrine.orm.entity_manager', '@service_container', '@PassengerHandler', '@SabreHandler', '@FlightHandler'  ]
+    FlightsServices:
+        class: RestBundle\Services\FlightsServices
+        arguments: ['@service_container','@payment_repository']
+    Passenger:
+        class: FlightBundle\Model\Passenger
+    RequestData:
+        class: FlightBundle\Model\RequestData
+    PassengerHandler:
+        class: FlightBundle\vendors\sabre\PassengerHandler
+        arguments: [ '@EmailData', '@service_container', '@RequestData', '@Passenger'  ]
+    EmailData:
+        class: FlightBundle\Model\EmailData
+    PassengerNormaliser:
+        class: FlightBundle\vendors\sabre\PassengerNormaliser
+        arguments: [ '@Passenger', '@app.utils', '@EmailData', '@service_container'  ]
+    SabreHandler:
+        class: FlightBundle\vendors\sabre\SabreHandler
+        arguments: [ '@service_container', '@RequestDataHandler' , '@doctrine.orm.entity_manager', '@FlightController' ]
+    FlightHandler:
+        class: FlightBundle\vendors\sabre\FlightHandler
+        arguments: [ '@service_container', '@RequestDataHandler', '@PassengerHandler' ]
+    RequestDataHandler:
+        class: FlightBundle\vendors\sabre\RequestDataHandler
+        arguments: [ '@RequestData', '@service_container', '@Passenger', '@app.utils' ] 
+    FlightItineraryNormaliser:
+        class: FlightBundle\vendors\sabre\FlightItineraryNormaliser
+        arguments: [ '@app.utils', '@CurrencyService', @FlightRepositoryServices, @translator, @TTRouteUtils ]
+    FlightTicketIssuer:
+        class: FlightBundle\vendors\sabre\FlightTicketIssuer
+        arguments: [ '@service_container', '@doctrine.orm.entity_manager', '@SabreServices', '@payment_repository', '@EmailServices', '@app.utils', '@FlightRepositoryServices', '@translator', '@CommonRepositoryServices', '@PayFortServices', '@UserServices', '@CorpoAccountServices' ]
+    FlightFinder:
+        class: FlightBundle\vendors\sabre\FlightFinder
+        arguments: [ '@service_container', '@doctrine.orm.entity_manager', '@SabreServices', '@CurrencyService', '@FlightItineraryNormaliser', '@translator', '@app.utils' ]    
+        
+

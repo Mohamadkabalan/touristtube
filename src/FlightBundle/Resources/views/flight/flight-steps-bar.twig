@@ -1,0 +1,74 @@
+{#<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 divstepspad hidden-sm hidden-xs flight-breadcrumb">#}
+    {#<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 firststep blue_bullet">#}
+        {#<div class="bullet">#}
+            {#<p>1</p>#}
+        {#</div>#}
+        {#<p class="number-step-text" {% if step == 1 %} style="color: #db3a69;text-decoration: underline;" {% endif %}>{{'Select your flights'|trans}}</p>#}
+    {#</div>#}
+    {#<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 sndstep hidden-xs">#}
+        {#<div class="bullet">#}
+            {#<p>2</p>#}
+        {#</div>#}
+        {#<p class="number-step-text" {% if step == 2 %} style="color: #db3a69;text-decoration: underline;" {% endif %}>{{'Review your Flights'|trans}}</p>#}
+    {#</div>#}
+    {#<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 sndstep hidden-xs">#}
+        {#<div class="bullet">#}
+            {#<p>3</p>#}
+        {#</div>#}
+        {#<p class="number-step-text" {% if step == 3 %} style="color: #db3a69;text-decoration: underline;" {% endif %}>{{'Passenger Details'|trans}}</p>#}
+    {#</div>#}
+    {#<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 thirdstep hidden-xs">#}
+        {#<div class="bullet">#}
+            {#<p>4</p>#}
+        {#</div>#}
+        {#<p class="number-step-text" {% if step == 4 %} style="color: #db3a69;text-decoration: underline;" {% endif %}>{{'Payment'|trans}}</p>#}
+    {#</div>#}
+    {#<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 thirdstep hidden-xs">#}
+        {#<div class="bullet">#}
+            {#<p>5</p>#}
+        {#</div>#}
+        {#<p class="number-step-text" {% if step == 5 %} style="color: #db3a69;text-decoration: underline;" {% endif %}>{{'Confirmation'|trans}}</p>#}
+    {#</div>#}
+{#</div>#}
+
+     {% set totalItiCount = 2 %}
+     {% set currentItiSegmentStep = 1 %}
+
+    {% if response['request'] is defined %}
+        {% if response['request']['oneway'] == 1 %}
+
+            {% set totalItiCount = response['request']['departureairportC']|length %}
+
+        {% endif %}
+    {% endif %}
+
+    {% if response['selectedRequest'] is defined %}
+
+        {% if response['request']['oneway'] == 0 %}
+
+            {% set totalItiCount = 2 %}
+
+         {% else %}
+
+             {% set totalItiCount = response['selectedRequest']['main']['departureairportC']|length %}
+
+         {% endif %}
+
+        {% set flightIndexCount = response['selectedRequest']['flightIndex']|length %}
+
+        {% set currentItiSegmentStep = currentItiSegmentStep + 1 %}
+
+    {% endif %}
+
+<div class="row margin-top-10 tt_breadcrump">
+    <div class="col-xs-12">
+        <ul>
+
+            <li class="{% if step == 1 %} selected {% elseif step > 1 %} donestep {% endif %}"><span {% if step == 1 %} class="selected" {% endif %}>1. {{'Select your flights'|trans}}{% if (response['selectedRequest'] is not defined  and response['request'] is not defined ) %} {% else %} ({{ currentItiSegmentStep ~ '/' ~ totalItiCount }}) {% endif %} </span></li>
+            <li class="{% if step == 2 %} selected {% elseif step > 2 %} donestep {% endif %}"><span {% if step == 2 %} class="selected" {% endif %}>2. {{'Review your flights'|trans}}</span></li>
+            <li class="{% if step == 3 %} selected {% elseif step > 3 %} donestep {% endif %}"><span {% if step == 3 %} class="selected" {% endif %}>3. {{'Passenger details'|trans}} </span></li>
+            <li class="{% if step == 4 %} selected {% elseif step > 4 %} donestep {% endif %}"><span {% if step == 4 %} class="selected" {% endif %}>4. {{'Payment'|trans}} </span></li>
+            <li class="{% if step == 5 %} selected {% endif %}"><span {% if step == 5 %} class="selected" {% endif %}>5. {{'Confirmation'|trans}} </span></li>
+        </ul>
+    </div>
+</div>

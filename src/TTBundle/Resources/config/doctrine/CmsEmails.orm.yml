@@ -1,0 +1,63 @@
+TTBundle\Entity\CmsEmails:
+    type: entity
+    table: cms_emails
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        toEmail:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: to_email
+        msg:
+            type: text
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        subject:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        priority:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        sent:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+        numTry:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: num_try
+    lifecycleCallbacks: {  }

@@ -1,0 +1,130 @@
+{# twig file for profile_TTpage_visted_place.php #}
+
+<script type="text/javascript">
+    userGlobalID({{userId|raw}});
+    var no_socials_links = 0;
+    var user_is_logged = '{{user_is_logged|raw}}';
+    var user_Is_channel = '{{userIschannel|raw}}';
+    var is_owner = '{{is_owner|raw}}';
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCrxIysSaXDyJxGenBvXJIfqIFclyatYfo&amp;sensor=false&amp;libraries=places"></script>
+{#<script type="text/javascript" src="//google-maps-utility-library-v3.googlecode.com/svn-history/r290/trunk/infobox/src/infobox_packed.js"></script>#}
+        <script type="text/javascript" src="{{ ("js/infobox_packed.js")|link }}"></script>
+<a href="" id="picfancyboxbutton" rel="nofollow" style="width:0px;height:0px;" class="displaynone"></a>
+<a href="#sharepopup" rel="nofollow" id="addbrochure_buttonbk" class="displaynone"></a>
+<div id="sharepopup"></div>
+
+{% include('parts/profile_TTpage_header.twig') %}
+{% include('parts/profile_TTpage_left.twig') %}
+
+<div id="right_container" style="margin-left:28px; width:747px;" data-real="{{usmd|raw}}">
+    <div id="visited_places_googlemap" class="visited_places_googlemap">
+        <style>
+            #googlemap_places{
+                width:100%;
+                height:100%;
+            }
+            #chatContainer{
+                z-index:100 !important;
+            }
+        </style>
+        <script type="text/javascript">
+            var map;
+            var marker_array=[];
+            var markersArrayData=[];
+            $(document).ready(function(){
+                var boxText = document.createElement("div");
+                var myOptions = {
+                    content: boxText
+                    , disableAutoPan: false
+                    , maxWidth: 0
+                    , pixelOffset: new google.maps.Size(-140, 0)
+                    , zIndex: null
+                    , boxStyle: {
+                        opacity: 0.9
+                        , width: "120px"
+                        , height: "140px"
+                    }
+                    , closeBoxURL: ""
+                    , infoBoxClearance: new google.maps.Size(1, 1)
+                    , isHidden: false
+                    , pane: "floatPane"
+                    , enableEventPropagation: false
+                };
+
+                ib = new InfoBox(myOptions);
+                var image = new google.maps.MarkerImage(ReturnLink("/images/map_marker.png"));
+                var mapOptions = {
+                    center: new google.maps.LatLng( 10 , 10 ),
+                    //center: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+                    zoom: 2,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("googlemap_places"),mapOptions);
+
+                {% for visited_places_item in visited_placesArr %}
+                markersArrayData.push(Array( map , image , '{{visited_places_item.name|raw}}', {{visited_places_item.lat|raw}} , {{visited_places_item.log|raw}} , {{visited_places_item.cityid|raw}} , '{{visited_places_item.page_link|raw}}' ));
+                {% endfor %}
+
+
+                setTimeout(function() {
+                    for (var k = 0; k < markersArrayData.length; k++) {
+                        var data_arr = markersArrayData[k];
+                        drawmarkers( data_arr[0] , data_arr[1] , data_arr[2] , data_arr[3] , data_arr[4] , data_arr[5] , data_arr[6] , k );
+                    }
+                }, 3000);
+                function drawmarkers( map , image , title , la , lo , cityid , page_link , k ) {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(la, lo),
+                        map: map,
+                        icon: image,
+                        title: title
+                    });
+
+                    marker_array[cityid] = marker;
+
+                    //Setting the onclick marker function
+                    var base_url = '';
+                    var onMarkerClick = function() {
+                        ib.close();
+                        var marker_c = this;
+
+                        var content = '<div class="mtooltip"><div class="mtooltipin"><div class="clsgoo" onClick="ib.close();">X</div>';
+
+                        content += '<div class="mtooltip_title">' + title + '</div>';
+
+                        content += '</div><div class="anchor_bk"></div><div class="mtooltip_buttons"><a class="mtooltip_buts marginleft9" href="'+page_link+'">{{ 'view'|lang }}</a><div class="mtooltip_buts_sep"><span></span></div><div class="mtooltip_buts mtooltip_buts_share" data-link="visited_places_item_share'+k+'" onClick="mapShareLoc(this);">' + t('share') + '</div></div></div>';
+                        //ib.setContent(content);
+                        boxText.innerHTML = content;
+                        ib.open(map, marker_c);
+                    };
+                    google.maps.event.addListener(marker, 'click', onMarkerClick);
+                }
+                google.maps.event.addListener(map, 'click', function() {
+                    ib.close();
+                });
+            });
+        </script>
+        <div id="googlemap_places"></div>
+    </div>
+    {% if is_owner==1 or visited_places_array_count>0 %}
+        <div class="clearboth"></div>
+        <div id="visited_places_title" data-count="{{visited_places_array_count|raw}}">{{visits_text|raw}}
+            <span class="yellow">({{visited_places_array_count|raw}})</span>
+        </div>
+        <div id="visited_places_container">
+            {% set i=0%}
+            {% for visited_places_item in visited_places_Arr %}
+            {% set i=i+1%}
+            <div class="visited_places_item" data-privacy="{{visited_places_item.privacy_list|raw}}" data-country="{{visited_places_item.country_name|raw}}" data-state="{{visited_places_item.state_name|raw}}" data-city="{{visited_places_item.name|raw}}" data-id="{{visited_places_item.cityid|raw}}" data-lat="{{visited_places_item.latitude|raw}}" data-lng="{{visited_places_item.longitude|raw}}">
+                <div class="visited_places_item_text">{{ visited_places_item.titre|raw}}</div>
+                <a class="visited_places_item_buts visited_places_item_view" href="{{visited_places_item.page_link|raw}}"></a>
+                {% if (is_owner==1 and visited_places_item.condition1!=false ) or visited_places_item.condition2!=false %}
+                    <a id="visited_places_item_share{{i|raw}}" class="visited_places_item_buts visited_places_item_share" href="#sharepopup"></a>
+
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div> <!-- right_container -->

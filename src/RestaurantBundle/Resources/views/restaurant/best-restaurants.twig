@@ -1,0 +1,64 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/hotels/css/hotel-best-in-world.css")|raw }}" >
+{% endblock %}
+{% block body %}
+    <section class="container city_activites_container">
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ 'Best restaurants in 360 virtual tour'|trans }}</h1>
+	    </div>
+	</div>
+	<div class="row new_margin margin_top_30">
+	    {% for subItemMain in featured_restaurants_360 %}
+		<div class="col-md-3 col-sm-6 col-xs-12 new_padding">
+		    <a href="{{ subItemMain.link|raw }}" title="{% if subItemMain.hotel_namealt!='' %}{{ subItemMain.hotel_namealt|raw }} - {% endif %}{{ subItemMain.namealt|raw }}">
+			<img class="width-100" src="{{ subItemMain.img }}" alt="{% if subItemMain.hotel_namealt!='' %}{{ subItemMain.hotel_namealt|raw }} - {% endif %}{{ subItemMain.namealt|raw }}" />
+			<h2 class="subtitle_home_new">{% if subItemMain.hotel_name!='' %}{{ subItemMain.hotel_name|raw }} - {% endif %}{{ subItemMain.name|raw }}{% if subItemMain.city !='' %} <span class="txtPink">| {{ subItemMain.city|raw }}</span>{% endif %}</h2>
+			{#<img class="small_logo_absolute" src="{{ generateMediaURL('/media/images/360-photos-virtual-tour/360_logo.png') }}" alt="{{ '360 logo'|trans }}">#}
+                        <div class="sprite sprite_360_logo2"></div>
+		    </a>		    			
+		</div>
+		{% if (loop.index%4)==0 %}
+		    <div class="clearfix visible-lg visible-md"></div>
+		{% endif %}		
+		{% if (loop.index%2)==0 %}
+		    <div class="clearfix visible-sm"></div>
+		{% endif %}
+	    {% endfor %}
+	</div>
+	
+	<div class="row no-margin">
+	    <div class="col-xs-12 nopad">
+		<h3 class="font-27 light_black">{{'Relish a couple of local restaurants on your travels!'|trans}}</h3>
+	    </div>
+	    <div class="col-xs-12 nopad">
+		<p class="text-justify grey font-16">{{'As you go around the world and experience each awesome scene possible, your trip would not be complete without trying out the best restaurants of the country you’ll visit. It would then simply be practical to check out a restaurant finder and pick the cuisines which you’d be interested to try out. Here are just some of the sumptuous treats you can sample and get filled with:
+
+Visit the Local Restaurants in Poland
+
+With its rich and flavourful Slavic influences and from other parts of Europe, Poland came up with one of the world’s favourite bread, the bagel. You must also try some of its traditional and welcoming dishes such as the Lazanki (made of meat, cabbage, pasta and cheese), Barszcz, which is a soup filled with dumplings and many more. 
+
+It would also be advisable to consider restaurant reviews, so you would know the restaurants which certain types of tourists would usually go to. There are bootstrapping travellers, refined and culturally inspired tourists and even adventurous visitors who are gung ho on tasting every exotic food possible in a country.
+
+Taste-Bud Bursting Treats in Spain
+
+If you will be dropping by one of Europe’s most famous peninsulas, you must certainly taste the selections among its best restaurants. Locals and tourists alike will give you an idea of where to try the yummiest paella, calamares, tapas, patatas bravas and so much more! Spanish cuisine has a festive characteristic and tourists who try out their various servings will get pleasantly filled as they soak in the country’s rich cultural atmosphere.
+
+Yummy British Cuisines
+
+Upon visiting the United Kingdom, it would be advisable to go over a restaurant finder so you may also see which culinary centres will be the favourites among tourists and locals alike. They’re usually warmly prepared with generous servings which can be quite comforting. 
+
+Your choice among the best restaurants will depend on what you would like to eat during specific times of the day. If you’re up for some traditional English breakfast, then their versions of fried eggs, sausages and hash browns are a must try. However, no trip to the UK will be complete without trying out the traditional way of drinking English tea.
+
+Filling Hungarian Dishes 
+
+Whether you’re dropping by Budapest or any fun part of Hungary, you’ll definitely need to consider visiting the country’s best restaurants via a restaurant finder. From savoury dishes such as Chicken Schnitzels to desserts like the Rakott Krumpli, tourists will certainly never run out of reasons to get filled by the mouth-watering delicacies of the country.
+
+If you plan to go around in Poland, Spain, UK or Hungary soon, be sure to visit their local restaurants. This way, you’ll have a fuller experience of your visit.'|trans|nl2br}}
+		</p>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

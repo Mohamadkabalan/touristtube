@@ -1,0 +1,108 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/secure-booking.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/secure-booking.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class ="container">
+	<div class="col-xs-12 nopad margintop100">
+	    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad rightfourcontainer_sts">  
+		<div class="col-xs-12 nopad">
+		    <a class="bookbut_sts" href="#">Book now starting at
+			US$ 11.92</a>
+		</div>
+		<div class="col-xs-12 nopad rightcontainerbordergrey_wtt_sts martop10">
+		    <div class="col-xs-12 nopad">
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+			    <p class="resontt_sts">Why ToursitTube?</p>
+			    <ul class="whyttlist_sts">
+				<li class="">Easy booking</li>
+				<li class="">Instant confirmation</li>
+				<li class="">Reschedule anytime</li>
+				<li class="">Best price guaranteed</li>
+				<li class="">24/5 Customer support</li>
+			    </ul>
+			</div>
+			<div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+			    <div class="col-xs-12 nopad inhorborderstyle_sts"></div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+			    <p class="needhelp_sts">Need Help?<span class="contus_sts"> <a href="{{ generateLangRoute(LanguageGet,'_contact') }}" class=""> Contact Us</a></span></p>
+			    <div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+				<div class="col-xs-12 nopad inhorborderstyle_sts extrabordmarbut_sts"></div>
+			    </div>
+			    <p class="secpay_sts">Secure & simple payments</p>
+			    <p class="protectpay_sts">All our card payments are protected 
+				by thawte to give you peace of mind</p>
+			    <div class="col-xs-12 nopad textalligncenter">
+				<div class="paymimgs_sts_cont">
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/visa_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/mastercard_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/americnexpress_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/discover_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/jcb_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				</div>
+			    </div>
+			</div>
+
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 nopad">
+		<div class="col-xs-12 nopad">
+		    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+			<p class="alrhaccpink_sts">Payment</p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad">
+				<p class="arrdepboldtext_sts flatleftstyle_sts">Have a gift certificate or promocode?</p>
+				<a class="redemdisc_sts flatleftstyle_sts" href="#">Redeem your discount</a>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Cardholder Name</p>
+				    <input id="" name="" data-link="" placeholder="Name on the credit card" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    <div class="rightpaymnetimgscont_sts">
+					<img class="" src="{{ asset('images/stepseven/visalogo_sts.png') }}" alt="{{'title'}}"/>
+					<img class="redborderimgstylepad_sts" src="{{ asset('images/stepseven/redborderimg_sts.png') }}" alt="{{'title'}}"/>
+					<img class="" src="{{ asset('images/stepseven/mastercard_sts.png') }}" alt="{{'title'}}"/>
+					<img class="redborderimgstylepad_sts" src="{{ asset('images/stepseven/redborderimg_sts.png') }}" alt="{{'title'}}"/>
+					<img class="" src="{{ asset('images/stepseven/amexpress_sts.png') }}" alt="{{'title'}}"/>
+				    </div>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Debit / Credit card number</p>
+				    <input id="" name="" data-link="" placeholder="Card number" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Expiration Date</p>
+				    <select class="selectboxlargestandard_sts smalselectbox_sts">
+					<option value="" selected="selected" >January</option>
+					<option value="">FEB</option>
+					<option value="">MAR</option>
+				    </select> 
+				    <select class="selectboxlargestandard_sts smalselectbox_sts sndsboxstyle">
+					<option value="" selected="selected" >2017</option>
+					<option value="">2018</option>
+					<option value="">2019</option>
+				    </select> 
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Security code</p>
+				    <input id="" name="" data-link="" placeholder="CVC" class="arrdepstandardinput_sts smalselectbox_sts" value="" autocomplete="off" type="text">
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+
+	</div>
+    </section>
+
+{% endblock %}

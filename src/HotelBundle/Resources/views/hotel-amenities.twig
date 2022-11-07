@@ -1,0 +1,17 @@
+{% if hotelDetails.amenities is defined and hotelDetails.amenities is not empty %}
+    <div class="col-xs-12">
+	<h3 class="facilities_title">{{'Most popular amenities'|trans}}</h3>
+    </div>
+    <div class="col-xs-12">
+	<ul class="facilities_list">
+	    {% for amenity in hotelDetails.amenities %}
+		<li>
+		    {{amenity.name}}
+		    {% if loop.last == false %}
+			<span>|</span>
+		    {% endif %}
+		</li>
+	    {% endfor %}
+	</ul>
+    </div>
+{% endif %}

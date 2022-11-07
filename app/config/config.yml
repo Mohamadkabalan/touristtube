@@ -1,0 +1,246 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: constants.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: @CorporateBundle/Resources/config/admin/services.yml }
+    - { resource: @DealBundle/Resources/config/constants_deals.yml }
+    - { resource: @DealBundle/Resources/config/services.yml }
+    - { resource: @FlightBundle/Resources/config/services.yml }
+    - { resource: @FlightBundle/Resources/config/passport_params.yml }
+    - { resource: @HotelBundle/Resources/config/constants_hotels.yml }
+    - { resource: @HotelBundle/Resources/config/services.yml }
+    - { resource: @PaymentBundle/Resources/config/services.yml }
+    - { resource: @PaymentBundle/Resources/config/constants.yml }
+    - { resource: @OTPBundle/Resources/config/constants.yml }
+    - { resource: @OTPBundle/Resources/config/services.yml }
+    - { resource: @RestBundle/Resources/config/oauth/services.yml }
+    - { resource: @NewFlightBundle/Resources/config/services.yml }
+    - { resource: @NewFlightBundle/Resources/config/constants_flights.yml }
+    - { resource: @TTBundle/Resources/config/services.yml }
+    - { resource: @TTBundle/Resources/config/constants.yml }
+    - { resource: mysql.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+#    elastic_index: tt_v2.2
+    config_locales: fr|en|in|cn
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    serializer:      { enable_annotations: true }
+
+    templating:
+        engines: ['twig']
+#        assets_base_urls:
+#            - "//static.%domain%"
+#            - "//static1.%domain%"
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    cache:  false
+
+# Assetic Configuration
+assetic:
+    use_controller: true
+    node: /usr/bin/node
+    filters:
+        uglifyjs2:
+            bin: /usr/local/bin/node_modules/uglify-js/bin/uglifyjs
+        uglifycss:
+            bin: /usr/local/bin/node_modules/uglifycss/uglifycss
+#        jpegoptim:
+#            bin: /usr/local/bin/node_modules/jpegoptim-bin
+        #cssrewrite: ~
+        #jsqueeze: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        mapping_types:
+            enum: string
+            bit: boolean
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        dql:
+            numeric_functions:
+                Rand: TTBundle\Doctrine\Functions\Rand
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+sensio_framework_extra:
+    request: { converters: true }
+
+fos_rest:
+    zone:
+        - { path: ^/api/* }
+    param_fetcher_listener: force
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.json
+    body_converter:
+        enabled: true
+    format_listener:
+        enabled: true
+        rules:
+            { fallback_format: 'json', priorities: ['json', 'xml'] }
+    versioning: true
+    view:
+        #default_engine:       twig
+        view_response_listener: force
+        force_redirects:
+            html: true
+        formats:
+            jsonp: true
+            json: true
+            xml: true
+            rss: false
+        templating_formats:
+            html: true
+        mime_types:
+            json: ['application/json', 'application/x-json']
+            rss: 'application/rss+xml'
+            jpg: 'image/jpeg'
+            png: 'image/png'
+        jsonp_handler: ~
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    exception:
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+        messages:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+
+fos_oauth_server:
+    db_driver: orm
+    client_class:        RestBundle\Entity\OauthClient
+    access_token_class:  RestBundle\Entity\OauthAccessToken
+    refresh_token_class: RestBundle\Entity\OauthRefreshToken
+    auth_code_class:     RestBundle\Entity\OauthAuthCode
+    service:
+        user_provider: api_key_user_provider
+
+#jms_translation:
+#    configs:
+#        app:
+#            dirs: [%kernel.root_dir%/../web/social/inc/functions/langSeo]
+#            output_dir: %kernel.root_dir%/Resources/translations
+#            excluded_names: ["*TestCase.php", "*Test.php"]
+#            excluded_dirs: [cache, data, logs]
+#            ignored_domains: [routes]
+#hwi_oauth:
+#    # name of the firewall in which this bundle is active, this setting MUST be set
+#    firewall_name: secured_area
+#    resource_owners:
+#        any_name:
+#            type:                facebook
+#            client_id:           "%facebook_client_id%"
+#            client_secret:       "%facebook_client_secret%"
+#            options:
+#old_sound_rabbit_mq:
+#    connections:
+#        default:
+#            host:     '172.16.124.222'
+#            port:     5672
+#            user:     'test'
+#            password: 'test'
+#            vhost:    '/'
+#            lazy:     false
+#            connection_timeout: 3
+#            read_write_timeout: 3
+#
+#            # requires php-amqplib v2.4.1+ and PHP5.4+
+#            keepalive: false
+#
+#            # requires php-amqplib v2.4.1+
+#            heartbeat: 0
+#    producers:
+#        upload_picture:
+#            connection:       default
+#            exchange_options: {name: 'upload-picture', type: direct}
+#    consumers:
+#        upload_picture:
+#            connection:       default
+#            exchange_options: {name: 'upload-picture', type: direct}
+#            queue_options:    {name: 'upload-picture'}
+#            callback:         upload_picture_service
+monolog:
+    channels: ["hotels", "flights", "deals"]
+    handlers:
+        hotels:
+            type:   rotating_file
+            path:   "%kernel.logs_dir%/hotel_activities/hotel_activity.log"
+            level:  info
+            max_files: 0
+            channels: [hotels]
+            formatter: monolog.formatter.hotels
+        flights:
+            type:   rotating_file
+            path:   "%kernel.logs_dir%/flight_activities/flight_activity.log"
+            level:  info
+            max_files: 0
+            channels: [flights]
+            formatter: monolog.formatter.flights
+        deals:
+            type:   rotating_file
+            path:   "%kernel.logs_dir%/deal_activities/deal_activity.log"
+            level:  info
+            max_files: 0
+            channels: [deals]
+            formatter: monolog.formatter.deals
+
+jms_di_extra:
+    locations:
+        all_bundles: true
+        directories: ["%kernel.root_dir%/../src"]

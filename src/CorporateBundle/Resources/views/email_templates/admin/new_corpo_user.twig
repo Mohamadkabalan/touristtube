@@ -1,0 +1,33 @@
+<body>
+    <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+	{% include 'emails/header.twig' %}
+        <tr>
+	    <td>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="46" height="16"></td>
+                        <td height="3" valign="top"></td>
+                    </tr>
+                    <tr>
+                        <td width="46" height="25"></td>
+                        <td height="18"></td>
+                    </tr>
+                    <tr>
+                        <td width="46" height="16"></td>
+                        <td valign="top" height="20">
+                            <span style="color: #000000; font-family:Arial, Helvetica, sans-serif; font-size:16px;line-height:20px;">
+								{{'Dear'|trans}} {{fullName}},<br><br>
+								{{'This email is to inform you that your information has been updated'|trans}}<br>
+								{{'Your user name is:'|trans}} {{yourUserName}}<br>
+								{{'You password is:'|trans}} {{yourPassword}}<br><br>
+								{{'Best Regards,'|trans}}<br>
+								{{'Touristtube Team'|trans}}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+	    </td>
+        </tr>
+        {% include 'emails/footer.twig' %}
+    </table>
+</body>

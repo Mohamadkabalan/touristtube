@@ -1,0 +1,12 @@
+UPDATE cms_hotel_city SET city_name = 'Yerevan', city_id = 1092901 WHERE location_id = 12132;
+UPDATE cms_hotel_city SET city_name = 'Sorrento (Campania)', city_id = 2213069 WHERE location_id = 147718;
+UPDATE cms_hotel_source SET location_id = 45531 WHERE hotel_id = 122055;
+DELETE FROM cms_hotel_city WHERE location_id = 702406;
+UPDATE cms_hotel_city SET city_id = 1601842 WHERE location_id = 20430;
+UPDATE cms_hotel_city SET city_name = 'Ischia (Campania)', city_id = 2215179 WHERE location_id = 145522;
+UPDATE cms_hotel_city SET city_name = 'Portovenere (Liguria)', city_id = 2223680 WHERE location_id = 213340;
+UPDATE cms_hotel_city SET city_name = 'Batumi (Adjara)', city_id = 1844485 WHERE location_id = 82885;
+UPDATE cms_hotel_city SET city_name = 'Lyon (Rhone-Alpes)' WHERE location_id = 49512;
+UPDATE cms_hotel_search_details SET entity_id = 2086780 WHERE entity_type = 71 AND name = 'Dublin, Dublin County, Ireland';
+UPDATE cms_hotel_city SET city_name = 'Varna (Oblast Varna)' WHERE location_id = 97034;
+UPDATE cms_hotel_city SET city_name = 'Hongkong (Hongkong SAR)' WHERE location_id = 3054582;

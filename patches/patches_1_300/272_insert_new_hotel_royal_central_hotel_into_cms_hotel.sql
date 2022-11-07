@@ -1,0 +1,3 @@
+INSERT INTO cms_hotel (id, name, description, address, street, district, zip_code, city, city_id, latitude, longitude, iso3_country_code, country_code, stars, logo, map_image, popularity, published, normalized_name, minimized_name, downtown, distance_from_downtown, airport, distance_from_airport, train_station,  distance_from_train_station, pre_20160901, g_submitted) VALUES ('417419', 'Royal Central Hotel - The Palm', NULL, NULL, 'East Crescent, The Palm Jumeirah, 22369 Dubai, UAE', NULL, '22369', 'Dubai', '1060078' , '25.125901', '55.153053', 'ARE', 'AE', '5', NULL, '', '1', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0');
+
+INSERT INTO cms_hotel_source(hotel_id, source, source_id, location_id, trustyou_id) VALUES ('417419', 'hrs', '-1', '6879', NULL);

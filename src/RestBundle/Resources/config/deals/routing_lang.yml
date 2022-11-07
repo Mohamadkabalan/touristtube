@@ -1,0 +1,274 @@
+_rest_deals_proceed_booking_approval_lang:
+    path:      "/{_locale}/api/deals/bookings/approval"
+    defaults: { _controller: RestBundle:deals\Packages:proceedBookingWithApproval, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        _method: POST
+
+_rest_deals_booking_get_price_quotation_lang:
+    path:      "/{_locale}/api/deals/bookings/quote"
+    defaults: { _controller: RestBundle:deals\Packages:getQuoteBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+
+_rest_deals_booking_get_price_details_lang:
+    path:      "/{_locale}/api/deals/bookings/price-details"
+    defaults: { _controller: RestBundle:deals\Packages:getTourPriceDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_deals_save_mandatory_fields_lang:
+    path:      "/{_locale}/api/deals/bookings/mandatory-fields-answers"
+    defaults: { _controller: RestBundle:deals\Packages:saveMandatoryFieldAnswers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_deals_get_mandatory_fields_lang:
+    path:      "/{_locale}/api/deals/bookings/mandatory-fields"
+    defaults: { _controller: RestBundle:deals\Packages:getMandatoryFields, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_deals_booking_lang:
+    path:      "/{_locale}/api/deals/bookings"
+    defaults: { _controller: RestBundle:deals\Packages:bookings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_cancel_booking_lang:
+    path:      "/{_locale}/api/deals/cancel-booking"
+    defaults: { _controller: RestBundle:deals\Packages:cancelBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_check_availability_lang:
+    path:      "/{_locale}/api/deals/check-availability/{activityId}"
+    defaults: { _controller: RestBundle:deals\Packages:checkAvailability, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_top_attractions_lang:
+    path:      "/{_locale}/api/deals/top-attractions"
+    defaults: { _controller: RestBundle:deals\Packages:getTopAttractions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_top_destinations_lang:
+    path:      "/{_locale}/api/deals/top-destinations"
+    defaults: { _controller: RestBundle:deals\Packages:getTopDestinations, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_booking_status_lang:
+    path:      "/{_locale}/api/deals/booking/status/{bookingReference}"
+    defaults: { _controller: RestBundle:deals\Packages:getBookingStatus, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_add_booking_lang:
+    path:      "/{_locale}/api/deals/booking"
+    defaults: { _controller: RestBundle:deals\Packages:addBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_deal_search_lang:
+    path:      "/{_locale}/api/deals/search"
+    defaults: { _controller: RestBundle:deals\Packages:dealSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_deal_process_booking_lang:
+    path:      "/{_locale}/api/deals/booking/process"
+    defaults: { _controller: RestBundle:deals\Packages:processBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_get_deal_images_lang:
+    path:      "/{_locale}/api/deals/images/{dealDetailsId}"
+    defaults: { _controller: RestBundle:deals\Packages:getDealImages, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_top_deals_lang:
+    path:      "/{_locale}/api/deals/top/{dealDetailsId}"
+    defaults: { _controller: RestBundle:deals\Packages:getTopDeals, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_find_booking_by_id_lang:
+    path:      "/{_locale}/api/deals/bookings/{bookingId}"
+    defaults: { _controller: RestBundle:deals\Packages:findBookingById, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_deal_details_lang:
+    path:      "/{_locale}/api/deals/activities/{id}"
+    defaults: { _controller: RestBundle:deals\Packages:getDealDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_deal_city_lang:
+    path:      "/{_locale}/api/deals/cities/{id}"
+    defaults: { _controller: RestBundle:deals\Packages:getDealCityById, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_top_activities_lang:
+    path:      "/{_locale}/api/deals/top-activities/"
+    defaults: { _controller: RestBundle:deals\Packages:getTopActivities, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_deals_update_booking_lang:
+    path:      "/{_locale}/api/deals/booking/{id}"
+    defaults: { _controller: RestBundle:deals\Packages:updateBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_get_transfer_vehicles_lang:
+    path:      "/{_locale}/api/deals/transfer/vehicles/"
+    defaults: { _controller: RestBundle:deals\Packages:getTransferVehicles, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_get_transfer_airport_listing_lang:
+    path:      "/{_locale}/api/deals/transfer/airports/{city}/{country}"
+    defaults: { _controller: RestBundle:deals\Packages:getTransferAirportListing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_transfer_cities_listing_lang:
+    path:      "/{_locale}/api/deals/transfer/cities/{country}"
+    defaults: { _controller: RestBundle:deals\Packages:getTransferCitiesListing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_deal_autocomplete_search_lang:
+    path:      "/{_locale}/api/deals/search-suggestion"
+    defaults: { _controller: RestBundle:deals\Packages:dealSearchAutoComplete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        title: ".*"
+        srch: ".*"
+        methods: GET

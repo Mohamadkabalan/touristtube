@@ -1,0 +1,396 @@
+{# my channel right Twig template #}
+<div id="ChannelRight" class="marginright10">
+    {% if isHome == 1 %}
+        <div class="share_channel_button"><span class="share_cnt"><img width="20" height="20" src="{{ 'media/images/share_link_button.png'|link }}" alt="{{ 'share button'|lang }}" class="share_linkbkicon"/><span class="share_lnktext">{{ 'share page'|lang }}</span></span></div>
+        <div class="Lineright"></div>
+        {#<a class="embed_channel_button" href="#popup_embed_channel_container">{{ 'embed channel'|lang }}</a>
+        <div id="popup_embed_channel_container" class="popup_embed_channel_container" data-uri="{{ embed_uri|raw }}">
+            <div id="embed_channel_title">{{ 'select size'|lang }}</div>
+            <select class="size_data" name="" onchange="checkSizeEmbed(this)">                        
+                <option value="1" selected="selected">103 x 38</option>
+                <option value="2">72 x 27</option>
+                <option value="3">48 x 18</option>
+                <option value="4">23 x 31</option>
+            </select>
+            <div class="embed_logo_view"></div>
+            <textarea class="embed_content" readonly="readonly">
+
+            </textarea>
+        </div>
+        <div class="Lineright"></div> #}
+    {% endif %} 
+    {% if isOwner == 1 %}
+        {#<div class="not_channel_button">
+            <span class="share_cnt">
+                <span class="notifications_counter_box">        
+                    <div id="notifications_counter" class="notifications_counter"></div>
+                </span>
+                <div class="plus" style="position:absolute; right:-3px;"></div>
+                <span class="share_lnktext">{{ 'notifications'|lang }}</span>
+            </span>
+            <div class="notifications_feedcontainer notifications_feedchannel">
+                <link rel="stylesheet" type="text/css" href="{{ ("css/profile_TTpage_left_notifications.css")|link}}?v={{PROFILE_TTPAGE_LEFT_NOTIFICATIONS_CSS_V}}" />               
+            </div>
+        </div>
+        <div class="Lineright"></div>#}
+    {% endif %}
+    {% if isHome == 1 %}
+        {% if discover_listscount >0 %}
+            <div class="discoverhtochannel">
+                {% if discover_listshotel|length >0 %}
+                    <div class="discoverhtochannel_title">{{'hotel'|lang}}</div>
+                {% endif %}
+                {% for discoverh in discover_listshotel %}
+                    <a class="discoverhtochannel_item" href="{{discoverh.link|raw}}" title="{{discoverh.title|raw}}">
+                        <div class="discoverhtochannel_txt">{{discoverh.title|raw}}</div>
+                        {% if discoverh.location!='' %}
+                            <div class="discoverhtochannel_icon"></div>
+                            <div class="discoverhtochannel_location">{{ discoverh.location|raw }}</div>
+                        {% endif %}
+                        {% if discoverh.irating_average!='' %}
+                            <div class="discoverhtochannel_rate">{{ discoverh.irating_average|raw }}</div>
+                        {% endif %}
+                    </a>
+                    <div class="sep"></div>
+                {% endfor %}
+                {% if discover_listsresto|length >0 %}
+                    <div class="discoverhtochannel_title">{{'restaurant'|lang}}</div>
+                {% endif %}
+                {% for discoverh in discover_listsresto %}
+                    <a class="discoverhtochannel_item" href="{{discoverh.link|raw}}" title="{{discoverh.title|raw}}">
+                        <div class="discoverhtochannel_txt">{{discoverh.title|raw}}</div>
+                        {% if discoverh.location!='' %}
+                            <div class="discoverhtochannel_icon"></div>
+                            <div class="discoverhtochannel_location">{{ discoverh.location|raw }}</div>
+                        {% endif %}
+                        {% if discoverh.irating_average!='' %}
+                            <div class="discoverhtochannel_rate">{{ discoverh.irating_average|raw }}</div>
+                        {% endif %}
+                    </a>
+                    <div class="sep"></div>
+                {% endfor %}
+                {% if discover_listspoi|length >0 %}
+                    <div class="discoverhtochannel_title">{{'point of interest'|lang}}</div>
+                {% endif %}
+                {% for discoverh in discover_listspoi %}
+                    <a class="discoverhtochannel_item" href="{{discoverh.link|raw}}" title="{{discoverh.title|raw}}">
+                        <div class="discoverhtochannel_txt">{{discoverh.title|raw}}</div>
+                        {% if discoverh.location!='' %}
+                            <div class="discoverhtochannel_icon"></div>
+                            <div class="discoverhtochannel_location">{{ discoverh.location|raw }}</div>
+                        {% endif %}
+                        {% if discoverh.irating_average!='' %}
+                            <div class="discoverhtochannel_rate">{{ discoverh.irating_average|raw }}</div>
+                        {% endif %}
+                    </a>
+                    <div class="sep"></div>
+                {% endfor %}
+                {% if discover_listsairport|length >0 %}
+                    <div class="discoverhtochannel_title">{{'airport'|lang}}</div>
+                {% endif %}
+                {% for discoverh in discover_listsairport %}
+                    <a class="discoverhtochannel_item" href="{{discoverh.link|raw}}" title="{{discoverh.title|raw}}">
+                        <div class="discoverhtochannel_txt">{{discoverh.title|raw}}</div>
+                        {% if discoverh.location!='' %}
+                            <div class="discoverhtochannel_icon"></div>
+                            <div class="discoverhtochannel_location">{{ discoverh.location|raw }}</div>
+                        {% endif %}
+                        {% if discoverh.irating_average!='' %}
+                            <div class="discoverhtochannel_rate">{{ discoverh.irating_average|raw }}</div>
+                        {% endif %}
+                    </a>
+                    <div class="sep"></div>
+                {% endfor %}
+            </div>
+            <div class="Lineright discoverhtochannelline"></div>
+        {% endif %}
+        <script>
+            $(document).ready(function() {
+                $('.size_data').change();
+            });
+        </script>
+    {% endif %}                              
+    <div id="edit_data_container1" class="edit_data_container" style="top:0; margin-top:15px; float:left; z-index:101;"></div>
+    {% if channel_type != CHANNEL_TYPE_DIASPORA %}
+
+
+        <div id="ChannelRight_data1" class="txt">
+            {% if isOwner == 1 and isHome == 1 %}
+                <div class="editChannelRight_data1 butEditChannelRight_data butEditChannelRight_data_toreset"></div>
+            {% endif %}
+            <div class="ChannelRight_data1_content">
+                {% if hidecreatedon != 1 %}
+                    <div class="marginbottom5 margintop5">
+                        <span class="grey">{{ 'created on'|lang }}</span><br />
+                        <span class="font11">{{ createTsDate|raw }}</span>
+                    </div>
+                {% endif %}
+                {% if hidecreatedby != 1 %}
+                    <div class="marginbottom5">
+                        <span class="grey">{{ 'Name'|lang }}</span><br />
+                        <span class="font11">{{ userChannelFullName|raw }}</span>
+                    </div>
+                {% endif %}
+                <div class="marginbottom5">
+                    <span class="grey">{{ 'category'|lang }}</span><br />
+                    <a href="{{ category_link|raw }}" class="font11 category_chR">{{ firstCareerTitle|raw }}</a>
+                </div>
+                {% if hidelocation != 1 %}
+                    <div class="marginbottom5">
+                        <span class="grey">{{"location"|lang}}</span><br />
+                        <span class="font11">{{ channelOwnerLocationSmall|raw }}</span>
+                    </div>
+                {% endif %}
+                {% if default_link != '' %}
+                    <div class="marginbottom5">
+                        <span class="grey">{{"url"|lang}}</span><br />
+                        <a class="font11" href="{{ default_link|raw }}" rel="nofollow" target="_blank">{{ default_text|raw }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+       {% if isOwner == 1 or channel_desc_Right != '' %}
+        <div class="sep"></div>
+        <div id="ChannelRight_data2" class="txt paddingtop0">
+            {% if isOwner == 1 and isHome == 1 %}
+                <div class="editChannelRight_data2 butEditChannelRight_data"></div>
+                <div class="editChannelRight_button_container">
+                    <div class="editChannelRight_data2_buts1 editChannelRight_buts">{{ 'cancel'|lang }}</div>
+                    <div class="editChannelRight_seperator"></div>
+                    <div class="editChannelRight_data2_buts2 editChannelRight_buts">{{ 'save'|lang }}</div>
+                </div>
+                <div id="edit_data_container2">
+                    <textarea id="edit_aboutchannel" class="ChaFocus" style="font-family:Arial, Helvetica, sans-serif; width:213px; height:116px; margin-left:3px;" type="text" name="edit_aboutchannel"></textarea>
+                </div>
+            {% endif %}
+            <div class="mustopen">
+                <div class="stanTXT" id="stanTXT">
+                    <span class="yellow bold font12 yellowabout">{{ 'ABOUT'|lang }}</span><br /> {{ channel_desc_Right|raw }}
+                </div>
+            </div>
+            <div class="font10 yellow italic bold more marginbottom10" id="more">> {{ 'more'|lang }}</div>
+            <script type="text/javascript">
+                if ($("#stanTXT").height() <= 105)
+                        $("#more").hide();</script>
+        </div>
+        {% endif %}
+        {% if privacy_activechannels == 1 %}
+            {% include "parts/mostActiveChannels.twig" %}
+
+        {% endif %}
+        {% if privacy_activetubers == 1 %}
+            {% include "parts/mostActiveTubers.twig" %}
+        {% endif %}
+
+
+    {% else %}
+
+        {% include "parts/channel_diaspora_ticker.twig" %}
+        <div class="sep"></div>
+        {% if userislogged2 == true %}
+
+            <a href="{{ ('channel-events/'~channel_url)|link }}"><div class="font11bold yellow formContainer100 marginleft9">
+                    {{ 'my events'|lang }}</div></a>
+            <div id="idEventsCalendar" class="ed_Calendar formContainer100 marginleft9">
+                <div class="ed_CalTooltipContent" id="ed_CalTooltipContent">
+                    <div class="ed_CalTooltip">
+                        <a href="" class="ed_CalTooltip_a">
+                            <img src='' class="ed_CalEventImg" width='86' height='56'>
+                            <div class="ed_CalTooltipTitle"></div>
+                            <div class='ed_CalTooltipViewEvent'>{{ 'view event'|lang }}</div>
+                        </a>
+                        <img src='{{ 'media/images/eventsdetailed/close-tooltip.png'|link }}' class="ed_CalTooltipClose" width='18' height='18'>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                        var DATE_INFOInit = [];
+                        var DATE_INFO = [];
+                  {% if channel_type == CHANNEL_TYPE_DIASPORA %}
+                        if (parseInt(user_is_logged) != 0){
+                DATE_INFO = {
+                    {% for upcomEvnt in upcomEvntArr %}
+                        {{ upcomEvnt.from_date|raw }}: { klass: "highlight"}
+                        {{ upcomEvnt.comma|raw }}
+                    {% endfor %}
+                    {% for sponsorCal in sponsorCalArr %}
+                        {{ sponsorCal.comma2|raw }}
+                        {{ sponsorCal.from_date|raw }}: { klass: "highlight2"}
+                        {{ sponsorCal.comma|raw }}
+                    {% endfor %}
+                };
+                    var infocalstring = '{{ str2|raw }}';
+                    if (infocalstring != ''){
+                    for (var key in DATE_INFO){
+                        DATE_INFOInit[key] = new Array();
+                    }
+                    var infocalstringarr = infocalstring.split('/*/');
+                    var cal_event_id_array = new Array();
+                    var cal_event_key_array = new Array();
+                        
+                    for (var i = 0; i < infocalstringarr.length; i++){
+                        var newarr = infocalstringarr[i].split('[*]');
+                        var unique_sponsor_id = true;
+                        if (parseInt(newarr[5]) == 2){
+                        for (var k = 0; k < cal_event_id_array.length; k++){
+                        if (parseInt(cal_event_id_array[k]) == parseInt(newarr[4]) && (cal_event_key_array[k]) == (newarr[0])){
+                        unique_sponsor_id = false;
+                                break;
+                        }
+                        }
+                        }
+                        if (unique_sponsor_id){
+                        var newarr1 = {klass:'' + newarr[1] + '', imageurl:'' + newarr[2] + '', title:'' + newarr[3] + '', id:'' + newarr[4] + '', _type:'' + newarr[5] + ''};                            
+                                DATE_INFOInit[newarr[0]].push(newarr1);
+                                if (parseInt(newarr[5]) == 2){
+                        cal_event_id_array.push(parseInt(newarr[4]));
+                                cal_event_key_array.push(parseInt(newarr[0]));
+                        }
+                        }
+                    }
+                    }
+                    }
+            {% endif %}
+                $(document).ready(function(){
+                initCalendarEvents();
+                });
+        </script>
+    {% endif %}
+    {% if AllChannelsNotFalse == true %}
+
+
+        <div class="sep margintop15"></div>
+        <div class="txt ChannelRight_data4 channel_txt2 paddingtop0 zindex10">
+            <h2 class="font16 yellow lineheight16 h1Style mostActiveCH">{{ 'MY SPONSORED<br/>CHANNELS'|lang|raw  }}</h2>
+            <div class="list margintop15">
+                <ul>
+                    {% for AllChannel in AllChannelsArr %}
+                        <li>
+                            {{ AllChannel.ch_logo|raw }}
+                            <div class="channelpopUp popUp">
+                                <a href="{{ AllChannel.mailLink|raw }}" title="{{ AllChannel.name|raw }}">
+                                    <img width="100" height="100" src="{{ AllChannel.lo_logo|raw }}" class="imgborder0" alt="{{ AllChannel.name|raw }}">
+                                </a>
+                                <br />{{ AllChannel.name|raw }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if AllTubersNotFalse == true %}
+        <div class="sep margintop15"></div>
+        <div class="txt ChannelRight_data4 channel_txt2 paddingtop0 zindex9">
+            <h2 class="font16 yellow lineheight16 h1Style mostActiveCH">{{ 'CONNECTED TUBERS<br/>FROM LEBANON'|lang|raw }}</h2>
+            <div class="list margintop15">
+                <ul>
+                    {% for AllTubers in AllTubersArr %}
+                        <li>
+                            {% if userIsLogged == 1 %}
+                                <a href="{{ AllTubers.uslnk|raw }}" target="_blank">
+                                    <img alt="{{ AllTubers.displayName|raw }}" title="{{ AllTubers.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers.ppic)|link }}"/>
+                                </a>
+                            {% else %}
+                                <div>
+                                    <img alt="{{ AllTubers.displayName|raw }}" title="{{ AllTubers.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers.ppic)|link }}"/>
+                                </div>
+                            {% endif %}                            
+                            <div class="tuberpopUp popUp">
+                                {% if userIsLogged == 1 %}
+                                    <a href="{{ AllTubers.uslnk|raw }}" target="_blank">
+                                        <img alt="{{ AllTubers.displayName|raw }}" title="{{ AllTubers.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers.ppic)|link }}"/>
+                                    </a>
+                                {% else %}
+                                    <div>
+                                        <img alt="{{ AllTubers.displayName|raw }}" title="{{ AllTubers.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers.ppic)|link }}"/>
+                                    </div>
+                                {% endif %}                                
+                                <br>
+                                {{ AllTubers.name|raw }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if AllTubers1NotFalse == true %}
+
+
+        <div class="sep margintop15"></div>
+        <div class="txt ChannelRight_data4 channel_txt2 paddingtop0 zindex8">
+            <h2 class="font16 yellow lineheight16 h1Style mostActiveCH">{{ 'CONNECTED TUBERS<br/>FROM USA'|lang|raw }}</h2>
+            <div class="list margintop15">
+                <ul>
+                    {% for AllTubers1 in AllTubersArr1 %}
+                        <li>
+                            {% if userIsLogged == 1 %}
+                                <a href="{{ AllTubers1.uslnk|raw }}" target="_blank">
+                                    <img alt="{{ AllTubers1.displayName|raw }}" title="{{ AllTubers1.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers1.ppic)|link }}"/>
+                                </a>
+                            {% else %}
+                                <div>
+                                    <img alt="{{ AllTubers1.displayName|raw }}" title="{{ AllTubers1.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers1.ppic)|link }}"/>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="tuberpopUp popUp">
+                                {% if userIsLogged == 1 %}
+                                    <a href="{{ AllTubers1.uslnk|raw }}" target="_blank">
+                                        <img alt="{{ AllTubers1.displayName|raw }}" title="{{ AllTubers1.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers1.ppic)|link }}"/>
+                                    </a>
+                                {% else %}
+                                    <div>
+                                        <img alt="{{ AllTubers1.displayName|raw }}" title="{{ AllTubers1.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers1.ppic)|link }}"/>
+                                    </div>
+                                {% endif %}
+                                <br>
+                                {{ AllTubers1.name|raw }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if AllTubers2NotFalse == true %}
+        <div class="sep margintop15"></div>
+        <div class="txt ChannelRight_data4 channel_txt2 paddingtop0 zindex7">
+            <h2 class="font16 yellow lineheight16 h1Style mostActiveCH">{{ 'CONNECTED TUBERS<br/>FROM EUROPE'|lang|raw }}</h2>
+            <div class="list margintop15">
+                <ul>
+                    {% for AllTubers2 in AllTubersArr2 %}
+
+                        <li>
+                            {% if userIsLogged == 1 %}
+                                <a href="{{ AllTubers2.uslnk|raw }}" target="_blank">
+                                    <img alt="{{ AllTubers2.displayName|raw }}" title="{{ AllTubers2.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers2.ppic)|link }}"/>
+                                </a>
+                            {% else %}
+                                <div>
+                                    <img alt="{{ AllTubers2.displayName|raw }}" title="{{ AllTubers2.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers2.ppic)|link }}"/>
+                                </div>
+                            {% endif %}
+                            <div class="tuberpopUp popUp">
+                                {% if userIsLogged == 1 %}
+                                    <a href="{{ AllTubers2.uslnk|raw }}" target="_blank">
+                                        <img alt="{{ AllTubers2.displayName|raw }}" title="{{ AllTubers2.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers2.ppic)|link }}"/>
+                                    </a>
+                                {% else %}
+                                    <div>
+                                        <img alt="{{ AllTubers2.displayName|raw }}" title="{{ AllTubers2.displayName|raw }}" src="{{ ('/media/tubers/'~AllTubers2.ppic)|link }}"/>
+                                    </div>
+                                {% endif %}
+                                <br>
+                                {{ AllTubers2.name|raw }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
+    {% endif %}
+    </div>

@@ -1,0 +1,52 @@
+TTBundle\Entity\DealOption:
+    type: entity
+    table: deal_option
+    indexes:
+        deal_id:
+            columns:
+                - deal_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_id
+        availability:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        currencyId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: currency_id
+        price:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

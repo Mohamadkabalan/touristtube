@@ -1,0 +1,10 @@
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES (1037, 'Villa 10.11', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1038', 'Villa 10.12', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1039', 'Villa 10.13', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1040', 'Villa 10.14', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1041', 'Villa 10.15', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1042', 'Villa 10.16', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1043', 'Villa 10.17', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1044', 'Villa 10.18', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1045', 'Villa 10.19', '16', '825');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1046', 'Villa 10.20', '16', '825');

@@ -1,0 +1,172 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+      file_path: web/splittest.xml
+
+services:
+#    service_name:
+#        class: TTBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.utils:
+        class: TTBundle\Utils\Utils
+        arguments: ['@service_container']
+    app.pdf_utils:
+        class: TTBundle\Utils\PDFUtils
+        arguments: ['@service_container']
+    app.twig_extension:
+        class: TTBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@service_container']
+    app.twig_hotelextension:
+        class: HotelBundle\Twig\AppHotelExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@service_container']
+    app.twig_dealextension:
+        class: DealBundle\Twig\AppDealExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@service_container']           
+    app.twig_functionExtention:
+        class: CorporateBundle\Twig\FunctionExtention
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@service_container']
+    app.sha256salted_encoderservices:
+        class: TTBundle\Services\Sha256Salted
+        arguments: ['@service_container','@doctrine.orm.entity_manager']
+    app.logout_success_handler:
+        class: TTBundle\Services\LogoutSuccessHandler
+        arguments: [@router,'@doctrine.orm.entity_manager','@service_container']
+
+#    form.service:
+#          class: TTBundle\Form\PassengerNameRecordType;
+#          arguments:    ["@service_container"]
+    monolog.formatter.flights:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] | %%extra.client_ip%% | %%extra.token%% | %%channel%%.%%level_name%%: %%message%% \n"
+    monolog.formatter.hotels:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] | %%extra.client_ip%% | %%extra.token%% | %%channel%%.%%level_name%%: %%message%% \n"
+    monolog.formatter.deals:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] | %%extra.client_ip%% | %%extra.token%% | %%channel%%.%%level_name%%: %%message%% \n"
+    monolog.processor.client_activity:
+        class: TTBundle\Log\ClientActivityProcessor
+        arguments: [ @request_stack, @session ]
+        tags:
+            - { name: monolog.processor, handler: hotels }
+            - { name: monolog.processor, handler: flights }
+            - { name: monolog.processor, handler: deals }
+#    fos_elastica.finder:
+#        class: FOS\ElasticaBundle\Finder\TransformedFinder
+#        tags:
+#            - { name: fos_elastica.finder, index: tt7, type: locality }
+#        arguments: [null, fos_elastica.finder.tt7.locality]
+    translation.loader.po:
+        class: Symfony\Component\Translation\Loader\PoFileLoader
+        tags:
+            - { name: translation.loader, alias: po }
+    translation.loader.mo:
+        class: Symfony\Component\Translation\Loader\MoFileLoader
+        tags:
+            - { name: translation.loader, alias: mo }
+    translator.javascript.extractor:
+        class: TTBundle\Translator\JavascriptExtractor
+        tags:
+            - { name: jms_translation.file_visitor }
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
+    ApiUserServices:
+        class: ApiBundle\Services\ApiUserServices
+        arguments: [ @doctrine.orm.entity_manager, '@service_container', '@app.utils' ]
+    ApiDiscoverServices:
+        class: ApiBundle\Services\ApiDiscoverServices
+        arguments: [ @doctrine.orm.entity_manager, '@service_container', '@app.utils' ]
+    ApiPhotosVideosServices:
+        class: ApiBundle\Services\ApiPhotosVideosServices
+        arguments: [ @doctrine.orm.entity_manager, '@service_container', '@app.utils' ]
+    ApiAutocompleteServices:
+        class: ApiBundle\Services\ApiAutocompleteServices
+        arguments: [ @doctrine.orm.entity_manager, '@service_container', '@app.utils' ]
+    ApiBagsServices:
+        class: ApiBundle\Services\ApiBagsServices
+        arguments: [ @doctrine.orm.entity_manager, '@service_container', '@app.utils' ]
+    ApiUploadsServices:
+        class: ApiBundle\Services\ApiUploadsServices
+        arguments: [ @doctrine.orm.entity_manager, '@service_container', '@app.utils' ]
+    CurrencyService:
+        class: TTBundle\Services\CurrencyService
+        arguments: ['@doctrine.orm.entity_manager', '@app.utils']
+    ElasticServices:
+        class: TTBundle\Services\ElasticServices
+        arguments: ['@service_container', '@app.utils', '@logger']
+    EmailServices:
+        class: TTBundle\Services\EmailServices
+        arguments: ['@service_container', '@doctrine.orm.entity_manager','@logger']
+    GooglePlacesInfoService:
+        class: TTBundle\Services\GooglePlacesInfoService
+        arguments: ['@doctrine.orm.entity_manager', '@app.utils']
+    LocationImageServices:
+        class: TTBundle\Services\LocationImageServices
+        arguments: ['@app.utils', '@doctrine.orm.entity_manager']
+    MyBookingServices:
+        class: TTBundle\Services\MyBookingServices
+        arguments: ['@doctrine.orm.entity_manager','@app.utils', '@service_container']
+    PayFortServices:
+        class: TTBundle\Services\PayFortServices
+        arguments: ['@app.utils', '@doctrine.orm.entity_manager', '@service_container']
+    UserServices:
+        class: TTBundle\Services\UserServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils','@app.sha256salted_encoderservices','@templating','@EmailServices', '@service_container']
+    ChannelServices:
+        class: TTBundle\Services\ChannelServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils', '@service_container']
+    TTServices:
+        class: TTBundle\Services\TTServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils', '@service_container']
+    RestaurantServices:
+        class: RestaurantBundle\Services\RestaurantServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils', '@service_container']
+    ReviewsServices:
+        class: TTBundle\Services\ReviewsServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils', '@service_container']
+    PhotosVideosServices:
+        class: TTBundle\Services\PhotosVideosServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils', '@service_container']
+    CmsCountriesServices:
+        class: TTBundle\Services\CmsCountriesServices
+        arguments: ['@app.utils', @doctrine.orm.entity_manager]
+    CitiesServices:
+        class: TTBundle\Services\CitiesServices
+        arguments: [ @doctrine.orm.entity_manager, '@app.utils', '@service_container']
+    MediaServices:
+        class: TTBundle\Services\MediaServices
+        arguments: ['@service_container']
+    ThingsToDoServices:
+        class: TTBundle\Services\ThingsToDoServices
+        arguments: ['@app.utils', '@doctrine.orm.entity_manager']
+    TTFileUtils:
+        class: TTBundle\Utils\TTFileUtils
+        arguments: ['@app.utils', '@service_container']
+    TTMediaUtils:
+        class: TTBundle\Utils\TTMediaUtils
+        arguments: ['@app.utils', '@service_container']
+    TTRouteUtils:
+        class: TTBundle\Utils\TTRouteUtils
+        arguments: ['@app.utils', '@service_container']
+    CombogridServices:
+        class: TTBundle\Services\libraries\CombogridService
+        arguments: ['@app.utils']

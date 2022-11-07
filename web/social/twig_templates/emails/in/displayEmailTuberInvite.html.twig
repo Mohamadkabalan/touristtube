@@ -1,0 +1,224 @@
+<style type="text/css">
+    table.contenttable {
+        width: 633px;
+    }
+    td.w_470{
+        width:470px
+    }
+    td.w_46{
+        width:46px
+    }
+    
+    @media only screen and (max-device-width: 480px) {
+        table[class=contenttable] {
+            width: 300px !important;
+        }
+        img[class=image_w] {
+            width: 100% !important;
+        }
+        td[class=w_470]{
+            width:100% !important;
+        }
+        td[class=w_46]{
+            width:2px !important;
+        }
+    }
+    
+</style>
+<body>
+    <table class="contenttable" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        <tr>
+            <td colspan="2">
+                <table class="contenttable" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                    <tr>
+                        <td class="w_46" bgcolor="#000000"></td>
+                        <td bgcolor="#000000">
+                            <img src="{{link_path}}ei_logo.png" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+                   
+        <tr>
+            <td valign="top" class="w_470">
+                <table class="w_470" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                    
+                    <tr>
+                        <td colspan="2" height="28"></td>
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <font style="font-size: 16px;" face="Arial, Helvetica, sans-serif" size="2" color="#1f1f1f">
+                                Hello {{userName}},
+                            </font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="34"></td>
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            {% if full_name =='tourist tube' %} 
+                            <font style="font-size: 13px;font-weight: bold" face="Arial, Helvetica, sans-serif" size="2" color="#1f1f1f">
+                                <strong>YOU ARE INVITED TO JOIN TOURISTTUBE<sup>TM</sup></strong>
+                            </font>
+                            
+                            {% else %}
+                                <table class="w_470" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                                    <tr>
+                                        <td>
+                                            <img width="46" src="{{ownerProfilePic}}" />    
+                                        </td>
+                                        <td width="8"></td>
+                                        <td>
+                            <font style="font-size: 13px;font-weight: bold" face="Arial, Helvetica, sans-serif" size="2" color="#1f1f1f">
+                                {{full_name|upper}} INVITED YOU TO JOIN {{him_her}} ON TOURISTTUBE<sup>TM</sup> 
+                            </font>  
+                                        </td>
+                                    </tr>
+                                </table>
+                            
+                                
+                            {% endif %}    
+                                
+                                
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="34"></td>
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <font style="font-size: 14px;" face="Arial, Helvetica, sans-serif" size="2" color="#696969">
+                                By accepting this invitation <strong>now</strong>, you will get <strong>free</strong>
+                            </font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="14"></td>
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="32"><img src="{{link_path}}ei_num_1.png" /></td>
+                                    <td>
+                                        <font style="font-size: 14px;" face="Arial, Helvetica, sans-serif" size="2" color="#696969">     
+                                            <strong>1TB</strong> dedicated storage on private cloud for your personal use
+                                        </font>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="14"></td>
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="32"><img src="{{link_path}}ei_num_2.png" /></td>
+                                    <td>
+                                    <font style="font-size: 14px;" face="Arial, Helvetica, sans-serif" size="2" color="#696969">
+                                        Access to attractive and greatly <strong>valued features</strong>
+                                    </font> 
+                                    </td>
+                                </tr>
+                            </table>
+                                
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="18"></td>
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <font style="font-size: 14px;" face="Arial, Helvetica, sans-serif" size="2" color="#696969">
+                                Become part of TouristTube<sup>TM</sup>, a beautiful <strong>online community.</strong>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top">
+                <table width="73" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                    <tr>
+                        <td height="28"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a alt="60 sec video" href="{{link}}touristtube-video"><img class="image_w" src="{{link_path}}ei_60sec.png" /></a>
+                        </td>
+                    </tr>
+                        
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="2">
+                <table class="contenttable" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="2" height="54"></td>                        
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <table width="180" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="12"><img src="{{link_path}}ei_left_corner.png" /></td>
+                                    <td bgcolor="#EAC534" height="36">
+                                        <a href="{{activate_lnk}}" style="text-decoration: none;">
+                                  <font style="font-size: 13px;font-weight: bold;text-decoration: none;" face="Arial, Helvetica, sans-serif" size="2" color="#1f1f1f">
+                                        ACCEPT INVITATION
+                                        </font>
+                                        </a>
+                                    </td>
+                                    <td width="12"><img src="{{link_path}}ei_right_arr.png" /></td>
+                                </tr>
+                            </table>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="54"></td>                        
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td><img class="image_w" src="{{link_path}}ei_strip.jpg" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="10"></td>                        
+                    </tr>
+                    <tr>
+                        <td class="w_46"></td>
+                        <td>
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="419"></td>
+                                        <td>
+                                        <a href="https://www{{subdomain_suffix|raw}}.touristtube.com" target="_blank" style="color:#e9c21b;text-decoration: none;font-size: 12px">
+                                        <font face="Arial, Helvetica, sans-serif">
+                                        www.touristtube.com
+                                        </font>
+                                        </a>
+                                        </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+</body>

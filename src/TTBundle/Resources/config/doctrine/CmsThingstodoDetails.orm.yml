@@ -1,0 +1,132 @@
+TTBundle\Entity\CmsThingstodoDetails:
+    type: entity
+    table: cms_thingstodo_details
+    repositoryClass: TTBundle\Repository\DiscoverQueryRQRepository
+    uniqueConstraints:
+        slug:
+            columns:
+                - slug
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+                default: LB
+        state:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        tag:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        xml360:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: xml_360
+        image360:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: image_360
+        orderDisplay:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: order_display
+    lifecycleCallbacks: {  }

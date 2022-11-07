@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title itemprop="name">404 Not Found | Tourist Tube</title>
+        <meta name="robots" content="noindex, noarchive, nosnippet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{{ generateMediaURL('/media/images/favicon.ico') }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="alternate" hreflang="en" href="https://www.touristtube.com/"/>
+        <link rel="alternate" hreflang="fr" href="https://www.touristtube.com/fr/"/>
+        <link rel="alternate" hreflang="hi" href="https://www.touristtube.com/in/"/>
+	
+	{% stylesheets 'assets/vendor/animate/3.6.0/animate.min.css' 'assets/vendor/bootstrap/css/bootstrap.css' 'assets/vendor/jquery/plugins/jquery-ui/css/jquery-ui-1.10.0.custom-new.css'  'assets/vendor/jquery/plugins/fancybox/css/jquery.fancybox-new.css' 'assets/common/css/baseFinal.css' filter='uglifycss' output='generated/tt_404_all_base_main.css' %}
+	    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+        {% endstylesheets %}
+        {% include "default/css_images.twig" %}
+    </head>
+    <body>
+	{% if SHOW_FLIGHTS_BLOCK is not defined %}
+            {% set SHOW_FLIGHTS_BLOCK = 1 %}
+        {% endif %}
+        <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=bOo2l1aIF5y3L7" style="display:none" height="1" width="1" alt="" /></noscript>
+        <!-- End Alexa Certify Javascript -->
+        <div id="popup_creatid" class="popup_creat bag_popup"></div>
+	<header class="regiser_login_links">
+	    <!-- Navbar start -->
+	    <nav class="navbar navbar-default home_new_navbar">
+		<div class="container">
+		    <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2">
+			    <span class="sr-only">Toggle navigation</span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			</button>
+			<a href="{{ generateLangRoute(LanguageGet,'_welcome') }}" title="tourist tube" class="navbar-brand navbar_brand_home_new"><img src="{{ generateMediaURL('/media/images/index/touristtubelogo.png') }}" alt="{{'tourist tube logo'|trans}}"></a>
+		    </div>
+		    <div id="navbar2" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right margin-top-20">
+			    {#<li><a class="less_padding large_margin_right_40" href="{{ generateLangURL(LanguageGet,'/corporate/login','corporate') }}" title="{{'Corporate account'|trans}}" target="_blank">{{'Corporate account'|trans}}</a></li>#}
+			    <li class="itemspecialstyleli hidden-xs"><a class="less_padding itemspecialstylea" href="{{ generateLangRoute(LanguageGet,'_best_hotels_in_the_world') }}" title="{{'Best Hotels'|trans}}">{{'Get your property in'|trans}}</a></li>
+			    <li class="itemspecialstyleli visible-xs"><a class="less_padding itemspecialstylea" href="{{ generateLangRoute(LanguageGet,'_best_hotels_in_the_world') }}" title="{{'Best Hotels'|trans}}">{{'Get your property in 360'|trans}}</a></li>
+			    {% if SHOW_FLIGHTS_BLOCK==1 %}
+				<li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}" title="{{'Book your flight'|trans}}">{{'Book your Flight'|trans}}</a></li>
+			    {% endif %}
+			    <li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}" title="{{'Book your hotel'|trans}}">{{'Book your Hotel'|trans}}</a></li>
+			    {% if SHOW_DEALS_BLOCK==1 %}
+				<li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_deals') }}" title="{{'Attractions'|trans}}">{{'Attractions'|trans}}</a></li>
+			    {% endif %}
+			    <li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{'Things To Do'|trans}}">{{'Things To Do'|trans}}</a></li>
+
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_best_restaurants_restaurants') }}" title="{{'Best restaurants in 360'|trans}}">{{'Best restaurants in 360'|trans}}</a></li>
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_discover') }}" title="{{'Discover'|trans}}">{{'Discover'|trans}}</a></li>
+
+			    <li class="visible-xs"><a title="{{'About us'|trans}}" href="{{ generateLangRoute(LanguageGet,'_about-us') }}">{{'About'|trans}}</a></li>
+			    <li class="visible-xs"><a title="{{'Contact'|trans}}" href="{{ generateLangRoute(LanguageGet,'_contact') }}">{{'Contact'|trans}}</a></li>
+			    <li class="visible-xs"><a title="{{'Support'|trans}}" href="{{ generateLangRoute(LanguageGet,'_support') }}">{{'Support'|trans}}</a></li>
+			    {#<li class="visible-xs"><a title="{{'Help'|trans}}" href="{{ generateLangRoute(LanguageGet,'_help') }}">{{'Help'|trans}}</a></li> 
+			    <li class="visible-xs"><a title="{{'faq'|trans}}" href="{{ generateLangRoute(LanguageGet,'_faq') }}">{{'Faq'|trans}}</a></li>#}
+			    <li class="visible-xs"><a title="{{'disclaimer'|trans}}" href="{{ generateLangRoute(LanguageGet,'_disclaimer') }}">{{'Disclaimer'|trans}}</a></li>
+
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_channels') }}" title="{{'Channels'|trans}}">{{'Channels'|trans}}</a></li>
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_photo_video_sharing_media') }}" title="{{'Photo Video Sharing'|trans}}">{{'Photo video sharing'|trans}}</a></li>
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_live') }}" title="{{'Hotels 360'|trans}}">{{'Hotels 360'|trans}}</a></li>
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'Review & Rate'|trans}}">{{'Review and rate'|trans}}</a></li>
+			    {#<li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_nearby_general') }}" title="{{'Nearby'|trans}}">{{'Nearby'|trans}}</a></li>#}
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_where_is_general') }}" title="{{'Where is'|trans}}">{{'Where is'|trans}}</a></li>
+			    <li class="visible-xs"><a href="http://blog.touristtube.com/" title="{{'Travel blog'|trans}}" target="_blank">{{'Travel blog'|trans}}</a></li>
+			    <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie policy'|trans}}">{{'Cookie policy'|trans}} </a></li>
+			</ul>
+		    </div>
+		</div>
+	    </nav>
+	    <!-- Navbar end -->
+	</header>
+	<section id="smallsectiondisplay" class="smallsectiondisplay container-fluid mainpage_backimg" style="background-image: url({{ generateMediaURL('/media/images/banner_bg404.jpg')}});">
+	    <div class="row">
+		<div class="container">
+		    <div class="row">
+			<div class="percent_90_width">
+			    <div class="col-xs-12">
+				<h1 class="header_backimg_title">{{'404 Not Found'|trans}}</h1>
+				<h2 class="header_backimg_sub_title">{{'We couldn’t find that page'|trans}}</h2>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<footer>
+	    <section class="container paddingtop20">
+		<div>
+		    <div class="row hidden-xs">
+			<div class="col-md-3">
+			    <a href="{{ generateLangRoute(LanguageGet,'_welcome') }}" title="tourist tube">
+				<img src="{{ generateMediaURL('/media/images/Logo.png') }}" alt="{{'tourist tube logo'|trans}}">
+			    </a>
+			</div>
+		    </div>
+		    <div class="row paddingtop20">
+			<div class="col-md-9 col-sm-12 hidden-xs">
+			    <div class="position_relative_div footer_div row">
+				<div class="col-md-3 col-sm-6">
+				    <ul class="prefooterul_hp">
+					<li class="boldultitle_hp">{{'Company'|trans}}</li>
+					<li><a title="{{'About us'|trans}}" href="{{ generateLangRoute(LanguageGet,'_about-us') }}">{{'About'|trans}}</a></li>
+					<li><a title="{{'Contact'|trans}}" href="{{ generateLangRoute(LanguageGet,'_contact') }}">{{'Contact'|trans}}</a></li>
+					<li><a title="{{'Support'|trans}}" href="{{ generateLangRoute(LanguageGet,'_support') }}">{{'Support'|trans}}</a></li>
+					{#<li><a title="{{'Help'|trans}}" href="{{ generateLangRoute(LanguageGet,'_help') }}">{{'Help'|trans}}</a></li> 
+					<li><a title="{{'faq'|trans}}" href="{{ generateLangRoute(LanguageGet,'_faq') }}">{{'FAQ'|trans}}</a></li>#}
+					<li><a title="{{'disclaimer'|trans}}" href="{{ generateLangRoute(LanguageGet,'_disclaimer') }}">{{'Disclaimer'|trans}}</a></li>
+				    </ul>
+				</div> 
+				<div class="col-md-3 col-sm-6">
+				    <ul class="prefooterul_hp">
+					<li class="boldultitle_hp">{{'Main Sections'|trans}}</li>
+					{% if SHOW_FLIGHTS_BLOCK==1 %}
+					    <li><a title="{{'Book your Flight'|trans }}" href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}">{{'Book your Flight'|trans}}</a></li>
+					{% endif %}
+					<li><a title="{{'Book your Hotel'|trans}}" href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}">{{'Book your Hotel'|trans}}</a></li>
+					{% if SHOW_DEALS_BLOCK==1 %}
+					    <li><a title="{{'Attractions'|trans}}" href="{{ generateLangRoute(LanguageGet,'_deals') }}">{{'Attractions'|trans}}</a></li>
+					{% endif %}
+					<li><a title="{{'Things to do'|trans}}" href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}">{{'Things to do'|trans}}</a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_best_restaurants_restaurants') }}" title="{{'Best restaurants in 360'|trans}}">{{'Best restaurants in 360'|trans}}</a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_discover') }}" title="{{'Discover'|trans}}">{{'Discover'|trans}}</a></li>
+				    </ul>
+				</div> 
+				<div class="col-md-3 col-sm-6">
+				    <ul class="prefooterul_hp">
+					<li class="boldultitle_hp">&nbsp;{#{'More'|trans}#}</li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_channels') }}" title="{{'Channels'|trans}}">{{'Channels'|trans}}</a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_photo_video_sharing_media') }}" title="{{'Photo Video Sharing'|trans}}">{{'Photo video sharing'|trans}}</a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_live') }}" title="{{'Hotels 360'|trans}}">{{'Hotels 360'|trans}}</a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'Review & Rate'|trans}}">{{'Review and rate'|trans}}</a></li>
+				    </ul>
+				</div> 
+				<div class="col-md-3 col-sm-6">
+				    <ul class="prefooterul_hp">
+					<li class="boldultitle_hp">&nbsp;{#{'More'|trans}#}</li>
+					{#<li><a href="{{ generateLangRoute(LanguageGet,'_nearby_general') }}" title="{{'Nearby'|trans}}">{{'Nearby'|trans}}</a></li>#}
+					<li><a href="{{ generateLangRoute(LanguageGet,'_where_is_general') }}" title="{{'Where is'|trans}}">{{'Where is'|trans}}</a></li>
+					<li><a href="http://blog.touristtube.com/" title="{{'Travel blog'|trans}}" target="_blank">{{'Travel blog'|trans}}</a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie policy'|trans}}">{{'Cookie policy'|trans}} </a></li>
+				    </ul>
+				</div> 
+			    </div>
+			</div>
+		    </div>  
+		</div>		
+	    </section>
+
+	    <div class="footermaincontainer container-fluid footer_home_new">
+		<div class ="container">
+		    <div class ="row">
+			<div class="col-md-3 col-sm-12"></div>
+			<div class="col-md-3 col-sm-6 textaligncenter">
+			    <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'Terms & conditions'|trans}}" class="policy_menu">{{'Terms and conditions'|trans}}</a>
+			</div>			
+			<div class="col-md-3 col-sm-6 textaligncenter">
+			    <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'Privacy policy'|trans}}" class="policy_menu">{{'Privacy policy'|trans}}</a>
+			</div>
+			<div class="col-md-3 col-sm-12"></div>
+		    </div>
+		    <div class ="row">
+			<div class="col-md-1 col-sm-12"></div>
+			<div class ="col-md-10 col-sm-12 text_allign_center auto_hyphens">
+			    {% if SHOW_FLIGHTS_BLOCK==1 %}
+				<p class="footer_text">{{'Flights and hotels. Popular international flights.'|trans}}</p>
+			    {% endif %}
+			</div>
+			<div class="col-md-1 col-sm-12"></div>
+		    </div>
+                        <div class ="row">
+                            <div class="col-md-4 col-sm-12"></div>
+                            <div class="col-md-4 col-sm-12 padding-top-25">
+                                <div class="social_footer_holder">
+                                    <a href="https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts" rel="nofollow" target="_blank" title="facebook" class="social_sprite sprite fb_footer_icon"></a>
+					<a href="https://twitter.com/TouristTube" rel="nofollow" target="_blank" title="twitter"  class="social_sprite sprite twitter_footer_icon"></a>
+					<a href="https://www.linkedin.com/company/touristtube/" class="social_sprite sprite linkedin_footer_icon"></a>
+					<a href="https://www.youtube.com/channel/UC5jrAYpw6MBKuuvUcHhVRVg" rel="nofollow" target="_blank" title="you tube" class="social_sprite sprite youtube_footer_icon" ></a>
+					<a href="https://www.instagram.com/touristtube" rel="nofollow" target="_blank" title="instagram" class="social_sprite sprite insta_footer_icon"></a>a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12"></div>
+                        </div>
+		</div>
+	    </div>
+	    <script type="text/javascript" src="/assets/vendor/jquery/dist/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="/assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js"></script>
+	    <script type="text/javascript" src="/bundles/bazingajstranslation/js/translator.min.js"></script>
+	    <script type="text/javascript" src="/assets/common/tt/js/utils/TTUtils.js"></script>
+	    <script type="text/javascript" src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
+	    <script type="text/javascript" src="/assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js"></script>
+	    <script type="text/javascript" src="/assets/vendor/jquery/plugins/migrate/js/jquery-migrate-1.1.1.js"></script>
+	    
+	    <script>if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+		    var msViewportStyle = document.createElement("style");
+		    msViewportStyle.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));
+		    document.getElementsByTagName("head")[0].appendChild(msViewportStyle)
+		}</script>
+	    <script type="text/javascript">
+		$(document).ready(function () {
+		    var opt = {
+			behavior: 'circle',
+			mouseover: function (o) {
+			    o.stop();
+			    o.css({cursor: 'pointer'});
+			},
+			mouseout: function (o) {
+			    o.start();
+			}
+		    }
+		    $(document).on('change', '.language_switcher select', function () {
+			var optionvalue = $(this).val();
+			window.location = optionvalue;
+		    });
+		    $('.menu-toggle').click(function () {
+			$("#mobile_tabsmain").slideToggle(500);
+		    });		    
+		});
+	    </script>
+	    <script async="" src="//www.google-analytics.com/analytics.js"></script><script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o);
+                    /*m=s.getElementsByTagName(o)[0];*/m = s.getElementsByTagName(o);
+                    m = m[m.length - 1];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m);
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-37276506-1', 'auto');
+                ga('send', 'pageview');
+            </script>
+            <!-- Start Alexa Certify Javascript -->
+            <script type="text/javascript" async="" src="https://d31qbv1cthcecs.cloudfront.net/atrk.js"></script><script type="text/javascript">
+                _atrk_opts = {atrk_acct: "bOo2l1aIF5y3L7", domain: "touristtube.com", dynamic: true};
+                (function () {
+                    var as = document.createElement('script');
+                    as.type = 'text/javascript';
+                    as.async = true;
+                    as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js";
+                    /*var s = document.getElementsByTagName('script')[0];*/var s = document.getElementsByTagName('script');
+                    s = s[s.length - 1];
+                    s.parentNode.insertBefore(as, s);
+                })();
+            </script>
+            <noscript>&lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=bOo2l1aIF5y3L7" style="display:none" height="1" width="1" alt="" /&gt;</noscript>
+            <!-- End Alexa Certify Javascript --> 
+	</footer>         
+    </body>
+</html>

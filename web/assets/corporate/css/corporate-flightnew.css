@@ -1,0 +1,18 @@
+#leftmenuecorpcontainer{
+    display: block;
+}
+.menuestyle_leftmenue-click{
+    display: none;
+}
+@media  (max-width:767px){
+
+    #leftmenuecorpcontainer{
+        display: none;
+    }
+    .menuestyle_leftmenue-click{
+        display: block;
+    }
+    .width100 {
+        max-height: 250px;
+    }
+}

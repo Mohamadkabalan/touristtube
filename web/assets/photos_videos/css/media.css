@@ -1,0 +1,109 @@
+.margin_top_10{margin-top: 10px;}
+.margin_top_20{margin-top: 20px;}
+.float_left{float: left;}
+/*Swiper css:
+==============================*/
+.search_title span {
+    color: #db3a69;
+    font-size: 22px;
+}
+.firsttextimgswiper{ margin-top: 0; margin-bottom: 5px;}
+.media-container .mainwrappercontainer-wrapper{position: relative;}
+.media-container .swiper-container-ss { height: auto;margin: 0 auto;overflow: hidden;position: relative;padding-left: 23px;padding-right: 23px;width: 100%;z-index: 1;}
+.media-container .swiper-slide img{ margin: 0 auto;height: auto;}
+.media-container .swiper-container-ss.s1 .swiper-slide {cursor: pointer;height: auto; padding: 10px 5px ;}
+.media-container .swiper-slide{position: relative;width: auto;}
+.media-container .swiper-button-ss-next, .media-container .swiper-button-ss-prev {color: #393937; cursor: pointer;font: 24px/27px Arial,sans-serif; height: 30px; margin-top: -47px; position: absolute;text-align: center;text-decoration: none; top: 50%;width: 7px; z-index: 920;}
+.media-container .swiper-button-ss-prev {left: 0;}
+.media-container .swiper-button-ss-next {right: 0;}
+.media-container .firsttextimgswiper a{text-align: left; color: #db3a69;font-size: 16px; padding: 0; margin: 0;}
+.media-container .uploaddatetextimgswiper{text-align: left;line-height: 20px;color: #585858;font-size: 13px;padding: 0; margin: 0;}
+.media-container .nav-tabs {border-bottom: none;}
+.media-container .breadcrumb{background: none; margin-bottom: 0;}
+.media-container .breadcrumb li{
+    float: left;
+    font-size: 13px;
+    height: 22px;
+    line-height: 18px;
+    list-style: outside none none;
+    margin-right: 5px;
+}
+.media-container .breadcrumb > li + li::before {
+    content:initial;
+}
+.media-container .breadcrumb li a {
+    color: #2e2e2e;
+    font-size: 13px;
+    list-style: outside none none;
+    text-decoration: underline;
+}
+.vid_img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+}
+.vid_imgswiper.vid_img{
+    right: 5px;
+    top: 10px;
+    left: 5px;
+}
+.imagefirstbut {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    height: 100%;
+    left: 5px;
+    position: absolute;
+    z-index: 10;
+    right: 5px;
+    top: 0px;
+}
+.video_detimg {
+    width: 100%;
+}
+.video_detimgswiper {
+    width: 100%;
+    display: none;
+}
+.bgwidth {
+    background-size: 100% auto;
+}
+.bgheight {
+    background-size: auto 100%;
+}
+#flashcontentmedia{
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width:1200px){
+    .media-container .swiper-container-ss.s1 .swiper-slide {width: 16.66666666% !important;}
+}
+@media (min-width:992px) and (max-width:1199px){
+    .media-container .swiper-container-ss.s1 .swiper-slide {width: 25% !important;}
+}
+@media (min-width:768px) and (max-width:991px){
+    .media-container .swiper-container-ss.s1 .swiper-slide { width: 33.33333% !important;}
+}
+@media (max-width:767px){
+    .media-container .swiper-container-ss.s1 .swiper-slide { width: 100% !important;}
+}
+
+/*media new page css:
+==============================*/
+
+.media-container .bordered_row{height: 7px;border-top: 3px solid #bababa; border-bottom: 3px solid #bababa;margin-top: 12px;}
+.media-container .right_text_div{padding-left: 12px;}
+.media-container .right_text_div h2{color: #db3a69;font-size: 22px;line-height: 22px;margin-top: 13px;margin-bottom: 6px;}
+.media-container .right_text_div p{color: #585858;font-size: 14px;line-height: 14px;}
+.media-container .right_text_div .avatar_txt{color: black;font-weight: bold;}
+.media-container .right_text_div span.avatar_txt{cursor: default;}
+.media-container .txt_greypara{color: #585858;font-size: 16px;text-align: justify;line-height: 20px;}
+.media-container .categorie_txt{color: #010101;font-size: 13px;font-weight: bold; margin-top: 0;}
+.media-container .categorie_txt a{color: #010101; text-decoration: underline;}

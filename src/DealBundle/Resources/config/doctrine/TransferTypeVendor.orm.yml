@@ -1,0 +1,42 @@
+DealBundle\Entity\TransferTypeVendor:
+    type: entity
+    table: transfer_type_vendor
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        vendorId:
+            type: integer
+            nullable: false
+            column: vendor_id
+        vendorTransferTypeCode:
+            type: string
+            nullable: false
+            length: 50
+            column: vendor_transfer_type_code
+        vendorTransferTypeName:
+            type: string
+            nullable: false
+            length: 255
+            column: vendor_transfer_type_name
+        vendorTransferTypeDescription:
+            type: string
+            nullable: false
+            length: 255
+            column: vendor_transfer_type_description
+        vendorTransferTypeImage:
+            type: string
+            nullable: false
+            length: 255
+            column: vendor_transfer_type_image
+    lifecycleCallbacks: {  }

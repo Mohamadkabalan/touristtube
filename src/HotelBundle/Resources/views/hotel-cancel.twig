@@ -1,0 +1,69 @@
+{% extends 'baseFinal.html.twig' %}
+{% block title %}
+    {{ 'Hotel Cancellation'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container hotel_book_container">
+	{% if error is defined and error is not empty %}
+	    <div class="row margin_top_15 padding_left_68">
+		<div class="row margin_top_15">
+		    <div class="col-xs-12">
+			<p class="font-22 black font-bold">{{error}}</p>
+		    </div>
+		</div>
+	    </div>
+	{% elseif reservationDetails is defined %}
+	    {% if reservationDetails.reservationStatus|lower == 'canceled' %}
+		<div class="row margin_top_15 padding_left_68">
+		    <div class="row margin_top_15">
+			<div class="col-xs-12">
+			    <p class="font-22 black font-bold">{{'Reservation can no longer be cancelled as it has already been cancelled previously.'|trans}}</p>
+			</div>
+		    </div>
+		    <div class="row">
+			<div class="col-xs-12">
+			    <a href="{{generateLangRoute(LanguageGet,'_booking_details', {'reference': reservationDetails.reference})}}"><button class="btn view_booking">{{'View booking details'|trans}}</button></a>
+			    <p class="font-22 black font-bold">{{'Please click to view details of this cancelled reservation.'|trans}}</p>
+			</div>
+		    </div>
+		</div>
+	    {% elseif reservationDetails.cancelable == false %}
+		<div class="row margin_top_15 padding_left_68">
+		    <div class="row margin_top_15">
+			<div class="col-xs-12">
+			    <p class="font-22 black font-bold">{{'A reservation which includes non-cancellable rooms cannot be cancelled.'|trans}}</p>
+			</div>
+		    </div>
+		    <div class="row">
+			<div class="col-xs-12">
+			    <a href="{{generateLangRoute(LanguageGet,'_booking_details', {'reference': reservationDetails.reference})}}"><button class="btn view_booking">{{'View booking details'|trans}}</button></a>
+			    <p class="font-22 black font-bold">{{'Please click to view details of this reservation.'|trans}}</p>
+			</div>
+		    </div>
+		</div>
+	    {% elseif reservationDetails is not empty %}
+		{% set hotelFormId = 'form_hotel_cancellation' %}
+		<script type="text/javascript">
+		    window.hotelFormId = '{{hotelFormId}}';
+		</script>
+
+		<form id="{{hotelFormId}}" method="post" action="{{ generateLangRoute(LanguageGet,'_hotel_reservation_cancellation', {'reference':reservationDetails.reference|raw})}}" autocomplete="off">
+		    {% set requestType = 'cancellation'|trans %}
+		    {% set disclaimer = 'no charge - only needed to confirm your request'|trans %}
+		    {% set disclaimerFull = 'Your card will not be charged - it is only needed to confirm your cancellation request.'|trans %}
+		    <section class="container hotel_payment_container">
+			{% set onePage = 1 %}
+			{% include '@Hotel/hotel-book-card.twig' %}
+		    </section>
+		    <div class="row">
+			<div class="col-xs-12">
+			    <input type="hidden" name="transactionId" value="{{transactionId}}">
+			    <input type="hidden" name="reservationKey" id="reservationKey" value="{{cancelReservationKey}}">
+			    <button id="cancel-button" class="btn comlete_hotel_booking margin_top_30 cancel-room-button" type="submit">{{'Cancel this room'|trans}}</button>
+			</div>
+		    </div>
+		</form>
+	    {% endif %}
+	{% endif %}
+    </section>
+{% endblock %}

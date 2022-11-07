@@ -1,0 +1,786 @@
+@charset "utf-8";
+/* CSS Document */
+
+.share_link_arrow {
+    left: auto !important;
+    right: 40px !important;
+}
+
+.textLICams {
+    color: #a8a8a8;
+    float: left;
+    font: 11px Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 165px !important;
+}
+img {
+    /*height: 102px !important;*/
+    max-width: 100%;
+}
+
+@media only screen and (max-width:767px) {
+.share_link_arrow {
+    left: auto !important;
+    right: 31px !important;
+}
+
+#MiddleMainLive {
+	background: none repeat scroll 0 0 #000;
+	left: 0;
+	min-height:/*240px*/ auto !important;
+	position: relative;
+	width: 100%;
+}
+.liveBar {
+	background: none repeat scroll 0 0 #000;
+	float: left;
+	height: auto !important;
+	margin: 0 0 10px !important;
+	min-width:96% !important;
+	padding: 5px 2% !important;
+	position: relative;
+	width: 96% !important;
+	z-index: 101;
+}
+.liveBarIn {
+	height: auto !important;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+.liveMapOptions {
+	display: block;
+	float: left;
+	height: 26px;
+	margin: 2px 0 !important;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+.liveMapOptions span {
+	padding: 2px 0 !important;
+	position: relative;
+	text-indent: 30px;
+	width: 100%;
+}
+.liveMapOptions .arrowDown {
+	background: url("/media/images/discover/liveOptArrowDwn.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+	height: 4px;
+	position: absolute;
+	right: 12px;
+	top: 12px !important;
+	width: 7px;
+}
+
+.liveMapOptionsCont {
+	width: 100% !important;
+}
+.liveMapSearch {
+	background: none repeat scroll 0 0 #3f3f3f;
+	float: left;
+	height: 28px !important;
+	left: 0;
+	margin: 2px 0 !important;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+.liveCamSearch {
+	top: 3px !important;
+	width: 86% !important;
+}
+
+#ui-id-2 {
+     border: 1px solid #a7a7a7;
+    width: 86% !important;
+}
+
+
+#contentLive {
+	height: auto !important;
+	margin: 0 auto;
+	min-height: auto !important;
+	padding: 3% !important;
+	position: relative;
+	width: 94% !important;
+}
+
+#cameraList {
+	float: none;
+	left: 0;
+	margin: 20px 0 0 !important;
+	min-height: auto !important;
+	position: relative;
+	width: 100% !important;
+}
+
+#AllCamList li {
+    float: left;
+    height: 152px;
+    margin: 0 5px !important;
+    width: 136px;
+}
+
+.loadMorContLive {
+	float: left !important;
+	margin: 10px 0 !important;
+	width: 100% !important;
+}
+#mostActiveCams {
+	background: none repeat scroll 0 0 #efefef;
+	float: left;
+	left: 0;
+	margin: 2% 0 0 !important;  
+	min-height:auto;/*
+	padding: 1% 0 10% !important;*/
+	position: relative;
+	width:100% !important;
+	/*display: none;*/
+}
+.mostVisitedCams {
+	float: left;
+	margin: 20px 0 0;
+	padding: 0;
+	position: relative;
+	width: auto !important;
+}
+.addCamBtn {
+    margin-bottom: 26px;
+    margin-left: 4% !important;
+    width: 96% !important;
+}
+
+.mostVisitedCams {
+	float: left;
+	margin: 20px 0 0;
+	padding: 0;
+	position: relative;
+	width: auto !important;
+}
+.mostVisitedCams ul {
+	float: left;
+	margin: 16px 5% 0 5%;
+	padding: 0;
+	position: relative;
+	width: 90% !important;
+}
+.mostVisitedCams ul li {
+	height: 12px;
+	list-style: outside none none;
+	margin: 0 0 8px;
+	padding: 0;
+	width: 100% !important;
+}
+.mostSearchedCams {
+	float: left;
+	margin: 45px 0 0;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+.mostVisitedCams h2, .mostSearchedCams h2 {
+	color: #686868;
+	float: left;
+	font: 13px Arial, Helvetica, sans-serif;
+	margin: -2px 0 0 12px;
+	padding: 0;
+	position: relative;
+	width: auto !important;
+}
+.mostSearchedCamsList {
+	color: #c0c0c0;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	height: auto;
+	margin: 20px 0 0 2% !important;
+	padding: 0;
+	position: relative;
+	width: 88% !important;
+}
+
+/* live cam
+--------------------------------------------*/
+
+
+#InsideContainer{
+    width:96% !important;
+	margin:20px 2% !important;
+}
+
+#liveInsideTTL{margin:0 0 10px 0 !important; float:left; width:100%; height:20px; position: relative; padding:0;
+    font:16px Arial, Helvetica, sans-serif; color:#1f1f1f;}
+
+.linestyle_container{
+    width:100% !important; margin-top:0px; margin-bottom: 9px;
+}
+
+.mediainfo_data {
+    color: #807f7f;
+    font-size: 11px;
+    overflow: hidden;
+    text-transform: lowercase;
+    width:100% !important;
+	position:absolute;
+	display:block;
+	left:0 !important;
+	height:auto;
+	top:18px;
+}
+
+.mediainfo_data li {
+    float: left;
+    font-family: arial;
+    margin: 0 10px 0 0 !important;
+    width:auto !important;
+    line-height: 14px;
+}
+
+.liveCamCon #RightInsideContainer{
+    position:absolute;
+    float:right;
+    margin:40px 0 0 0;
+    padding:0;
+    top:320px !important;
+    right:auto;
+	width:100% !important;
+	/*height: auto;
+    padding-bottom: 160px;
+    position: absolute;
+    right: 0;
+    top: 140px;
+    width: 38%; */
+		
+}
+ 
+#commentDiv {
+    display: block;
+    float: left;
+    height: auto !important;
+    left: 0;
+    position: relative;
+    top: 0;
+    width: 100% !important;
+}
+
+#likesDiv, #sharesDiv, #joinsDiv, #userjoinsDiv, #sponsorsDiv, #descriptionDiv, #comment_reportDiv, #album_reportDiv, #ratesDiv, #editDiv, #reechoesDiv, #commentsDiv{
+    background: none repeat scroll 0 0 #f6f6f6;
+    float: left;
+    height: auto !important;
+    margin-left: 25px;
+    margin-top: 2px;
+    padding: 1%;
+    position: relative;
+    width: 90%;
+}
+
+
+#album_reportbut_pop {
+    right: 10% !important;
+    top: 4px !important;
+}
+
+.shadow {
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    box-shadow: none;
+ }
+
+.socialInitDiv, #comment_reportDiv, #album_reportDiv, .editDiv {
+    padding:14px 1% 5px !important;
+    width: 84% !important;
+}
+
+.likeTTL {
+    width: 100% !important;
+}
+
+
+.meDiv {
+    padding: 1% !important;
+    width: 96% !important;
+}
+.meDiv .mynameDiv {
+    width: 70% !important;
+}
+
+.meDiv .likeDiv {
+    width: 70% !important;
+}
+
+.containerDiv {
+    margin-left: 1% !important;
+    width: 98%  !important;
+}
+
+.containerDiv  .commentsAll {
+    width: 100% !important;
+}
+
+
+.containerDiv  .commentsAll .lineleft1 {
+    width: 100% !important;
+}
+
+.containerDiv  .commentsAll .lineleft2 {
+    width: 100% !important;
+}
+
+
+.meDiv  .writecommentDiv {
+    width: 86% !important;
+}
+
+#share_select {
+    width: 97% !important;
+}
+
+.peoplecontainer {
+    width: 97% !important;
+}
+
+.emailcontainer_boxed_share {
+    background-color: #ebebeb;
+    width: 100% !important;
+}
+
+.liveCamCon .LocationProfileText{
+    width:100% !important;
+    border-bottom:1px dotted #000;
+}
+.liveCamCon #LocationMap2{
+    width:100% !important;
+    height:320px;
+    margin-top: 20px;
+}
+
+#BigImageHolder{    
+   width:100% !important;
+   /*/	height: 464px;*/
+   top:10px;
+   height:200px !important;
+   margin-top: 42px !important;
+   position:relative;
+}
+
+
+.play_live_cam {
+    background-image: url("/media/images/live_play.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 52px;
+    left: 50% !important;
+    margin-left: -36px !important;
+    margin-top: -26px !important;
+    position: absolute;
+    top: 50% !important;
+    width: 72px;
+    z-index: 10;
+}
+
+#BigImageHolder img {width:100% !important; height:auto !important
+     display: block !important;
+    float: none !important;
+    height: 180px !important;
+    margin: 0 auto;
+    max-width: 270px;
+    padding: 4px 0 0;
+    position: relative !important;
+    width: 100% !important;
+
+}
+
+
+.shareFavCont {width:100% !important; height: 28px; background: #000; position: relative;
+display: block; float: left;}
+
+#media_buttons{position: absolute; bottom: 0; left:0 !important; top:auto !important;  
+width:98% !important; margin:0 1% !important; padding:0 !important; }
+
+.LiveFeedButtons{ width:100% !important; padding-top: 6px !important; text-align: center !important; display:block !important}
+
+.liveCamComments{
+    position:relative;
+    float:left;
+    margin:20px 0;
+    padding:0;
+    width:100% !important;
+	bottom:0;
+	display:none
+
+	
+}
+
+#Comments { width:100% !important;}
+#CommentList {width:100% !important;}
+.comment_item { height: auto; position: relative; float:left; display:block; width:100% !important; margin-bottom:31px;}
+
+
+/* Share Group */
+
+#sharepopup {
+    float: none !important;    
+    margin: 0 auto;     
+    width: 90% !important;
+	padding:5%;
+	min-width:240px;
+}
+
+
+
+.sharepopup_container {     
+    margin:10px 0 0 !important;   
+    width: 100% !important;
+}
+
+.sharepopup_img {
+    display: block;
+    float: left;
+    height:/* 130px*/ auto;
+    max-width: 100% !important;
+    position: relative;
+    width: auto;
+}
+.margintop26 {
+    margin-top: 14px !important;
+}
+
+#invitetext {
+    color: #000;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    width: 96% !important;
+}
+
+.peoplecontainer {
+    /*background-color: #ffffff;*/
+    height: auto;
+    min-height: 102px;
+    position: relative;
+    width: 100%;
+}
+.emailcontainer {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #bcbcbc;
+    display: block;
+    float: left;
+    height: auto;
+    margin: 0;
+    min-height: 41px;
+    padding: 2px;
+    position: relative;
+    width: 94% !important;
+    z-index: 2;
+}
+
+.friendscontainer {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #dbdfe6;
+    display: block;
+    float: left;
+    height: 60px;
+    margin: -1px 0 0;
+    padding: 2px;
+    position: relative;
+    width: 94% !important;
+    z-index: 1;
+}
+
+
+#addmoretext, .addmoretext_css {
+    background-color: #b8b8b8;
+    border: medium none;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    height: 14px;
+    left: 0;
+    line-height: 14px;
+    margin: 0;
+    padding:1% !important;
+    position: absolute;
+    top: 0;
+    width: 98% !important;
+}
+
+/*
+.footer_container_all {
+    display: block !important;
+    position: relative !important;
+}
+
+
+/* Add live cam 
+----------------------------------------*/
+.StaticBody {
+    min-height: 800px !important;
+}
+.contact{ background:none !important; }
+
+.StaticTitle {
+    width:100% !important;
+}
+
+.StaticTxt {
+   width:100% !important;
+}
+
+.width480 {
+    width:100% !important;
+}
+
+.feedbackinput, .feedbacktextarea {
+    margin: 4px 1% 14px 0;
+    padding: 0 0 0 1% !important;
+    width: 94% !important;
+}
+
+#liv-cam table{ width:100% !important}
+
+.buttonLogincontainer {
+    float: left !important; 
+}
+
+}
+@media only screen and (min-width: 768px) and (max-width:960px) {
+.share_link_arrow {
+    left: auto !important;
+    right: 31px !important;
+}	
+
+.StaticTitle {
+    width:100% !important;
+}
+
+#MiddleMainLive {
+	background: none repeat scroll 0 0 #000;
+	left: 0;
+	min-height:/*240px*/ auto !important;
+	position: relative;
+	width: 100%;
+}
+.liveBar {
+	background: none repeat scroll 0 0 #000;
+	float: left;
+	height: auto;
+	margin: 0 0 10px !important;
+	min-width:96% !important;
+	padding: 5px 2% !important;
+	position: relative;
+	width: 96% !important;
+	z-index: 101;
+}
+.liveBarIn {
+	height: auto !important;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+.liveMapOptions {
+	display: block;
+	float: left;
+	height: 26px;
+	margin: 2px 0 !important;
+	;
+	padding: 0;
+	position: relative;
+	width: 130px;
+}
+.liveMapOptions span {
+	background: url("/media/images/discover/mapGlobeGray.png") no-repeat scroll 7px 4px #3f3f3f !important;
+	color: #c7c7c7;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font: 11px/20px Arial, Helvetica, sans-serif;
+	height: 24px;
+	margin: 0;
+	padding: 2px 0 !important;
+	;
+	position: relative;
+	text-indent: 30px;
+	width: 100%;
+}
+.liveMapOptions .arrowDown {
+	background: url("/media/images/discover/liveOptArrowDwn.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+	height: 4px;
+	position: absolute;
+	right: 12px;
+	top: 12px !important;
+	width: 7px;
+}
+.liveMapOptionsCont {
+	background: none repeat scroll 0 0 #3f3f3f;
+	bottom: 27px;
+	display: none;
+	height: 63px;
+	left: 0;
+	position: absolute;
+	width: 130px;
+}
+.liveMapSearch {
+	background: none repeat scroll 0 0 #3f3f3f;
+	float: right;
+	height: 28px;
+	left: 0;
+	margin: 2px 0 !important;
+	padding: 0;
+	position: relative;
+	width: 196px !important;
+}
+.liveCamSearch {
+	background: none repeat scroll 0 0 #ebebeb;
+	border: 0 none;
+	color: #000;
+	font: 11px/20px Arial, Helvetica, sans-serif;
+	height: 20px;
+	left: 5px;
+	position: absolute;
+	text-indent: 6px;
+	top: 3px !important;
+	width: 80% !important;
+}
+#contentLive {
+	height: auto !important;
+	margin: 0 auto;
+	min-height: auto !important;
+	padding: 2% !important;
+	position: relative;
+	width: 96% !important;
+}
+#cameraList {
+	float: left;
+	left: 0;
+	margin: 20px 0 0 !important;
+	min-height: auto !important;
+	position: relative;
+	/*width: 100% !important*/ 
+	width:70% !important;
+}
+.loadMorContLive {
+	float: left !important;
+	margin: 10px 0 !important;
+	width: 100% !important;
+}
+#mostActiveCams {
+	background: none repeat scroll 0 0 #efefef;
+	float: left;
+	left: 0;
+	margin: 10px 0 0;
+	min-height: 600px;
+	padding: 1px 0 50px;
+	position: relative;
+	width:30% !important;
+
+}
+
+.addCamBtn {
+    margin-bottom: 26px;
+    margin-left: 6% !important ;
+    width: 94% !important;
+}
+
+
+.mostVisitedCams {
+	float: left;
+	margin: 20px 0 0;
+	padding: 0;
+	position: relative;
+	width: auto !important;
+}
+.mostVisitedCams ul {
+	float: left;
+	margin: 16px 0 0 10%;
+	padding: 0;
+	position: relative;
+	width: 90% !important;
+}
+.mostVisitedCams ul li {
+	height: 12px;
+	list-style: outside none none;
+	margin: 0 0 8px;
+	padding: 0;
+	width: 100% !important;
+}
+.mostSearchedCams {
+	float: left;
+	margin: 45px 0 0;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+.mostVisitedCams h2, .mostSearchedCams h2 {
+	color: #686868;
+	float: left;
+	font: 13px Arial, Helvetica, sans-serif;
+	margin: -2px 0 0 12px;
+	padding: 0;
+	position: relative;
+	width: auto;
+}
+.mostSearchedCamsList {
+	color: #c0c0c0;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	height: auto;
+	margin: 20px 4% !important;
+	padding: 0;
+	position: relative;
+	width:92% !important;
+}
+
+/* live cam
+--------------------------------------------*/
+
+
+#InsideContainer{width:96% !important; margin:20px 2% !important;}
+#liveInsideTTL{margin:0 0 10px 0 !important; float:left; width:100%; height:20px; position: relative; padding:0;
+    font:16px Arial, Helvetica, sans-serif; color:#1f1f1f;}
+.linestyle_container{ width:100% !important; margin-top:0px; margin-bottom: 9px;}
+.mediainfo_data {color: #807f7f; font-size: 11px; overflow: hidden; text-transform: lowercase;
+    width: auto; position:absolute; display:block; left:0 !important; height:auto; top:18px;}
+.mediainfo_data li {float: left; font-family: arial; margin: 0 1px 0 0; width: 91px; line-height: 14px;}
+.liveCamCon #RightInsideContainer{position: relative; float:right;
+    margin:36px 0 0 0; padding:0; top:auto;  right:auto; width:38% !important;
+		/*height: auto;
+    padding-bottom: 160px;
+    position: absolute;
+    right: 0;
+    top: 140px;
+    width: 38%; */
+	
+}
+
+#BigImageHolder{  width: 60% !important;  /*/	height: 464px;*/ top:0; height: 280px !important; margin-top: 42px !important;}
+#BigImageHolder img { margin:0 auto !important;  width:100% !important; height:auto !important; border-bottom:1px solid red !important}
+.shareFavCont { width:60% !important; height: 28px; background: #000; position: relative;
+display: block; float: left;}
+#media_buttons{position: absolute; bottom: 0; left:0 !important; top:auto !important;  
+width:98% !important; margin:0 1% !important; padding:0 !important; }
+.LiveFeedButtons{ width:100% !important; padding-top: 6px !important; text-align: center !important; display:block !important}
+.liveCamComments{ position:relative; float:left; margin:55px 0; padding:0; width:60% !important;}
+#Comments { width:100% !important;}
+#CommentList {width:100% !important;}
+.comment_item { height: auto; position: relative; float:left; display:block; width:100% !important; margin-bottom:31px;}
+
+.play_live_cam {
+    background-image: url("/media/images/live_play.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 52px;
+    left: 50% !important;
+    margin-left: -36px !important;
+    margin-top: -26px !important;
+    position: absolute;
+    top: 50% !important;
+    width: 72px;
+    z-index: 10;
+}
+
+}

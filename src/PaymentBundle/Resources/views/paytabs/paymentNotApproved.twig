@@ -1,0 +1,11 @@
+{% extends ((isCorpoSite == false) ? 'base.html.twig' : 'basecorporate.html.twig') %}
+{% block pagenewcss %}
+     <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/otpCheckForm.css")|raw }}" />
+{% endblock %}
+{% block body %}
+    <section class="container">
+    {% if message is defined %}
+    {{ message }}
+    {% endif %}
+    </section>
+{% endblock %}

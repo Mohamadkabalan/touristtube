@@ -1,0 +1,81 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-accountTransactionsList.js')|raw }}"></script>
+    <script type="text/javascript">
+        {% if searchUserId is defined %}
+            window.userId = {{searchUserId}};
+        {% endif %}
+        {% if searchAccountId is defined %}
+            window.accountId = {{searchAccountId}};
+        {% endif %}
+        {% if firstDay is defined %}
+            window.fromDate = "{{firstDay}}";
+        {% endif %}
+        {% if lastDay is defined %}
+            window.toDate = "{{lastDay}}";
+        {% endif %}
+        {% if currencyCode is defined %}
+            window.currencyCode = "{{currencyCode}}";
+            if (window.currencyCode == "")
+                window.currencyCode = null;
+        {% endif %}
+        {% if acctType is defined %}
+            window.acctType = {{acctType}};
+        {% endif %}
+        var cancelledStat = "{{cancelledStat}}";
+    </script>
+{% endblock %}
+{% block title %}{{'Statement Of Account'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporate_common_new_container">
+        <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+            <div class="container-fluid nopad filters-group">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                        {{'Filters'|trans}}
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            {% include '@Corporate/admin/accountTransactions/filter.twig' %}
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-md-9 col-sm-8 col-xs-12 nopad">
+                                <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Statement Of Account'|trans}}</h1>
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-12 nopad">
+                                <p class="dueammount_title">{{'Due Amount'|trans}} <span class="pink_text_underline"><span class="cur_bigf">{{accountPrefferedCurrency|raw}}</span> <span class="price_fb">{{accountCurrentBalance|raw}}</span></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row margin_top_20">
+                    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+                        {% set filterSuffix = "_2" %}
+                        {% include '@Corporate/admin/accountTransactions/filter.twig' %}
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        {% include '@Corporate/admin/accountTransactions/accountTransactionsTableList.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

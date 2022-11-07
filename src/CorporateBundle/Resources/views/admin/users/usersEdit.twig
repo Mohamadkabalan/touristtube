@@ -1,0 +1,155 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-usersEdit.js')|raw }}"></script>
+
+{% endblock %}
+{% block title %}{{'List Of Users Add/Edit'|trans}}{% endblock %}
+{% block body %}
+    {% set defaultValues = {'cu_id': 0, 'cu_fname': '', 'cu_lname': '', 'cu_yourpassword': '', 'cu_fullname': '', 'cu_gender': '', 'cu_youremail': '', 'cu_yourip': '', 'cu_yourbday': '', 'cu_yourusername': '', 'cu_yourcountry': 0, 'userBODDay': '', 'userBODYear': '', 'userBODMonth': '' ,'yourcountryName': '', 'cu_cmsUserGroupId': ROLE_CORPORATE, 'profileId': 0, 'cu_youraccount': 0, 'youraccountName': '', 'profileName': '', 'accountId': '0', 'accountName': '', 'profileLevel': '', 'cu_allowAccessSubAcc': '', 'cu_allowAccessSubAccUsers': ''} %}
+
+    {% set user	= defaultValues|merge(user) %}
+
+	{% set accountDefaultValues  = {'al_id': 0, 'al_agencyId': '', 'al_name': '', 'al_isActive': 0, 'al_paymentTypeId':1, 'cityName': '', 'al_address': '', 'al_mobile': '', 'al_phone1': '', 'al_phone2': '', 'al_creditLimit': 0, 'al_numberOfUsers': 0, 'al_currencyCode': 0, 'al_paymentPeriod': 0, 'al_showAccountCurrencyAmount': 0,'preferredCurrencyCode': 0, 'al_agencyId': 0, 'al_website': '', 'al_email': '', 'al_accountingEmail': '', 'al_cityId': 0, 'al_parentAccountId':'', 'accountName':'', 'currencyName': '', 'agencyName': '', 'preferredCurrencyName': '', 'al_accountTypeId': '', 'accountTypeName': "", 'countryCode': '' } %}
+	{% set account = accountDefaultValues|merge(account) %}
+
+    <script>
+	window.userProfileLevel = "{{userProfileLevel|raw}}";
+	</script>
+	
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'List Of Users'|trans}} / <span class="add_edit">{{'add/edit'|trans}}</span></h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet,'_corpo_users_addSubmit') }}" autocomplete="off">
+	    {% if showAcc is defined and showAcc %}
+	    {% include '@Corporate/admin/users/usersAccountForm.twig' %}
+		<div class="col-xs-12 nopad margin_top_40">
+			<p class="header_txt_common">
+				<span>{{'User profile'|trans}}</span>	
+			</p>
+		</div>
+		{% endif %}
+		<div class="col-lg-10 col-xs-12 nopad {{showAcc is defined and showAcc ? '' : 'margin_top_40'}}">
+		    <div class="row corporate_small_row_margin">
+			<input type="hidden" name="id" value="{{user.cu_id|raw}}">
+			<input type="hidden" name="slug" value="{{slug|raw}}">
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="fnameLabel" class="form-check-label">{{'First Name'|trans}}</label>
+			    <input type="text" class="col-xs-12" name="fname" value="{{user.cu_fname|raw}}" placeholder="{{'First Name'|trans}}" required label="#fnameLabel">
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="lnameLabel" class="form-check-label">{{'Last Name'|trans}}</label>
+			    <input type="text" class="col-xs-12" name="lname" value="{{user.cu_lname|raw}}" placeholder="{{'Last Name'|trans}}" required label="#lnameLabel">
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="yourEmailLabel" class="form-check-label">{{'Email'|trans}}</label>
+			    {% if user.cu_id > 0 %}
+				<input type="email" class="col-xs-12" value="{{user.cu_youremail|raw}}" placeholder="{{'Email'|trans}}" disabled>
+			    {% else %}    
+				<input type="email" class="col-xs-12" id="userEmail" name="yourEmail" value="{{user.cu_youremail|raw}}" placeholder="{{'Email'|trans}}" required label="#yourEmailLabel">
+			    {% endif %}
+			</div>
+			<div class="clearfix visible-lg visible-md"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="yourUserNameLabel" class="form-check-label">{{'User Name'|trans}}</label>
+			    {% if user.cu_id > 0 %}
+				<input type="text" class="col-xs-12" value="{{user.cu_yourusername|raw}}" placeholder="{{'User Name'|trans}}" disabled>
+			    {% else %} 
+				<input type="text" id="userName" class="col-xs-12" name="yourUserName" value="{{user.cu_yourusername|raw}}" placeholder="{{'User Name'|trans}}" required label="#yourUserNameLabel">
+			    {% endif %}
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Gender'|trans}}</label>
+			    <select name="gender" class="col-xs-12">
+				<option value="M" {% if user.cu_gender == 'M' %}selected{% endif %}>{{'Male'|trans}}</option>
+				<option value="F" {% if user.cu_gender == 'F' %}selected{% endif %}>{{'Female'|trans}}</option>
+				<option value="O" {% if user.cu_gender == 'O' %}selected{% endif %}>{{'Rather not to say'|trans}}</option>
+			    </select>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Date of birth'|trans}}</label>
+			    <input type="text" class="col-xs-12 account_range_picker picker_single" name="yourBday" value="{{user.cu_yourbday|raw}}" readonly="readonly" placeholder="{{'Date of birth'|trans}}">
+			</div>
+			{# <div class="clearfix visible-sm"></div>
+			<div class="clearfix visible-lg visible-md"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Roles'|trans}}</label>
+			    <select name="cmsUserGroupId" class="col-xs-12">
+				{% for role in roles %}
+				    <option value="{{ role.cu_id|raw }}"{% if user.cu_cmsUserGroupId == role.cu_id %}selected{% endif %}>{{ role.cu_name|raw }}</option>
+				{% endfor %}
+			    </select>
+			</div> #}
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="countryLabel" class="form-check-label">{{'Country'|trans}}</label>
+			    <input type="text" class="col-xs-12" name="userCountry" id="userCountry" value="{{user.yourcountryName|raw}}" data-value-id="{{user.cu_yourcountry|raw}}" placeholder="{{'Search for country'|trans}}" required label="#countryLabel"/>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+				<label id="userProfileLabel" class="form-check-label">{{'User Profile'|trans}}</label> 
+				<input {{(userRole != systemRole ? 'disabled' : '')}} type="text" class="col-xs-12" name="corpoUserProfileId"
+					data-value-id="{{profileId}}" data-toggle="ttautocompleteCity" id="userProfile"
+					value="{{profileName}}" placeholder="{{'Search for user profile'|trans}}" required label="#userProfileLabel"/>
+			</div>
+{# 			{% if showAcc %}
+				<div class="clearfix visible-lg visible-md"></div>
+				<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+				    <label class="form-check-label">{{'Account'|trans}}</label>
+				    <input type="text" class="col-xs-12" name="accountId" id="account" value="{{accountName}}" data-value-id="{{accountId}}" placeholder="Search for account" required/>
+				</div>
+            {% endif %} #}
+			{% if allowApprove is defined %}
+			<div class="clearfix"></div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">
+			<input type="checkbox" id="allow_approve" name="allowApprove" {{(allowApprove is defined and allowApprove) ? 'checked' : ''}} class="" >
+			<label for="allow_approve" class="form-check-label">{{'Allow Approve'|trans}}</label>
+			</div>
+			{% endif %}
+
+			<div class="clearfix"></div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">
+			<input type="checkbox" id="allow_sub_account" name="accessToSubAccount" {{(user.cu_allowAccessSubAcc) ? 'checked' : ''}} class="" >
+			<label for="allow_sub_account" class="form-check-label">{{'Allow Access To Sub Accounts'|trans}}</label>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">
+			<input type="checkbox" id="allow_sub_account_users" name="accessToSubAccountUsers" {{(user.cu_allowAccessSubAccUsers) ? 'checked' : ''}} class="" >
+			<label for="allow_sub_account_users" class="form-check-label">{{'Allow Access To Sub Account\'s Users'|trans}}</label>
+			</div>
+
+			<div class="clearfix visible-sm"></div>
+			{% if user.cu_id == 0 %}			    
+			    <div class="col-xs-12 corporate_small_col_padding lofaff">
+				<input type="checkbox" value="1" id="generate_password" name="generatePassword" checked="checked" class="" data-value="1">
+				<label for="generate_password" class="form-check-label">{{'Generate Password'|trans}}</label>
+			    </div>
+			{% endif %}
+			<div class="clearfix"></div>
+		    </div>
+		    <div class="row corporate_small_row_margin">
+			<div class="col-xs-12 corporate_small_col_padding margin_top_20">
+							{% if slug is defined %}
+								<a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corporate_userslist', {'slug': slug}) }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+							{% else %}
+								<a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corpo_users') }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+							{% endif %}
+                            <button data-role="submit" data-type="validate" class="btn submit_yellow" id="submitBtn" type="button">{{'Submit'|trans}}</button>
+                            {% if user.cu_id != 0 %}
+                                <button data-role="button" class="btn submit_yellow resetPassword" id="resetPassword" type="button">{{'Reset password'|trans}}</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>    
+{% endblock %}

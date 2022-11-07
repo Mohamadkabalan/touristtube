@@ -1,0 +1,34 @@
+DealBundle\Entity\DealSupplierTypeStatus:
+    type: entity
+    table: deal_supplier_type_status
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealApiSupplierId:
+            type: bigint
+            nullable: false
+            length: 20
+            column: deal_api_supplier_id
+        dealTypeId:
+            type: bigint
+            nullable: false
+            length: 20
+            column: deal_type_id
+        isActive:
+            type: integer
+            nullable: false
+            length: 1
+            column: is_active
+    lifecycleCallbacks: {  }

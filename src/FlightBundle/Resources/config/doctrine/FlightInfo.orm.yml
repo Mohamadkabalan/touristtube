@@ -1,0 +1,85 @@
+FlightBundle\Entity\FlightInfo:
+    type: entity
+    table: flight_info
+    indexes:
+        pnr_id:
+            columns:
+                - pnr_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        price:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+        displayPrice:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: display_price
+        baseFare:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: base_fare
+        displayBaseFare:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: display_base_fare
+        taxes:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+        displayTaxes:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: display_taxes
+        currency:
+            type: string
+            nullable: false
+            length: 3
+        displayCurrency:
+            type: string
+            nullable: false
+            length: 3
+            column: display_currency
+        refundable:
+            type: boolean
+            nullable: false
+        oneWay:
+            type: boolean
+            nullable: false
+        multiDestination:
+            type: boolean
+            nullable: false
+        penaltiesInfo:
+            type: string
+            nullable: true
+            column: penalties_info
+    oneToOne:
+        passengerNameRecord:
+            targetEntity: PassengerNameRecord
+            cascade: [persist]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: flightInfo
+            joinColumns:
+                pnr_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

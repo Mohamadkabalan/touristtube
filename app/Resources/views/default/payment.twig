@@ -1,0 +1,176 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/payment-all.css")|raw }}" >   
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/flight-breadcrumb.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/validator/js/jquery.validate.js")|raw }}"></script>
+    <script>
+	var redirectURL = '/flight-booking?timedOut=1';
+    </script>
+    <script type="text/javascript" src="{{ asset("/assets/payment/js/payment-all.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/payment/js/purl.js")|raw }}"></script>
+    <script type="text/javascript"> var io_bbout_element_id = 'device_fingerprint';</script>
+    <script type="text/javascript" src="https://mpsnare.iesnare.com/snare.js"></script>
+{% endblock %}
+{% block body %}
+    <section class="flightAllSection">
+
+        <div class="container containerFirstAll">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 divstepspad hidden-sm hidden-xs flight-breadcrumb">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 firststep hidden-xs">
+                    <div class="bullet">
+                        <p>1</p>
+                    </div>
+                    <p class="number-step-text">{{'Select your flight'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sndstep hidden-xs">
+                    <div class="bullet">
+                        <p>2</p>
+                    </div>
+                    <p class="number-step-text">{{'Enter your details'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 thirdstep blue_bullet">
+                    <div class="bullet">
+                        <p>3</p>
+                    </div>
+                    <p class="number-step-text">{{'Confirm your payment'|trans}}</p>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <p class="paymentresume">Payment</p>
+            </div>   
+            {% if error != '' %}
+                <div class="clear"></div>
+                <div class="alert-danger">{{error |trans}}</div>
+            {% endif %}
+            <form method="POST" action="{{checkoutURL}}" id="payment" class="pay-form credit-card-payment" name="payment">
+                <div class="box-container paymentcontainer col-xs-12">                    
+                    <div class="botborder">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <img src="{{ generateMediaURL('/media/images/paymentpics.png') }}" alt="{{'payment'|trans}}">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <label class="labelstyle smalfont" for="cardNumber">Card number</label>
+                                    <input autocomplete="off" class="form-control selectback2" id="cardNumber" type="text" value="" name="card_number" maxlength="16">
+                                    <p class="downinputtext">{{'No spaces or special characters'|trans}}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                <div class="form-group">
+                                    <label class="labelstyle smalfont" for="expiryDateMonth">{{'Expiry date'|trans}}</label>
+                                    {#<input placeholder="1705" class="form-control smaldivmargin padsm" id="expiry_date" value="" type="text" name="expiry_date" maxlength="4">#}
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 expiry-date-wrap">
+                                        <select name='expireMM' id='expireMM' class='expire-month select-expiry-date'>
+                                            <option value=''>Month</option>
+                                            <option value='01'>January</option>
+                                            <option value='02'>February</option>
+                                            <option value='03'>March</option>
+                                            <option value='04'>April</option>
+                                            <option value='05'>May</option>
+                                            <option value='06'>June</option>
+                                            <option value='07'>July</option>
+                                            <option value='08'>August</option>
+                                            <option value='09'>September</option>
+                                            <option value='10'>October</option>
+                                            <option value='11'>November</option>
+                                            <option value='12'>December</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 expiry-date-wrap">
+                                        <select name='expireYY' id='expireYY' class='expire-year select-expiry-date'>
+                                            <option value=''>Year</option>
+					    {% for exp_year in range(card_expiration_year_start, card_expiration_year_start + 12) %}
+						<option value="{{ exp_year|slice(2, 2) }}">{{exp_year}}</option>
+					    {% endfor %}
+                                        </select> 
+                                    </div>
+                                    <div class="clear"></div>
+                                    <input type="hidden" name="expiry_date" id="expiry_date" maxlength="4" value="">
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-12">
+                                <div class="form-group">
+                                    <label class="labelstyle smalfont" for="cvv">{{'CVV'|trans}}</label>
+                                    <input autocomplete="off" type="text" id="cvv" value="" class="form-control smaldivmargin padsm" name="card_security_code" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for name, value in parameters %}
+                        <input type="hidden" value="{{value}}" name="{{name}}">
+                    {% endfor %}
+                    <input id="remember_me" type="hidden" value="NO" name="remember_me">
+                    <div class="botborder payservices col-xs-12">
+                        <p class="warningtextstyle">{{'Or pay by using one of the following services:'|trans}}</p>
+                        <img id="masterPassImg" class="master-pass-img" src="{{ generateMediaURL('/media/images/master-pass.png') }}" alt="{{'MASTERPASS'|trans}}" title="{{'Masterpass'|trans}}" />
+                        <img id="visaCheckoutImg" class="visa-checkout-img" src="{{ generateMediaURL('/media/images/visa-checkout.png') }}" alt="{{'visa checkout'|trans}}" title="{{'visa checkout'|trans}}"/>
+                    </div>
+
+                    <div class="botborder col-xs-12">
+                        <div class="col-xs-12">
+                            <p class="Secureresume">{{'Secure payment with:'|trans}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 ">
+                                <img class="" src="{{ generateMediaURL('/media/images/visamaster.png') }}" alt="{{'visa master'|trans}}">
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+                                <p class="warningtextstyle">{{"if your card is set up with a protective password, you will be redirected to your bank's website to authorise the transaction."|trans}}</p>                          
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+                            <img class="" src="{{ generateMediaURL('/media/images/secureres.png') }}" alt="{{'secure'|trans}}">
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+                            <p class="warningtextstyle">{{"The data transmitted are coded using SSL (Secure Socket Layer) technology."|trans}} <br />
+                                {{"The session in progress on this site is secure and protected by maximum privacy."|trans}}</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="terms-wrap">
+                        <div class="checkbox checkbox-terms form-group-wrap">
+                            <div>
+                                {{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br/>
+                                {{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br/>
+                                {{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - {{'Expected reply within 24 hours.'|trans}}
+                                <br/>
+                                <br/>
+                                {{"By submitting this form, you confirm that you have read, agreed and accepted the"|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'terms & conditions'|trans}}" target="_blank">{{"terms and conditions"|trans}}</a> {{"and the"|trans}} <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'privacy policy'|trans}}" target="_blank">{{"privacy policy"|trans}}</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <input value="{{'submit'|trans}}" type="submit" class="bluesbmit">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </form>
+            <form action="{{checkoutURL}}" method="post" id="masterPass" class="pay-form masterpass" name="masterpass">
+
+                {% for name, value in masterpass_parameters %}
+                    <input type="hidden" value="{{value}}" name="{{name}}">
+                {% endfor %}
+                {#                <input value="Pay Now Master Pass" type="submit">#}
+            </form>
+            <form action="{{checkoutURL}}" method="post" id="visaCheckout" class="pay-form visa-checkout" name="visa_checkout">
+
+                {% for name, value in visa_checkout_parameters %}
+                    <input type="hidden" value="{{value}}" name="{{name}}">
+                {% endfor %}
+                {#                <input value="Pay Now Visa Checkout" type="submit">#}
+            </form>
+            <from action="#">
+                <input id="device_fingerprint" type="hidden" value="" name="device_fingerprint" />
+            </from>
+        </div> 
+    </section>
+{% endblock %}

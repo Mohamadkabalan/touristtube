@@ -1,0 +1,17 @@
+{% if containerDiv is defined and containerDiv %}
+    <div id="{{ (containerDivId is defined and containerDivId != '')  ? containerDivId : '' }}" class="{{ (containerDivClass is defined and containerDivClass != '')  ? containerDivClass : '' }}">
+    {% endif %}
+
+    {% if label is defined and label != '' %}
+	<div class="col-xs-12 line-height-36 nopad">
+	    <p class="font-16 black margin_bottom_0">{{label|trans}}</p>
+	</div>
+    {% endif %}
+
+    <div class="col-xs-12 line-height-36 nopad">
+	<input id="{{ (fieldId is defined and fieldId != '')  ? fieldId : '' }}" name="{{ fieldName }}" value="" placeholder="{{ (placeholder is defined and placeholder != '')  ? placeholder : '' }}" class="form-control {{ (fieldClass is defined and fieldClass != '')  ? fieldClass : '' }}" type="text">
+    </div>
+
+    {% if containerDiv is defined and containerDiv %}
+    </div>
+{% endif %}

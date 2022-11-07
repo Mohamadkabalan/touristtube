@@ -1,0 +1,13 @@
+<div class="edit_your_bag">{{'create a new bag'|trans}}</div>
+<div class="creat_input">
+    <input type="text" class="addtonewbagname" value="" id="name">
+</div>
+<div>
+    <button data-type="{{type|raw}}" data-id="{{id|raw}}" class="add addtonewbagnameBT" type="submit">{{'ADD'|trans}}</button>
+</div>
+<div class="edit_your_bag">{{'add to your existing bags'|trans}}</div>
+<ul>
+    {% for items in bag_list.data %}
+	<li>{{items.name|raw}}<span data-id="{{id|raw}}" data-type="{{type|raw}}" data-bid="{{items.id|raw}}" class="addtooldbagnameBT"><img src="{{ generateMediaURL('/media/images/add_icon.png') }}"></span></li>
+    {% endfor %}
+</ul>

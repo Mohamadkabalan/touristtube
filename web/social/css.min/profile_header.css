@@ -1,0 +1,890 @@
+.ProfileHeader{
+	width: 28px;
+	height: 28px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-right: 1px solid #1f1f1f;
+	border-bottom: 1px solid #1f1f1f;
+	background-color: #3f3f3f;
+	display: inline-block;
+	position: relative;
+}
+.ProfileHeader:hover{
+	background-color: #e3b721;
+}
+.ProfileHeader.Active{
+	background-color: #e3b721;
+}
+.ProfileHeader.selected{
+	/**same as .Active**/
+	background-color: #e3b721;
+}
+.ProfileHeaderAccount{
+	background-image: url('../images/profile_header/account.png');
+}
+.ProfileHeaderTTPage{
+	background-image: url('../images/profile_header/TTpage.png');
+}
+.ProfileHeaderNotifications{
+	background-image: url('../images/profile_header/notifications.png');
+}
+.ProfileHeaderFriends{
+	background-image: url('../images/profile_header/friends.png');
+}
+.ProfileHeaderNewsfeed{
+	background-image: url('../images/profile_header/newsfeed.png');
+}
+.ProfileHeaderPhotos{
+	background-image: url('../images/profile_header/photos.png');
+}
+.ProfileHeaderEvents{
+	background-image: url('../images/profile_header/events.png');
+}
+.ProfileHeaderEchoes{
+	background-image: url('../images/profile_header/echoes.png');
+}
+.ProfileHeaderVideos{
+	background-image: url('../images/profile_header/videos.png');
+}
+.ProfileHeaderAlbums{
+	background-image: url('../images/profile_header/albums.png');
+}
+.ProfileHeaderJournal{
+	background-image: url('../images/profile_header/journals.png');
+}
+.ProfileHeaderFavorites{
+	background-image: url('../images/profile_header/favorites.png');
+}
+.ProfileHeaderFlash{
+	background-image: url('../images/profile_header/flash.png');
+}
+.filterleft{
+	position: absolute;
+	bottom: 0px;
+	left:13px;
+}
+.filterleft ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.filterleft li{
+	float:left;
+	display:block;
+	position: relative;
+}
+/*.ProfileHeaderFriends + .PofileHeaderPopUnder{
+	display: none;
+}
+.ProfileHeaderFriends:hover + .PofileHeaderPopUnder{
+	display: block;
+}
+.ProfileHeaderFriends:hover > .PorifleFrndReqClass{
+	display: none !important;
+}
+.ProfileHeaderPhotos + .PofileHeaderPopUnder{
+	display: none;
+}
+.ProfileHeaderPhotos:hover + .PofileHeaderPopUnder{
+	display: block;
+}
+.ProfileHeaderVideos + .PofileHeaderPopUnder{
+	display: none;
+}
+.ProfileHeaderVideos:hover + .PofileHeaderPopUnder{
+	display: block;
+}
+.ProfileHeaderAlbums + .PofileHeaderPopUnder{
+	display: none;
+}
+.ProfileHeaderAlbums:hover + .PofileHeaderPopUnder{
+	display: block;
+}*/
+.ProfileHeader + .PofileHeaderPopUnder{
+	display: none;
+}
+.ProfileHeader:hover + .PofileHeaderPopUnder{
+	display: block;
+}
+/** no previous css selector so keeping the .ProfileHeaderPhotos .ProfileHeaderVideos actibe is done in JS profile_header.php*/
+.PofileHeaderPopUnder{
+	min-width: 86px;
+	position: absolute;
+	left: -29px;
+	top: 24px;
+	z-index: 10;
+}
+.PofileHeaderPopUnder:hover{
+	display: block;
+}
+.PofileHeaderPopUnderTop{
+	background-image: url('../images/profile_header/popup_top.png');
+	background-position: center top;
+	height: 6px;
+	background-repeat: no-repeat;
+}
+.PofileHeaderPopUnderBody{
+	background-color: #3f3f3f;
+	color: white;
+	font-size: 11px;
+	padding-left: 13px;
+	padding-right: 13px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+        float:left;
+    z-index: 3;
+}
+.PofileHeaderPopUnderBody a{
+	color: #fff;
+	text-decoration: none;
+	font-size: 12px;
+	height:16px;
+	margin-top:3px;
+	display:block;
+	text-transform:lowercase;
+        white-space: nowrap;
+        position:relative;
+        float:left;
+}
+.PofileHeaderPopUnderBody a:hover{
+	color: #e9c21b;
+}
+
+.PorifleFrndReq{
+	position: absolute;
+	width:18px;
+	height:24px;
+	top: 24px;
+	left: 3px;
+	margin:0;
+	padding:0;
+	background-image: url('../images/friend_request_number.png');
+	background-repeat: no-repeat;
+}
+.ProfileHeaderFriends .PorifleFrndReq div, .PorifleFrndReq .notCountVal, .ProfileHeaderNotifications .notCountVal{
+	position: absolute;
+	width:18px;
+	height:17px;
+	bottom: 1px;
+	left: 0px;
+	margin:0;
+	padding:0;
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 10px;
+	line-height:17px;
+	text-align:center;
+	overflow:hidden;
+	cursor:default;
+}
+.ProfileHeaderNotifications .notCountVal{
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.ProfileHeaderNotifications .plus{
+    color: #ffffff;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    left: 21px;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}
+.PorifleFrndReq .plus {
+    color: #ffffff;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    left: 16px;
+    position: absolute;
+    top: -2px;
+    cursor: pointer;
+}
+.PofileHeaderPopUnderFriends{
+	width: 85px;
+	position: absolute;
+	left: -29px;
+	top: 24px;
+	z-index: 10;
+}
+.PofileHeaderPopUnderTopFriends{
+	background-image: url('../images/profile_header/popup_friend_top.png');
+	background-position: center top;
+	height: 4px;
+	background-repeat: no-repeat;
+}
+.PofileHeaderPopUnderBodyFriends{
+	position:relative;
+	width:240px;
+	height:auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	z-index: 2;
+}
+#request_back1{
+	position:absolute;
+	width:100%;
+	height:100%;
+	display:block;
+	top:0;
+	left:0;
+	background-color: #3f3f3f;
+	z-index: 2;
+}
+#request_arrow{
+	position:absolute;
+	display:block;
+	width:5px;
+	height:67px;
+	top:0;
+	left:-5px;
+	background-image: url('../images/request_arrow.png');
+	background-repeat: no-repeat;
+	z-index:3;
+}
+#PofileHeaderPopUnderTopFriendsLength{
+	position:relative;
+	width:230px;
+	height:19px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#e7ba20;
+	font-weight:bold;
+	text-align:left;
+	margin:0;
+	padding:0;
+	line-height:15px;
+	margin-left:-6px;
+	margin-top:8px;
+	overflow:hidden;
+	cursor:default;
+	z-index:4;
+}
+#PofileHeaderPopUnderBodyFriendsContent{
+	position:relative;
+	width:252px;
+	max-height:216px;
+	height:auto;
+	margin:0;
+	padding:0;
+	margin-left:-6px;
+	overflow:hidden;
+	z-index:5;
+}
+#request_back{
+	position:absolute;
+	display:block;
+	background-color:#ffffff;
+	width:409px;
+	top:3px;
+	left:-149px;
+	z-index:1;
+	height:100%;
+}
+.fr_request_data{
+	position:relative;
+	width:252px;
+	height:32px;
+	margin:0;
+	padding:0;
+	margin-top:4px;
+	background-color:#000000;
+	overflow:hidden;
+}
+.fr_request_data_img{
+	position:absolute;
+	width:32px;
+	height:32px;
+	margin:0;
+	padding:0;
+	display:block;
+	overflow:hidden;
+}
+.fr_request_data_txt{
+	position:absolute;
+	width:127px;
+	height:32px;
+	margin:0;
+	padding:0;
+	left:42px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#959595;
+	text-align:left;
+	line-height:32px;
+	display:block;
+	cursor:default;
+	overflow:hidden;
+}
+a.fr_request_data_txt{
+    cursor:pointer;
+}
+a.fr_request_data_txt:hover{
+   color:#e7ba20;
+}
+.fr_request_data_but1{
+	position:absolute;
+	width:18px;
+	height:18px;
+	margin:0;
+	padding:0;
+	left:174px;
+	top:7px;
+	display:block;
+	cursor:pointer;
+	background-image: url('../images/accept-friends.png');
+	background-repeat: no-repeat;
+}
+.fr_request_data_but1:hover {
+	background-image: url('../images/accept-friends_over.png');
+	background-repeat: no-repeat;
+}
+.fr_request_data_but2{
+	position:absolute;
+	width:18px;
+	height:18px;
+	margin:0;
+	padding:0;
+	left:197px;
+	top:7px;
+	display:block;
+	cursor:pointer;
+	background-image: url('../images/ignore_friend.png');
+	background-repeat: no-repeat;
+}
+.fr_request_data_but2:hover{
+	background-image: url('../images/ignore_friend_over.png');
+	background-repeat: no-repeat;
+}
+.fr_request_data_but3{
+	position:absolute;
+	width:18px;
+	height:18px;
+	margin:0;
+	padding:0;
+	left:220px;
+	top:7px;
+	display:block;
+	cursor:pointer;
+	background-image: url('../images/profile_remove_inactive.png');
+	background-repeat: no-repeat;
+}
+.fr_request_data_but3:hover{
+	background-image: url('../images/profile_remove_active.png');
+	background-repeat: no-repeat;
+}
+
+#ProfileHeader {
+	position:relative;
+	background: #1F1F1F;
+	color:#FFF;
+	z-index:50;
+	/*margin-bottom: 52px;*/
+}
+#ProfileHeaderwhiteline {
+	position:relative;
+	margin:0;
+	width: 100%;
+	height:1px;
+	padding:0;
+	background-color:#FFFFFF;
+}
+#ProfileHeaderInternal {
+	position:relative;
+	margin:0 auto;
+	width: 1022px;
+	height:96px;
+	padding:0;
+}
+#profiletitle{
+	position:absolute;
+	bottom: 23px;
+	right: 140px;
+	max-width:270px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#FFF;
+	text-transform:uppercase;
+}
+#since{
+	position:absolute;
+	width:auto;
+	top:76px;
+	right: 140px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#f4c727;
+	font-weight:bold;
+}
+.ProfileHeaderOver, .ProfileFriendOver {
+	position:absolute;
+	top:34px;
+	left: 19px;
+	height: 23px;
+	width: 270px;
+	display:none;
+	z-index:150;
+	overflow:hidden;
+}
+.ProfileHeaderOverin {
+	position:absolute;
+	top:0;
+	right: 0;
+	height: 18px;
+	width: auto;
+	padding-left:11px;
+	padding-right:11px;
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:center;
+	line-height:18px;
+	background-color:#838383;
+	float:left;
+	text-transform:lowercase;
+}
+.icons-overtik {
+	position:absolute;
+	top:18px;
+	right: 0;
+	height: 4px;
+	width: 12px;
+	margin:0;
+	padding:0;
+	float:left;
+	background-image: url('../images/icons-overtik.png');
+	background-repeat: no-repeat;
+}
+.ProfileHeaderFilter {
+	position:absolute;
+	bottom:0px;
+	left: 19px;
+	height: 31px;
+	width: 602px;
+}
+.ProfileHeaderFilter .filterright{
+	float:right;
+	margin-top:6px;
+	margin-right:9px;
+}
+.ProfileSearch{
+	position: absolute;
+	width: 191px;
+	left: 323px;
+	background-color: #3f3f3f;
+	padding: 4px;
+	height: 20px;
+	top:-2px;
+}
+.ProfileSearch input{
+	color: #3f3f3f;
+	width: 130px;
+	height: 22px;
+	border: none;
+	font-size: 11px;
+	background-color: #ebebeb;
+	position: absolute;
+	top: 3px;
+	padding: 0px;
+	margin: 0px;
+	padding-left: 5px;
+	line-height: 22px;
+}
+.ProfileOrder{
+	position: absolute;
+	right: 4px;
+	width: 88px;
+	height: 20px;
+	background-image: url('../images/profile_header/dropdown.png');
+	background-color: #ebebeb;
+	background-repeat: no-repeat;
+	background-position: 90% center;
+	color: black;
+	font-size: 11px;
+	top: 4px;
+	cursor: pointer;
+	padding-left: 5px;
+	line-height: 20px;
+	text-transform:lowercase;
+	color:#3F3F3F;
+}
+.ProfileHeaderOrderDropdown{
+	list-style: none;
+	background-color: #c2c2c2;
+	margin: 0px;
+	padding: 0px;
+	font-size: 11px;
+	color: #3F3F3F;
+	width: 93px;
+	position: absolute;
+	top: 23px;
+	right: 3px;
+	z-index: 10;
+}
+.ProfileHeaderOrderDropdown li:first-child{
+	border-top: 1px solid black;
+}
+.ProfileHeaderOrderDropdown li{
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-transform: lowercase;
+}
+.ProfileHeaderOrderDropdown li:hover{
+	background-color: #606060;
+	color: #ffffff;
+	color: white;
+}
+.ProfileHeaderOrderDropdown li a{
+	text-decoration: none;
+	color: inherit;
+}
+.ProfileHeaderListView{
+	background-image: url('../images/profile_header/list_view.png');
+}
+.ProfileHeaderThumbView{
+	background-image: url('../images/profile_header/thumb_view.png');
+}
+.ProfileHeaderViewModes{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	top: -2px;
+	right: 21px;
+}
+.ProfileHeaderViewModes li{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+#sort-by li{
+	cursor: pointer;
+}
+.ProfileHeaderAlbumView{
+	position: absolute;
+	height: 27px;
+    left: 274px;
+	width: 310px;
+	top:-2px;
+}
+#tubefriendbuttonlist a{
+	text-decoration:none;	
+}
+#searchfriendcontainer{
+	background-color: #FFFFFF;
+    display: block;
+    height: 78px;
+    margin-left: 16px;
+    margin-top: 67px;
+    position: relative;
+    width: 100%;
+}
+#searchfriendinput{
+	position:relative;
+	width:244px;
+	height:20px;
+	margin:0;
+	padding:0;
+	display:block;
+	float:left;
+	background-image:url(../images/img/srchinput.jpg);
+	background-repeat:no-repeat;
+	line-height:17px;
+}
+#srchfriendtxt{
+	position:relative;
+	width:236px;
+	/*height:20px;
+	line-height:20px;*/
+	margin:0;
+	border:none;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:left;
+	font-size:11px;
+	color:#000000;
+	top:0;
+	background:none;
+	margin-bottom:2px !important;
+}
+#searchfriendbut{
+	position:relative;
+	width:22px;
+	height:22px;
+	margin:0;
+	padding:0;
+	margin-left:3px;
+	margin-top:-2px;
+	background-image:url(../images/profile-friends-loop.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+	display:block;
+	float:left;
+}
+#searchfriendbutalphabetcontainer{
+	display: block;
+    float: left;
+    height: 20px;
+    left: 275px;
+    margin: 0 0 0 6px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 51px;
+	z-index: 10;
+}
+#searchfriendbutalphabet{
+	position:absolute;
+	width:51px;
+	height:20px;
+	margin:0;
+	padding:0;
+	display:block;
+	float:left;
+	background-image:url(../images/profile-friends-alphabet.jpg);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+#alphabetcnt{
+	position:absolute;
+	width:210px;
+	height:100px;
+	margin:0;
+	padding:0;
+	left:51px;
+	display:block;
+	float:left;
+	border:3px solid #000;
+	background-color:#2a2a2a;
+}
+#alphabetcnt ul{
+	position:relative;
+	width:205px;
+	height:90px;
+	margin:0;
+	padding:0;
+	margin-top:2px;
+	margin-left:2px;
+	display:block;
+	list-style:none;
+}
+#alphabetcnt ul li{
+	position:relative;
+	width:18px;
+	height:18px;
+	display:block;
+	float:left;	
+	margin:0;
+	padding:0;
+	margin-left:10px;
+	margin-top:5px;
+	list-style:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#b4b4b4;
+	font-weight:bold;
+	text-align:center;
+	line-height:18px;
+	cursor:pointer;
+	text-transform:uppercase;
+}
+#alphabetcnt ul li.active{
+	color:#ffffff;
+	background-image:url(../images/profile-friends-alph-bk.png);
+	background-repeat:no-repeat;
+}
+#alphabetcnt ul li.inactive{
+	color:#5f5f5f;
+	cursor:default;
+}
+#alphabetcnt ul li.activeall{
+	text-transform:lowercase;	
+	font-size:12px;
+	color:#ffffff;
+}
+#alphabetcnt ul li.selectable:hover{
+	color:#ffffff;
+	background-image:url(../images/profile-friends-alph-bk.png);
+	background-repeat:no-repeat;	
+}
+#searchaddfriendinput{
+	position:absolute;
+	width:191px;
+	height:20px;
+	line-height:17px;
+	margin:0;
+	padding:0;
+	left:0;
+	top:4px;
+	background-image:url('../images/profile-friends-search.jpg');
+	background-repeat:no-repeat;		
+}
+#profile_search_string.profileMediaSearchString{
+	position: absolute;
+	width: 90px;
+	height:20px;
+	line-height:20px;
+	margin:0;
+	border:none;
+	text-align:left;
+	font-size:11px;
+	color:#3F3F3F;
+	background-color: #eaeaea;
+	top: 4px;
+}
+#profile_search_string.profileFreindSearchString{
+	position:relative;
+	width:156px;
+	/*height:20px;
+	line-height:20px;*/
+	margin:0;
+	border:none;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:left;
+	font-size:11px;
+	color:#000000;
+	top:-0;
+	background:none;
+}
+
+#profile_search_string{
+}
+
+#friendPagecount{
+	position:absolute;
+	width:59px;
+	height:29px;
+	display:block;
+	right:0;
+	top:0;
+	margin:0;
+	padding:0;
+}
+#friendPagecountnext{
+	position:absolute;
+	width:29px;
+	height:29px;
+	display:block;
+	right:0px;
+	margin:0;
+	padding:0;
+	background:url(../images/profile-friends-nxt.jpg) no-repeat;
+	cursor:pointer;
+}
+#friendPagecountnext.inactive{
+	background:url(../images/profile-friends-nxt1.jpg) no-repeat;
+	cursor:default;
+}
+#friendPagecountprev{
+	position:absolute;
+	width:29px;
+	height:29px;
+	display:block;
+	right:30px;
+	margin:0;
+	padding:0;
+	background:url(../images/profile-friends-prev.jpg) no-repeat;
+	cursor:pointer;
+}
+#friendPagecountprev.inactive{
+	background:url(../images/profile-friends-prev1.jpg) no-repeat;
+	cursor:default;
+}
+.ProfileSearchButton1{
+	position: absolute;
+	right: 18px;
+	top: 0px;
+	width: 24px;
+	height: 28px;
+	cursor: pointer;
+}
+#searchcontainer_album_view{
+	position:absolute;
+	width:256px;
+	height:20px;
+	margin:0;
+	padding:4px;
+	left: 380px;
+	top:63px;
+	display:block;
+	float:left;
+	background-color:#3f3f3f;
+}
+#searchcontainer_album_view #searchinput{
+	position:relative;
+	width:136px;
+	height:20px;
+	margin:0;
+	padding:0;
+	display:block;
+	float:left;
+	background-image:url(../images/img/srchinput.jpg);
+	background-repeat:no-repeat;
+}
+#searchcontainer_album_view #srchtxt{
+	position:relative;
+	width:128px;
+	height:20px;
+	line-height:20px;
+	margin:0;
+	border:none;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:left;
+	font-size:11px;
+	color:#3f3f3f;
+	top:-2px;
+	background:none;
+}
+#searchcontainer_album_view #sortcmb{
+	position:relative;
+	width:93px;
+	height:20px;
+	margin:0;
+	padding:0;
+	margin-left:3px;
+	display:block;
+	float:left;
+}
+#searchcontainer_album_view #searchbut{
+	position:relative;
+	width:20px;
+	height:20px;
+	margin:0;
+	padding:0;
+	margin-left:4px;
+	background-image:url(../images/album-loop.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+	display:block;
+	float:left;
+}
+#newsfeed_search_button{
+	position: absolute;
+	width:20px;
+	height:20px;
+	margin:0;
+	padding:0;
+	margin-left:4px;
+	left: 466px;
+	top: 1px;
+	background-image:url(../images/album-loop.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+	display:block;
+}
+#left_container_newsfeed{
+    float: left;
+    position: relative;
+    width: 651px;
+    display: block;
+    height: auto;
+}
+.hideMe{
+    display:none !important;
+}

@@ -1,0 +1,53 @@
+<div class="row margin_bottom_28 small_margin">
+    <div class="col-xs-12 small_padding"><div class="border-top-2"></div></div>
+    <div class="col-md-4 col-sm-12 img_container small_padding margin_top_10">
+            <img alt="{{'hotel_img_small'|trans}}" src="{{ getDefaultHotelImage({'dupePoolId': travel.dupePoolId, 'location': travel.location, 'filename': travel.filename}) }}">
+    </div>
+    <div class="col-lg-7 col-md-6 col-sm-10 col-xs-9 small_padding">
+        <div class="row small_margin custom_form">
+            <div class="col-sm-8 col-xs-12 text_container small_padding margin_top_10">
+                <p class="hotel_name">{{travel.name|raw}}<span><img alt="hotel stars" src="{{ generateMediaURL('/media/images/nrt_rating3.png') }}"></span></p>
+                <p class="booking_number">{{'Booking number'|trans}}:<span>{{travel.reservationId|raw}}</span></p>
+                <div class="clearfix"></div>
+                {#<div class="form-group">
+                    <select class="form-control">
+                            <option>{{'Select a travel type'|trans}}</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                    </select>
+                </div> #}
+                <div class="clearfix"></div>
+                <p class="booking_price">{{travel.currency|raw}} {{travel.amount|raw|number_format(2, '.', ',')}}</p>
+                <div class="clearfix"></div>
+                <div class="margin_top_10 req_by_at">
+                    <div>{{'Requested By:'|trans}} {{travel.userName|raw}}</div>
+                    <div>{{'Requested At:'|trans}} {{travel.transactionDate|raw}}</div>
+                </div>
+                <div class="links_container">
+                    <a type="button"  class="hotel_details" data-toggle="modal1" data-target="#myModal1" onclick="detailPopup('{{ generateLangRoute(LanguageGet, '_corporate_hotel_reservation_request_details', {'reservationId':travel.reservationId})}}')">{{'View details'|trans}}</a> | 
+                    <a href="{{ generateLangRoute(LanguageGet,'_corporate_hotel_search', {'reservationId':travel.reservationId}) }}" class="book_again">{{'Click here to book again'|trans}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 small_padding">
+        <div class="row">
+            <div class="col-xs-12 margin_bottom_5">
+                <div class="checkin_checkout_container">
+                    <p class="in_out">{{'Check-in'|trans}}</p>
+                    <p class="date">{{travel.fromdate|date('d')}}</p>
+                    <p class="month_day">{{travel.fromdate|date('M Y l')}}</p>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="checkin_checkout_container">
+                    <p class="in_out">{{'Check-out'|trans}}</p>
+                    <p class="date">{{travel.todate|date('d')}}</p>
+                    <p class="month_day">{{travel.todate|date('M Y l')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 small_padding"><div class="border-top-2"></div></div>
+</div>

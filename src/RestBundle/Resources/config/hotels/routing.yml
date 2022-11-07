@@ -1,0 +1,194 @@
+# Common Routes
+_rest_hotels_search:
+    path:      "/api/hotels/search"
+    defaults: { _controller: RestBundle:hotels\Hotels:search }
+    requirements:
+        methods: GET
+
+_rest_hotels_prebook:
+    path:      "/api/hotels/prebook/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:completePricingInfo, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_booking_cancellation:
+    path:      "/api/hotels/cancel"
+    defaults: { _controller: RestBundle:hotels\Hotels:cancel, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_divisions:
+    path:      "/api/hotels/divisions/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:divisions, hotelId: "" }
+    requirements:
+        methods: GET
+
+# Web Routes
+_rest_hotels_list:
+    path:      "/api/hotels"
+    defaults: { _controller: RestBundle:hotels\Hotels:list, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_offers:
+    path:      "/api/hotels/offers/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:offers, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+
+_rest_hotels_book:
+    path:      "/api/hotels/book/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:book, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_reservation:
+    path:      "/api/hotels/reservation"
+    defaults: { _controller: RestBundle:hotels\Hotels:reservation, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+
+_rest_hotels_booking_details:
+    path:      "/api/hotels/booking/{reference}"
+    defaults: { _controller: RestBundle:hotels\Hotels:bookingDetails, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", reference: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        reference: ".*"
+        methods: GET
+
+# Corporate Routes
+_rest_hotels_corpo_list:
+    path:      "/api/corporate/hotels"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:list, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_corpo_offers:
+    path:      "/api/corporate/hotels/offers/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:offers, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+
+_rest_hotels_corpo_book:
+    path:      "/api/corporate/hotels/book/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:book, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_corpo_book_finalize:
+    path:      "/api/corporate/hotels/book-finalize/{reservationId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:hotelProceedPayment, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", reservationId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+
+_rest_hotels_corpo_reservation:
+    path:      "/api/corporate/hotels/reservation"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:reservation, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+
+_rest_hotels_corpo_reservation_details:
+    path:      "/api/corporate/hotels/reservation-details/{reservationId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:viewReservationDetails, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", reservationId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_reservation_approve:
+    path:      "/api/corporate/hotels/reservation/approve/{reservationId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:checkReservationAvailability, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", reservationId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+# Payment Routes
+_rest_hotels_payment_success:
+    path:      "/api/hotels/payment-success"
+    defaults: { _controller: RestBundle:hotels\Hotels:paymentSuccess, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+
+_rest_hotels_payment_failure:
+    path:      "/api/hotels/payment-failure"
+    defaults: { _controller: RestBundle:hotels\Hotels:paymentFailed, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: GET
+        
+# HRS Routes
+_rest_hotels_list_v2:
+    path:      "/api/v2/hotels"
+    defaults: { _controller: RestBundle:hotels\HRS:list, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_offers_v2:
+    path:      "/api/v2/hotels/offers/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\HRS:offers, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+  
+_rest_hotels_reservation_v2:
+    path:      "/api/v2/hotels/reservation"
+    defaults: { _controller: RestBundle:hotels\HRS:reservation, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_booking_details_v2:
+    path:      "/api/v2/hotels/booking/{reference}"
+    defaults: { _controller: RestBundle:hotels\HRS:bookingDetails, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", reference: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        reference: ".*"
+        methods: GET
+        
+_rest_hotels_booking_cancellation_v2:
+    path:      "/api/v2/hotels/cancel"
+    defaults: { _controller: RestBundle:hotels\HRS:cancel, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST
+        
+_rest_hotels_bookings_v2:
+    path:      "/api/v2/hotels/bookings"
+    defaults: { _controller: RestBundle:hotels\HRS:getUserBookings, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        methods: POST

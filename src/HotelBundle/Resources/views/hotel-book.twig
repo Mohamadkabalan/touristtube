@@ -1,0 +1,148 @@
+{% extends 'baseFinal.html.twig' %}
+{% block title %}
+    {{ 'Hotel Book'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    {% if error is defined and error is not empty %}
+        <section class="container booking-details_container">
+            <div class="row margin_top_30">
+                <div class="col-xs-12">
+                    <div class="row margin_top_15">
+                        <div class="col-xs-12">
+                            <p class="font-22 black font-bold">{{ error|raw }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {% if refererURL is defined and refererURL is not empty %}
+                                <a href="{{ refererURL }}">
+                                    <button class="btn view_booking">{{'Refresh offers'|trans}}</button>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% else %}
+
+        {% set hotelReservationUrl = '' %}
+        {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+            {% set hotelReservationUrl = generateLangRoute(LanguageGet,'_hotel_reservation_tt') %}
+        {% else %}
+            {% set hotelReservationUrl = generateLangRoute(LanguageGet,'_hotel_reservation') %}
+        {% endif %}
+
+        <form id="form_hotel_book" method="post" action="{{ hotelReservationUrl }}">
+            <section class="container hotel_book_container" id ="section1">
+                <div class="row margin_top_30">
+                    <div class="col-sm-9 col-xs-12">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Hotels: Review and Book'|trans}}</h1>
+                    </div>
+                    <div class="col-sm-3 col-xs-12 currencyselectbox_top">
+                        <div class="currency_top_but">
+                            <p class="curtext_hp"><span>{{currency_symbol.symbol|raw}}</span> {{selected_currency|raw}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin_top_30">
+                    {% include '@Hotel/hotel-book-details.twig' %}
+                    <div class="col-md-9 col-xs-12 right_panel">
+
+                        {% include '@Hotel/hotel-book-room.twig' %}
+                        {% include '@Hotel/hotel-book-orderer.twig' %}
+
+                        <div class="row margin_top_20">
+                            <div class="col-xs-12">
+                                {% if isUserLoggedIn != 1 %}
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <p class="color_blue font_21 margin_top_20">{{'Create a TouristTube Account (optional)'|trans}}</p>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <p class="common_txt_container margin_top_20">{{'Enter a password to create an account using the email address above.'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row new_small_margin hotel_book_new_inputconatiner">
+                                        <div class="col-md-4 col-sm-6 col-xs-12 new_smal_padding">
+                                            <input class="hotel_book_input formControlYourPassword" data-alert="Your password" id="YourPassword" name="pass" type="password" value="" placeholder="{{'Enter your password'|trans}}"/>
+                                        </div>
+                                        <div class="col-md-8 col-sm-6 col-xs-12 new_smal_padding">
+                                            <p class="password_hint_txt">{{'(should be at least 8 characters long and must be a combination of letters and numbers.)'|trans}}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                                    <input type="hidden" name="refererURL" value="{{refererURL}}">
+                                    <input type="hidden" name="reference" value="{{reference}}">
+                                    <input type="hidden" name="session" value="{{session|json_encode}}">
+                                    <input type="hidden" name="gds" value="{{gds}}">
+                                    <input type="hidden" name="groupSell" value="{{groupSell}}">
+                                    <input type="hidden" name="prepaidIndicator" value="{{prepaidIndicator}}">
+                                    <input type="hidden" name="fromDate" value="{{fromDate}}">
+                                    <input type="hidden" name="toDate" value="{{toDate}}">
+                                    <input type="hidden" name="hotelId" value="{{hotelDetails.hotelId}}">
+                                    <input type="hidden" name="chainCode" value="{{chainCode}}">
+                                    <input type="hidden" name="hotelCityCode" value="{{hotelCityCode}}">
+                                    <input type="hidden" name="hotelCode" value="{{hotelCode}}">
+                                    <input type="hidden" name="offersSelected" value="{{offersSelected|json_encode()}}">
+                                    <input type="hidden" name="reservationDetails" value="{{reservationDetails|json_encode()}}">
+                                    <input type="hidden" name="availRequestSegment" value="{{availRequestSegment|json_encode()}}">
+
+                                    {% if prepaidIndicator and enableThirdPartyPayment %}
+                                        <script type="text/javascript">
+					    var ccRequired = false;
+					    var currentMonthYear = [{{ccValidityInfo.currentMonth}}, {{ccValidityInfo.currentYear|slice(2,2)}}];
+                                        </script>
+
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="row margin_top_25 hotel_payment_container">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 label_terms_cond_agree termshldr">
+                                                        <label for="agree_terms" id="terms_note">
+                                                            <input name="terms" value="1" type="checkbox" id="agree_terms">
+                                                            {{'I agree with the '|trans}} <span><a target="_blank" href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'Terms and Conditions'|trans}}" class="termsncond">{{'terms and conditions'|trans}} </a></span>{{'and the '|trans}} <span><a target="_blank" href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'Privacy Policy'|trans}}" class="termsncond">{{'privacy policy'|trans}}</a></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 margin_top_30">
+                                                <button class="btn btn_payment padding_top_4 comlete_hotel_booking" type="submit">
+                                                    <p class="price_style_txt price-convert" data-price="{{reservationDetails.grandTotalPriceInclusiveCustomerAmount}}">
+                                                        <span>{{'Reserve for'|trans}} </span>
+                                                        <span class="price-after-unit-style currency-convert-text">{{reservationDetails.grandTotalPriceInclusiveCustomerCurrency}} </span>
+                                                        <span class="price-after-price-style price-convert-text">{{reservationDetails.grandTotalPriceInclusiveCustomerAmount|round(2, 'floor')|number_format(2)}}</span>
+                                                    </p>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-xs-12 margin_top_30">
+                                                <button id="btn_continue" class="btn comlete_hotel_booking" type="button">{{'Complete Booking'|trans}}</button>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="row">
+                                        <div class="col-xs-12 margin_top_30">
+                                            <button id="btn_continue" class="btn comlete_hotel_booking" type="button">{{'Complete Booking'|trans}}</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% if (pageSrc == HOTEL_CONSTANTS.page_src.hotels and prepaidIndicator == 0) or pageSrc == HOTEL_CONSTANTS.page_src.hrs %}
+                <section class="container hotel_payment_container" id ="section2" style="display:none;">
+                    {% include '@Hotel/hotel-book-card.twig' %}
+                </section>
+            {% endif %}
+        </form>
+    {% endif %}
+{% endblock %}

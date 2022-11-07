@@ -1,0 +1,32 @@
+TTBundle\Entity\CmsChannelCategory:
+    type: entity
+    table: cms_channel_category
+    repositoryClass: TTBundle\Repository\ChannelRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

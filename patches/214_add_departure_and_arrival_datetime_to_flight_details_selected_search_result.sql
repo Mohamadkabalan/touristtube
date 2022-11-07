@@ -1,0 +1,1 @@
+ALTER TABLE `flight_details_selected_search_result` ADD `departure_datetime` DATETIME NULL DEFAULT NULL AFTER `currency`, ADD `arrival_datetime` DATETIME NULL DEFAULT NULL AFTER `departure_datetime`;

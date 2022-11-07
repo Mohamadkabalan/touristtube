@@ -1,0 +1,360 @@
+TTBundle\Entity\DiscoverHotels:
+    type: entity
+    table: discover_hotels
+    repositoryClass: TTBundle\Repository\ReviewsRepository
+    indexes:
+        country_sub_id:
+            columns:
+                - country_sub_id
+        hotel_name:
+            columns:
+                - hotelName
+        chain_id:
+            columns:
+                - chain_id
+        property_type_id:
+            columns:
+                - propertyType
+        city_id:
+            columns:
+                - city_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        hotelname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: hotelName
+        countrySubId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: country_sub_id
+        address:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        addressShort:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: address_short
+        location:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        url:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        phone:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        stars:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        starSelfRated:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: star_self_rated
+        rooms:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        localCurrencyCode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: local_currency_code
+        price:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        priceFrom:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: price_from
+        checkIn:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: check_in
+        checkOut:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: check_out
+        propertytype:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: propertyType
+        chainId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: chain_id
+        rating:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        ratingOverallText:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_overall_text
+        ratingCleanliness:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_cleanliness
+        ratingDining:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_dining
+        ratingFacilities:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_facilities
+        ratingLocation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_location
+        ratingRooms:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_rooms
+        ratingService:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_service
+        ratingPoints:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: rating_points
+        reviewsCount:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: reviews_count
+        reviewsSummaryPositive:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: reviews_summary_positive
+        reviewsSummaryNegative:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: reviews_summary_negative
+        description:
+            type: text
+            nullable: false
+            length: 16777215
+            options:
+                fixed: false
+        faq:
+            type: text
+            nullable: false
+            length: 16777215
+            options:
+                fixed: false
+            column: FAQ
+        imagesCount:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: images_count
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        about:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        generalFacilities:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: general_facilities
+        services:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        zoomOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: zoom_order
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        cityname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: cityName
+        countrycode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: countryCode
+        statename:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: stateName
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        avgRating:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: avg_rating
+        nbVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_votes
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+    lifecycleCallbacks: {  }

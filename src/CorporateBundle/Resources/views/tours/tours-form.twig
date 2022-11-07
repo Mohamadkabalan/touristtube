@@ -1,0 +1,30 @@
+<form id="dealsform" class="col-lg-6 col-md-9 col-sm-12 col-xs-12 nopad" name="dealsform" method="post" action="{{ (dealSearchFormAction is defined)  ? dealSearchFormAction : generateLangRoute(LanguageGet,'_corporate_dealSearch') }}" autocomplete="off">
+    <div class="col-xs-12 nopad">
+	<div class="col-xs-12 marginbut10_corfl newpad">
+	    <div id="deal_search_container" class="deparrival_corpflight">
+		<input id="deal_search" name="city" value="{{ (city is defined)  ? city }}" placeholder="{{'Enter a destination for your holiday'|trans}}" class="input_corpfl_style deparrival_input_corpfl" type="text"  data-id="0" data-city="" data-state="" data-contryc="" data-type="">
+		<input id="cityName" class="inputData" name="cityName" value="{{ (city is defined)  ? city }}" type="hidden">
+		<input id="dealId" class="inputData" name="dealId" value="" type="hidden">
+                <input id="cityId" class="inputData" name="cityId" value="{{ (cityId is defined)  ? cityId }}" type="hidden">
+		<input id="attractionName" class="inputData" name="attractionName" value="" type="hidden">
+	    </div>
+	</div>
+    </div>
+    <div id="datesDealsContainer" class="col-xs-12 nopad">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 newpad">
+	    <div id="fromContainerD" class="deparrival_corphotel">
+		<input type="text" id="startDate" name="startDate" placeholder="{{'dd/mm/yy'|trans}}" value="{{ (startDate is defined)  ? startDate }}" class="input_corpfl_style">
+	    </div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 newpad">
+	    <div id="toContainerD" class="deparrival_corphotel">
+		<input id="endDate" type="text" name="endDate" placeholder="{{'dd/mm/yy'|trans}}" value="{{ (endDate is defined)  ? endDate }}" class="input_corpfl_style">
+	    </div>
+	</div>
+    </div>
+    <div class="col-xs-12 nopad text-allign-center">
+	<input id="webgeo_city" type="hidden" value="{{ (webgeoCityId is defined)  ? webgeoCityId }}" name="webgeo_city">
+	<input id="type" type="hidden" value="all_types" name="types">
+	<button name="search" type="submit" class="submitcororateflight"></button>
+    </div>
+</form>

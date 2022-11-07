@@ -1,0 +1,50 @@
+<footer class="{% if userIsLogged == 1 %}marginbottom50{% endif %}">
+    <div class="container">
+        <div class="footer_row">
+          <div class="footer_logo"><a href="{{ logo_link|raw }}"> <img src="{{ 'media/images/Logo.png'|link }}" alt="touristtube logo"></a></div>
+            <ul>
+                <li><a href="{{ things_to_do_link|raw }}" title="{{ 'Things To Do'|lang }}">{{ 'Things To Do'|lang }} </a></li>
+                <li><a href="{{ discover_link|raw }}" title="{{ 'Discover'|lang }}">{{ 'Discover'|lang }}</a></li>
+                <li><a href="{{ logo_link|raw }}" title="{{ 'Plan your trip'|lang }}">{{ 'Plan your trip'|lang }} </a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ channels_link|raw }}" title="{{ 'tourist channels'|lang }}">{{ 'tourist channels'|lang }}</a></li>
+                <li><a href="{{ live_link|raw }}" title="{{ 'Tourist Live'|lang }}">{{ 'Tourist Live'|lang }} </a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ support_link|raw }}" title="{{ 'support'|lang }}">{{ 'support'|lang }} </a></li>
+                <li><a href="{{ help_link|raw }}" title="{{ 'help'|lang }}">{{ 'help'|lang }}</a></li>
+                <li><a href="{{ faq_link|raw }}" title="{{ 'faq'|lang }}">{{ 'faq'|lang }}</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ review_link|raw }}" title="{{ 'review & rate'|lang }}">{{ 'review & rate'|lang }} </a></li>
+                <li><a href="http://blog.touristtube.com/" title="{{ 'traveler blog'|lang }}"> {{ 'traveler blog'|lang }}</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ aboutUs_link|raw }}" title="{{ 'about us'|lang }}">{{ 'about us'|lang }} </a></li>
+                <li><a href="{{ contactUs_link|raw }}" title="{{ 'contact us'|lang }}"> {{ 'contact us'|lang }} </a></li>
+                <li><a href="">{{ 'follow us on'|lang }} </a></li>
+                <li class="ftr-social"><a rel="nofollow" href="https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts" target="_blank" class="ftr_social fb_icon" title="facebook">facebook</a></li>
+                <li class="ftr-social"><a rel="nofollow" href="https://twitter.com/TouristTube" target="_blank" title="twitter"  class="ftr_social tw_icon">twitter</a></li>
+                <li class="ftr-social"><a rel="nofollow" href="https://plus.google.com/u/0/+touristtubepage/posts"  target="_blank"  class="ftr_social gp_icon" title="google+">google+</a></li>
+                <li class="ftr-social"><a rel="nofollow" href="https://www.pinterest.com/touristtube/"  target="_blank" class="ftr_social pt_icon" title="pinterest">pinterest</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copy">
+        <div class="container">
+            <div class="footer_row">
+                <p class="copyright">2015 ® {{ 'Copyright Tourist Tube all rights reserved.'|lang }}</p>
+                <div class="terms_box">
+                    <ul>
+                        <li><a href="{{ privacy_link|raw }}" title="{{ 'privacy policy'|lang }}">{{ 'privacy policy'|lang }} </a></li>
+                        <li><a href="{{ terms_link|raw }}" title="{{ 'terms & conditions'|lang }}"> {{ 'terms & conditions'|lang }} </a></li>
+                        <li><a href="{{ disclaimer_link|raw }}" title="{{ 'disclaimer'|lang }}"> {{ 'disclaimer'|lang }} </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>           
+</body>
+</html>

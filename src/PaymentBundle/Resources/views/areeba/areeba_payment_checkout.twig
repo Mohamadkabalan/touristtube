@@ -1,0 +1,201 @@
+{% extends ((isCorpoSite == false) ? 'baseFinal.html.twig' : 'basecorporate.html.twig') %}
+{% block title %}
+    {{ 'Payment'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/areeba_checkout.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}   
+    {% if isCorpoSite == true %}
+	<script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/loading-overlay/gasparesganga/2.1.5/loadingoverlay.min.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/common/tt/js/utils/TTUtils.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/common/tt/js/overlay/TTOverlay.js")|raw }}"></script>
+    {% endif %}
+
+    {% if error is not defined %}
+	<script  type="text/javascript">
+	    var currency = "{{payment.currency}}";
+	    $(document).ready(function () {
+		preventBack();
+		$("#btn_continue").show();
+
+		var toCurrency = $('.currency-item.selected').attr('currency-code-data');
+		if (toCurrency !== currency) {
+		    changeSiteCurrency(currency, toCurrency, '.price .price-convert');
+		}
+	    });
+
+	    function payNow() {
+		if (typeof Checkout === "undefined") {
+		    showPaymentsOverlay();
+		}
+		var checkExist = setInterval(function () {
+		    if (typeof Checkout !== "undefined") {
+			hidePaymentsOverlay();
+			Checkout.showLightbox();
+			clearInterval(checkExist);
+		    }
+		}, 100); // check every 100ms
+	    }
+
+	    function showPaymentsOverlay(eltId) {
+		eltId = (eltId) ? eltId : null;
+		window.paymentsOverlay = new TTOverlay(eltId);
+		window.paymentsOverlay.show();
+	    }
+
+	    function hidePaymentsOverlay() {
+		if (window.paymentsOverlay) {
+		    window.paymentsOverlay.hide();
+		}
+	    }
+
+	    function showMsg(msg) {
+		showErrorMsg(msg);
+		$("#message").html(msg);
+		$("#message").show();
+	    }
+
+	    function preventBack() {
+		window.history.forward();
+	    }
+	</script>
+	<script type="text/javascript" src="{{gatewayCheckoutURL}}"
+		data-error="errorCallback"
+		data-cancel="cancelCallback"
+		data-complete="completeCallBack">
+	</script>
+	<script type="text/javascript">
+	    var orderId = "{{orderId}}";
+	    var sessionId = "{{sessionId}}";
+	    var sessionVersion = "{{sessionVersion}}";
+	    var successIndicator = "{{successIndicator}}";
+	    var transactionReference = "{{transactionReference}}";
+
+	    function errorCallback(error) {
+		//console.log(error);
+		if (error.explanation === "Form Session not found or expired.") {
+		    showMsg("Session expired. Reload page to continue payment.");
+		    $("#btn_continue").attr("disabled", "disabled");
+		} else {
+		    showMsg(error.cause+": "+error.explanation);
+		}
+	    }
+
+	    function cancelCallback() {
+		// Reload the page to generate a new session ID - the old one is out of date as soon as the lightbox is invoked
+		showMsg("Payment cancelled. Reloading page to refresh session.");
+		showPaymentsOverlay();
+		window.location.reload(true);
+	    }
+
+	    function getPageState() {
+		return {
+		    orderId: orderId,
+		    sessionId: sessionId,
+		    sessionVersion: sessionVersion,
+		    successIndicator: successIndicator,
+		    transactionReference: transactionReference
+		};
+		return;
+	    }
+
+	    // This handles the response from Hosted Checkout and redirects to the appropriate endpoint
+	    function completeCallBack(resultIndicator) {
+		showPaymentsOverlay();
+
+		var data = getPageState();
+		data.resultIndicator = resultIndicator;
+
+		var urlParams = $.param(data);
+		var url = "{{callbackUrl}}" + "?" + urlParams;
+
+		window.location = url;
+	    }
+
+	    Checkout.configure({
+		session: {
+		    id: sessionId,
+		    version: sessionVersion
+		},
+		merchant: "{{merchant_id}}",
+		order: {
+		    amount: function () {
+			return parseInt("{{payment.amount}}");
+		    },
+		    currency: "{{payment.currency}}",
+		    description: "{{ description }}",
+		    id: "{{payment.uuid}}",
+		    certainty: "FINAL"
+		},
+		interaction: {
+		    merchant: {
+			name: "{{merchant_name}}",
+			email: "{{merchant_email}}",
+			phone: "{{merchant_phone}}",
+			logo: "{{merchant_logo}}"
+		    },
+		    locale: 'en_US',
+		    theme: 'default',
+		    displayControl: {
+			billingAddress: 'HIDE',
+			customerEmail: 'HIDE',
+			orderSummary: 'SHOW',
+			shipping: 'HIDE'
+		    }
+		}
+	    });
+	</script>
+    {% else %}
+	<script  type="text/javascript">
+	    var attemptCount = "{{attemptCount}}";
+	    var moduleLandingPage = "{{moduleLandingPage}}";
+	    var areebaPaymentAttempts = "{{paymentAttempts}}";
+	    $(document).ready(function () {
+		if (attemptCount >= areebaPaymentAttempts  && moduleLandingPage !== '') {
+		    setTimeout(function() {
+			window.location = moduleLandingPage;
+		    }, 500);
+		}
+	    });
+	</script>	    
+    {% endif %}
+{% endblock %}
+{% block body %}
+    <div class="container containerFirstAll">
+
+	{% if payment.type == 'flights' %}
+	    {{ include('@Flight/flight/flight-steps-bar.twig', { 'step': 4 }) }}
+	{% endif %}
+
+	<div id="message" class="error" {% if error is not defined%}style="display:none;"{% endif %}>{% if error is defined and error is not empty %}{{ error }}{% endif %}</div>
+	<section class="order-info">
+	    <div class="h-seperator"></div>
+	    <ul class="items">
+		<span>
+		    <i class="icon icon-bag"></i>
+		    <label class="lead" for="">{{'Your Order'|trans}}</label>
+		</span>
+		<li>{{payment.type|capitalize}}</li>
+		<li>{{description}}</li>
+	    </ul>
+	    <ul>
+		<li>
+		    <div class="v-seperator"></div>
+		</li>
+	    </ul>
+	    <ul class="price">
+		<li class="price-convert" data-price="{{payment.amount}}">
+		    <span>
+			<i class="icon icon-tag"></i>
+			<label class="lead" for="">{{'price'|trans}}</label>
+		    </span>
+		    <span class="curreny currency-convert-text">{{payment.currency}}</span>
+		    <span class="price-convert-text"> {{payment.amount|number_format(2, '.', ',')}}</span>
+		</li>
+	    </ul>
+	    <button class="btn btn-primary actions continue" id="btn_continue" type="button" style="display:none;" onclick="payNow();" >{{ 'Pay Now' | trans }}</button>
+	    <div><img style="margin-top:20px;" class="" src="{{ generateMediaURL('/media/images/payment/powered_by_areeba.png') }}" alt="{{ 'Powered by Areeba'|trans }}" /></div>
+	</section>
+    </div>
+{% endblock %}

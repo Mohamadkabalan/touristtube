@@ -1,0 +1,83 @@
+PaymentBundle\Entity\PaymentInfo:
+    type: entity
+    table: payment_info
+    repositoryClass: PaymentBundle\Repository\PaymentInfoRepository
+    indexes:
+        payment_id:
+            columns:
+                - payment_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        amount: 
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: amount
+        currency:
+            type: string
+            nullable: false
+            length: 10
+            column: currency
+        customerName:
+            type: string
+            nullable: false
+            length: 100
+            column: customer_name
+        customerEmail:
+            type: string
+            nullable: false
+            length: 50
+            column: customer_email
+        customerPhone:
+            type: string
+            nullable: false
+            length: 20
+            column: customer_phone
+        last4Digits:
+            type: string
+            nullable: true
+            length: 4
+            column: last_4_digits
+        first4Digits:
+            type: string
+            nullable: true
+            length: 4
+            column: first_4_digits
+        cardType:
+            type: string
+            nullable: false
+            length: 20
+            column: card_type
+        paymentDate:
+            type: string
+            length: 50
+            nullable: false
+            column: payment_date
+        secureSign:
+            type: string
+            nullable: true
+            column: secure_sign
+        paymentId:
+            type: string
+            length: 36
+            nullable: false
+            column: payment_id
+        responseCode:
+            type: string
+            length: 20
+            nullable: false
+            column: response_code
+        status:
+            type: integer
+            length: 5
+            nullable: false
+            column: status

@@ -1,0 +1,293 @@
+{% set booking_steps=0 %}
+{% if booking_steps==1 %}
+    <div class="col-xs-12">
+        <div class="col-xs-12 nopad">
+            <h2 class="makeabokk_bst">{{'Make a booking'|trans}}</h2>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 firststep activestep ">
+                <div class="bullet">
+                    <p>1</p>
+                </div>
+                <p class="number-step-text">{{'Choose your hotel'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 sndstep ">
+                <div class="bullet">
+                    <p>2</p>
+                </div>
+                <p class="number-step-text">{{'Choose your room'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 thirdstep">
+                <div class="bullet">
+                    <p>3</p>
+                </div>
+                <p class="number-step-text">{{'Choose your flight'|trans}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-12">
+            <p class="startchosshotel_bst">{{'Start by choosing your hotel'|trans}}</p>
+            <p class="choosehotelsmaltxt_bts">{{'The trip prices shown include Flight + Hotel, taxes and fees, but do not include baggage fees or other fees charged direcly by the airline for the included fight'|trans}}</p>
+        </div>
+        <div class="col-xs-12">
+            <div class="bordergreyallw_bts"></div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-12 nopad">
+                <a href="#" class="bluemenulinktext_bts">{{'home'|trans}}</a>
+                <p class="bluemenulinktextspan_bts">
+                    <span class="bluemenuyellowitem"><img src="{{ generateMediaURL('/media/images/corporate/bluemenuyellowitem.png') }}" alt="{{'bluemenuyellowitem'}}"/></span>
+                    <span class="spanblueunderline"><a href="#" class="">{{'England'|trans}}</a></span>
+                    <span class="bluetextlinkinfo_bts">{{'(23,072 properties)'|trans}}</span>
+                </p>
+                <p class="bluemenulinktextspan_bts">
+                    <span class="bluemenuyellowitem"><img src="{{ generateMediaURL('/media/images/corporate/bluemenuyellowitem.png') }}" alt="{{'bluemenuyellowitem'}}"/></span>
+                    <span class="spanblueunderline"><a href="#" class="">{{'london hotels'|trans}}</a></span>
+                    <span class="bluetextlinkinfo_bts">{{'(2,315 properties)'|trans}}</span>
+                </p>
+                <p class="bluemenulinktextspan_bts">
+                    <span class="bluemenuyellowitem"><img src="{{ generateMediaURL('/media/images/corporate/bluemenuyellowitem.png') }}" alt="{{'bluemenuyellowitem'}}"/></span>
+                    <i class="fa fa-angle-double-right"></i>
+                    <span class="">{{'park plaza westminster bridge london'|trans}}</span>
+                </p>
+
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if booking_steps==2 %}
+    <div class="col-xs-12">
+        <div class="col-xs-12">
+            <div class="col-xs-12 nopad">
+                <h2 class="makeabokk_bst">{{'Make a booking'|trans}}</h2>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 firststep">
+                    <div class="bullet">
+                        <p>1</p>
+                    </div>
+                    <p class="number-step-text">{{'Choose your hotel'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 sndstep activestep">
+                    <div class="bullet">
+                        <p>2</p>
+                    </div>
+                    <p class="number-step-text">{{'Choose your room'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 thirdstep">
+                    <div class="bullet">
+                        <p>3</p>
+                    </div>
+                    <p class="number-step-text">{{'Choose your flight'|trans}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-12">
+            <div class="col-xs-12">
+                <p class="startchosshotel_bst marbutz yshnewfntsize">{{'Your selected hotel'|trans}}<span><img class="yshdwnarrow" src="{{ generateMediaURL('/media/images/corporate/yshdwnarrow.png') }}" alt="yshdwnarrow"></span></p>
+            </div>
+            <div class="col-xs-12">
+                <p class="datetxt_bst">{{'Tue, Jul 24 - Thu, Aug 16 '|trans}}</p>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padright10 padbut_0">
+                    <div class="col-xs-12 nopad">
+                        <p class ="lefttextcom greytext">Subtotal</p>
+                        <p class ="righttextcom greytext">$15,093,29</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <p class ="lefttextcom blacktext font-weight-bold">Bundled Savings</p>
+                        <p class ="righttextcom blacktext font-weight-bold">-$2,286.40</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padtop_0">
+                    <p class ="lefttextcom greytext">Total trip price</p>
+                    <p class ="righttextcom greytext">$12,806.89</p>
+                </div>
+                <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12">
+                    <a href="#" class="abluerightconttext">Change hotel</a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="bordergreyallw_bts smal-margin-border"></div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if booking_steps==3 %}
+    <div class="col-xs-12">
+        <div class="col-xs-12 nopad">
+            <h2 class="makeabokk_bst margin-left-zero">{{'Make a booking'|trans}}</h2>
+        </div>
+        <div class="col-xs-12 nopad margin-left-min">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 firststep">
+                <div class="bullet">
+                    <p>1</p>
+                </div>
+                <p class="number-step-text">{{'Choose your hotel'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 sndstep">
+                <div class="bullet">
+                    <p>2</p>
+                </div>
+                <p class="number-step-text">{{'Choose your room'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 thirdstep activestep">
+                <div class="bullet">
+                    <p>3</p>
+                </div>
+                <p class="number-step-text">{{'Choose your flight'|trans}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <p class="startchosshotel_bst marbutz yshnewfntsize">{{'Your selected hotel'|trans}}<span><img class="yshdwnarrow" src="{{ generateMediaURL('/media/images/corporate/yshdwnarrow.png') }}" alt="yshdwnarrow"></span></p>
+    </div>
+    <div class="col-lg-9 col-xs-12">
+        <div class="col-xs-12 nopad hotelname-ndimage hdnopad-butom">
+            <a rel="nofollow" href="{{ generateMediaURL('/media/hotels/g700040774/Miscellaneous/hotels75HS885468_176166ahbl006.jpg') }}" title="DELMON PALACE" class="col-lg-2 col-sm-3 hidden-xs nopad">
+                <img alt="DELMON PALACE" src="{{ generateMediaURL('/media/hotels/g700040774/Miscellaneous/hotels65HS290166_176166ahbl006.jpg') }}" class="hotel-left-img">
+            </a>
+            <div class="col-lg-10 col-sm-9 col-xs-12 nopad">
+                <h1>DELMON PALACE</h1>
+                <div class="clearfix"></div>
+                <div class="locationplus-text_container">
+                    <img alt="map marker" src="{{ generateMediaURL('/media/images/map_marker.png') }}" class="location-logo">
+                    <p>A STREET.AL RIGGA RD 42, 21969, DEIRA, UNITED ARAB EMIRATES</p>
+                </div>
+                {#<div class="heartratecontainer">
+                    <div class="heart-rating-review">
+                        <img alt="heart_hoteldetailed" src="{{ generateMediaURL('/media/images/heart_hoteldetailed.png') }}">
+                        <p alt="1 out of 5" content=" '1'}}" itemprop="ratingValue" class="ratetext">10.0</p>
+                    </div>
+                    <p class="based-text-review"><a target="_blank" href="#">Based on 2 reviews</a></p>
+                </div>#}
+                <div class="clearfix"></div>
+                <img alt="hotel stars" src="{{ generateMediaURL('/media/images/nrt_rating3.png') }}" class="starsimg">
+                <div class="clearfix"></div>
+                <p class="datetxt_bst margin-top-5">{{'Tue, Jul 24 - Thu, Aug 16 '|trans}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padright10 padbut_0">
+        <div class="col-xs-12 nopad">
+            <p class ="lefttextcom greytext">Subtotal</p>
+            <p class ="righttextcom greytext">$15,093,29</p>
+        </div>
+        <div class="col-xs-12 nopad">
+            <p class ="lefttextcom blacktext font-weight-bold">Bundled Savings</p>
+            <p class ="righttextcom blacktext font-weight-bold">-$2,286.40</p>
+        </div>
+        <div class="col-xs-12 nopad">
+            <p class ="lefttextcom greytext">Total trip price</p>
+            <p class ="righttextcom greytext">$12,806.89</p>
+        </div>
+        <div class="col-xs-12 nopad">
+            <a href="#" class="abluerightconttext change-hotel-left">Change hotel</a>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="bordergreyallw_bts smal-margin-border"></div>
+    </div>
+
+{% endif %}
+
+{% if booking_steps==4 %}
+    <div class="col-xs-12">
+        <div class="col-xs-12 nopad">
+            <h2 class="makeabokk_bst margin-left-zero">{{'Make a booking'|trans}}</h2>
+        </div>
+        <div class="col-xs-12 nopad margin-left-min">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 firststep">
+                <div class="bullet">
+                    <p>1</p>
+                </div>
+                <p class="number-step-text">{{'Choose your hotel'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 sndstep">
+                <div class="bullet">
+                    <p>2</p>
+                </div>
+                <p class="number-step-text">{{'Choose your room'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 thirdstep activestep">
+                <div class="bullet">
+                    <p>3</p>
+                </div>
+                <p class="number-step-text">{{'Choose your flight'|trans}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <p class="startchosshotel_bst marbutz yshnewfntsize">{{'Your selected hotel'|trans}}<span><img class="yshdwnarrow" src="{{ generateMediaURL('/media/images/corporate/yshdwnarrow.png') }}" alt="yshdwnarrow"></span></p>
+    </div>
+    <div class="col-lg-9 col-xs-12">
+        <div class="col-xs-12 nopad hotelname-ndimage hdnopad-butom">
+            <a rel="nofollow" href="{{ generateMediaURL('/media/hotels/g700040774/Miscellaneous/hotels75HS885468_176166ahbl006.jpg') }}" title="DELMON PALACE" class="col-lg-2 col-sm-3 hidden-xs nopad">
+                <img alt="DELMON PALACE" src="{{ generateMediaURL('/media/hotels/g700040774/Miscellaneous/hotels65HS290166_176166ahbl006.jpg') }}" class="hotel-left-img">
+            </a>
+            <div class="col-lg-10 col-sm-9 col-xs-12 nopad">
+                <h1>DELMON PALACE</h1>
+                <div class="clearfix"></div>
+                <div class="locationplus-text_container">
+                    <img alt="map marker" src="{{ generateMediaURL('/media/images/map_marker.png') }}" class="location-logo">
+                    <p>A STREET.AL RIGGA RD 42, 21969, DEIRA, UNITED ARAB EMIRATES</p>
+                </div>
+                {#<div class="heartratecontainer">
+                    <div class="heart-rating-review">
+                        <img alt="heart_hoteldetailed" src="{{ generateMediaURL('/media/images/heart_hoteldetailed.png') }}">
+                        <p alt="1 out of 5" content=" '1'}}" itemprop="ratingValue" class="ratetext">10.0</p>
+                    </div>
+                    <p class="based-text-review"><a target="_blank" href="#">Based on 2 reviews</a></p>
+                </div>#}
+                <div class="clearfix"></div>
+                <img alt="hotel stars" src="{{ generateMediaURL('/media/images/nrt_rating3.png') }}" class="starsimg">
+                <div class="clearfix"></div>
+                <p class="datetxt_bst margin-top-5">{{'Tue, Jul 24 - Thu, Aug 16 '|trans}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padright10 padbut_0">
+        <div class="col-xs-12 nopad">
+            <p class ="lefttextcom greytext">Subtotal</p>
+            <p class ="righttextcom greytext">$15,093,29</p>
+        </div>
+        <div class="col-xs-12 nopad">
+            <p class ="lefttextcom blacktext font-weight-bold">Bundled Savings</p>
+            <p class ="righttextcom blacktext font-weight-bold">-$2,286.40</p>
+        </div>
+        <div class="col-xs-12 nopad">
+            <p class ="lefttextcom greytext">Total trip price</p>
+            <p class ="righttextcom greytext">$12,806.89</p>
+        </div>
+        <div class="col-xs-12 nopad">
+            <a href="#" class="abluerightconttext change-hotel-left">Change hotel</a>
+        </div>
+    </div>
+    {# <div class="col-xs-12 nopad newboxstyle">
+         <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 nopad leftcontainer_afc">
+             <h1 class="titledynamicline_afc"><span class="imgtitlewizbar"><img class="" src="{{ generateMediaURL('/media/images/corporate/titleplane_dfc.png') }}" alt="titleplane_dfc"></span><span class="blacktxttitlewizbar">Departure</span><span class="bartitlewizbar">|</span><p><span class="greytxttitlewizbar">Beirut to Dubai</span><br><span class="blacundertxt_afc">Monday, 1 January 2018</span></p></h1>
+         </div>
+         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 nopad centercontainer_afc">
+             <img class="sndimg_afc" src="{{ generateMediaURL('/media/images/corporate/sndimg_afc.png') }}" alt="sndimg_afc">
+             <div class="floatingrightnexttoimg">
+                 <p class="righttoimgtextone">Emirates</p>
+                 <p class="righttoimgtexttwo">11:25 BEy - 17:15 DXB</p>
+             </div>
+         </div>
+         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 nopad  rightcontainer_afc">
+             <p class="commonroghtdivtext_afc fl_afc">Nonstop:</p>
+             <p class="commonroghtdivtext_afc fr_afc textund_afc">Modifiy:</p>
+         </div>
+     </div>#}
+
+    <div class="col-xs-12">
+        <div class="bordergreyallw_bts smal-margin-border"></div>
+    </div>
+{% endif %}

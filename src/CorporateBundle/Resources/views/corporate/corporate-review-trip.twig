@@ -1,0 +1,330 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme1.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/swiper/3.2.6/css/swiper.min.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-departure-flight.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-review-trip.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/flights/js/isotope.pkgd.min.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/swiper/3.2.6/js/swiper.min.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-departure-flight.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Review Trip'|trans}}{% endblock %}
+{% block body %} 
+    {% set page_menu_name = 'flights' %}
+    <section class="container corporate_container1">
+        <div class="col-xs-12 nopad">
+            <div class="row rowspecialstyle">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 nopad leftmenuebackcolor_corp borderrightgrey_corpfl">
+                    <div class="col-xs-12 marbut10_corp nopad">
+                        <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'title'}}"/>
+                        <div class ="absoluteindiv {{page_menu_logo|raw}}">
+                            <p class="textunimg_corp">{{page_menu_name|trans|capitalize }}</p>
+                        </div>
+                        <img id="xsdropdown_corp" class="dropdownliststyle_corp" src="{{ generateMediaURL('/media/images/corporate/dropdownxs_corp.png') }}" alt="{{'title'}}"/>
+                    </div>
+                    <div id="leftmenuecorpcontainerxs" class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Departure time'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <ul class="col-xs-12 nopad tablelistcontainer">
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb">0:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb">6:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb">12:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nrb">18:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb">6:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb">12:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb">18:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb nrb">24:00</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Arrival time'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <ul class="col-xs-12 nopad tablelistcontainer">
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb">0:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb">6:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb">12:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nrb">18:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb">6:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb">12:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb">18:00</li>
+                                    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopad nlb ntb nbb nrb">24:00</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Departure airport'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="checkbox">
+                                    <input id="" class="checkboxinput_dfc" value="" name="" type="checkbox"><label for="" class="checkboxlabel_dfc">{{'DXB Dubai International Airport'|trans}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Departure airport'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="checkbox">
+                                    <input id="" class="checkboxinput_dfc" value="" name="" type="checkbox"><label for="" class="checkboxlabel_dfc">{{'BEY Rafic Hariri International'|trans}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Airline'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="checkbox">
+                                    <input id="" class="checkboxinput_dfc" value="" name="" type="checkbox"><label for="" class="checkboxlabel_dfc">{{'Emirates'|trans}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Stopover Duration'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="checkbox">
+                                    <input id="" class="checkboxinput_dfc" value="" name="" type="checkbox"><label for="" class="checkboxlabel_dfc">{{'Less than 4 hrs'|trans}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Class'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="radiobox">
+                                    <div class="col-xs-12 nopad marbut2radio">
+                                        <input id="" class="radioinput_dfc" value="" name="" type="radio"><label for="" class="radiolabel_dfc">{{'Economy'|trans}}</label>
+                                    </div>
+                                    <div class="col-xs-12 nopad marbut2radio">
+                                        <input id="" class="radioinput_dfc" value="" name="" type="radio"><label for="" class="radiolabel_dfc">{{'Premium economy'|trans}}</label>
+                                    </div>
+                                    <div class="col-xs-12 nopad marbut2radio">
+                                        <input id="" class="radioinput_dfc" value="" name="" type="radio"><label for="" class="radiolabel_dfc">{{'Business'|trans}}</label>
+                                    </div>
+                                    <div class="col-xs-12 nopad marbut2radio">
+                                        <input id="" class="radioinput_dfc" value="" name="" type="radio"><label for="" class="radiolabel_dfc">{{'First'|trans}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad leftmeuedfcstyle">
+                            <div class="col-xs-12 nopad">
+                                <p class="leftmenueheaderdeptxt_dfc">{{'Passenger type'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="radiobox">
+                                    <div class="col-xs-12 nopad marbut2radio">
+                                        <input id="" class="radioinput_dfc" value="" name="" type="radio"><label for="" class="radiolabel_dfc">{{'Normal'|trans}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-10 col-sm-8 col-xs-12 nopad contentbackcolor_corp">
+                    <div class="col-xs-12 paddingcontainer10">
+                        <div class="col-xs-12 nopad">
+                            <h2 class="makebooktitle_dfc">{{'Make a booking:'|trans}}</h2>
+                        </div>
+                        <div id="toggledcontainersearch" class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad">
+                                <h3 class="searchsubtitle_dfc">{{'Your search:'|trans}}</h3>
+                            </div>
+                            <div class="col-xs-12 nopad paddingtop35_dfc">
+                                <ul class="searchcomponentslist_dfc">
+                                    <li class="">
+                                        <div class="firstsectioncontainer_dfc">
+                                            <p class="fromtextli_dfc">{{'FROM'|trans}}</p>
+                                            <p class="citynameli_dfc">{{'Beirut'|trans}}</p>
+                                        </div>
+                                        <img class="fromtologo_dfc" src="{{ generateMediaURL('/media/images/corporate/fromtologo_dfc.png') }}" alt="{{'fromtologo_dfc'|trans}}"/>
+                                        <div class="firstsectioncontainer_dfc">
+                                            <p class="fromtextli_dfc">{{'TO'|trans}}</p>
+                                            <p class="citynameli_dfc">{{'Dubai'|trans}}</p>
+                                        </div>
+                                    </li>
+                                    <li class="lipadxs"><img class="borderlistgreysearch_dfc" src="{{ generateMediaURL('/media/images/corporate/borderlistgreysearch_dfc.png') }}" alt="{{'borderlistgreysearch_dfc'|trans}}"/></li>
+                                    <li class="">
+                                        <div class="firstsectioncontainer_dfc">
+                                            <p class="fromtextli_dfc">{{'DEPARTING'|trans}}</p>
+                                            <p class="citynameli_dfc">1 Jan 2018</p>
+                                        </div>
+                                    </li>
+                                    <li class="lipadxs"><img class="borderlistgreysearch_dfc" src="{{ generateMediaURL('/media/images/corporate/borderlistgreysearch_dfc.png') }}" alt="{{'borderlistgreysearch_dfc'|trans}}"/></li>
+                                    <li class="">
+                                        <div class="firstsectioncontainer_dfc">
+                                            <p class="fromtextli_dfc">{{'RETURNING'|trans}}</p>
+                                            <p class="citynameli_dfc">10 Jan 2018</p>
+                                        </div>
+                                    </li>
+                                    <li class="lipadxs"><img class="borderlistgreysearch_dfc" src="{{ generateMediaURL('/media/images/corporate/borderlistgreysearch_dfc.png') }}" alt="{{'borderlistgreysearch_dfc'|trans}}"/></li>
+
+                                    <li class="martop10smxs">
+                                        <div class="firstsectioncontainer_dfc">
+                                            <p class="fromtextli_dfc">{{'CLASS'|trans}}</p>
+                                            <p class="citynameli_dfc">{{'Economy'|trans}}</p>
+                                        </div>
+                                    </li>
+                                    <li class="martop10smxs lipadxs"><img class="borderlistgreysearch_dfc" src="{{ generateMediaURL('/media/images/corporate/borderlistgreysearch_dfc.png') }}" alt="{{'borderlistgreysearch_dfc'|trans}}"/></li>
+                                    <li class="martop10smxs">
+                                        <div class="firstsectioncontainer_dfc">
+                                            <p class="fromtextli_dfc">{{'PASSENGERS'|trans}}</p>
+                                            <p class="citynameli_dfc">{{'1 Adult'|trans}}</p>
+                                        </div>
+                                    </li>
+                                    <li class="martop10smxs lipadxs"><img class="borderlistgreysearch_dfc" src="{{ generateMediaURL('/media/images/corporate/borderlistgreysearch_dfc.png') }}" alt="{{'borderlistgreysearch_dfc'|trans}}"/></li>
+                                    <li class="martop10smxs">
+                                        <div class="butchangesearchcontainer_dfc changeSearch">
+                                            <p class="changesearchbut-dfc">{{'change search'|trans}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>        
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div class="searchButtonsUpdate cancelSearch">{{'cancel'|trans}}</div>
+                        </div>
+                        <div class="col-xs-12 nopad formsearch">		    	
+                            {% include '@Corporate/corporate/flight-form.twig' %}
+                        </div>
+                        <div class="col-xs-12 nopad ">
+                            <p class="rytibtitle_ryt">{{'Review your trip'|trans}}</p>
+                        </div>
+                        <div class="col-xs-12 nopad btbdivcontainer_ryt">
+                            <div class="verticlemiddletextallign">
+                                <p class="middletext">{{'Half the job is done.'|trans}}<br><span>{{'Book now so you don’t miss out on this price!'|trans}}</span></p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad margintopcontainer45">
+                            <div class="tripsumtextdivcontainer">
+                                <p class="tripsumtextdiv">{{'Trip Summary'|trans}}</p>
+                            </div>
+                            <div class="tripdetailscontainer_ryt">
+                                <p class="travelerslinecontainer"><span class="travelerfchild">{{'Traveler1:'|trans}}{{' Adult'|trans}}</span><span class="pricesndchild">{{'$198.83'|trans}}</span></p>
+                                <p class="bookfeelinecontainer"><span class="bookfeefchild">{{'BookingFee'|trans}}</span><span class="triptotalsndchild">{{'Trip total: $'|trans}}</span><span class="totalpricethrdchild">{{'198'|trans}}</span><span class="pricetopchild">{{'.83'|trans}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 nopad biggreyborder_ryt"></div>
+
+                    <div class="col-xs-12 paddingcontainer10 paddingcontainer40">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad">
+                                <img class="gulfcomp_ryt" src="{{ generateMediaURL('/media/images/corporate/gulfcomp_ryt.png') }}" alt="{{'gulfcomp_ryt'|trans}}"/>
+                                <p class="aircompwizimg">{{'Gulf Air'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad martop20_ryt">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <p class="listfl1stcont_ryt">{{'Thu. Feb 1'|trans}}</p>
+                                    <div class="fromtocontainer_ryt">
+                                        <p>{{'From'|trans}}<br>{{'To'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <p class="fromdtoata_ryt">{{'Rafic Hariri Int. (BEY)'|trans}}</p>
+                                    <p class="fromdtoata_ryt">{{'Dubai Intl. (DXB)'|trans}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 nopad martop20_ryt">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <div class="datevalanddatacontainer_ryt">
+                                        <p class="datetextedatacontone_ryt">{{'DEY'|trans}}</p>
+                                        <p class="datetextedataconttwo_ryt">{{'8:35pm'|trans}}</p>
+                                    </div>
+                                    <img class="rightarrowflifgtdest_ryt" src="{{ generateMediaURL('/media/images/corporate/rightarrowflifgtdest_ryt.png') }}" alt="{{'rightarrowflifgtdest_ryt'|trans}}"/>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <div class="datevalanddatacontainer_ryt">
+                                        <p class="datetextedatacontone_ryt">{{'DXB'|trans}}</p>
+                                        <p class="datetextedataconttwo_ryt">{{'4:10am'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <div class="datevalanddatacontainer_ryt">
+                                        <p class="datetextedatacontone_ryt">{{'BAH'|trans}}</p>
+                                        <p class="datetextedataconttwo_ryt">{{'5h 35m, 1stop'|trans}}</p>
+                                        <p class="datetextedatacontsmwzmar_ryt">{{'Arrives Fri, Feb 2'|trans}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="bagagedetails_ryt">{{'Show flight and baggage fee details'|trans}}<span class="bagagedetaillogo_ryt"><img class="" src="{{ generateMediaURL('/media/images/corporate/bagagedetaillogo_ryt.png') }}" alt="{{'bagagedetaillogo_ryt'|trans}}"/></span></p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad borderwpad40"></div> 
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad">
+                                <img class="gulfcomp_ryt" src="{{ generateMediaURL('/media/images/corporate/gulfcomp_ryt.png') }}" alt="{{'gulfcomp_ryt'|trans}}"/>
+                                <p class="aircompwizimg">{{'Gulf Air'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad martop20_ryt">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <p class="listfl1stcont_ryt">{{'Thu. Feb 1'|trans}}</p>
+                                    <div class="fromtocontainer_ryt">
+                                        <p>{{'From'|trans}}<br>{{'To'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <p class="fromdtoata_ryt">{{'Rafic Hariri Int. (BEY)'|trans}}</p>
+                                    <p class="fromdtoata_ryt">{{'Dubai Intl. (DXB)'|trans}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 nopad martop20_ryt">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <div class="datevalanddatacontainer_ryt">
+                                        <p class="datetextedatacontone_ryt">{{'DEY'|trans}}</p>
+                                        <p class="datetextedataconttwo_ryt">{{'8:35pm'|trans}}</p>
+                                    </div>
+                                    <img class="rightarrowflifgtdest_ryt" src="{{ generateMediaURL('/media/images/corporate/rightarrowflifgtdest_ryt.png') }}" alt="{{'rightarrowflifgtdest_ryt'|trans}}"/>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <div class="datevalanddatacontainer_ryt">
+                                        <p class="datetextedatacontone_ryt">{{'DXB'|trans}}</p>
+                                        <p class="datetextedataconttwo_ryt">{{'4:10am'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad">
+                                    <div class="datevalanddatacontainer_ryt">
+                                        <p class="datetextedatacontone_ryt">{{'BAH'|trans}}</p>
+                                        <p class="datetextedataconttwo_ryt">{{'5h 35m, 1stop'|trans}}</p>
+                                        <p class="datetextedatacontsmwzmar_ryt">{{'Arrives Fri, Feb 2'|trans}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="bagagedetails_ryt">{{'Show flight and baggage fee details'|trans}}<span class="bagagedetaillogo_ryt"><img class="" src="{{ generateMediaURL('/media/images/corporate/bagagedetaillogo_ryt.png') }}" alt="{{'bagagedetaillogo_ryt'|trans}}"/></span></p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad martop20_ryt">
+                            <p class="changeflight_ryt"><span class="changeflightdownarrow_ryt"><img class="" src="{{ generateMediaURL('/media/images/corporate/changeflightdownarrow_ryt.png') }}" alt="{{'changeflightdownarrow_ryt'|trans}}"/></span>{{'Change flight'|trans}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

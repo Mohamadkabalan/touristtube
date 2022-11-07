@@ -1,0 +1,56 @@
+TTBundle\Entity\CmsChatFile:
+    type: entity
+    table: cms_chat_file
+    id:
+        fileId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: file_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        senderid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: senderId
+        receiverid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        originalname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: originalName
+        newname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: newName
+        downloadlink:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: downloadLink
+        datetime:
+            type: datetime
+            nullable: true
+            options:
+                default: CURRENT_TIMESTAMP
+            column: dateTime
+        status:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

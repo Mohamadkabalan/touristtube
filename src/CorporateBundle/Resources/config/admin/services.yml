@@ -1,0 +1,55 @@
+services:
+    CorpoAdminServices:
+        class: CorporateBundle\Services\Admin\CorpoAdminServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager']
+    CorpoRequestServices:
+        class: CorporateBundle\Services\Admin\CorpoRequestServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@CorpoAdminServices']
+    CorpoEmployeesServices:
+        class: CorporateBundle\Services\Admin\CorpoEmployeesServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@CorpoAdminServices']
+    CorpoApprovalFlowServices:
+        class: CorporateBundle\Services\Admin\CorpoApprovalFlowServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container','@CorpoAdminServices','@CurrencyService','@CorpoAccountServices']
+    CorpoUsersServices:
+        class: CorporateBundle\Services\Admin\CorpoUsersServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@CorpoAdminServices','@templating','@EmailServices','@service_container','@CorpoApprovalFlowServices']
+    CorpoDepartmentsServices:
+        class: CorporateBundle\Services\Admin\CorpoDepartmentsServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@CorpoAdminServices']
+    CorpoProfilesServices:
+        class: CorporateBundle\Services\Admin\CorpoProfilesServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@CorpoAdminServices']
+    CorpoDefineServicesServices:
+        class: CorporateBundle\Services\Admin\CorpoDefineServicesServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager']
+    CorpoAccountServices:
+        class: CorporateBundle\Services\Admin\CorpoAccountServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container','@CorpoAdminServices','@CurrencyService', '@UserServices','@templating', '@app.pdf_utils','@TTRouteUtils','@EmailServices','@FlightServices']
+    CorpoAccountTransactionsServices:
+        class: CorporateBundle\Services\Admin\CorpoAccountTransactionsServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container','@CorpoAdminServices','@CurrencyService','@CorpoAccountServices']
+    CorpoAccountPaymentServices:
+        class: CorporateBundle\Services\Admin\CorpoAccountPaymentServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container','@CorpoAdminServices','@CurrencyService','@CorpoAccountServices']
+    CorpoAgenciesServices:
+        class: CorporateBundle\Services\Admin\CorpoAgenciesServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager']
+    CorpoNotificationServices:
+        class: CorporateBundle\Services\Admin\CorpoNotificationServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container']
+    CorpoAccountTypeServices:
+        class: CorporateBundle\Services\Admin\CorpoAccountTypeServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container']
+    CorpoDatatable:
+        class: CorporateBundle\Services\Admin\DataTableServices
+        arguments: ['@CorpoDatatableRepo'] 
+    CorpoDatatableRepo:
+        class: CorporateBundle\Repository\Admin\CorpoDatatableRepository
+        arguments: ['@doctrine.orm.entity_manager'] 
+    CorpoUserProfilesServices:
+        class: CorporateBundle\Services\Admin\CorpoUserProfilesServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container']
+    CorpoProfilePermissionsServices:
+        class: CorporateBundle\Services\Admin\CorpoProfilePermissionsServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@service_container']

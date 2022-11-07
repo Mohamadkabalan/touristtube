@@ -1,0 +1,25 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block body %}        
+<div class="container">
+  <br /> 
+  <h2>{{pageName}}</h2>
+  <br />           
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>TimeStamp</th>
+        <th>Version</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+        {% for key,val in tourData['soapBody']['atiATI_PkgAvailRS']['@attributes'] %} 
+            <td>{{val}}</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends 'baseFinal.html.twig' %}
+{% block title %}
+    {{ 'Hotel Reviews'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+	$(document).ready(function () {
+	    userGlobalDISName('{{ discover_nam|raw }}');
+	});
+    </script>
+{% endblock %}
+{% block body %}
+    {% if hotelDetails is defined and hotelDetails is not empty%}
+	{% if pageSrc == HOTEL_CONSTANTS.page_src.hrs %}
+	    {% set popupUrl = '/review-HT-popup' %}
+	    {% set popupImagesUrl = '/review-HT-popup-images' %}
+	{% else %}
+	    {% set popupUrl = '/review-popup' %}
+	    {% set popupImagesUrl = '/review-popup-images' %}
+	{% endif %}
+	<section class="container hotel_reviews_container">
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <h2 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{"Hotel - Review and Rate"|trans}}</h2>
+		</div>
+	    </div>
+	    <div class="row hotel_search_input_container" style="display:none;">
+		<div class="col-xs-12">
+		    {% include "default/searchinput3.twig" %}
+		    <div class="close_container">
+			<i class="fas fa-times fa-lg"></i>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row border_top_but_row"></div>
+	    <div class="row margin_top_20">
+		<div class="col-md-3 col-xs-12 left_panel nopad padright_10 xspadding">
+		    <div class="row margin_top_20">
+			<div class="col-xs-12">
+			    <button class="btn btn-info bookHotelButton">{{"Book Now"|trans}}</button>
+			    </a>
+			</div>
+		    </div>
+		    {% if hotelDetails.trustyou.summary.score is defined and hotelDetails.trustyou.summary.score is not empty %}
+			<div class="row no-margin margin_top_20">
+			    <div class="col-xs-12 nopad">
+				<h3 class="blue_title">{{'Review Score'|trans}}<br><span class="grey font-14">{{'Based on'|trans ~ ' ' ~ hotelDetails.trustyou.reviews_count ~ ' ' ~ 'hotel reviews'|trans}}</span></h3>
+				<div class="heart-rating-review">
+				    <img alt="heart_hoteldetailed" src="{{ generateMediaURL('/media/images/hotel_booking_details_new/heart_rating_review.png') }}">
+				    <p alt="{{ (hotelDetails.trustyou.summary.score/2)|round(1, 'floor') }} out of 5" content="{{ (hotelDetails.trustyou.summary.score/2)|round(1, 'floor') }}" itemprop="ratingValue" class="ratetext">{{hotelDetails.trustyou.summary.score}}</p>
+				</div>
+			    </div>
+			</div>
+		    {% endif %}
+		    {% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+			<div class="row no-margin margin_top_10">
+			    {% for review_cat in hotelDetails.trustyou.category_list %}
+				<div class="col-xs-12 margin_bottom_5 nopad">
+				    <div class="greyline_hoteldetail">
+					<p class="uperlefttext">{{review_cat.category_name}}</p>
+					<p class="uperrightnumb">{{review_cat.score}}</p>
+					<div class="darckfreybardiv" style="width:{{(review_cat.score/hotelDetails.trustyou.scale)*100}}%;"></div>
+				    </div>
+				</div>
+			    {% endfor %}
+			</div>
+		    {% endif %}
+		    <div class="row no-margin margin_top_10">
+			<div class="col-xs-12 nopad">
+			    <a rel="nofollow" href="{{ generateLangURL(LanguageGet,popupUrl~'?id='~input.hotelId)}}" class="reviewratebut uploadphotosbuttext{% if isUserLoggedIn==0 %} bagdisaable{% endif %}" title="{{'Review / Rate'|trans}}">
+				<button class="btn reviewratebut review_rate_button">{{'Review / Rate'|trans}}</button>
+			    </a>
+			</div>
+		    </div>
+		</div>
+		<div class="col-md-9 col-xs-12 right_panel nopad padleft_10 xspadding">
+		    <div class="row margin_top_20">
+			<div class="col-xs-12">
+			    <div class="row no-margin">
+				<div class="col-sm-3 col-xs-12 nopad">
+				    <a title="{{hotelDetails.namealt|raw}}" href="{{details_link|raw}}"><img class="max_width" src="{{hotelDetails.mainImage}}" alt="{{hotelDetails.namealt|raw}}"></a>
+				</div>
+				<div class="col-sm-9 col-xs-12 nopad">
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <h1 class="hotel_title">{{hotelDetails.name}}</h1>
+					    <p class="location_div location_txt"><i class="fas fa-map-marker-alt"></i>{{hotelDetails.address}}</p>
+					    {% if hotelDetails.category > 0 %}<p class="stars_block"><span class="star_rating" data-rating="{{hotelDetails.category}}" data-font="11" data-color="#eac31a"></span></p>{% endif %}
+					    {% if hotelDetails.trustyou.summary.score is defined and hotelDetails.trustyou.summary.score is not empty %}
+						<p class="rarting_txt">{{'Rating'|trans ~ ': ' ~ hotelDetails.trustyou.summary.score ~ ' ' ~ 'out of'|trans ~ ' '~ hotelDetails.trustyou.scale ~ ' (' ~ hotelDetails.trustyou.reviews_count ~ ' ' ~ 'Reviews'|trans ~ ')'}}</p>
+					    {% endif %}
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		    <div class="row margin_top_50">
+			<div class="col-xs-12">
+			    <div class="row no-margin">
+				<div class="col-md-8 col-xs-12 nopad padright_5 margin_bottom_10">
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad grey_bar_top">
+					    <h2 class="verifreviews">{{'100% Verified Real Reviews'|trans}}</h2>
+					    <img class="trustyoulogo" src="{{ generateMediaURL('/media/images/trustyoulogo.png') }}" alt="trust you logo">
+					</div>
+				    </div>
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <ul class="review_tab_list">
+						{% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+						    <li class=""><a rel="nofollow" id="alltab" class="a-tabs active" title="{{'All'|trans}}" href="#">{{'All'|trans}}</a>
+							<div class="image-div active">
+							    <img class="active-arrow " src="{{ generateMediaURL('/media/images/hotel-reviews_new/pink_down_select_arrow.png') }}" alt="{{'arrow'|trans}}">
+							</div>
+						    </li>
+						{% endif %}
+						{% if hotelDetails.trustyou.trip_type_meta_review_list is defined and hotelDetails.trustyou.trip_type_meta_review_list is not empty %}
+						    {% for trip_type in hotelDetails.trustyou.trip_type_meta_review_list %}
+							{% if trip_type.category_list is defined and hotelDetails.trustyou.trip_type_meta_review_list is not empty %}
+							    <li class="pad-li-tabs"> | </li>
+							    <li class=""><a rel="nofollow" id="{{trip_type.name|lower ~ 'tab'}}" class="a-tabs" title="{{trip_type.name|trans}}" href="#">{{trip_type.name|trans}}</a>
+								<div class="image-div">
+								    <img class="active-arrow " src="{{ generateMediaURL('/media/images/hotel-reviews_new/pink_down_select_arrow.png') }}" alt="{{'arrow'|trans}}"/>
+								</div>
+							    </li>
+							{% endif %}
+						    {% endfor %}
+						{% endif %}
+					    </ul>
+					</div>
+				    </div>
+				    {% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+					<div id="sub_alltab" class="contenttabs firstdisplaytab">
+					    {% for review_cat in hotelDetails.trustyou.category_list %}
+						<div class="row no-margin margin_top_20">
+						    <div class="col-xs-12 nopad margin_bottom_5">
+							<div class="imagecircletxtcont_dat">
+							    <div class="greycircle_dat"></div>
+							    <p class="textingreycircle_dat">{{review_cat.score}}</p>
+							</div>
+							<p class="nextcircletext_dat">{{review_cat.short_text}}</p>
+						    </div>
+						    <div class="col-xs-12 nopad">
+							<ul class="pinklistul">
+							    {% for summary in review_cat.summary_sentence_list %}
+								<li class="review_grey_text">{{summary.text ~ ' '}}</li>
+								{% endfor %}
+							</ul>
+						    </div>
+						    <div class="border_separator margin_top_30"></div>
+						</div>
+					    {% endfor %}
+					</div>
+				    {% endif %}
+				    {% if hotelDetails.trustyou.trip_type_meta_review_list is defined and hotelDetails.trustyou.trip_type_meta_review_list is not empty %}
+					{% for trip_type in hotelDetails.trustyou.trip_type_meta_review_list %}
+					    {% if trip_type.category_list is defined and trip_type.category_list is not empty %}
+						<div id="{{'sub_' ~ trip_type.name|lower ~ 'tab'}}" class="contenttabs" style="display:none;">
+						    {% for review_cat in trip_type.category_list %}
+							<div class="row no-margin margin_top_20">
+							    <div class="col-xs-12 nopad margin_bottom_5">
+								<div class="imagecircletxtcont_dat">
+								    <div class="greycircle_dat"></div>
+								    <p class="textingreycircle_dat">{{review_cat.score}}</p>
+								</div>
+								<p class="nextcircletext_dat">{{review_cat.short_text}}</p>
+							    </div>
+							    <div class="col-xs-12 nopad">
+								<ul class="pinklistul">
+								    {% for summary in review_cat.summary_sentence_list %}
+									<li class="review_grey_text">{{summary.text ~ ' '}}</li>
+									{% endfor %}
+								</ul>
+							    </div>
+							    <div class="border_separator margin_top_30"></div>
+							</div>
+						    {% endfor %}
+						</div>
+					    {% endif %}
+					{% endfor %}
+				    {% endif %}
+				</div>
+				<div class="col-md-4 col-xs-12 nopad padleft_5">
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <h3 class="blue font-24 margin_0">{{'Browse'|trans}}<br>
+						{{'traveller photo gallery'|trans}} </h3>
+					</div>
+				    </div>
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <p class="hotel_smal_black">{{'Hotel'|trans}}:</p>
+					</div>
+				    </div>
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <p class="bold_hotel_name">{{hotelDetails.name}}</p>
+					</div>
+				    </div>
+				    <div class="row new_small_margin galPhotosContainer">
+					{% if hotelDetails.images is defined and hotelDetails.images is not empty %}
+					    {% for image in hotelDetails.images %}
+						<div class="col-xs-4 new_smal_padding photoitems">
+						    {% if image.user_id==USERID and image.user_id!=0 %}
+							<div class="photoremove" data-id="{{image.id|raw}}">remove</div>
+						    {% endif %}
+						    <a rel="nofollow" href="{{ generateLangURL(LanguageGet,popupImagesUrl~'?id='~hotelDetails.hotelId~'&pic='~image.id) }}" title="{{hotelDetails.namealt|raw}}" class="imagefirstbut">
+							<img class="width-100 imagefirstdiv" src="{{image[0]}}" alt="{{hotelDetails.namealt|raw}}">
+						    </a>
+						</div>
+					    {% endfor %}
+					{% endif %}
+				    </div>
+				    <div class="row no-margin margin_top_5">
+					<div class="col-xs-12 nopad">
+					    <div id="uploadHotelsReviewsContainer" class="col-xs-12 nopad generalpadleftright height-fixed" data-id="{{input.hotelId|raw}}" data-logged="{{isUserLoggedIn|raw}}">
+						<div id="uploadHotelsReviews" class="uploadphotosbut uploadphotosbuttext{% if isUserLoggedIn==0 %} bagdisaable{% endif %}">
+						    <button class="btn uploadphotosbut review_rate_button">{{'Upload your photos'|trans}}</button>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/360-photos/css/virtual-tour.css")|raw }}" >
+{% endblock %}
+{% block body %}
+    <section class ="container">
+	<div class="row margin_top_30">
+            <div class="col-xs-12">
+                <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Landmarks and Attractions in 360 virtual tour'|trans}}</h1>
+            </div>
+        </div>
+	{% for itemMain in mainEntityArray %}
+	    <div class="virtual_tours_row">
+		{% if itemMain.viewAll!='' %}
+		    <a href="{{itemMain.viewAll|raw}}" alt="{{itemMain.namealt|raw}}" class="row float_row_a small_padding">
+		{% else %}
+		    <div class="row small_padding">
+		{% endif %}		    
+		    <div class="col-xs-9 small_margin">
+			<h2 class="h3_virtual_tours">{{itemMain.name|raw}}</h2>
+		    </div>
+		    <div class="col-xs-3 small_margin">{% if itemMain.viewAll!='' %}<span class="view_all_link pull-right">{{ itemMain.city|raw }} {{ 'view all'|trans }}<i class="fas fa-angle-right fa-lg"></i></span>{% endif %}</div>
+		{% if itemMain.viewAll!='' %}
+		    </a>
+		{% else %}
+		    </div>
+		{% endif %}
+		<div class="row max_width_image small_padding">
+		    {% for subItemMain in itemMain.subItem %}
+			<a href="{{ subItemMain.link|raw }}" title="{{ subItemMain.namealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 small_margin">
+			    <img class="bigimg_relative" src="{{ subItemMain.img }}" alt="{{ subItemMain.namealt|raw }}">
+			    <h3 class="subtitle_virtual_tours">{% if itemMain.city !='' %}<span>{{ itemMain.city|raw }}</span> . {% endif %}{{ subItemMain.name|raw }}</h3>
+			    {#<img class="small_logo_absolute" src="{{ generateMediaURL('/media/images/360-photos-virtual-tour/360_logo.png') }}" alt="{{ '360 logo'|trans }}">#}
+                            <div class="sprite sprite_360_logo2"></div>
+			</a>
+			{% if (loop.index%4)==0 %}
+			    <div class="clearfix visible-lg visible-md"></div>
+			{% endif %}		
+			{% if (loop.index%2)==0 %}
+			    <div class="clearfix visible-sm"></div>
+			{% endif %}
+		    {% endfor %}			
+		</div>
+	    </div>
+	{% endfor %}	    
+    </section>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+CorporateBundle\Entity\CorpoNotificationType:
+    type: entity
+    table: corpo_notification_type
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoNotificationTypeRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            column: name           
+    lifecycleCallbacks: {  }

@@ -1,0 +1,383 @@
+_corporate_routing_hotels_lang:
+    resource: "routing_hotels_lang.yml"
+    
+_corporate_routing_flights_lang:
+    resource: "routing_flights_lang.yml"
+
+_corporate_admin_routing_lang:
+    resource: "admin/routing_lang.yml"
+
+_corporate_routing_reports_lang:
+    resource: "routing_reports_lang.yml"
+
+_corporate_routing_deals_lang:
+    resource: "routing_deals_lang.yml"
+
+_corporate_login_success_lang:
+    path:      "/{_locale}/corporate/login_success"
+    defaults: { _controller: CorporateBundle:Security:loginSuccess, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+
+_welcome_corporate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path: "/{_locale}/"
+    defaults: { _controller: CorporateBundle:Corporate:corporateRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_profile_settings_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/profile-settings"
+    defaults: { _controller: CorporateBundle:Admin\CorpoEmployee:employeeSettingsAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_corporate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/"
+    defaults: { _controller: CorporateBundle:FlightsCorpo:corporateFlight, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_book_flight_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/book-flight"
+    defaults: { _controller: CorporateBundle:Corporate:corporateBookFlight, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "book flight | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_payment_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/payment"
+    defaults: { _controller: CorporateBundle:Corporate:corporatePayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_payment_due_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/payment-due"
+    defaults: { _controller: CorporateBundle:Corporate:corporatePaymentDue, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_travel_approvals_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/travel-approvals"
+    defaults: { _controller: CorporateBundle:Corporate:corporateTravelApprovals, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_view_account_users_slug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/view/{slug}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:viewProfileUserList, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corpo_users_profile_list_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/profileListdatatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:profileListdatatable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_contact_us_lang:
+    path:      "/{_locale}/corporate/contact-us-{web}"
+    defaults: { _controller: CorporateBundle:Corporate:corporateContactUs, _locale: "%locale%", domain: "%domain%", web: "", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+        subdomain_suffix: ".*"
+
+_corporate_about_us_lang:
+    path:      "/{_locale}/corporate/about-us-{web}"
+    defaults: { _controller: CorporateBundle:Corporate:corporateAboutUs, _locale: "%locale%", domain: "%domain%", web: "", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+        subdomain_suffix: ".*"
+
+_corporate_terms_and_conditions_lang:
+    path:      "/{_locale}/corporate/terms-and-conditions-{web}"
+    defaults: { _controller: CorporateBundle:Corporate:corporateTermsAndConditions, _locale: "%locale%", domain: "%domain%", web: "", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+        subdomain_suffix: ".*"
+
+_corporate_privacy_policy_lang:
+    path:      "/{_locale}/corporate/privacy-policy-{web}"
+    defaults: { _controller: CorporateBundle:Corporate:corporatePrivacyPolicy, _locale: "%locale%", domain: "%domain%", web: "", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+        subdomain_suffix: ".*"
+
+_corporate_notification_page_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/notification-page"
+    defaults: { _controller: CorporateBundle:Corporate:notificationPage, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_manage_sub_accounts_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/corporate-manage-sub-accounts"
+    defaults: { _controller: CorporateBundle:Corporate:corporateManageSubAccounts, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_my_trips_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/corporate-my-trips"
+    defaults: { _controller: CorporateBundle:Corporate:corporateMyTrips, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_departure_flight_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/corporate-departure-flight"
+    defaults: { _controller: CorporateBundle:Corporate:corporateDepartureFlight, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_logout_lang:
+    path:      /{_locale}/corporate/logout
+    defaults: {_locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corporate_change_password_lang:
+    path: "/{_locale}/corporate/password/change"
+    defaults: { _controller: CorporateBundle:Security:changePassword, _locale: "%locale%", seotitle: "login Tourist Tube", seodescription: "Welcome to touristtube.com. Do not have an account yet? Sign up now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corporate_update_password_lang:
+    path:    "/{_locale}/corporate/password/update"
+    defaults: { _controller: CorporateBundle:Security:updatePassword, _locale: "%locale%", seotitle: "login Tourist Tube", seodescription: "Welcome to touristtube.com. Do not have an account yet? Sign up now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+login_lang:
+    path:      /{_locale}/corporate/login
+    defaults: { _controller: CorporateBundle:Security:login, _locale: "%locale%", seotitle: "login Tourist Tube", seodescription: "Welcome to touristtube.com. Do not have an account yet? Sign up now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corporate_arrival_flight_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/corporate-arrival-flight"
+    defaults: { _controller: CorporateBundle:Corporate:corporateArrivalFlight, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_review_trip_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/review-trip"
+    defaults: { _controller: CorporateBundle:Corporate:reviewTrip, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_my_trip_detailed_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/my-trip-detailed"
+    defaults: { _controller: CorporateBundle:Corporate:myTripDetailed, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+#
+#
+#   This part for the password reset for corporate only
+#
+#
+_forgot_password_corporate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/password/forgot/emails/{key}"
+    defaults: { _controller: CorporateBundle:Security:forgotPasswordCorporate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_tell_uscorporate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/tell-us-corporate/emails/{key}"
+    defaults: { _controller: CorporateBundle:Security:tellUsCorporate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+       _locale:  "%config_locales%"
+       domain: "[^/]+"
+       subdomain_suffix: ".*"
+
+_reset_password_corporate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/password/reset"
+    defaults: { _controller: CorporateBundle:Security:resetPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+       _locale:  "%config_locales%"
+       domain: "[^/]+"
+       subdomain_suffix: ".*"
+
+_update_forgot_password_corporate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/password/update-forgot"
+    defaults: { _controller: CorporateBundle:Security:updateForgotPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+       _locale:  "%config_locales%"
+       domain: "[^/]+"
+       subdomain_suffix: ".*"
+
+_corporate_pending_approval_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/pending-approval"
+    defaults: { _controller: CorporateBundle:Corporate:pendingApproval, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_listofusers_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/list-of-users"
+    defaults: { _controller: CorporateBundle:Corporate:corporateListOfUsers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_users_add_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/users-add-edit"
+    defaults: { _controller: CorporateBundle:Corporate:corporateUsersAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_listofagencies_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/list-of-agencies"
+    defaults: { _controller: CorporateBundle:Corporate:corporateListOfAgencies, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_agencies_add_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/agencies-add-edit"
+    defaults: { _controller: CorporateBundle:Corporate:corporateAgenciesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_listofcompanies_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/list-of-companies"
+    defaults: { _controller: CorporateBundle:Corporate:corporateListOfCompanies, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_companies_add_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/companies-add-edit"
+    defaults: { _controller: CorporateBundle:Corporate:corporateCompaniesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_listofaffiliates_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/list-of-affiliates"
+    defaults: { _controller: CorporateBundle:Corporate:corporateListOfAffiliates, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_corporate_affiliates_add_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/affiliates-add-edit"
+    defaults: { _controller: CorporateBundle:Corporate:corporateAffiliatesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_userslist_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users-{slug}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:users, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", slug: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_statementofaccount_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/statement-of-account"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:accountTransactions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_sales_persons_add_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/sales-persons-add-edit"
+    defaults: { _controller: CorporateBundle:Corporate:corporateSalesPersonsAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_notfound_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/{path}"
+    defaults: { _controller: CorporateBundle:Corporate:notFound, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", path: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        path: ".*"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

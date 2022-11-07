@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+{% block pagenewcss %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/bootstrap-datetimepicker.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/tours.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deals1.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/bootstrap-datetimepicker.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/deals1.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container">
+        <form id="verifyAvailabilityForm" name="verifyAvailabilityForm" method="POST" action="bookNow" autocomplete="off">
+            <input type="hidden" id="packageId"         name="packageId"        value="{{packageId}}" />
+	     <input type="hidden" id="apiId"	        name="apiId"	        value="{{ details['dd_dealApiId']|raw }}" />
+            <input type="hidden" id="tourCode"          name="tourCode"         value="{{ details['dd_dealCode']|raw }}" />
+            <input type="hidden" id="dealType"          name="dealType"         value="{{ details['dt_name']|raw }}" />
+            <input type="hidden" id="availabilityUrl"   name="availabilityUrl"  value="{{ generateLangRoute(LanguageGet,'_verifyBookingAvailability') }}" />
+            <div class="col-xs-12">
+                <div class="overview">
+                    <div class="fl bg">
+                        <h1 class="padd">{{ details['dt_name']|raw }} Details</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad bgGray">  
+                <div class="col-lg-4 col-md-4 col-sm-10 col-xs-12 nopad">
+                    <div class="details_img">
+		    {% for deal_image in details['image_path'] %}
+		       <img class="width-100" src="{{deal_image}}" alt="{{ details['dd_dealName']|raw }}">
+		   {% endfor %}
+                    </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-xs-12"><b>{{ 'Tour Code:'|trans }}</b> {{ details['dd_dealCode']|raw }} </div>
+                    <div class="col-lg-12 col-md-5 col-sm-12 col-xs-12"><b>{{ 'Tour Name:'|trans }}</b> {{ details['dd_dealName']|raw }} </div>
+                    <div class="col-xs-12"><b>{{ 'City Name:'|trans }}</b> {{ details['dc_cityName']|raw }} </div>
+                    <div class="col-xs-12"><b>{{ 'State:'|trans }}</b> {{ details['dc_state']|raw }} </div>
+                    <div class="col-xs-12"><b>{{ 'Country:'|trans }}</b> {{ details['dc_countryCode']|raw }} </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-xs-12"><b>{{ 'Tour Details:'|trans }}</b> {{ details['dd_description']|raw|trim|striptags }} </div>
+                    <div class="col-xs-12"><b>{{ 'External Remark:'|trans }}</b> Amazing </div>
+                    <div class="col-xs-12"><b>{{ 'Price:'|trans }}</b> <span id="price">{{ details['dd_price']|raw }}</span> {{ details['dd_currency']|raw }}</div>
+                    <div class="col-xs-12"><b>{{ 'Availability:'|trans }}</b> <span id="availabilityTxt">[Please Click on Verify Availability button bellow.]</span></div>
+                </div>
+            </div>
+            <div class="inputbox">
+               <div><b>{{ 'Select a Date To Check:'|trans }}</b><input autocomplete='off' type="text" id="startDate" name="startDate" value="" class="startDate form-control datesearchdet" placeholder="dd/mm/yy"></div>
+           </div>      
+           <br />
+            <div class="inputbox">
+                <div class="fl bg">
+                    <h3 class="padd">{{ 'User Details'|trans }}</h3>
+                </div>
+            </div><br>
+            <div class="col-xs-12 nopad mt10">
+                <div class="inputbox">
+                    <div><b>{{ 'Title:'|trans }}</b></div>
+                    <input type="text" name="nameTitle"   class="form-control passengerinput" value="" />
+                </div>
+                <div class="inputbox">
+                    <div><b>{{ 'First Name:'|trans }}</b></div>
+                    <input type="text" id="fname" name="fname[]"   class="form-control passengerinput" value="" />
+                </div>
+                <div class="inputbox">
+                    <div><b>{{ 'Last Name:'|trans }}</b></div>
+                    <input type="text" id="lname" name="lname[]"     class="form-control passengerinput" value="" />
+                </div>
+                <div class="inputbox">
+                    <div><b>{{ 'Age:'|trans }}</b></div>
+                    <input type="text"  id="age" name="age[]" class="form-control passengerinput" value="" />
+                </div>                    
+                <br />
+                <div class="inputbox">
+                    <div class="fl bg">
+                        <h3 class="padd">{{ 'Accompanied Passengers'|trans }}</h3>
+                    </div>
+                </div><br>
+                <table id="bookingTable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>{{ 'First Name'|trans }}</th>
+                        <th>{{ 'Last Name'|trans }}</th>
+                        <th>{{ 'Age'|trans }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                            <input type="text" id="fname" name="fname[]" class="form-control" value="" />
+                        </td>
+                        <td><input type="text" id="lname" name="lname[]" class="form-control" value="" /></td>
+                        <td><input type="text" id="age" name="age[]" class="form-control" value="" /></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12 nopad text-right">
+                 <button id="addRow"    name="addRow"   type="button" class="btn btn-primary btn-md">{{ 'Add Passenger'|trans }}</button>
+                 <button id="verify"    name="verify"   type="button" class="btn btn-primary btn-md">{{ 'Verify Availability'|trans }}</button>
+                 <button id="cancel"    name="cancel"   type="button" class="btn btn-primary btn-md">{{ 'Cancel'|trans }}</button>
+                 <button id="bookNow"   name="bookNow"  type="button" class="btn btn-primary btn-md">{{ 'Book Now!!!'|trans }}</button>
+            </div>
+        </form>          
+    </section>
+{% endblock %}

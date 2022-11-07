@@ -1,0 +1,9 @@
+RestBundle\Entity\OauthClient:
+    type: entity
+    table: oauth2_client
+    id:
+        id:
+            id: true
+            type: integer
+            generator: { strategy: AUTO }
+    lifecycleCallbacks: {  }

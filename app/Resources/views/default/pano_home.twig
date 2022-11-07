@@ -1,0 +1,23 @@
+<div class="hidden-xs">
+    {% set pano_url = "/assets/home_pano/tour_home.xml" %}
+    {% if pageBannerPano == 'hotel' %}
+	{% set pano_url = "/assets/home_pano/tour_hotels.xml" %}
+    {% elseif pageBannerPano == 'hotel_360' %}
+	{% set pano_url = "/assets/home_pano/tour_hotels_360.xml" %}
+    {% elseif pageBannerPano == 'flight' %}
+	{% set pano_url = "/assets/home_pano/tour_home.xml" %}
+    {% endif %}
+    <script type="text/javascript" src="{{ asset("/assets/vendor/vtour/latest/tour.js")|raw }}"></script>
+    <script>
+	function setHomePanoBanner(){
+	    var interval360;
+	    interval360 = setInterval(function() {
+		clearInterval(interval360);
+		embedpano({swf:"{{ asset("/assets/vendor/vtour/latest/tour.swf")|raw }}", xml:"{{pano_url|raw}}", target:"home_pano_banner", html5:"only", mobilescale:1.0, passQueryParameters:true, capturetouch:false});
+	    }, 1000);
+	}
+    </script>
+    <div id="home_pano_banner" style="position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+    </div>
+</div>

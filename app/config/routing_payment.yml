@@ -1,0 +1,35 @@
+_payment:
+    path:      "/payment"
+    defaults: { _controller: TTBundle:Payment:payment, _locale: "%locale%"}
+        
+_payment_operation:
+    path:      "/payment-operation"
+    defaults: { _controller: TTBundle:Payment:paymentOperation, _locale: "%locale%"}
+
+_payment_success:
+    path:      "/payment-success"
+    defaults: { _controller: TTBundle:Payment:PaymentSuccess, _locale: "%locale%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: ""}
+        
+_sdk_token:
+    path:      "/sdk-token"
+    defaults: { _controller: TTBundle:Payment:getSdkToken, _locale: "%locale%"}
+    methods:  [POST]
+        
+_payment_operation_api:
+    path:      "/payment-operation-api"
+    defaults: { _controller: TTBundle:Payment:paymentOperationApi, _locale: "%locale%"}
+    methods:  [POST] 
+        
+_capture_refund:
+    path:      "/capture-refund"
+    defaults: { _controller: TTBundle:Payment:captureRefund, _locale: "%locale%"}
+    methods:  [POST]
+        
+_direct_transaction_feedback:
+    path:      "/direct-transaction-feedback"
+    defaults: { _controller: TTBundle:Payment:directTransactionFeedback, _locale: "%locale%"}
+    methods:  [GET, POST]
+
+_device_finger_print_api:
+    path:      "/api/device_fingerprint"
+    defaults: { _controller: TTBundle:Payment:deviceFingerPrint, _locale: "%locale%"}

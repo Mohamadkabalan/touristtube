@@ -1,0 +1,103 @@
+<div class="row margin_bottom_60 mbsmall_margin copy_image_height relative_column {% if travel.statusName == HOTEL_CONSTANTS.reservation_canceled %}canceldivoverback{% endif %}">
+    {% if travel.statusName == HOTEL_CONSTANTS.reservation_canceled %}<div class="absolutebackground"></div>{% endif %}
+    <div class="col-sm-2 mbsmall_padding clone_height hidden-xs">
+	<div class="checkin_checkout_container">
+	    <p class="in_out">{{'Check-in'|trans}}</p>
+	    <p class="date">{{travel.fromdate|date('d')}}</p>
+	    <p class="month_day">{{travel.fromdate|date('M Y D')}}</p>
+	</div>
+	<div class="checkin_checkout_container">
+	    <p class="in_out">{{'Check-out'|trans}}</p>
+	    <p class="date">{{travel.todate|date('d')}}</p>
+	    <p class="month_day">{{travel.todate|date('M Y D')}}</p>
+	</div>
+    </div>
+    <div class="col-xs-12 mbsmall_padding visible-xs">
+	<div class="row mbsmall_margin">
+	    <div class="col-xs-6 mbsmall_padding">
+		<div class="checkin_checkout_container">
+		    <p class="in_out">{{'Check-in'|trans}}</p>
+		    <p class="date">{{travel.fromdate|date('d')}}</p>
+		    <p class="month_day">{{travel.fromdate|date('M Y D')}}</p>
+		</div>
+	    </div>
+	    <div class="col-xs-6 mbsmall_padding">
+		<div class="checkin_checkout_container">
+		    <p class="in_out">{{'Check-out'|trans}}</p>
+		    <p class="date">{{travel.todate|date('d')}}</p>
+		    <p class="month_day">{{travel.todate|date('M Y D')}}</p>
+		</div>
+	    </div>
+	</div>
+    </div>
+
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 img_container mbsmall_padding copy_height">
+	<img src="{{ getDefaultHotelImage({'dupePoolId': travel.dupePoolId, 'location': travel.location, 'filename': travel.filename}) }}">
+    </div>
+
+    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-12 mbsmall_padding clone_height custom_form">
+	<p class="hotel_name">{{travel.name|raw}}</p>
+	{% if travel.controlNumber is defined and travel.controlNumber is not empty %}
+	    <p class="booking_number font-15">{{'Booking number:'|trans}} <span>{{travel.controlNumber|raw}}</span></p>
+	{% else %}
+	    <p class="booking_number font-15">{{'Booking number:'|trans}} <span>{{travel.reservationProcessKey|raw}}</span></p>
+	    <p class="booking_number font-15">{{'PIN Code:'|trans}}
+		<span>{{travel.reservationProcessPassword}}</span>
+	    </p>
+	{% endif %}
+	<div class="clearfix"></div>
+	{% if travel.stars > 0 %}
+	    <p class="stars_block"><span class="star_rating" data-font="11" data-color="#eac31a"><img src="{{ generateMediaURL('/media/images/nrt_rating')}}{{travel.stars}}.png" title="hotel-stars"></span></p>
+		{% endif %}
+    </div>
+
+    {% if travel.controlNumber is defined and travel.controlNumber is not empty %}
+	{% set page = '_booking_details_tt' %}
+	{% set hotelDetailsPage = '_hotel_details_tt' %}
+    {% else %}
+	{% set page = '_booking_details' %}
+	{% set hotelDetailsPage = '_hotel_details' %}
+    {% endif %}
+
+    <a class="col-md-2 visible-lg view_details_link" href="{{ generateLangRoute(LanguageGet,page, {'reference': travel.reference}) }}">
+	{{'View details'|trans}}
+    </a>
+
+    <div class="col-md-6 visible-lg mbsmall_padding button_price_container">
+	{% set detailsUrl = travel.name|replace({' ': '+'}) %}
+	<span class="a_price price-convert" data-price="{{travel.amount|raw|number_format(2, '.', ',')}}"><p>
+		<span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.amount|raw|number_format(2, '.', ',')}}</span></p>
+	</span>
+	<a href="{{ generateLangRoute(LanguageGet,hotelDetailsPage, {'name':detailsUrl, 'id':travel.hotelId})}}">
+	    <button id="" class="btn pink_bookagain_button">{{'Book again'|trans}}</button>
+	    <button id="" class="btn pink_cancelled_button">{{'Cancelled'|trans}}</button>
+	</a>
+    </div>
+
+    <div class="col-xs-12 hidden-lg mbsmall_padding button_price_container">
+	{% set detailsUrl = travel.name|replace({' ': '+'}) %}
+	<div class="row mbsmall_margin">
+	    <div class="col-sm-4 col-xs-12 mbsmall_padding">
+		<a class="view_details_link pull-left" href="{{ generateLangRoute(LanguageGet,page, {'reference': travel.reference}) }}">
+		    {{'View details'|trans}}
+		</a>
+	    </div>
+	    <div class="col-sm-8 col-xs-12 mbsmall_padding">
+		<span class="a_price a_price1 price-convert" data-price="{{travel.amount|raw|number_format(2, '.', ',')}}">
+		    <p>
+			<span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.amount|raw|number_format(2, '.', ',')}}</span>
+		    </p>
+		</span>
+		<a class="" href="{{ generateLangRoute(LanguageGet,hotelDetailsPage, {'name':detailsUrl, 'id':travel.hotelId})}}">
+		    <button id="" class="btn pink_bookagain_button">{{'Book again'|trans}}</button>
+		    <button id="" class="btn pink_cancelled_button">{{'Cancelled'|trans}}</button>
+		</a>
+		<span class="a_price a_price0 price-convert" data-price="{{travel.amount|raw|number_format(2, '.', ',')}}">
+		    <p>
+			<span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.amount|raw|number_format(2, '.', ',')}}</span>
+		    </p>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>

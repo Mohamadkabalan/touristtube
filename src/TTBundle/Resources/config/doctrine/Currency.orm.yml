@@ -1,0 +1,37 @@
+TTBundle\Entity\Currency:
+    type: entity
+    table: currency
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        num:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        nDecimals:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: n_decimals
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        code:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

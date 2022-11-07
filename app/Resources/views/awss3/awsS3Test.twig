@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title itemprop="name">Aws S3 TESTER</title>
+
+	<style type="text/css">
+	    table{
+		margin: 0;
+		width:100%;
+	    }
+
+	    table td.labels{
+		width: 20%;
+	    }
+
+	    table td.contents{
+		width: 80%;
+	    }
+
+	    table input[type=text]{
+		width:100%;
+	    }
+	</style>
+    </head>
+    <body>
+	<h3>AWS S3 Upload  - file as posted</h3>
+	<form action="/app_dev.php/aws/s3/file/upload" method="post" enctype="multipart/form-data">	    
+	    <table>
+		<tr>
+		    <td class="labels">Key</td>
+		    <td class="contents"><input type="text" name="key" value="test/"/></td>
+		</tr>
+		<tr>
+		    <td>Bucket</td>
+		    <td><input type="text" name="bucket" value="{{bucket}}"/></td>
+		</tr>
+		{% for i in 0..2%}
+		    <tr>
+			<td/>
+			<td>
+			    <table>
+				<tr>
+				    <td><input type="file" name="file{{i}}"/></td>
+				    <td>FileName: <input type="text" class="fileNames" name="fileName[]" value=""/></td>					
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		{% endfor %}
+		{% for i in 0..2%}
+		    <tr>
+			<td/>
+			<td>
+			    <table>
+				<tr>
+				    <td><input type="file" name="file[]"/></td>
+				    <td>FileName: <input type="text" class="fileNames" name="fileName[]" value=""/></td>					
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		{% endfor %}
+
+		<tr>
+		    <td/>
+		    <td><input type="submit" value="UPLOAD"></td>		
+		</tr>
+	    </table>
+	</form>
+
+	<h3>AWS S3 Upload - binary</h3>
+	<form action="/app_dev.php/aws/s3/file/upload" method="post" enctype="multipart/form-data">	    
+	    <table>
+		<tr>
+		    <td class="labels">Key</td>
+		    <td class="contents"><input type="text" name="key" value="test/"/></td>
+		</tr>
+		<tr>
+		    <td>Bucket</td>
+		    <td><input type="text" name="bucket" value="{{bucket}}"/></td>
+		</tr>
+		<tr>
+		    <td>Content</td>
+		    <td><input type="text" name="content" value="This is a sample content."/></td>
+		</tr>
+		<tr>
+		    <td>Filename</td>
+		    <td><input type="text" name="fileName" value="SampleBinaryUploadFile.txt"/></td>
+		</tr>
+		<tr>
+		    <td/>
+		    <td><input type="submit" value="UPLOAD"></td>		
+		</tr>
+	    </table>
+	</form>
+
+	{% if result is not empty %}
+	    <br/><br/><hr/>
+	    <h3>RESULTS</h3>
+	    {{result}}
+	{% endif %}
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	    $(document).ready(function () {
+		$('input[type="file"]').change(function (e) {
+
+		    var fileName = e.target.files[0].name;
+
+		    var tr = $(e.target).parent().parent();
+		    var inputs = $('input', tr);
+
+		    var fileNameElm = inputs[1];
+
+		    $(fileNameElm).val(fileName);
+		    $(fileNameElm).attr('name', 'fileName[' + fileName + ']');
+
+		});
+	    });
+	</script>
+    </body>
+</html>

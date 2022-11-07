@@ -1,0 +1,3124 @@
+#AccountMainDiv{
+	width: 1022px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+	font-family: Arial,Helvetica,sans-serif;
+	height:auto;
+	position:relative;
+}
+#AccountHolder{
+	position:relative;
+	width:990px;
+	margin-left:32px;
+	height:auto;
+	float:left;
+        margin-bottom: 20px;
+}
+#AccountMenu{
+	position:relative;
+	float:left;
+	width:990px;
+	height: 50px;
+}
+#AccountMenu ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+#AccountMenu li{
+	height: 14px;
+	float:left;
+	display:block;
+	font-size: 14px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#AccountMenu a{
+	position: relative;
+	display:block;
+	text-decoration: none;
+	height: 14px;
+	width:auto;
+	margin-right:18px;
+}
+#AccountInfo{
+	position:relative;
+	float:left;
+	width:657px;
+	margin-bottom:50px;
+	height:auto;
+}
+.AccountActiveTab{
+	color: #e7ba20;
+}
+.AccountInactiveTab{
+	color: #686868;
+}
+.PageTitle{
+	color: #DCAF1A;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+	margin-top: 70px;
+	margin-bottom: 28px;
+	position: relative;
+	float:left;
+}
+
+#WelcomeMessage{
+	position: absolute;
+	bottom: 5px;
+	right: 120px;
+	color: black;
+	font-weight: bold;
+	font-size: 12px;
+	top: 48px;
+}
+#SentInvites{
+	font-size:13px;
+	color:#e7ba20;
+	font-weight:bold;
+}
+.sentinvite{
+	font-size:13px;
+	color:#e7ba20;
+	font-weight:bold;
+}
+ul.invited{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	margin-top:20px;
+}
+ul.invited li{
+	float:none;
+	display:block;
+/*	width:360px;
+	height:31px;*/
+	line-height:30px;
+	border-bottom:1px dotted #686868;
+        font-size: 11px;
+}
+.SentInvitationDate{
+    font: 12px Arial;
+    text-transform: capitalize;
+}
+.SentInvitationRecipient{
+    font: 13px Arial;
+}
+.AccountOverviewImageContainer{
+	position:relative;
+	float:left;
+	width:95px;
+	height: 92px;
+	margin-right:7px;
+	border:3px solid #000;
+}
+#AccountOverviewImage{
+	width: 95px;
+	height: 95px;
+}
+.AccountOverviewInfo{
+	position:relative;
+	float:left;
+	width:790px;
+	height:98px;
+	overflow:hidden;
+}
+.OverviewInfo{
+	position:absolute;
+	width:790px;
+	height:auto;
+	overflow:hidden;
+	left:0;
+	bottom:0;
+}
+.OverviewInfo ul.info{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.OverviewInfo ul.info li{
+	float:none;
+	display:block;
+	width:790px;
+	height:auto;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#808080;
+}
+.OverviewInfo ul.info li.fullname{
+	font-size:17px;
+}
+.OverviewInfo ul.info li.location{
+	font-size:15px;
+}
+.OverviewInfo ul.info li.tuber{
+	font-size:11px;
+}
+.OverviewInfo ul.info li .date{
+	color:#e3b721;
+}
+.Accountinfodetails{
+	position:relative;
+	float:left;
+	width:680px;
+	height:auto;
+}
+.Accountinfodetails ul.details{
+	margin:0;
+	padding:0;
+	list-style-type:none
+}
+.Accountinfodetails ul.details li{
+	float:left;
+	display:block;
+	width:154px;
+	height:25px;
+        margin:0 6px 6px 0;
+        padding:0;
+	background:#f3f3f3;
+        font:12px/25px arial;
+}
+.Accountinfodetails ul.details li span{
+	float:left;
+        position:relative;
+        margin:0 0 0 30px;
+	width:auto;
+	display:block;
+        color:#808080;
+}
+.Accountinfodetails ul.details li span.yellow{
+	float:right;
+	margin:0 22px 0 0;
+	color:#e3b721;
+        display:block;
+        color:#e3b721;
+}
+.Accountinfodetails ul.details li span.span2{
+	float:left;
+        position:relative;
+        margin:0 0 0 15px;
+	width:auto;
+	display:block;
+        color:#808080;
+}
+.Accountinfodetails ul.details li span.yellow2{
+	float:right;
+	margin:0 14px 0 0;
+	color:#e3b721;
+        display:block;
+        color:#e3b721;
+}
+.AccountOverview1{
+	position:relative;
+	float:left;
+	width: 640px;
+	height:auto;
+}
+.AccountOverview1Inside{
+	position:relative;
+	float:left;
+	width:900px;
+	height: 108px;  /*change*/
+}
+.AccountOverview1 .AccountOverview1Inside{
+    display:none;
+}
+.AccountOverview2{
+	width: 170px;
+}
+.AccountOverviewSep{
+	width: 1px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: grey;
+}
+.AccountOverviewNumber{
+	color: #DCAF1A;
+}
+.AccountOverviewFullName{
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+}
+.AccountOverviewLocation{
+	color: #DCAF1A;
+}
+.AccountOverviewDescription{
+	margin-top: 2px;
+	margin-bottom: 5px;
+	font-size: 12px;
+}
+.AccountOverviewSubDate{
+	font-size: 10px;
+	font-weight: bold;
+	font-style: italic;
+	color: black;
+}
+.AccountTitle{
+    position:relative;
+    margin:0;
+    padding:0;
+    float:left;
+    width:657px;
+    height:43px;
+    cursor: pointer;
+    font:12px/15px Arial, Helvetica, sans-serif;
+    color:#686868;
+    text-transform:lowercase;
+    z-index:10;
+}
+.AccountTitle img{
+	position:absolute;
+	right:10px;
+	top:0px;
+}
+.AccountSubTitle{
+    position: relative;
+    float: left;
+    margin: 0 80px 0 6px;
+    padding: 0;
+    width: 545px;
+}
+.AccountOrder{
+    position: relative;
+    float: left;
+    margin: 0 0 0 5px;
+    padding: 1px 0 0 0;
+    width: 15px;
+    height: 14px;
+    text-align: center;
+    font:bold 9px Arial, Helvetica, sans-serif;
+    color:#000000;
+    background: url("/media/images/modal_number_circle.png") no-repeat 0 0;
+}
+.AccountStanDiv{
+	position:relative;
+	float:left;
+	width:400px;
+	margin-top:25px;
+        margin-left:8px;
+	height:auto;
+}
+.AccountStanDiv1{
+	position:relative;
+	float:left;
+/*	width:275px;*/
+	height:auto;
+}
+.AccountStanDiv2{
+	position:relative;
+	float:left;
+	width:600px;
+	height:auto;
+}
+.AccountTextLabel{
+	position:relative;
+	float:left;
+	width:auto;
+	color: #686c6e;
+	margin-bottom: 3px;
+	font-size: 12px;
+}
+.AccountTextLabel2{
+	color: #686c6e;
+	font-size: 13px;
+}
+.AccountTextLabel3{
+	color: #686c6e;
+	font-size: 11px;
+}
+
+.AccountTextArea, .AccountTextInput, .AccountTextInput2, .AccountTextInput3{
+    position:relative;
+    float:left;
+    color: #000;
+    font-size:12px;
+    font-family:Arial, Helvetica, sans-serif;
+	/*width:auto;*/
+}
+.AccountTextInput{
+    width: 228px;
+    padding: 3px;
+    border: 1px solid #eaeaea;
+    margin-bottom: 10px;
+    height: 16px;
+}
+.AccountTopSep{
+    position:relative;
+    border-top: 2px solid #e1e1e1;
+    float:left;
+    width:657px;
+    height: 10px;
+    z-index: 12;
+}
+.privacy-account{
+    display: none;
+    height: 16px;
+    position: absolute;
+    right: 7px;
+    top: -23px;
+    width: 15px;    
+}
+#EmailNot ul.notifcations{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-left:10px;
+}
+.saveaccount{
+	float:left;
+	cursor:pointer;
+}
+.cancelaccount{
+	float:right;
+	cursor:pointer;
+}
+.accountprivacy{
+	position:absolute;
+	float:left;
+	width:20px;
+	height:20px;
+	overflow:hidden;
+	top:-5px;
+	z-index:1250;
+}
+.resultaccountprivacy{
+	position:absolute;
+	float:left;
+	width:18px;
+	height:18px;
+	overflow:hidden;
+	top:-5px;
+}
+.accountprivacy .btn{
+	position:absolute;
+	top:-2px;
+	left:-2px;
+	width:22px;
+	height:22px;
+	background:url(/media/images/privacy_account_up.png) no-repeat top left;
+	z-index:100;
+	cursor:pointer;
+}
+.accountprivacy .list{
+	position:relative;
+	min-width:125px;
+	min-height:125px;
+	float:left;
+}
+.accountprivacy .list ul{
+	padding:0;
+	margin:0;
+	margin-top:20px;
+	margin-left:5px;
+}
+.accountprivacy .list li{
+	min-width:105px;
+	padding-left:20px;
+	height:18px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	margin-bottom:4px;
+	cursor:pointer;
+}
+.account-btn-container{
+    position: relative;
+    margin:0 0 41px 0;
+    padding:0;
+    text-align: right;
+    float:right;
+    clear:both;
+}
+.account-btn-container-info,.account-btn-container-location{
+    margin-top:12px !important;
+}
+.account-btn-save,.account-btn-cancel{
+    position: relative;
+    float: right;
+    margin: 0;
+    padding: 0;
+    font:10px Arial, Helvetica, sans-serif;
+    color:#686868;
+    text-align: right;
+    cursor: pointer;
+}
+.account-btn-seperator {
+    background-color: #F0D357;
+    display: block;
+    float: right;
+    height: 9px;
+    margin:0 9px 0 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 3px;
+    position: relative;
+    width: 1px;
+}
+.btnstan-account-about{
+    float:left;
+    height:22px;
+    margin:79px 0 0 0;
+    width:120px;
+}
+#AboutMe, #PersonalDetails{
+    position:relative;
+    float:left;
+    margin-left:6px;
+    margin-bottom:6px;
+    width:651px;
+    display:none;
+    z-index: 11;
+}
+#AccountOverview{
+    position:relative;
+    float:left;
+    margin-left:0;
+    margin-bottom:6px;
+    margin-top:47px;
+    width:651px;
+}
+#EmailNot{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+}
+#AccountSettings{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+    z-index: 11;
+}
+#LocationDetails{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+    min-height: 300px;
+}
+#EmailOptions{
+    position:relative;
+    float:left;
+    margin-bottom:6px;
+    width:643px;
+    display: block;
+}
+#ContactPrivacy,#ContentPrivacy{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display: none;
+}
+#AboutMeImageUL{
+	margin: 0px;
+	padding: 0px;
+	height: 101px;
+	width:195px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#686868;
+}
+#AboutMeImageUL .ImageStan{
+	position:relative;
+	float:left;
+	width:95px;
+	height:95px;
+	padding:2px;
+	border: 1px solid #e7ba20;
+	overflow:hidden;
+}
+#AboutMeImageUL .TextRight{
+	position:relative;
+	float:left;
+	width:80px;
+	height:101px;
+	margin-left:12px;
+}
+#AboutMeImageUL .TextRight ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+#AboutMeImageUL .TextRight li{
+	position:relative;
+	float:left;
+	width:80px;
+	height:auto;
+	font-size:12px;
+	margin-top:6px;
+}
+#AboutMeImageUL .TextRight li img{
+	cursor:pointer;
+}
+#AboutMeImageUL .DragImage{
+	position:relative;
+	float:left;
+	width:120px;
+	height:30px;
+	font-size:11px;
+	padding-left:22px;
+	line-height:35px;
+	background:url(/media/images/drag_stan.gif) no-repeat left;
+}
+#AboutMeImageUL li{
+	float: left;
+	height: inherit;
+	vertical-align: bottom;
+	list-style: none;
+	display: table-cell;
+}
+#AboutMeImageUL li div{
+	vertical-align: bottom;
+	display: table-cell;
+	height: inherit;
+}
+select.AccountTextInput, select.AccountTextInput2, select.AccountTextInput3, select.AccountTextInput4{
+	width:auto !important;
+}
+
+.AccountTextInput2{
+    width: 339px;
+    height: 16px;
+    padding: 3px;
+    border: 1px solid #eaeaea;
+    margin:0 0 10px 0;
+}
+.AccountTextInput3{
+	width: 345px;
+	padding: 3px;
+	border: 1px solid #eaeaea;
+}
+.AccountTextInput4{
+	width: 265px;
+	padding: 3px;
+	border: 1px solid #eaeaea;
+        font:12px Arial, Helvetica, sans-serif;
+        color:#000;
+}
+.accountlabel{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#686868;
+	font-size:12px;
+}
+.AccountTextArea{
+	color: #000000;
+	width: 379px;
+	height: 101px;
+	padding: 3px;
+	border: 1px solid #eaeaea;
+}
+.AccountRadioContainer{
+	background-color: #e7edef;
+	color: #686c6e;
+	padding: 3px;
+	width: 404px;
+	margin-bottom: 10px;
+}
+#PersonalDetails table{
+	position:relative;
+	float:left;
+	width:641px;
+        margin:0 4px 0 8px;
+}
+#PersonalDetails td{
+	padding-bottom:2px;
+}
+#PersonalDetails ul.gender{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+#PersonalDetails ul.gender li{
+	float:left;
+	display:block;
+	width:auto;
+	height:20px;
+	padding-right:50px;
+}
+.AccountBox{
+	position:relative;
+	float:left;
+	width:340px;
+	height:352px;
+}
+.AccountBox ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.AccountBox li{
+	position:relative;
+	float:left;
+	display:block;
+	width:341px;
+	min-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#686868;
+}
+.AccountBox li.title{
+	font-size:17px;
+	color:#000;
+}
+.AccountBox li.showhide{
+	display:none;
+}
+a.learnmore{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+    color:#686868;
+    margin-left:18px;
+    margin-top:20px;
+    text-decoration:underline;
+    position: relative;
+    float:left;
+    clear:both;
+    cursor:pointer;
+    display: block;
+    font-style:italic;
+}
+#PrivacyPolicy{
+	position:relative;
+	float:left;
+	width:943px;
+	height:auto;
+        min-height:300px;
+	border:2px solid #000;
+	background:#2a2a2a;
+	display:none;
+	padding:32px 45px 55px 35px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#b4b4b4;
+	font-size:12px;
+	font-style:italic;
+	line-height:15px;
+}
+#PrivacyPolicy .title{
+	position:relative;
+	float:left;
+	font-weight:bold;
+	text-decoration:underline;
+	width:943px;
+	height:36px;
+}
+#PrivacyPolicy .txt{
+	position:relative;
+	float:left;
+	width:943px;
+	height:auto;
+}
+#PrivacyPolicy .txt ul{
+	list-style-type:circle;
+}
+#PrivacyPolicy strong{
+	color:#e7ba20;
+}
+.sepAccount{
+	position:relative;
+	float:left;
+	width:2px;
+	height:352px;
+	background:#e1e1e1;
+	margin-right:60px;
+}
+.AccountRadioContainer label{
+	width: 110px;
+	display: inline-block;
+	font-size: 12px;
+}
+.AccountRadioContainer label.age{
+	width: 180px;
+	display: inline-block;
+	font-size: 12px;
+}
+#SharingList{
+	padding: 0px;
+	margin: 0px;
+	margin-top:28px;
+}
+.SharingLink1{
+	color: black;
+	font-weight: bold;
+	font-size: 12px;
+}
+.SharingLink2{
+	color: #DCAF1A;
+	background-image: url('/media/images/bgconnect.gif');
+	background-position: right;
+	background-repeat: no-repeat;
+	font-size: 12px;
+}
+.SharingLink2 a{
+	text-decoration: none;
+	color: inherit;
+}
+.SharingImage{
+	float:left;
+	margin-right: 3px;
+}
+.InputErr{
+	border: 2px solid red;
+}
+.btnstan{
+	position:relative;
+	float:left;
+	width:120px;
+	height:22px;
+	margin-top:11px;
+}
+#EmailNot ul{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 20px;
+}
+#EmailNot li{
+	list-style-type: none;
+}
+ul.privacy{
+	margin:0 !important;
+	padding:0 !important;
+	list-style-type:none;
+}
+ul.privacy li{
+    display:block;
+    margin-right:40px;
+    width: auto;
+    height:auto;
+}
+input[type='checkbox'] {
+margin-left:0;
+padding-left:0;
+}
+input[type='radio'] {
+margin-left:0;
+padding-left:0;
+}
+.AccountSelect2{
+    border: 1px solid #EAEAEA;
+    height: 24px;
+    margin: 0 0 10px;
+    padding: 1px 0 1px 3px;
+    width: 350px;
+    font:12px arial;
+    color:#000000;
+}
+.AccountPrivacyLookMe{
+    border: 1px solid #EAEAEA;
+    height: 19px;
+    margin: 10px 0 30px 0;
+    padding-left: 3px; 
+    min-width: 86px;
+}
+.AccountCountrySelect{
+   border: 1px solid #EAEAEA;
+    height: 24px;
+    margin: 0 0 10px;
+    padding: 1px 0 1px 3px;
+    width: 236px;
+    font:12px arial;
+    color:#000000;
+}
+.AccountSettingsLabel{
+    position: relative;
+    padding: 0;
+    margin: 0 0 3px 0;
+    color: #686C6E;
+    font-size: 12px;
+}
+.AccountSettingsLabel2{
+    position: relative;
+    padding: 0;
+    margin: 0 0 18px 0;
+    color: #686C6E;
+    font-size: 12px;
+}
+.AccountSettingsInput{
+    display: block;
+    position: relative;
+    margin: 0;
+    border: 1px solid #EAEAEA;
+    color: #000000;
+    font:12px arial;
+    height: 16px;
+    margin-bottom: 20px;
+    padding: 3px;
+    width: 252px;
+}
+.account-btn-container-settings{
+    margin:0 0 23px;
+}
+.formContainer100 {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.yellowTTL13{
+    font-size:11px;
+    color:#e7ba20;
+    font-weight:bold;
+}
+.font13 {
+    font-size: 13px !important;
+    color:#686868;
+}
+.fontblack12{
+    font-size: 12px;
+    color:#000000;
+}
+.fontgray12{
+    font-size: 12px;
+    color:#686868;
+    font-family: arial;
+}
+.fontblack13{
+    font-size: 13px;
+    color:#000000;
+}
+.margintop5 {
+    margin-top: 5px;
+}
+.margintop19 {
+    margin-top: 19px;
+}
+.margintop26 {
+    margin-top: 26px;
+}
+.list_notifications_item{
+    display: block;
+    float: left;
+    position: relative;
+    text-align: left; 
+    width: 295px;
+    height:13px;
+    line-height: 13px;
+    margin-right: 10px;
+    margin-bottom: 9px;
+    overflow: hidden;
+}
+.list_item_title{
+    display: block;
+    float: left;
+    position: relative;
+    text-align: left; 
+    width: auto;
+    max-width: 273px;
+    margin-right: 10px;
+}
+.list_item_title:hover{
+    color:#E7BA20;
+}
+.list_item_undo, .show_item_undo{
+    display: block;
+    float: left;
+    position: relative;
+    text-align: left; 
+    width: 11px;
+    height:11px;
+    margin-top: 1px;
+    background: url("/media/images/undo_notification.jpg") no-repeat;
+    cursor: pointer;
+}
+.margintop24{
+    margin-top: 24px;
+}
+.table1 {
+    color: #686868;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    position: relative;
+    text-align: left;
+    width: 630px;
+}
+select.notificationscombo {
+    color: #000000;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    height: 20px;
+    position: relative;
+    text-align: left;
+    width: 40px;
+}
+.margintop28 {
+    margin-top: 28px;
+}
+.formContainer {
+    float: left;
+    margin-bottom: 21px;
+    margin-left: 15px;
+    position: relative;
+    width: 632px;
+}
+.marginleftminus18 {
+    margin-left: -18px;
+}
+.account-btn-container-notification{
+    margin-right:40px !important;
+}
+#emailnotifications1{
+    width:247px;
+    padding:3px;
+    height: 16px;
+    border: 1px solid #EAEAEA;
+    color:#000;
+    font:12px Arial,Helvetica,sans-serif;
+}
+#SendInvitation,#SentInvitation{
+    display:none;
+    float: left;
+    margin-bottom: 6px;
+    margin-left: 14px;
+    position: relative;
+    width: 643px;
+}
+.AccountSharingDiv{
+    position: relative;
+    margin: 35px 0 0 14px;
+    padding:0;
+    width:643px;
+    float: left;
+    clear: both;
+}
+#AccountSharing{
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+.AccountPrivacyTitle{
+    color:#010101;
+    font:13px arial;
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.contentPrivacyTitle{position:relative;
+    float:left;
+    margin:0 0 0 12px;
+    padding:0;
+    width:auto;
+    height:auto;
+    font:13px arial;
+    clear:both;
+    color:#000}
+
+.personalCheckbox{background: url("/media/images/upload-unchecked.jpg") no-repeat 0 0;
+  display: block;
+  float: left;
+  height: 13px;
+  clear:both;
+  margin: 0;
+  padding: 0 0 0 18px;
+  position: relative;
+  cursor: pointer;
+  width: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none}
+.allowTTPageCheckbox,.eventTTPageCheckbox,.showTTPageCheckbox{background: url("/media/images/upload-unchecked.jpg") no-repeat 0 0;
+  display: block;
+  float: left;
+  height: 13px;
+  clear:both;
+  margin: 6px 5px 0 -11px;
+  padding: 0 0 0 22px;
+  position: relative;
+  cursor: pointer;
+  width: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none}
+.checkboxActive,.TTPageCheckboxActive {
+  background: url("/media/images/upload-checked.jpg") no-repeat 0 0;
+}
+.seeMyFriendsSelect{
+    border: 1px solid #EAEAEA;
+    height: 24px;
+    margin: 7px 0 0 10px;
+    padding: 1px 0 1px 3px;
+    width: 86px;
+    font:11px arial;
+    color:#000000;
+    display:block;
+    float:left;
+    clear:both;
+}
+.pieChartContainer{
+    position:relative;
+    float:left;
+    margin:40px 0 0 0;
+    padding:0;
+    width:445px;
+    height:342px;
+    clear:both
+}
+.clearboth{
+    clear:both;
+}
+.margintop22{
+    margin-top: 22px;
+}
+.barsChartContainer{
+    position:relative;
+    float:left;
+    margin:132px 0 0 0;
+    padding:0;
+    width:445px;
+    height:210px;
+}
+.pointsChartContainer{
+  position:relative;
+    float:left;
+    margin:115px 0 0 0;
+    padding:0;
+    width:535px;
+    height:235px;  
+}
+#placeholder {
+    position:relative;
+    float:left;
+    padding:0;
+    margin:0 0 0 15px;
+    width: 375px;
+    height:170px;
+}
+.friendsFollowersCont{
+    position:relative;
+    float:left;
+    margin:120px 0 0 35px;
+    padding:0;
+    width:410px;
+    height:60px;
+}
+.followersBlock{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    height:20px;
+    background:#000;
+    clear:both;
+}
+.friendsBlock{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    height:20px;
+    background:#e7ba20;
+}
+.followersTitle,.followersVal,.friendsTitle,.friendsVal{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    height:20px;
+    font:11px/20px arial;
+    color:#000;
+}
+.followersTitle,.followersVal{
+    clear:both;
+}
+.piechartTitle{
+    position:relative;
+    float:left;
+    margin:0 0 15px 63px;
+    padding:0;
+    clear:both;
+    font:12px arial;
+    color:#000;
+    width:100%;
+}
+
+
+
+.margintop5{
+    margin-top:5px !important
+}
+.margintop7{
+    margin-top:7px !important
+}
+.margintop10{
+    margin-top:10px !important
+}
+.margintop15{
+    margin-top:15px !important
+}
+.margintop20{
+    margin-top:20px !important
+}
+.margintop25{
+    margin-top:25px !important
+}
+.margintop30{
+    margin-top:30px !important
+}
+.margintop35{
+    margin-top:35px !important
+}
+.margintop22 {
+    margin-top: 22px !important
+}
+.margintop55{
+    margin-top: 55px !important
+}
+#YourUserName{margin-bottom:18px !important}
+#intrestedin{margin-bottom:3px !important}
+
+/* privacy_box */
+.privacy_box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: -5px 5px 5px #C0C0C0;
+    display: none;    
+    height: auto;
+    top: 1px;
+    padding-bottom: 50px;
+    padding-left: 13px;
+    padding-top: 50px;
+    position: absolute;
+    right: 0;
+    width: 235px;
+    z-index:50;
+}
+.displaynone {
+    display: none !important;
+}
+.privacy_icon0{
+    background: url("/media/images/sprite_privacy.png") no-repeat -115px 0;
+    width: 15px; 
+    height: 16px;
+}
+.privacy_icon1{
+    background: url("/media/images/sprite_privacy.png") no-repeat -147px 0;
+    width: 15px; 
+    height: 16px;
+}
+.privacy_icon2{
+    background: url("/media/images/sprite_privacy.png") no-repeat -131px 0;
+    width: 15px; 
+    height: 16px;
+}
+.privacy_icon3{
+    background: url("/media/images/sprite_privacy.png") no-repeat -163px 0;
+    width: 15px; 
+    height: 16px;
+}
+.privacy_icon4{
+    background: url("/media/images/sprite_privacy.png") no-repeat -83px 0;
+    width: 15px; 
+    height: 16px;
+}
+.privacy_icon5{
+    background: url("/media/images/sprite_privacy.png") no-repeat -99px 0;
+    width: 15px; 
+    height: 16px;
+}
+.privacy_selector_text {
+    margin-bottom: 10px;
+}
+.formtt11new {
+    color: #686868;
+    font-size: 11px;
+}
+.privacy_box .privacy_select {
+    color: #000000;
+    float: left;
+    font-size: 11px;
+    position: relative;
+}
+.privacy_icon{
+	position:relative;
+	float:right;
+	margin-right:15px;
+}
+#privacy_icon_glob {
+    position: absolute;
+	display:block;
+    height: 16px;
+    width: 15px;
+    right: 16px;
+    top: -21px;
+}
+.privacy_box .privacy_icon {
+    float: left;
+    height: 16px;
+    margin-left: 10px;
+    margin-top: 2px;
+    position: relative;
+    width: 15px;
+}
+.peoplecontainer {
+    background-color: #FFFFFF;
+    height: auto;
+    min-height: 60px;
+    position: relative;
+    width: 405px;
+}
+.emailcontainer {
+    border: 1px solid #BCBCBC;
+    display: block;
+    float: left;
+    height: 52px;
+    margin: 0;
+    min-height: 41px;
+    padding: 2px;
+    position: relative;
+    width: 401px;
+    z-index: 2;
+    overflow: auto;
+}
+.friendscontainer {
+    border: 1px solid #DBDFE6;
+    display: block;
+    float: left;
+    height: 46px;
+    margin: -1px 0 0;
+    padding: 0;
+    position: relative;
+    width: 405px;
+    z-index: 1;
+}
+.addmore {
+    display: block;
+    float: left;
+    margin: 0 3px 2px 0;
+    padding: 0;
+    position: relative;
+    width: 152px;
+    height: 16px;
+}
+#addmoretext, .addmoretext_css {
+    background-color: #B8B8B8;
+    border: none;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    height: 14px;
+    line-height: 14px;
+    margin: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    position: absolute;
+    width: 138px;
+    top: 0;
+    left: 0;
+}
+.privacy_picker #ui-id-1 {
+    width: 218px !important;
+}
+.privacy_picker .ui-autocomplete {
+    border: 2px solid #E2E3EA;
+    height: auto;
+    left: -1px !important;
+    max-height: 144px;
+    overflow: auto;
+    width: 218px !important;
+}
+.clearboot {
+    clear: both;
+}
+#privacy_box .sharepopup_buts {
+    bottom: 29px;
+    color: #686868;
+    cursor: pointer;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    height: 13px;
+    line-height: 13px;
+    position: absolute;
+    width: auto;
+}
+.privacy_box .privacy_close_button {
+    background: url("/media/images/channel/privacy_close.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    bottom: 15px;
+    cursor: pointer;
+    height: 10px;
+    position: absolute;
+    right: 20px;
+    width: 10px;
+}
+
+.sharepopup_buts:hover{
+    color: #e7ba20;
+}
+.margintop8 {
+	margin-top:8px;
+}
+.margintop3 {
+	margin-top:3px;
+}
+.marginleft5 {
+	margin-left:5px;	
+}
+.formContainer100 {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+
+.peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#000000;
+	margin:0;
+	padding:0;
+}
+.peoplesearchtext{
+	position:absolute;
+	/*width:340px; */
+	width:auto; 
+	height:32px;
+	line-height:32px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#959595;
+	left:42px;
+	top:0;
+}
+.privacy_picker .ui-autocomplete{
+    border: 2px solid #e2e3ea;
+    max-height: 144px;
+	height: auto;
+    overflow: auto;
+    width: 218px !important;
+	left:-1px !important;
+}
+.privacy_picker #ui-id-1{
+    width: 218px !important;
+}
+.privacy_picker .ui-menu .ui-menu-item a{
+	background-color:#e2e3ea;
+	padding:0 !important;
+	padding:2px !important;
+	/*padding-left:4px !important;
+	padding-right:4px !important;*/
+	border:none !important;
+}
+.privacy_picker .ui-menu .ui-menu-item a.ui-state-focus{
+	background-color:#ffffff;
+}
+.privacy_picker .ui-menu .ui-menu-item{
+	background-color:#ebebeb;	
+}
+.privacy_picker .peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#ebebeb;
+	margin:0;
+	padding:0;
+}
+.privacy_text{
+    position:absolute;
+    display:block;
+    right: 13px;
+    top: 15px;
+    font-size:10px;
+    color:#838383;
+    cursor:default;
+}
+.privacy_down_arrow{
+    position:relative;
+    float:right;
+    margin-right:5px;
+    margin-top:3px;
+    cursor:pointer;
+    width:17px;
+    height:14px;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-image: url("/media/images/channel/privacy_open.png");
+}
+/* end privacy_box */
+#AccountMainDiv{
+	width: 1022px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+	font-family: Arial,Helvetica,sans-serif;
+	height:auto;
+	position:relative;
+}
+#AccountHolder{
+	position:relative;
+	width:990px;
+	margin-left:32px;
+	height:auto;
+	float:left;
+        margin-bottom: 20px;
+}
+#AccountMenu{
+	position:relative;
+	float:left;
+	width:990px;
+	height: 50px;
+}
+#AccountMenu ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+#AccountMenu li{
+	height: 14px;
+	float:left;
+	display:block;
+	font-size: 14px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#AccountMenu a{
+	position: relative;
+	display:block;
+	text-decoration: none;
+	height: 14px;
+	width:auto;
+	margin-right:18px;
+}
+#AccountInfo{
+	position:relative;
+	float:left;
+	width:657px;
+	margin-bottom:50px;
+	height:auto;
+}
+.AccountActiveTab{
+	color: #e7ba20;
+}
+.AccountInactiveTab{
+	color: #686868;
+}
+.PageTitle{
+	color: #DCAF1A;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+	margin-top: 70px;
+	margin-bottom: 28px;
+	position: relative;
+	float:left;
+}
+
+#WelcomeMessage{
+	position: absolute;
+	bottom: 5px;
+	right: 120px;
+	color: black;
+	font-weight: bold;
+	font-size: 12px;
+	top: 48px;
+}
+#SentInvites{
+	font-size:13px;
+	color:#e7ba20;
+	font-weight:bold;
+}
+.sentinvite{
+	font-size:13px;
+	color:#e7ba20;
+	font-weight:bold;
+}
+ul.invited{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	margin-top:20px;
+}
+ul.invited li{
+	float:none;
+	display:block;
+/*	width:320px;
+	height:31px;*/
+	line-height:30px;
+	border-bottom:1px dotted #686868;
+        font-size: 12px;
+        overflow: hidden;
+}
+.SentInvitationDate{
+    font: 12px Arial;
+    text-transform: capitalize;
+}
+.SentInvitationRecipient{
+    font: 13px Arial;
+}
+.AccountOverviewImageContainer{
+	position:relative;
+	float:left;
+	width:95px;
+	height: 92px;
+	margin-right:7px;
+	border:3px solid #000;
+}
+#AccountOverviewImage{
+	width: 95px;
+	height: 95px;
+}
+.AccountOverviewInfo{
+	position:relative;
+	float:left;
+	width:790px;
+	height:98px;
+	overflow:hidden;
+}
+.OverviewInfo{
+	position:absolute;
+	width:790px;
+	height:auto;
+	overflow:hidden;
+	left:0;
+	bottom:0;
+}
+.OverviewInfo ul.info{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.OverviewInfo ul.info li{
+	float:none;
+	display:block;
+	width:790px;
+	height:auto;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#808080;
+}
+.OverviewInfo ul.info li.fullname{
+	font-size:17px;
+}
+.OverviewInfo ul.info li.location{
+	font-size:15px;
+}
+.OverviewInfo ul.info li.tuber{
+	font-size:11px;
+}
+.OverviewInfo ul.info li .date{
+	color:#e3b721;
+}
+.Accountinfodetails{
+	position:relative;
+	float:left;
+	width:680px;
+	height:auto;
+}
+.Accountinfodetails ul.details{
+	margin:0;
+	padding:0;
+	list-style-type:none
+}
+.Accountinfodetails ul.details li{
+	float:left;
+	display:block;
+	width:154px;
+	height:25px;
+        margin:0 6px 6px 0;
+        padding:0;
+	background:#f3f3f3;
+        font:12px/25px arial;
+}
+.Accountinfodetails ul.details li span{
+	float:left;
+        position:relative;
+        margin:0 0 0 30px;
+	width:auto;
+	display:block;
+        color:#808080;
+}
+.Accountinfodetails ul.details li span.yellow{
+	float:right;
+	margin:0 22px 0 0;
+	color:#e3b721;
+        display:block;
+        color:#e3b721;
+}
+.Accountinfodetails ul.details li span.span2{
+	float:left;
+        position:relative;
+        margin:0 0 0 15px;
+	width:auto;
+	display:block;
+        color:#808080;
+}
+.Accountinfodetails ul.details li span.yellow2{
+	float:right;
+	margin:0 14px 0 0;
+	color:#e3b721;
+        display:block;
+        color:#e3b721;
+}
+.AccountOverview1{
+	position:relative;
+	float:left;
+	width: 640px;
+	height:auto;
+}
+.AccountOverview1Inside{
+	position:relative;
+	float:left;
+	width:900px;
+	height: 108px;  /*change*/
+}
+.AccountOverview1 .AccountOverview1Inside{
+    display:none;
+}
+.AccountOverview2{
+	width: 170px;
+}
+.AccountOverviewSep{
+	width: 1px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: grey;
+}
+.AccountOverviewNumber{
+	color: #DCAF1A;
+}
+.AccountOverviewFullName{
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+}
+.AccountOverviewLocation{
+	color: #DCAF1A;
+}
+.AccountOverviewDescription{
+	margin-top: 2px;
+	margin-bottom: 5px;
+	font-size: 12px;
+}
+.AccountOverviewSubDate{
+	font-size: 10px;
+	font-weight: bold;
+	font-style: italic;
+	color: black;
+}
+.AccountTitle{
+    position:relative;
+    margin:0;
+    padding:0;
+    float:left;
+    width:657px;
+    height:43px;
+    cursor: pointer;
+    font:12px/15px Arial, Helvetica, sans-serif;
+    color:#686868;
+    text-transform:lowercase;
+    z-index:10;
+}
+.AccountTitle img{
+	position:absolute;
+	right:10px;
+	top:0px;
+}
+.AccountSubTitle{
+    position: relative;
+    float: left;
+    margin: 0 80px 0 6px;
+    padding: 0;
+    width: 545px;
+}
+.AccountOrder{
+    position: relative;
+    float: left;
+    margin: 0 0 0 5px;
+    padding: 1px 0 0 0;
+    width: 15px;
+    height: 14px;
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:9px;
+    font-weight:bold;
+    line-height: 13px;
+    color:#000000;
+    background: url("/media/images/modal_number_circle.png") no-repeat 0 0;
+}
+.AccountStanDiv{
+	position:relative;
+	float:left;
+	width:400px;
+	margin-top:25px;
+        margin-left:8px;
+	height:auto;
+}
+.AccountStanDiv1{
+	position:relative;
+	float:left;
+	width:275px;
+	height:auto;
+}
+.AccountStanDivInvitations{
+        position:relative;
+	float:left;
+/*	width:275px;*/
+	height:auto;
+}
+.AccountStanDiv2{
+	position:relative;
+	float:left;
+	width:600px;
+	height:auto;
+}
+.AccountTextLabel{
+	position:relative;
+	float:left;
+	width:auto;
+	color: #686c6e;
+	margin-bottom: 3px;
+	font-size: 12px;
+}
+.AccountTextLabel2{
+	color: #686c6e;
+	font-size: 13px;
+}
+.AccountTextLabel3{
+	color: #686c6e;
+	font-size: 11px;
+}
+
+.AccountTextArea, .AccountTextInput, .AccountTextInput2, .AccountTextInput3{
+    position:relative;
+    float:left;
+    color: #000;
+    font-size:12px;
+    font-family:Arial, Helvetica, sans-serif;
+	/*width:auto;*/
+}
+.AccountTextInput{
+    width: 228px;
+    padding: 3px;
+    border: 1px solid #eaeaea;
+    margin-bottom: 10px;
+    height: 16px;
+}
+.AccountTopSep{
+    position:relative;
+    border-top: 2px solid #e1e1e1;
+    float:left;
+    width:657px;
+    height: 10px;
+    z-index: 12;
+}
+#EmailOptions .AccountTopSep{    
+    height: 8px;
+}
+.privacy-account{
+    display: none;
+    height: 16px;
+    position: absolute;
+    right: 7px;
+    top: -23px;
+    width: 15px;
+    cursor: pointer;
+}
+#EmailNot ul.notifcations{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-left:10px;
+}
+.saveaccount{
+	float:left;
+	cursor:pointer;
+}
+.cancelaccount{
+	float:right;
+	cursor:pointer;
+}
+.accountprivacy{
+	position:absolute;
+	float:left;
+	width:20px;
+	height:20px;
+	overflow:hidden;
+	top:-5px;
+	z-index:1250;
+}
+.resultaccountprivacy{
+	position:absolute;
+	float:left;
+	width:18px;
+	height:18px;
+	overflow:hidden;
+	top:-5px;
+}
+.accountprivacy .btn{
+	position:absolute;
+	top:-2px;
+	left:-2px;
+	width:22px;
+	height:22px;
+	background:url(/media/images/privacy_account_up.png) no-repeat top left;
+	z-index:100;
+	cursor:pointer;
+}
+.accountprivacy .list{
+	position:relative;
+	min-width:125px;
+	min-height:125px;
+	float:left;
+}
+.accountprivacy .list ul{
+	padding:0;
+	margin:0;
+	margin-top:20px;
+	margin-left:5px;
+}
+.accountprivacy .list li{
+	min-width:105px;
+	padding-left:20px;
+	height:18px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	margin-bottom:4px;
+	cursor:pointer;
+}
+.account-btn-container{
+    position: relative;
+    margin:0 0 41px 0;
+    padding:0;
+    text-align: right;
+    float:right;
+    clear:both;
+}
+.account-btn-container-info,.account-btn-container-location{
+    margin-top:12px !important;
+}
+.account-btn-save,.account-btn-cancel{
+    position: relative;
+    float: right;
+    margin: 0;
+    padding: 0;
+    font:10px Arial, Helvetica, sans-serif;
+    color:#686868;
+    text-align: right;
+    cursor: pointer;
+}
+.account-btn-seperator {
+    background-color: #F0D357;
+    display: block;
+    float: right;
+    height: 9px;
+    margin:0 9px 0 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 3px;
+    position: relative;
+    width: 1px;
+}
+.btnstan-account-about{
+    float:left;
+    height:22px;
+    margin:79px 0 0 0;
+    width:120px;
+}
+#AboutMe, #PersonalDetails{
+    position:relative;
+    float:left;
+    margin-left:6px;
+    margin-bottom:6px;
+    width:651px;
+    display:none;
+    z-index: 11;
+}
+#AccountOverview{
+    position:relative;
+    float:left;
+    margin-left:0;
+    margin-bottom:6px;
+    margin-top:47px;
+    width:651px;
+}
+#EmailNot{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+}
+#DeactivateAccount{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+}
+#DeleteAccount{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    color: #686868;
+    font: 12px arial;
+    display:none;
+}
+#AccountSettings{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+    z-index: 11;
+}
+#LocationDetails{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display:none;
+    min-height: 300px;
+}
+#ContactPrivacy,#ContentPrivacy{
+    position:relative;
+    float:left;
+    margin-left:14px;
+    margin-bottom:6px;
+    width:643px;
+    display: none;
+}
+#AboutMeImageUL{
+	margin: 0px;
+	padding: 0px;
+	height: 101px;
+	width:195px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#686868;
+}
+#AboutMeImageUL .ImageStan{
+	position:relative;
+	float:left;
+	width:95px;
+	height:95px;
+	padding:2px;
+	border: 1px solid #e7ba20;
+	overflow:hidden;
+}
+#AboutMeImageUL .TextRight{
+	position:relative;
+	float:left;
+	width:80px;
+	height:101px;
+	margin-left:12px;
+}
+#AboutMeImageUL .TextRight ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+#AboutMeImageUL .TextRight li{
+	position:relative;
+	float:left;
+	width:80px;
+	height:auto;
+	font-size:12px;
+	margin-top:6px;
+}
+#AboutMeImageUL .TextRight li img{
+	cursor:pointer;
+}
+#AboutMeImageUL .DragImage{
+	position:relative;
+	float:left;
+	width:120px;
+	height:30px;
+	font-size:11px;
+	padding-left:22px;
+	line-height:35px;
+	background:url(/media/images/drag_stan.gif) no-repeat left;
+}
+#AboutMeImageUL li{
+	float: left;
+	height: inherit;
+	vertical-align: bottom;
+	list-style: none;
+	display: table-cell;
+}
+#AboutMeImageUL li div{
+	vertical-align: bottom;
+	display: table-cell;
+	height: inherit;
+}
+select.AccountTextInput, select.AccountTextInput2, select.AccountTextInput3, select.AccountTextInput4{
+	width:auto !important;
+}
+
+.AccountTextInput2{
+    width: 339px;
+    height: 16px;
+    padding: 3px;
+    border: 1px solid #eaeaea;
+    margin:0 0 10px 0;
+}
+.AccountTextInput3{
+	width: 345px;
+	padding: 3px;
+	border: 1px solid #eaeaea;
+}
+.AccountTextInput4{
+	width: 265px;
+	padding: 3px;
+	border: 1px solid #eaeaea;
+        font:12px Arial, Helvetica, sans-serif;
+        color:#000;
+}
+.accountlabel{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#686868;
+	font-size:12px;
+}
+.AccountTextArea{
+	color: #000000;
+	width: 379px;
+	height: 101px;
+	padding: 3px;
+	border: 1px solid #eaeaea;
+}
+.AccountRadioContainer{
+	background-color: #e7edef;
+	color: #686c6e;
+	padding: 3px;
+	width: 404px;
+	margin-bottom: 10px;
+}
+#PersonalDetails table{
+	position:relative;
+	float:left;
+	width:641px;
+        margin:0 4px 0 8px;
+}
+#PersonalDetails td{
+	padding-bottom:2px;
+}
+#PersonalDetails ul.gender{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+#PersonalDetails ul.gender li{
+	float:left;
+	display:block;
+	width:auto;
+	height:20px;
+	padding-right:50px;
+}
+.AccountBox{
+	position:relative;
+	float:left;
+	width:340px;
+	height:352px;
+}
+.AccountBox ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.AccountBox li{
+	position:relative;
+	float:left;
+	display:block;
+	width:341px;
+	min-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#686868;
+}
+.AccountBox li.title{
+	font-size:17px;
+	color:#000;
+}
+.AccountBox li.showhide{
+	display:none;
+}
+a.learnmore{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+    color:#686868;
+    margin-left:18px;
+    margin-top:20px;
+    text-decoration:underline;
+    position: relative;
+    float:left;
+    clear:both;
+    cursor:pointer;
+    display: block;
+    font-style:italic;
+}
+.sepAccount{
+	position:relative;
+	float:left;
+	width:2px;
+	height:352px;
+	background:#e1e1e1;
+	margin-right:60px;
+}
+.AccountRadioContainer label{
+	width: 110px;
+	display: inline-block;
+	font-size: 12px;
+}
+.AccountRadioContainer label.age{
+	width: 180px;
+	display: inline-block;
+	font-size: 12px;
+}
+#SharingList{
+	padding: 0px;
+	margin: 0px;
+	margin-top:28px;
+}
+#SharingList li{
+	list-style: none;
+	float: left;
+	width: 120px;
+	margin-right: 40px;
+}
+.SharingLink1{
+	color: black;
+	font-weight: bold;
+	font-size: 12px;
+}
+.SharingLink2{
+	color: #DCAF1A;
+	background-image: url('/media/images/bgconnect.gif');
+	background-position: right;
+	background-repeat: no-repeat;
+	font-size: 12px;
+}
+.SharingLink2 a{
+	text-decoration: none;
+	color: inherit;
+}
+.SharingImage{
+	float:left;
+	margin-right: 3px;
+}
+.InputErr{
+	border: 1px solid #cea113;
+}
+.btnstan{
+	position:relative;
+	float:left;
+	width:120px;
+	height:22px;
+	margin-top:11px;
+}
+#BlockUser{
+    position:relative;
+    float:left;
+    width:auto;
+    height:22px;
+    margin-top:10px;
+}
+#profile_block_user.load_more_previous_new{
+    height: 22px;
+    line-height: 22px;
+}
+#EmailNot ul{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 20px;
+}
+#EmailNot li{
+	list-style-type: none;
+}
+ul.privacy{
+	margin:0 !important;
+	padding:0 !important;
+	list-style-type:none;
+}
+ul.privacy li{
+    display:block;
+    margin-right:40px;
+    width: auto;
+    height:auto;
+}
+#dob{
+    border:1px solid #eaeaea;
+    margin-bottom:2px !important;
+    width: 237px;
+    padding: 3px 0;
+    height: 18px;
+}
+input[type='checkbox'] {
+margin-left:0;
+padding-left:0;
+}
+input[type='radio'] {
+margin-left:0;
+padding-left:0;
+}
+.AccountSelect2{
+    border: 1px solid #EAEAEA;
+    height: 24px;
+    margin: 0 0 10px;
+    padding: 1px 0 1px 3px;
+    width: 350px;
+    font:12px arial;
+    color:#000000;
+}
+.AccountPrivacyLookMe{
+    border: 1px solid #EAEAEA;
+    height: 19px;
+    margin: 10px 0 30px 0;
+    padding-left: 3px; 
+    min-width: 86px;
+}
+.AccountCountrySelect{
+   border: 1px solid #EAEAEA;
+    height: 24px;
+    margin: 0 0 10px;
+    padding: 1px 0 1px 3px;
+    width: 236px;
+    font:12px arial;
+    color:#000000;
+}
+.AccountSettingsLabel{
+    position: relative;
+    padding: 0;
+    margin: 0 0 3px 0;
+    color: #686C6E;
+    font-size: 12px;
+}
+.AccountSettingsLabel2{
+    position: relative;
+    padding: 0;
+    margin: 0 0 18px 0;
+    color: #686C6E;
+    font-size: 12px;
+}
+.account-btn-container-settings{
+    margin:0 0 23px;
+}
+.formContainer100 {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.yellowTTL13{
+    font-size:11px;
+    color:#e7ba20;
+    font-weight:bold;
+}
+.font13 {
+    font-size: 13px !important;
+    color:#686868;
+}
+.margintop5 {
+    margin-top: 5px;
+}
+.table1 {
+    color: #686868;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    position: relative;
+    text-align: left;
+    width: 630px;
+}
+select.notificationscombo {
+    color: #000000;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    height: 20px;
+    position: relative;
+    text-align: left;
+    width: 40px;
+}
+.margintop28 {
+    margin-top: 28px;
+}
+.formContainer {
+    float: left;
+    margin-bottom: 21px;
+    margin-left: 15px;
+    position: relative;
+    width: 632px;
+}
+.formContainer_list_notifications{
+    float: left;
+    margin-bottom: 21px;
+    margin-left: 15px;
+    position: relative;
+    width: 610px;    
+}
+.marginleftminus18 {
+    margin-left: -18px;
+}
+.marginleftminus6 {
+    margin-left: -6px;
+}
+.account-btn-container-notification{
+    margin-right:40px !important;
+    margin-bottom: 15px !important;
+}
+#emailnotifications1{
+    width:247px;
+    padding:3px;
+    height: 16px;
+    border: 1px solid #EAEAEA;
+    color:#000;
+    font:12px Arial,Helvetica,sans-serif;
+}
+#SendInvitation,#SentInvitation{
+    display:none;
+    float: left;
+    margin-bottom: 6px;
+    margin-left: 14px;
+    position: relative;
+    width: 643px;
+}
+.AccountSharingDiv{
+    position: relative;
+    margin: 35px 0 0 14px;
+    padding:0;
+    width:643px;
+    float: left;
+    clear: both;
+}
+#AccountSharing{
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+.AccountPrivacyTitle{
+    color:#010101;
+    font:13px arial;
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.contentPrivacyTitle{position:relative;
+    float:left;
+    margin:0 0 0 12px;
+    padding:0;
+    width:auto;
+    height:auto;
+    font:13px arial;
+    clear:both;
+    color:#000}
+.contentPrivacyLabel{float:left;
+    margin:0;
+    position:relative;
+    font:12px arial;
+    color:#686868}
+.personalCheckbox{background: url("/media/images/upload-unchecked.jpg") no-repeat 0 0;
+  display: block;
+  float: left;
+  height: 13px;
+  clear:both;
+  margin: 0;
+  padding: 0 0 0 18px;
+  position: relative;
+  cursor: pointer;
+  width: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none}
+.allowTTPageCheckbox,.eventTTPageCheckbox,.showTTPageCheckbox{background: url("/media/images/upload-unchecked.jpg") no-repeat 0 0;
+  display: block;
+  float: left;
+  height: 13px;
+  clear:both;
+  margin: 6px 5px 0 -11px;
+  padding: 0 0 0 22px;
+  position: relative;
+  cursor: pointer;
+  width: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none}
+.checkboxActive,.TTPageCheckboxActive {
+  background: url("/media/images/upload-checked.jpg") no-repeat 0 0;
+}
+.seeMyFriendsSelect{
+    border: 1px solid #EAEAEA;
+    height: 24px;
+    margin: 7px 0 0 10px;
+    padding: 1px 0 1px 3px;
+    width: 86px;
+    font:11px arial;
+    color:#000000;
+    display:block;
+    float:left;
+    clear:both;
+}
+.pieChartContainer{
+    position:relative;
+    float:left;
+    margin:40px 0 0 0;
+    padding:0;
+    width:445px;
+    height:342px;
+    clear:both
+}
+.barsChartContainer{
+    position:relative;
+    float:left;
+    margin:132px 0 0 0;
+    padding:0;
+    width:445px;
+    height:210px;
+}
+.pointsChartContainer{
+  position:relative;
+    float:left;
+    margin:115px 0 0 0;
+    padding:0;
+    width:535px;
+    height:235px;  
+}
+#placeholder {
+    position:relative;
+    float:left;
+    padding:0;
+    margin:0 0 0 15px;
+    width: 375px;
+    height:170px;
+}
+.friendsFollowersCont{
+    position:relative;
+    float:left;
+    margin:120px 0 0 35px;
+    padding:0;
+    width:410px;
+    height:60px;
+}
+.followersBlock{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    height:20px;
+    background:#000;
+    clear:both;
+}
+.friendsBlock{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    height:20px;
+    background:#e7ba20;
+}
+.followersTitle,.followersVal,.friendsTitle,.friendsVal{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    height:20px;
+    font:11px/20px arial;
+    color:#000;
+}
+.followersTitle,.followersVal{
+    clear:both;
+}
+.piechartTitle{
+    position:relative;
+    float:left;
+    margin:0 0 15px 63px;
+    padding:0;
+    clear:both;
+    font:12px arial;
+    color:#000;
+    width:100%;
+}
+
+
+
+.margintop5{
+    margin-top:5px !important
+}
+.margintop7{
+    margin-top:7px !important
+}
+.margintop10{
+    margin-top:10px !important
+}
+.margintop15{
+    margin-top:15px !important
+}
+.margintop20{
+    margin-top:20px !important
+}
+.margintop25{
+    margin-top:25px !important
+}
+.margintop30{
+    margin-top:30px !important
+}
+.margintop35{
+    margin-top:35px !important
+}
+.margintop22 {
+    margin-top: 22px !important
+}
+.margintop55{
+    margin-top: 55px !important
+}
+#YourUserName{margin-bottom:18px !important}
+#intrestedin{margin-bottom:3px !important}
+
+/* privacy_box */
+.privacy_box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: -5px 5px 5px #C0C0C0;
+    display: none;    
+    height: auto;
+    top: 1px;
+    padding-bottom: 50px;
+    padding-left: 13px;
+    padding-top: 50px;
+    position: absolute;
+    right: 0;
+    width: 235px;
+    z-index:50;
+}
+.displaynone {
+    display: none !important;
+}
+.privacy_selector_text {
+    margin-bottom: 10px;
+}
+.formtt11new {
+    color: #686868;
+    font-size: 11px;
+}
+.privacy_box .privacy_select {
+    color: #000000;
+    float: left;
+    font-size: 11px;
+    position: relative;
+}
+#privacy_icon_glob {
+    position: absolute;
+	display:block;
+    height: 16px;
+    width: 15px;
+    right: 16px;
+    top: -21px;
+}
+.privacy_box .privacy_icon {
+    float: left;
+    height: 16px;
+    margin-left: 10px;
+    margin-top: 2px;
+    position: relative;
+    width: 15px;
+}
+.peoplecontainer {
+    background-color: #FFFFFF;
+    height: auto;
+    min-height: 60px;
+    position: relative;
+    width: 405px;
+}
+.privacy_picker #ui-id-1 {
+    width: 218px !important;
+}
+.privacy_picker .ui-autocomplete {
+    border: 2px solid #E2E3EA;
+    height: auto;
+    left: -1px !important;
+    max-height: 144px;
+    overflow: auto;
+    width: 218px !important;
+}
+.clearboot {
+    clear: both;
+}
+#privacy_box .sharepopup_buts {
+    bottom: 29px;
+    color: #686868;
+    cursor: pointer;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    height: 13px;
+    line-height: 13px;
+    position: absolute;
+    width: auto;
+}
+.privacy_box .privacy_close_button {
+    background: url("/media/images/channel/privacy_close.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    bottom: 15px;
+    cursor: pointer;
+    height: 10px;
+    position: absolute;
+    right: 20px;
+    width: 10px;
+}
+
+.sharepopup_buts:hover{
+    color: #e7ba20;
+}
+.margintop8 {
+	margin-top:8px;
+}
+.margintop3 {
+	margin-top:3px;
+}
+.marginleft5 {
+	margin-left:5px;	
+}
+.peoplesdata {
+    background-color: #E7BA20;
+    display: block;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 3px 2px 0;
+    padding: 0 17px 0 5px;
+    position: relative;   
+}
+.formContainer100 {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.peoplesdatainside {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 16px;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: auto;
+}
+.peoplesdataclose {
+    background-image: url("/media/images/modal_profile_close.jpg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 10px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 10px;
+}
+.peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#000000;
+	margin:0;
+	padding:0;
+}
+.peoplesearchtext{
+	position:absolute;
+	/*width:340px; */
+	width:auto; 
+	height:32px;
+	line-height:32px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#959595;
+	left:42px;
+	top:0;
+}
+.privacy_picker .ui-autocomplete{
+    border: 2px solid #e2e3ea;
+    max-height: 144px;
+	height: auto;
+    overflow: auto;
+    width: 218px !important;
+	left:-1px !important;
+}
+.privacy_picker #ui-id-1{
+    width: 218px !important;
+}
+.privacy_picker .ui-menu .ui-menu-item a{
+	background-color:#e2e3ea;
+	padding:0 !important;
+	padding:2px !important;
+	/*padding-left:4px !important;
+	padding-right:4px !important;*/
+	border:none !important;
+}
+.privacy_picker .ui-menu .ui-menu-item a.ui-state-focus{
+	background-color:#ffffff;
+}
+.privacy_picker .ui-menu .ui-menu-item{
+	background-color:#ebebeb;	
+}
+.privacy_picker .peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#ebebeb;
+	margin:0;
+	padding:0;
+}
+.privacy_text{
+    position:absolute;
+    display:block;
+    right: 13px;
+    top: 15px;
+    font-size:10px;
+    color:#838383;
+    cursor:default;
+}
+.privacy_down_arrow{
+    position:relative;
+    float:right;
+    margin-right:5px;
+    margin-top:3px;
+    cursor:pointer;
+    width:17px;
+    height:14px;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-image: url("/media/images/channel/privacy_open.png");
+}
+/* end privacy_box */
+
+
+#LocationDetails .ui-menu-item{
+	background-color:#FFF;	
+}
+#LocationDetails .ui-menu .ui-menu-item a{
+	background-color:#FFF;
+	color:#686868;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	height:10px;
+	line-height:10px;
+	text-decoration:none;
+}
+#LocationDetails .ui-menu .ui-menu-item a.ui-state-focus{
+	background-color:#3399ff;
+	color:#ffffff;
+}
+#LocationDetails .ui-autocomplete{
+	width:264px !important;
+	border: 1px solid #b2b2b2;
+	max-height:154px;
+	overflow:auto;
+	/*z-index:150 !important;*/
+}
+.privacy_content {
+    display: block;
+    float: left;
+    height: auto;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    margin: 7px 0 0 11px;
+}
+.privacy_content .privacy_select {
+    float: left;
+    height: auto;
+    position: relative;
+    width: 102px;
+    color: #000000;
+    font-size: 11px;
+}
+.privacy_content .privacy_icon {
+    float: left;
+    height: 16px;
+    margin-left: 10px;
+    margin-top: 2px;
+    position: relative;
+    width: 15px;
+    margin-right: 15px;
+}
+.privacy_box5{
+    margin: 7px 0 10px !important;   
+}
+
+#contact_privacy_container .ui-menu-item{
+	background-color:#FFF;	
+}
+#contact_privacy_container .ui-menu .ui-menu-item a{
+	background-color:#FFF;
+	color:#686868;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	height:33px;
+	line-height:13px;
+}
+#contact_privacy_container .ui-menu .ui-menu-item a.ui-state-focus{
+	background-color:#3399ff;
+	color:#ffffff;
+}
+#contact_privacy_container .ui-autocomplete{
+	width:271px !important;
+	border: 1px solid #b2b2b2;
+	max-height:112px;
+	overflow-y: auto;
+        background-color: #FFFFFF;
+}
+.AccountInfo_item{
+    z-index: 9;
+    position: relative;
+}
+#AccountInfo_item_first{
+    z-index: 10;
+}
+.signIn_settings.registerpopUp {
+    background-image: url("/media/images/message-box-bk.jpg");
+    background-repeat: no-repeat;
+    border: medium none;
+    color: #B4B4B4;
+    display: none;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    height: 147px;
+    line-height: 15px;
+    padding: 0;
+    position: relative;
+    width: 347px;
+}
+.greysignIn {
+    color: #B4B4B4;
+    cursor: default;
+    font-size: 12px;
+}
+.registerpopUp input {
+    background:#5F5F5F;
+    border: 0 none;
+    color: #B4B4B4;
+    height: 22px;
+    width: 228px;
+}
+.registerpopUp .signInbtn {
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    left: 119px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 101px;
+    width: auto;
+}
+.signIn_settings .seperatorsignIn {
+    background-color: #D1D1D1;
+    display: block;
+    height: 11px;
+    left: 174px;
+    position: absolute;
+    top: 120px;
+    width: 1px;
+}
+.registerpopUp .signInbtn1 {
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    left: 190px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 101px;
+    width: auto;
+}
+.marginleft75 {
+    margin-left: 75px;
+}
+.registerpopUp .signInbtn:hover, .registerpopUp .signInbtn1:hover {
+    color: #E7BA20;
+}
+.fb_disconnect{
+    cursor: pointer;
+}
+.DynarchCalendar-menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2a2a2a;
+  overflow: hidden;
+  opacity:0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  display:block;
+}
+.hideMe{
+    display:none !important;
+}
+.AccountTextLabel ul.privacy li,.AccountTextLabel ul.privacy li{
+    height:20px;
+}
+.AccountTextLabel ul.privacy li input,.AccountTextLabel ul.privacy li input#search_engine2{
+    position:relative;
+    float:left;
+    display:block;
+    margin:3px 0 0 0;
+    padding:0;
+    clear:both;
+}
+.AccountTextLabel ul.privacy li label,.AccountTextLabel ul.privacy li label{
+    position:relative;
+    float:left;
+    margin:0 0 0 5px;
+    height: 20px;
+    padding:0;
+    font:12px/20px arial;
+    display:block;
+}
+.genderCell{
+    height:20px;
+}
+.genderCell .gender{
+    display: block;
+    float: left;
+    margin: 3px 0 0;
+    padding: 0;
+    position: relative;
+}
+.genderCell >label{
+    display: block;
+    float: left;
+    font: 12px/20px arial;
+    height: 20px;
+    margin: 0 5px 0 5px;
+    padding: 0;
+    position: relative;
+}
+.marginTop10{
+    margin-top: 10px;
+}
+#reportcontainer{
+    position: relative;
+    float: left;
+    margin:7px 0 0 0;
+    padding:0;
+    display:none;
+    clear:both;
+}
+#reportcontainer textArea{
+    border: 1px solid #eaeaea;
+    color:#000;
+    font: 12px arial;
+}
+.tellWhy{
+    color:#eac31a;
+    cursor:pointer;
+}
+.tellWhy:hover{
+    text-decoration: underline;
+}
+.deleteTellOpt{
+    position: relative;
+    float: left;
+    margin:5px 0 0 0;
+    padding:0 0 0 20px;
+    clear:both;
+    color:#000;
+}
+#sendReport{
+    position: relative;
+    float: left;
+    margin:7px 0 0 0;
+    padding:0;
+    clear:both;
+    cursor:pointer;
+    font:11px arial;
+}
+#sendReport:hover{
+    color:#e7ba20;
+}
+#deleteTellContainer{
+    position: relative;
+    float: left;
+    margin:7px 0 0 0;
+    padding:0;
+    display:none;
+    clear:both;
+}
+.deleteTellOpt .contentPrivacyLabel{
+    float:left;
+    margin:0;
+    position:relative;
+    font:12px arial;
+    font-style: italic !important;
+    color:#686868;
+}
+.accountbuts {
+    color: #686868;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    height: 13px;
+    line-height: 13px;
+    position: relative;
+    width: auto;
+}
+.accountbutseperator {
+    background-color: #f0d357;
+    display: block;
+    float: right;
+    height: 7px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 3px;
+    position: relative;
+    width: 1px;
+}
+
+.accountbuts:hover {
+    color: #e7ba20;
+}
+#confirmDelete{
+    position:relative;
+    float: left;
+    margin:7px 0 0 0;
+    padding:0;
+    display:none;
+    clear:both;
+}
+#confirmDeleteBtns{
+    margin-top:7px;
+    display:none;
+}
+#confirmDelete{
+    padding:0 0 0 20px;
+}
+.pass_hint{
+    margin-top: -15px;
+    font-size: 10px;
+    font-style: italic;
+    margin-bottom: 20px;
+    color: #b4b4b4;
+}

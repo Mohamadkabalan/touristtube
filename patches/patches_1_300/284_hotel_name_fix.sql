@@ -1,0 +1,1 @@
+UPDATE `cms_hotel` SET `name` = 'ZEN Rooms M. Velez Street Hotel & Residences' WHERE `cms_hotel`.`id` = 377616;

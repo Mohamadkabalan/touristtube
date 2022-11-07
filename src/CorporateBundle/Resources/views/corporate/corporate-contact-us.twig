@@ -1,0 +1,51 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-contact-us.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Contact us'|trans}}{% endblock %}
+{% block body %} 
+    <section class="container containerwhite paddingBottom10">
+        <div class="col-xs-12 nopad">
+            <div class="col-xs-12 nopad">
+                <h1 class="contactustitle_cocus">{{'Contact us'|trans}}</h1>
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Security Issues'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'To report security / hacking issues on the site, please contact us at'|trans}} <a href="mailto:security@touristtube.com" title="security@touristtube.com">security@touristtube.com</a></p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Inappropriate content'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'To report any inappropriate content on the site, please contact us at'|trans}} <a href="mailto:abuse@touristtube.com" title="abuse@touristtube.com">abuse@touristtube.com</a></p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Copyright Issues'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'To report copyright infringements on the site, please contact us at'|trans}} <a href="mailto:copyright@touristtube.com" title="copyright@touristtube.com">copyright@touristtube.com</a></p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Advertising'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'For placing your ads with us, please contact us at'|trans}} <a href="mailto:advertising@touristtube.com" title="advertising@touristtube.com">advertising@touristtube.com</a></p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad marbut30">
+                <h1 class="subtitleheader_cocus">{{'Our Address'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'You can contact Tourist Tube at the address below.'|trans}}</p>                
+            </div>
+            <br /><br />
+            <p class="subtitletextblacksmal_cocus"> {{'Tourist Tube FZ-LLC'|trans}}</p>
+            <p class="subtitletextblacksmal_cocus"> {{'Floor 1; DIC Building 12'|trans}}</p>
+            <p class="subtitletextblacksmal_cocus"> {{'35, DIC Street; city Dubai, UAE'|trans}}</p>
+            <p class="subtitletextblacksmal_cocus"> +971 - 50 611 0908</p>
+            <p class="subtitletextblacksmal_cocus"><a href="mailto:info@touristtube.com" title="info@touristtube.com">info@touristtube.com</a></p> 
+            
+        </div>
+    </section>
+{% endblock %}

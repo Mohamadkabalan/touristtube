@@ -1,0 +1,86 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block body %}
+    <section class="container channel-container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_27">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Channels'|trans}} | <span>{{'create a new channel'|trans}}</span></h1>
+                    </div>
+                </div>
+		<div class="row no-margin margin_top_20">
+		    <div class="col-xs-12">
+			<div class="row new_small_margin margin_bottom_40">
+			    <div class="col-xs-12 new_smal_padding">
+				<label class="">{{'For government agencies, businesses and professionals'|trans}}</label>
+			    </div>
+			</div>
+			<div class="row new_small_margin margin_bottom_48">
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'Channel name'|trans}}*</label>
+				<input type="text" required="true" placeholder="{{'Channel name'|trans}}*" name="name" class="txt_input" maxlength="60">
+			    </div>
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'Choose a category'|trans}}*</label>
+				<select required="true" name="category" class="dropdown_txt">
+				    <option value="">{{'Choose a category'|trans}}*</option>
+				    {% for item in category_list %}
+					<option value="{{item.id|raw}}">{{item.title|raw}}</option>					
+				    {% endfor %}
+		    		</select>
+			    </div>
+			</div>
+			<div class="row new_small_margin margin_bottom_27">
+			    <div class="col-xs-12 new_smal_padding">
+				<label class="font-24 black">{{'Location'|trans}}</label>
+			    </div>
+			</div>
+			<div id="channel-location-form" class="row new_small_margin margin_bottom_23">
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'Country'|trans}}*</label>
+				<select id="country" required="true" name="country" class="dropdown_txt">
+				    <option value="">{{'Choose a country'|trans}}*</option>
+				    {% for item in country_list %}
+					<option value="{{item.code|raw}}">{{item.name|raw}}</option>					
+				    {% endfor %}
+		    		</select>
+			    </div>
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'City'|trans}}</label>
+				<input type="text" placeholder="{{'City'|trans}}" name="city" class="txt_input" data-id="0">
+			    </div>
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'Street'|trans}}</label>
+				<input type="text" placeholder="{{'Street'|trans}}" name="street" class="txt_input">
+			    </div>
+			</div>
+			<div class="row new_small_margin margin_bottom_40">
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'Phone number'|trans}}</label>
+				<input type="text" placeholder="{{'Phone number'|trans}}" name="phone" class="txt_input" onkeypress="return isPhoneNumeric(event)">
+			    </div>
+			    <div class="col-sm-3 col-xs-12 new_smal_padding">
+				<label class="">{{'URL'|trans}}</label>
+				<input type="text" placeholder="{{'http://www.'|trans}}" name="url" class="txt_input">
+			    </div>
+			</div>
+			<div class="row new_small_margin margin_bottom_40">
+			    <div class="col-xs-12 new_smal_padding">
+				<p class="font-13 black no-margin">{{'Note:'|trans}}</p>
+				<p class="font-13 grey78 no-margin">{{'All channels created are public.'|trans}}</p>
+				<p class="font-13 grey78 no-margin">{{'By clicking on "Create my channel", you agree to our'|trans}} <span><a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{ 'terms and conditions'|trans }}" class="blue00"> {{'Terms and Conditions'|trans}}</a></span> {{' and consent to our'|trans}} <span><a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{ 'privacy policy'|trans }}" class="blue00"> {{'Privacy Policy'|trans}}</a></span>
+				</p>
+			    </div>
+			</div>
+			<div class="row new_small_margin margin_bottom_40">
+			    <div class="col-xs-12 new_smal_padding">
+				<button type="button" class="btn create_channel_but">{{'Create my channel'|trans}}</button>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

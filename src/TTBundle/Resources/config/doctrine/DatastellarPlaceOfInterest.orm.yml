@@ -1,0 +1,46 @@
+TTBundle\Entity\DatastellarPlaceOfInterest:
+    type: entity
+    table: datastellar_place_of_interest
+    indexes:
+        hotel_id:
+            columns:
+                - hotel_id
+        name:
+            columns:
+                - name
+                - hotel_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        longitude:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        latitude:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+    lifecycleCallbacks: {  }

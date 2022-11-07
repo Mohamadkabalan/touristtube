@@ -1,0 +1,11 @@
+_rest_corpo_on_account_payment_process:
+    path:      "/api/corporate/payment-on-account"
+    defaults: { _controller: RestBundle:payment\Payment:corpoOnAccount }
+
+_rest_payment_processRequest:
+    path:      "/api/payment-processRequest"
+    defaults: { _controller: RestBundle:payment\Payment:paymentProcessRequest }
+
+_rest_payment_callback:
+    path:      "/api/payment/callback"
+    defaults: { _controller: RestBundle:payment\Payment:result }

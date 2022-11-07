@@ -1,0 +1,107 @@
+.deparrival_corphotel .deparrival_input_corphotel{
+    height: 75px;
+    line-height: 75px;
+    border: none;
+    font-size: 16px;
+    padding-left: 20px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: none;  
+}
+.deparrival_input_corphotel::-webkit-input-placeholder ,.deparrival_input_corpfl::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.deparrival_input_corphotel:-moz-placeholder ,.deparrival_input_corpfl:-moz-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.deparrival_input_corphotel::-moz-placeholder ,.deparrival_input_corpfl::-moz-placeholder { 
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.deparrival_input_corphotel:-ms-input-placeholder ,.deparrival_input_corpfl:-ms-input-placeholder{  
+    color: #ffffff;
+}
+
+.moinbut_corp {
+    cursor: pointer;
+    height: 75px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    z-index: 10;
+}
+.plusbut_corp {
+    cursor: pointer;
+    height: 75px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    z-index: 10;
+}
+.inputwizbut_corp {
+    text-align: left;
+    line-height: 75px;
+    font-size: 16px;
+}
+.textinsideinput {
+    color: white;
+    font-size: 16px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+    line-height: 75px;
+    padding: 0 10px;
+}
+.selectboxes_corpfl select.childAgeSelect{
+    padding-left: 46%;
+    margin-bottom: 10px;
+}
+.selectboxes_corpfl select.childAgeSelect2{
+    padding-left: 10px;
+}
+.childtext {
+    color: #8b9398;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 16px;
+    padding: 0 5px 0 20px;
+    margin: 15px 0 0;
+}
+.valueinput_corp {
+    width: 34px;
+    padding: 0;
+    height: 75px;
+    font-size: 16px;
+    text-align: center;
+    border: medium none;
+}
+.inputcolorndstyle_corp{
+    padding: 0 25px;
+    border-radius: 20px;
+}
+.deparrival_corpflight .deparrival_input_corpfl{
+    height: 75px;
+    line-height: 75px;
+    border: none;
+    font-size: 16px;
+    padding-left: 40px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: none; 
+    background-image: url("/images/corporate-flight/locationiconyellow_corpfl.png");
+    background-position: 15px 28px;
+    background-repeat: no-repeat;
+}
+@media  (max-width:767px){
+    .inputwizbut_corp {
+	text-align: center;
+    }
+}

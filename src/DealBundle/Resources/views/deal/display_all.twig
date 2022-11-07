@@ -1,0 +1,32 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block body %}        
+<div class="container">
+  <br /> 
+  <h2>{{pageName}}</h2>
+  <br />           
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>TourCode</th>
+        <th>PackageName</th>
+        <th>Type</th>
+        <th>OfferedFrom</th>
+        <th>OfferedTo</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for key,val in getAll.soapBody.atiATI_PkgAvailRS.atiPackage %} 
+            <tr>
+              <td>{{val['@attributes']['TourCode']}}</td>
+              <td>{{val['@attributes']['PackageName']}}</td>
+              <td>{{val['@attributes']['Type']}}</td>
+              <td>{{val['@attributes']['OfferedFrom']}}</td>
+              <td>{{val['@attributes']['OfferedTo']}}</td>
+            </tr>        
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

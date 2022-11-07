@@ -1,0 +1,35 @@
+_rest_review_autocomplete_search:
+    path: "/api/review/review-autocomplete"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:reviewAutocompleteSearch }
+    requirements: 
+        methods: GET
+
+_rest_hotel_autocomplete_search:
+    path: "/api/hotel/autocomplete"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:hotelAutocompleteSearch }
+    requirements: 
+        methods: GET
+
+_rest_flight_autocomplete_search:
+    path: "/api/flight/autocomplete"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:flightAutocompleteSearch }
+    requirements: 
+        methods: GET
+
+_rest_search_locality:
+    path: "/api/search_locality"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:searchLocality }
+    requirements:
+        methods: GET
+
+_rest_search_thingstodo:
+    path: "/api/thingstodo/autocomplete"
+    defaults:  { _controller: RestBundle:autocomplete\Autocomplete:searchThingsToDo} 
+    requirements:
+        methods: GET
+
+_rest_search_channel:
+    path: "/api/channel/autocomplete"
+    defaults:  { _controller: RestBundle:autocomplete\Autocomplete:searchChannel} 
+    requirements:
+        methods: GET

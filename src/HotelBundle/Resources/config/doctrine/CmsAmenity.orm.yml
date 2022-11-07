@@ -1,0 +1,27 @@
+HotelBundle\Entity\CmsAmenity:
+    type: entity
+    table: cms_amenity
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        hasCount:
+            type: boolean
+            nullable: false
+            options:
+                default: 'b''0'''
+            column: has_count
+    lifecycleCallbacks: {  }

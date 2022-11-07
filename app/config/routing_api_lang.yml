@@ -1,0 +1,244 @@
+_api_photos_videos_search_lang:
+    path: "/{_locale}/api/photos-videos/search"
+    defaults: { _controller: ApiBundle:PhotosVideos:photosVideosSearch, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements: 
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_categories_list_lang:
+    path: "/api/categories"
+    defaults: { _controller: ApiBundle:PhotosVideos:categoriesList, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements: 
+        domain: "[^/]+"
+
+_api_bag_bags_list_lang:
+    path: "/{_locale}/api/bag/bags"
+    defaults: { _controller: ApiBundle:Bags:bagsList, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_update_bag_name_lang:
+    path: "/{_locale}/api/bag/update_bag_name"
+    defaults: { _controller: ApiBundle:Bags:updateBagName, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_update_bag_item_info_lang:
+    path: "/{_locale}/api/bag/update_bag_item_info"
+    defaults: { _controller: ApiBundle:Bags:updateBagItemInfo, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_delete_bag_item_lang:
+    path: "/{_locale}/api/bag/delete_bag_item"
+    defaults: { _controller: ApiBundle:Bags:deleteBagItem, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_delete_bag_lang:
+    path: "/{_locale}/api/bag/delete_bag"
+    defaults: { _controller: ApiBundle:Bags:deleteBag, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_add_to_bag_lang:
+    path: "/{_locale}/api/bag/add_to_bag"
+    defaults: { _controller: ApiBundle:Bags:addItemToBag, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_create_bag_lang:
+    path: "/{_locale}/api/bag/create_bag"
+    defaults: { _controller: ApiBundle:Bags:createBag, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_api_bag_bag_items_lang:
+    path: "/{_locale}/api/bag/bag_items"
+    defaults: { _controller: ApiBundle:Bags:bagItems, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements: 
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+# List all countries  
+_api_countries_lang:
+    path:      "/{_locale}/api/all/countries"
+    defaults: { _controller: ApiBundle:Country:getCountryList, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+# List all currencies
+_api_currencies_lang:
+    path:      "/{_locale}/api/all/currencies"
+    defaults: { _controller: ApiBundle:Currency:getCurrencyList, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+# convert currency
+_api_convert_currency_lang:
+    path:      "/{_locale}/api/convert/currency"
+    defaults: { _controller: ApiBundle:Currency:currencyConversionRate, _locale: "%locale%", domain: "%domain%" }
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+#RabbitMQ Testing
+_rabbit_MQ_Send_lang:
+    path:      "/{_locale}/rabbit/send"
+    defaults: { _controller: ApiBundle:Discover:rabbitMqSend, _locale: "%locale%", domain: "%domain%"}
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+ #RabbitMQ Testing 
+_rabbit_MQ_Receive_lang:
+    path:      "/{_locale}/rabbit/receive"
+    defaults: { _controller: ApiBundle:Discover:rabbitMqReceive, _locale: "%locale%", domain: "%domain%"}
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+# my flight bookings
+_api_my_flight_bookings_lang:
+    path:      "/{_locale}/api/flight/bookings"
+    defaults: { _controller: TTBundle:MyBookings:myFlightBookingApi, _locale: "%locale%", domain: "%domain%" }
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_hotel_offers_api_lang:
+    path:      "/{_locale}/api/hotel-offers-{name}-{id}"
+    defaults: { _controller: HotelBundle:HRS:hotelOffers, _locale: "%locale%", domain: "%domain%", name: "", id: "", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_booking_details_api_lang:
+    path:      "/{_locale}/api/booking-details-{reference}"
+    defaults: { _controller: HotelBundle:HRS:bookingDetails, _locale: "%locale%", domain: "%domain%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        reference: ".*"
+
+_flight_details_api_lang:
+    path:      "/{_locale}/api/flight-details"
+    defaults: { _controller: TTBundle:MyBookings:myFlightDetails, page: 1, _locale: "%locale%", domain: "%domain%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_flight_cancelation_api_lang:
+    path:      "/{_locale}/api/flight-cancelation"
+    defaults: { _controller: FlightBundle:Flight:flightCancelation, _locale: "%locale%", domain: "%domain%", seotitle: "flight cancelation | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_hotel_reservation_api_lang:
+    path:      "/{_locale}/api/hotel-reservation"
+    defaults: { _controller: HotelBundle:HRS:hotelReservation, _locale: "%locale%", domain: "%domain%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_hotel_avail_api_lang:
+    path:      "/{_locale}/api/hotel-avail"
+    defaults: { _controller: HotelBundle:HRS:hotelAvail, _locale: "%locale%", domain: "%domain%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_hotel_reservation_cancellation_api_lang:
+    path:      "/{_locale}/api/hotel-reservation-cancellation-{reference}"
+    defaults: { _controller: HotelBundle:HRS:hotelReservationCancellation, _locale: "%locale%", domain: "%domain%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        reference: ".*"
+
+_my_bookings_search_api_lang:
+    path:      "/{_locale}/api/my-bookings-search"
+    defaults: { _controller: TTBundle:MyBookings:myBookingsSearch, page: 1, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_book_flight_api_lang:
+    path:      "/{_locale}/api/book-flight"
+    defaults: { _controller: FlightBundle:Flight:bookFlight, _locale: "%locale%", domain: "%domain%", seotitle: "book flight | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_flight_booking_result_api_lang:
+    path:      "/{_locale}/api/flight-booking-result"
+    defaults: { _controller: FlightBundle:Flight:flightBookingResult, _locale: "%locale%", domain: "%domain%", seotitle: "flight booking result | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_terms-and-conditions_api_lang:
+    path:      "/{_locale}/api/terms-and-conditions-{web}"
+    defaults: { _controller: TTBundle:Social:termsAndConditions, _locale: "%locale%", domain: "%domain%", web: "", seotitle: "terms and conditions Tourist Tube", seodescription: "By registering as a member or by using the Tourist Tube services in any way, you accept these Terms of Service ('Agreement')", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+
+_disclaimer_api_lang:
+    path:      "/{_locale}/api/disclaimer-{web}"
+    defaults: { _controller: TTBundle:Social:disclaimer, _locale: "%locale%", domain: "%domain%", web: "", seotitle: "disclaimer Tourist Tube", seodescription: "We provide our Services using a commercially reasonable level of skill and care and we hope that you will benefit from them.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+
+_privacy-policy_api_lang:
+    path:      "/{_locale}/api/privacy-policy-{web}"
+    defaults: { _controller: TTBundle:Social:privacyPolicy, _locale: "%locale%", domain: "%domain%", web: "", seotitle: "privacy policy Tourist Tube", seodescription: "Tourist Tube LTD has developed this Privacy Policy to demonstrate its commitment to respecting your privacy.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+
+_help_api_lang:
+    path:      "/{_locale}/api/help-{web}"
+    defaults: { _controller: TTBundle:Social:help, _locale: "%locale%", domain: "%domain%", web: "", seotitle: "tourist help Tourist Tube", seodescription: "You can view content in our public section without registration. However you are required to register to use the full features of Tourist Tube.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        web: ".*"
+
+_api_publish_video_lang:
+    path: "/{_locale}/api/publish/video"
+    defaults: { _controller: ApiBundle:Default:publishVideoUpdate, _locale: "%locale%", domain: "%domain%" }
+    methods:  [GET, HEAD]
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"

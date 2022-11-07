@@ -1,0 +1,15 @@
+services:
+    HotelsServices:
+        class: HotelBundle\Services\HotelsServices
+        arguments: ['@app.utils', '@service_container', '@doctrine.orm.entity_manager']
+    HotelLogger:
+        class: HotelBundle\Services\HotelLogger
+        arguments: ['@service_container','@logger']
+        tags:
+            - { name: monolog.logger, channel: hotels }
+    HRSServices:
+        class: HotelBundle\Services\HRSServices
+        arguments: ['@app.utils', '@service_container', '@doctrine.orm.entity_manager']
+    ReviewServices:
+        class: HotelBundle\Services\ReviewServices
+        arguments: ['@app.utils', '@service_container']

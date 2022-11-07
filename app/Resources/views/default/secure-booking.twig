@@ -1,0 +1,260 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/secure-booking.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/js/secure-booking.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class ="container">
+	<div class="col-xs-12 nopad margintop100">
+	    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad rightfourcontainer_sts">  
+		<div class="col-xs-12 nopad rightcontainerbordergrey_sts">
+		    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+			<div class="col-xs-12 nopad">
+			    <p class="location_sts commontextblack_sts">Paris, FR</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="fromto_sts commontextblack_sts">From Airport / Station / Port to Dropoff
+				point and back</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="commontextblack_sts">Roissy Charles de Gaulle Airport</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="homelogo_sts commontextblack_sts">The Westin Paris - Vendôme
+				3Rue de castiglione, Paris</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+		    </div>
+		    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+			<div class="col-xs-12 nopad">
+			    <p class="commontextblack_sts">Sat Jul 15 2017, 04:00</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="commontextblack_sts">From Pickup point to <br>
+				Airport / Station / Port</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="commontextblack_sts">Fri Jul 21 2017, 10:05</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="personlogo_sts commontextblack_sts">2</p>
+			</div>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <a class="bookbut_sts" href="#">Book now starting at
+			US$ 11.92</a>
+		</div>
+		<div class="col-xs-12 nopad rightcontainerbordergrey_wtt_sts martop10">
+		    <div class="col-xs-12 nopad">
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+			    <p class="resontt_sts">Why ToursitTube?</p>
+			    <ul class="whyttlist_sts">
+				<li class="">Easy booking</li>
+				<li class="">Instant confirmation</li>
+				<li class="">Reschedule anytime</li>
+				<li class="">Best price guaranteed</li>
+				<li class="">24/5 Customer support</li>
+			    </ul>
+			</div>
+			<div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+			    <div class="col-xs-12 nopad inhorborderstyle_sts"></div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+			    <p class="needhelp_sts">Need Help?<span class="contus_sts"> <a href="#" class=""> Contact Us</a></span></p>
+			    <div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+				<div class="col-xs-12 nopad inhorborderstyle_sts extrabordmarbut_sts"></div>
+			    </div>
+			    <p class="secpay_sts">Secure & simple payments</p>
+			    <p class="protectpay_sts">All our card payments are protected 
+				by thawte to give you peace of mind</p>
+			    <div class="col-xs-12 nopad textalligncenter">
+				<div class="paymimgs_sts_cont">
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/visa_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/mastercard_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/americnexpress_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/discover_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ asset('images/deals-attractive/jcb_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				</div>
+			    </div>
+			</div>
+
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 nopad"> 
+		<div class="col-xs-12 nopad">
+		    <h1 class="seccon_sts">Secure booking. Only takes 2 minutes!</h1>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="col-xs-12 nopad borderedautowdsiv_sts">
+			<p class="alrhaccpink_sts">Already have an account?</p>
+			<a class="signinbut_sts" href="#">Sign in</a>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad">
+				<p class="arrdepboldtext_sts">Arrival Transfer</p>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="detbluetxt_sts">Arrival company or flight number</p>
+				<input id="" name="" data-link="" placeholder="Departure company or flight number" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="detbluetxt_sts">Arriving form</p>
+				<input id="" name="" data-link="" placeholder="Arriving form" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="detbluetxt_sts">Complete Destination address in Paris</p>
+				<input id="" name="" data-link="" placeholder="3 rue de castiglione, Paris" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad">
+				<p class="arrdepboldtext_sts">Departure Transfer</p>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="detbluetxt_sts">Departure company or flight number</p>
+				<input id="" name="" data-link="" placeholder="Departure company or flight number" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="detbluetxt_sts">Going to</p>
+				<input id="" name="" data-link="" placeholder="Going to" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="detbluetxt_sts">Complete pickup address in Paris</p>
+				<input id="" name="" data-link="" placeholder="3 rue de castiglione, Paris" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			</div>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+			<p class="alrhaccpink_sts">Lead Traveler’s Information</p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<div class="col-xs-12 nopad margintop30">
+			    <p class="detbluetxt_sts">Contact name</p>
+			    <input id="" name="" data-link="" placeholder="First name" class="firstnameinput_sts" value="" autocomplete="off" type="text">
+			    <input id="" name="" data-link="" placeholder="Last name" class="firstnameinput_sts marginleft20" value="" autocomplete="off" type="text">
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="detbluetxt_sts">Email address</p>
+			    <input id="" name="" data-link="" placeholder="We’ll send you voucher there" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="detbluetxt_sts">Credit card billing address</p>
+			    <input id="" name="" data-link="" placeholder="your billing address" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="detbluetxt_sts">Country code</p>
+			    <select class="selectboxlargestandard_sts">
+				<option value="" selected="selected" >Country</option>
+				<option value="">leb</option>
+				<option value="">USA</option>
+				<option value="">UAE</option>
+			    </select> 
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="detbluetxt_sts">Mobile phone number</p>
+			    <input id="" name="" data-link="" placeholder="In case we need to reach you" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="detbluetxt_sts">Do you have special requests for your booking?<br>
+				Tell us and we will glasgly accomodate!</p>
+			    <textarea class="textarea_sts">
+
+			    </textarea> 
+			</div>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+			<p class="alrhaccpink_sts">Payment</p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad">
+				<p class="arrdepboldtext_sts flatleftstyle_sts">Have a gift certificate or promocode?</p>
+				<a class="redemdisc_sts flatleftstyle_sts" href="#">Redeem your discount</a>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Cardholder Name</p>
+				    <input id="" name="" data-link="" placeholder="Name on the credit card" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    <div class="rightpaymnetimgscont_sts">
+					<img class="" src="{{ asset('images/stepseven/visalogo_sts.png') }}" alt="{{'title'}}"/>
+					<img class="redborderimgstylepad_sts" src="{{ asset('images/stepseven/redborderimg_sts.png') }}" alt="{{'title'}}"/>
+					<img class="" src="{{ asset('images/stepseven/mastercard_sts.png') }}" alt="{{'title'}}"/>
+					<img class="redborderimgstylepad_sts" src="{{ asset('images/stepseven/redborderimg_sts.png') }}" alt="{{'title'}}"/>
+					<img class="" src="{{ asset('images/stepseven/amexpress_sts.png') }}" alt="{{'title'}}"/>
+				    </div>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Debit / Credit card number</p>
+				    <input id="" name="" data-link="" placeholder="Card number" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Expiration Date</p>
+				    <select class="selectboxlargestandard_sts smalselectbox_sts">
+					<option value="" selected="selected" >January</option>
+					<option value="">FEB</option>
+					<option value="">MAR</option>
+				    </select> 
+				    <select class="selectboxlargestandard_sts smalselectbox_sts sndsboxstyle">
+					<option value="" selected="selected" >2017</option>
+					<option value="">2018</option>
+					<option value="">2019</option>
+				    </select> 
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">Security code</p>
+				    <input id="" name="" data-link="" placeholder="CVC" class="arrdepstandardinput_sts smalselectbox_sts" value="" autocomplete="off" type="text">
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+			<p class="alrhaccpink_sts">Create your account</p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<div class="col-xs-12 nopad margintop30">
+			    <p class="detbluetxt_sts">Create password</p>
+			    <input id="" name="" data-link="" placeholder="Min, 8 chars" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="detbluetxt_sts">Confirm password</p>
+			    <input id="" name="" data-link="" placeholder="Enter it again!" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="termsandcondtext_sts">By selecting to cpmplete this booking and / or joining TouristTube.com,<br>
+				I ackknowledge that I have read and accept the <span><a href="#" class="temcondurl_sts"> Terms and Conditions</a></span>
+			    </p>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a class="compbookbluebut_sts" href="#">Complete Booking</a>
+			</div>
+			<div class="lastfloatleftsponimg_sts">
+			    <img class="" src="{{ asset('images/stepseven/trustwavelogo_sts.png') }}" alt="{{'title'}}"/>
+			    <img class="" src="{{ asset('images/stepseven/secby_sts.png') }}" alt="{{'title'}}"/>
+			</div>
+		    </div>
+		</div>
+	    </div>
+
+	</div>
+    </section>
+
+{% endblock %}

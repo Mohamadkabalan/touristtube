@@ -1,0 +1,24 @@
+TTBundle\Entity\ThingstodoDivisionCategory:
+    type: entity
+    table: thingstodo_division_category
+    repositoryClass: TTBundle\Repository\DiscoverQueryRQRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            column: name
+    lifecycleCallbacks: {  }

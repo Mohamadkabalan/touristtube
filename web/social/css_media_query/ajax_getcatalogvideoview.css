@@ -1,0 +1,31 @@
+
+/* Add media style for responsive 
+----------------------------------------------------*/
+
+@media only screen and (max-width:767px) 
+{	
+
+.fancybox-type-iframe{ width:100% !important;}
+.fancybox-type-iframe #flashcontent{ margin:1% !important; width:98% !important; height:98% !important;}
+.fancybox-type-iframe .jwplayer{ width:100% !important; height:100% !important; margin:auto !important; }
+.fancybox-type-iframe .jwvideo video {height:auto !important; width: 100% !important;}
+
+
+
+
+ #flashcontent {
+    background-color: #000;
+    height: 100% !important;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width:100% !important;
+	 }
+
+
+ #flashcontent p{ }
+
+}
+	
+	
+@media only screen and (min-width: 768px) and (max-width:960px) {}

@@ -1,0 +1,30 @@
+HotelBundle\Entity\CmsHotelFacility:
+    type: entity
+    table: cms_hotel_facility
+    repositoryClass: HotelBundle\Repository\HRSRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_id
+        facilityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: facility_id
+    lifecycleCallbacks: {  }

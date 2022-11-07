@@ -1,0 +1,1 @@
+INSERT INTO `corpo_admin_menu` (`id`, `name`, `order`, `url`, `type`, `parent_id`, `published`, `enable_for_mobile`) VALUES (22, 'Account Type', 13, '/corporate/admin/accountType', 1, 20, 1, 0);

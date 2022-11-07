@@ -1,0 +1,20 @@
+RestBundle\Entity\OauthAuthCode:
+    type: entity
+    table: oauth2_auth_code
+    id:
+        id:
+            id: true
+            type: integer
+            generator: { strategy: AUTO }
+    manyToOne:
+        user:
+            targetEntity: TTBundle\Entity\CmsUsers
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+        client:
+            targetEntity: OauthClient
+            joinColumn:
+                name: client_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

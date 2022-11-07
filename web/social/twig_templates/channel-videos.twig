@@ -1,0 +1,138 @@
+{# Template for Channel Page#}
+
+{% include "headChannel.html" %}
+
+
+<script type="text/javascript">
+    var indexArray = new Array();
+    var pagename = "videos";
+    var pagetype = "v";
+    var globchannelid = {{ channelInfoId|raw }};
+    channelGlobalID(globchannelid);
+    var txt_srch_init = {{ txt_srch_init|raw }};
+    var user_Is_channel = {{ userIschannel|raw }};
+    var user_is_logged = {{ user_is_logged|raw }};
+    var is_owner = {{ is_owner|raw }};
+    reactivateAccount(false);
+</script>
+
+
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleChannel" style="background:{{ bg_src|raw }};">
+
+    <div id="ChannelContainer">
+        {% include "parts/channelHeader.twig" %}
+        <div id="MainChannelContainer">
+
+            {% include "parts/myChannelRight.twig" %}
+            {% if channelvideoInfoCount > 0 %}
+                <div id="ChannelLeft">
+                    <div class="calendarcontainer">
+                        <div id="frombutcontainer">
+                            <div id="frombut" class="calbut">{{ 'From'|lang }}</div>
+                            <div id="fromtxt" class="caltxt" data-cal=""></div>
+                        </div>
+                        <div id="tobutcontainer" class="marginleft10">
+                            <div id="tobut" class="calbut">{{ 'To'|lang }}</div>
+                            <div id="totxt" class="caltxt" data-cal=""></div>
+                        </div>
+                        <div id="searchCalendarbut"></div>
+                        <div class="load_more_previous_new" id="resetpagebut">{{ 'reset'|lang }}</div>
+                    </div>
+                        {% if channelvideoInfo %}
+                        <div class="MediaCont">
+                            <div class="Line"></div>
+                            <h2 class="TTL h2bottom0">{{ 'VIDEOS'|lang }}<span class="YellowTTL vmediaDataCount" data-number="{{ formatChannelvideoInfoCount|raw }}">({{ formatChannelvideoInfoCount|raw }})</span></h2>
+                            <div class="MediaList" id="MediaVideo" data-channelid="{{ channelInfoId|raw }}" data-number="{{ channelimageInfoCount|raw }}">
+                                <ul>
+                                    {% for channelvideo in channelvideoInfoArr %}
+                                        <li data-vid="{{ channelvideo.vid_id|raw }}">
+
+                                        <div class="plusSign"></div>
+
+                                        <div class="image">
+                                            <a href="{{ channelvideo.mediauri|raw }}" title="{{ channelvideo.Title|raw }}"><div class="stanClick"></div></a>
+                                            <img width="136" height="76" src="{{ channelvideo.photoXSmallVideoInfo|raw }}" alt="{{ channelvideo.Title|raw }}"/>
+                                            <div class="insideBorder play hide"></div>
+                                            <div class="infoPop hide">
+                                                <div class="duration">{{ channelvideo.duration|raw }}</div>
+                                                <div class="views">{{ channelvideo.views|raw }} {{ channelvideo.PlaysCount|raw }}</div>
+                                            </div>
+                                            <div class="closeSign hide"></div>
+                                        </div>
+
+                                        <div class="ttl medias_title">{{ channelvideo.Title|raw }}</div>
+
+                                        <div class="popUp">
+                                            <div class="main">	
+                                                <div class="ttl popUpDivStandar">{{ channelvideo.formatDate|raw }}</div>
+                                                <div class="popUpDivStandar popUpDivDescription">{{ channelvideo.Description|raw }}</div>
+                                                <a href="{{ channelvideo.mediauri|raw }}" class="more0 marginbottom21{% if channelvideo.Description == '' %} displaynone{% endif %}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'more >'|lang }}</div></a>
+                                                
+                                                <div class="overdatabutcontainer">
+                                                    {% if channelvideo.is_owner == 1 %}
+                                                        <a href="{{ channelvideo.mediauri ~ '/edit/1'}}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutedit">{{ 'edit'|lang }}</div></a>
+                                                        <div class="overdatabutenable overdatabut" data-status="{% if channelvideo.Videocan_comment == 0 or channelvideo.Videocan_share == 0 %}0{% else %}1{% endif %}">
+                                                            <div class="overdatabutntficon{% if channelvideo.Videocan_comment == 0 or channelvideo.Videocan_share == 0 %} inactive{% endif %}"></div>
+                                                            <div class="overdatabutntftxt marginleft12"><{{ 'enable shares & comments'|lang }}</div>
+                                                        </div>
+                                                    {% else %}
+                                                        {% if channelvideo.privacy_social == 1 %}
+                                                            <a href="{{ channelvideo.mediauri ~ '/like/1' }}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'like'|lang }}</div></a>
+                                                            <div class="overdatabutseperator"></div>
+                                                            {% if channelvideo.Videocan_comment == 1 and channelvideo.Videocan_share == 1 %}
+                                                                <a href="{{ channelvideo.mediauri ~ '/comment/1' }}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'comment'|lang }}</div></a>
+                                                                <div class="overdatabutseperator"></div>
+                                                                <a href="{{ channelvideo.mediauri ~ '/share/1' }}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'share'|lang }}</div></a>
+                                                                <div class="overdatabutseperator"></div>
+                                                            {% endif %}
+                                                            <a href="{{ channelvideo.mediauri ~ '/rate/1' }}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'rate'|lang }}</div></a>
+                                                            {% if channelvideo.user_is_logged == 1 %}
+                                                                <div class="overdatabutseperator"></div>
+                                                                <a href="{{ channelvideo.mediauri ~ '/report/1' }}" title="{{ channelvideo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'report'|lang }}</div></a>
+                                                            
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="minus"></div>
+                                        </div>
+
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <div style="clear:both;"></div>
+                                <div class="buttonmorecontainer" style="float:none; width:584px;">
+                                {% if pagcount > currentpage + 1 %}
+                                    <a id="load_more_next" class="loadmoremedia load_more_previous_new" href="{{ loadMoreLink|raw }}">{{ 'Load More...'|lang }}</a>
+                                {% endif %}    
+                                {% if pageArg and currentpage != 0%}
+                                    <a id="load_more_previous" class="load_more_previous_new" href="{{ loadPreviousLink|raw }}">{{ 'Load Previous...'|lang }}</a>
+                                {% endif %}  
+                                <script>
+                                    $(document).ready(function(e) {
+                                        var load_more_next_diff = 4;
+                                        if ($('#load_more_next').length > 0) {
+                                            load_more_next_diff += 29;
+                                        }
+                                        if ($('#load_more_previous').length > 0) {
+                                            load_more_next_diff += 29;
+                                        }
+                                        $('.buttonmorecontainer').css('width', ($('#load_more_next').width() + $('#load_more_previous').width() + load_more_next_diff) + "px");
+                                    });
+                                </script> 
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="notFoundCon">{{ 'No videos found'|lang }}</div>
+            {% endif %}    
+            {% if channel_type != CHANNEL_TYPE_DIASPORA %}
+                {% include "parts/channelNewsTicker.twig" %}
+            {% endif %}    
+            

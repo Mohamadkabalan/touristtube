@@ -1,0 +1,208 @@
+{% if printView is not defined %}<body style="font-family: Arial;">{% endif %}
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="padding-left: 17px; padding-right: 17px;">
+	<tbody>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td align="left" bgcolor="#ffffff" style="padding: 13px 0 0 0px; border: none;">
+				<img src="{{ generateMediaURL('/media/images/Logo.png', true)}}" alt="touristtube_logo" width="172" height="68" style="display: block;" />
+			    </td>
+			    <td align="right" bgcolor="#ffffff" style="border: none;">
+				{% if cancellationInfo.controlNumber is defined and cancellationInfo.controlNumber is not empty %}
+				    {% set bookingNumber = cancellationInfo.controlNumber %}
+				{% else %}
+				    {% set bookingNumber = cancellationInfo.reservationProcessKey %}
+				{% endif %}
+				<p style="color: #000000; font-size: 13px; font-family: Arial; padding-left: 15px;">
+				    {{'Booking Number:'|trans~' '~bookingNumber|raw}}
+				</p>
+				{% if cancellationInfo.reservationProcessPassword is defined and cancellationInfo.reservationProcessPassword is not empty %}
+				    <p style="color: #000000; font-size: 13px; font-family: Arial; padding-left: 15px;">
+					{{'Pin Code:'|trans~' '~cancellationInfo.reservationProcessPassword|raw}}
+				    </p>
+				{% endif %}
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 19px;  color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">
+			{% if cancellationInfo.reservationKey is not defined %}
+			    {{'Your booking has been successfully cancelled!'|trans}}
+			{% else %}
+			    {{'Your room has been successfully cancelled!'|trans}}
+			{% endif %}
+		    </p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="40">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 14px; font-family: Arial; color: #404141; margin-top: 3px; line-height: 14px;">{{'Dear'|trans}} {{recipient.firstName|raw}} {{recipient.lastName|raw}},</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 14px; font-family: Arial; color: #404141; margin-top: 10px; line-height: 18px; margin-bottom: 0;">
+			{% if cancellationInfo.reservationKey is not defined %}
+			    {{ 'We can confirm that your reservation at '|trans }}{{cancellationInfo.hotelName|raw}}{{ " has been cancelled. You don't need to take further action, but if you have any queries for the property, their contact details are:"|trans}}
+			{% else %}
+			    {{ 'We can confirm that your specified room reservation at '|trans }}{{cancellationInfo.hotelName|raw}}{{ " has been cancelled. You don't need to take further action, but if you have any queries for the property, their contact details are:"|trans}}
+			{% endif %}
+		    </p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff" style="padding: 15px 0 0 0;">
+		    <p style="color: #000000; font-size: 22px; font-family: Arial; font-weight: bold;"> {{cancellationInfo.hotelName|raw}}</p>
+		    <p style="color: #000000; font-size: 13px; font-family: Arial; line-height: 20px; margin-top: 5px; ;">{{cancellationInfo.hotelAddress|raw}}</p>
+		    <p style="color: #000000; font-size: 13px; font-family: Arial; margin-top: 5px;">{{'Phone'|trans}}: <span style="color: #00b7d9; text-decoration: underline;"> +{{cancellationInfo.hotelPhone|raw}}</span></p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; " height="10">&nbsp;</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; text-align: center; font-size: 22px ; color: white; font-family: Arial;" height="80" bgcolor="#db3a69" width="100%">
+		    {{'CANCELLED'|trans}}
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; " height="10">&nbsp;</td>
+	    </tr>
+
+	    {% for room in cancellationInfo.roomsCancelled %}
+		<tr>
+		    <td bgcolor="#ffffff">
+			<p style="font-size: 17px;color: black; margin-top: 0px; line-height: 17px; margin-bottom: 0px;font-weight:bold;">
+			    {{loop.index ~ '. '}}{{room.roomHeadline|raw}}
+			    {% if room.roomTypeInfo.guestInfo is not empty %}&nbsp;{{ room.roomTypeInfo.guestInfo|raw}}{% endif %}
+			</p>
+		    </td>
+		</tr>
+		<tr>
+		    <td style="font-size: 0; line-height: 0;" height="25">
+			&nbsp;
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Room reservation'|trans}}<br>{{'number'|trans}}</p>
+				</td>
+				<td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{room.reservationKey|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		{% if room.cancellationNumber is defined and room.cancellationNumber is not empty %}
+		    <tr>
+			<td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+				    <td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+					<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Cancellation Number'|trans}}</p>
+				    </td>
+				    <td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+					<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{room.cancellationNumber|raw}}</p>
+				    </td>
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		{% endif %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Arrival / Departure'|trans}}</p>
+				</td>
+				<td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{room.checkIn|raw}} - {{ room.checkOut|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		{% if room.cancellationDetails is defined and room.cancellationDetails is not empty %}
+		    <tr>
+			<td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+				    <td width="178" height="95" style="text-align: left; background-color: #ffffff;vertical-align: top;">
+					<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 10px;font-size: 16px;">{{'Cancellation'|trans}}</p>
+				    </td>
+				    <td width="388" height="95" style="text-align: left; background-color: #ffffff;">
+					<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">
+					    {{room.cancellationDetails|join('<br/>')|raw}}
+					</p>
+				    </td>
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		{% endif %}
+
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px; font-weight: bold;">{{'Cancellation Fee'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px; font-weight: bold;">
+					{% if room.cancelRateText is defined and room.cancelRateText is not empty %}
+					    {{room.cancelRateText|raw}}
+					{% elseif room.cancellationFee is defined and room.cancellationFee is not empty %}
+					    {{room.cancellationFee|raw}}
+					{% endif %}
+				    </p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		    <td style="font-size: 0; line-height: 0;" height="40">
+			&nbsp;
+		    </td>
+		</tr>
+
+	    {% endfor %}
+
+	    <tr>
+		<td>
+		    <p style="color: #010101;font-size: 14px; margin-top:0px; margin-bottom: 0; font-family: Arial; background-image: url({{ generateMediaURL('/media/images/interrmar.png', true)}}); background-repeat: no-repeat; background-position: 0px center; padding-left: 27px;">
+			{{cancellationInfo.hotelName|raw}}{{ ' sets their own cancellation policies, so if you have any queries relating to this matter, please contact them directly on '|trans }}<span style="text-decoration: underline;color: #00b7d9; white-space: nowrap">+{{cancellationInfo.hotelPhone|raw}}</span>.
+		    </p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0;" height="15">&nbsp;</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <p style="color: #010101;font-size: 14px; margin-top:0px; margin-bottom: 0; font-family: Arial; background-image: url({{ generateMediaURL('/media/images/exclammar.png', true)}}); background-repeat: no-repeat; background-position: 0px center; padding-left: 27px;">
+			{% set room = (cancellationInfo.reservationKey is defined) ? 'specified room ' : '' %}
+			{{"Please be aware that you may still receive notifications about this booking while our system updates in all areas. But don't worry, your "|trans ~ room ~ "booking is confirmed as cancelled."|trans}}
+		    </p>
+		</td>
+	    </tr>
+
+	    {% include '@Corporate/hotels/hotel-email-footer.twig' %}
+	</tbody>
+    </table>
+    {% if printView is not defined %}</body>{% endif %}

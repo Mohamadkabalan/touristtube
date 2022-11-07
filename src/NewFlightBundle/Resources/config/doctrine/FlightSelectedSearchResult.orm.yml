@@ -1,0 +1,46 @@
+NewFlightBundle\Entity\FlightSelectedSearchResult:
+    type: entity
+    table: flight_selected_search_result
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: true
+        customerIp:
+            type: string
+            nullable: false
+            length: 18
+        searchDateTime:
+            type: datetime
+            nullable: false
+        flightType:
+            type: string
+            nullable: false
+            length: 18
+        isPnrCreated:
+            type: integer
+            nullable: false
+        isTicketIssued:
+            type: integer
+            nullable: false
+        adtCount:
+            type: integer
+            nullable: false
+        cnnCount:
+            type: integer
+            nullable: false
+        infCount:
+            type: integer
+            nullable: false
+        cabinSelected:
+            type: integer
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,164 @@
+<section class="popup" style="display:none" id="popup">
+  <div class="row no-margin">
+    <div class="col-xs-12 nopad">
+      <div class="departure_popup_container">
+        <div class="flight_segments"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/template" id="flight_details_tmpl">
+
+  <div class="#{has_stop}">
+    <div class="row no-margin">
+      <div class="col-xs-12 nopad">
+        <h2 class="popup_title"><img class="" src="{{ generateMediaURL('/media/images/flights_new/plane_logo.png') }}" alt="plane_logo"><span>{{'Departure'|trans}}</span>  <span class="sndspan">|  #{departure_airport_city} (#{departure_airport_code}) {{'to'|trans}} #{arrival_airport_city} (#{arrival_airport_code})</span></h2>
+      </div>
+    </div>
+    <div class="row no-margin">
+      <div class="col-xs-12 nopad">
+        <p class="subtitle_total_duration">{{'Total duration'|trans}}: <span id="total_duration"> #{total_duration}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mar_top_20 mar_but_20 #{stop_indicator}">
+    <div class="col-md-3 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-xs-8 nopad sndrowrow_firstdiv"><p>&nbsp;</p></div>
+        <div class="col-xs-4 nopad sndrowrow_snddiv bordered_row clock_border_extender">
+          <img class="clock-design" src="{{ generateMediaURL('/media/images/flights_new/clock_vector.png') }}" alt="clock_vector">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 col-xs-12 bordered_row normal-ligne-height">
+      <div class="row stop-details-row no-margin">
+        <div class="col-xs-12 nopad">
+          <p>
+            <span class="separator_border">|</span>#{stop_duration}<span class="sndspan">{{'in'|trans}} #{stop_city} (#{origin_code})</span>
+
+            <span class="thirdspan">{{'Passengers on connecting flights will need to change aircrafts'|trans}}. </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mar_top_20 mar_but_20">
+    <div class="col-md-3 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-xs-8 nopad firstrow_firstdiv">
+          <p>#{departure_date}</p>
+        </div>
+        <div class="col-xs-4 nopad firstrow_snddiv">
+          <p>{{'From'|trans}}<br>{{'To'|trans}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-xs-9 nopad firstrow_thirddiv">
+          <p>#{origin_airport}(#{origin_code})<br>#{arrival_airport} (#{arrival_code})</p>
+        </div>
+        <div class="col-xs-3 nopad firstrow_fourthdiv">
+          <p>#{departure_terminal}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mar_top_20 mar_but_20">
+    <div class="col-md-3 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-xs-8 nopad sndrowrow_firstdiv">
+          <p>#{origin_code}<br><span>#{departure_time}</span></p>
+        </div>
+        <div class="col-xs-4 nopad sndrowrow_snddiv">
+          <div class="dest_img_arrow pull-left"><i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-xs-6 nopad sndrowrow_thirddiv">
+          <p>#{arrival_code}<br><span class="time">#{arrival_time}</span><span class="bonus">#{days_difference}</span></p>
+        </div>
+        <div class="col-xs-6 nopad sndrowrow_fourthdiv">
+          <p>#{duration}</p>
+          <p>#{stop_label}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-xs-6 nopad sndrowrow_fifthdiv">
+          <p class="flight_num">
+            <img src="#{airline_logo}" align="left" alt="plane_tail">
+            <span class="flight_num_txt">{{'Flight number'|trans}}</span> #{flight_number}
+          </p>
+        </div>
+        <div class="col-xs-6 nopad sndrowrow_sixdiv">
+          <p>{{'Aircraft type'|trans}}</p>
+          <p>#{aircraft_type}</p>
+          <p>#{cabin}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mar_top_20 mar_but_20 baggage-section">
+    <div class="col-md-3 col-xs-12"></div>
+    <div class="col-md-8 col-xs-12">
+      <div class="row no-margin">
+        <div class="col-md-2 col-xs-6 nopad">
+          <p>{{'Bag fees'|trans}}</p>
+        </div>
+        <div class="col-md-10 col-xs-6 nopad">
+          {#
+<div class="row no-margin">
+<div class="col-xs-12 nopad"><p>{{'Estimated baggage fees charged by Gulf Air (Please confirm with airline)'|trans}}</p></div>
+</div>
+<div class="row no-margin">
+<div class="col-xs-5">
+  {{'Carry on'|trans}}:
+</div>
+<div class="col-xs-7">
+  No fee
+</div>
+</div>
+          #}
+          <div class="row no-margin">
+            <div class="col-xs-5">
+              #{baggageInfoADTLabel}
+            </div>
+            <div class="col-xs-7">
+              #{baggageInfoADT}
+            </div>
+          </div>
+          <div class="row no-margin">
+            <div class="col-xs-5">
+              #{baggageInfoCNNLabel}
+            </div>
+            <div class="col-xs-7">
+              #{baggageInfoCNN}
+            </div>
+          </div>
+          <div class="row no-margin">
+            <div class="col-xs-5">
+              #{baggageInfoINFLabel}
+            </div>
+            <div class="col-xs-7">
+              #{baggageInfoINF}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</script>

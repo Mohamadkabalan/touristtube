@@ -1,0 +1,31 @@
+RewriteEngine on
+ 
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ magic.php?q=$1 [L]
+ 
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^js/(.*)$ php_js.php?q=$1 [L]
+ 
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^css/(.*)$ php_css.php?q=$1 [L]
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^pmedia/(.*)$ pmedia.php?q=$1 [L,QSA]
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^uapi/(.*)$ uapi.php?q=$1 [L,QSA]
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{2})/?$ index.php?lang=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{2})/([a-zA-Z0-9\-_]*)/?(.*)$ $2.php?q=$3&lang=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9]*).php/?(.*)$ channel.php?q=$1/$2 [L,QSA]

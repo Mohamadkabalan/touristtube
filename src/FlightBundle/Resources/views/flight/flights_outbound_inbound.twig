@@ -1,0 +1,727 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flight-search.css")|raw }}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/slick/css/slick.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/slick/css/slick-theme.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/flights/css/flights_new.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/departure_detailed_popup.css" >
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/slick/js/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/shuffle/js/shuffle.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/flights/js/shuffle-list.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/flights/js/flights_new.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/tt/js/utils/TTUtils.js") }}"></script>
+{% endblock %}
+{% block title %}
+    {{ 'Flight Booking Result'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block refine_your_search %}
+    <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+        <div class="container-fluid nopad filters-group"> 
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                    Refine your search
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+		{% set refine_search='first' %}
+                {% include "default/refine_your_search.twig" %}
+            </div>
+            <!-- /.navbar-collapse --> 
+        </div>
+        <!-- /.container-fluid --> 
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="overlay-loading-flights"><div></div></div>
+  <section class="container main_flight_container">
+        <div class="row margin_top_30">
+            <div class="col-xs-12">
+                <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ 'Your Search'|trans }}</h1>
+            </div>
+        </div>
+        <div class="row update_search_container div_wiz_border">
+            <div class="col-md-4 col-sm-12 col-xs-12 bordered_div">
+                <div class="row">
+                    <div class="col-xs-5 smalcentered_p">
+                        <p><span>{{ 'FROM'|trans }}</span><br>{{ response['departureCityAirport'] }}</p>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="image_blue_container">
+                            <div class="blue_circle_rightleft_arrow"><i class="fas fa-exchange-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 right_p_span">
+                        <p><span>{{ 'TO'|trans }}</span><br>{{ response['arrivalCityAirport'] }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="row centered_divs">
+                    <div class="col-md-2 col-sm-6 col-xs-12 bordered_div">
+                        <p><span>{{ 'DEPARTING'|trans }}</span><br>{{ response['fromDate']|date('d M Y') }}</p>
+                    </div>
+                    <div class="col-md-2 col-sm-6 col-xs-12 bordered_div no_left_border_small">
+                        <p><span>{{ 'RETURNING'|trans }}</span><br>{{ response['toDate']|date('d M Y') }}</p>
+                    </div>
+                    <div class="col-md-2 col-sm-6 col-xs-12 bordered_div">
+                        <p><span>{{'CLASS'|trans}}</span><br>{{ response['cabinName'] }}</p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 bordered_div no_left_border_small">
+                        <p><span>{{'PASSENGERS'|trans}}</span>{{ response['ADT']|raw }}{{ response['CNN']|raw }}{{ response['INF']|raw }}</p>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12 bordered_div noborrdered_div">
+                        <button class="btn btn-info update_search_button">{{'Update your search'|trans}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row flight_search_input_container flight_container_style">
+            <div class="col-xs-12 searchcontainer_homep searchcontainer_content">
+                {% include "default/searchinput3.twig" %}
+                <div class="close_container">
+                    <i class="fas fa-times fa-lg"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row border_top_but_row"></div>
+        <div class="row margin-top-20 main_conatainer filters-group">
+            <div class="col-md-3 left_panel filter-options hidden-sm hidden-xs" id="filterleft">
+		{% set refine_search='second' %}
+                {% include "default/refine_your_search.twig" %}
+            </div>
+            
+            <div class="col-md-9 col-xs-12 right_panel">
+            {%if response['segmentsArray'] is not empty %}
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad change_currency_container">
+                        <div class="row">
+                            <div class="col-sm-8 col-xs-12 airlines_refine">
+                                <p class="header_text_left">{{'You are viewing prices in'|trans}} <span class="currency-convert-text">{{response['currency_code']}}</span> . {{'You can change currency from here'|trans}}</p>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <button class="btn btn-info change_currency_button">{{'Change currency'|trans}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row tootltip_row">
+                            <div class="col-sm-4 col-xs-12 airlines_refine" data-price="{{response['minimum_price']|raw}}">
+                                <p class="greyback_tooltip_text">{{'Lowest price for all passengers'|trans}}<br><span class="currency-convert-text">{{response['currency_code']|raw}}</span> <span class="price-convert-text">{{response['minimum_price']|number_format(2, '.', ',')}}</span></p>
+                                <img class="tooltipimg" src="{{ generateMediaURL('/media/images/flights_new/tooltip_arrow_grey.png') }}" alt="tooltip">
+                                <input type="hidden" id="minimum_price" name="minimum_price" value="{{response['minimum_price']|round(0, 'floor')}}" class="airlines_refine" data-price="{{response['minimum_price']|raw}}">
+                                <input type="hidden" id="maximum_price" name="maximum_price" value="{{response['maximum_price']|round}}" class="airlines_refine" data-price="{{response['maximum_price']|raw}}">
+                            </div>
+                            <div class="col-sm-8 col-xs-12">
+                                <p class="right_tooltip_text">{{'This price is the lowest available price combination for your selected dates.
+                                    Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and
+                                    carrier-imposed charges for 1 passenger (1 adult).'|trans}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#<div class="row">
+                    <div class="col-xs-12">
+                        <p class="communtext_grey">{{'All times displayed are local for each city.'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="communtext_grey">{{'Please ensure you read the fare conditions at the bottom before selecting your flights.'|trans}}</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad grey_back_container_destination margin-top-10">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                {% for idx, departure in response['request']['departureairportC'] %}
+                                    <div class="col-xs-1"> 
+                                        <p>{{departure|raw}}</p>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <div class="dest_img_container">
+                                            <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1"> 
+                                        <p>{{response['request']['arrivalairportC'][idx]|raw}}</p>
+                                    </div>
+                                {% endfor %}
+                                {% if response['request']['oneway'] is empty and response['request']['multidestination'] is empty %}
+                                    {% for idx, arrival in response['request']['arrivalairportC'] %}
+                                        <div class="col-xs-1"> 
+                                            <p>{{arrival|raw}}</p>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <div class="dest_img_container">
+                                                <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-1"> 
+                                            <p>{{response['request']['departureairportC'][idx]|raw}}</p>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            {#<div class="col-sm-6 col-xs-12">
+                                <p class="sub_text">Subtotal:</p>
+                            </div>#}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad flight_date_container margin-top-30">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <img class="float_left" src="{{ generateMediaURL('/media/images/flights_new/plane_logo.png') }}" alt="tooltip">
+                                <p class="float_left">{{ response['fromDate']|date('D, d M Y') }} {% if (response['one_way'] == 0 and response['multi_destination'] == 0) or (response['one_way'] == 1 and response['multi_destination'] == 1) %} - {{ response['toDate']|date('D, d M Y') }}{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad margin-top-10">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="responsiveSlider">
+                                    {% for code, airline in response['airlines'] %}
+                                    <div class="airlines_refine airlines_carousel" data-price="{{airline['amount_attr']}}" data-code="{{code}}">
+                                        <p><img src="{{ asset(airline['airline_logo']) }}" /></p>
+                                        <p>{{ airline['name'] }}</p>
+                                        <p class="txt-light-grey">{{'From'|trans}} <span class="currency-convert-text">{{response['currency_code']|raw}}</span> </p>
+                                        <p class="price-convert-text">{{ airline['amount']|raw }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad margin-top-20 sort_by_tabs">
+                        <div class="row no-margin">
+							<div class="col-md-1 col-xs-12 nopad">
+                                <div class="float_left sort_down_img_arrow"><i class="fas fa-arrow-down"></i></div>
+                            </div>
+                            <div class="col-md-1 col-xs-12 nopad">
+                                <p class="srt_by_txt_blue">Sort by:</p>
+                            </div>
+                            <div class="col-md-10 col-xs-12 nopad">
+                                <div class="row no-margin filters-group">
+									
+									<div class="btn-group sort-options">
+										<label class="active sort_item" data-value="dom">
+										  {{'Default'|trans}}
+										</label>
+										<label class="sort_item" data-value="title">
+										  {{'Recommended'|trans}}
+										</label>
+										<label class="sort_item" data-value="price">
+										  {{'Price'|trans}}
+										</label>
+										<label class="sort_item" data-value="arrival_time">
+										  {{'Arrival Time'|trans}}
+										</label>
+										<label class="sort_item" data-value="departure_time">
+										  {{'Departure time'|trans}}
+										</label>
+										<label class="sort_item" data-value="duration">
+										  {{'Duration'|trans}}
+										</label>
+										<label class="sort_item" data-value="miles">
+										  {{'Miles earned'|trans}}
+										</label>
+									</div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# Outbound #}
+                <div class="row no-margin margin-top-10 my-shuffle-container">
+				 {%if response['segmentsArray'] is not empty %}
+                  {% for segmentsItem in response['segmentsArray'] %}
+                   {% set segmentsItemIndex = loop.index %}
+                    
+                    <figure class="col-xs-12 nopad flight_details_row margin_bottom_10 picture-item price-convert figure{{segmentsItemIndex}}" data-idx="{{segmentsItemIndex}}" data-other="{{segmentsItem['other_data']|trans}}" data-stops="{{segmentsItem['segmentsGlob']['stops']|raw}}" data-airlines="{{segmentsItem['segmentsGlob']['airline']|raw}}" data-departure_time="{{segmentsItem['segmentsGlob']['departureTimeOfDay']}}" data-arrival_time="{{segmentsItem['segmentsGlob']['arrivalTimeOfDay']}}" data-departure_airports="{{segmentsItem['segmentsGlob']['departure_airport_code']|raw}}" data-title="{{segmentsItemIndex}}" data-price="{{segmentsItem['segmentsGlob']['price_attr']|raw}}"  
+                    data-price-raw="{{segmentsItem['segmentsGlob']['price_attr']|round(0, 'floor')}}"data-arrival_time="{{segmentsItem['segmentsGlob']['arrival_time']|raw}}" data-departure_time="{{segmentsItem['segmentsGlob']['departure_time']|raw}}" data-duration="{{segmentsItem['segmentsGlob']['flight_duration_attr']|raw}}" 
+                    data-duration-format="{{segmentsItem['segmentsGlob']['flight_duration']|raw}}"
+                    data-miles="1500">
+                        <div class="row no-margin">
+                            <div class="col-md-2 col-xs-12 nopad first_div">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p><img src="{{segmentsItem['segmentsGlob']['airline_logo']|raw}}" alt="{{segmentsItem['segmentsGlob']['airline_name']|raw}}">{{segmentsItem['segmentsGlob']['airline']|raw}}{{segmentsItem['segmentsGlob']['flight_number']|raw}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        {% if (response['one_way'] == 1 and response['multi_destination'] == 1) or (response['one_way'] == 0 and response['multi_destination']== 0) %}
+                                        {% for segmentsItemMulti in segmentsItem['segmentsGlob']['segmentsGlobMulti'] %}
+                                            <p><img src="{{segmentsItemMulti['airline_logo1']|raw}}" alt="{{segmentsItemMulti['airline_name1']|raw}}">{{segmentsItemMulti['airline1']|raw}}{{segmentsItemMulti['flight_number1']|raw}}</p>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="absolute_txt_flight_numb">{{segmentsItemIndex}}</div>
+                            </div>
+                            <div class="col-md-8 col-xs-12 nopad snd_div">
+                                <div class="row no-margin">
+                                    <div class="col-md-9 col-xs-12 nopad snd_grey_back">
+                                        <div class="row no-margin first_row">
+                                            <div class="col-xs-4 nopad">
+                                                <p><span>{{segmentsItem['segmentsGlob']['departure_airport_code']|raw}}</span>{{segmentsItem['segmentsGlob']['departure_time']|raw}}</p>
+                                            </div>
+                                            <div class="col-xs-4 nopad">
+                                                <div class="full_width_conatiner">
+                                                    <img src="{{ generateMediaURL('/media/images/flights_new/plane_direction.png') }}" alt="plane_direction">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 nopad">
+                                                <p><span>{{segmentsItem['segmentsGlob']['arrival_airport_code']|raw}}</span>{{segmentsItem['segmentsGlob']['arrival_time']|raw}}</p>
+                                            </div>
+                                        </div>
+                                        {% if (response['one_way'] == 1 and response['multi_destination'] == 1) or (response['one_way'] == 0 and response['multi_destination']== 0) %}
+                                        {% for segmentsItemMulti in segmentsItem['segmentsGlob']['segmentsGlobMulti'] %}
+                                        <div class="row no-margin snd_row">
+                                            <div class="col-xs-4 nopad">
+                                                <p><span>{{segmentsItemMulti['departure_airport_code1']|raw}}</span>{{segmentsItemMulti['departure_time1']|raw}}</p>
+                                            </div>
+                                            <div class="col-xs-4 nopad">
+                                                <div class="full_width_conatiner">
+                                                    <img src="{{ generateMediaURL('/media/images/flights_new/plane_direction.png') }}" alt="plane_direction">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 nopad">
+                                                <p><span>{{segmentsItemMulti['arrival_airport_code1']|raw}}</span>{{segmentsItemMulti['arrival_time1']|raw}}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    {% if segmentsItem['segmentsGlob']['stops'] > 0 %}
+                                        {% if segmentsItem['segmentsGlob']['stops'] > 1%}
+                                            {% set stop = [segmentsItem['segmentsGlob']['stops'], 'Stops']|join(' ')|trans %}
+                                        {% else %}
+                                            {% set stop = [segmentsItem['segmentsGlob']['stops'], 'Stop']|join(' ')|trans %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set stop = 'Non-stop'|trans %}
+                                    {% endif %}
+                                    <div class="col-md-3 col-xs-12 nopad snd_div_div2">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad snd_div_div2_firstrow">
+                                                <p><span>{{segmentsItem['segmentsGlob']['flight_duration']|raw}}</span><a rel="nofollow" href="#popup" title="{{stop|raw}}" class="flight_stops nonstop" data-id=".figure{{segmentsItemIndex}}">{{stop|raw}}</a></p>
+                                            </div>
+                                            {% if (response['one_way'] == 1 and response['multi_destination'] == 1) or (response['one_way'] == 0 and response['multi_destination']== 0) %}
+                                            {% for segmentsItemMulti in segmentsItem['segmentsGlob']['segmentsGlobMulti'] %}
+                                            {% if segmentsItemMulti['stops1'] > 0 %}
+                                                {% if segmentsItemMulti['stops1'] > 1%}
+                                                    {% set stop = [segmentsItemMulti['stops1'], 'Stops']|join(' ')|trans %}
+                                                {% else %}
+                                                    {% set stop = [segmentsItemMulti['stops1'], 'Stop']|join(' ')|trans %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set stop = 'Non-stop'|trans %}
+                                            {% endif %}
+                                            <div class="col-xs-12 nopad snd_div_div2_sndrow">
+                                                {% if not response['one_way'] %}<input type="hidden" id="departure_stop_duration-{{segmentsItemIndex}}" value="{{segmentsItemMulti['flight_duration_attr1']}}" />{% endif %}
+                                                <p><span>{{segmentsItemMulti['flight_duration1']|raw}}</span><a rel="nofollow" href="#popup" title="{{stop|raw}}" class="flight_stops nonstop" data-id=".figure{{segmentsItemIndex}}">{{stop|raw}}</a></p>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-xs-12 nopad newpad_flight_details_row">
+                                <div class="row no-margin">
+                                    <form method="post" action="{{path('_book_flight')}}" id="form_{{segmentsItemIndex}}">
+                                    <div class="col-xs-12 nopad third_div">
+                                    <a rel="nofollow" href="#" title="{{'Book now'|trans}}" class="col-xs-12 nopad third_div book_now" id="form_{{segmentsItemIndex}}">
+                                       <div class="book_now_txt" id="form_{{segmentsItemIndex}}">{{'Book now'|trans}}</div>
+
+                                        <p><span class="currency-convert-text">{{response['currency_code']|raw}}</span><span class="price-convert-text" style="font-size:22px">{{segmentsItem['segmentsGlob']['price']|raw}}</span></p>
+                                    </a>
+                                    </div>
+                                    
+                                    <input type="hidden" name="number_in_party" value="{{response['num_in_party']}}" />
+                                    <input type="hidden" name="original_price" value="{{segmentsItem['segmentsGlob']['original_price']}}" />
+                                    <input type="hidden" name="currency" value="{{response['currency']}}" />
+                                    <input type="hidden" name="multi_destination" value="{{response['multi_destination']}}" />
+                                    <input type="hidden" name="one_way" value="{{response['one_way']}}" />
+                                    <input class="price-convert-val" type="hidden" name="price_attr" value="{{segmentsItem['segmentsGlob']['price_attr']|raw}}" />
+                                    <input class="price-convert-val" type="hidden" name="price" value="{{segmentsItem['segmentsGlob']['price']|raw}}" />
+                                    <input class="currency-convert-val" type="hidden" name="currency_code" value="{{response['currency_code']}}" />
+                                    {% if response['enableRefundable'] %}
+                                    <input type="hidden" name="refundable" value="{{segmentsItem['refundable']|raw}}" />
+                                    {% endif %}
+                                    <input type="hidden" name="original_base_fare" value="{{ segmentsItem['original_base_fare']|raw }}" />
+                                    <input type="hidden" name="original_taxes" value="{{ segmentsItem['original_taxes']|raw }}" />
+                                    <div class="airlines_refine" data-price="{{segmentsItem['base_fare']|raw}}"><input class="price-convert-val" type="hidden" name="base_fare" value="{{ segmentsItem['base_fare']|raw }}" /></div>
+                                    <div class="airlines_refine" data-price="{{segmentsItem['base_fare_attr']|raw}}"><input class="price-convert-val" type="hidden" name="base_fare_attr" value="{{ segmentsItem['base_fare_attr']|raw }}" /></div>
+                                    <div class="airlines_refine" data-price="{{segmentsItem['taxes']|raw}}"><input class="price-convert-val" type="hidden" name="taxes" value="{{ segmentsItem['taxes']|raw }}" /></div>
+                                    <div class="airlines_refine" data-price="{{segmentsItem['taxes_attr']|raw}}"><input class="price-convert-val" type="hidden" name="taxes_attr" value="{{ segmentsItem['taxes_attr']|raw }}" /></div>
+
+                                    {% for passenger in segmentsItem['passenger_info'] %}
+                                    <input type="hidden" name="{{ passenger['type_code'] }}" value="{{ passenger['quantity']|raw }}" />
+                                    <input type="hidden" name="leaving_baggage_info_{{ passenger['type_code'] }}" value="{{ passenger['leaving_baggage_info']|raw }}" />
+                                    {% if passenger['returning_baggage_info'] is defined %}
+                                        <input type="hidden" name="returning_baggage_info_{{ passenger['type_code'] }}" value="{{ passenger.returning_baggage_info|raw }}" />
+                                    {% endif %}
+                                    <input type="hidden" name="fare_calc_line_{{ passenger['type_code'] }}" value="{{ passenger['fare_calculation_line']|raw }}" />
+                                    {% endfor %}
+                                    <input type="hidden" name="sec_token" value="{{ segmentsItem['sec_token']|raw }}" />
+                                    {% for segItem in segmentsItem['segments'] %}
+                                        {% for segItemIn in segItem %}
+                                            <input type="hidden" name="flight_number-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['flight_number']|raw}}" />
+                                            <input type="hidden" name="airline_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline']|raw}}" />
+                                            <input type="hidden" name="operating_airline_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['operating_airline']|raw}}" />
+                                            <input type="hidden" name="airline_name-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline_name']|raw}}" />
+                                            <input type="hidden" name="operating_airline_name-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline_name']|raw}}" />
+                                            <input type="hidden" name="origin_location-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_airport_code']|raw}}" />
+                                            <input type="hidden" name="origin_location_city-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_airport_city']|raw}}" />
+                                            <input type="hidden" name="origin_location_airport-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_airport_name']|raw}}" />
+                                            <input type="hidden" name="destination_location-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_airport_code']}}" />          
+                                            <input type="hidden" name="destination_location_city-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_airport_city']|raw}}" />          
+                                            <input type="hidden" name="destination_location_airport-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_airport_name']|raw}}" />  
+                                            <input type="hidden" name="total_flight_segments-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['total_flight_segments']|raw}}" />
+                                            <input type="hidden" name="departure_date_time-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['original_departure_date_time']|raw}}" />
+                                            <input type="hidden" name="arrival_date_time-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['original_arrival_date_time']}}" />
+                                            <input type="hidden" name="res_book_desig_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['res_book_desig_code']|raw}}" />
+                                            <input type="hidden" name="fare_basis_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['fare_basis_code']|raw}}" />
+                                            <input type="hidden" name="flight_type-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['flight_type']|raw}}" />
+                                            <input type="hidden" name="cabin-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['cabin']|raw}}" />
+                                            <input type="hidden" name="cabin_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['cabin_code']|raw}}" />
+                                            <input type="hidden" name="flight_duration-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['flight_duration']|raw}}" />
+                                            <input type="hidden" name="stop_duration-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['stop_duration']|raw}}" />
+                                            <input type="hidden" name="stop_indicator-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['stop_indicator']}}" />
+                                            <input type="hidden" class="segment_number" id="segment_number" value="{{segItemIn['segment_count']|raw}}" />
+                                            <input type="hidden" id="airline_logo-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline_logo']}}" />
+                                            <input type="hidden" id="departure_terminal_id-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_terminal_id']}}" />
+                                            <input type="hidden" id="arrival_terminal_id-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_terminal_id']}}" />
+                                            <input type="hidden" id="aircraft_type-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['aircraft_type']}}" />
+                                            <input type="hidden" name="elapsedTime" class="elapsedTime" id="elapsedTime-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['elapsedTime'] }}"/>
+                                            {% if segItemIn['stop_indicator'] == 1 %}
+                                            {% set segc = segItemIn['segment_count']-1 %}
+                                            <input type="hidden" id="prev_seg_arrival_airport-{{segc|raw}}" value="{{segItemIn['arrival_airport_city']}}" />
+                                            <input type="hidden" id="prev_seg_arrival_airport_code-{{segc|raw}}" value="{{segItemIn['arrival_airport_code']}}" />
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                  {% endfor %}
+				 {% endif %}
+                   
+                    <div class="col-xs-1 my-sizer-element"></div>
+                    {% if response['one_way'] == 1 and response['multi_destination'] == 0 %}
+                    <input type="hidden" id="arrivalcity" value="{{response['arrivalCityAirport']|raw}}" />
+                    <input type="hidden" id="arrivalcode" value="{{response['arrivalairport']|raw}}" />
+                    {% endif %}
+                </div>
+                {# End Outbound #}
+                {# Inbound #}
+                <div class="row no-margin margin-top-10 my-shuffle-container">
+                    {%if response['segmentsArray'] is not empty %}
+                        {% for segmentsItem in response['segmentsArray'] %}
+                            {% set segmentsItemIndex = loop.index %}
+
+                            <figure class="col-xs-12 nopad flight_details_row margin_bottom_10 picture-item price-convert figure{{segmentsItemIndex}}" data-idx="{{segmentsItemIndex}}" data-other="{{segmentsItem['other_data']|trans}}" data-stops="{{segmentsItem['segmentsGlob']['stops']|raw}}" data-airlines="{{segmentsItem['segmentsGlob']['airline']|raw}}" data-departure_time="{{segmentsItem['segmentsGlob']['departureTimeOfDay']}}" data-arrival_time="{{segmentsItem['segmentsGlob']['arrivalTimeOfDay']}}" data-departure_airports="{{segmentsItem['segmentsGlob']['departure_airport_code']|raw}}" data-title="{{segmentsItemIndex}}" data-price="{{segmentsItem['segmentsGlob']['price_attr']|raw}}"
+                                    data-price-raw="{{segmentsItem['segmentsGlob']['price_attr']|round(0, 'floor')}}"data-arrival_time="{{segmentsItem['segmentsGlob']['arrival_time']|raw}}" data-departure_time="{{segmentsItem['segmentsGlob']['departure_time']|raw}}" data-duration="{{segmentsItem['segmentsGlob']['flight_duration_attr']|raw}}"
+                                    data-duration-format="{{segmentsItem['segmentsGlob']['flight_duration']|raw}}"
+                                    data-miles="1500">
+                                <div class="row no-margin">
+                                    <div class="col-md-2 col-xs-12 nopad first_div">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p><img src="{{segmentsItem['segmentsGlob']['airline_logo']|raw}}" alt="{{segmentsItem['segmentsGlob']['airline_name']|raw}}">{{segmentsItem['segmentsGlob']['airline']|raw}}{{segmentsItem['segmentsGlob']['flight_number']|raw}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                {% if (response['one_way'] == 1 and response['multi_destination'] == 1) or (response['one_way'] == 0 and response['multi_destination']== 0) %}
+                                                    {% for segmentsItemMulti in segmentsItem['segmentsGlob']['segmentsGlobMulti'] %}
+                                                        <p><img src="{{segmentsItemMulti['airline_logo1']|raw}}" alt="{{segmentsItemMulti['airline_name1']|raw}}">{{segmentsItemMulti['airline1']|raw}}{{segmentsItemMulti['flight_number1']|raw}}</p>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="absolute_txt_flight_numb">{{segmentsItemIndex}}</div>
+                                    </div>
+                                    <div class="col-md-8 col-xs-12 nopad snd_div">
+                                        <div class="row no-margin">
+                                            <div class="col-md-9 col-xs-12 nopad snd_grey_back">
+                                                <div class="row no-margin first_row">
+                                                    <div class="col-xs-4 nopad">
+                                                        <p><span>{{segmentsItem['segmentsGlob']['departure_airport_code']|raw}}</span>{{segmentsItem['segmentsGlob']['departure_time']|raw}}</p>
+                                                    </div>
+                                                    <div class="col-xs-4 nopad">
+                                                        <div class="full_width_conatiner">
+                                                            <img src="{{ generateMediaURL('/media/images/flights_new/plane_direction.png') }}" alt="plane_direction">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4 nopad">
+                                                        <p><span>{{segmentsItem['segmentsGlob']['arrival_airport_code']|raw}}</span>{{segmentsItem['segmentsGlob']['arrival_time']|raw}}</p>
+                                                    </div>
+                                                </div>
+                                                {% if (response['one_way'] == 1 and response['multi_destination'] == 1) or (response['one_way'] == 0 and response['multi_destination']== 0) %}
+                                                    {% for segmentsItemMulti in segmentsItem['segmentsGlob']['segmentsGlobMulti'] %}
+                                                        <div class="row no-margin snd_row">
+                                                            <div class="col-xs-4 nopad">
+                                                                <p><span>{{segmentsItemMulti['departure_airport_code1']|raw}}</span>{{segmentsItemMulti['departure_time1']|raw}}</p>
+                                                            </div>
+                                                            <div class="col-xs-4 nopad">
+                                                                <div class="full_width_conatiner">
+                                                                    <img src="{{ generateMediaURL('/media/images/flights_new/plane_direction.png') }}" alt="plane_direction">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 nopad">
+                                                                <p><span>{{segmentsItemMulti['arrival_airport_code1']|raw}}</span>{{segmentsItemMulti['arrival_time1']|raw}}</p>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                            {% if segmentsItem['segmentsGlob']['stops'] > 0 %}
+                                                {% if segmentsItem['segmentsGlob']['stops'] > 1%}
+                                                    {% set stop = [segmentsItem['segmentsGlob']['stops'], 'Stops']|join(' ')|trans %}
+                                                {% else %}
+                                                    {% set stop = [segmentsItem['segmentsGlob']['stops'], 'Stop']|join(' ')|trans %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set stop = 'Non-stop'|trans %}
+                                            {% endif %}
+                                            <div class="col-md-3 col-xs-12 nopad snd_div_div2">
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad snd_div_div2_firstrow">
+                                                        <p><span>{{segmentsItem['segmentsGlob']['flight_duration']|raw}}</span><a rel="nofollow" href="#popup" title="{{stop|raw}}" class="flight_stops nonstop" data-id=".figure{{segmentsItemIndex}}">{{stop|raw}}</a></p>
+                                                    </div>
+                                                    {% if (response['one_way'] == 1 and response['multi_destination'] == 1) or (response['one_way'] == 0 and response['multi_destination']== 0) %}
+                                                        {% for segmentsItemMulti in segmentsItem['segmentsGlob']['segmentsGlobMulti'] %}
+                                                            {% if segmentsItemMulti['stops1'] > 0 %}
+                                                                {% if segmentsItemMulti['stops1'] > 1%}
+                                                                    {% set stop = [segmentsItemMulti['stops1'], 'Stops']|join(' ')|trans %}
+                                                                {% else %}
+                                                                    {% set stop = [segmentsItemMulti['stops1'], 'Stop']|join(' ')|trans %}
+                                                                {% endif %}
+                                                            {% else %}
+                                                                {% set stop = 'Non-stop'|trans %}
+                                                            {% endif %}
+                                                            <div class="col-xs-12 nopad snd_div_div2_sndrow">
+                                                                {% if not response['one_way'] %}<input type="hidden" id="departure_stop_duration-{{segmentsItemIndex}}" value="{{segmentsItemMulti['flight_duration_attr1']}}" />{% endif %}
+                                                                <p><span>{{segmentsItemMulti['flight_duration1']|raw}}</span><a rel="nofollow" href="#popup" title="{{stop|raw}}" class="flight_stops nonstop" data-id=".figure{{segmentsItemIndex}}">{{stop|raw}}</a></p>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-xs-12 nopad newpad_flight_details_row">
+                                        <div class="row no-margin">
+                                            <form method="post" action="{{path('_book_flight')}}" id="form_{{segmentsItemIndex}}">
+                                                <div class="col-xs-12 nopad third_div">
+                                                    <a rel="nofollow" href="#" title="{{'Book now'|trans}}" class="col-xs-12 nopad third_div book_now" id="form_{{segmentsItemIndex}}">
+                                                        <div class="book_now_txt" id="form_{{segmentsItemIndex}}">{{'Book now'|trans}}</div>
+
+                                                        <p><span class="currency-convert-text">{{response['currency_code']|raw}}</span><span class="price-convert-text" style="font-size:22px">{{segmentsItem['segmentsGlob']['price']|raw}}</span></p>
+                                                    </a>
+                                                </div>
+
+                                                <input type="hidden" name="number_in_party" value="{{response['num_in_party']}}" />
+                                                <input type="hidden" name="original_price" value="{{segmentsItem['segmentsGlob']['original_price']}}" />
+                                                <input type="hidden" name="currency" value="{{response['currency']}}" />
+                                                <input type="hidden" name="multi_destination" value="{{response['multi_destination']}}" />
+                                                <input type="hidden" name="one_way" value="{{response['one_way']}}" />
+                                                <input class="price-convert-val" type="hidden" name="price_attr" value="{{segmentsItem['segmentsGlob']['price_attr']|raw}}" />
+                                                <input class="price-convert-val" type="hidden" name="price" value="{{segmentsItem['segmentsGlob']['price']|raw}}" />
+                                                <input class="currency-convert-val" type="hidden" name="currency_code" value="{{response['currency_code']}}" />
+                                                {% if response['enableRefundable'] %}
+                                                    <input type="hidden" name="refundable" value="{{segmentsItem['refundable']|raw}}" />
+                                                {% endif %}
+                                                <input type="hidden" name="original_base_fare" value="{{ segmentsItem['original_base_fare']|raw }}" />
+                                                <input type="hidden" name="original_taxes" value="{{ segmentsItem['original_taxes']|raw }}" />
+                                                <div class="airlines_refine" data-price="{{segmentsItem['base_fare']|raw}}"><input class="price-convert-val" type="hidden" name="base_fare" value="{{ segmentsItem['base_fare']|raw }}" /></div>
+                                                <div class="airlines_refine" data-price="{{segmentsItem['base_fare_attr']|raw}}"><input class="price-convert-val" type="hidden" name="base_fare_attr" value="{{ segmentsItem['base_fare_attr']|raw }}" /></div>
+                                                <div class="airlines_refine" data-price="{{segmentsItem['taxes']|raw}}"><input class="price-convert-val" type="hidden" name="taxes" value="{{ segmentsItem['taxes']|raw }}" /></div>
+                                                <div class="airlines_refine" data-price="{{segmentsItem['taxes_attr']|raw}}"><input class="price-convert-val" type="hidden" name="taxes_attr" value="{{ segmentsItem['taxes_attr']|raw }}" /></div>
+
+                                                {% for passenger in segmentsItem['passenger_info'] %}
+                                                    <input type="hidden" name="{{ passenger['type_code'] }}" value="{{ passenger['quantity']|raw }}" />
+                                                    <input type="hidden" name="leaving_baggage_info_{{ passenger['type_code'] }}" value="{{ passenger['leaving_baggage_info']|raw }}" />
+                                                    {% if passenger['returning_baggage_info'] is defined %}
+                                                        <input type="hidden" name="returning_baggage_info_{{ passenger['type_code'] }}" value="{{ passenger.returning_baggage_info|raw }}" />
+                                                    {% endif %}
+                                                    <input type="hidden" name="fare_calc_line_{{ passenger['type_code'] }}" value="{{ passenger['fare_calculation_line']|raw }}" />
+                                                {% endfor %}
+                                                <input type="hidden" name="sec_token" value="{{ segmentsItem['sec_token']|raw }}" />
+                                                {% for segItem in segmentsItem['segments'] %}
+                                                    {% for segItemIn in segItem %}
+                                                        <input type="hidden" name="flight_number-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['flight_number']|raw}}" />
+                                                        <input type="hidden" name="airline_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline']|raw}}" />
+                                                        <input type="hidden" name="operating_airline_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['operating_airline']|raw}}" />
+                                                        <input type="hidden" name="airline_name-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline_name']|raw}}" />
+                                                        <input type="hidden" name="operating_airline_name-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline_name']|raw}}" />
+                                                        <input type="hidden" name="origin_location-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_airport_code']|raw}}" />
+                                                        <input type="hidden" name="origin_location_city-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_airport_city']|raw}}" />
+                                                        <input type="hidden" name="origin_location_airport-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_airport_name']|raw}}" />
+                                                        <input type="hidden" name="destination_location-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_airport_code']}}" />
+                                                        <input type="hidden" name="destination_location_city-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_airport_city']|raw}}" />
+                                                        <input type="hidden" name="destination_location_airport-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_airport_name']|raw}}" />
+                                                        <input type="hidden" name="total_flight_segments-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['total_flight_segments']|raw}}" />
+                                                        <input type="hidden" name="departure_date_time-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['original_departure_date_time']|raw}}" />
+                                                        <input type="hidden" name="arrival_date_time-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['original_arrival_date_time']}}" />
+                                                        <input type="hidden" name="res_book_desig_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['res_book_desig_code']|raw}}" />
+                                                        <input type="hidden" name="fare_basis_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['fare_basis_code']|raw}}" />
+                                                        <input type="hidden" name="flight_type-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['flight_type']|raw}}" />
+                                                        <input type="hidden" name="cabin-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['cabin']|raw}}" />
+                                                        <input type="hidden" name="cabin_code-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['cabin_code']|raw}}" />
+                                                        <input type="hidden" name="flight_duration-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['flight_duration']|raw}}" />
+                                                        <input type="hidden" name="stop_duration-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['stop_duration']|raw}}" />
+                                                        <input type="hidden" name="stop_indicator-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['stop_indicator']}}" />
+                                                        <input type="hidden" class="segment_number" id="segment_number" value="{{segItemIn['segment_count']|raw}}" />
+                                                        <input type="hidden" id="airline_logo-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['airline_logo']}}" />
+                                                        <input type="hidden" id="departure_terminal_id-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['departure_terminal_id']}}" />
+                                                        <input type="hidden" id="arrival_terminal_id-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['arrival_terminal_id']}}" />
+                                                        <input type="hidden" id="aircraft_type-{{segItemIn['segment_count']|raw}}" value="{{segItemIn['aircraft_type']}}" />
+                                                        <input type="hidden" name="elapsedTime" class="elapsedTime" id="elapsedTime-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['elapsedTime'] }}"/>
+                                                        {% if segItemIn['stop_indicator'] == 1 %}
+                                                            {% set segc = segItemIn['segment_count']-1 %}
+                                                            <input type="hidden" id="prev_seg_arrival_airport-{{segc|raw}}" value="{{segItemIn['arrival_airport_city']}}" />
+                                                            <input type="hidden" id="prev_seg_arrival_airport_code-{{segc|raw}}" value="{{segItemIn['arrival_airport_code']}}" />
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="col-xs-1 my-sizer-element"></div>
+                    {% if response['one_way'] == 1 and response['multi_destination'] == 0 %}
+                        <input type="hidden" id="arrivalcity" value="{{response['arrivalCityAirport']|raw}}" />
+                        <input type="hidden" id="arrivalcode" value="{{response['arrivalairport']|raw}}" />
+                    {% endif %}
+                </div>
+                {# End Inbound #}
+                <section class="popup" style="display:none" id="popup">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            <div class="departure_popup_container">
+                                <div class="flight_segments"></div>
+                            </div>
+                        </div>
+                        <script type="text/template" id="flight_details_tmpl">
+                            <div style="#{has_stop}">
+                            <div class="row no-margin">
+                                    <div class="row clearfix">&nbsp;</div>
+                                    <div class="col-xs-12 nopad">
+                                        <h2 class="popup_title"><img class="" src="{{ generateMediaURL('/media/images/flights_new/plane_logo.png') }}" alt="plane_logo"><span>{{'Departure'|trans}}</span>  <span class="sndspan">|  #{departure_airport_city} (#{departure_airport_code}) {{'to'|trans}} #{arrival_airport_city} (#{arrival_airport_code})</span></h2>
+                                    </div>
+                                </div>
+                            <div class="row no-margin">
+                                <div class="col-xs-12 nopad">
+                                    <p class="font-15 pink line-height-20 float_right margin_buttom_0">#{refundable} {{'*charges may apply'|trans}}</p>
+                                </div>
+                            </div>
+                            <div class="row no-margin"><div class="col-xs-12 nopad"><p class="subtitle_total_duration">{{'Total duration'|trans}}:
+                                <span id="total_duration"> #{total_duration}</span></p></div></div>
+                            </div>
+                            <div class="row mar_top_20 mar_but_20 no-margin" style="#{stop_indicator}">
+                                    <div class="col-lg-10 col-md-11 col-xs-12 col-md-offset-2 col-lg-offset-2 bordered_row nopad">
+                                        <img class="clock_logo" src="{{ generateMediaURL('/media/images/flights_new/clock_vector.png') }}" alt="clock_vector">
+                                        <p><span class="separator_border">|</span>#{stop_duration}<span class="sndspan">{{'in'|trans}} #{stop_city} (#{origin_code})</span><span class="thirdspan">{{'Passengers on connecting flights will need to change aircrafts'|trans}}. </span></p>
+                                    </div>
+                            </div>
+                            <div class="row mar_top_20 mar_but_20">
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="row no-margin">
+                                            <div class="col-xs-6 nopad firstrow_firstdiv">
+                                                <p>#{departure_date}</p>
+                                            </div>
+                                            <div class="col-xs-6 nopad firstrow_snddiv">
+                                                <p>{{'From'|trans}}<br>{{'To'|trans}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-6 nopad firstrow_thirddiv">
+                                                <p>#{origin_airport}(#{origin_code})<br>#{arrival_airport} (#{arrival_code})</p>
+                                            </div>
+                                            <div class="col-xs-6 nopad firstrow_fourthdiv">
+                                                <p>#{departure_terminal}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mar_top_20 mar_but_20">
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-6 nopad sndrowrow_firstdiv">
+                                                <p>#{origin_code}<br><span>#{departure_time}</span></p>
+                                            </div>
+                                            <div class="col-xs-6 nopad sndrowrow_snddiv">
+                                                <div class="dest_img_container">
+                                                    <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-6 nopad sndrowrow_thirddiv">
+                                                <p>#{arrival_code}<br><span class="time">#{arrival_time}</span><span class="bonus">+1 day</span></p>
+                                            </div>
+                                            <div class="col-xs-6 nopad sndrowrow_fourthdiv">
+                                                <p>#{duration}</p>
+                                                <p>#{stop_label}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-xs-12">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad sndrowrow_fifthdiv">
+                                                <p class="flight_num_txt">{{'Flight number'|trans}}</p>
+                                                <p class="flight_num"><img src="#{airline_logo}" alt="plane_tail">#{flight_number}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad sndrowrow_sixdiv">
+                                                <p>{{'Aircraft type'|trans}}</p>
+                                                <p>#{aircraft_type}</p>
+                                                <p>#{cabin}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </script>
+                    </div>
+                </section>
+            {% else %}
+                <div class="alert-danger search-result">{{'There are no flights that match your search criteria.'|trans}}</div>
+            {% endif %}   
+            </div>
+            
+    </section>
+{% endblock %}

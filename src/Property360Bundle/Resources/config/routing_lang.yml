@@ -1,0 +1,23 @@
+_get_your_property_in_360_lang:
+    path:      "/{_locale}/get-your-property-in-360"
+    defaults: { _controller: Property360Bundle:Property360:getYourPropertyIN360, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Get your property in 360 | TouristTube", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_add_property_in_360_lang:
+    path:      "/{_locale}/add-property-in-360"
+    defaults: { _controller: Property360Bundle:Property360:addPropertyIn360, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Promote and Publish your Property in 360 view | TouristTube", seodescription: "Do you want more people visiting your Hotel or Restaurant? Post your property in a 360 view experience with us and attract more travellers to your place. Sign up today.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_get_your_property_in_360_lang:
+    path:      "/{_locale}/ajax/get-your-property-in-360"
+    defaults: { _controller: Property360Bundle:Property360:requestPropertyIN360, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

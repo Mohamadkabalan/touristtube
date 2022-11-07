@@ -1,0 +1,43 @@
+TTBundle\Entity\CmsSocialCommentsSpam:
+    type: entity
+    table: cms_social_comments_spam
+    indexes:
+        commenter_id:
+            columns:
+                - commenter_id
+        reporter_id:
+            columns:
+                - reporter_id
+        comment_id:
+            columns:
+                - comment_id
+    id:
+        commenterId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: commenter_id
+        commentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: comment_id
+        reporterId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: reporter_id
+        reportTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            id: true
+            column: report_ts
+    lifecycleCallbacks: {  }

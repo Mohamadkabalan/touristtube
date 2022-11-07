@@ -1,0 +1,415 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block googlemaps %}
+    <script async type="text/javascript" src="//maps.googleapis.com/maps/api/js?v3{{MAP_KEY|raw}}&amp;sensor=false&amp;language={{languageISO2Code|raw}}"></script>
+    <script async type="text/javascript" src="{{ asset("/assets/common/js/infobox_packed.js")|raw }}"></script> 
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+	var map;
+        var mapOptions;
+        var markersArrayData = [];
+        var marker_global_array = new Array();
+        var ib;
+        var fullscreenmode;
+        var image;
+        var image_s;
+        var init_image = '';
+        var boxText,myOptions;
+        var image0,image1,image2,image3,image4,image5,image6,image00,image10,image20,image30,image40,image50,image60;	
+	$(document).ready(function(){
+	    window.addEventListener('load', initialize);
+	});
+	function initialize() {            
+            setTimeout(function() {
+                initMap();
+            }, 5000);
+        }   
+	function initMap(){
+	    image0 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_empty.png') }}' );
+            image1 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_empty.png') }}' );
+            image2 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_hot.png') }}' );
+            image3 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_hot_blue.png') }}' );
+            image4 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_empty.png') }}' );
+            image5 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_empty.png') }}' );
+            image6 = new google.maps.MarkerImage( '{{ generateMediaURL('/media/images/pin_empty.png') }}' );
+            var myStyles = [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [
+                        {visibility: "off"}
+                    ]
+                }
+            ];
+            mapOptions = {
+                center: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+                zoom: 10,
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles: myStyles
+            };
+            map = new google.maps.Map(document.getElementById("BigMap"), mapOptions);
+            new google.maps.Marker({
+                position: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+                map: map,                
+                title: '{{discovername|raw}}',
+		icon: image0
+            });
+            boxText = document.createElement("div");
+
+            myOptions = {
+                content: boxText
+                , disableAutoPan: false
+                , maxWidth: 0
+                , pixelOffset: new google.maps.Size(-140, 0)
+                , zIndex: null
+                , boxStyle: {
+                    opacity: 0.9
+                    , width: "120px"
+                    , height: "140px"
+                }
+                , closeBoxURL: ""
+                , infoBoxClearance: new google.maps.Size(1, 1)
+                , isHidden: false
+                , pane: "floatPane"
+                , enableEventPropagation: false
+            };
+
+            ib = new InfoBox(myOptions);
+            {% for media_pin in BagItmArray %}
+                {% if media_pin.entity_type == SOCIAL_ENTITY_HOTEL %}
+                    image = image2;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_LANDMARK %}
+                    image = image3;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_EVENTS %}
+                    image = image5;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_AIRPORT %}
+                    image = image6;
+                {% else %}
+                    image = image0;
+                {% endif %}
+                    markersArrayData.push(Array(map, image , '{{media_pin.namealt|raw}}', '{{media_pin.link|raw}}', '{{media_pin.img|raw}}', {{media_pin.latitude|raw}}, {{media_pin.logitude|raw}}, {{media_pin.stars|raw}}, {{media_pin.entity_type|raw}} , {{media_pin.entityId|raw}} ));
+
+            {% endfor %}
+            setTimeout(function() {
+                for (var k = 0; k < markersArrayData.length; k++) {
+                    var data_arr = markersArrayData[k];
+                    drawmarkers(data_arr[0], data_arr[1], data_arr[2], data_arr[3], data_arr[4], data_arr[5], data_arr[6], data_arr[7], data_arr[8] , data_arr[9]);
+                }
+            }, 3000);
+            
+            google.maps.event.addListener(map, 'click', function() {
+                ib.close();
+            });
+	}		
+    </script>
+{% endblock %}
+{% block structureddatablock %}
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Place",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "{{ latitude|raw }}",
+        "longitude": "{{ longitude|raw }}"
+      },
+      "name": "{{discovername|raw|e('html')}}",
+      "description": "Discover {{discovername|e('html')}}"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+       "@type": "ListItem",
+       "position": 1,
+         "item": {
+           "@id": "{{subdomain_link|raw}}/discover",
+           "name": "Discover"
+        }
+      },{
+      "@type": "ListItem",
+      "position": 2,
+        "item": {
+          "@id": "{{url_current|raw}}",
+          "name": "Discover {{discovername|raw|e('html')}}"
+
+          }
+   }]
+  }
+</script>
+{% endblock %}
+{% block body %}
+    <section class="container discover_detailed_container">
+	<div class="row no-margin">
+	    <div class="col-xs-12 nopad">
+		<div class="row no-margin margin_top_20">
+		    <div class="col-xs-12 nopad">
+			<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Discover'|trans}} <span>{{discovername|raw}}</span></h1>
+		    </div>
+		</div>
+		{% if mediaarray|length>0 %}
+		    <div class="row no-margin margin_top_30">
+			<div class="col-xs-12 nopad">
+			    <h2 class="col-xs-10 nopad title_with_arrow"><i class="fas fa-angle-right fa-lg"></i>{{'Get Ideas through photos and videos of'|trans}} {{discovername|raw}} | <span>{{'by travelers'|trans}}</span></h2>
+			    <p class="gallery_hints hidden-xs">{{'swipe left/right to see more'|trans}}</p>
+			</div>
+			
+			    {#<div class="col-xs-1 nopad"><span class="arrows pull-right"><i class="fas fa-angle-right fa-lg"></i></span>
+			    <span class="arrows-right pull-right"><i class="fas fa-angle-left fa-lg"></i></span></div>#}
+		    </div>
+		{% endif %}
+	    </div>
+	</div>
+    </section>
+    {% if mediaarray|length>0 %}
+	<section class="container-fluid discover_detailed_container">
+	    <div class="row">
+		<div class="col-xs-12">
+		    <div class="swiper-container swiper-container1 marginminus1">
+			<div class="swiper-wrapper">
+			    {% for media in mediaarray %}
+				{% if (loop.index%12)==5 %}
+				    <div class="swiper-slide bigg">
+				{% elseif loop.index%2 %}
+				    <div class="small swiper-slide">
+				{% endif %}
+				<a href="{{media.link|raw}}" title="{{media.namealt|raw}}" class="media_a">
+				    {% if media.imagetype=='v' %}
+					<div class="sprite video_icon"></div>
+				    {% endif %}
+				    <img src="{{media.img|raw}}" class="{% if (loop.index%12)==6 %}paddingright0{% endif %}" alt="{{'Discover'|trans}} {{discovernamealt|raw}} {{media.namealt|raw}}" />
+				</a>
+				{% if (loop.index%2)==0 %}
+				    </div>
+				{% elseif loop.last %}
+				    </div>
+				{% endif %}
+			    {% endfor %}
+			</div>		
+		    </div>
+		</div>
+	    </div>
+	</section>
+    {% endif %}
+    {% if descDiscoverTitle!='' %}
+	<section class="container discover_detailed_container">
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    <div class="row no-margin margin_top_30">
+			{% if discoverLink!='' %}
+			    <a class="col-xs-12 nopad" href="{{discoverLink|raw}}" title="{{ descDiscoverTitle|raw }}">
+				<h2 class="title_with_arrow"><i class="fas fa-angle-right fa-lg"></i>{{ descDiscoverTitle|raw }}</h2>
+			    </a>
+			{% else %}
+			    <div class="col-xs-12 nopad">
+				<h2 class="title_with_arrow"><i class="fas fa-angle-right fa-lg"></i>{{ descDiscoverTitle|raw }}</h2>
+			    </div>
+			{% endif %}
+			{% if descDiscover!='' %}
+			    <div class="col-xs-12 nopad">
+				<p class="lightblack_common">{{descDiscover|raw}}</p>
+			    </div>
+			{% endif %}
+		    </div>
+		</div>
+	    </div>
+	</section>
+    {% endif %}
+    <section class="container discover_detailed_container">
+	<div class="row no-margin">
+	    <div class="col-xs-12 nopad">		
+		<div class="row no-margin margin_top_30">
+		    <div class="col-xs-12 nopad">
+			<h2 class="title_with_arrow"><i class="fas fa-angle-right fa-lg"></i>{{'Map your choices'|trans}} |<span>{{'while packing your Tour Bag'|trans}}</span></h2>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </section>
+    <section class="container-fluidMaps discover_detailed_container" data-lat="{{ latitude|raw }}" data-log="{{ longitude|raw }}">
+        <div class="container">
+	    <div class="row">
+		<div class="col-xs-12">
+		    <div class="row">
+			<div class="col-xs-12">
+			    {% if isUserLoggedIn==1 %}
+				<div class="map_catg">
+				    <select class="slectcateg_select">
+					<option selected="selected" value="">{{'All'|trans|raw}}</option>
+					<option value="{{SOCIAL_ENTITY_HOTEL|raw}}">{{'Hotels'|trans}}</option>
+					<option value="{{SOCIAL_ENTITY_LANDMARK|raw}}">{{'Things to do'|trans}}</option>
+				    </select>
+				</div>
+			    {% endif %}
+			    <div class="viewmap expand-map">{{'expand map'|trans}}</div>
+			    <div class="viewmap collapse-map">{{'collapse map'|trans}}</div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div id="BigMap" class="section_googlemap"><span class="section_googlemap_loading"></span></div>
+    </section>
+    <section class="container discover_detailed_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+		{% if hotels_array|length>0 or todo_array|length>0 or moreDealslist|length>0 or channels_array|length>0  %}
+		    <div class="row no-margin margin_top_30">
+			<div class="col-xs-12 nopad">
+			    <h2 class="title_with_arrow"><i class="fas fa-angle-right fa-lg"></i>{{'Customize'|trans}} |<span>{{'pack your Tour Bag'|trans}}</span></h2>
+			</div>
+		    </div>
+		{% endif %}
+		{% if hotels_array|length>0 %}
+		    <div class="row no-margin margin_top_30">
+			{% if hotelsInLink !='' %}
+			    <a href="{{hotelsInLink|raw}}" title="{{'Hotels in'|trans|raw}} {{discovernamealt|raw}}" class="col-xs-12 nopad">
+				<h3 class="title_with_arrow_small padding_left_25"><i class="fas fa-angle-right fa-lg"></i><span class="underline">{{'Hotels in'|trans|raw}} {{discovername|raw}}</span> |<span class="viewmore">{{'view more'|trans|raw}}</span></h3>
+			    </a>
+			{% else %}
+			    <div class="col-xs-12 nopad">
+				<h3 class="title_with_arrow_small padding_left_25"><i class="fas fa-angle-right fa-lg"></i><span class="underline">{{'Hotels in'|trans|raw}} {{discovername|raw}}</span></h3>
+			    </div>
+			{% endif %}
+		    </div>
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <div class="row margin-5">
+				{% for item in hotels_array %}
+				    <div class="col-md-3 col-sm-4 col-xs-6 xs_width padding-5 margin_bottom_10">
+					<div class="row no-margin">
+					    <a href="{{item.link|raw}}" title="{{item.namealt|raw}}" class="col-xs-12 nopad ">
+						<img class="width-100" src="{{item.img|raw}}" alt="{{item.namealt|raw}}">
+						<h4 class="font-17 black margin_bottom_5">{{item.name|raw}}</h4>						    
+						<p class="font-12 grey float_left"><span class="location_div"><i class="fas fa-map-marker-alt"></i></span> {{item.address|raw}}</p>
+					    </a>
+					    <div class="col-xs-12 nopad line-height-19 margin_top_5">
+						<p class="stars_block float_left margin_bottom_0"><span class="star_rating" data-rating="{{item.stars|raw}}" data-font="11" data-color="#eac31a"></span></p>
+						<a rel="nofollow" data-id="{{item.id|raw}}" title="{{'Add to Tour Bag'|trans}}" data-type="{{ item.type|raw }}" href="#popup_creatid" class="addtobag addtobaginactive{{isUserLoggedIn|raw}}">
+						    <img class="width-100" src="{{ generateMediaURL('/media/images/addtobag_icon.png') }}" alt="{{'Add to Tour Bag'|trans}}">
+						    {#<div class="addtobag_hover">{{'Add to Tour Bag'|trans}}</div>#}
+						</a>
+					    </div>
+					</div>
+				    </div>
+				    {% if (loop.index%4)==0 %}
+					<div class="clearfix visible-lg visible-md"></div>
+				    {% endif %}				
+				    {% if (loop.index%3)==0 %}
+					<div class="clearfix visible-sm"></div>
+				    {% endif %}				
+				    {% if (loop.index%2)==0 %}
+					<div class="clearfix visible-xs"></div>
+				    {% endif %}				
+				{% endfor %}				
+			    </div>
+			</div>
+		    </div>
+		{% endif %}
+		{% if todo_array|length>0 %}
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin margin_top_50">
+				<a href="{{todoLink|raw}}" title="{{todoLinkName|raw}}" class="col-xs-12 nopad">
+				    <h3 class="title_with_arrow_small padding_left_25"><i class="fas fa-angle-right fa-lg"></i><span class="underline">{{todoLinkName|raw}}</span> |<span class="viewmore">{{'view more'|trans}}</span></h3>
+				</a>
+			    </div>
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad ">
+				    {% for item in todo_array %}
+					{% if loop.index%2 %}
+					    <div class="row margin-5">
+					{% endif %}
+					    <a href="{{item.link|raw}}" title="{{item.titlealt|raw}}" class="col-md-6 col-xs-12 padding-5 pad_top_but_0">
+						<div class="row margin-5">
+						    <div class="col-lg-4 col-md-5 col-xs-4 padding-5 xs_width">
+							<img class="width-100" src="{{item.img|raw}}" alt="{{item.titlealt|raw}}">
+						    </div>
+						    <div class="col-lg-8 col-md-7 col-xs-8 padding-5 xs_width">
+							<h4 class="pink font-15 margin_bottom_0 TTD_h4_txt">{{item.title|raw}}</h4>
+							<p class="font-14 grey margin_bottom_0 line-height-16">{{item.description|raw}}</p>
+						    </div>
+						</div>
+					    </a>
+					{% if (loop.index%2)==0 %}
+					    </div>
+					{% elseif loop.last %}
+					    </div>
+					{% endif %}
+				    {% endfor %}
+				</div>
+			    </div>
+			</div>
+		    </div>
+		{% endif %}
+		{% if moreDealslist|length>0 %}
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin margin_top_50">
+				<a class="col-xs-12 nopad" href="{{moreDealslink|raw}}" title="{{'Attractions in'|trans}} {{discovernamealt|raw}}">
+				    <h3 class="title_with_arrow_small padding_left_25"><i class="fas fa-angle-right fa-lg"></i><span class="underline">{{'Attractions in'|trans}} {{discovername|raw}}</span> |<span class="viewmore">{{'view more'|trans}}</span></h3>
+				</a>
+			    </div>
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad ">
+				    <div class="row margin-5">
+					{% for itemMain in moreDealslist %}
+					    <div class="col-md-3 col-sm-4 col-xs-6 xs_width padding-5">
+						<div class="row no-margin">
+						    <a title="{{itemMain.namealt|raw}}" href="{{itemMain.link|raw}}" class="col-xs-12 nopad grey_img_and_txt_container">
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad image_style_container">
+								<img class="width-100" alt="{{itemMain.namealt|raw}}" src="{{itemMain.img|raw}}">
+								{#<div class="discount_img"><p>-5%</p></div>#}
+							    </div>
+							    <div class="col-xs-12 nopad text_style_container">
+								<h4 class="image_txt_subtitle">{{itemMain.name|raw}}</h4>
+								{#<p class="travelers_recommendation">86% of travelers recommend</p>#}
+								<p class="price_pink">
+								    <span class="a_price price-convert" data-price="{{itemMain.dataprice|raw}}"><span class="currency-convert-text">USD</span> <span class="price-convert-text">{{itemMain.price|raw}}</span></span>
+								</p>
+							    </div>
+							</div>
+						    </a>
+						</div>
+					    </div>
+					{% endfor %}
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		{% endif %}		
+		{% if channels_array|length>0 %}
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin margin_top_50">
+				<a class="col-xs-12 nopad" href="{{moreChannelslink|raw}}" title="{{'Channels about'|trans}} {{discovernamealt|raw}}">
+				    <h3 class="title_with_arrow_small padding_left_25"><i class="fas fa-angle-right fa-lg"></i><span class="underline">{{'Channels about'|trans}} {{discovername|raw}}</span> |<span class="viewmore">{{'view more'|trans}}</span></h3>
+				</a>
+			    </div>
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad ">
+				    <div class="row margin-10">
+					{% for item in channels_array %}
+					    <div class="col-md-3 col-sm-4 col-xs-12 padding-10">
+						<a href="{{item.link|raw}}" title="{{item.namealt|raw}}">
+						    <img class="width-100" src="{{item.img|raw}}" alt="{{item.namealt|raw}}">
+						    <h4 class="small_height_img_text_grey">{{item.name|raw}}</h4>
+						</a>						
+					    </div>				    
+					{% endfor %}					
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		{% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

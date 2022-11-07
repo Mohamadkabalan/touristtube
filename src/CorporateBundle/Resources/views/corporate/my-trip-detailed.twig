@@ -1,0 +1,178 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/my-trip-detailed.css")|raw }}"/>
+{% endblock %}
+{% block title %}{{'Trip Detailed'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad">
+            <h2 class="pageheadertitle_paymentdue">{{'My trips /'|trans}} <span> {{'paris trip'|trans}}</span></h2>
+        </div>
+        <div class="col-xs-12 nopad margin_top_25">
+            <div class="textcontainerlineh">
+                <p class="filterbytext_paydue">{{'filter by'|trans}}</p>
+            </div>
+            <div class="newselectboxcontainerwidthandpad">
+                <div id="" class="selectboxes_padue">
+                    <select id="" name="" class="">
+                        <option value="1">{{'all bookings'|trans}}</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+            </div>
+            <div class="newselectboxcontainerwidthandpad">
+                <div class="deparrival_paydue">
+                    <input id="fromDate" placeholder="{{'Month'|trans}}" class="input_paydue_style" name="" type="text">
+                </div>
+            </div>
+            <div class="newselectboxcontainerwidthandpad">
+                <div class="deparrival_paydue">
+                    <input id="fromDate" placeholder="{{'Year'|trans}}" class="input_paydue_style" name="" type="text">
+                </div>
+            </div>
+            <div class="newselectboxcontainerwidthandpad">
+                <div id="" class="selectboxes_padue">
+                    <select id="" name="" class="">
+                        <option value="1">{{'Currency'|trans}}</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+            </div>
+            <div class="submitbutcontainer_paydue">
+                <button name="" type="submit" class="submitpayduebut"> </button>
+            </div> 
+        </div>
+        <div class="col-xs-12 nopad borderedsectiontwolines_paydue margintop100_mtd"></div>
+        <div class="col-xs-12 nopad borderedsectiontwolines_paydue"></div>
+        <div class="col-xs-12 nopad">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 nopad">
+                <img class="floatimglefttotext_mtd img-responsive" src="{{ generateMediaURL('/media/images/corporate/img1_mtd.png') }}" alt="{{'img1_mtd'}}"/>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad padleftvwt_mtd">
+                <div class="col-xs-12 nopad margintop24_paydue">
+                    <p class="htelnametext_paydue">{{'The Milestone Hotel'|trans}}</p>
+                    <p class="bookingnumtextgrey_paydue">{{'Booking number:'|trans}}<span class="booknumberblack_paydue">1010207061</span></p>
+                    <p class="pincodetextgrey_paydue">{{'PIN Code:'|trans}}<span class="pincodenumberblack_paydue">4491</span></p>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="chekinouttextgrey_paydue">{{'CHECK-IN'|trans}}<span class="datebigblack_paydue">{{'16 Oct 2016'|trans}}</span> <span class="dayblacksmal_paydue">{{'sunday'|trans}}</span><span class="dotpadleftright12">.</span></p>
+                    <p class="chekinouttextgrey_paydue">{{'CHECK-OUT'|trans}}<span class="datebigblack_paydue">{{'20 Oct 2016'|trans}} </span> <span class="dayblacksmal_paydue">{{'thurday'|trans}}</span></p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad borderedsectiontwolines_paydue"></div>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 nopad">
+                <img class="floatimglefttotext_mtd img-responsive" src="{{ generateMediaURL('/media/images/corporate/img1_mtd.png') }}" alt="{{'img1_mtd'}}"/>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad padleftvwt_mtd">
+                <div class="col-xs-12 nopad margintop24_paydue">
+                    <p class="htelnametext_paydue">{{'The Milestone Hotel'|trans}}</p>
+                    <p class="bookingnumtextgrey_paydue">{{'Booking number:'|trans}}<span class="booknumberblack_paydue">1010207061</span></p>
+                    <p class="pincodetextgrey_paydue">{{'PIN Code:'|trans}}<span class="pincodenumberblack_paydue">4491</span></p>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="chekinouttextgrey_paydue">{{'CHECK-IN'|trans}}<span class="datebigblack_paydue">{{'16 Oct 2016'|trans}}</span> <span class="dayblacksmal_paydue">{{'sunday'|trans}}</span><span class="dotpadleftright12">.</span></p>
+                    <p class="chekinouttextgrey_paydue">{{'CHECK-OUT'|trans}}<span class="datebigblack_paydue">{{'20 Oct 2016'|trans}} </span> <span class="dayblacksmal_paydue">{{'thurday'|trans}}</span></p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad borderedsectiontwolines_paydue"></div>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div class="col-xs-12 nopad margintop24_paydue">
+                <p class="flightcomptext_paydue">{{'Air France + Alitalia'|trans}}<span class="flightcomptext_smal_paydue">{{'mix'|trans}}</span></p>
+                <p class="rightpricesmal_paydue">{{'US$ 741.70'|trans}}</p>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+                        <div class="col-xs-12 nopad hiddenpmargin">
+                            <p class="deparrbluetext_paydue">{{'Departure'|trans}}<p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="datetextcom_paydue">{{'Tue 13/12'|trans}}</p>
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">16:00</span> {{'Beirut Int'|trans}}</p>   
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">19:45</span> {{'Paris Charles De Gaulle'|trans}}</p>
+                            <p class="lastboldblacktext_paydue">04h45</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+                        <div class="col-xs-12 nopad hiddenpmargin">
+                            <p class="deparrbluetext_paydue">{{'Arrival'|trans}}<p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="datetextcom_paydue">{{'Sun 18/12'|trans}}</p>
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">07:15</span> {{'Paris Charles De Gaulle'|trans}}</p>   
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">15:45</span> {{'Beirut Int.'|trans}}</p>
+                            <p class="lastboldblacktext_paydue">07h30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad borderedsectiontwolines_paydue "></div>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div class="col-xs-12 nopad margintop24_paydue">
+                <p class="flightcomptext_paydue">{{'Air France + Middle East'|trans}}<span class="flightcomptext_smal_paydue">{{'mix'|trans}}</span></p>
+                <p class="rightpricesmal_paydue">US$ 741.70</p>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+                        <div class="col-xs-12 nopad hiddenpmargin">
+                            <p class="deparrbluetext_paydue">{{'Departure'|trans}}<p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="datetextcom_paydue">{{'Tue 13/12'|trans}}</p>
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">17:00</span> {{'Beirut Int'|trans}}</p>   
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">20:45</span> {{'Paris Charles De Gaulle'|trans}}</p>
+                            <p class="lastboldblacktext_paydue">04h45</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+                        <div class="col-xs-12 nopad hiddenpmargin">
+                            <p class="deparrbluetext_paydue">{{'Arrival'|trans}}<p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="datetextcom_paydue">{{'Sun 18/12'|trans}}</p>
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">06:15</span> {{'Paris Charles De Gaulle'|trans}}</p>   
+                            <p class="datetextcom_paydue"><span class="boldtext_paydue">11:45</span> {{'Beirut Int.'|trans}}</p>
+                            <p class="lastboldblacktext_paydue">07h30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad borderedsectiontwolines_paydue "></div>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 nopad">
+                <img class="floatimglefttotext_mtd img-responsive" src="{{ generateMediaURL('/media/images/corporate/img1_mtd.png') }}" alt="{{'img1_mtd'}}"/>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad padleftvwt_mtd">
+                <div class="col-xs-12 nopad margintop24_paydue">
+                    <p class="htelnametext_paydue">{{'The Milestone Hotel'|trans}}</p>
+                    <p class="bookingnumtextgrey_paydue">{{'Booking number:'|trans}}<span class="booknumberblack_paydue">1010207061</span></p>
+                    <p class="pincodetextgrey_paydue">{{'PIN Code:'|trans}}<span class="pincodenumberblack_paydue">4491</span></p>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="chekinouttextgrey_paydue">{{'CHECK-IN'|trans}}<span class="datebigblack_paydue">{{'16 Oct 2016'|trans}}</span> <span class="dayblacksmal_paydue">{{'sunday'|trans}}</span><span class="dotpadleftright12">.</span></p>
+                    <p class="chekinouttextgrey_paydue">{{'CHECK-OUT'|trans}}<span class="datebigblack_paydue">{{'20 Oct 2016'|trans}} </span> <span class="dayblacksmal_paydue">{{'thurday'|trans}}</span></p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad borderedsectiontwolines_paydue"></div>
+        </div>
+    </section>
+{% endblock %}

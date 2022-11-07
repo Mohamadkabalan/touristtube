@@ -1,0 +1,194 @@
+{# ratePopUp Twig template #}
+<style type='text/css'>
+    html,body{
+        margin:0;
+        padding:0;
+    }
+    .randomPoi-cont{
+        width:400px;
+        height:398px;
+        background: #efefef;
+        padding:54px 62px 0;
+        display:block;
+        overflow: hidden;
+    }
+    .randomPoi-cont >h3{
+        position:relative;
+        float:left;
+        margin:0 0 33px;
+        padding:0;
+        font:bold 11px arial;
+        color:#eac31a;
+        text-transform: uppercase;
+    }
+    .randomPoiList-cont{
+        position:relative;
+        float:left;
+        margin:0;
+        padding:0;
+        clear:both;
+    }
+    .aRandomPoi{
+        position:relative;
+        float:left;
+        margin:0 0 30px;
+        padding:0;
+        clear:both;
+    }
+    .aRandomPoi > img{
+        position:relative;
+        float:left;
+        margin:0;
+        padding:0;
+        border:0;
+        width:136px;
+        height:76px;
+    }
+    .aRandomPoiArrow{
+        position:relative;
+        float:left;
+        margin:9px 0 61px 2px;
+        padding:0;
+        width:5px;
+        height:7px;
+        background: #fff url(/media/images/arrowToRightRate.png) no-repeat 0 0;
+    }
+    .aRandomPoiText-cont{
+        position:relative;
+        float:left;
+        margin:0;
+        padding:0 0 0 11px;
+        width:242px;
+        height:76px;
+        background: #e5e5e5;
+    }
+    .aRandomPoiPin{
+        position:relative;
+        float:left;
+        margin:0 0 0 0;
+        padding:0;
+        height:19px;
+        background: transparent url(/media/images/pinRate.png) no-repeat 0 0;
+        font:12px/22px arial;
+        color:#444444;
+        text-indent: 23px;
+        clear:both;
+    }
+    .aRandomPoiCat{
+        position:relative;
+        float:left;
+        margin:9px 0 0 0;
+        padding:0;
+        font:normal 12px arial;
+        color:#010101;
+        clear:both;
+    }
+    .aRandomPoiCat span{
+        color:#444444;
+        text-transform: uppercase;
+    }
+    .aRandomPoiRate{
+        position:absolute;
+        bottom:5px;
+        left:11px;
+        margin:0;
+        padding:0;
+    }
+    .randomPoi-close{
+        position: relative;
+        float: right;
+        margin: 0;
+        padding:0;
+        font:normal 11px arial;
+        color:#eac31a;
+        cursor:pointer;
+    }
+    .toslide{
+    position:absolute;
+    top:0;
+    left:-150px;
+    width:150px;
+    height:22px;
+    background: #EFEFEF;
+}
+.aRandomPoiRate .NewsFeed_ModalRating {
+    cursor: pointer;
+    float: left;
+    height: 16px;
+    margin-top: 1px;
+    position: relative;
+    width: 70px;
+}
+
+</style>
+<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="{{ ("js/jquery.raty.js")|link }}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.aRandomPoiRate .NewsFeed_ModalRating').each(function(index, element) {
+            var $this = $(this);
+            $this.raty({
+                path: '{{ '/images'|lang }}',
+                hints: ['Very Poor', 'Poor', 'Neutral', 'Good', 'Very Good'],
+                starOn: 'rating_1.png',
+                starOff: 'rating_0.png',
+                score: $('.myrating_score').val(),
+                click: function(score, evt) {
+                    TTCallAPI({
+                        what: ReturnLink('/ajax/modal_newsfeed_rate.php'),
+                        data: {entity_id: $this.attr('data-id'),
+                            entity_type: $this.attr('data-type'),
+                            score: score,
+                            globchannelid: null},
+                        ret: 'json',
+                        callback: function(resp) {
+                            if (resp.status == 'error') {
+                                TTAlert({
+                                    msg: resp.msg,
+                                    type: 'alert',
+                                    btn1: 'ok',
+                                    btn2: '',
+                                    btn2Callback: null
+                                });
+                                return;
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+    });
+</script>
+<div class="randomPoi-cont">
+    <h3>{{ 'please rate the following points of interest'|lang }}</h3>
+    <div class="randomPoiList-cont">
+        {% for poi in randomPois %}
+            <div class="aRandomPoi">
+                <img src="{{ poi.img|raw }}" alt="{{ poi.name|raw }}" />
+                <div class="aRandomPoiArrow"></div>
+                <div class="aRandomPoiText-cont">
+                    <div class="aRandomPoiCat">
+                        {% if poi.cat != '' %}
+                            category: <span>{{ poi.cat|raw }}</span>
+                        {% endif %}
+
+                    </div>
+                    <div class="aRandomPoiPin">{{ poi.location|raw }}</div>
+                    <div class="aRandomPoiRate" data-id="{{ poi.id|raw }}">
+                        <div data-type="{{ SOCIAL_ENTITY_LANDMARK|raw }}" data-id="{{ poi.id|raw }}" class="NewsFeed_ModalRating myrating">
+                            <img src="/media/images/rating_0.png" alt="1" title="Very Poor">&nbsp;
+                            <img src="/media/images/rating_0.png" alt="2" title="Poor">&nbsp;
+                            <img src="/media/images/rating_0.png" alt="3" title="Neutral">&nbsp;
+                            <img src="/media/images/rating_0.png" alt="4" title="Good">&nbsp;
+                            <img src="/media/images/rating_0.png" alt="5" title="Very Good">
+                            <input type="hidden" name="score">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="randomPoi-close" onclick="parent.closeFancyOpenRegister();">{{ 'close'|lang }}</div>
+</div>

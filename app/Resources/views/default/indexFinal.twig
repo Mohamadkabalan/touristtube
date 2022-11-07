@@ -1,0 +1,131 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block body %}
+    <section class="container">
+	{% for itemMain in mainEntityArray %}
+	    <div class="home_new_row">
+		{% if itemMain.viewAll!='' %}
+		    <a href="{{itemMain.viewAll|raw}}" alt="{{itemMain.namealt|raw}}" class="row small_padding float_row_a">
+		{% else %}
+		    <div class="row small_padding">
+		{% endif %}
+		    <div class="col-sm-9 col-xs-12 small_margin">
+			<h2 class="h2_home_new">{{itemMain.name|raw}}</h2>	
+		    </div>
+		    <div class="col-xs-3 small_margin hidden-xs">{% if itemMain.viewAll!='' %}<span class="view_all_link pull-right">{{ 'view all'|trans}}&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-right fa-lg"></i></span>{% endif %}</div>
+		{% if itemMain.viewAll!='' %}
+		    </a>
+		{% else %}
+		    </div>
+		{% endif %}
+		<div class="row max_width_image small_padding">
+		    {% for subItemMain in itemMain.subItem %}
+			<div class="col-md-3 col-sm-6 col-xs-12 small_margin">
+			    <a href="{{ subItemMain.link|raw }}" title="{{ subItemMain.namealt|raw }}">
+				<img src="{{ subItemMain.img }}" alt="{{ subItemMain.namealt|raw }}" />
+				<h3 class="subtitle_home_new">{{ subItemMain.name|raw }}{% if subItemMain.city !='' %} <span class="txtPink">| {{ subItemMain.city|raw }}</span>{% endif %}</h3>
+				
+				{% if itemMain.entityType ==80 or itemMain.entityType ==28 or itemMain.entityType ==29 or itemMain.entityType ==79 %}
+				    {#<img alt="{{ '360 logo'|trans }}" src="{{ generateMediaURL('/media/images/360-photos-virtual-tour/360_logo.png') }}" class="small_logo_absolute">#}
+                                    <div class="sprite sprite_360_logo2"></div>
+				{% endif %}
+			    </a>
+			    {#{% if subItemMain.reviews_count >0 %}
+				<p class="reviews_home_new"><span class="star_rating" data-rating="{{ subItemMain.score|raw }}" data-font="11" data-color="#eac31a"></span> {{ subItemMain.reviews_count|raw }} {{'reviews'|trans}}</p>
+			    {% endif %}#}
+			</div>
+			{% if (loop.index%4)==0 %}
+			    <div class="clearfix visible-lg visible-md"></div>
+			{% endif %}		
+			{% if (loop.index%2)==0 %}
+			    <div class="clearfix visible-sm"></div>
+			{% endif %}
+		    {% endfor %}
+		</div>
+	    </div>
+	{% endfor %}
+	{% if thingstodoListAll|length>0 %}
+	    <div class="home_new_row">
+		<div class="row small_padding">
+		    <div class="col-xs-12 small_margin">
+			<h2 class="h2_home_new">{{'Travel destinations'|trans}}</h2>	
+		    </div>
+		</div>
+		<div class="row small_padding useful_links">
+		    <div class="col-xs-12 small_margin">
+			{% for thingstodo in thingstodoListAll %}
+			    <ul class="col-md-3 col-sm-6 col-xs-12 small_margin">
+				<li><a href="{{ thingstodo.link|raw }}" title="{{ thingstodo.titlealt|raw }}">{{ thingstodo.title|raw }}</a></li>
+			    </ul>
+			{% endfor %}
+		    </div>
+			{#<div class="col-md-3 col-sm-6 col-xs-12 small_margin">
+				<ul>
+					<li><a href="">Things to do in Luxembourg</a></li>
+					<li><a href="">Things to do in Lebanon</a></li>
+					<li><a href="">Things to do in Berlin</a></li>
+					<li><a href="">Things to do in North America</a></li>
+					<li><a href="">Things to do in Hong Kong</a></li>
+					<li><a href="">Things to do in Rome</a></li>
+					<li><a href="">Things to do in Athens</a></li>
+					<li><a href="">Things to do in Portugal</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 small_margin">
+				<ul>
+					<li><a href="">Things to in porto</a></li>
+					<li><a href="">Things to do in Spain</a></li>
+					<li><a href="">Things to do in China</a></li>
+					<li><a href="">Things to do in India</a></li>
+					<li><a href="">Things to do in Delhi </a></li>
+					<li><a href="">Things to do in San Francisco</a></li>
+					<li><a href="">Things to do in Prague</a></li>
+					<li><a href="">Things to do in Brussels</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 small_margin">
+				<ul>
+					<li><a href="">Things to do in Philippines</a></li>
+					<li><a href="">Things to do in Los Angeles</a></li>
+					<li><a href="">Things to do in Abu Dhabi</a></li>
+					<li><a href="">Things to do in Brazil</a></li>
+					<li><a href="">Where is Paris</a></li>
+					<li><a href="">Where is Berlin</a></li>
+					<li><a href="">Where is Lebanon</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 small_margin">
+				<ul>
+					<li><a href="">Where is New York City</a></li>
+					<li><a href="">Where is London</a></li>
+					<li><a href="">Where is Rome</a></li>
+					<li><a href="">Where is Dubai</a></li>
+					<li><a href="">Where is Prague</a></li>
+					<li><a href="">Where is Los Angeles</a></li>
+					<li><a href="">Where is San Francisco</a></li>
+				</ul>
+			</div>#}
+		</div>
+	    </div>
+	{% endif %}		
+	<div class="home_new_row">
+	    <div class="row small_padding bottom_link_black">
+		<div class="col-xs-12 small_margin">
+		    <h2 class="h2_home_new">Tourist Tube - {{'Travel the world through all inclusive vacation packages'|trans}}</h2>	
+		    <p class="margin_top_30 txt_more_container" data-h="40">{{'It is always fun to go on vacations, but the planning for one can be overwhelming. With lots of vacation packages to choose from, it requires a lot of patience and research to come up with the best one. When you want to travel the world, you need to sort through hotels, flights, itineraries, and other stuff. 
+
+If you want to travel with less stress and worries, then you should opt for all inclusive vacations. Aside from the accommodations and flights, vacation packages have itineraries that include the popular tourist attraction sites of your destination. You can learn more about the various sites before going there through our website. TouristTube is your one-stop shop to discover destinations and plan your trip. 
+
+More often than not, the cost is a major factor when looking for vacation packages. All inclusive vacations allow you to enjoy everything that the destination has to offer without having to shell out a lot of money. There’s no need to go for five star accommodations when cheaper ones can deliver the same services, comfort, and amenities. 
+
+With all inclusive vacations, you get to see all the best tourist spots of the country without having to pay additional fees. The vacation packages have been designed to lower the costs of the trip without sacrificing the comfort and enjoyment. The travel arrangements are affordable. All aspects of the trip are taken care of, from the food to transportation and hotel rooms. All inclusive packages come with everything you need for the trip such as return tickets, entertainment, travel guide, accommodation, and a lot more. Packages also come at discounted prices that give travellers a lot of savings. You will be able to take your time to pick the right package that will allow you to travel the world. 
+
+And if you are travelling with your family, then you can consider getting group tour packages. These are designed for people who want to go on a vacation in a group. If you are taking the entire family or your friends, then consider getting group vacation packages. With lots of travel companies online, it is easier to find a reputable one that provides competitively priced packages. You can gain access to quality travel services at very affordable prices. 
+
+If you are still not sure of where to go, check out TouristTube. Our website provides you with things to do and discover stuff you can find in every tourist destination in the world. When you are set to travel the world, your first stop should be TouristTube. Members and experts can provide you with insights of places to visit and things to try. Once you have a destination in mind, go out and find the right vacation package for it.'|trans|nl2br}}</p>
+		    <a rel="nofollow" class="txt_more_a more" for="txt_more_container" href="">{{'more'|trans}}</a>
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

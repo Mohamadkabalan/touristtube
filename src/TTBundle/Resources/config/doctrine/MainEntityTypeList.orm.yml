@@ -1,0 +1,63 @@
+TTBundle\Entity\MainEntityTypeList:
+    type: entity
+    table: main_entity_type_list
+    repositoryClass: TTBundle\Repository\TTRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        entityTypeId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: entity_type_id
+        mainEntityTypeId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: main_entity_type_id
+        entityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: entity_id
+        displayOrder:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: display_order
+        showOnHome:
+            type: integer
+            nullable: false
+            options:
+                default: '0'
+            column: show_on_home
+        cityId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

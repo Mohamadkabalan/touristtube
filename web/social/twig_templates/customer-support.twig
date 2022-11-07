@@ -1,0 +1,162 @@
+{% if userIsLogged == true and userIsChannel == true %}
+    {% include "headChannel.html" %}
+{% else %}
+    {% include "head.html" %}
+{% endif %}
+
+{# javascript for validaing form field starts from here #}
+<script type="text/javascript">
+
+    function ClearFeedbackForm(){
+        $('#FeedbackForm input').val('');
+        $('#FeedbackForm textarea').val('');
+        $('.feedbackinput').blur();
+        $('.feedbacktextarea').blur();
+    }
+
+    function validateEmail(elementValue) {
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailPattern.test(elementValue);
+    }
+    function ValidateFeedbackForm(){
+        if( getObjectData($("#title"))=='' ){
+            TTAlert({
+                msg: t('Invalid full name'),
+                type: 'alert',
+                btn1: t('ok'),
+                btn2: '',
+                btn2Callback: null
+            });
+            $("#title").focus();
+            return false;
+        }else if( !validateEmail(getObjectData($("#email"))) && getObjectData($("#email")) != '' ){
+            TTAlert({
+                msg: t('Invalid email address'),
+                type: 'alert',
+                btn1: t('ok'),
+                btn2: '',
+                btn2Callback: null
+            });
+            $("#email").focus();
+            return false;
+        }else if( getObjectData($("#fmessage"))=='' ){
+            TTAlert({
+                msg: t('Invalid message'),
+                type: 'alert',
+                btn1: t('ok'),
+                btn2: '',
+                btn2Callback: null
+            });
+            $("#fmessage").focus();
+            return false;
+        }else{
+            TTCallAPI({
+                what: 'user/report/add',
+                data: {entity_type:SOCIAL_ENTITY_CUSTOME_SUPPORT, entity_id:0, channel_id : 0, title: getObjectData($("#title")), msg: getObjectData($("#fmessage")), email: getObjectData($("#email")) , reason:''},
+                callback: function(ret){
+                    TTAlert({
+                        msg: ret.msg,
+                        type: 'alert',
+                        btn1: 'ok',
+                        btn2: '',
+                        btn2Callback: null
+                    });
+                    if( ret.status === 'error' ){
+                        return;
+                    }
+                    ClearFeedbackForm();
+                }
+            });
+        }
+    }
+
+    $(document).ready(function(){
+        $("#SubmitFeedback").click(function(){
+            ValidateFeedbackForm();
+        });
+
+        $("#CancelFeedback").click(function(){
+            document.location.reload();
+        });
+    });
+    function addValue2(obj){
+        if($(obj).val() == '') $(obj).val($(obj).attr('data-value'));
+    }
+    function removeValue2(obj) {
+        if($(obj).val() == $(obj).attr('data-value')) $(obj).val('');
+    }
+    function getObjectData(obj){
+        var mystr=""+obj.val();
+        if(mystr==$(obj).attr('data-value')){
+            mystr="";
+        }
+        return mystr;
+    }
+
+</script>
+{# javascript for validaing form field till here #}
+
+<div id="MiddleBody">
+    <div class="StaticBody">
+        <div class="report_bug">
+            <h1 class="StaticTitle h1Style">
+                {{'CUSTOMER SUPPORT'|lang}}
+            </h1>
+            <div class="StaticTxt">
+                <div id="FeedbackForm" class="width480">
+                    <table width="317" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td height="37" valign="top">
+                            <h2 class="yellow20 h1Style">
+                                {{'fill in the form below'|lang}}
+                            </h2></td>
+                        </tr>
+                        <tr>
+                            <td height="17" valign="top">
+                                {{'Full Name'|lang}}*
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="37" valign="top">
+                                <input type="text" name="title" id="title" class="feedbackinput" value="..."  data-value="..." onfocus="removeValue2(this)" onblur="addValue2(this)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="17" valign="top">
+                                {{'email address'|lang}}
+                                <span class="italic11">({{'optional'|lang}})</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="37" valign="top"><input type="text" name="email" id="email" class="feedbackinput" value="..."  data-value="..." onfocus="removeValue2(this)" onblur="addValue2(this)"/></td>
+                        </tr>
+                        <tr>
+                            <td height="17" valign="top">
+                                {{'message'|lang}}*
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <textarea name="fmessage" id="fmessage" class="feedbacktextarea"  data-value="..." onfocus="removeValue2(this)" onblur="addValue2(this)">...</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="31" valign="bottom">
+                                <div class="buttonLogincontainer">
+                                    <div id="SubmitFeedback" class="feed_but_class">
+                                        {{'submit'|lang}}
+                                    </div>
+                                    <div id="CancelFeedback" class="feed_but_class marginright10">
+                                        {{'cancel'|lang }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "foot.html" %}

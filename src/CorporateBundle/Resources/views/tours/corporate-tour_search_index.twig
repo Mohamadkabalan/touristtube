@@ -1,0 +1,185 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme"~corporate_theme~".css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-attraction-search.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/deals/corporate-attraction-search.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Attractions Search'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporate_container1">
+	<div class="col-xs-12 nopad containerstyle_hbr">
+	    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 nopad leftmenuebackcolor_corp borderrightgrey_corpfl">
+		<div class="col-xs-12 nopad">
+		    {% include '@Corporate/corporate/corporate-leftmenu.twig' %}
+		</div>
+		<div class="col-xs-12 filter-bordertop nopad">
+		    <div class="col-xs-12 menuestyle_filter-click nopad">
+			<div class="col-xs-12 nopad">
+			    <img class="downarrow_filter" src="{{ generateMediaURL('/media/images/corporate/downarrow_menuefilters.png') }}" alt="{{'title'}}"/>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <p class="menuestyle_filter">filter results</p>
+			</div>
+		    </div>
+		    <div class="col-xs-12 filtersearchtogglecontainer nopad">
+			<div class="col-xs-12 nopad {% if autoSuggest is defined and autoSuggest %} leftfiltergreybtop_att-search {% endif %}">
+			    <form name="tourSearchForm" method="POST" action="" autocomplete="off">
+				{% if autoSuggest is defined and autoSuggest %}
+				    <div class="col-xs-12">
+					<p class="filtersearchgrey_attractionsearch">{{'filter results test'|trans}}</p>
+				    </div>
+				{% endif %}
+				<div class="col-xs-12">
+				    <div class="inputbox">
+					{% if citySearch is defined and citySearch %}
+					    <input type="text" name="dealNameSearch" value="{% if dealName is defined and dealName %}{{dealName}}{% endif %}" class="form-control searchdest" placeholder="{{'Search'|trans}} {{city}}">
+					{% else %}
+					    <input type="text" name="location" id="" {% if city is defined and city %} value="{{city}}" {% endif %} class="form-control searchdest" placeholder="{{'Destinations'|trans}}">
+					    {% if dealName is defined and dealName %}
+						<input name="dealName" type="hidden" value="{{ dealName }}">
+					    {% endif %}
+					{% endif %}
+				    </div>
+				</div>
+				<div class="col-xs-12 margin-but-15">
+				    <p class="prpp">{{'Price (per person)'|trans}}</p>
+				    <span id="priceSliderSpan"><input id="ex8" data-slider-id='ex1Slider' name="priceRange" type="text" data-slider-min="{{minPrice}}" data-slider-max="{{maxPrice}}" data-slider-step="10" data-slider-value="{% if result['priceRange'] is defined and result['priceRange'] %}[{{result['priceRange']}}]{% endif %}"/></span>
+				</div>
+				<div class="col-xs-12 margin-but-15">
+				    {% if citySearch %}
+					<input type="hidden" name="location" value="{{city}}" class="form-control">
+				    {% endif %}
+				    <div class="inputbox">
+					<input type="hidden" class="minPriceHidden" name="minPrice" value="{{minPrice}}" class="form-control">
+					<input type="hidden" class="maxPriceHidden" name="maxPrice" value="{{maxPrice}}" class="form-control">
+					<div class="price-convert"><input class="currency-convert-val" type="hidden" name="currency_code" value="{{ selected_currency|raw }}" /></div>
+					<input id="refineSearchSubmit" type="submit" name="refineSearchSubmit" value="{{'Search Now!!!'|trans}}" class="btn btn-default signup tourSubmit" />
+				    </div>
+				</div>
+			    </form>
+			</div>
+			<div class="col-xs-12 uparrow_filter-click nopad">
+			    <img class="uparrow_filter" src="{{ generateMediaURL('/media/images/corporate/uparrow_menuefilters.png') }}" alt="{{'title'}}"/>
+			</div>
+		    </div>
+		</div>
+
+	    </div>
+	    <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 nopad contentbackcolor_corp">
+		<div class="col-xs-12 nopad">
+		    <div class="col-xs-12">
+			{% if autoSuggest is defined and autoSuggest %}
+			    <h2 class="headerstyle_corp">{{'step2'|trans}} <span class="error_cnt_corporate"></span></h2>
+			    {% endif %}
+			    {% if error is defined and error %}
+			    <div class="display-error-msg">
+				{{ error|trans }}
+			    </div>
+			{% endif %}
+			<div class="col-xs-12 nopad">
+			    <div class="searchButtonsUpdate changeSearch">{{'change search'|trans}}</div>
+			    <div class="searchButtonsUpdate cancelSearch">{{'cancel'|trans}}</div>
+			</div>
+			<div class="col-xs-12 nopad formsearch">
+			    {% include '@Corporate/tours/tours-form.twig' %}
+			</div>
+			<div class="col-xs-12">
+			    {% include '@Corporate/tours/corporate-deals-common-header.twig' %}
+			</div>
+			<div class="section_header">
+			    <span class="section_title">
+				{% if city is defined and city %}
+				    {% if dealName is defined and dealName %}
+					{{'ALL'|trans}} {{dealName|upper}} {{'Tours & Activities in'|trans}} {{city|upper}}
+				    {% else %}
+					{{(type == 'all') ? 'ALL Tours & Activities' : type |upper}} in {{city|upper}}
+				    {% endif %}
+				{% else %}
+				    {% if dealName is defined and dealName %}
+					{{'ALL'|trans}} {{dealName|upper}} {{'Tours & Activities'|trans}}
+				    {% else %}
+					{{'All available'|trans}} {{(type == 'all') ? 'Destinations' : type |upper}}
+				    {% endif %}
+				{% endif %}
+			    </span>
+			</div>
+			<div id="dealListResults" class="col-lg-11 col-xs-12 section9martop5">
+			    <input name="getLoadMoreURL" type="hidden" value="{{ path('_corporate_corporateGetLoadMore') }}">
+			    <input name="dealType" type="hidden" value="{{ type }}">
+			    <input name="langCode" type="hidden" value="{{ langCode }}">
+			    <input name="priority" type="hidden" value="{{ priority }}">
+			    <input name="hasSearch" type="hidden" value="{{ hasSearch }}">
+			    <input name="offset" type="hidden" value=0>
+			    {% if startDate is defined and startDate %}
+				<input name="startDate" type="hidden" value="{{ startDate }}">
+			    {% endif %}
+			    {% if endDate is defined and endDate %}
+				<input name="endDate" type="hidden" value="{{ endDate }}">
+			    {% endif %}
+			    {% if userMinPrice is defined and userMinPrice %}
+				<input name="minPrice" class="minPriceHidden" type="hidden" value="{{ userMinPrice }}">
+			    {% endif %}
+			    {% if userMaxPrice is defined and userMaxPrice %}
+				<input name="maxPrice" class="maxPriceHidden" type="hidden" value="{{ userMaxPrice }}">
+			    {% endif %}
+			    {% if dealName is defined and dealName %}
+				<input name="dealName" type="hidden" value="{{ dealName }}">
+			    {% endif %}
+			    {% if (result['result'] is defined and result['result']) %}
+				<div id="searchResults">
+				    {% include "@Corporate/tours/corporate_tour_search_load_more.twig" %}
+				</div>
+				{% if result['numRowsCnt'] is defined and result['numRowsCnt'] >= 20 %}
+				    <div id="loadMoreBtn" class="col-xs-12 nopad padtop20">
+					<div class="loadmore_dat">
+					    {{'load more'|trans}}
+					</div>
+				    </div>
+				{% endif %}
+			    {% endif %}
+			    {% if autoSuggest is defined and autoSuggest == false %}
+				<div class="hidden-xs">
+				    <div class="col-xs-12">
+					<p class="reasonsdeals">{{'Reasons to book with us'|trans}}</p>
+					<p class="greytextdeals">{{'Applies to selected holidays. See our terms &amp; Conditions'|trans}}</p>
+				    </div>
+				    <div class="col-xs-12">
+					<ul class="dealsulreasons">
+					    <li class="borderright">
+						<p class="bigultext firstimgback">{{'Spread the cost'|trans}}</p>
+						<p class="smalultxt">{{'with Direct Debit'|trans}}</p>
+					    </li>
+					    <li class="borderright">
+						<p class="bigultext sndimgback">{{'Spread the cost'|trans}}</p>
+						<p class="smalultxt">{{'with Direct Debit'|trans}}</p>
+					    </li>
+					    <li class="borderright">
+						<p class="bigultext thrdimgback">{{'Spread the cost'|trans}}</p>
+						<p class="smalultxt">{{'with Direct Debit'|trans}}</p>
+					    </li>
+					    <li class="mdmartopten">
+						<p class="bigultext frthimgback">{{'Spread the cost'|trans}}</p>
+						<p class="smalultxt">{{'with Direct Debit'|trans}}</p>
+					    </li>
+					</ul>
+				    </div>
+				</div>
+			    {% endif %}
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

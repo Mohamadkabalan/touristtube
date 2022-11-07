@@ -1,0 +1,28 @@
+{% if hotelDetails.facilities is defined and hotelDetails.facilities is not empty %}
+    <div class="facility_new_row">
+	<div class="col-xs-12 nopad">
+	    <h2 class="blue_commun_title">{{'Facilities of'|trans}} {{hotelDetails.name}}</h2>
+	</div>
+	{% for facility in hotelDetails.facilities %}
+	    {% set counter = ( counter | default(0) ) + 1 %}
+	    <div class="col-sm-3 col-xs-4 nopad" data-counter="{{counter}}">
+		<div class="row small_padding">
+		    <div class="col-xs-12 small_margin">
+			<h3 class="facility_title">{{facility.type}}</h3>
+		    </div>
+		</div>
+		<div class="row small_padding facility_links">
+		    {% for item in facility.names %}
+			<div class="col-xs-12 small_margin">- {{item}}</div>
+		    {% endfor %}
+		</div>
+	    </div>
+	    {% if counter is divisible by(4) %}
+		<div class="clearfix hidden-xs"></div>
+	    {% endif %}
+	    {% if counter is divisible by(3) %}
+		<div class="clearfix visible-xs"></div>
+	    {% endif %}
+	{% endfor %}
+    </div>
+{% endif %}

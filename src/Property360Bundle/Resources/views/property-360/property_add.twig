@@ -1,0 +1,39 @@
+<div id="request-location-form1" class="col-xs-12 commun_small_col_padding property_add_container">
+    <div class="row commun_small_row_margin">
+	<div class="col-xs-12 commun_small_col_padding margin_top_40">
+	    <h3 class="commun_title_h3_pink float-left">{{'Property'|trans}} <span class="property_index">1</span></h3>
+	    <button class="btn btn-remove-add_property btn_remove_property" type="button">-</button>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+	    <label class="input_label">{{'Official Name of the Property'|trans}}*</label>                                
+	    <input placeholder="{{'Name'|trans}}" class="commun_input_style" name="property_name" type="text" autocomplete="off" maxlength="100" value="{{property_name|raw}}">
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+	    <label class="input_label">{{'Property country'|trans}}*</label>
+	    <select id="country" name="country" class="commun_select_style">
+		<option value="" data-code="">{{'Select country'|trans}}</option>
+		{% for item in countries_dialing_codes %}
+		    <option value="{{item.code}}"{% if item.code == country %} selected="selected"{% endif %} data-code="{{item.iso3}}">{{item.name}}</option>
+		{% endfor %}
+	    </select>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+	    <label class="input_label">{{'Property city'|trans}}*</label>
+	    <input placeholder="{{'City'|trans}}" class="commun_input_style" name="city" data-id="{{city_id|raw}}" value="{{city|raw}}" type="text" autocomplete="off">
+	    <input name="city_id" type="hidden" value="{{city_id|raw}}">
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+	    <label class="input_label">{{'Stars'|trans}}*</label>
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad ratestars_container">
+		    <div class="eval_options request_form_eval_options{%if rating_value>=1 %} active{% endif %}" data-value="1"></div>
+		    <div class="eval_options request_form_eval_options{%if rating_value>=2 %} active{% endif %}" data-value="2"></div>
+		    <div class="eval_options request_form_eval_options{%if rating_value>=3 %} active{% endif %}" data-value="3"></div>
+		    <div class="eval_options request_form_eval_options{%if rating_value>=4 %} active{% endif %}" data-value="4"></div>
+		    <div class="eval_options request_form_eval_options{%if rating_value>=5 %} active{% endif %}" data-value="5"></div>
+		</div>
+		<input name="rating_value" type="hidden" value="{{rating_value|raw}}">
+	    </div>
+	</div>
+    </div>  
+</div>

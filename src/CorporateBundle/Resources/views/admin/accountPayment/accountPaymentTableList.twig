@@ -1,0 +1,39 @@
+    <table id="paymentsTbl" align="center" class="dataTable table table-striped table-bordered" cellspacing="0" 
+    	width="100%"
+	   	ajax_url                     = "{{ path('_corpo_account_payment_datatable') }}"
+	   	default_order_column_id      = "id_ID"
+	   	default_order_direction      = "asc"
+	   	parameters = "accountId,fromDate,toDate,accountTypeId"
+	   	footerCallBack="accountTransactionsFooterCallBack"
+	   >
+        <thead>
+            <tr>
+                <th id="id_ID" dbname="cap__id" visible="false">{{'Id'|trans }}</th>
+                <th id="name_ID" dbname="payment_date" >{{'Date'|trans }}</th>
+                <th id="createdBy_ID" dbname="ca__name" visible="false">{{'Account'|trans }}</th>
+                <th id="createdAt_ID" dbname="FullName" width="200px">{{'User'|trans }}</th>
+                <th id="preferred_ID" dbname="cap__currency_code" visible="false">{{'Currency'|trans}}</th>
+                <th id="amount_ID" dbname="cap__amount"  classname="dt-right" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="100px" cell_handler="amountCellHandler">{{'Amount'|trans }}</th>
+                <th id="amountFBC_ID" dbname="cap__amount_fbc" classname="dt-right" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="100px">{{amountFBC|raw}}</th>
+                <th id="amountSBC_ID" dbname="cap__amount_sbc" classname="dt-right" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="100px">{{amountSBC|raw}}</th>
+                <th id="preferred_ID" dbname="ca__preferred_currency" visible="false">{{'Preferred Currency'|trans}}</th>
+                <th id="acctAmt_ID" dbname="cap__account_currency_amount" classname="dt-right" cell_handler="preferredAmountCellHandler"  width="100px">{{'In Account Currency'|trans}}</th>
+                <th id="desc_ID" dbname="description" width="200px">{{'Description'|trans}}</th>
+		    {% if fromReports is not defined %}
+		    <th id="actions" dbname="actions" skipDb="true" cell_handler="actionCellHandler" width="100px">{{'Actions'|trans }}</th>
+		    {% endif %}
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th colspan="6" style="text-align:right; font-weight: bold;">{{ 'Total'|trans }}:</th>
+                <th id="totalFbc" style="text-align:right;font-weight: bold;"></th>
+                <th id="totalSbc" style="text-align:right;font-weight: bold;"></th>
+                <th></th>
+                <th id="totalPreferred" style="text-align:right;font-weight: bold;"></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <br><br>

@@ -1,0 +1,58 @@
+{% if filterSuffix is not defined %}
+	{% set filterSuffix = "" %}
+{% endif %}
+{% if accountId is not defined %}
+	{% set accountId = "" %}
+{% endif %}
+
+    <div class="row no-margin margin_bottom_20">
+	<div class="col-xs-12 nopad">
+	    <p class="blue font-24 line-height-26 padding_left_17"><span class="toggledtitle">{{'Filters'|trans}}</span><i class="fas fa-angle-double-left angleleft_style"></i><i class="fas fa-angle-double-right angleright_style"></i></p>
+	</div> 
+    </div>
+    <div class="row no-margin toggledmenu">
+	<div class="col-xs-12 nopad">
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    <p id="accountNameLabel" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by name of account'|trans}}*</p>
+		</div>
+	    </div>
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad mybookinginput">
+		    <input type="text" class="col-xs-12" name="accountId" id="account{{ filterSuffix }}" value="" data-value-id="{{ accountId }}" placeholder="{{'Search name of account'|trans}}*" onDropDownSelect="onAccountFilterSelected" />
+		</div>
+	    </div>	
+	</div>	
+    </div>
+    <div class="row no-margin toggledmenu">
+	<div class="col-xs-12 nopad">
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By date Interval'|trans}}</p>
+		</div>
+	    </div>
+	    <div class="row no-margin">
+		<div id="dateRange" class="col-xs-12 dateRangeContainer nopad">
+		    <div class="row no-margin">
+			<div id="fromContainer" class="col-xs-12 nopad mybookinginput">
+			    <input type="text" name="firstDay" id="firstDay" value="{{firstDay|date("m/d/Y")}}" class="col-xs-12 account_range_picker fromDate" readonly="readonly" placeholder="{{'from'|trans}}">
+			</div>
+		    </div>
+		    <div class="row no-margin">
+			<div id="toContainer" class="col-xs-12 nopad mybookinginput">
+			    <input type="text" name="lastDay" id="lastDay" value="{{lastDay|date("m/d/Y")}}" class="col-xs-12 account_range_picker toDate" readonly="readonly" placeholder="{{'to'|trans}}">
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+    <div class="row no-margin margin_top_20 toggledmenu">
+	<div class="col-xs-12 nopad">
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    <button data-role="button" data-type="default" onclick="filterInfo()" class="btn yellow_search_common_button">{{'Search'|trans}}</button>
+		</div>
+	    </div>
+	</div>
+    </div> 

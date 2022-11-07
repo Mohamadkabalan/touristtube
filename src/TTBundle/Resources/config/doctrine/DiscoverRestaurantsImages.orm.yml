@@ -1,0 +1,51 @@
+TTBundle\Entity\DiscoverRestaurantsImages:
+    type: entity
+    table: discover_restaurants_images
+    indexes:
+        hotel_id:
+            columns:
+                - old_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: user_id
+        filename:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        restaurantId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: restaurant_id
+        oldId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: old_id
+        defaultPic:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: default_pic
+    lifecycleCallbacks: {  }

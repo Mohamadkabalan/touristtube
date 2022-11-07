@@ -1,0 +1,140 @@
+{% extends 'baseFinal.html.twig' %}
+{% block body %}
+    <section class="container city_activites_container">
+	{% if firstbreadtitle !='' %}
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <ul class="ttd_breadcrumb">
+			<li class="fl first"><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{ 'things to do'|trans }}">{{ 'Things to do'|trans }}</a></li>
+			{% if secondbreadtitle!='' %}
+			    <li class="fl"> > </li>
+			    <li class="fl ico second"><a href="{{secondbreadlink|raw}}" title="{{ (secondbreadtitle|replace({ ('-'): ' '}))|lower }}">{{(secondbreadtitle|replace({ ('-'): ' '}))|raw }}</a></li>
+			{% endif %}
+			<li class="fl"> > </li>
+			<li class="ico"><a class="active" href="{{firstbreadlink|raw}}" title="{{ (firstbreadtitle|replace({ ('-'): ' '}))|lower }}">{{(firstbreadtitle|replace({ ('-'): ' '}))|raw }}</a></li>
+		    </ul>
+		</div>
+	    </div>
+	{% endif %}
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		{% if firstbreadtitle=='' %}
+		    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Things to do'|trans}}</h1>
+		    <div class="search_titleH3">
+			<div class="row">
+			    <div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="col-xs-12 new_padding things_to_do_form">
+				    <input type="text" placeholder="{{'Search for your destination'|trans|raw }}" id="things_to_to_search" name="things_to_to_search" class="things_to_do_input">
+				    <div class="things_to_do_btn"><i class="fa fa-search"></i></div>
+				</div>
+			    </div>
+			    <div class="col-md-8 col-sm-6 col-xs-12">
+				<h3 class="things_to_do_h3">{{'The best things to do in any desired city, including events, festivals, attractions & tours,<br>free activities and entertainment, Restaurants, bars, hotels, arts & culture, shopping guide, nightlife ...'|trans|raw }}</h3>
+			    </div>
+			</div>
+			{% if search_array|length>0 %}
+			    <div class="row margin_top_10">
+				<div class="col-xs-12">
+				    {% for item in search_array %}
+					<a href="{{item.link}}" title="{{item.namealt}}" class="things_to_do_link">{{item.name}}</a>
+				    {% endfor %}
+				</div>
+			    </div>
+			{% endif %}
+		    </div>
+		{% else %}
+		    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{firstbreadtitle|raw}}</h1>
+		    <div class="search_titleH3">
+			<div class="row">
+			    <div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="col-xs-12 new_padding things_to_do_form">
+				    <input type="text" placeholder="{{'Search for your destination'|trans|raw }}" id="things_to_to_search" name="things_to_to_search" class="things_to_do_input">
+				    <div class="things_to_do_btn"><i class="fa fa-search"></i></div>
+				</div>
+			    </div>
+			    <div class="col-md-8 col-sm-6 col-xs-12 margin-top-11">
+				{% for item in search_array %}
+				    <a href="{{item.link}}" title="{{item.namealt}}" class="things_to_do_link">{{item.name}}</a>
+				{% endfor %}
+			    </div>
+			</div>
+			{#{% if search_array|length>0 %}
+			    <div class="row margin_top_10">
+				<div class="col-xs-12">
+				    {% for item in search_array %}
+					<a href="{{item.link}}" title="{{item.namealt}}" class="things_to_do_link">{{item.name}}</a>
+				    {% endfor %}
+				</div>
+			    </div>
+			{% endif %}#}
+		    </div>
+		{% endif %}
+	    </div>
+	</div>
+	{#{% if firstbreadtitle=='' %}#}
+	    <div class="row border_top_but_row"></div>
+	{#{% endif %}#}
+	<div class="row new_margin">
+	    {% for itemMain in mainEntityArray %}
+		{% if itemMain.link != '' %}
+		    <a href="{{ itemMain.link|raw }}" title="{{ itemMain.titlealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 new_padding">
+		{% else %}
+		    <div class="col-md-3 col-sm-6 col-xs-12 new_padding">
+		{% endif %}
+		{% if itemMain.img!='' %}
+		    <img class="width-100" src="{{ itemMain.img }}" alt="{{ itemMain.titlealt|raw }}" />
+		{% endif %}
+		    <div class="col-xs-12 txtContainer">
+			<h2 class="subtitle_home_new txtPink">{{ itemMain.title|raw }}</h2>
+			<p class="home_new_description">{{ itemMain.description|raw }}</p>	    
+		    </div>
+		{% if itemMain.link != '' %}
+		    </a>
+		{% else %}
+		    </div>
+		{% endif %}
+		
+		{% if (loop.index%4)==0 %}
+		    <div class="clearfix visible-lg visible-md"></div>
+		{% endif %}				
+		{% if (loop.index%2)==0 %}
+		    <div class="clearfix visible-sm"></div>
+		{% endif %}
+		
+		<script type="application/ld+json">
+		{
+		  "@context": "http://schema.org",
+		  "@type": "{{itemType|raw}}",
+		  "name" : "{{itemMain.title|raw|replace({'Things to do in ': ''})|e('html')}}",
+		  "url": "{{itemMain.link|raw}}",
+		  "description": "{{itemMain.description|e('html')}}",
+		  "image": "{{itemMain.img|raw}}"
+		}
+		</script>
+	    {% endfor %}	    
+	</div>
+	{% if description!='' or t_h3!='' or t_p3!='' or t_h4!='' or t_p4!='' %}
+	    <div class="row new_margin">
+		<div class="col-xs-12 small_margin bottom_link_gray">
+		    {% if description!='' %}
+			<p class="txt_page_container">{{description|raw}}</p>
+		    {% endif %}
+		    {% if t_h3!='' %}
+			<h3 class="h_home_new">{{t_h3|raw}}</h3>
+		    {% endif %}
+		    {% if t_p3!='' %}
+			<p class="txt_page_container txt_more_container1" data-h="40" style="height: 40px;">{{t_p3|raw}}</p>
+			<a href="" class="txt_more_a more" for="txt_more_container1" rel="nofollow">{{'more'|trans}}</a>
+		    {% endif %}
+		    {% if t_h4!='' %}
+			<h4 class="h_home_new">{{t_h4|raw}}</h4>
+		    {% endif %}
+		    {% if t_p4!='' %}
+			<p class="txt_page_container txt_more_container2" data-h="40" style="height: 40px;">{{t_p4|raw}}</p>
+			<a href="" class="txt_more_a more" for="txt_more_container2" rel="nofollow">{{'more'|trans}}</a>
+		    {% endif %}
+		</div>
+	    </div>
+	{% endif %}
+    </section>
+{% endblock %}

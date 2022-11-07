@@ -1,0 +1,56 @@
+CorporateBundle\Entity\CorpoNotification:
+    type: entity
+    table: corpo_notification
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoNotificationRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        typeId:
+            type: integer
+            nullable: false
+            column: type_id   
+        subject:
+            type: string
+            nullable: false
+            length: 100
+            column: name
+        mssg:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false 
+        notificationIsSent:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: notification_is_sent
+        notificationDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: notification_date
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: false
+            column: created_by        
+    lifecycleCallbacks: {  }

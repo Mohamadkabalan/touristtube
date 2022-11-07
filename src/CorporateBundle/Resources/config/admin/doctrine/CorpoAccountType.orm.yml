@@ -1,0 +1,47 @@
+CorporateBundle\Entity\corpoAccountType:
+    type: entity
+    table: corpo_account_type
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAccountTypeRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            column: name
+        created_by:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: created_by
+        created_at:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        is_active:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_active
+        slug:
+            type: string
+            nullable: true
+            length: 100
+            column: slug
+    lifecycleCallbacks: {  }

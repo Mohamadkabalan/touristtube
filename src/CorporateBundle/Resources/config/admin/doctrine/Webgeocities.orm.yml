@@ -1,0 +1,100 @@
+CorporateBundle\Entity\Webgeocities:
+    type: entity
+    table: webgeocities
+    repositoryClass: CorporateBundle\Repository\Admin\WebgeocitiesRepository
+    indexes:
+        state_code:
+            columns:
+                - state_code
+        country_code:
+            columns:
+                - country_code
+        accent:
+            columns:
+                - accent
+        name:
+            columns:
+                - name
+        latitude:
+            columns:
+                - latitude
+        longitude:
+            columns:
+                - longitude
+        order_display:
+            columns:
+                - order_display
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: false
+            column: country_code
+        stateCode:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+            column: state_code
+        accent:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        timezoneid:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        orderDisplay:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: order_display
+        fromSource:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+                default: old
+            column: from_source
+        popularity:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+    lifecycleCallbacks: {  }

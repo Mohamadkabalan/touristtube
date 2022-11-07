@@ -1,0 +1,341 @@
+{% if userIsLogged == true and userIsChannel == true %}
+    {% include "headChannel.html" %}
+{% else %}
+    {% include "head.html" %}
+{% endif %}
+<script type="text/javascript">
+    var dataId = '{{ dataId|raw }}';
+    var dataType = '{{ dataType|raw }}';
+    var longitudeVal = '{{ longitudeVal|raw }}';
+    var latitudeVal = '{{ latitudeVal|raw }}';
+    userGlobalID( {{ user_id|raw }} );
+    userGlobalDISName('{{ discover_nam|raw }}');
+    var user_is_logged = '{{user_is_logged|raw}}';
+    var user_Is_channel = '{{userIschannel|raw}}';
+</script>
+<div id="sharepopup"></div>
+<a href="" id="picfancyboxbutton" rel="nofollow" style="width:0px;height:0px;" class="displaynone"></a>
+<a class="hotel_infos_imgbigf1 displaynone" href=""></a>
+<div class="upload-overlay-loading-fix" style="display: none;"><div></div></div>
+<div class="upload-overlay-loading-fix-file"><div class="loading_icon" data-id=""></div><span></span></div>
+<div id="MiddleBody" data-name="{{ discover_nam|raw }}">
+    <div id="thotel" class="hotelsContainer" data-id="{{txt_id|raw}}" data-type="{{ SOCIAL_ENTITY_TYPE|raw }}">
+        <div class="review_top_container">
+{% if irating_average>0  %}
+{% if dataType==28 %}
+<span itemscope itemtype="http://schema.org/Hotel">
+{% elseif dataType==29 %}
+<span itemscope itemtype="http://schema.org/FoodEstablishment">
+{% else%}
+<span itemscope itemtype="http://schema.org/LocalBusiness">
+{% endif %}
+<h1 class="hotel_infos_title h1bottom0" itemprop ="name">{{discover_title|raw}}     
+<span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" style="font-weight:normal; font-size: 12px;">
+Rating: <span itemprop="ratingValue">{{ irating_average|raw }}</span>
+{% if nb_votes>0  %} 
+ out of <span itemprop="bestRating" />5</span> (
+<span itemprop="ratingCount">{{ nb_votes|raw }}</span> Votes )
+{% endif %}
+</span></h1>
+</span><br> 
+<span style="line-height:30px; font-weight:normal;">{{ 'the experience you share is highly appreciated by other travelers'|lang }}</span><br>
+                   
+{% else %}
+<h1 class="hotel_infos_title h1bottom0">{{ discover_title|raw }}</h1>
+<br>
+<span style="line-height:30px; font-weight:normal;">{{ 'the experience you share is highly appreciated by other travelers'|lang }}</span><br>
+{% endif %}
+        </div>
+        <div class="evContainer2Over">
+            <div class="ProfileHeaderOverin"></div>
+            <div class="icons-overtik"></div>
+        </div>
+        <div class="hotel_infos">
+            <div class="hotel_infos_grayline"><span></span></div>
+            {% if discover_img != '' %}
+                {% if discover_imgbig != '' %} <a href="{{ discover_imgbig|raw }}" class="hotel_infos_imgbig" title="{{ discover_nam|raw }}"> {% endif %}
+                <img src="{{ discover_img|raw }}" alt="{{ discover_nam|raw }}" class="hotel_infos_img"/>
+                {% if discover_imgbig != '' %} </a> {% endif %}
+            {% endif %}
+            
+                    
+            <div class="hotel_infos_right">
+                <div class="hotel_infos_arrow"></div>
+                
+                {% if data_stars != 0 %}
+                    
+                    <img src="{{ ('media/images/rt_rating'~ data_stars ~'.png')|link }}" alt="" class="hotelBigImgstars" />
+                {% endif %}
+                <br/>
+                <div class="hotel_infos_icon"></div>
+                <h2 class="hotel_infos_location h2bottom0">{{ discover_location|raw }}</h2>
+            </div>
+            {% if AllChannelsOwnerCount>0 %}
+                <div class="addtomychannel">
+                    <h2 class="condition_title">{{ 'ADD to my channel'|lang }}</h2>
+                    <select id="channel_code" class="inputuploadformTF">
+                        <option value="">{{ 'select one of my channels...'|lang }}</option>
+                        {% for channelitem in AllChannelsOwner %}
+                            <option id="channel_code{{ channelitem.id|raw }}" value="{{ channelitem.id|raw }}">{{ channelitem.name|raw }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="addtomychannelBut">{{ 'ADD'|lang }}</div>
+                    <div class="hotelsMiddle_sep"></div>
+                </div>
+            {% endif %}
+        </div>   
+        <a href="{{ show_on_map|raw }}" class="showOnMap" rel="nofollow"><div class="mapImgPart">
+            <img src="{{ mapImageURL }}" alt="" />
+            </div>
+        </a>          
+        <div class="hotel_share">
+            <a class="hotel_goToReviews" href="#reviews" title="{{ 'VIEW REVIEWS'|lang }}">
+                {{ 'VIEW REVIEWS'|lang }}
+            </a>            
+            <div id="share_link" class="MediaButton_data MediaButton_data_share" data-title="{{ 'share link'|lang }}" data-statu="">
+                <p>
+                    <span class="share_linkbk"></span>
+                    <span>{{ 'share page'|lang }}</span>
+                </p>
+            </div>
+            <div class="share_link_holder simplemode">
+                <div class="share_link_arrow"></div>
+                <input type="text" readonly="readonly" value="{{ uricurpage|raw }}" class="share_link_text" name="share_link_text"/>
+                <div class="share_link_buttons">                        
+                    <a class="sh_lk1" target="_blank" 
+                       href="{{('http://www.facebook.com/sharer.php?s=100&amp;p[url]='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_fck"></div></a>
+                    <a class="sh_lk2" target="_blank" 
+                       href="{{('https://plus.google.com/share?url='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_gol"></div></a>
+                    <a class="sh_lk3" target="_blank" 
+                       href="{{('http://www.twitter.com/intent/tweet?url='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_twit"></div></a>
+                    <a class="sh_lk4" target="_blank" 
+                       href="{{('https://pinterest.com/pin/create/bookmarklet/?media='~fbimg~'&url='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_pint"></div></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="evaluationStar">
+            {% if irating_average != 0 %}
+                <div class="evalsummary">{{ 'evaluation summary'|lang|raw }}</div>
+                <div class="hotelBigImgRateS">{{irating_average|raw}}</div>
+            {% endif %}
+            
+            {% if user_id == 1744 %}
+                <div class="{% if irating_average != 0 %}qr_code2{% else %}qr_code{% endif %}">
+                    <img src="{{qr_link|raw}}" alt="QR Code">
+                </div>
+            {% endif %}
+        </div>
+        <div class="newReview">
+        
+            <div class="hotelsMiddleContent">
+                <div class="hotelsMiddleLeft">
+                    <div class="hotelsMiddle_sep"></div>
+                    <div class="hotelReviewRow1">
+
+                        {#review #}
+                        <h2 class="condition_title marginTop8 h2bottom0">{{ 'Your review'|lang }}</h2>                        
+                        <textarea onblur="addValue2(this);" onfocus="removeValue2(this);" data-value="" class="rev_description" name="description"></textarea>
+                        {# / review #}
+
+                        <div class="hotelsMiddle_sep"></div>
+
+                        {# theme #}
+                        <h2 class="condition_title margintop19 h2bottom0">{{ 'what was the theme of your trip?'|lang }}</h2>         
+                        <div class="ThemesOptionContainer">
+                            <div class="revThemesOption" data-value="1">{{ 'With kids'|lang }}</div>
+                            <div class="revThemesOption" data-value="2">{{ 'Outdoors'|lang }}</div>
+                            <div class="revThemesOption" data-value="3">{{ 'Best of'|lang }}</div>
+                            <div class="revThemesOption" data-value="4">{{ 'Business'|lang }}</div>
+                            <div class="revThemesOption" data-value="5">{{ 'Culture'|lang }}</div>
+                            <div class="revThemesOption" data-value="6">{{ 'Adventure'|lang }}</div>
+                            <div class="revThemesOption" data-value="7">{{ 'Romantic'|lang }}</div>
+                            <div class="revThemesOption" data-value="8">{{ 'Gastronomy'|lang }}</div>
+                        </div>
+                        {# / theme #}
+                    </div>
+
+                    {# near #}
+                    {% if nearArrCount>0 %}
+                    <div class="hotelsMiddle_sep"></div>
+                    <h2 class="condition_title margintop19 h2bottom0">{{ nearText|raw }} <span>{{ 'you can select more than one'|lang }}</span></h2>
+                    <div class="nearHotelOpt">
+                        {% for near in nearArr %}
+                            <div class="opt" data-value="{{near.id|raw}}">
+                                <div class="uploadinfocheckboxpic"></div> 
+                                <div class="optLabel">{{near.name|raw}}</div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    {% endif %}
+                    {# / near #}
+                    <div class="hotelsMiddle_sep"></div>
+
+                    {#<div class="hotelReviewRow2">
+
+                    </div>#}
+                    <h2 class="condition_title margintop9 h2bottom0">{{ 'When did you travel?'|lang }}</h2>                
+                    <select class="rev_select" name="travel">
+                        <option value="">{{ 'select one...'|lang }}</option>
+                        {% for dt in reDates %}
+                            <option value="{{ dt.val|raw }}" >{{ dt.disp|raw }}</option>
+                        {% endfor %}
+                    </select>
+                  
+                    <div class="rev_infocheckbox margintop28">
+                        <div class="uploadinfocheckboxpic"></div>
+                        <div class="rev_infocheckboxtxt" data-val="{{certify|raw }}"> {{certify|raw }} {#<a class="learnMore" href="#">{{ 'Learn more'|lang}}</a>#}</div>
+                    </div>
+                    <button class="submitReview {{(userIsLogged == false)?' goToRegister':''}}">
+                        {{ 'Submit your review'|lang }}: {{ discover_title|raw }}
+                    </button>
+                </div>
+                <div class="hotelsMiddleRight">
+                    <div class="hotelsMiddle_sep"></div>
+                    <div class="hotelReviewRow1">
+                        <h2 class="condition_title h2bottom0">{{ evalText|raw }}</h2> 
+                    
+                        <div class="GlobRate">
+                            <div class="eval_content">
+                                <div class="eval_options_glob {% if irating >= 1 %} {{'active'}} {% endif %}" data-value="1" data-text="{{ 'Terrible'|lang }}">1</div>
+                                <div class="eval_options_glob {% if irating >= 2 %} {{'active'}} {% endif %}" data-value="2" data-text="{{ 'poor'|lang }}">2</div>
+                                <div class="eval_options_glob {% if irating >= 3 %} {{'active'}} {% endif %}" data-value="3" data-text="{{ 'Average'|lang }}">3</div>
+                                <div class="eval_options_glob {% if irating >= 4 %} {{'active'}} {% endif %}" data-value="4" data-text="{{ 'Very good'|lang }}">4</div>
+                                <div class="eval_options_glob {% if irating >= 5 %} {{'active'}} {% endif %}" data-value="5" data-text="{{ 'Excellent'|lang }}">5</div>
+                                <div class="eval_options_over"><div class="eval_options_overtxt"></div></div>
+                            </div>
+                        </div>
+                        {# / eval part#}
+                        <div class="hotelsMiddle_sep"></div>
+
+                        <h2 class="condition_title condition1_title h2bottom0">{{ 'anything you could say about it?'|lang }}</h2>
+                        <div class="evalCont">
+                            {% for toRate in toRateArr %}
+
+
+                                <div class="specificRate" data-type="{{toRate.id|raw}}">
+                                    <div class="eval_content">
+                                        <div class="eval_options_glob {% if toRate.val >= 1 %} active {% endif %}" data-value="1" data-text="{{ 'Terrible'|lang }}">1</div>
+                                        <div class="eval_options_glob {% if toRate.val >= 2 %} active {% endif %}" data-value="2" data-text="{{ 'poor'|lang }}">2</div>
+                                        <div class="eval_options_glob {% if toRate.val >= 3 %} active {% endif %}" data-value="3" data-text="{{ 'Average'|lang }}">3</div>
+                                        <div class="eval_options_glob {% if toRate.val >= 4 %} active {% endif %}" data-value="4" data-text="{{ 'Very good'|lang }}">4</div>
+                                        <div class="eval_options_glob {% if toRate.val >= 5 %} active {% endif %}" data-value="5" data-text="{{ 'Excellent'|lang }}">5</div>
+                                        <div class="eval_options_over"><div class="eval_options_overtxt"></div></div>
+
+                                    </div>
+                                    <div class="specificRateDesc">{{toRate.name|raw}}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="hotelsMiddle_sep"></div>
+                    {#<div class="hotelReviewRow2">
+                        
+                    </div>#}
+                    <h2 id="upload_posts_container" class="condition_title margintop9 h2bottom0">
+                        {{ 'MY UPLOADED PHOTOS'|lang }}                        
+                        <button id="uploadReview_Img" class="uploadReviewImg" value="{{ 'upload'|lang }}" >{{ 'upload'|lang }}</button>
+                    </h2>
+                    <div class="aReviewImg scrollpane">                        
+                        {% for media_im in media_hotelsi %}
+                            <div class="hotel_infos_imgbig1Up">
+                                <div class="mediabuttonscontainer">
+                                    <div data-title="remove" data-id="{{ media_im.id|raw }}" class="clsimg mediabuttons"></div>
+                                </div>
+                                <div data-href="{{ media_im.discover_imgbig|raw }}" class="hotel_infos_imgbig1">
+                                    <img src="{{ ('/media/discover/thumb/'~media_im.img)|link }}">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if media_hotelsicount > 0 %}
+
+        <div class="oldReviewsImgCon">
+            {#            <div class="review_sep"></div>#}
+            <div class="hotelsContainer2" data-id="{{txt_id|raw}}" data-type="{{ SOCIAL_ENTITY_TYPE|raw }}">
+                <div class="review_large_img" data-index="0">
+                    <img src="{{ attribute(media_hotelsi1,0).discover_imgbig|link }}" alt="" >
+                    <div class="img_prev"></div>
+                    <div class="img_next"></div>
+                </div>
+                <div class="oldReviewsImgup oldReviewsImg_scroll">
+                    <div class="oldReviewsImg">
+                        {#                <h2 id="reviews">{{ 'PHOTOS'|lang }}: {{ discover_title|raw }}</h2>#}
+                        {% set i = 0 %}
+                        {% for media_im in media_hotelsi1 %}
+                            <a href="{{ media_im.discover_imgbig|raw }}" 
+                               class="hotel_infos_imgbig2{{ (i==0)?' active':''}}" 
+                               title="{{ discover_nam|raw }}"
+                               data-width="{{ media_im.width|raw }}"
+                               data-height="{{ media_im.height|raw }}"
+                               >
+                                <img src="{{ ('/media/discover/thumb/'~media_im.img)|link }}" alt="">
+                                <div class="youAreHere"></div>
+                            </a>
+                            {% set i = i+1 %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="hotelsContainer" data-id="{{txt_id|raw}}" data-type="{{ SOCIAL_ENTITY_TYPE|raw }}">
+        <div class="oldReviews">
+            <h2 id="reviews">{{ 'recent reviews'|lang }}</h2>
+            <div class="oldReviewsList">
+                {#{% for rev in reviewsArray %}
+                    <div class="anoldReview">
+                        <img src="{{ rev.logo|raw }}" />
+                        <div class="reviewData">
+                            <h4>{{ rev.user|raw }}</h4>
+                            <h5>{{ rev.time|raw }}</h5>
+                            <div class="desc">
+                                {{ rev.desc|raw }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}#}
+
+                {% for media_hotels_reviews in media_hotels_reviewsArray %}
+                    <div class="hotelReviewsContainer" data-id="{{ media_hotels_reviews.rev_id|raw }}">
+                        <div class="line1"></div>
+                        <div class="line2"></div>
+                        {% if media_hotels_reviews.disp_remove==true %}
+                            <div class="log_top_arrow"></div>
+                            <div class="log_top_buttons_container">                            
+                                <div id="remove_button_rev" class="log_top_button">remove</div>
+                            </div>
+                        {% elseif user_is_logged==1 %}
+                            <div class="log_top_arrow"></div>
+                            <div class="log_top_buttons_container">                            
+                                <a id="report_button_rev" class="log_top_button report_button_log_reason" href="#sharepopup">report</a>
+                            </div>
+                        {% endif %}
+                        <div class="arrow"></div>
+                        <a class="reviewUserpic" href="{{ media_hotels_reviews.user_link|raw }}"><img src="{{media_hotels_reviews.logo_userRev_src|raw}}" alt="" class="reviewUser" /></a>
+                        <a class="social_link_a log_header_text" href="{{ media_hotels_reviews.user_link|raw }}"><strong>{{ media_hotels_reviews.tuber_name_action|raw }}</strong></a>
+                        {{media_hotels_reviews.creator_ts|raw}}<br>
+                        {{media_hotels_reviews.div_val|raw}}
+                        <div class="hotelReviewsInside">
+                            <div class="hotelReviewsText">
+                                {{media_hotels_reviews.description_db|raw}}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor%}
+
+            </div>
+            {% if media_hotels_reviews_count > 6 %}
+                <div class="reviews_more">{{'load more'|lang}}</div>
+            {% endif %}    
+        </div>
+
+    </div>   
+</div>
+{% include "foot.html" %}

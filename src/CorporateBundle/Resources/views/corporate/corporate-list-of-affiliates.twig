@@ -1,0 +1,60 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}{{'List Of Affiliates'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'List Of Affiliates'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+            <div class="col-xs-12 nopad margin_top_10">
+                <a href="#" id="" class="addbut_style" rel="nofollow">{{'Add+'|trans}}</a>
+            </div>
+            <div class="col-xs-12 nopad margin_top_20">
+                <table style="width:100%">
+                    <tr>
+                        <th>table title</th>
+                        <th>table title</th> 
+                        <th>table title</th>
+                    </tr>
+                    <tr>
+                        <td>table rows</td>
+                        <td>table rows</td>
+                        <td>table rows</td>
+                    </tr>
+                    <tr>
+                        <td>table rows</td>
+                        <td>table rows</td>
+                        <td>table rows</td>
+                    </tr>
+                    <tr>
+                        <td>table rows</td>
+                        <td>table rows</td>
+                        <td>table rows</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="float-right pagerWrapper">
+                    <ul>
+                        <li><a class="first_pg" title="" href="#"></a></li>
+                        <li><a class="prev_pg" title="" href="#"></a></li>
+                        <li data-page="1" class="active"><a class="discover_a" title="" href="#">1</a><span>.</span></li>
+                        <li data-page="2" class=""><a class="discover_a" title="" href="#">2</a><span>.</span></li>
+                        <li data-page="3" class=""><a class="discover_a" title="" href="#">3</a><span>.</span></li>
+                        <li data-page="4" class=""><a class="discover_a" title="" href="#">4</a></li>
+                        <li><a class="next_pg" title="" href="#"></a></li>
+                        <li><a class="last_pg" title="" href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

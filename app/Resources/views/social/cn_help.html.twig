@@ -1,0 +1,359 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>欢迎来到Touristtube帮助中心</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">入门指南<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">您无需注册即可查看我们公共区域的内容。但是，注册后才能使用Tourist Tube的全部功能。</p>
+                        <h3 class="help_h3">注册</h3>
+                        <p class="faq_sub_header_title">填写并提交包含所有必填字段的注册表格，我们将即刻设置您的帐户并向您发送确认电子邮件。</p>
+                        <h3 class="help_h3">登陆</h3>
+                        <p class="faq_sub_header_title">使用您的用户名和密码登录。如果您想在登陆时自动登录，请选中复选框。如果您忘记密码，请填写并提交您的电子邮箱或用户名，我们将向您的邮箱发送密码重置链接。</p>
+                        <h3 class="help_h3">移动端</h3>
+                        <p class="faq_sub_header_title">您可以在安卓手机上免费下载和安装Tourist Tube移动应用程序。</p>
+                        <h3 class="help_h3">搜索</h3>
+                        <p class="faq_sub_header_title">您可以在搜索栏使用特定关键字或其组合搜索Tourist Tube中的所有媒体。您可以选择仅搜索照片、视频、酒店、餐馆或Tubers来缩小搜索范围。</p>
+                        <h3 class="help_h3">上传</h3>
+                        <p class="faq_sub_header_title">注册后，您可以将最多至1TB（万亿字节）的照片和视频上传到您的帐户。对于每次上传，您可以添加描述符，例如标题、关键字、地点、主题或类别以及您的评论。同样，对于每次上传，您可以进行隐私设置，设置点赞和评论，选择公开（所有人可见），朋友及其连接可见，朋友可见或私密（仅自己可见）。</p>
+                        <h3 class="help_h3">聊天</h3>
+                        <p class="faq_sub_header_title">注册后，您可以使用聊天窗口与其他Tubers聊天,也可以搜索/添加/删除Tubers。您也可以禁用/启用此窗口</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">账户管理<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Tourist Tube 页面</h3>
+                        <p class="faq_sub_header_title">此页面显示了您在Tourist Tube上的所有活动以及其他Tubers对您活动的行动。根据您的隐私设置，可以全部或部分访问所选用户。此页面显示以下元素：</p>
+                        <ul class="main_ul_list_help">
+                            <li>用于选择显示我的活动的期间（月和年）的滑块<li>
+                            <li>在选定的时间段内，我所做的所有发布（图片;视频;文本;链接;评论;点赞;分享;评分）在所有地点或有选择的在：<li>
+                            <li> 
+                                <ul class="sndul_list_help">
+                                    <li>频道</li>
+                                    <li>其他地点</li>
+                                    <li>酒店</li>
+                                    <li>餐馆</li>
+                                </ul>
+                            </li>
+                            <li>我的朋友列表<li>
+                            <li>关注者列表<li>
+                            <li>我关注的人列表<li>
+                            <li>我的事件列表（我创建的事件和我加入的事件<li>
+                            <li>我的频道列表<li>
+                            <li>我关注的频道列表<li>
+                            <li>我的频道事件列表<li>
+                            <li>建议的频道<li>
+                            <li>我访问过的地方的互动世界地图<li>
+                            <li>Tourist Tuber通知-只显示您并根据您选择的设置返回与您的活动相关的操作<li>
+                        </ul>
+                        <h3 class="help_h3">账户信息</h3>
+                        <p class="faq_sub_header_title"><span class="underline">个人信息:</span> 您可以编辑您的个人信息，包括名字、性别、出生日期、地址、图片、网址、评论、教育背景、职业、兴趣等。</p>
+                        <p class="faq_sub_header_title"><span class="underline">设置:</span> 您可以编辑您的Tourist Tube帐户设置，包括用户名和密码。您也可以暂时停用帐户或永久删除帐户。您也可以选择停止接收来自Tourist Tube的电子邮件。</p>
+                        <p class="faq_sub_header_title"><span class="underline">活动:</span> ：您可以查看帐户活动的摘要和历史记录，包括加入日期，朋友数量，上传的照片数量，视频、相册、日志和事件以及收到的赞和评论数量，以及您的网络关注统计信息。</p>
+                        <p class="faq_sub_header_title"><span class="underline">通知 :</span> 添加您的电子邮件地址以接收有关Tourist Tube帐户活动的电子邮件通知。您可以选择通过电子邮件和/或Tourist Tube页面接收通知。例如，Tourist Tube会自动向您发送以下每个已勾选的事件的通知</p>
+                        <ul class="main_ul_list_help">
+                            <li>我上传的内容收到评论或赞<li> 
+                            <li>我收到另一位Tuber的朋友邀请<li> 
+                            <li>有人把我加为好友<li> 
+                            <li>有人关注我<li> 
+                            <li>有人回复我的评论<li> 
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">邀请朋友 :</span> 您只需填写朋友和认识的人的姓名和电子邮件，即可发送最多50个邀请加入Tourist Tube</p>
+                        <p class="faq_sub_header_title"><span class="underline">分享 :</span> 如果您希望与其他社交网络平台分享您的Tourist Tube帖子，您可以轻松地在Tourist Tube和您选择的平台之间建立连接，包括Facebook、Google+、Twitter和Yahoo。 </p>
+                        <p class="faq_sub_header_title"><span class="underline">隐私设置</span> Tourist Tube为与您联系的人员以及与您的活动有关的人员分配权限。 </p>
+                        <p class="faq_sub_header_title"><span class="underline">联系隐私:</span> 谁可以看到我? </p>
+                        <ul class="main_ul_list_help">
+                            <li>公开<li>  
+                            <li>朋友<li>  
+                            <li>自定义列表<li>  
+                            <li>隐私<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">我的个人资料出现在搜索引擎中</p>
+                        <ul class="main_ul_list_help">
+                            <li>开/关<li>  
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">黑名单 :</span> 将某人添加至黑名单后，他就不能再与你互动或成为你的Tourist Tube朋友 </p>
+                        <ul class="main_ul_list_help">
+                            <li>添加至黑名单<li>  
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">内容隐私</span></p> 
+                        <p class="faq_sub_header_title">允许在我的TT页面</p> 
+                        <ul class="main_ul_list_help">
+                            <li>点赞和评分<li>  
+                            <li>共享和评论<li>  
+                            <li> 发帖<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">展示在我的TT页面</p> 
+                        <ul class="main_ul_list_help">
+                            <li>我创建的频道<li>   
+                            <li>我的频道事件<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">事件隐私 </p> 
+                        <ul class="main_ul_list_help">
+                            <li>启用共享和评论<li>   
+                            <li>允许访客邀请<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">对谁可见？</p> 
+                        <ul class="main_ul_list_help">
+                            <li>我的朋友列表 <li>   
+                            <li>我的朋友列表<li>  
+                            <li>我的关注者列表<li>  
+                            <li>我关注的人列表<li>  
+                            <li>我的访问地点<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">来自以下： </p> 
+                        <ul class="main_ul_list_help">
+                            <li>公开<li>  
+                            <li>朋友<li>  
+                            <li>自定义列表<li>  
+                            <li>隐私<li> 
+                        </ul>
+                        <h3 class="help_h3">朋友</h3>
+                        <p class="faq_sub_header_title">您可以在Tourist Tube上搜索，查看所有朋友，并与他们联系。也建议您联系具有类似兴趣的Tubers。</p>
+                        <h3 class="help_h3">信息源</h3>
+                        <p class="faq_sub_header_title">此页面仅根据Tourist Tube用户设置的隐私设置向您显示您感兴趣的活动。这些用户可以是： </p>
+                        <ul class="main_ul_list_help">
+                            <li>你的朋友<li>  
+                            <li>你关注的人<li>  
+                            <li>你关注的频道<li>  
+                            <li>以上全部<li> 
+                        </ul>
+                        <p class="faq_sub_header_title">您可以根据这些活动发生的位置进行筛选，例如：</p>
+                        <ul class="main_ul_list_help">
+                            <li>TT页面<li>  
+                            <li>频道<li>  
+                            <li>酒店页面<li>  
+                            <li>餐馆页面<li> 
+                            <li>TT 规划师<li> 
+                        </ul>
+                        <h3 class="help_h3">照片</h3>
+                        <p class="faq_sub_header_title">这是一个查找和/或上传照片的整理器 </p>
+                        <h3 class="help_h3">视频</h3>
+                        <p class="faq_sub_header_title">这是一个查找和/或上传视频的整理器 </p>
+                        <h3 class="help_h3">相册</h3>
+                        <p class="faq_sub_header_title">这是一个用于创建，编辑和发布相册的整理器。相册可以包含同等的照片和视频。您可以在发布时为相册添加文字说明和标记地点，以提高搜索引擎的可见性。 </p>
+                        <h3 class="help_h3">事件</h3>
+                        <p class="faq_sub_header_title">这是一个用于创建，编辑和发布事件的整理器。您可以进行查看事件的隐私设置;您还可以显示事件的访客列表，允许您的访客邀请其他人并启用事件的分享和评论。 </p>
+                        <h3 class="help_h3">日志</h3>
+                        <p class="faq_sub_header_title">这是一个创建，编辑和发布日志的整理器。日志可以包含照片和文本注释或条目。日志可以在线发布为pdf格式。您可以在发布时为日志添加文字说明和标记地点，以提高其在搜索引擎的可见性。 </p>
+                        <h3 class="help_h3">收藏夹</h3>
+                        <p class="faq_sub_header_title">这个整理器可以查找和保存您喜爱的TT照片、视频、相册和日志 </p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">功能<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">游客频道</h3>
+                        <p class="faq_sub_header_title">用户因各种原因创建频道，对于个人用户来说是为了显示其更专业的状态，对于组织来说是为了显示其的商业或官方的状态。与普通用户相比，频道可用的功能更加广泛且更具商业性。</p>
+                        <p class="faq_sub_header_title"><span class="underline">频道设置:</span> 您可以作为一个新用户或普通用户创建一个频道。普通用户可以根据需要设置多个频道。如果您希望在频道中使用已与现有帐户关联的电子邮件，则可以为您的频道申请此电子邮件。所有创建的频道都是公开的。</p>
+                        <p class="faq_sub_header_title">填写基本频道设置所需的字段后，系统会向您发送激活电子邮件。激活后，您将被定向到频道的所有者页面，在该页面中可以进行以下自定义:</p>
+                        <p class="faq_sub_header_title"><span class="underline">快速自定义</span></p>
+                        <ul class="main_ul_list_help">
+                            <li>C选择频道封面照片<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">从计算机文件中选择照片或在此处拖放照片</p>
+                        <p class="faq_sub_header_title">调整裁剪 | 在封面照片上插入链接</p>
+                        <p class="faq_sub_header_title">设为封面照片 | 取消（默认显示TT封面设计）</p>
+                        <ul class="main_ul_list_help">
+                            <li>选择个人资料照片<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">从计算机文件中选择照片或在此处拖放照片</p>
+                        <p class="faq_sub_header_title">调整裁剪</p>
+                        <p class="faq_sub_header_title">设为封面照片 | 取消（默认显示TT头像设计）</p>
+                        <ul class="main_ul_list_help">
+                            <li>添加标语或欢迎文字<li>   
+                            <li>添加有关频道的文字说明 <li>   
+                            <li>编辑 | 显示频道名称<li>   
+                            <li>添加自定义链接（+）以添加多个链接<li>   
+                            <li>添加社交链接（来自列表：Facebook，Twitter，Google +）|（+）以添加多个社交网络<li>   
+                            <li>编辑|显示创建于<li>   
+                            <li>编辑|显示创建者<li>   
+                            <li>修改频道的类别<li>   
+                            <li>编辑|显示地点：国家;市;街;邮政编码;联系电话。 <li>   
+                            <li> 编辑URL：在Tourist Tube上创建一个唯一的TT频道URL<li>   
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">完全自定义:</span> 作为频道的所有者，单击频道页面中的设置按钮将引导您进入完整的自定义菜单，其中包含以下字段：</p>
+                        <p class="faq_sub_header_title"><span class="underline">帐户信息:</span> 编辑所有者的姓名;密码;电子邮件</p>
+                        <p class="faq_sub_header_title"><span class="underline">频道信息</span></p>
+                        <ul class="main_ul_list_help">
+                            <li>编辑|显示频道名称<li> 
+                            <li>编辑|显示创建于<li> 
+                            <li>编辑|显示创建者<li> 
+                            <li>编辑频道的类别<li> 
+                            <li>编辑|显示地点：国家;市;街;邮政编码;联系电话。<li> 
+                            <li>编辑URL：在Tourist Tube上创建一个唯一的TT频道URL<li> 
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">频道页面</span></p>
+                        <ul class="main_ul_list_help">
+                            <li> 选择频道封面照片<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">从计算机文件中选择照片或在此处拖放照片</p>
+                        <p class="faq_sub_header_title">调整裁剪|在封面照片上插入链接</p>
+                        <p class="faq_sub_header_title">设为封面照片|取消（默认显示TT封面设计）</p>
+                        <ul class="main_ul_list_help">
+                            <li>选择个人资料照片<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">从计算机文件中选择照片或在此处拖放照片</p>
+                        <p class="faq_sub_header_title">调整裁剪</p>
+                        <p class="faq_sub_header_title">设为封面照片|取消（默认显示TT头像设计）</p>
+                        <ul class="main_ul_list_help">
+                            <li>选择背景图片<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">从计算机文件中选择照片或在此处拖放照片。</p>
+                        <p class="faq_sub_header_title">推荐尺寸（1920 * 1080）</p>
+                        <p class="faq_sub_header_title">调整裁剪|调色板 </p>
+                        <p class="faq_sub_header_title">设为背景|取消（背景默认为白色）</p>
+                        <ul class="main_ul_list_help">
+                            <li>添加标语或欢迎文本<li>
+                            <li>添加关于频道的文字说明 <li>
+                            <li>管理自定义链接（添加|编辑|删除）<li>
+                            <li>管理社交链接（添加|编辑|删除）（来自列表：Facebook，Twitter，Google +） <li>
+                            <li>添加关键词<li>
+                            <li>管理您的其他TT频道（添加|编辑|删除） <li>
+                            <li>添加其他TT频道（名称| URL（错误消息：此频道不存在，请确保插入正确的名称和URL） <li>
+                            <li>添加事件：此处将打开一个表单以插入：事件名称|封面照片|描述|位置|日期（从 - 到）和时间|谁可以加入：只邀请关联朋友或每个人：访客可以邀请|隐藏我的访客列表（+）以添加更多事件 <li>
+                            <li>添加新消息（+）以添加更多新消息 <li>
+                            <li>管理你的新消息（添加|编辑|删除<li>
+                            <li>邀请其他人与您的频道建立关联<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">频道源:</span> 您也可以选择在您的频道显示您的活动，每次您： </p>
+                        <ul class="main_ul_list_help">
+                            <li>上传（照片，视频，专辑，小册子）<li>
+                            <li>添加帖子<li>
+                            <li>添加新闻<li>
+                            <li>关联到其他频道<li>
+                            <li>关注Tubers<li>
+                            <li>更新我的个人资料，封面，背景<li>
+                            <li>点赞，评论，评分和分享 <li>
+                            <li>创建一个新频道 <li>
+                            <li>创建事件<li>
+                            <li>加入事件<li>
+                        </ul>
+                        <p class="faq_sub_header_title">您还可以选择显示与您频道关联的用户的频道源活动，每次有人： </p>
+                        <ul class="main_ul_list_help">
+                            <li>关联到您的频道<li>
+                            <li>点赞、评分、评论、分享和回复您频道的评论 <li>
+                            <li>加入您频道的事件 <li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">电子邮件通知:</span> 通知将发送到您选择的电子邮件地址。您可以更改与您的频道相关联的电子邮件地址。在您验证后，您选择通过电子邮件接收的任何通知和消息都将发送到此电子邮件地址。 </p>
+                        <p class="faq_sub_header_title">可以设置电子邮件通知，当一个不同的频道： </p>
+                        <ul class="main_ul_list_help">
+                            <li>赞助您的频道<li>
+                            <li>赞助您的事件<li>
+                            <li>取消您赞助的事件 <li>
+                        </ul>
+                        <p class="faq_sub_header_title">还有当有人： </p>
+                        <ul class="main_ul_list_help">
+                            <li>关联了你的频道<li>
+                            <li>接受了你的频道关联邀请<li>
+                            <li>邀请了其他人加入你的频道<li>
+                            <li>评论了你频道的内容<li>
+                            <li>赞了你频道的内容<li>
+                            <li>分享了你频道的内容<li>
+                            <li>评价了你的照片（或视频或相册）<li>
+                            <li>回复了你的评论<li>
+                            <li>分享了你的频道页面<li>
+                            <li>报告了你关联的一个Tuber<li>
+                            <li>参加了你的事件<li>
+                            <li>对你的事件发表了评论<li>
+                            <li>赞了你的事件<li>
+                            <li>分享了你的事件<li>
+                            <li>接受了你的加入事件的邀请<li>
+                        </ul>
+                        <p class="faq_sub_header_title">还有关于：</p>
+                        <ul class="main_ul_list_help">
+                            <li>Tourist Tube频道的新鲜事<li>
+                            <li>当天的照片和视频（由tuber或频道发布）<li>
+                            <li>你关联的频道有更新<li>
+                        </ul>
+                        <p class="faq_sub_header_title">或者</p>
+                        <ul class="main_ul_list_help">
+                            <li>请勿向我发送任何电子邮件通知<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline"><b>隐私:</b></span> 频道是公开的，任何人都可以进行关联。但是，您可以在您的频道上允许一下操作： </p>
+                        <ul class="main_ul_list_help">
+                            <li>赞助你的频道<li>
+                            <li>分享你的频道页面<li>
+                            <li>你频道的邀请<li>
+                            <li>点赞;评论;分享;对所选内容（如照片;视频;相册;新消息;帖子;小册子）或全部内容进行评分<li>
+                        </ul>
+                        <p class="faq_sub_header_title">你还可以设置以下内容展示在你的频道中：</p>
+                        <ul class="main_ul_list_help">
+                            {#<li>我的频道日志<li>#}
+                            <li>我赞助的频道 <li>
+                            <li>我创建的其他频道<li>
+                            <li>我赞助的事件 <li>
+                            <li>最活跃的频道<li>
+                            <li>最活跃的tubers<li>
+                        </ul>
+                        <p class="faq_sub_header_title">您可以设置谁可以查看您的关联或频道的日志：</p>
+                        <ul class="main_ul_list_help">
+                            <li>公开<li>
+                            <li>自定义<li>
+                            <li>关联<li>
+                            <li>隐私<li>
+                            <li>赞助者<li>
+                        </ul>
+                        <p class="faq_sub_header_title">你也可以设置你的频道事件的隐私：</p>
+                        <ul class="main_ul_list_help">
+                            <li>谁可以加入？ （所有人;关联;自定义）<li>
+                            <li>显示我的事件的赞助者<li>
+                            <li>允许赞助我的事件<li>
+                            <li>启用共享和评论<li>
+                            <li>允许访客邀请<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline"><b>删除频道:</b></span> 在删除频道之前，请务必了解： </p>
+                        <ul class="main_ul_list_help">
+                            <li>删除频道是永久性的。<li>
+                            <li>删除频道后，您将永久删除全部个人资料、内容和上传内容，而且你将无法再次检索它们。<li>
+                            <li>也将删除与其他社交网络或网站的链接。<li>
+                            <li>在Tourist Tube频道上将无法搜索到您.<li>
+                            <li>您的频道将从Tourist Tube中删除，但某些信息可能仍会显示在其他连接列表中<li>
+                        </ul>
+                        <p class="faq_sub_header_title">您也可以选择告诉我们您删除频道的原因：</p>
+                        <ul class="main_ul_list_help">
+                            <li>TT频道使用起来很复杂（点击此处获取帮助）;会去帮助中心 <li>
+                            <li>我有另一个TT频道<li>
+                            <li>来自TT的电子邮件太多（点击此处管理您从TT收到的电子邮件）;将转到电子邮件通知<li>
+                            <li>我想使用其他帐户登录（点击此处修改您的帐户信息）;将转到帐户信息<li>
+                            <li>我没有发现有趣的TT频道（点击此处了解有关频道有用性的更多信息或尝试连接到其他活动频道或Tubers）;会去帮忙中心<li>
+                            <li>报告问题（主题•描述框）表格底部<li>
+                        </ul>
+                        <h3 class="help_h3">游客直播</h3>
+                        <p class="faq_sub_header_title">您可以浏览和观看遍布世界各地的一系列固定的实时摄像机视图，并在一段时间会进行更新。您也可以选择相机的分辨率，并在这些视图上发表评论或点赞。</p>
+                        <h3 class="help_h3">游客回声</h3>
+                        <p class="faq_sub_header_title">您可以与其他Tubers交换/传播文字信息; 您也可以发表您对这些信息的评论或是点赞。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何报告-<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">安全问题</h3>
+                        <p class="faq_sub_header_title">如报告网站上的安全/黑客问题，请通过 <span class="afaqMainStyle"><a href="mailto:security@touristtube.com" class="afaqMainStyle" title="{{ 'security@touristtube.com' }}">security@touristtube.com</a></span>与我们联系</p>
+                        <h3 class="help_h3">不适当的内容</h3>
+                        <p class="faq_sub_header_title">如报告网站上的任何不当内容，请通过 <span class="afaqMainStyle"><a href="mailto:abuse@touristtube.com" class="afaqMainStyle" title="{{ 'abuse@touristtube.com' }}">abuse@touristtube.com</a></span>与我们联系</p>
+                        <h3 class="help_h3">I版权侵权</h3>
+                        <p class="faq_sub_header_title">如报告网站上的版权侵权行为，请通过 <span class="afaqMainStyle"><a href="mailto:abuse@touristtube.com" class="afaqMainStyle" title="{{ 'copyright@touristtube.com' }}">copyright@touristtube.com</a></span>与我们联系</p>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

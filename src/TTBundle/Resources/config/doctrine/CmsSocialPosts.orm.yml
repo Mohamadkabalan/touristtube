@@ -1,0 +1,163 @@
+TTBundle\Entity\CmsSocialPosts:
+    type: entity
+    table: cms_social_posts
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fromId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: from_id
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        channelId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: channel_id
+        postText:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: post_text
+        postType:
+            type: boolean
+            nullable: false
+            column: post_type
+        postLink:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: post_link
+        postLocation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: post_location
+        mediaFile:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: media_file
+        isVideo:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_video
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        relativepath:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        lattitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_comments
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_shares
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: like_value
+        nbRatings:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_ratings
+        rating:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        nbViews:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_views
+        enableShareComment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: enable_share_comment
+        canRate:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_rate
+    lifecycleCallbacks: {  }

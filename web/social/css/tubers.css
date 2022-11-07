@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+html, body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+}	
+#allTubers{
+	width:100%;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0;
+}
+.one-tuber{
+	width:101px;
+	height:101px;
+	position:relative;
+	float:left;
+	display:block;
+	/*margin-top:3px;
+	margin-left:3px;
+	margin-right:2px;
+	margin-bottom:2px;*/
+	cursor:pointer;
+}
+.darkTransparent{
+	background-color:#000;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;left:0;
+	opacity: .75; /* standard: ff gt 1.5, opera, safari */
+	-ms-filter: “alpha(opacity=75)”; /* ie 8 */
+	filter: alpha(opacity=75); /* ie lt 7 */
+	-khtml-opacity: .75; /* safari 1.x */
+	-moz-opacity: .75; /* ff lt 1.5, netscape */
+	display:none;
+}
+#tubers-header{
+	width:100%;
+	height:96px;
+	position:relative;
+	margin-top:1px;
+	float:left;
+	background-color:#1f1f1f;/*
+	background:url(/media/images/tubers-repeat.jpg) repeat-x;*/
+}
+#tubers-header-container{
+	width:1016px;
+	height:96px;
+	margin:0 auto;
+	position:relative;
+}
+#tubers-header-main{
+	width:981px;
+	height:43px;
+	background-color:#2d2d2d;
+	position:absolute;
+	bottom:5px;
+	right:0px;
+}
+#tubers-header-main .tubersFilter{
+	width:981px;
+}
+#tubers-header-main .filterright {
+    float: right;
+    margin-right: 9px;
+    margin-top: 9px;
+}
+#tubers-header-main .filterright ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#tubers-header-main .filterright li {
+    display: block;
+    float: right;
+    height: 28px;
+	width: 28px;
+}
+#tubers-header-main .filterright li a {
+    display: block;
+    float: right;
+    height: 28px;
+	width: 28px;
+}
+#tubers-header-main .listview {
+    background: url(/media/images/list_view_up.gif) no-repeat;
+}
+#tubers-header-main .gridview {
+    background: url(/media/images/grid_view_up.gif) no-repeat;
+}
+#tubers-header-main .listview.selected, #tubers-header-main .listview:hover {
+    background: url(/media/images/list_view_over.gif) no-repeat;
+}
+#tubers-header-main .gridview.selected, #tubers-header-main .gridview:hover {
+    background: url(/media/images/grid_view_over.gif) no-repeat;
+}
+#tubers-header-container p {
+	position:relative;
+	float:left;
+	height:18px;
+	padding:0;
+	margin:0;
+	margin-top:18px;
+	margin-left:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#ffffff;
+	font-size:12px;
+	font-weight:bold;
+}
+#gridViewTubers,#listViewTubers{
+	float:right;
+	margin-top:10px;
+	cursor:pointer;
+	position:relative;
+	width:32px;
+	height:32px;
+}
+.tuberInfo{
+	float:left;
+	width:700px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	padding-left:12px;	
+}
+
+div.TubersAction{
+	float:left;
+	display:block;
+	width:100px;
+	height:104px;
+	margin-left:2px;
+	background:#efefef;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#686868;
+	padding-top:2px;
+	padding-left:4px;
+	padding-right:4px;
+	padding-bottom:2px;
+        overflow: hidden;
+}
+div.TubersAction .ttl{
+	font-size:12px;
+	color:#000;
+	width:92px;
+        overflow: hidden;
+}
+div.TubersAction .footerTuber{
+	position:absolute;
+	width:44px;
+	height:19px;
+	right:4px;
+	bottom:4px;
+}
+div.TubersAction .addfriend_rollover{
+	position:absolute;
+	left:-67px;
+	top:-23px;
+	display:none;
+}
+div.TubersAction .followfriend_rollover{
+	position:absolute;
+	left:0px;
+	top:-23px;
+	display:none;
+}
+.accept_frnd{
+	cursor: pointer;
+	color: green;
+}
+.rjct_frnd{
+	cursor: pointer;
+	color: red;
+}
+.block_frnd{
+	cursor: pointer;
+	color: red;
+}
+.unblock_frnd{
+	cursor: pointer;
+	color: green;
+}
+img.AddFriendButton{
+	cursor: pointer;
+	border: none;
+	width: 19px;
+	height: 19px;
+	float:left;
+}
+img.FollowFriendButton{
+	cursor: pointer;
+	border: none;
+	width: 19px;
+	height: 19px;
+	float:right;
+}

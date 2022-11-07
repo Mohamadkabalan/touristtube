@@ -1,0 +1,214 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-attractions-form.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}{{'Attractions form'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        {#<div class="col-xs-12 nopad">
+            {% include '@Corporate/tours/corporate-deals-common-header.twig' %}
+        </div>#}
+        <div class="col-xs-12 nopad">
+            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 nopad">
+                <div class="col-xs-12 nopad">
+                    <h2 class="attoff_atf"> {{'Attractions offers'|trans}}</h2>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span>{{'Select a date'|trans}} </h3>
+                    <div class="col-xs-12 nopad grey1border_atf"></div>
+                    <div class="col-xs-12 nopad pink2border_atf"></div>
+                    <div class="col-xs-12 nopad grey3border_atf"></div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <p class="afn_atf"> {{'Arrival company or flight number'|trans}} </p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div id="" class="arrivalcompdate_atf">
+                                <input id="" name="" value="" placeholder="2018 / 02 / 27" class="" type="text">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greysepborder_atf"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span> {{'Select the amount'|trans}} <span class="greysmalnxtpink_atf">{{'(# of participants, vehicules, hours, etc..)'|trans}}</span></h3> 
+                    <div class="col-xs-12 nopad grey1border_atf"></div>
+                    <div class="col-xs-12 nopad pink2border_atf"></div>
+                    <div class="col-xs-12 nopad grey3border_atf"></div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 nopad">
+                            <div class="col-xs-12 nopad">
+                                <p class="afn_atf"> {{'Adult (age 12+)'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <select id="" name="" class="asiselectboxcont_atf">
+                                    <option value="" selected="selected" >{{'2'|trans}}</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 nopad">
+                            <div class="col-xs-12 nopad">
+                                <p class="afn_atf"> {{'Child (age 3-11)'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <select id="" name="" class="asiselectboxcont_atf">
+                                    <option value="" selected="selected" >{{'1'|trans}}</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 nopad">
+                            <div class="col-xs-12 nopad">
+                                <p class="afn_atf"> {{'Infant (age 0-2)'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <select id="" name="" class="asiselectboxcont_atf">
+                                    <option value="" selected="selected" >{{'0'|trans}}</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greysepborder_atf"></div>
+
+
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span>{{'Select the start time'|trans}} </h3>
+                    <div class="col-xs-12 nopad grey1border_atf"></div>
+                    <div class="col-xs-12 nopad pink2border_atf"></div>
+                    <div class="col-xs-12 nopad grey3border_atf"></div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+                                <p class="afn_atf"> {{'Time (09:00 - 15:00)'|trans}} </p>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+                                <p class="afn_atf"> {{'Booking type'|trans}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+                                <div class="radio-item closed_atf">
+                                    <input type="radio" id="time" name="ritem" value="" disabled="true">
+                                    <label for="time">09:00</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+                                <p class="labelliketext_atf closedtxt_atf"> {{'Closed'|trans}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greyradioseperator_atf"></div>  
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+                                <div class="radio-item">
+                                    <input type="radio" id="time2" name="ritem" value="">
+                                    <label for="time2">10:00</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+                                <p class="labelliketext_atf"> {{'Request'|trans}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greyradioseperator_atf"></div>
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+                                <div class="radio-item">
+                                    <input type="radio" id="time3" name="ritem" value="">
+                                    <label for="time3">12:00</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+                                <p class="labelliketext_atf"> {{'Request'|trans}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greyradioseperator_atf"></div>
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+                                <div class="radio-item closed_atf">
+                                    <input type="radio" id="time4" name="ritem" value="" disabled="true">
+                                    <label for="time4">13:00</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+                                <p class="labelliketext_atf closedtxt_atf"> {{'Closed'|trans}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greyradioseperator_atf"></div> 
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+                                <div class="radio-item">
+                                    <input type="radio" id="time5" name="ritem" value="">
+                                    <label for="time5">15:00</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+                                <p class="labelliketext_atf"> {{'Request'|trans}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad greyradioseperator_atf"></div>
+                        <div class="col-xs-12 nopad">
+                            <a href="#" class="abt_atf">{{'About booking type'|trans}}</a>
+                        </div>
+                        <div class="col-xs-12 nopad greysepborder_atf"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span>{{'Personal Info (mandatory)'|trans}} </h3>
+                    <div class="col-xs-12 nopad grey1border_atf"></div>
+                    <div class="col-xs-12 nopad pink2border_atf"></div>
+                    <div class="col-xs-12 nopad grey3border_atf"></div>
+                    <div class="col-xs-12 nopad pinfspbulletmargin_atf">
+                        <div class="radio-item">
+                            <input type="radio" id="time6" name="ritem" value="">
+                            <label class="bluelabeltxt_atf" for="time6">{{'Mr'|trans}}</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="time7" name="ritem" value="">
+                            <label class="bluelabeltxt_atf" for="time7"> {{'Miss  /  Mrs'|trans}}</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 nopad marbutfift_atf">
+                        <div class="col-xs-12 nopad">
+                            <p class="afn_atf"> {{'Contact name'|trans}} </p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div id="" class="arrivalcompdate_atf">
+                                <input id="" name="" value="" placeholder="Name" class="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <p class="afn_atf"> {{'Mobile phone number'|trans}} </p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div id="" class="arrivalcompdate_atf">
+                                <input id="" name="" value="" placeholder="In case we need to reach you" class="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <p class="afn_atf specialstyletextariaheader"> {{'Do you have special requests for your booking?'|trans}}<br>
+                                Tell us {{'and we will glasgly accomodate!'|trans}} </p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div id="" class="spreqtxteracont">
+                                <textarea id="" name="" class="" type="text"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div class="twobutcont_atf">
+                                <input class="combutstyle_atf cancelstyle_atf" type="button" value="Cancel">
+                                <input class="combutstyle_atf nxtpage_atf" type="button" value="Go to next step">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

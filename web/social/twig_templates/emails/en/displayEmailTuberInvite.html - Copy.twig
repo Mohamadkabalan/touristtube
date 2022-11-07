@@ -1,0 +1,120 @@
+<body>
+    <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        {{displayTopHead}}
+        {{htmlArray.displayPartHeadProfileMentioned}}  
+
+        <tr>
+            <td>
+                <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                    <tr>
+                        <td width="46"></td>
+                        <td>
+                            <table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+                                <tr  height="23" >
+                                    <td height="23"  width="552"></td>
+                                </tr>
+                                <tr height="51">
+                                    <td height="51"  width="552">
+                                        <table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                                            <tr>
+                                                <td rowspan="2" width="51" height="51" valign="top">
+
+<img src="{{htmlArray.data['profile_pic']}}" alt="{{htmlArray.data['full_name']}}" border="0" width="51" height="51"/>
+                                                </td>
+                                                <td width="6" rowspan="2"></td>
+                                                <td valign="top" width="438" height="13">
+                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                    <!-- ' . $Arr[$p]['friends'][0][1] . '-->
+                                                    {{htmlArray.data['full_name']}}
+                                                    </font>
+                                                </td>
+                                                <td width="56" rowspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="bottom" width="438" height="37">
+                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                    invited you to join {{him_her}} on TouristTube<br><br>
+                                                        </font>    
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                              <tr>
+                                    <td height="20">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                                                                                    
+<font face="Arial, Helvetica, sans-serif" size="2" color="#000000">                                                            
+By accepting this invitation <strong>now</strong>, you will get <strong>free</strong>:<br>
+-	1Terabyte dedicated storage on private cloud for your personal use<br>
+-	Access to attractive and greatly valued features<br><br>
+Become part of TouristTube, a beautiful online community<br><br>
+<a href="{{activate_lnk}}" target="_blank">
+    <font face="Arial, Helvetica, sans-serif" size="2" color="#e7ba20">
+    Accept {{htmlArray.data['full_name']}}'s invitation
+    </font>
+</a>
+</font>
+                                    </td>
+                                </tr>
+    
+    
+    
+    
+    
+    
+    <tr>
+                                    <td height="20">
+                                       
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30">
+                                       Click here to watch the video <a href="https://www{{subdomain_suffix|raw}}.touristtube.com:91/images/emails/tt_presentation.mp4">
+									   Introduction to touristtube.com </a>
+                                    </td>
+                                </tr>
+      <tr>
+                                    <td height="20">
+                                       
+                                    </td>
+                                </tr>                              
+                                <tr>
+                                    <td>
+                                        
+<div class="video_holder">
+    <video width="550" controls autoplay="autoplay">
+        <source src="{{link_path}}tt_presentation.mp4" type="video/mp4">
+        <source src="{{link_path}}tt_presentation.ogv" type="video/ogg">
+    </video>
+</div>
+                                   
+<!--
+<a href="{{presentation_link}}">
+<img src="{{link_path}}tt_presentation.jpg" alt="{{htmlArray.data['full_name']}}" border="0" width="550" />                                        </a>
+-->                                    
+                                        
+                                        
+                                    </td>
+                                </tr>
+                                    
+                                
+                                <tr height="21">
+                                    <td height="21"  width="552">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="37"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {{displayfoot}}
+    </table>
+</body>

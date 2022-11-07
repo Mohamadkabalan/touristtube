@@ -1,0 +1,104 @@
+<div id="accountFormID">
+	<div class="col-xs-12 nopad margin_top_40">
+	    <p class="header_txt_common">
+	        <span>{{'Account Profile'|trans}}</span>
+	    </p>
+	</div>
+	<div class="col-lg-10 col-xs-12 nopad">
+	   <input type="hidden" name="accountId" value="{{account.al_id|raw}}">
+	   <input type="hidden" name="slug" value="{{slug}}">
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="nameLabel" class="form-check-label">{{'Name'|trans}}*</label> 
+	      </label> <input type="text" class="col-xs-12" name="name"
+	         value="{{account.al_name|raw}}" required placeholder="{{'Name'|trans}}*" label="#nameLabel"
+	         />
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="countryNameLabel" class="form-check-label">{{'Country Name'|trans}}*</label> <input type="text" class="col-xs-12" name="countryCode"
+	         data-value-id="{{(account is defined and account.countryCode is defined) ? account.countryCode : ''}}" data-toggle="ttautocompleteCountry" id="country"
+	         value="{{ (account is defined and account.countryName is defined) ? account.countryName|raw : ''}}" placeholder="{{'Search for country*'|trans}}" onDropDownSelect="onCountrySelected" required label="#countryNameLabel"/>
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="cityNameLabel" class="form-check-label">{{'City Name'|trans}}*</label> <input type="text" class="col-xs-12" name="cityId"
+	      data-value-id="{{account is defined ? account.al_cityId : ''}}" data-toggle="ttautocompleteCity" id="cityName"
+	      value="{{account is defined ? account.cityName : ''}}" placeholder="{{'Search for city*'|trans}}" required label="#cityNameLabel"/>
+	   </div>
+	   <div class="clearfix visible-sm"></div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label class="form-check-label">{{'Address'|trans}}</label>
+	      <textarea name="address" class="col-xs-12" placeholder="{{'Address'|trans}}">{{account.al_address|raw}}</textarea>
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="mobileLabel" class="form-check-label">{{'Mobile'|trans}}*</label> <input type="text" class="col-xs-12" name="mobile"
+	         onkeypress="return isPhoneNumeric(event)" value="{{account.al_mobile|raw}}" required label="#mobileLabel"
+	         placeholder="{{'Mobile'|trans}}*"
+	         >
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label class="form-check-label">{{'Phone 1'|trans}}</label> <input type="text" class="col-xs-12" name="phone1"
+	         onkeypress="return isPhoneNumeric(event)" value="{{account.al_phone1|raw }}" placeholder="{{'Phone 1'|trans}}"
+	         >
+	   </div>
+	   <div class="clearfix visible-sm"></div>
+	   <div class="clearfix visible-lg visible-md"></div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label class="form-check-label">{{'Phone 2'|trans}}</label> <input type="text" class="col-xs-12" name="phone2"
+	         onkeypress="return isPhoneNumeric(event)" value="{{account.al_phone2|raw }}" placeholder="{{'Phone 2'|trans}}"
+	         >
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="creditLimitLabel" class="form-check-label">{{'Credit Limit'|trans}}*</label> <input type="text" class="col-xs-12"
+	         name="creditLimit" value="{{account.al_creditLimit|raw}}" required placeholder="{{'Credit Limit'|trans}}*" label="#creditLimitLabel"
+	         >
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="currencyNameLabel" class="form-check-label">{{'Currency'|trans}}*</label> <input type="text" class="col-xs-12" name="currencyCode"
+	         data-toggle="ttautocompleteCurrency" id="currency" value="{{account.currencyName|raw}}" data-value-id="{{account.al_currencyCode|raw}}"
+	         placeholder="{{'Search for currency'|trans}}*" required label="#currencyNameLabel"
+	         />
+	   </div>
+	   <div class="clearfix visible-sm"></div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="paymentPeriodLabel" class="form-check-label">{{'Payment Period / days'|trans}}*</label> <input type="number" class="col-xs-12"
+	         name="paymentPeriod" value="{{account.al_paymentPeriod|raw}}" required label="#paymentPeriodLabel"
+	         placeholder="{{'Payment Period / days'|trans}}*"
+	         >
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="preferredCurrencyLabel" class="form-check-label">{{'Preferred Currency'|trans}}*</label> <input type="text" class="col-xs-12" name="preferredCurrencyCode"
+	         data-value-id="{{account.preferredCurrencyCode|raw}}" data-toggle="ttautocompleteCity" id="preferredCurrency"
+	         value="{{account.preferredCurrencyName|raw}}" placeholder="{{'Search for Preferred Currency'|trans}}*" required label="#preferredCurrencyLabel"/>
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="numberOfUsersLabel" class="form-check-label">{{'Number Of Users'|trans}}*</label> <input type="number" class="col-xs-12"
+	         name="numberOfUsers" value="{{account.al_numberOfUsers|raw}}" required placeholder="{{'Number Of Users'|trans}}*" label="#numberOfUsersLabel"
+	         >
+	   </div>
+	   <div class="clearfix visible-sm"></div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label class="form-check-label">{{'Website'|trans}}</label> <input type="url" class="col-xs-12" name="website"
+	         value="{{account.al_website|raw}}" placeholder="{{'Website'|trans}}"
+	         >
+	   </div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="emailLabel" class="form-check-label">{{'Email'|trans}}*</label> <input type="email" class="col-xs-12" name="email"
+	         value="{{account.al_email|raw}}" required placeholder="{{'Email'|trans}}*" label="#emailLabel"
+	         >
+	   </div>
+	   <div class="clearfix visible-sm"></div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label id="emailLabel" class="form-check-label">{{'Accounting Email'|trans}}*</label> <input type="accountingEmail" class="col-xs-12" name="accountingEmail"
+	         value="{{account.al_accountingEmail|raw}}" required placeholder="{{'Accounting Email'|trans}}*" label="#emailLabel"
+	         >
+	   </div>
+	   <div class="clearfix visible-sm"></div>
+	   <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+	      <label class="form-check-label">{{'Payment Type'|trans}}</label> 
+	      <select class="col-xs-12" name="paymentType">
+			{% for payment in paymentList %}
+				<option value="{{payment.ap_id}}">{{payment.ap_name}}</option>
+			{% endfor %}
+		  </select>
+	   </div>
+	</div>
+</div>

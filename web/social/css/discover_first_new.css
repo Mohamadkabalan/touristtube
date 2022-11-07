@@ -1,0 +1,59 @@
+.page-title{
+    font-size: 30px;
+    color: #fff;
+    background-color: #0e9da6;
+    padding-left: 20px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    height: 40px;
+    padding-top: 0;
+}
+.page-descp{
+    font-size: 16px;
+    color:#2e2e2e;
+    line-height: 20px;
+    padding-bottom: 44px;
+}
+.discover_name{
+    font-size: 17px;
+    color:#fff;
+    text-transform: capitalize;
+    background-color: #0e9da6;
+    width: 100%;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.discover_img{
+    width:100%;
+}
+
+
+
+@media screen  and (max-width:380px){
+    .page-title{
+        padding-left: 5px;
+    }
+    .discover_name{
+        font-size: 12px;
+    }
+}
+
+
+@media screen  and (max-width:767px){ 
+.page-title{
+    margin-top: 40px;
+}
+.page-descp{
+padding-bottom: 20px;
+}
+
+}
+@media (min-width:768px)  and (max-width:1199px){ 
+.page-title{
+    margin-top: 20px;
+}
+.page-descp{
+padding-bottom: 25px;
+}
+}

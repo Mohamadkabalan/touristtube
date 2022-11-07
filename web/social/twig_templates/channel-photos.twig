@@ -1,0 +1,136 @@
+{# Template for Channel Page#}
+
+{% include "headChannel.html" %}
+
+
+<script type="text/javascript">
+	var indexArray=new Array();
+	var pagename="photos";
+	var pagetype="i";
+	var globchannelid = {{ channelInfoId|raw }};
+	channelGlobalID(globchannelid);
+	var txt_srch_init = {{ txt_srch_init|raw }};
+	var user_Is_channel = {{ userIschannel|raw }};
+	var user_is_logged = {{ user_is_logged|raw }};
+	var is_owner = {{ is_owner|raw }};
+	reactivateAccount(false);
+	
+</script>
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleChannel" style="background:{{ bg_src|raw }};">
+	
+    <div id="ChannelContainer">
+        {% include "parts/channelHeader.twig" %}
+        <div id="MainChannelContainer">
+
+            {% include "parts/myChannelRight.twig" %}
+            {% if channelimageInfoCount > 0 %}
+                     
+        	<div id="ChannelLeft">
+            	<div class="calendarcontainer">
+                    <div id="frombutcontainer">
+                    	<div id="frombut" class="calbut">{{ 'From'|lang }}</div>
+                    	<div id="fromtxt" class="caltxt" data-cal=""></div>
+                    </div>
+                    <div id="tobutcontainer" class="marginleft10">
+                        <div id="tobut" class="calbut">{{ 'To'|lang }}</div>
+                        <div id="totxt" class="caltxt" data-cal=""></div>
+                    </div>
+                    <div id="searchCalendarbut"></div>
+                    <div class="load_more_previous_new" id="resetpagebut">{{ 'reset'|lang }}</div>
+                </div>
+                {% if channelimageInfo %}
+                    <div class="MediaCont">
+                    	<div class="Line"></div>
+                    	<h2 class="TTL h2bottom0">{{ 'PHOTOS'|lang }} <span class="YellowTTL imediaDataCount" data-number="{{ formatChannelvideoInfoCount|raw }}">({{ formatChannelvideoInfoCount|raw }})</span></h2>
+                        <div class="MediaList" id="MediaImage" data-channelid="{{ channelInfoId|raw }}" data-number="{{ countChannelimageInfo|raw }}">
+                            <ul>
+                            {% for photoInfo in photoInfoArr %}
+                                <li data-vid="{{ photoInfo.vid_id|raw }}">
+                                    <div class="plusSign"></div>
+
+                                        <div class="image">
+                                        <a href="{{ photoInfo.mediauri|raw }}" title="{{ photoInfo.Title|raw }}"><div class="stanClick"></div></a>
+                                        <img width="136" height="76" src="{{ photoInfo.photoXSmall|raw }}" alt="{{ photoInfo.Title|raw }}"/>
+                                        <div class="insideBorder play hide"></div>
+                                        <div class="infoPop hide">
+                                            <!--div class="duration"><?php //echo $duration; ?></div-->
+                                            <div class="views">{{ photoInfo.views|raw }} {{ photoInfo.displayViewsCount|raw }}</div>
+                                        </div>
+                                        <div class="closeSign hide"></div>
+                                    </div>
+
+                                    <div class="ttl medias_title">{{ photoInfo.Title|raw }}</div>
+
+                                    <div class="popUp">
+                                        <div class="main">	
+                                            <div class="ttl popUpDivStandar">{{ photoInfo.formatDate|raw }}</div>
+                                            <div class="popUpDivStandar popUpDivDescription">{{ photoInfo.Description|raw }}</div>
+                                            <a href="{{ photoInfo.mediauri|raw }}" class="more0 marginbottom21{% if photoInfo.Description=='' %} displaynone{% endif %}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'more >'|lang }}</div></a>
+
+                                            <div class="overdatabutcontainer">
+                                                {% if is_owner == 1 %}
+                                                <a href="{{ photoInfo.mediauri ~ '/edit/1' }}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutedit">{{ 'edit'|lang }}</div></a>
+                                                <div class="overdatabutseperator"></div>
+                                                <div class="overdatabutremove overdatabut">{{ 'remove'|lang }}</div>
+                                                <div class="overdatabutseperator"></div>
+                                                <div class="overdatabutenable overdatabut" data-status="{% if photoInfo.Videocan_comment == 0 or photoInfo.Videocan_share == 0 %}0{% else %}1{% endif %}">
+                                                    <div class="overdatabutntficon{% if photoInfo.Videocan_comment ==0 or photoInfo.Videocan_share == 0 %} inactive{% endif %}"></div>
+                                                    <div class="overdatabutntftxt marginleft12">{{ 'enable shares & comments'|lang }}</div>
+                                                </div>
+                                               {% else %}
+                                                    {%  if photoInfo.privacy_social == 1 %}
+                                                        <a href="{{ photoInfo.mediauri~'/like/1' }}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'like'|lang }}</div></a>
+                                                        <div class="overdatabutseperator"></div>
+                                                        {% if photoInfo.Videocan_comment == 1 and photoInfo.Videocan_share == 1 %}
+                                                            <a href="{{ photoInfo.mediauri~'/comment/1' }}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'comment'|lang }}</div></a>
+                                                            <div class="overdatabutseperator"></div>
+                                                            <a href="{{ photoInfo.mediauri~'/share/1' }}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'share'|lang }}</div></a>
+                                                            <div class="overdatabutseperator"></div>
+                                                        {% endif %}
+                                                        <a href="{{ photoInfo.mediauri~'/rate/1' }}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'rate'|lang }}</div></a>
+                                                        {% if photoInfo.user_is_logged == 1 %}
+                                                            <div class="overdatabutseperator"></div>
+                                                            <a href="{{ photoInfo.mediauri~'/report/1' }}" title="{{ photoInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'report'|lang }}</div></a>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="minus"></div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div style="clear:both;"></div>
+                        <div class="buttonmorecontainer" style="float:none; width:584px;">
+                            {% if pagcount > currentpage + 1 %}
+                                <a id="load_more_next" class="loadmoremedia load_more_previous_new" href="{{ loadMoreLink|raw }}">{{ 'Load More...'|lang }}</a>
+                            {% endif %}    
+                            {% if pageArg and currentpage != 0%}
+                                <a id="load_more_previous" class="load_more_previous_new" href="{{ loadPreviousLink|raw }}">{{ 'Load Previous...'|lang }}</a>
+                            {% endif %}  
+                            <script>
+                                $(document).ready(function(e) {
+                                    var load_more_next_diff=4;
+                                    if($('#load_more_next').length>0){
+                                        load_more_next_diff+=29;
+                                    }
+                                    if($('#load_more_previous').length>0){
+                                        load_more_next_diff+=29;
+                                    }
+                                    $('.buttonmorecontainer').css('width',($('#load_more_next').width()+ $('#load_more_previous').width()+load_more_next_diff)+"px");                           
+                                });
+                            </script> 
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+                <div class="notFoundCon">{{ 'No videos found'|lang }}</div>
+            {% endif %}    
+            {% if channel_type != CHANNEL_TYPE_DIASPORA %}
+                {% include "parts/channelNewsTicker.twig" %}
+            {% endif %}        

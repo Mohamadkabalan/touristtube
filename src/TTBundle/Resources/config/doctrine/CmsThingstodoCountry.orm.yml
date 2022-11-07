@@ -1,0 +1,130 @@
+TTBundle\Entity\CmsThingstodoCountry:
+    type: entity
+    table: cms_thingstodo_country
+    repositoryClass: TTBundle\Repository\DiscoverQueryRQRepository
+    indexes:
+        id:
+            columns:
+                - id
+        id_2:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+                default: ''
+            column: country_code
+        stateCode:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+                default: ''
+            column: state_code
+        cityId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        h3:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p3:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        h4:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p4:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        aliasId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: alias_id
+        orderDisplay:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: order_display
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+        showMain:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: show_main
+    lifecycleCallbacks: {  }

@@ -1,0 +1,167 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>Conditions d´utilisation</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Conditions d´utilisation</h2>
+                        <p class="sub_header_title text-justify">VEUILLEZ LIRE ATTENTIVEMENT CE DOCUMENT.<br>Tourist Tube FZ-LLC ("Tourist Tube, "nous") offre une communauté en ligne, une plateforme de partage de vidéos, et and des transactions liées au Tourisme à travers ses sites web hébergés à touristtube.com (le "site Tourist Tube") et ses autres domaines connexes, applications mobiles, et applications de bureau (collectivement, les "services Tourist Tube ", ou “nos services”).<br><br>
+                            En vous inscrivant en tant que membre ou en utilisant les services de Tourist Tube de quelque manière que ce soit, vous acceptez les présentes Conditions d'utilisation («Accord»), qui constituent un accord contraignant entre vous et Tourist Tube. Si vous ne souhaitez pas être lié par cet accord, n'utilisez pas les services de Tourist Tube.<br><br>
+                            Des conditions supplémentaires peuvent être requises pour l’utilisation de services particuliers; ces conditions supplémentaires feront donc partie de notre contrat si vous utilisez ces services.</p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Utilisation des services</h2>
+                        <p class="sub_header_title text-justify">Accéder à nos services et les utiliser ne vous confère aucun droit de propriété intellectuelle inhérent à ces services ou au contenu auquel vous pouvez accéder. 
+                            <br /><br />
+                            Les droits d'utilisation de la marque ou des logos utilisés dans nos services sont strictement réservés; Par conséquent, ne supprimez pas, ne masquez pas et ne modifiez pas les mentions juridiques affichés dans ou avec ces services. 
+                            <br /><br />
+                            Tous les contenus de notre plateforme ne proviennent pas de Tourist Tube. Bien que nous puissions examiner ce contenu pour déterminer s'il est illégal ou s'il enfreint nos règles, cela ne veut pas dire que nous l'examinons nécessairement. Par conséquent, ce contenu relève de la seule responsabilité de l'entité qui le rend disponible. En outre, nous pouvons supprimer ou refuser d’afficher du contenu qui, à notre avis, est en violation avec nos politiques ou la loi. 
+                            <br /><br />
+                            Veillez à ne pas abuser de nos services, c'est-à-dire à ne pas interférer avec nos services ou à essayer d'y accéder en utilisant une méthode autre que l'interface et les instructions que nous fournissons.
+                            <br /><br />
+                            Vous pouvez utiliser nos services uniquement comme prévu et autorisé par la loi. Par conséquent, nous pouvons suspendre ou cesser de vous fournir des services si vous ne respectez pas nos conditions d´utilisation ou nos politiques, ou si nous avons des raisons de croire à une faute.
+                            <br /><br />
+                            Nous pouvons également vous envoyer des annonces et d’autres informations relatives à votre utilisation de nos services; vous pouvez choisir de vous désabonner de certaines de ces notifications.</p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Paiement en ligne</h2>
+                        <p class="sub_header_title text-justify">Nous acceptons les paiements en ligne avec les cartes de crédit / débit Visa et MasterCard en USD et en AED. Si «Carte de crédit en ligne» est sélectionné comme méthode de paiement, les détails de l'identifiant client (ID du titulaire de carte) doivent correspondre exactement à ceux de la carte de crédit utilisée pour effectuer l'achat. 
+                            <br /><br />
+                            Si vous effectuez un paiement en ligne pour nos services, les informations qui vous sont demandées seront fournies directement à notre prestataire de paiement via une connexion sécurisée. 
+                            <br /><br />
+                            Les mineurs de moins de 18 ans ne sont pas autorisés à effectuer des transactions sur le site Web.
+                            <br /><br />
+                            Le titulaire de carte doit conserver une copie des transactions enregistrées.
+                            <br />
+                            <a href="{{ generateLangURL(LanguageGet,'') }}" title="tourist tube">www.touristtube.com</a><b>NE</b> traitera ni ne fournira de services ou de produits à l’un des pays sanctionnés par l’OFAC conformément à la loi des Émirats arabes unis. 
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Annulation / Remboursement</h2>
+                        <p class="sub_header_title text-justify">Pour plus de détails sur les règles d'annulation des achats que vous effectuez en ligne, veuillez-vous reporter aux conditions spécifiques clairement mises à votre disposition relatives à cet achat.
+                            <br /><br />
+                            Un achat effectué en ligne signifie automatiquement que vous avez lu les conditions particulières attachées à cet achat et que vous les avez acceptées. Nous ne pouvons en aucun cas être tenus responsables des réclamations sans connaissance préalable sur les conditions des achats effectués.
+                            <br /><br />
+                            Tous les remboursements du montant de toute transaction concernant tout achat sur ce site seraient remboursés selon le mode de paiement initial.
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Livraison</h2>
+                        <p class="sub_header_title text-justify">Les services achetés sur ce site Web vous seront livrés et vous parviendront sur le courrier électronique que vous avez fourni lors de l'achat. 
+                            <br /><br />
+                            Les informations de livraison telles que le nom du client, l'adresse et le numéro de contact seront stockées à des fins de livraison. Les autres données personnelles identifiables ne seront pas stockées.
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Protection des droits d´auteur</h2>
+                        <p class="sub_header_title text-justify">Certains de nos services vous permettent de soumettre du contenu. Vous conservez la propriété de tous les droits de propriété intellectuelle que vous détenez sur ce contenu. En d'autres termes, ce qui vous appartient reste en votre possession. 
+                            <br /><br />
+                            Nous fournissons des interfaces en ligne pour que vous puissiez nous informer des violations de la propriété intellectuelle que vous jugez justifiées. Nous répondrons aux notifications d'infractions présumées au droit d'auteur et mettrons fin aux comptes récurrents en infraction conformément à la procédure légale.
+                            <br /><br />
+                            Lorsque vous téléchargez du contenu sur Tourist Tube, vous nous accordez, ainsi qu´à notre mandataire, une licence mondiale d’utilisation, de transfert, de modification et de distribution de ce contenu à des fins limitées de promotion et d’amélioration de nos services et de développement de nouveaux services, que vous les utilisiez ou non, ou, au cas où certains de nos services vous proposeraient des moyens d’accéder au contenu fourni avec ces services et de le supprimer, vous avez choisi de le faire. 
+                            <br /><br />
+                            Assurez-vous également que vous disposez des droits nécessaires pour nous accorder une telle licence pour tout contenu que vous téléchargez. 
+                            <br /><br />
+                            Vous pouvez trouver plus d'informations sur la manière dont Tourist Tube utilise et stocke le contenu dans notre Politique de confidentialité ou dans les conditions supplémentaires relatives à des services particuliers. Nous pouvons librement et sans obligation de votre part utiliser vos commentaires et suggestions concernant nos services. 
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Politique de confidentialité</h2>
+                        <p class="sub_header_title text-justify">Veuillez lire notre politique de confidentialité pour plus de détails sur la protection de vos données personnelles et de votre vie privée. Vous acceptez par la présente qu'une fois que vous vous êtes inscrit à Tourist Tube, vous nous accordez l'utilisation de telles données conformément à notre politique de confidentialité. 
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Logiciel</h2>
+                        <p class="sub_header_title text-justify">Tourist Tube vous octroie une licence personnelle, mondiale, sans droit d'auteur, non cessible et non exclusive, vous permettant d'utiliser le logiciel fourni par Tourist Tube dans le cadre des services. Cette licence a pour seul but de vous permettre d'utiliser et de bénéficier des services fournis par Tourist Tube, dans les conditions permises par les présentes conditions. Vous ne pouvez pas copier, modifier, distribuer, vendre ou louer toute partie de nos services ou logiciel inclus, ni désosser ni tenter d'extraire le code source de ce logiciel, sauf si la loi interdit ces restrictions ou si vous avez notre autorisation écrite.
+                            <br /><br />
+                            Lorsqu'un logiciel nécessite ou comprend un logiciel téléchargeable, ce logiciel peut se mettre à jour automatiquement sur votre appareil dès qu'une nouvelle version ou fonctionnalité est disponible. Certains services peuvent vous permettre de régler vos paramètres de mise à jour automatique. 
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Résiliation</h2>
+                        <p class="sub_header_title text-justify">Vous pouvez cesser d'utiliser nos services à tout moment, mais nous serons désolés de ne plus vous compter parmi nos utilisateurs.
+                            <br /><br />
+                            De plus, Tourist Tube peut à tout moment, sans justification préalable, cesser de vous fournir des services, ou ajouter ou créer de nouvelles limites à nos services. Étant donné que vous êtes propriétaire de votre contenu, nous conserverons votre accès à ce contenu et nous vous donnerons certainement un préavis raisonnable et la possibilité d'obtenir des informations sur nos services.
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Dégagement de responsabilité</h2>
+                        <p class="sub_header_title text-justify">Par les présentes, vous acceptez de protéger et de garantir Tourist Tube et ses sociétés affiliées, dirigeants, agents et employés contre toute réclamation, poursuite ou action résultant de votre utilisation des services ou liée à votre violation des présentes conditions, y compris toute responsabilité ou dépense, découlant de réclamations, pertes, dommages, poursuites, jugements, frais de justice et honoraires d’avocats. 
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Hôtels</h2>
+                        <p class="sub_header_title text-justify">Tous les paiements pour les réservations d'hôtel - prépayés ou post payés - vont directement à l'hôtel et non à Tourist Tube.
+                            <br /><br />
+                            Lors des réservations prépayées, l’hôtel peut choisir de ne pas débiter la carte de crédit du client lors de la réservation.
+                            <br /><br />
+                            Les réservations comprenant des réservations annulables et non annulables sont considérées comme totalement non annulables. Dans ce cas, veuillez effectuer des réservations séparées pour les réservations annulables et non annulables.
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">À propos de ces conditions</h2>
+                        <p class="sub_header_title text-justify">Nous pouvons modifier ces conditions et / ou toutes conditions supplémentaires qui s'appliquent à un service de manière à refléter les modifications apportées par la loi ou à nos services. Nous vous invitons à vérifier régulièrement ces conditions et nous publierons un avis de ces modifications et / ou ajouts sur la page en cours.
+                            <br /><br />
+                            Les modifications apportées à ces conditions s'appliqueront au plus tôt deux semaines après leur publication, à moins que de telles modifications ne concernent de nouvelles fonctionnalités ou ne soient apportées pour des raisons juridiques, auquel cas elles prendront effet  immédiatement. 
+                            <br /><br />
+                            En cas de conflit entre les termes et les termes modifiés / supplémentaires, les termes modifiés / supplémentaires prévalent. Si vous n'acceptez pas les conditions modifiées / supplémentaires pour un service, vous devez cesser d'utiliser ce service. 
+                            <br /><br />
+                            Ces conditions définissent uniquement la relation entre vous et Tourist Tube et ne créent aucun droit de destinataire tiers.
+                            <br /><br />
+                            En cas de non-respect de ces conditions et au cas où nous ne prenons aucune mesure, nous nous réservons le droit de prendre les mesures appropriées à l’avenir. En outre et nonobstant, la non-applicabilité d'un terme particulier n'invalide pas le caractère exécutoire de tous les autres termes.
+                            <br /><br />
+                            Les lois des Émirats Arabes Unis s’appliqueront à tout litige / réclamation résultant de ou lié à ces conditions de service; de tels litiges / réclamations seront exclusivement réglés devant les tribunaux des EAU, et vous et Tourist Tube consentez à la compétence personnelle des tribunaux susmentionnés.
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Contactez nous</h2>
+                        <p class="sub_header_title text-justify">Les Émirats arabes unis sont le pays de domicile de Tourist Tube FZ-LLC. Si vous avez des questions sur ces Conditions d'utilisation, veuillez nous contacter par courrier postal ou par courrier électronique aux adresses suivantes :
+                        </p>
+                    </div>
+                </div>
+                        <p><a href="mailto:support@touristtube.com" class="afaqMainStyle" title="{{ 'support@touristtube.com' }}">support@touristtube.com</a></p>
+                        <p class="sub_header_title text-justify">{{'now'|date('Y')}} &copy; Tourist Tube FZ-LLC
+                            <br/>
+                            <span>Date de la dernière mise à jour: 21 novembre, {{'now'|date('Y')}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

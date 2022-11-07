@@ -1,0 +1,19 @@
+TTBundle\Entity\DiscoverRestaurantsCuisine:
+    type: entity
+    table: discover_restaurants_cuisine
+    id:
+        cuisineId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: cuisine_id
+        restaurantId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: restaurant_id
+    lifecycleCallbacks: {  }

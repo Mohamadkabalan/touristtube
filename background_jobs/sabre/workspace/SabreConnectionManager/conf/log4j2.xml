@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" strict="true">
+	<Properties>
+		<Property name="logPath">log</Property>
+		<Property name="logFileBaseName">scm</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="rollingFileAppender" append="true" bufferedIO="true" createOnDemand="false" fileName="${logPath}/${logFileBaseName}.log" filePattern="${logPath}/${logFileBaseName}_%d{yyyyMMdd}.log.gz">
+			<PatternLayout pattern="%n%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] %msg" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy compressionLevel="9" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="ALL">
+			<AppenderRef ref="rollingFileAppender" />
+		</Root>
+	</Loggers>
+</Configuration>

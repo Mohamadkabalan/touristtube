@@ -1,0 +1,391 @@
+{% extends 'baseFinal.html.twig' %}
+{% block pagenewjs %}
+    {% if has_360==1 %}
+        <script type="text/javascript" src="/assets/common/tt/js/vtour/tt_360_tour.js"></script>
+	<script>
+	    function isScrolledIntoView(elem) {
+		var docViewTop = $(window).scrollTop();
+		var docViewBottom = docViewTop + $(window).height();
+
+		var elemTop = $(elem).offset().top;
+		var elemBottom = elemTop + $(elem).height();
+
+		return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+	    }
+	    var interval360;
+	    $(document).ready(function () {                
+		$(document).on('click', ".imgbut360", function(){
+		    var $this = $(this);
+		    if($this.attr('data-used')==1) return;
+		    $this.attr('data-used',1);
+		    var $parent = $this.closest('.img').find('.imgpano');
+		    $parent.height('100%');
+		    renderTourEngine( $this, $parent );		    
+		});
+		function Utils() {
+
+		}
+		Utils.prototype = {
+		    constructor: Utils,
+		    isElementInView: function (element, fullyInView) {
+			var pageTop = $(window).scrollTop();
+			var pageBottom = pageTop + $(window).height();
+			var elementTop = $(element).offset().top;
+			var elementBottom = elementTop + $(element).height()+100;
+
+			if (fullyInView === true) {
+			    return ((pageTop < elementTop) && (pageBottom > elementBottom));
+			} else {
+			    return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+			}
+		    }
+		};
+
+		var Utils = new Utils();
+		if( $(".imgbut360").length>0 ){
+		    interval360 = setInterval(function() {
+			data_used =0;
+			$('.imgbut360').each(function() {
+			    var fullScreenMode = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+			    if(!fullScreenMode){
+				var $this = $(this);
+				var $parent = $this.closest('.img').find('.imgpano');
+				var isElementInView = Utils.isElementInView($this, true);
+				if (isElementInView ) {
+				    if( $this.attr('data-used')==0 ){
+					$this.click();
+				    }
+				} else {
+				    if( $this.attr('data-used')==1 ){
+					var panid = $parent.attr('id');
+					//var pandatatour = $parent.attr('data-tour');
+					removepano(""+$parent.attr('id')+"");
+					//$this.closest('.img').prepend('<div id="'+panid+'" class="imgpano" data-tour="'+pandatatour+'"><noscript><table class="panotablestyle"><tr class="panotabletrstyle"><td><div class="panotabletrtdstyle">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript></div>');
+					$this.closest('.img').prepend('<div id="'+panid+'" class="imgpano"><noscript><table class="panotablestyle"><tr class="panotabletrstyle"><td><div class="panotabletrtdstyle">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript></div>');
+					$this.attr('data-used',0);
+				    }
+				}
+			    }
+			});		    
+		    }, 1000);
+		}
+{#		renderTourEngine( $('#pano3') );#}
+	    });
+	    
+	    function renderTourEngine( imgDom, panoObj ) {
+		var obj_id = $(panoObj).attr('id');
+		var ttdid = $(imgDom).data("ttdid");
+		var name = $(imgDom).data("name");
+		var divName = $(imgDom).data("name");
+		var country = $(imgDom).data("country").toLowerCase();
+		var divId = $(imgDom).data("divisionid");
+		var catgId = $(imgDom).data("categoryid");
+		var subDivId = null;
+		
+		//
+		new TTTour(obj_id, {
+		    loadPopupLibrary: false,
+		    usePositionAbsolute: false,
+		    showThumbnail: false,
+		    autoload: true,
+		    params: {
+			id: ttdid,
+			type: "thingstodo",
+			name: name,
+			countrycode: country,
+			division: divId,
+			divisionName: divName,
+			group: catgId,
+			subdivision: subDivId,
+			closeThumbs: true
+		    }
+		});
+	    }
+	</script>
+    {% endif %}
+{% endblock %}
+{% block structureddatablock %}
+    <script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+                 "item": {
+                   "@id": "{{subdomain_link|raw}}/things-to-do",
+                   "name": "{{ 'Things to do'|trans }}"
+                }
+              }, 
+            {% set BreadcrumbListNumber = '2' %}
+             {% if thirdbreadlink!='' %}
+                 {% set BreadcrumbListNumber = '3' %}
+                     {
+              "@type": "ListItem",
+              "position": 2,
+                "item": {
+                  "@id": "{{thirdbreadlink|raw}}",
+                  "name": "{{(thirdbreadtitle|replace({ ('-'): ' '}))|raw|e('html') }}"
+
+                  }
+           }, 
+
+            {% endif %}
+            {
+              "@type": "ListItem",
+              "position": {{ BreadcrumbListNumber }},
+                "item": {
+                  "@id": "{{secondbreadlink|raw}}",
+                  "name": "{{(secondbreadtitle|replace({ ('-'): ' '}))|raw|e('html') }}"
+
+                  }
+           }, 
+           
+         {% set BreadcrumbListNumber = BreadcrumbListNumber+1 %}
+            {
+              "@type": "ListItem",
+              "position": {{ BreadcrumbListNumber }},
+                "item": {
+                  "@id": "{{firstbreadlink|raw}}",
+                  "name": "{{(firstbreadtitle|replace({ ('-'): ' '}))|raw|e('html') }}"
+
+                  }
+                  }
+                ]
+          }
+    </script>
+{% endblock %}
+{% block body %}
+    <section class="container city_activites_container">
+	{% if firstbreadtitle !='' %}
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <ul class="ttd_breadcrumb">
+			<li class="fl first"><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{ 'things to do'|trans }}">{{ 'Things to do'|trans }}</a></li>
+			{% if thirdbreadtitle!='' %}
+			    <li class="fl"> > </li>
+                            <li class="fl ico second"><a href="{{thirdbreadlink|raw}}" title="{{ thirdbreadtitlealt|raw }}">{{ thirdbreadtitle|raw }}</a></li>
+			{% endif %}
+			{% if secondbreadtitle!='' %}
+			    <li class="fl"> > </li>
+			    <li class="fl ico second"><a href="{{secondbreadlink|raw}}" title="{{ secondbreadtitlealt|raw }}">{{ secondbreadtitle|raw }}</a></li>
+			{% endif %}
+			<li class="fl"> > </li>
+			<li class="ico"><a class="active" href="{{firstbreadlink|raw}}" title="{{ firstbreadtitlealt|raw }}">{{ firstbreadtitle|raw }}</a></li>
+		    </ul>
+		</div>
+	    </div>
+	{% endif %}
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{firstbreadtitle|raw}}</h1>
+		<div class="search_titleH3">
+		    <div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			    <div class="col-xs-12 new_padding things_to_do_form">
+				<input type="text" placeholder="{{'Search for your destination'|trans|raw }}" id="things_to_to_search" name="things_to_to_search" class="things_to_do_input">
+				<div class="things_to_do_btn"><i class="fa fa-search"></i></div>
+			    </div>
+			</div>
+			<div class="col-md-8 col-sm-6 col-xs-12 margin-top-11">
+			    {% for item in search_array %}
+				<a href="{{item.link}}" title="{{item.namealt}}" class="things_to_do_link">{{item.name}}</a>
+			    {% endfor %}
+			</div>
+		    </div>
+		    {#{% if search_array|length>0 %}
+			<div class="row margin_top_10">
+			    <div class="col-xs-12">
+				{% for item in search_array %}
+				    <a href="{{item.link}}" title="{{item.namealt}}" class="things_to_do_link">{{item.name}}</a>
+				{% endfor %}
+			    </div>
+			</div>
+		    {% endif %}#}
+		</div>
+	    </div>
+	</div>
+	<div class="row border_top_but_row"></div>
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h2 class="search_title refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Best attractions to visit in'|trans}} {{cityname|raw}}</h2>
+	    </div>
+	</div>
+	{% set countNumber = (current_page-1)*count_per_page %}
+	{% for itemMain in mainEntityArray %}
+	    {% set countNumber = countNumber+1 %}
+	    <div class="row new_margin">
+		{% if itemMain.exists_360 ==1 %}
+		    <a href="{{ itemMain.link|raw }}" title="{{ itemMain.titlealt|raw }} {{'360'|trans}}" class="col-md-6 col-sm-9 col-xs-12 new_padding">
+			<h2 id="{{ countNumber|raw }}" class="title_details_new"><span class="txtPink">{{ countNumber|raw }}. {#{{ firstbreadtitle|raw }} - #}</span>{{ itemMain.title|raw }} - {{cityname|raw}}{% if itemMain.exists_360 ==1 %} <span class="txtPink"><i class="fas fa-angle-right fa-lg"></i> {{'view 360'|trans}}</span>{% endif %}</h2>
+		    </a>
+		{% else %}
+		    <div class="col-md-6 col-sm-9 col-xs-12 new_padding">
+			<h2 id="{{ countNumber|raw }}" class="title_details_new"><span class="txtPink">{{ countNumber|raw }}. {#{{ firstbreadtitle|raw }} - #}</span>{{ itemMain.title|raw }} - {{cityname|raw}}</h2>
+		    </div>
+		{% endif %}
+		<div class="clearfix"></div>
+		<div class="col-md-6 col-sm-9 col-xs-12 new_padding">
+		    <div class="img">
+			{% if itemMain.exists_360 ==1 %}			    
+			    <div id="pano{{loop.index}}" class="imgpano">
+				<noscript><table class="panotablestyle"><tr class="panotabletrstyle"><td><div class="panotabletrtdstyle">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+			    </div>
+			    <div class="imgbut360" data-used="0" data-ttdid="{{itemMain.id|raw}}" data-divisionid="{{itemMain.division_id|raw}}" data-categoryid="{{itemMain.category_id|raw}}" data-name="{{ itemMain.titlealt|raw }}" data-country="{{ itemMain.country|raw }}">{{'360 virtual tour'|trans}}</div>
+			{% endif %}
+			{% if itemMain.img!='' %}
+			    <img class="width-100" src="{{ itemMain.img }}" alt="{{ itemMain.titlealt|raw }}" />
+			{% endif %}
+		    </div>
+		</div>
+		{% if itemMain.special_deals !='' %}
+		    <div class="col-md-6 col-sm-3 col-xs-12 new_padding hidden-xs">
+			<div class="row no-margin">
+			    <a class="pink_button" href="{{ itemMain.special_deals|raw }}" title="{{ itemMain.titlealt|raw }}">{{'special deals'|trans}}</a>
+			    {% if itemMain.deals_starting_from !=0 %}
+				<p class="starting_txt">{{'Starting from'|trans}} <span>${{ itemMain.deals_starting_from|raw }}</span></p>
+			    {% endif %}
+			</div>
+		    </div>
+		{% endif %}
+		<div class="col-md-6 col-sm-9 col-xs-12 new_padding">
+		    <p class="details_new_description details_description_container{{loop.index}}" data-h="184" style="height: 184px;">{{ itemMain.description|raw }}</p>
+		    <a href="" class="txt_more_a more" for="details_description_container{{loop.index}}" rel="nofollow">{{'more'|trans}}</a>	    
+		</div>
+		{% if itemMain.special_deals !='' %}
+		    <div class="col-md-6 col-sm-3 col-xs-12 new_padding visible-xs margin-bottom-20">
+			<div class="row no-margin">
+			    <a class="pink_button" href="{{ itemMain.special_deals|raw }}" title="{{ itemMain.titlealt|raw }}">{{'special deals'|trans}}</a>
+			    {% if itemMain.deals_starting_from !=0 %}
+				<p class="starting_txt">{{'Starting from'|trans}} <span>${{ itemMain.deals_starting_from|raw }}</span></p>
+			    {% endif %}
+			</div>
+		    </div>
+		{% endif %}
+	    </div>
+	{% endfor %}
+	<div class="row new_margin">
+	    <div class="col-xs-12 small_margin">
+		<div class="float-right pagerWrapper">
+		    {{search_paging_output|raw}}
+		</div> 
+	    </div> 
+	</div>
+	{% if moreDealslist|length>0 %}
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <h2 class="search_title refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'What can you do in'|trans}} {{cityname|raw}} - <span class="txtPink">{{toursNumber|raw}} {{'tours and activities'|trans}}</span></h2>
+		</div>
+	    </div>
+	    <div class="row new_margin">
+		{% for itemMain in moreDealslist %}
+		    <div class="col-md-3 col-sm-6 col-xs-12 new_padding">
+			<div class="row no-margin">
+			    <a class="col-xs-12 nopad grey_img_and_txt_container" title="{{itemMain.namealt|raw}}" href="{{itemMain.link|raw}}">
+				<div class="row no-margin">
+				    <div class="col-xs-12 nopad image_style_container">
+					{% if itemMain.img!='' %}
+					    <img alt="{{itemMain.namealt|raw}}" src="{{itemMain.img|raw}}" class="width-100">					    
+					{% endif %}
+					{#<div class="discount_img"><p>-5%</p></div>#}
+				    </div>
+				    <div class="col-xs-12 nopad text_style_container">
+					<h4 class="image_txt_subtitle">{{itemMain.name|raw}}</h4>
+					{#<p class="travelers_recommendation">86% of travelers recommend</p>#}
+					<p class="price_pink">
+					    <span data-price="{{itemMain.dataprice|raw}}" class="a_price price-convert"><span class="currency-convert-text">USD</span> <span class="price-convert-text">{{itemMain.price|raw}}</span></span>
+					</p>
+				    </div>
+				</div>
+			    </a>
+			</div>
+		    </div>
+		    {% if (loop.index%4)==0 %}
+			<div class="clearfix visible-lg visible-md"></div>
+		    {% endif %}		
+		    {% if (loop.index%2)==0 %}
+			<div class="clearfix visible-sm"></div>
+		    {% endif %}
+		{% endfor %}
+		<a rel="nofollow" class="col-xs-12 txtPink more_deals" href="{{moreDealslink|raw}}" title="{{'What can you do in'|trans}} {{cityname|raw}}">{{'more'|trans}} <i class="fas fa-angle-down fa-lg"></i></a>
+	    </div>
+	{% endif %}
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h2 class="search_title refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Similar destinations to visit'|trans}}</h2>
+	    </div>
+	</div>
+	<div class="row new_margin">
+	    {% for itemMain in thingstodocityList %}
+		{% if itemMain.link != '' %}
+		    <a href="{{ itemMain.link|raw }}" title="{{ itemMain.titlealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 new_padding">
+		{% else %}
+		    <div class="col-md-3 col-sm-6 col-xs-12 new_padding">
+		{% endif %}
+		{% if itemMain.img!='' %}
+		    <img class="width-100" src="{{ itemMain.img }}" alt="{{ itemMain.titlealt|raw }}" />
+		{% endif %}
+		    <div class="col-xs-12 txtContainer">
+			<h2 class="subtitle_home_new txtPink">{{ itemMain.title|raw }}</h2>
+			<p class="home_new_description">{{ itemMain.description|raw }}</p>	    
+		    </div>
+		{% if itemMain.link != '' %}
+		    </a>
+		{% else %}
+		    </div>
+		{% endif %}
+		{% if (loop.index%4)==0 %}
+		    <div class="clearfix visible-lg visible-md"></div>
+		{% endif %}		
+		{% if (loop.index%2)==0 %}
+		    <div class="clearfix visible-sm"></div>
+		{% endif %}
+		<script type="application/ld+json">
+		{
+		  "@context": "http://schema.org",
+		  "@type": "City",
+		  "name" : "{{itemMain.title|raw|replace({'Things to do in ': ''})|e('html')}}",
+		  "url": "{{itemMain.link|raw}}",
+		  "description": "{{itemMain.description|e('html')}}",
+		  "image": "{{itemMain.img|raw}}"
+		}
+		</script>
+	    {% endfor %}	    
+	</div>
+	{% if description!='' or t_h3!='' or t_p3!='' or t_h4!='' or t_p4!='' or descThingstodoTitle !='' %}
+	    <div class="row new_margin">
+		<div class="col-xs-12 small_margin bottom_link_gray">
+		    {% if description!='' %}
+			<p class="txt_page_container">{{description|raw}}</p>
+		    {% endif %}
+		    {% if t_h3!='' %}
+			<h3 class="h_home_new">{{t_h3|raw}}</h3>
+		    {% endif %}
+		    {% if t_p3!='' %}
+			<p class="txt_page_container txt_more_container1" data-h="40" style="height: 40px;">{{t_p3|raw}}</p>
+			<a href="" class="txt_more_a more" for="txt_more_container1" rel="nofollow">{{'more'|trans}}</a>
+		    {% endif %}
+		    {% if t_h4!='' %}
+			<h4 class="h_home_new">{{t_h4|raw}}</h4>
+		    {% endif %}
+		    {% if t_p4!='' %}
+			<p class="txt_page_container txt_more_container2" data-h="40" style="height: 40px;">{{t_p4|raw}}</p>
+			<a href="" class="txt_more_a more" for="txt_more_container2" rel="nofollow">{{'more'|trans}}</a>
+		    {% endif %}
+		    {% if descThingstodoTitle!='' %}
+			{% if discoverLink!='' %}
+			    <a class="col-xs-12 nopad" href="{{discoverLink|raw}}" title="{{ descThingstodoTitle|raw }}">
+				<h2  class="h_home_new">{{ descThingstodoTitle|raw }}</h2>
+			    </a>
+			{% else %}
+			    <h2  class="h_home_new">{{ descThingstodoTitle|raw }}</h2>
+			{% endif %}
+		    {% endif %}
+		    {% if descThingstodo!='' %}
+			<p class="txt_page_container float-left">{{descThingstodo|raw}}</p>
+		    {% endif %}
+		</div>
+	    </div>
+	{% endif %}
+    </section>
+{% endblock %}

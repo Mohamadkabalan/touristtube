@@ -1,0 +1,1 @@
+UPDATE cms_hotel SET published = -2 WHERE id = 24075;

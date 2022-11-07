@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+{% block pagenewcss %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/bootstrap-datetimepicker.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/tours.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deals1.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/sign-in.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/addPoi.css")}}"/>
+    <style>
+        .redz{
+            border: 1px solid red;
+        }
+        .tourSubmit{
+            color: #fff;
+            background-color: #eac31a;
+            border: none;
+            border-radius: 0;
+            text-shadow: none;
+            font-weight: bold;
+        }
+        .ui-datepicker table{
+            background-color: #f9f9f9 !important;
+        }
+        .fields{
+            font:normal 13px/24px arial;
+            color:#444444;
+            text-indent:10px;
+            width:100%;
+            height:30px; 
+            background: #fff;
+        }
+        .select-fields{
+            width:100%;
+            background: #fff;
+        }
+        .verifyBox{
+            margin: 0 10px; 
+            background: #eee;
+        }
+        .availability{
+            font:bold 20px arial;
+        }
+    </style>
+{% endblock %}
+{% block pagenewjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/bootstrap-datetimepicker.js")|raw }}"></script>
+    <script type="text/javascript">
+        $('#startDate').datepicker({
+            defaultDate: new Date()
+        });
+    </script>
+{% endblock %}
+{% block body %}
+    <section class="container">
+        <div class="col-xs-12">
+            <div class="overview">
+                <div class="fl bg">
+                    <h1 class="padd">{{'Tour Details'|trans}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 nopad">  
+            <div class="col-lg-4 col-md-4 col-sm-10 col-xs-12 nopad">
+                <div class="details_img">
+                    <img class="width-100" src="../images/picex1.png" alt="{{details.dealName|raw}}">
+                </div>
+                <div class="col-xs-12"><b>{{ 'Tour Code:'|trans }}</b> {{ details.dealCode|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Tour Code:'|trans }}</b> {{ details.dealName|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Country Name:'|trans }}</b> {{ details.countryName|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'City Name:'|trans }}</b> {{ details.cityName|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Pax Name:'|trans }}</b> {{ details.paxName|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Status:'|trans }}</b> {{ details.Status|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Tour Details:'|trans }}</b> {{ details.details|raw|trim|striptags  }} </div>
+                <div class="col-xs-12"><b>{{ 'External Remark:'|trans }}</b> {{ details.externalRemark|raw|trim|striptags }} </div>
+                <div class="col-xs-12"><b>{{ 'Tour Type:'|trans }}</b> {{ details.tourType|raw }} </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 verifyBox">
+                <form name="verifyAvailabilityForm" method="POST" action="" autocomplete="off">
+                    <div class="col-xs-12">
+                        <div class="inputbox">
+                            <div><b>{{ 'Number of persons:'|trans }}</b></div>
+                            <input type="text" class="fields" name="count" value="{{ app.request.request.get("count") }}" />
+                            <input type="hidden" name="tourId" value="{{tourId}}" />
+                            <input type="hidden" name="tourCode" value="{{ details.dealCode|raw }}" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="inputbox">
+                            <div><b>{{ 'Age:'|trans }}</b></div>
+                            <input type="text" class="fields" name="age" value="{{ app.request.request.get("age") }}" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="inputbox">
+                            <div><b>{{ 'Age Qualifying Code:'|trans }}</b></div>
+                            <select class="select-fields" name="ageQualifyingCode">
+                                <option value="08" {{ (app.request.request.get("ageQualifyingCode") == '08') ? 'selected' : '' }}>Child</option>
+                                <option value="10"  {{ (app.request.request.get("ageQualifyingCode") == '10') ? 'selected' : '' }}>Adult</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="inputbox">
+                            <div><b>{{ 'Start Date:'|trans }}</b></div>
+                            <input autocomplete='off' type="text" class="fields" name="startDate" value="{{ app.request.request.get("startDate") }}" id="startDate" class="form-control datesearch" placeholder="dd/mm/yy">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                        <div class="inputbox">
+                            <input type="submit" name="submit" value="Verify Availability" class="btn btn-default signup tourSubmit" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    {% if details.isAvailable is defined %}
+                        {% if details.isAvailable  %}
+                            <div class="availability">Available</div>
+                            <div><b>Duration:</b>
+                                {{details.availabilityDetails['atiDateRange']['@attributes']['Duration']}}
+                            </div>
+                            <div><b>Start:</b>
+                                {{details.availabilityDetails['atiDateRange']['@attributes']['Start']}}
+                            </div>
+                            <div><b>Amount:</b>
+                                {{details.availabilityDetails['atiPriceInfo']['@attributes']['AmountAfterTax']}}&nbsp;{{details.availabilityDetails['atiPriceInfo']['@attributes']['CurrencyCode']}}
+                            </div>
+                            <div class="inputbox">
+                                <input type="button" name="bookNow" value="Book Now!!!" class="btn btn-default signup tourSubmit" />
+                            </div>
+                            {% if details.availabilityDetails['atiCancelPolicies'] is defined %}
+                                <div><b>Cancel Policy Valid To:</b>
+                                    {{details.availabilityDetails['atiCancelPolicies']['@attributes']['ValidTo']}}
+                                </div>
+                            {% endif %}
+                        {% else %}
+                           <div class="availability">Not Available</div>
+                        {% endif %}
+                    {% endif %}
+                </div>   
+            </div> 
+        </div>
+    </section>
+{% endblock %}

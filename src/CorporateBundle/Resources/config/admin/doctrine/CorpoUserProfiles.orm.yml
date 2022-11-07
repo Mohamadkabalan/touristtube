@@ -1,0 +1,45 @@
+CorporateBundle\Entity\corpoAccountType:
+    type: entity
+    table: corpo_user_profiles
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoUserProfilesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            column: name
+        published:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: published
+        section_title:
+            type: string
+            nullable: true
+            length: 100
+            column: section_title
+        slug:
+            type: string
+            nullable: true
+            length: 100
+            column: slug
+        level:
+            type: integer
+            nullable: true
+            length: 11
+            column: level
+    lifecycleCallbacks: {  }

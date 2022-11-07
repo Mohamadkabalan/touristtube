@@ -1,0 +1,83 @@
+.float-div{
+    float: right;
+}
+
+.pagination > li > a, .pagination > li > span {
+    background-color: #fff;
+    color: black;
+    float: left;
+    font-weight: bold;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 0 3px;
+    position: relative;
+    text-decoration: none;
+    border: medium none;
+}
+.pagination > li > a:hover, .pagination > li > span:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: black;
+    z-index: 3;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus , .pagination > li > a:focus, .pagination > li > span:focus  {
+    background-color: rgb(217,60,97);
+    border-color:rgb(217,60,97);
+    color: #fff;
+    cursor: default;
+    z-index: 2;
+}
+.pagerWrapper{
+    padding-top: 0;
+}
+.pagination{
+    margin-bottom: 0;
+    margin-top: 0;
+    float: right;
+}
+.small-back-grey{
+    background-color: rgb(241,241,241);
+    height: 162px;
+
+}
+.accrobat-img-style{
+    left: 0;
+    top: 0;
+    float: left;
+}
+.title-next-img{
+    float: left;
+    color: #2c2c2c;
+    font-size: 15px;
+    padding-top: 14px;
+    padding-left: 14px;
+}
+.edit-img-style{
+    float: left;
+    padding-top: 10px;
+}
+.title-next-img-big{
+    float: left;
+    color: #2c2c2c;
+    font-size: 16px;
+    padding-top: 10px;
+    /*padding-bottom: 30px*/
+}
+@media (min-width:992px) and (max-width:1920px){
+    .div-float {
+        margin-right: 15px;
+    }
+}
+@media (min-width:320px) and (max-width:690px){
+    .div-float {
+        margin-right: 10px;
+    }
+}
+@media (min-width:320px) and (max-width:676px){
+    .title-next-img{
+        font-size: 13px;   
+    }
+    .title-next-img-big{
+        font-size: 14px;  
+    }
+}

@@ -1,0 +1,48 @@
+/*General css:
+============================================*/
+
+.margin_top_20{margin-top: 20px;}
+.margin_top_10{margin-top: 10px;}
+.margin_bottom_40{margin-bottom: 40px;}
+.margin_bottom_20{margin-bottom: 20px;}
+.margin_top_15{margin-top: 15px;}
+.padding_left_20{padding-left: 20px;}
+
+
+/*CSS Right Panel/left panel */
+.channels_container .right_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;left:0px;top:0px;}
+.channels_container .left_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;right:-5px;top:0px;}
+.channels_container .right_panel{padding-right: 0;}
+.channels_container .new_padding{padding: 5px;}
+.txtContainer{ padding: 0;}
+.txtContainer p{ font-size: 15px; color:#585858;}
+.txtPink{color:#db3a69;}
+.subtitle_home_new{color:#db3a69;font-size: 16px;margin-top: 10px; line-height: 18px; overflow: hidden; margin-bottom:8px;}
+.txtContainer p{ font-size: 15px; color:#585858;}
+.small_height_img_link_pink_connect{color: #d10b3a;font-size: 15px;text-decoration: underline; padding-left: 10px;}
+
+@media (max-width:991px){
+    /*CSS Right Panel */
+    .channels_container .right_panel:after,.left_panel:after{display: none;}
+}
+@media (min-width:768px) and (max-width:991px){
+    /*CSS Right Panel */
+    .channels_container .right_panel{padding-left: 0px;}
+}
+@media (max-width:767px){
+    /*CSS Right Panel */
+    .channels_container .right_panel{padding-left: 15px;padding-right: 15px;}
+    /*=============================================*/
+}
+
+.channels_container .leftmenue_subtitles{color: #00b7d9;font-size: 24px; }
+.channels_container .leftmenue_subtitles i{padding-right: 8px;color: #00b7d9;}
+.channels_container ul.list_left_menue_ainfo {padding-left: 0;}
+.channels_container ul.list_left_menue_ainfo{margin-left: 16px;}
+.channels_container ul.list_left_menue_ainfo li{list-style: none;margin-top: 2px;}
+.channels_container ul.list_left_menue_ainfo li a{font-size: 14px;color: #606060;text-decoration: none;padding-left: 10px;line-height: 30px;display: block;}
+.channels_container ul.list_left_menue_ainfo li a:hover{ color: #00b7d9; text-decoration: underline;}
+.channels_container ul.list_left_menue_ainfo li.active a{ color: #00b7d9; text-decoration: underline;}
+.search_title span {
+    font-size: 19px;
+}

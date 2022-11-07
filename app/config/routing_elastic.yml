@@ -1,0 +1,16 @@
+_hotels_near:
+    host: "nearby{subdomain_suffix}.{domain}"
+    path:      "/hotels-near-by{dest}/{dest1}"
+    defaults: { _controller: TTBundle:Default:hotelsNearBy, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", dest1: "", seotitle: "Hotels Near By %s-tourist tube", seodescription: "searching for hotels near by %1$s For more info about hotels booking visit us on Tourist Tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        dest1: ".*"        
+
+_hotels_near_redirect:
+    path:      "/hotels-near-by{dest}/{dest1}"
+    defaults: { _controller: TTBundle:Default:hotelsNearByRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", dest1: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        dest1: ".*"        

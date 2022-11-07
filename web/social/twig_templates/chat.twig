@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    var WEB_SOCKET_FORCE_FLASH = false;
+    if(is_safari){
+        WEB_SOCKET_FORCE_FLASH = true;
+    }
+    var CHAT_STATUS_OFFLINE  = '{{ chatOff|raw }}';
+    var CHAT_STATUS_ONLINE = '{{ chatOn|raw }}';
+    var CHAT_STATUS_APPEAROFFLINE = '{{ chatAppearOff|raw }}';
+    var CHAT_STATUS_AWAY = '{{ chatAway|raw }}';
+    var CHAT_STATUS_BUSY = '{{ chatBusy|raw }}';
+</script>
+<!-- from chatlist -->
+<link rel="stylesheet" type="text/css" href="{{ ddCssLink|raw }}" />
+<link rel="stylesheet" type="text/css" href="{{ contextmenuCssLink|raw }}" />
+<script src="{{ ddslickJsLink|raw }}" type="text/javascript"></script>
+<script src="{{ contextmenuR2JsLink|raw }}" type="text/javascript"></script>
+<!-- -->
+<script type="text/javascript" src="{{ emoticonJsLink|raw }}"></script>
+<script type="text/javascript" src="{{ swfobjectJsLink|raw }}"></script>
+<script type="text/javascript" src="{{ webSocketJsLink|raw }}"></script>
+<script type="text/javascript">
+    var WEB_SOCKET_SWF_LOCATION = "{{ WebSocketMainSwfLink|raw }}";
+    var WEB_SOCKET_DEBUG = false;
+</script>
+<script type="text/javascript" src="{{ gracefulWebSocketJsLink|raw }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ chatCssLink|raw }}"/>
+<script type="text/javascript" src="{{ chatBehaviorJsLink|raw }}"></script>
+<!-- For media share -->
+<script type="text/javascript" src="{{ chatUpBehaviorJsLink|raw }}"></script>
+<!-- END Media share-->
+<script type="text/javascript">
+    var CHAT_USER_ID = '{{ userGetID|raw }}';
+    var CHAT_SERVER = 'ws://{{ getChatServer|raw }}/chat';
+    var CHAT_SESSION_ID = '{{ sessionId|raw }}';
+    var CHAT_STATUS_ONLINE = '{{ chatOn|raw }}';
+</script>
+<div id="chatContainer">
+    <div id="inside-chat">
+        <div id="chatIcon"></div>
+        <div id="blackTransparentDiv"></div>
+        <div id="chathistorydiv"></div>
+        <div id="chattubers"></div>
+        <div id="privacyDiv"></div>
+        <div id="chatList"></div>
+        <div id="switchatOn">{{ chatOnTxt|raw }}</div>
+        <div id="onlineTubersNb"></div>
+        <div id="chat-search">
+            <input type="text" name="ttsearch" id="ttsearch" value="{{ searchChatTxt|raw }}">
+            <div id="openChatList"></div>
+        </div>
+        <div id="chat-leftList"></div>
+        <div id="extraWindows">
+            <div id="extraChatIcon"></div>
+            <div id="extraWindwosNB">5</div>
+            <div id="extraListContainer">
+                <div id="extraList"></div>
+            </div>
+        </div>
+    </div>
+</div>

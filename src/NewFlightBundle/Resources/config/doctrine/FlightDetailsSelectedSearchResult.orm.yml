@@ -1,0 +1,87 @@
+NewFlightBundle\Entity\FlightDetailsSelectedSearchResult:
+    type: entity
+    table: flight_details_selected_search_result
+    indexes:
+        flight_selected_id:
+            columns:
+                - flight_selected_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        flightSelectedId:
+            type: integer
+            nullable: false
+        segmentNumber:
+            type: integer
+            nullable: false
+        fromLocation:
+            type: string
+            nullable: false
+            length: 3
+        toLocation:
+            type: string
+            nullable: false
+            length: 3
+        isStop:
+            type: integer
+            nullable: false
+        terminalId:
+            type: integer
+            nullable: true
+        operatingAirline:
+            type: string
+            nullable: false
+            length: 10
+        marketingAirline:
+            type: string
+            nullable: false
+            length: 10
+        flightNumber:
+            type: integer
+            nullable: false
+        resBookDesignCode:
+            type: string
+            nullable: false
+            length: 100
+        duration:
+            type: integer
+            nullable: false
+        fareBasisCode:
+            type: string
+            nullable: false
+            length: 30
+        fareCalcLine:
+            type: string
+            nullable: false
+            length: 1000
+        price:
+            type: decimal
+            nullable: false
+        baseFare:
+            type: decimal
+            nullable: false
+        taxes:
+            type: decimal
+            nullable: false
+        currency:
+            type: string
+            nullable: false
+            length: 3
+        departureDatetime:
+            type: datetime
+            nullable: false
+        arrivalDatetime:
+            type: datetime
+            nullable: false
+        type:
+            type: string
+            nullable: false
+            length: 11
+    lifecycleCallbacks: {  }

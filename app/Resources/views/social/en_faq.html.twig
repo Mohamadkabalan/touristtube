@@ -1,0 +1,150 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>FAQ</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to register?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Just set your email and password and we will create your account for you to enjoy all TouristTube features. You can fill in your profile info at your convenience.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to change your password?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_account_settings') }}{% endif %}" title="{{ 'account info / Account settings'|trans }}" class="afaqMainStyle">account info / Account settings.</a> Fill in your old and new passwords.</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to modify your privacy settings?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/privacy') }}{% endif %}" title="{{ 'account info / Privacy'|trans }}" class="afaqMainStyle">account info / Privacy.</a> Modify your settings.</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">What is the maximum space available to users?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">You are offered as a TouristTube registered user 1Tb dedicated private cloud space for your personal use.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">What are Touristtube main features?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <ul class="faq_lit">
+                            <li>
+                                <p>Tourist Channels – satisfy the online business needs of tourism professionals and organizations</p>
+                            </li>  <li>
+                                <p>Multimedia sharing – upload your videos and photos and albums</p>
+                            </li>   <li>
+                                <p>Mobile applications, downloadable on Android</p>
+                            </li>  <li>
+                                <p>    Trace reviews and ratings back to trusted people belonging to a familiar group</p>
+                            </li><li>
+                                <p>Build communities and connect people based on common interests, using suggestions by Artificial Intelligence (AI) algorithms working in the background.</p>
+                            </li>    
+                        </ul>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to upload photos and videos?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign in. Select upload. Select photos and videos from your device and upload them.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to search for media?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Click search bar and specify photos, videos, or tubers. Fine-tune your search by selecting a theme / category.</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to find your friends, followers and follwings on touristtube.com<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/network/friends') }}{% endif %}" title="{{ 'network'|trans }}" class="afaqMainStyle"> network</a>. You can find and contact all your friends, followers and followings.</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to edit a photo?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/photos') }}{% endif %}" title="{{ 'My Photos'|trans }}" class="afaqMainStyle">My Photos</a>. Select the photo and click edit. You can edit both text attributes and photo look.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to edit a video?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/videos') }}{% endif %}" title="{{ 'My Videos'|trans }}" class="afaqMainStyle">My Videos</a>. Select the video and click edit. You can edit text attributes of the selected video.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to create an album?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/albums') }}{% endif %}" title="{{ 'My Albums'|trans }}" class="afaqMainStyle">My Albums</a>. You can create albums and edit their content and properties.</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to create a journal?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/journal') }}{% endif %}" title="{{ 'My Journals'|trans }}" class="afaqMainStyle">My Journals</a>. You can create journals and edit their properties</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to set your newsfeeds?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/newsfeed') }}{% endif %}" title="{{ 'news feeds'|trans }}" class="afaqMainStyle">news feeds.</a> Set sources of news shown on your feeds page by selecting people and activities.</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to share content on other social media?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. Go to <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/sharing') }}{% endif %}" title="{{ 'account info / Sharing'|trans }}" class="afaqMainStyle">account info / Sharing.</a> Select the social media, setup a connection with TouristTube and let the sharing begin.</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to setup your channel on touristtube.com?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. In Tourist Channels, select create your channel and fill in your info.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to view your channels on touristtube.com?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sign-in. In Tourist Channels, select the drop down arrow and select view all my channels.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to create a sub-channel?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Select the top channel from my channels view and click embed channel; then fill in the info for the sub-channel.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to review and rate a hotel / restaurant?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Select / Search for the venue you like to review. Fill in your reviews and ratings and submit them.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to report an issue?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Contact us at <a href="mailto:info@touristtube.com" class="afaqMainStyle" title="{{ 'info@touristtube.com' }}">info@touristtube.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

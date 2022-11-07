@@ -1,0 +1,1 @@
+ALTER TABLE `deal_details` ADD `is_featured` TINYINT( 1 ) NOT NULL DEFAULT '0';

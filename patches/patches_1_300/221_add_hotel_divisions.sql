@@ -1,0 +1,33 @@
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1295', 'Villa 1.11', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1296', 'Villa 1.12', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1297', 'Villa 1.13', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1298', 'Villa 1.14', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1299', 'Villa 1.15', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1300', 'Villa 1.16', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1301', 'Villa 1.17', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1302', 'Villa 1.18', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1303', 'Villa 1.19', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1304', 'Villa 1.20', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1305', 'Villa 1.21', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1306', 'Villa 1.22', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1307', 'Villa 1.23', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1308', 'Villa 1.24', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1309', 'Villa 1.25', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1310', 'Villa 1.26', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1311', 'Villa 1.27', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1312', 'Villa 1.28', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1313', 'Villa 1.29', '16', '758');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1314', 'Villa 1.30', '16', '758');
+
+
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`) VALUES ('1315', 'Walkways 2', '28');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1316', 'Walkways 2.1', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1317', 'Walkways 2.2', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1318', 'Walkways 2.3', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1319', 'Walkways 2.4', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1320', 'Walkways 2.5', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1321', 'Walkways 2.6', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1322', 'Walkways 2.7', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1323', 'Walkways 2.8', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1324', 'Walkways 2.9', '28', '1315');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1325', 'Walkways 2.10', '28', '1315');

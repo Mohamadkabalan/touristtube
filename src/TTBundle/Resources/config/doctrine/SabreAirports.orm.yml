@@ -1,0 +1,57 @@
+TTBundle\Entity\SabreAirports:
+    type: entity
+    table: sabre_airports
+    indexes:
+        code:
+            columns:
+                - code
+    id:
+        code:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                unsigned: true
+            id: true
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        countryCode:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+            column: country_code
+        cityCode:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+    oneToOne:
+        sabreCountry:
+            targetEntity: SabreCountries
+            cascade: [persist]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: sabreAirport
+            joinColumns:
+                country_code:
+                    referencedColumnName: code
+            orphanRemoval: false
+        sabreCity:
+            targetEntity: SabreCities
+            cascade: [persist]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: sabreAirport
+            joinColumns:
+                city_code:
+                    referencedColumnName: code
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

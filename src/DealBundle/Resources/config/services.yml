@@ -1,0 +1,6 @@
+services:
+    DealServices:
+        class: DealBundle\Services\DealServices
+        arguments: ['@app.utils','@doctrine.orm.entity_manager','@templating','@EmailServices','@PayFortServices','@logger','@service_container','@PaymentServiceImpl','@CurrencyService','@CorpoApprovalFlowServices', '@CorpoAccountServices', '@UserServices', '@CorpoAccountTransactionsServices']
+        tags:
+            - { name: monolog.logger, channel: deals }

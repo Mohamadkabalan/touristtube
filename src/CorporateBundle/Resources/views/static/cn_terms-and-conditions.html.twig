@@ -1,0 +1,168 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+{% endblock %}
+
+{% block title %}服务条款{% endblock %}
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>服务条款</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">服务条款</h2>
+                        <p class="sub_header_title text-justify">请仔细阅读此文档。<br>
+                            Tourist Tube FZ-LLC（“Tourist Tube”、“我们”或“本站”）通过其位于touristtube.com（“Tourist Tube网址”）的网站以及其他关联域名、移动app和桌面应用（通称为“Tourist Tube服务系统”或“我们的服务系统”）提供了线上社区、视频分享平台以及旅游相关交易。<br>
+                            <br>
+                            通过注册成为会员或是以任何方式使用Tourist Tube服务系统，都代表您接受这些服务条款（“协议”）。这些条款会在您和本站之间形成一个具有约束力的协议。如果您不想受到此协议的约束，那么请不要使用Tourist Tube服务系统。<br>
+                            <br>
+                            使用特定的服务可能会需要一些附加条款；因此，如果您使用了这些服务，那么这些附加条款会成为本站协议的一部分。</p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">服务使用</h2>
+                        <p class="sub_header_title text-justify">访问和使用我们的服务系统不会给予您任何这些服务系统和您访问内容的固有知识产权。
+                            <br /><br />
+                            在我们的服务系统内使用任何商标和标识的权利都被严格保留；因此，请不要删除、遮盖或更改任何在这些服务系统中展现或一并出现的合法标示。 
+                            <br /><br />
+                            本站平台上的有些内容不属于Tourist Tube。尽管我们可能会审查这些内容以判定它是否合法，或者是否违反了本站的政策，但这并不代表我们必须审查这些内容。因此，这些内容的唯一责任方是它的提供方。此外，我们可能会删除或拒绝显示那些我们合理地认为违背本站政策或法规的内容。
+                            <br /><br />
+                            请不要滥用我们的服务系统。即，请不要干扰我们的系统，也不要试图使用不同于我们提供的接口和指令的方法来进入服务系统。
+                            <br /><br />
+                            您只可以通过法律允许的方式使用我们的服务系统。因此，当您不遵守我们的条款或政策，或是我们有理由相信您有不端行为时，我们有权暂停或停止为您提供服务。
+                            <br /><br />
+                            在您使用我们的服务系统时，我们也有权为您发送公告或其他相关信息；您可以选择不接收部分公告。</p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">在线支付</h2>
+                        <p class="sub_header_title text-justify">我们接受使用信用卡（Visa）和万事达信用卡/借记卡采用阿联酋迪拉姆货币（AED）和美元（USD）进行在线支付。如果您选中了“在线信用卡”作为支付方式，那么客户ID（持卡人ID）的详情要和用于支付的信用卡信息完全吻合。
+                            <br /><br />
+                            如果您在我们的服务系统中进行了在线支付，那么要求您提交的详细信息会通过一个安全链接直接供给我们的支付提供商。
+                            <br /><br />
+                            18岁以下的未成年人不允许在本站进行交易。
+                            <br /><br />
+                            持卡人务必要保留一份交易记录的备份
+                            <br /><br />
+                            根据阿拉伯联合酋长国的法律，<a href="{{ generateLangURL(LanguageGet,'') }}" title="tourist tube">www.touristtube.com</a> 绝不会与任何受OFAC（外国资产控制办公室）制裁的国家进行交易，也不会为他们提供任何服务和产品。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">取消/退款</h2>
+                        <p class="sub_header_title text-justify">想要获取关于您线上购买的取消规则详情，请参考我们清晰制定的特定购买情景下的特定条件
+                            <br /><br />
+                            每一次线上购买都自动默认您已经阅读并同意此交易情景下的特定条件。本站决不承担因用户没有提前了解购买条件而产生的索赔责任。
+                            <br /><br />
+                            对于在本站购买所产生的任何交易金额的所有退款都会被退还给原始支付方式。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">交付</h2>
+                        <p class="sub_header_title text-justify">在本站交易的服务会交付给您，并通过您在交易中提供的电子邮件账号与您联系。
+                            <br /><br />
+                            例如客户姓名、地址和联系电话等配送信息会以交付为目的储存。我们不会储存其他个人身份信息。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">版权保护</h2>
+                        <p class="sub_header_title text-justify">我们的服务系统中有些会允许您提交一些内容。您保留有所有您在该内容中持有的知识产权所有权。换句话说，您的永远是您的。
+                            <br /><br />
+                            我们为您提供了线上接口，方便您告知我们您认为是事实的知识产权侵犯行为。我们会回复涉嫌侵权现象的通知，并按照正当的法律程序终止违规复制的账号。
+                            <br /><br />
+                            向Tourist Tube上传内容，就代表您允许并授予了我们在提高和改善我们的服务系统、发展新服务的有限目的内使用、传送、修改和散播这些内容的全球性授权。与您是否使用我们的服务系统无关，如果本站的一些服务系统为您提供了访问和删除已供给该服务系统的内容的方法，那么您可以选择该操作。
+                            <br /><br />
+                            还有，要确保您拥有授予我们所有您上传内容执照的应有权力。
+                            <br /><br />
+                            您可以在我们的隐私权政策或特定服务的附加条款内找到更多关于Tourist Tube如何使用并储存内容的相关信息。您也可以对我们的服务系统做出反馈和建议，我们不会收取费用。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">隐私权政策</h2>
+                        <p class="sub_header_title text-justify">请阅读本站的隐私权政策，了解更多关于保护您的个人数据和隐私的详细信息。您特此同意，一旦您注册了Tourist Tube，就允许我们按照本站的隐私权政策使用这类数据。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">软件</h2>
+                        <p class="sub_header_title text-justify">作为Tourist Tube服务系统的一部分，本站为用户给予了对于本站提供的软件的个性化的、世界范围的、免版税的、不可转让且非独占的使用许可。该许可的唯一目的是让您能够在这些条款的允许范围内使用并享受Tourist Tube的服务益处。您不可以复制、修改、散播、出售或出租我们服务系统的任何部分，包括软件在内。除了在法律禁止这些限制和您持有我们的书面许可的情况下，您也不可以采用逆向工程或试图提取该软件的源代码。
+                            <br /><br />
+                            当一项服务要求或包含软件下载时，一旦出现了新版本或新特性可供使用，该软件可以在您的设备内自动更新。有些服务需要您调整您的自动更新设置。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">终止</h2>
+                        <p class="sub_header_title text-justify">您可以随时停止使用我们的服务系统，但如果失去了您这位用户，我们会很难过。
+                            <br /><br />
+                            还有，Tourist Tube可以随时在没有预先辩护的情况下停止为您提供服务，也可以在我们的服务系统内增加或创建新的限制条件。由于您对您的内容拥有所有权，我们会继续为您提供进入该内容的权限。当然，我们也会给予您合理的预先通知，以及在我们的服务系统之外获取咨询的机会。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">酒店</h2>
+                        <p class="sub_header_title text-justify">所有酒店预订的付款款项——预付及邮付——都会直接支付到酒店方，而不是Tourist Tube。
+                            <br /><br />
+                            在预付订单中，酒店可能会选择不登入客户预订用信用卡的借方。
+                            <br /><br />
+                            包含可取消和不可取消两种预订的订单会视为完全不可取消。在这种情况下，请将可取消预订和不可取消预订分开下单。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">关于这些条款</h2>
+                        <p class="sub_header_title text-justify">我们可能会对适用于在某种程度上反映法律变化或是我们服务系统变化的某项服务的条款和/或任何附加条款做出修改。
+                            <br /><br />
+                            这些条款的修改会在它们公布后的两周以内生效，除非这些改变导致了新的功能或是由于法律原因而定制的——在这些情况下它们会立即生效。
+                            <br /><br />
+                            假如在这些条款和改进/附加条款之间有冲突，那么则以改进/附加条款为准。如果您不同意某项服务的改进/附加条款，您应该终止对这项服务的使用。
+                            <br /><br />
+                            这些条款在您和Tourist Tube之间建立了唯一的关系，并且不会产生任何第三方接收权。
+                            <br /><br />
+                            如果您破坏了这些条款而我们没有立即采取行动，那么我们保留有在未来采取相应措施的权利。此外，无关地，任何附加条款的非适用性都不会使其他所有条款的可执行性变为无效。
+                            <br /><br />
+                            阿拉伯联合酋长国的法律适用于任何源自于或相关于这些服务条款的纷争/索赔；这些纷争/索赔只可以在阿拉伯联合酋长国的法庭内提出诉讼，您和Tourist Tube同意在上述提及的法庭内执行属人管辖权。
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">联系我们</h2>
+                        <p class="sub_header_title text-justify">阿拉伯联合酋长国是Tourist Tube FZ-LLC的所属国。如果您有关于这些服务条款的问题，请通过下方的邮件或电子邮件联系我们：
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Tourist Tube FZ-LLC</h2>
+                        <p class="sub_header_title text-justify">Floor 1; DIC Building 12; 35, DIC Street; city Dubai; UAE </p>
+                        <p><a href="mailto:support@touristtube.com" class="afaqMainStyle" title="{{ 'support@touristtube.com' }}">support@touristtube.com</a></p>
+                        <p class="sub_header_title text-justify">{{'now'|date('Y')}} &copy; Tourist Tube FZ-LLC
+                            <br/>
+                            <span>最后修订日期： November 21, {{'now'|date('Y')}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

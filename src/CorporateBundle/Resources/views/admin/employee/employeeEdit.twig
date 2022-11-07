@@ -1,0 +1,100 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/daterangepicker.min.css')|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/css/jquery.auto-complete.css')|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/js/jquery.autocomplete.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/autocomplete/TTAutocomplete.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/moment.2.16.0.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/jquery.daterangepicker.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/daterangepicker/TTDateRangePicker.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/form_validator/validator.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/form/TTFormValidator.js')|raw }}"></script>
+
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-employeeEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Employee Add/Edit'|trans}}{% endblock %}
+{% block body %}
+    {% set defaultValues = {'p_id': 0, 'p_fname': '', 'p_lname': '', 'p_mname': '', 'p_cityId': 0, 'p_countryId': 0, 'p_accountId': 0, 'p_address': '', 'p_mobile': '', 'p_phone1': '', 'p_phone2': '', 'p_email': '', 'p_passportNumber': '', 'p_issueDate': '', 'p_passportExpiryDate': '', 'p_departmentId': 0, 'p_userId': 0, 'cityName': '', 'accountName': '', 'countryName': '', 'departmentName':'', 'userName': ''  } %}
+
+    {% set employee = defaultValues|merge(employee) %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Employee Add/Edit'|trans}}</h1>
+	    </div></br>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_employee_addSubmit') }}">
+		<input type="hidden" class="id" name="id" value="{{employee.p_id|raw}}">
+		<div class="inputFields"><label id="fnameLabel">{{'First Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="fname" value="{{employee.p_fname|raw}}" required label="#fnameLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="lnameLabel">{{'Last Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="lname" value="{{employee.p_lname|raw}}" required label="#lnameLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="mnameLabel">{{'Middle Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="mname" value="{{employee.p_mname|raw}}" required label="#mnameLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="cityNameLabel">{{'City Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="cityName" data-toggle="ttautocompleteCity" id="cityName" value="{{employee.cityName|raw}}" placeholder="{{'Search for city'|trans}}" required label="#cityNameLabel"/>
+		{% if employee.p_cityId %}
+		    <input type="hidden" id="cityNameCode" name="cityId" value="{{employee.p_cityId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label id="accountNameLabel">{{'Account'|trans}} </label></div>
+		<input type="text" class="inputForm" name="accountName" data-toggle="ttautocompleteAccount" id="accountName" value="{{employee.accountName|raw}}" placeholder="{{'Search for account'|trans}}" required label="#accountNameLabel"/>
+		{% if employee.p_accountId %}
+		    <input type="hidden" id="accountNameCode" name="accountId" value="{{employee.p_accountId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label id="countryNameLabel">{{'Country'|trans}} </label></div>
+		<input type="text" class="inputForm" name="countryName" data-toggle="ttautocompleteCountry" id="countryName" value="{{employee.countryName|raw}}" placeholder="{{'Search for country'|trans}}" required label="#countryNameLabel"/>
+		{% if employee.p_countryId %}
+		    <input type="hidden" id="countryNameCode" name="countryId" value="{{employee.p_countryId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Address'|trans}} </label></div>
+		<textarea name="address" class="inputForm">{{employee.p_address|raw}}</textarea>
+		<div class="clear"></div>
+		<div class="inputFields"><label id="mobileLabel">{{'Mobile'|trans}} </label></div>
+		<input type="text" class="inputForm" name="mobile"  value="{{employee.p_mobile|raw}}" required label="#mobileLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Phone 1'|trans}} </label></div>
+		<input type="text" class="inputForm" name="phone1"  value="{{employee.p_phone1|raw}}"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Phone 2'|trans}} </label></div>
+		<input type="text" class="inputForm" name="phone2"  value="{{employee.p_phone2|raw}}"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="emailLabel">{{'Email'|trans}} </label></div>
+		<input type="email" class="inputForm" name="email"  value="{{employee.p_email|raw}}" required label="#emailLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="passportNumberLabel">{{'Passport Number'|trans}} </label></div>
+		<input type="text" class="inputForm" name="passportNumber"  value="{{employee.p_passportNumber|raw}}" required label="#passportNumberLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Passport Expiry Date '|trans}}</label></div>
+		<input data-toggle="daterangepicker" type="date" class="inputForm" name="passportExpiryDate"  value="{{employee.p_passportExpiryDate|date("Y-m-d")}}" > 
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Issue Date'|trans}}</label></div>
+		<input data-toggle="daterangepicker2" type="date" class="inputForm" name="issueDate"  value="{{employee.p_issueDate|date("Y-m-d")}}" > 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="departmentNameLabel">{{'Department'|trans}} </label></div>
+		<input type="text" class="inputForm" name="departmentName" data-toggle="ttautocompleteDepartment" id="departmentName" value="{{employee.departmentName|raw}}" placeholder="{{'Search for department'|trans}}" required label="#departmentNameLabel">
+		{% if employee.p_departmentId %}
+		    <input type="hidden" id="departmentNameCode" name="departmentId" value="{{employee.p_departmentId|raw}}">
+	{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'User'|trans}} </label></div>
+		<input type="text" class="inputForm" name="userName" data-toggle="ttautocompleteUser" id="userName" value="{{employee.userName|raw}}" placeholder="{{'Search for user'|trans}}"/>
+		{% if employee.p_userId %}
+		    <input type="hidden" id="userNameCode" name="userId" value="{{employee.p_userId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields tt_buttons_bar"><button data-role="button" data-type="validate" type="submit">{{'Submit'|trans}}</button></div>
+	    </form>
+	</div>
+    </section>
+{% endblock %}

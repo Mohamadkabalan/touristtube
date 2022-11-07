@@ -1,0 +1,11 @@
+default_flight_homepage:
+    path:     /flight-booking1
+    defaults: { _controller: defaultFlightBundle:Default:testFlight , _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets and discount flights to destinations around the world.", seokeywords: ""}
+
+_default_flight_booking_result:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight-booking-result1"
+    defaults: { _controller: defaultFlightBundle:Default:flightsSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets and discount flights to destinations around the world.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

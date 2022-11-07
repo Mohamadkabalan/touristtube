@@ -1,0 +1,55 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewjs %}
+<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-agenciesEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}
+{{'List Of Agency Add/Edit'|trans}}
+{% endblock %}
+{% block body %}
+{% set defaultValues = {'p_id': 0, 'p_name': '', 'p_accountId': 0, 'countryName': '', 'p_countryId': 0 } %}
+
+{% set agency = defaultValues|merge(agency) %}
+<section class="container corporate_common_new_container">
+	<div class="row no-margin">
+		<div class="col-xs-12 nopad">
+			<div class="row no-margin margin_top_20 margin_bottom_40">
+				<div class="col-xs-12 nopad">
+					<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>
+						{{'List Of Agency'|trans}}
+						/ <span class="add_edit">add/edit</span>
+					</h1>
+				</div>
+			</div>
+			<div class="row no-margin bordered_row"></div>
+		</div>
+		<form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_agencies_addSubmit') }}">
+			<div class="col-lg-10 col-xs-12 nopad margin_top_40">
+				<div class="row corporate_small_row_margin">
+					<input type="hidden" class="id" name="id" value="{{agency.p_id|raw}}">
+					<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+						<label id="nameLabel" class="form-check-label">{{'Name'|trans}}*</label> <input type="text" class="col-xs-12"
+							name="name" value="{{agency.p_name|raw}}" required placeholder="{{'Name'|trans}}*" label="#nameLabel"
+						>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+						<label id="countryNameLabel" class="form-check-label">{{'Country'|trans}}*</label> <input type="text"
+							class="col-xs-12" name="countryCode" data-toggle="ttautocompleteCountry" id="country"
+							value="{{agency.countryName|raw}}" data-value-id ="{{agency.p_countryId|raw}} placeholder="{{'Search for parent country'|trans}}*" required
+							label="#countryNameLabel"
+						/>
+					</div>
+				</div>
+				<div class="row corporate_small_row_margin">
+					<div class="col-xs-12 corporate_small_col_padding margin_top_20">
+						<a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corpo_agencies') }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+						<button class="btn submit_yellow" data-role="button" data-type="validate" type="submit">
+							{{'Submit'|trans}}
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

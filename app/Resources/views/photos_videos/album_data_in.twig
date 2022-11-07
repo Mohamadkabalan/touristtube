@@ -1,0 +1,32 @@
+{% for item in media_array %}			    
+    <div class="col-md-4 col-sm-6 col-xs-12 new_padding data_media_remove_container" data-type="{{item.type|raw}}" data-id="{{item.id|raw}}">			    
+	<a href="{{ item.link|raw }}" title="{% if item.titlealt == '' %}{{'title'|trans}}: {% endif %}{{ item.titlealt|raw }}">
+	    {% if item.type == 'v' %}
+		<div class="sprite video_icon"></div>
+	    {% endif %}
+	    <img class="width-100" src="{{ item.img }}" alt="{% if item.titlealt == '' %}{{'title'|trans}}: {% endif %}{{ item.titlealt|raw }}" />
+	</a>
+	<div class="col-xs-12 txtContainer">
+	    <a href="{{ item.link|raw }}" title="{% if item.titlealt == '' %}{{'title'|trans}}: {% endif %}{{ item.titlealt|raw }}">
+		<h2 class="subtitle_home_new txtPink">{{ item.title|raw }}</h2>
+	    </a>
+	    <p class="home_new_description">{{ item.description|raw }}</p>                                            
+	</div>
+	{% if is_owner==1 %}
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    <div class="right_floatet_container">
+			<a href="javascript:" rel="nofollow" title="{{'edit'|trans}}" class="edit_bar_pic"><img class="" alt="edit" src="{{ generateMediaURL('/media/images/bag_new/blue_edit_logo.png') }}"></a>
+			<a class="close_class data_media_remove" href="javascript:" rel="nofollow" title="{{'remove'|trans}}">X</a>
+		    </div>
+		</div>
+	    </div>
+	{% endif %}
+    </div>
+    {% if (loop.index%3)==0 %}
+	<div class="clearfix visible-lg visible-md"></div>
+    {% endif %}				
+    {% if (loop.index%2)==0 %}
+	<div class="clearfix visible-sm"></div>
+    {% endif %}	
+{% endfor %}

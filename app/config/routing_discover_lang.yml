@@ -1,0 +1,25 @@
+_api_things_to_do_region_lang:
+    path:      "/{_locale}/api/things-to-do"
+    defaults: { _controller: ApiBundle:Discover:thingstodoRegion }
+    requirements:
+        _locale:  "%config_locales%"
+        
+_map_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/map/{str}/{ccode}/{scode}"
+    defaults: { _controller: TTBundle:Default:discover, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", scode: "", seotitle: "Discover - Discover The World - Discover Australia Tourist Tube", seodescription: "discover the best places, find the most beautiful attractions and touristic locations on tourist tube web.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        scode: ".*"
+        
+_map1_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/map"
+    defaults: { _controller: TTBundle:Default:discover, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", scode: "", seotitle: "Discover - Discover The World - Discover Australia Tourist Tube", seodescription: "discover the best places, find the most beautiful attractions and touristic locations on tourist tube web.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        scode: ".*"

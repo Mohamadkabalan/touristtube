@@ -1,0 +1,63 @@
+<div class="col-md-3 col-xs-12 left_panel">
+    <div class="row">
+	<div class="col-xs-12">
+	    <div class="left_title_arrow move_down"><i class="fas fa-angle-right fa-lg"></i></div>
+	    <div class="right_title_arrow"><p class="title_arrow_pink margin_bottom_0">{{hotelDetails.name|raw}}</p></div>
+	</div>
+	<div class="col-xs-12">
+	    <p class="stars_block">
+		{% if hotelDetails.category > 0 %}
+		    <span class="star_rating" data-rating="{{hotelDetails.category|raw}}" data-font="11" data-color="#eac31a"></span>
+		{% endif %}
+	    </p>
+	</div>
+	<div class="col-xs-12">
+	    <p class="location_div location_txt">
+		<i class="fas fa-map-marker-alt"></i>{{hotelDetails.address|raw}}
+	    </p>
+	</div>
+	<div class="col-md-12 col-sm-4 col-xs-12">
+	    <p class="chekin_out_style margin_bottom_0"><span>{{'Check-in'|trans}}</span></p>
+	    <p class="chekin_out_style">{{reservationDetails.checkIn}} {{hotelDetails.checkInEarliest}}</p>
+	</div>
+	<div class="col-md-12 col-sm-4 col-xs-12">
+	    <p class="chekin_out_style margin_bottom_0"><span>{{'Check-out'|trans}}</span></p>
+	    <p class="chekin_out_style">{{reservationDetails.checkOut}} {{hotelDetails.checkOutLatest}}</p>
+	</div>
+	<div class="col-md-12 col-sm-2 col-xs-12">
+	    <p class="commun_grey_txt">{{nightsCount}} {{'night'|trans}}{% if (nightsCount > 1) %}s{% endif %}</p>
+	</div>
+	<div class="col-xs-12">
+	    <p class="commun_black_bold">{{'Your estimated time of arrival'|trans}}</p>
+	</div>
+	<div class="col-xs-12">
+	    <p class="commun_black_bold margin_bottom_0">{{'24 Hour Reception'|trans}}:</p>
+	</div>
+	<div class="col-xs-12">
+	    <p class="commun_grey_txt">{{'You can arrive anytime you want. Your room will be ready at 14:00 (hotel local time).'|trans}}</p>
+	</div>
+	<div class="col-xs-12">
+	    <p class="commun_black_bold margin_bottom_0">{{'Arrival Time'|trans}}:</p>
+	</div>
+	<div class="col-xs-12">
+	    <p class="commun_black_bold font_weight_normal">{{reservationDetails.checkIn}}</p>
+	</div>
+	{% if reservationDetails.prePaymentRequired is defined and not reservationDetails.prePaymentRequired %}
+	    <div class="col-xs-12">
+		<p class="commun_grey_txt">- {{'You will pay nothing today'|trans}}.</p>
+	    </div>
+	{% endif %}
+	{% if reservationDetails.grandTotalPriceInclusiveHotelDisplay is defined %}
+	    <div class="col-xs-12">
+		<div class="left_title_arrow move_down"><i class="fas fa-angle-right fa-lg"></i></div>
+		<div class="right_title_arrow"><p class="margin_bottom_0"><span class="title_arrow_pink">{{'Price'|trans}}</span></p></div>
+		<div>
+		    <p class="price_style_txt bigfont price-convert" data-price="{{reservationDetails.grandTotalPriceInclusiveHotelAmount}}">
+			<span class="price-after-unit-style currency-convert-text pink font-25">{{reservationDetails.grandTotalPriceInclusiveHotelCurrency}} </span>
+			<span class="price-after-price-style price-convert-text pink">{{reservationDetails.grandTotalPriceInclusiveHotelAmount|round(2, 'floor')|number_format(2)}}</span>
+		    </p>
+		</div>
+	    </div>
+	{% endif %}
+    </div>
+</div>

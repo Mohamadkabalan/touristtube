@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with WSDLGenerator 1.0.0 by Amadeus SAS -->
+<!-- "Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved." -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wsdl.amadeus.com/HotelContent_v1_v4" xmlns:int="http://wsdl.amadeus.com/HotelContent_v1" xmlns:awsse="http://xml.amadeus.com/2010/06/Session_v3" xmlns:awsl="http://wsdl.amadeus.com/2010/06/ws/Link_v1" xmlns:amasec="http://xml.amadeus.com/2010/06/Security_v1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="OUTTOT_HotelContent_1.0_4.0" targetNamespace="http://wsdl.amadeus.com/HotelContent_v1_v4">
+  <wsdl:documentation>Versions: [interface: 1.0 ; technical: 4.0]</wsdl:documentation>
+  <wsp:Policy wsu:Id="MessagingPolicy">
+    <wsam:Addressing wsp:Optional="true">
+      <wsp:Policy>
+        <wsam:AnonymousResponses />
+      </wsp:Policy>
+    </wsam:Addressing>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="AmadeusPolicy">
+    <wsp:PolicyReference URI="#MessagingPolicy" />
+  </wsp:Policy>
+  <wsdl:import namespace="http://wsdl.amadeus.com/HotelContent_v1" location="HotelContent_1.0.wsdl" />
+  <wsdl:types>
+    <xs:schema>
+      <xs:import schemaLocation="AMA/2012B/AMA_WS_Session.xsd" namespace="http://xml.amadeus.com/2010/06/Session_v3" />
+      <xs:import schemaLocation="AMA_WSLink.xsd" namespace="http://wsdl.amadeus.com/2010/06/ws/Link_v1" />
+      <xs:import schemaLocation="AMA/2012B/AMA_SecurityHostedUser.xsd" namespace="http://xml.amadeus.com/2010/06/Security_v1" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Session_3.000">
+    <wsdl:part name="session" element="awsse:Session" />
+  </wsdl:message>
+  <wsdl:message name="TransactionFlowLink_1.0">
+    <wsdl:part name="link" element="awsl:TransactionFlowLink" />
+  </wsdl:message>
+  <wsdl:message name="AMA_SecurityHostedUser_1.000">
+    <wsdl:part name="security" element="amasec:AMA_SecurityHostedUser" />
+  </wsdl:message>
+  <wsdl:binding name="HotelContent_Binding" type="int:HotelContent_PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Hotel_ContentNotifReport">
+      <soap:operation soapAction="http://webservices.amadeus.com/Hotel_ContentNotifReport_1.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_DescriptiveInfo">
+      <soap:operation soapAction="http://webservices.amadeus.com/OTA_HotelDescriptiveInfoRQ_07.1_1A2007A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HotelContent_Service">
+    <wsdl:port name="HotelContent_Port" binding="tns:HotelContent_Binding">
+      <wsp:PolicyReference URI="#AmadeusPolicy" />
+      <soap:address location="https://nodeD1.production.webservices.amadeus.com/1ASIWTOTOUT" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+
+
+<!-- Build Key: 1F8B080000000000000025CD4D0B82401485E1BDBFE22E8B50AE9184B3B30F2C280C9C703DD92D86F48ECC8C41FFBEC9B62F9CE794C46495D786C1EB9E9C57FD206089E93AC63C4E9720477277F5014CC52A175906E5592E100562D4D4BB13947FC058789375C11190269860B4ED3431A861E8743B1D089066B4DA7939DE088EECC93279D818F3D2FC843D3F3513CC6425E7812E2EC0AAA7A015F5B109B1BACA681A3D541BF2C178EAB62604F6BFC72F0F040E9EC9000000 -->

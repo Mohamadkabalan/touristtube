@@ -1,0 +1,51 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block body %}
+    <section class="container disclaimer_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>Disclaimer</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Disclaimer</h2>
+                        <p class="sub_header_title text-justify">We provide our Services using a commercially reasonable level of skill and care and we hope that you will benefit from them.</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Warranties</h2>
+                        <p class="sub_header_title text-justify">Other than as expressly set out in these terms or additional terms, neither Tourist Tube nor its suppliers or distributors make any specific promises about the Services. Moreover, we do not make any commitments about the content within the Services, the specific function of the Services, or their reliability, availability, or ability to meet your needs. We provide the Services "as it is". In other words, and to the extent permitted by law, we exclude all warranties.</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Liabilities</h2>
+                        <p class="sub_header_title text-justify">Tourist Tube, and its suppliers and distributors, will not be responsible for lost profits, revenues, or data, financial losses or indirect, special, exemplary, consequential, or punitive damages when it is permitted by law. The total liability of Tourist Tube, and its suppliers and distributors, for any claim under these terms, including for any implied warranties, is limited to the amount you paid us to use the Services (or, if we choose, to supplying you the Services again). </p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <p class="sub_header_title text-justify">{{'now'|date('Y')}} &copy; Tourist Tube FZ-LLC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,48 @@
+TTBundle\Entity\Discount:
+    type: entity
+    table: discount
+    repositoryClass: TTBundle\Repository\TTRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        creationDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: creation_date
+        discountTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                default: '1'
+            column: discount_type_id
+        discountValue:
+            type: decimal
+            nullable: false
+            options:
+                unsigned: false
+                default: '1.000000'
+            column: discount_value
+        thresholdValue:
+            type: decimal
+            nullable: false
+            options:
+                unsigned: true
+                default: '0.000000'
+            column: threshold_value
+    lifecycleCallbacks: {  }

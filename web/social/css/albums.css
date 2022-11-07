@@ -1,0 +1,186 @@
+.pagination.pagerWrapper {
+    padding: 0;
+    margin:0;
+}
+.pagerWrapper {
+    cursor: pointer;
+}
+.pagination {
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.first_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll 0 3px;
+    height: 15px;
+    width: 12px;
+}
+.prev_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll -12px 3px;
+    height: 15px;
+    width: 12px;
+}
+
+
+.next_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll -27px 3px;
+    height: 15px;
+    width: 12px;
+}
+.last_pg {
+    background: rgba(0, 0, 0, 0) url("/media/images/pager_btns.jpg") no-repeat scroll -38px 3px;
+    height: 15px;
+    width: 12px;
+}
+.pag-float-right{
+    float: right;
+}
+
+#posts { 
+    margin: 0 auto;
+    padding-bottom:20px;
+}
+.post{
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding-top: 0;
+    width: 284px;
+    float: left;
+    background-color: rgb(241, 241, 241);
+}
+.postbk{
+    width: 100%;
+    float: left;
+    background-color:rgb(241, 241, 241);
+    position: relative;
+    padding-bottom: 10px;
+    height: auto;
+}
+.postbk-2{
+    width:284px;
+    float: left;
+    background-color:rgb(236, 236, 236);
+    position: relative;
+    height: 284px;
+}
+.albums-img{
+    top: 111px;
+    left: 111px;
+    position: absolute;
+}
+.albums-text{
+    left: 85px;
+    top: 180px;
+    position: absolute;
+    font-size: 20px;
+    color: #808080;
+}
+.albums-img-pink{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+
+}
+.image-albums-style{
+    position: relative;
+}
+.plus-albums-style{
+    bottom: 10px;
+    color: white;
+    font-size: 22px;
+    height: 62px;
+    left: 10px;
+    line-height: 62px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 62px;
+    background: url("/media/images/pinkCircleImgNumb.png") no-repeat center center;
+}
+.plus-albums-style:hover{
+    text-decoration: none;
+    color: white;
+}
+.albums-title{
+    color: #2e2e2e;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-top: 15px;
+    padding-right: 5px;
+}
+.text-details-albums{
+    font-size: 13px;
+    color: #6a6969;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    text-align: justify;
+    padding-bottom: 60px;
+}
+.like-albumstyle{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    float: left; 
+    padding-bottom: 10px;
+}
+.share-album-style{
+    position: absolute;
+    bottom: 0;
+    left: 45px;
+    padding: 5px;
+    padding-bottom: 8px;
+}
+.comments-album-style{
+    position: absolute;
+    bottom: 0;
+    left: 87px;
+    padding: 5px;
+    padding-bottom: 10px;
+}
+.numb-likes-left-pad{
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    color: #bcbcbc;
+    font-size: 12px;
+    padding-bottom: 6px;
+}
+.numb-shares-left-pad{
+    position: absolute;
+    bottom: 0;
+    left: 73px;
+    color: #bcbcbc;
+    font-size: 12px;
+    padding-bottom: 6px;
+}
+.numb-comments-left-pad{
+    position: absolute;
+    bottom: 0;
+    left: 112px;
+    color: #bcbcbc;
+    font-size: 12px;
+    padding-bottom: 6px;
+}
+.edit-albums-small{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    padding-bottom: 10px;
+
+}
+@media (min-width:992px) and (max-width:1920px){
+    .div-float {
+        margin-right: 15px;
+    }
+}
+@media (min-width:320px) and (max-width:690px){
+    .div-float {
+        margin-right: 10px;
+    }
+}

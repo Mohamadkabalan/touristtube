@@ -1,0 +1,539 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{#% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/flights/css/book-flights_new.css")|raw }}" >
+{% endblock %#}
+{% block pagenewjs %}
+    <script type="text/javascript">
+        var isCorporate = true;
+    </script>
+    {#
+<script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+<script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js") }}"></script>
+<script type="text/javascript" src="/assets/vendor/jquery/plugins/session/js/jquery.sessionTimeout.min.js"></script>
+<script type="text/javascript" src="/assets/flights/js/book-flight.js"></script>
+    #}
+{% endblock %}
+{% block title %}{{'Book Flight'|trans}} | Tourist Tube{% endblock %}
+{% block body %}
+
+    <section class="container main_flight_container">
+        {% set err = false %}
+        {% set clickhere = 'click here'|trans %}
+        {% set here = 'here'|trans %}
+        {% if priceError is defined %}
+            {% set err = true %}
+            <div class="price_error">
+                <p>{{'The price is no longer available.'|trans}}</p>
+                <p>{{'This might happen if the trip is sold out or its price has changed.'|trans}}</p>
+                {% if secTokenError is defined and secTokenError == true %}
+                    {% set clickhere = '<b>' ~ 'click here'|trans ~ '</b>' %}
+                    {% set here = '<b>' ~ 'here'|trans ~ '</b>' %}
+                {% endif %}
+                <p>{{'Kindly'|trans}} <a href="javascript:history.go(-2);">{{clickhere|raw}}</b></a> {{'to choose another flight or'|trans}} <a id="searchAgain" href="{{ generateLangRoute(LanguageGet,'_corporate_flight') }}">{{here|raw}}</a> {{'to search again.'|trans}}</p>
+            </div>
+        {% elseif errors is defined %}
+            <div class="alert-danger error-container">
+                <ul>
+                    {% for message in errors %}
+                        <li>
+                            {{message|raw}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% elseif error is defined %}
+            <div class="alert-danger error-container">
+                {{error}}
+            </div>
+        {% endif %}
+
+        {% if not err %}
+
+            {{ include('@Flight/flight/flight-steps-bar.twig', { 'step': 3 }) }}
+
+            {{ form_start(form, {'action': generateLangRoute(LanguageGet, '_corporate_flight_controller_service'), 'attr': {'id': 'bookAirTicket'}}) }}
+            <div class="row margin_top_30">
+                <div class="col-sm-9 col-xs-12">
+                    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Review and book'|trans}}</h1>
+                </div>
+                <div class="col-sm-3 col-xs-12 currencyselectbox_top">
+                    <div class="currency_top_but">
+                        <p class="curtext_hp"><span>{{currency_symbol.symbol|raw}}</span> {{selected_currency|raw}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_30">
+                <div class="col-md-3 col-xs-12 left_panel">
+                    <div class="row">
+                        {% set flightType = "" %}
+                        {% if flight_segments['leaving']['multi_destination'] == 1 %}
+                            {% set flightType = "Multidestination Flight" %}
+                        {% elseif flight_segments['leaving']['one_way'] == 1 %}
+                            {% set flightType = "Oneway Flight" %}
+                        {% else %}
+                            {% set flightType = "Roundtrip Flight" %}
+                        {% endif %}
+                        <div class="col-xs-12">
+                            <div class="icon-list"><i class="fas fa-angle-right fa-2x"></i></div>
+                            <div class="side-list">
+                                <h2>{{flightType|trans}}</h2>
+                                {% if flight_segments['leaving'] is defined %}
+                                    {% set departure = "" %}
+                                    {% set arrival = "" %}
+
+                                    {% for leaving in flight_segments['leaving']['flight_info'] %}
+                                        {% set idx = loop.index %}
+
+                                    {% if idx == 1 %}{% set departure = leaving['departure_date'] %}{% endif %}
+
+                                    {% if leaving['stop_segment'] is defined and leaving['stop_segment'] is iterable %}
+                                        <p class="hidden-sm"><span class="txt-black">{{leaving['origin_city']|raw}} ({{leaving['origin_airport_code']|raw}}) {{'to'|trans}} {{leaving['stop_segment'][0]['destination_city']|raw}} ({{leaving['stop_segment'][0]['destination_airport_code']|raw}})</span></p>
+                                    {% else %}
+                                        <p class="hidden-sm"><span class="txt-black">{{leaving['origin_city']|raw}} ({{leaving['origin_airport_code']|raw}}) {{'to'|trans}} {{leaving['destination_city']|raw}} ({{leaving['destination_airport_code']|raw}})</span></p>
+                                    {% endif %}
+
+                                    {% set arrival = leaving['arrival_date'] %}
+                                {% endfor %}
+
+                                {% if flight_segments['returning'] is defined %}
+                                    {% for returning in flight_segments['returning']['flight_info'] %}
+
+                                        {% if returning['stop_segment'] is defined and returning['stop_segment'] is iterable %}
+                                            <p class="hidden-sm"><span class="txt-black">{{returning['origin_city']|raw}} ({{returning['origin_airport_code']|raw}}) {{'to'|trans}} {{returning['stop_segment'][0]['destination_city']|raw}} ({{returning['stop_segment'][0]['destination_airport_code']|raw}})</span></p>
+                                        {% else %}
+                                            <p class="hidden-sm"><span class="txt-black">{{returning['origin_city']|raw}} ({{returning['origin_airport_code']|raw}}) {{'to'|trans}} {{returning['destination_city']|raw}} ({{returning['destination_airport_code']|raw}})</span></p>
+                                        {% endif %}
+
+                                        {% if returning['arrival_date'] != arrival %}
+                                            {% set arrival = returning['arrival_date'] %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                {% endif %}
+                            {% endif %}
+                            <p class="hidden-sm">{{departure}} {% if flight_segments['leaving']['multi_destination'] == 1 or flight_segments['leaving']['one_way'] == 0 %} - {{arrival}} {% endif %}<span class="visible-xs">{{tickets|trans}}: {{ADT|trans}} {{CNN|trans}}</span></p>
+                            <p class="hidden-sm hidden-xs">{{tickets|trans}}: {{ADT|trans}} {{CNN|trans}}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 margin_top_40 small_margin_top_10">
+                        <div class="icon-list"><i class="fas fa-angle-right fa-2x"></i></div>
+                        <div class="side-list">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2>{{'Price'|trans}}</h2>
+                                </div>
+                                
+                                <div class="col-md-12 col-sm-3 col-xs-6">
+                                    <p class="margin_bottom_0">{{'Base Fare'|trans}}</p>
+                                    <p class="txt-black margin_top_0 price-convert" data-price="{{ (totalPrice-totalTaxes)|raw }}"><span class="currency-convert-text">{{displayed_currency}}</span> <span class="price-convert-text">{{ (totalPrice-totalTaxes)|number_format(2, '.', ',')}}</span></p>
+                                </div>
+                                <div class="col-md-12 col-sm-3 col-xs-6">
+                                    <p class="margin_bottom_0">{{'Taxes and fees'|trans}}</p>
+                                    <p class="txt-black margin_top_0 price-convert" data-price="{{ (totalTaxes)|raw }}"><span class="currency-convert-text">{{displayed_currency}}</span> <span class="price-convert-text">{{totalTaxes|number_format(2, '.', ',')}}</span></p>
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-xs-12 txt-black">
+                                    <p class="margin_bottom_0">{{'Flight total'|trans}}</p>
+                                    <p class="margin_top_0 font-30 price-convert" data-price="{{ (totalPrice)|raw }}"><span class="currency-convert-text">{{displayed_currency}}</span> <span class="price-convert-text">{{totalPrice|number_format(2, '.', ',')}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 col-xs-12 right_panel">
+                <div class="row small_margin_top_10">
+                    <div class="col-md-10 col-xs-12">
+                        <div class="icon-list-exclamation"><i class="fas fa-exclamation fa-lg"></i></div>
+                        <div class="side-list">
+                            {#                          {{'The price of your trip has changed from'|trans}} {{displayed_currency|raw}} {{original_price|number_format(2, '.', ',')}} {{'to'|trans}} {{displayed_currency|raw}} {{displayed_price|number_format(2, '.', ',')}}.<br/>#}
+                            {{'Rates can change frequently'|trans}}.<br/>
+                            {{'Book now to lock in this price'|trans}}.
+                        </div>
+                    </div>
+                    <div class="col-xs-12"><div class="border-bottom-2 margin_top_25"></div></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="txt-black">{{"Who's flying"|trans}}?</h2>
+                        <p class="txt-light-grey font-16">{{'Traveler names must match your government-issued photo ID exactly'|trans}}.</p>
+                        <p class="txt-light-grey font-17">{{flight_segments['leaving']['flight_info'][0]['origin_city']|trans}} ({{flight_segments['leaving']['flight_info'][0]['origin_airport_code']|trans}}) {{'to'|trans}} {{flight_segments['leaving']['destination_city']|raw}} ({{flight_segments['leaving']['destination_main_airport']}}) <span class="txt-dark-grey">>
+
+                                {{flight_segments['leaving']['flight_info'][0]['departure_date']|raw}}
+                                {% if flight_segments['leaving']['multi_destination'] == 1 or  flight_segments['leaving']['one_way'] == 0 %} - {{arrival|raw}} {% endif %}</span></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="error form-errors">{{ form_errors(form) }}</div>
+                        {% for index, passenger in form.passengerDetails %}
+                            {#Traveler 1#}
+                            <div class="row margin_top_30">
+                                <div class="col-xs-12">
+                                    <i class="fas fa-angle-right fa-lg tt-brand-color"></i> <span class="font-24 txt-black">{{'Traveler'|trans}} {{loop.index}}</span> <span class="txt-light-grey font-16">{{passengersArray[index].name}}{% if loop.index == 1 %}, {{'primary contact'|trans}}{% endif %}
+                                        {{ form_widget(passenger.type, {'attr': {'value': passengersArray[index].type}}) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="row commun_small_row_margin">
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                    <div><strong>{{'Title'|trans}}*</strong></div>
+                                    <div><strong>{{ form_widget(passenger.gender, {attr: {'class':'flight_input_pr'}}) }}</strong></div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                    <label class="">{{'First name'|trans}}</label>
+                                    {{ form_widget(passenger.firstName, {attr: {'placeholder':'First name*'|trans, 'class':'flight_input traveler_first_name name required'}}) }}
+                                    <div class="error">{{ form_errors(passenger.firstName)|trans }}</div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                    <label class="">{{'Last name'|trans}}</label>
+                                    {{ form_widget(passenger.surname, {attr: {'placeholder':'Last name*'|trans, 'class':'flight_input traveler_last_name name required'}}) }}
+                                    <div class="error">{{ form_errors(passenger.surname)|trans }}</div>
+                                </div>
+                            </div>
+                            <div class="row commun_small_row_margin">
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                    <div class="icon-list-exclamation">{{ form_widget(passenger.receiveAlerts, {attr: {'data-passenger':index }}) }}</div>
+                                    <div class="side-list">
+                                        <p for="agree"  class="receiveAlertsLabel">
+                                            {{ 'Receive text alerts about this trip.Message and data rates may apply'|trans }}</a>
+                                            .
+                                        </p>
+                                    </div>
+                                    <div class="icon-list-exclamation">{{ form_widget(passenger.usePhoneEmail, {attr: {'data-passenger':index }}) }}</div>
+                                    <div class="side-list">
+                                        <p for="agree"  class="usePhoneEmailLabel">
+                                            {{ 'Use same phone number and email addresses as contact details'|trans }}</a>
+                                            .
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding passengerPhoneContainer_{{ index }}">
+                                    <label class="">{{ 'Phone'|trans }}</label>
+                                    {{ form_widget(passenger.phone, {attr: {'data-passenger':index,'placeholder':'Phone*'|trans, 'class':'flight_input traveler_mobile mobile-input phone_nbr'}}) }}
+                                    <div class="error">{{ form_errors(passenger.phone)|trans }}</div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding passengerEmailContainer_{{ index }}">
+                                    <label class="">{{ 'Email address'|trans }}</label>
+                                    {{ form_widget(passenger.email, {attr: {'data-passenger':index,'placeholder':'Email*'|trans, 'class':'flight_input traveler_email'}}) }}
+                                    <div class="error">{{ form_errors(passenger.email)|trans }}</div>
+                                </div>
+                            </div>
+                            <div class="row commun_small_row_margin "  >
+                                <div class="col-sm-4 col-xs-12  commun_small_col_padding"></div>
+                                <div class="col-sm-8 col-xs-12  commun_small_col_padding">
+                                    <p class="receiveAlertsMessage hidden" id="receiveAlertsMessage_{{ index }}">You can not receive anymore any alternation regarding your flight's information. In order to be updated, please check the box on the left ..</p>
+                                </div>
+                            </div>
+                            <div class="row commun_small_row_margin">
+                                <div class="col-xs-12 margin_top_25 commun_small_col_padding">
+                                    <strong>{{'Traveller ID Info'|trans}}*</strong> <small>({{'date of birth'|trans}})</small>
+                                </div>
+                            </div>
+                            <div class="row commun_small_row_margin">
+                                <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                    <label class="">{{'Date of Birth'|trans}}</label>
+                                    {{ form_widget(passenger.dateOfBirth, {attr: {'class':'flight_input_pr traveler_date required dobrow'}}) }}
+                                    <div class="error">{{ form_errors(passenger.dateOfBirth)|trans }}</div>
+                                </div>
+                                {% if isPassportRequired == 1 %}
+                                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                        <label class="">{{'Passenger ID Number'|trans}}</label>
+                                        {{ form_widget(passenger.idNo, {attr: {'class':'flight_input traveler_id required', 'placeholder':'ID No.*'|trans}}) }}
+                                        <div class="error">{{ form_errors(passenger.idNo)|trans }}</div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                        <label class="">{{'Passport Nationality Country'|trans}}</label>
+                                        {{ form_widget(passenger.passportNationalityCountry, {attr: {'class':'flight_input', 'title':'Nationality Country'|trans}}) }}
+                                        <div class="error">{{ form_errors(passenger.passportNationalityCountry)|trans }}</div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {% if isPassportRequired == 1 %}
+                                <div class="row commun_small_row_margin">
+                                    <div class="col-xs-12 margin_top_25 commun_small_col_padding">
+                                        <strong>{{'Traveller Passport Info'|trans}}*</strong> <small>({{'passport expiry date'|trans}})</small>
+                                    </div>
+                                </div>
+                                <div class="row commun_small_row_margin">
+                                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                        <label class="">{{'Passport Expiry'|trans}}</label>
+                                        {{ form_widget(passenger.passportExpiry, {attr: {'class':'flight_input_pr traveler_passport_expiry'}}) }}
+                                        <div class="error">{{ form_errors(passenger.passportExpiry)|trans }}</div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                        <label class="">{{'Passport Number'|trans}}</label>
+                                        {{ form_widget(passenger.passportNo, {attr: {'class':'flight_input traveler_passport_no required', 'placeholder':'Passport No.*'|trans}}) }}
+                                        <div class="error">{{ form_errors(passenger.passportNo)|trans }}</div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                                        <label class="">{{'Passport Issue Country'|trans}}</label>
+                                        {{ form_widget(passenger.passportIssueCountry, {attr: {'class':'flight_input'}}) }}
+                                        <div class="error">{{ form_errors(passenger.passportIssueCountry)|trans }}</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <div class="row font-14 margin_top_25 commun_small_row_margin">
+                                {% if flight_segments['leaving']['multi_destination'] == 1 %}
+                                    {% for key, flight_info in flight_segments['leaving']['flight_info'] %}
+                                        <div class="col-xs-6 commun_small_col_padding">
+                                            <p class="departure_list margin_top_10"><i class="fas fa-plane"></i>
+                                                {{flight_info['origin_airport_code']|raw}} -
+                                                {% if flight_info['stop_segment'] is iterable %}
+                                                    {% set airport = "" %}
+                                                    {% for index, stop_segment in flight_info['stop_segment'] %}
+                                                        {% set airport = stop_segment['destination_airport_code']|raw %}
+                                                    {% endfor %}
+                                                    {{airport}}
+                                                {% else %}
+                                                    {{flight_info['destination_airport_code'] |raw}}
+                                                {% endif %}
+                                                , {{flight_info['airline_name']|raw}}
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 luggage_panel commun_small_col_padding">
+                                            <p class="departure_list margin_top_10"><i class="fas fa-suitcase"></i>
+                                                {% if passengersArray[index]['leaving_baggage_info'] == "" or passengersArray[index]['leaving_baggage_info'] == 0%}
+                                                    {{'No information about baggage fees (Please confirm with airline)'|trans}}
+                                                {% else %}
+                                                    {{passengersArray[index]['leaving_baggage_info']|raw}} {{'of hold luggage included.'|trans}}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for key, flight_info in flight_segments['leaving']['flight_info'] %}
+                                        <div class="col-xs-6 commun_small_col_padding">
+                                            <p class="departure_list margin_top_10"><i class="fas fa-plane"></i>
+                                                {{flight_info['origin_airport_code']|raw}} -
+                                                {% if flight_info['stop_segment'] is defined and flight_info['stop_segment'] is iterable %}
+                                                    {% set airport = "" %}
+                                                    {% for index, stop_segment in flight_info['stop_segment'] %}
+                                                        {% set airport = stop_segment['destination_airport_code']|raw %}
+                                                    {% endfor %}
+                                                    {{airport}}
+                                                {% else %}
+                                                    {{flight_info['destination_airport_code'] |raw}}
+                                                {% endif %}
+                                                , {{flight_info['airline_name']|raw}}
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 luggage_panel commun_small_col_padding">
+                                            <p class="departure_list margin_top_10"><i class="fas fa-suitcase"></i>
+                                                {% if passengersArray[index]['leaving_baggage_info'] == "" or passengersArray[index]['leaving_baggage_info'] == 0%}
+                                                    {{'No information about baggage fees (Please confirm with airline)'|trans}}
+                                                {% else %}
+                                                    {{passengersArray[index]['leaving_baggage_info']|raw}} {{'of hold luggage included.'|trans}}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    {% endfor %}
+
+                                    {% if flight_segments['returning'] is defined %}
+                                        {% for key, flight_info in flight_segments['returning']['flight_info'] %}
+                                            <div class="col-xs-6 commun_small_col_padding">
+                                                <p class="arrival_list margin_top_10"><i class="fas fa-plane fa-rotate-180"></i>
+                                                    {{flight_info['origin_airport_code']|raw}} -
+                                                    {% if flight_info['stop_segment'] is defined and flight_info['stop_segment'] is iterable %}
+                                                        {% set airport = "" %}
+                                                        {% for index, stop_segment in flight_info['stop_segment'] %}
+                                                            {% set airport = stop_segment['destination_airport_code']|raw %}
+                                                        {% endfor %}
+                                                        {{airport}}
+                                                    {% else %}
+                                                        {{flight_info['destination_airport_code'] |raw}}
+                                                    {% endif %}
+                                                    , {{flight_info['airline_name']|raw}}
+                                                </p>
+                                            </div>
+                                            <div class="col-xs-6 luggage_panel commun_small_col_padding">
+                                                <p class="departure_list margin_top_10"><i class="fas fa-suitcase"></i>
+                                                    {% if passengersArray[index]['returning_baggage_info'] == "" or passengersArray[index]['returning_baggage_info'] == 0%}
+                                                        {{'No information about baggage fees (Please confirm with airline)'|trans}}
+                                                    {% else %}
+                                                        {{passengersArray[index]['returning_baggage_info']|raw}} {{'of hold luggage included.'|trans}}
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            {#<div class="row margin_top_25">
+                              <div class="col-xs-12 text-uppercase txtBlue">frequent flyer program</div>
+                              <div class="col-md-4 col-sm-6 col-xs-12 margin_top_25">
+                                <select class="flight_input">
+                                  <option value="0">Airline / Program</option>
+                                </select>
+                              </div>
+                              <div class="col-md-4 col-sm-6 col-xs-12 margin_top_25">
+                                <input type="text" class="flight_input" placeholder="Frequent flyer number" />
+                              </div>
+                            </div>#}
+                            <div class="row">
+                                <div class="col-xs-12"><div class="border-bottom-2 margin_top_30"></div></div>
+                            </div>
+                            {#end traveler 1#}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row margin_top_30 commun_small_row_margin">
+                    <div class="col-xs-12 commun_small_col_padding">
+                        <h2 class="txt-black">{{'Contact Details'|trans}}</h2>
+                    </div>
+                </div>
+                <div class="row margin_top_25 commun_small_row_margin">
+                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'First name'|trans}}</label>
+                        {{ form_widget(form.firstName, {attr: {'placeholder':'First name*'|trans, 'class':'flight_input name'}}) }}
+                        <div class="error">{{ form_errors(form.firstName)|trans }}</div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Last name'|trans}}</label>
+                        {{ form_widget(form.surname, {attr: {'placeholder':'Last name*'|trans, 'class':'flight_input name'}}) }}
+                        <div class="error">{{ form_errors(form.surname)|trans }}</div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Email'|trans}}</label>
+                        {{ form_widget(form.email, {'value' : user_email, attr:{'class':'flight_input', 'placeholder':'Email*'|trans}}) }}
+                        <div class="error">{{ form_errors(form.email)|trans }}</div>
+                    </div>
+                </div>
+                <div class="row commun_small_row_margin">
+                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Country Of Residence'|trans}}</label>
+                        {{ form_widget(form.countryOfResidence, {attr: {'class':'flight_input_commun'}}) }}
+                        <div class="error">{{ form_errors(form.countryOfResidence)|trans }}</div>
+                    </div>
+                    {#<div class="col-md-1 col-sm-6 col-xs-12 margin_top_25">
+                        <div class="margin_top_25"><strong>{{'Mobile'|trans}}</strong></div>
+                    </div>#}
+                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Mobile Country Code'|trans}}</label>
+                        {{ form_widget(form.mobileCountryCode, {attr: {'class':'flight_input_commun'}}) }}
+                        <div class="error">{{ form_errors(form.mobileCountryCode)|trans }}</div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Mobile Number'|trans}}</label>
+                        {{ form_widget(form.mobile, {attr: {'placeholder':'Mobile No.*'|trans, 'class':'flight_input phone_nbr'}}) }}
+                        <div class="error">{{ form_errors(form.mobile)|trans }}</div>
+                    </div>
+                </div>
+
+                <div class="row commun_small_row_margin">
+                    <div class="col-md-4 col-sm-6 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Alternative Number'|trans}}</label>
+                        {{ form_widget(form.alternativeNumber, {attr:{'class':'flight_input phone_nbr', 'placeholder':'Add alternative number'|trans}}) }}
+                        <div class="error">{{ form_errors(form.alternativeNumber)|trans }}</div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 margin_top_25 commun_small_col_padding">
+                        <label class="">{{'Membership ID'|trans}}</label>
+                        {{ form_widget(form.membership_id, {attr:{'class':'flight_input', 'placeholder':'Membership ID'|trans}}) }}
+                        <div class="error">{{ form_errors(form.membership_id)|trans }}</div>
+                    </div>
+                </div>
+
+                <div class="row margin_top_30 commun_small_row_margin">
+                    <div class="col-xs-12 commun_small_col_padding">
+                        <h2 class="txt-black">{{'Special requirements'|trans}}</h2>
+                    </div>
+                    <div class="col-xs-12 margin_top_25 commun_small_col_padding">
+                        {{ form_widget(form.specialRequirement, {attr:{'class':'flight_textarea', 'placeholder':'Complete only if you need assistance (unaccompanied minors, reduced mobility,...) or services (heavy luggage, pets, equipment,...)'|trans}}) }}
+                        <div class="error">{{ form_errors(form.specialRequirement)|trans }}</div>
+                    </div>
+                </div>
+                <div class="row margin_top_30 commun_small_row_margin">
+                    <div class="col-sx-12 commun_small_col_padding">
+                        <div class="col-xs-12 text-uppercase txtBlue">{{'Discount Code'|trans}}</div>
+                        {% if campaign_helper_text is defined %}
+                            <div><span class="coupon-shade-txt">{{campaign_helper_text|raw}}</span></div>
+                            {% endif %}
+                        <div class="col-md-4 col-sm-6 col-xs-12 margin_top_25 commun_small_col_padding">
+                            <input type="text" value="" maxlength="50" name="coupon_code" id="couponCode" class="flight_input coupon-code" placeholder="{{'enter your discount code'|trans}}"><div class="coupon-codeverification"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin_top_30">
+                    <div class="col-xs-12"><h2 class="txt-black">{{'Important flight information'|trans}}</h2></div>
+                    <div class="col-xs-12">
+                        <p>{{'Flight from'|trans}}
+                            {{flight_segments['leaving']['flight_info'][0]['origin_city']|trans}} ({{flight_segments['leaving']['flight_info'][0]['origin_airport_code']|trans}}) {{'to'|trans}} {{flight_segments['leaving']['destination_city']|raw}} ({{flight_segments['leaving']['destination_main_airport']}})
+                            -
+                            {{flight_segments['leaving']['flight_info'][0]['departure_date']|raw}}
+                            {% if flight_segments['leaving']['multi_destination'] == 1 or  flight_segments['leaving']['one_way'] == 0 %} - {{arrival|raw}} {% endif %}
+                        </p>
+                        <ul class="font-14">
+                            <li>{{'We understand that sometimes plans change. We do not charge a cancel or change fee. When the airline charges such fees in accordance with its own policies, the cost will be passed on to you'|trans}}.</li>
+                            <li>{{'Your roundtrip flight consists of two one-way fares which are subject to their own rules and restrictions. If one of your flights is  changed or cancelled, it will not automatically  change the other flight. Your may incur a penalty fee for each flight for additional changes'|trans}}. <a href="#">{{'Read more'|trans}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row margin_top_30">
+                    <div class="col-xs-12">
+                        <div class="icon-list-exclamation">{{ form_widget(form.terms) }}</div>
+                        <div class="side-list">
+                            <label for="agree" class="font-14">
+                                {{'By selecting to complete this booking I acknowledge that I have read and accept the'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{ 'terms and conditions'|trans }}" target="_blank">{{'Terms of Use'|trans}}</a> and <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{ 'privacy policy'|trans }}" target="_blank">{{'Privacy Policy'|trans}}</a>.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="error">{{ form_errors(form.terms)|trans }}</div>
+                    <div>
+                        {% for key, hiddenField in hiddenFields %}
+                            {% if key == 'price_attr' or key == 'price' or key == 'base_fare' or key == 'base_fare_attr' or key == 'taxes' or key == 'taxes_attr' %}
+                                <div class="price-convert" data-price="{{hiddenField|raw}}"><input class="price-convert-val" type="hidden" name="{{key}}" value="{{ hiddenField|raw }}"></div>
+                                {% elseif  key == 'currency_code' %}
+                                <div class="price-convert"><input class="currency-convert-val" type="hidden" name="{{key}}" value="{{ hiddenField|raw }}"></div>
+                                {% elseif  key != 'pin' %}
+                                <input type="hidden" name="{{key}}" value='{{ hiddenField|raw }}'/>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="row margin_top_25">
+                        <div class="col-sm-6 col-xs-12">
+                            {% if your_search is defined %}
+                                <input type="hidden" value="{{your_search|trans}}" name="response" />
+                            {% endif %}
+                            {% if flight_segments is defined %}
+                                <input type="hidden" value="{{flight_segments|json_encode()}}" name="flight_segments" />
+                            {% endif %}
+                            {% if forwardToReviewTrip is defined %}
+                                <input type="hidden" name="forwardToReviewTrip" value="1" />
+                            {% endif %}
+                            <div class="col-xs-12">
+                                {{ form_widget(form.save, {attr:{'class':'btn search_hpage'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_25">
+                <div class="col-sm-6 col-xs-12">
+
+                    {% if your_search is defined %}
+                        <input type="hidden" value="{{ your_search|trans }}" name="response"/>
+                    {% endif %}
+
+                    {% if flight_segments is defined %}
+                        <input type="hidden" value="{{ flight_segments|json_encode() }}" name="flight_segments"/>
+                    {% endif %}
+
+                    {% if forwardToReviewTrip is defined %}
+                        <input type="hidden" name="forwardToReviewTrip" value="1"/>
+                    {% endif %}
+
+                    <div class="col-xs-12">{{ form_widget(form.save, {attr:{'class':'btn search_hpage'}}) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endif %}
+</section>
+{% endblock %}
+

@@ -1,0 +1,98 @@
+CorporateBundle\Entity\CorpoEmployees:
+    type: entity
+    table: corpo_employees
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoEmployeesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fname:
+            type: string
+            nullable: false
+            length: 100
+            column: fname
+        lname:
+            type: string
+            nullable: false
+            length: 100
+            column: lname
+        mname:
+            type: string
+            nullable: false
+            length: 100
+            column: mname
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id  
+        mobile:
+            type: string
+            nullable: false
+            length: 20
+            column: mobile   
+        phone1:
+            type: string
+            nullable: true
+            length: 20
+            column: phone1     
+        phone2:
+            type: string
+            nullable: true
+            length: 20
+            column: phone2 
+        address:
+            type: string
+            nullable: true
+            length: 500
+            column: address  
+        cityId:
+            type: integer
+            nullable: false
+            column: city_id   
+        countryCode:
+            type: string
+            length: 2
+            nullable: false
+            column: country_code
+        email:
+            type: string
+            nullable: true
+            length: 100
+            column: address     
+        passportNumber:
+            type: string
+            nullable: false
+            length: 20
+            column: passport_number 
+        issueDate:
+            type: datetime
+            nullable: false
+            column: issue_date
+        passportExpiryDate:
+            type: datetime
+            nullable: false
+            column: passport_expiry_date
+        departmentId:
+            type: integer
+            nullable: false
+            column: department_id  
+        userId:
+            type: integer
+            nullable: false
+            column: user_id
+        profilePicture:
+            type: string
+            nullable: false
+            length: 100
+            column: profile_picture 
+    lifecycleCallbacks: {  }

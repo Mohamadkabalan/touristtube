@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="{{ lang_local }}">
+    <head itemscope itemtype="http://schema.org/WebSite">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">-->
+        <link rel="shortcut icon" href="{{ favicon|raw }}" />
+        <title itemprop='name'>{{ seoPageTitle|raw }}</title>
+        <meta name="description" content="{{ seoPageDescription|raw }}"/>
+        <meta property="og:title" content="{{ seoPageTitle|raw }}" />
+        <meta property="og:url" content="{{ OriginalUrl|raw }}" />
+        {% if containFCBShare == true %}
+            <meta property="og:image" content="{{ fbimg|raw }}" />
+        {% endif %}
+        {{ ur_arraydata|raw }}
+        <!--<link rel="publisher" href="https://www.google.com/+Touristtubepage" />-->
+        {% for c in allCss %}
+        <link rel="stylesheet" type="text/css" href="{{ c|raw }}" />
+        {% endfor %}
+        {{ tmzone|raw }}
+        <script type="text/javascript" src="{{ jqueryLink|raw }}"></script>
+        <script type="text/javascript" src="{{ migrateLink|raw }}"></script>
+        <script type="text/javascript" src="/bundles/bazingajstranslation/js/translator.min.js"></script>
+        <script type="text/javascript" src="/translations/client?locales={{ lang_local|raw }}"></script>
+        <script type="text/javascript" src="{{ cookieLink|raw }}"></script>
+        <script type="text/javascript" src="{{ jqueryi18n|raw }}"></script>
+        <script type="text/javascript" src="{{ pofiledistpofile|raw }}"></script>
+        <script type="text/javascript" src="{{ json2Link|raw }}"></script>
+        <script type="text/javascript" src="{{ requestinvitationLink|raw }}"></script>
+        <script type="text/javascript" src="{{ mousestopLink|raw }}"></script>
+        <script type="text/javascript" src="{{ utilsLink|raw }}"></script>
+        <script type="text/javascript" src="{{ initLink|raw }}"></script>
+        <script type="text/javascript" src="{{ mousewheelLatestLink|raw }}"></script>
+        <script type="text/javascript" src="{{ jscrollpaneLink|raw }}"></script>
+
+        <script type="text/javascript" src="{{ runActiveContentLink|raw }}"></script>
+        <script type="text/javascript" src="{{ toolsLink|raw }}"></script>
+        <script type="text/javascript" src="{{ hammer4Link|raw }}"></script>
+        <script type="text/javascript" src="{{ hammerLink|raw }}"></script>
+        <script type="text/javascript" src="{{ noselectLink|raw }}"></script>
+
+        <script type="text/javascript" src="{{ jqueryUiLink|raw }}"></script>
+        <script type="text/javascript" src="{{ sizesLink|raw }}"></script>
+        <script type="text/javascript" src="{{ preloader2Link|raw }}"></script>
+        <script type="text/javascript" src="{{ fullscreenLinkJs|raw }}"></script>
+        <script type="text/javascript" src="{{ scrollFixLink|raw }}"></script>
+        <script type="text/javascript" src="{{ placeholdersLink|raw }}"></script>
+        <script type="text/javascript" src="{{ ratyJs|raw }}"></script>
+
+        <script  type="text/javascript">
+            $(document).ready(function(){
+                $.ajax({
+                  url: ReturnLink('i18n/{{ js_local|raw }}/LC_MESSAGES/_{{ lang_local|raw }}.json') ,
+                  async: false, 
+                  type:'get',
+                  success: function(i18n_dict) {
+                       $.i18n.load(i18n_dict);
+                  }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="{{ underscoreJs|raw }}"></script>
+        <script type="text/javascript" src="{{ elasticJs|raw }}"></script>
+        <script type="text/javascript" src="{{ timeentryJs|raw }}"></script>
+        <script type="text/javascript" src="{{ mentionsInputJs|raw }}"></script>
+
+        <script type="text/javascript" src="{{ ("assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/pofile/dist/pofile.js")|link }}"></script>
+
+        <script type="text/javascript" src="{{ jscal2Js|raw }}"></script>
+        <script type="text/javascript" src="{{ jscal2EnJs|raw }}"></script>
+        {{ mapscrip|raw }}
+        {{ includePart|raw |raw }}
+        <script type="text/javascript" src="{{ pluploadFullLink|raw }}"></script>
+        <script type="text/javascript" src="{{ carouselLiteJs|raw }}"></script>
+
+        <script type="text/javascript">
+                    $(document).ready(function(e) {
+
+            $('body').prepend('<style type="text/css"> .fullFancyDim { height: ' + screen.height + 'px !important; } </style>');
+                    $('#tsearch').autocomplete({
+            delay: 5,
+                    search: function(event, ui) {
+                    var $searchString = $('#tsearch');
+                            var searchString = $searchString.val();
+                            $('#tsearch').autocomplete("option", "source", ReturnLink('/ajax/channel_suggest.php'));
+                    },
+                    focus: function(event, ui) {
+                    //$(this).val(ui.item.right);
+                    return false;
+                    },
+                    select: function(event, ui) {
+                    event.preventDefault();
+                            $('#tsearch').val(ui.item.channel_name);
+                            submitSearchForm();
+                    }
+            }).keydown(function(event) {
+            if (event.keyCode == 13) {
+            event.preventDefault();
+                    submitSearchForm();
+            }
+
+            }).data("ui-autocomplete")._renderItem = function(ul, item) {
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append("<a title='" + item.right.replace(/(<([^>]+)>)/ig, "") + "'>" + item.label + "<span class='searchttl'>" + item.name + "</span></a>")
+                    .appendTo(ul);
+            }
+            });
+                    var userIsLogged = {{ '1' | cond(userIsLogged == 1, '0') }};
+                    var ServerMaxFileSize = {{ uploadMaxFileSize | raw }};
+                    var USER_IS_LOGGED = {{ 'true' | cond(userIsLogged == 1, 'false') }};
+            {% if containVideo == true %}
+            var ORIGINAL_MEDIA_ID = {{ currentid | raw }};
+                    var ORIGINAL_ENTITY_TYPE = {{ entitytype | raw }};
+                    var is_owner = '{{ isowner|raw }}';
+                    var user_Is_channel = '{{ userIsChannel|raw }}';
+                    var user_is_logged = '{{ userislogged2|raw }}';
+                    var pagename = "media_page";
+                    var COMMENT_TYPE = "m";
+                    ThumbPath = '';
+                    channelGlobalID('{{ channelGlobId|raw }}');
+            {% endif %}
+        function closeFancy(){
+            $.fancybox.close();
+        }
+        </script>
+    </head>
+
+    <body>
+        <div id="popup_creatid" class="popup_creat bag_popup"></div>
+    <a rel="nofollow" href="https://www.facebook.com/pages/Tourist-Tube/1635194046710440?fref=ts" rel="nofollow" title="facebook" class="displaynone"></a>
+        <div id="TopMenu">
+            <div id="InsideTopMenu">
+                <a href="{{ indexLink|raw }}" id="Logo"></a>
+                <div id="TopMenuContainer">
+                    <div id="RightTopMenuInside">
+                        <ul class="chregMN">
+                            {% if userIsLogged == 0 %}
+                            <li><a class="TopRegisterLink marginRight0" href="{{ registerLink|raw }}">{{ registerText|raw }}</a></li>
+                            <li>|</li>
+                            <li><a href="{{ CreateChannelLink|raw }}" style="margin-right:10px;">{{ CreateChannelTxt|raw }}</a></li>
+                            {% else %}
+                            <li><a href="{{ 'channel-add'|link }}">{{ 'create my channel'|lang }}</a></li>
+                            <li>|</li>
+                            {% if channelCondition  == true %}
+                            <li class="top_menu_addcontent"><a id="uploadLink" href="{{ channelUpLink|raw }}">{{ addContentTxt|raw }}</a>
+                                <div id="top_menu_mouseover" class="top_menu_popunder">
+                                    <div class="top_menu_popunder_body">
+                                        {% if tempcount>0 %}
+                                            <a href="{{ channellistLink|raw }}">{{ 'Pending media'|lang }}</a>
+                                            <div class="line"></div>
+                                        {% endif %}
+                                        <a href="{{ channelUpLink|raw }}">{{ photosText|raw }}</a>
+                                        <div class="line"></div>
+                                        <a href="{{ channelUpLink|raw }}">{{ videosText|raw }}</a>
+                                        <div class="line"></div>
+                                        <a href="{{ channelUpAlbumLink|raw }}">{{ albums2Text|raw }}</a>
+                                        <div class="line"></div>
+                                        <a href="{{ channelAddAlbumLink|raw }}">{{ brochuresText|raw }}</a>
+                                        <div class="line"></div>
+                                        <a href="{{ channelAddEventLink|raw }}">{{ eventsText|raw }}</a>
+                                        <div class="line"></div>
+                                        <a href="{{ channelAddNewsLink|raw }}">{{ newsText|raw }}</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>|</li>
+                            {% endif %}
+                            <li><a id="WelcomeStringComb" href="{{ welcome_link|raw }}"><span id="WelcomeString">{{ welcomeText|raw }}</span> - <span id="WelcomeUserName">{{ welcome_name|raw }}</span></a></li>
+                            {% endif %}
+                        </ul>
+			{% if userIsLogged == 0 %}
+			    <a href="{{login_page_link|raw}}" title="{{ 'SIGN IN'|lang }}" id="SignInBtn">{{ loginText|raw }}<div id="SignInBtnbk"></div></a>
+                        {% else %}
+			    <div id="SignOutBtn"></div>
+			    <div id="TopProfileDiv">
+				<div id="OtherChannelsPop">
+				    <div class="main">
+					<div class="top">
+					    MY CHANNELS <span class="yellowbold11">({{ channelListAll|raw }})</span>
+					    <div class="next {{ channelDisabled|raw }}">{{"next"|lang}}</div>
+					    <div class="prev disabled">{{"previous"|lang}}</div>
+					    <div class="close showChannels"></div>
+					</div>
+					<div class="containertop caouselother">
+					    <ul>
+						<li>
+						    {% for c in channelAll %}
+						    {{ c.li|raw }}
+						    <div class="insideli" data-id="{{ c.top_channel_id|raw }}">
+							{% if is_owner == 0 %}
+							<div title="{{switchToTxt|raw}} {{ c.top_channel_name|raw }}" class="insideli_switch {{ c.active|raw }}"></div>
+							{% endif %}
+							<a href="{{ c.top_channel_url|raw }}" title="{{ c.top_channel_name_stan|raw }}"><div class="TopProfileDivIcon">{{ c.top_channel_logo|raw }}</div><div class="TopProfileDivText {{ c.classnew|raw }}">{{ c.top_channel_name|raw }}</div></a>
+						    </div>
+						    {% endfor %}
+						</li>
+					    </ul>
+					</div>
+				    </div>
+				</div>
+				<ul class="smallChMN">
+						{% if userChannel == false %}
+
+					    <li data-id="profile">
+						{% if ownerPageCondition == true %}
+						    <div title="{{switchToTxt|raw}} {{ fullNameStan|raw }}" class="insideli_switch{{ profileAcive|raw }}" style="bottom:14px;"></div>
+						{% endif %}
+						<a href="{{ 'myprofile'|link }}"
+						   title="{{ fullNameStan|raw }}">
+						    <div class="TopProfileDivIcon">
+							<img src="{{ profilePicImg|raw }}"
+							     width="28" height="28" 
+							     alt="{{ fullNameStan|raw }}"/>
+						    </div>
+						    <div class="TopProfileDivText">
+							{{ fullNameStan|raw }}
+						    </div>
+						</a>
+					    </li>
+					{% endif %}
+				    {% for ch in channelListArr %}
+				    <li data-id="{{ ch.top_channel_id|raw }}">
+					{% if is_owner == 0%}
+					<div title="{{switchToTxt|raw}} {{ ch.top_channel_name|raw }}" class="insideli_switch {{ ch.active|raw }}" style="bottom:14px;"></div>
+					{% endif %}
+					<a href="{{ ch.top_channel_url|raw }}" title="{{ ch.top_channel_name_stan|raw }}"><div class="TopProfileDivIcon">{{ ch.top_channel_logo|raw }}</div><div class="TopProfileDivText {{ ch.classnew|raw }}">{{ ch.top_channel_name|raw }}</div></a></li>
+				    {% endfor %}
+
+				    {%if toHideCond == true %}
+				    <li><a href="javascript:;" class="showChannels"><div class="TopProfileDivIcon"></div><div class="TopProfileDivText">{{ viewAllTxt|raw }}</div></a></li>
+				    {% endif %}
+				    <li><a href="{{ logoutLink|raw }}"><div class="TopProfileDivIcon"></div><div class="TopProfileDivText">{{ logoutText|raw }}</div></a></li>
+				</ul>
+			    </div>
+			    {% endif %}
+                    </div>
+                    <div id="TopSearchArea">
+                        <form id="SearchForm" name="SearchForm" action="{{ channelSearchLink|raw }}" method="get">
+                            <div class="SearchField" style="width: 300px;">
+                                <input placeholder="{{ searchTxt|raw }}" type="text" id="tsearch" name="tsearch" value="{{ searchValueTxt|raw }}"/>
+                            </div>
+                            <div class="SearchSubmit"></div>
+                        </form>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div id="MiddleTop" class="visited">
+            <div class="profileimagesbuttonsOver">
+                <div class="ProfileHeaderOverin"></div>
+                <div class="icons-overtik"></div>
+            </div>
+            <div id="InsideMiddelTop">
+                {% include "slotMachineChannel.html" %}
+            </div>
+        </div>
+  {% if RESPONSIVE == true %}     
+        <!-- nav -->
+<div id="nav_bar"> 
+   <script>
+      function menushow()
+		{
+			$("#mobile_tabsmain").slideToggle();
+		}
+		
+    </script>
+          <div id="nav_bar_mobile"> 
+              <a href="#" class="menu-toggle" onClick="menushow();"> 
+                  <span class="text">{{ 'Menu'|lang }}</span> 
+                  <span class="i_bar_btn"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span> 
+              </a>
+    <ul id="mobile_tabsmain" style="display:none">       
+                <li>
+                    <a class="tabsofive requestinvite" href="{{ SlotMachine_ThingstodoLink|raw }}" title="{{ SlotMachine_ThingstodoTxt|raw }}">
+                        <span class="mntxt">{{ SlotMachine_ThingstodoTxt|raw }}</span>
+                        <span class="sepright {{ SlotMachine_cond10 }} "></span>
+                    </a>
+                </li>
+              <li class="largecell3"><a class="tabsofive requestinvite" href="{{channels_page_link|raw}}" title="{{"Tourist Channels"|lang}}">
+                
+                <span>{{"Tourist Channels"|lang}}</span></a></li>
+              <li class=""> <a class="tabsofour requestinvite" href="{{'live'|link}}" title="{{"Tourist Live"|lang}}">
+                
+                <span>{{"Tourist Live"|lang}}</span></a></li>
+           
+              <li class=""><a class="tabsofour requestinvite" href="{{'review'|link}}" title="{{"Review & Rate"|lang}}">
+                <div></div>
+                <span>{{"Review & Rate"|lang}}</span></a></li>
+                {% if userIsLogged == 1%}
+<!--              <li class=""><a class="tabsofour requestinvite" href="{{'account/invite'|link}}" title="{{"Send Invitation"|lang}}">
+                <div></div>
+                <span>{{"Send Invitation"|lang}}</span></a></li>-->
+                {% endif %}
+          </ul>
+  </div>
+  </div>
+<!-- Nav -->
+ {% endif %}       
+        <div id="TTAlertContainer">
+            <div id="TTAlertContainerInside">
+                <div id="TTAlertContainerInside_data">
+                    <div id="TTAlert_content">
+                        <div class="TTAlert_text"></div>
+                    </div>
+                    <div id="TTAlert_shadow"></div>
+                    <div id="TTAlert_button_container">
+                        <div class="TTAlert_buts1 TTAlert_buts">{{ 'cancel'|lang }}</div>
+                        <div class="TTAlert_seperator"></div>
+                        <div class="TTAlert_buts2 TTAlert_buts">{{ 'register'|lang }}</div>
+                    </div>
+                    <div id="TTAlert_close"></div>
+                </div>
+            </div>
+            <div class="TTAlert_back_fix"></div>
+        </div>

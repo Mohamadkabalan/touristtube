@@ -1,0 +1,76 @@
+_rest_flights_book_lang:
+    path:      "/{_locale}/api/flights/book"
+    defaults: { _controller: RestBundle:flights\Flights:book, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_flights_create_pnr_lang:
+    path:      "/{_locale}/api/flights/create/pnr"
+    defaults: { _controller: RestBundle:flights\Flights:createPnr, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+        
+# Common Routes
+_rest_flights_search_lang:
+    path:      "/{_locale}/api/flights/search"
+    defaults: { _controller: RestBundle:flights\Flights:search, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_flights_search_airport_lang:
+    path:      "/{_locale}/api/flights/search-airport"
+    defaults: { _controller: RestBundle:flights\Flights:searchAirport, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+_rest_flights_search_flights_lang:
+    path:      "/{_locale}/api/v1/flights/search-flights"
+    defaults:  { _controller: RestBundle:flights\Flights:searchFlights, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+_rest_flights_Air_Book_lang:
+    path:      "/{_locale}/api/v1/flights/Air-Book"
+    defaults:  { _controller: RestBundle:flights\Flights:airBook, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_flights_Pnr_Creation_lang:
+    path:      "/{_locale}/api/v1/flights/create-pnr"
+    defaults:  { _controller: RestBundle:flights\Flights:PnrCreation ,_locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+
+_rest_flights_Air_Ticket_lang:
+    path:      "/{_locale}/api/v1/flights/Air-Ticket"
+    defaults:  { _controller: RestBundle:flights\Flights:AirTicket,_locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+
+_rest_flights_issue_ticket_lang:
+    path:      "/{_locale}/api/flights/issue/ticket/"
+    defaults: { _controller: RestBundle:flights\Flights:issueAirTicket, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+        
+_rest_flights_details_lang:
+    path:      "/{_locale}/api/flights/details/"
+    defaults: { _controller: RestBundle:flights\Flights:details, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+_rest_flights_Booking_lang:
+    path:      "/{_locale}/api/v1/flights/bookings"
+    defaults:  { _controller: RestBundle:flights\Flights:myBookingFlights, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST

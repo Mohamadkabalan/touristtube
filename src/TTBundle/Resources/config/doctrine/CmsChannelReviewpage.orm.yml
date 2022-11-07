@@ -1,0 +1,44 @@
+TTBundle\Entity\CmsChannelReviewpage:
+    type: entity
+    table: cms_channel_reviewpage
+    repositoryClass: TTBundle\Repository\ChannelRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: channel_id
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_type
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

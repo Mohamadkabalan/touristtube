@@ -1,0 +1,80 @@
+DealBundle\Entity\DealCity:
+    type: entity
+    table: deal_city
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: true
+            length: 10
+            column: country_code
+        cityCode:
+            type: string
+            nullable: true
+            length: 100
+            column: city_code
+        cityName:
+            type: string
+            nullable: true
+            length: 100
+            column: city_name    
+        state:
+            type: string
+            nullable: true
+            length: 200
+            column: state  
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+        cityId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: city_id   
+        dealApiSupplierId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: deal_api_supplier_id   
+        parentCityCode:
+            type: string
+            nullable: true
+            length: 100
+            column: parent_city_code      
+        priority:
+            type: integer
+            nullable: false
+            column: priority
+        image:
+            type: string
+            nullable: true
+            length: 255
+            column: image
+        displayOrder:
+            type: integer
+            nullable: true
+            length: 11
+            column: display_order               
+    lifecycleCallbacks: {  }

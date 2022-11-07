@@ -1,0 +1,153 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/payment/css/payment_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+
+{% endblock %}
+{% block body %}
+    <section class="container main_flight_container">
+        <div class="row margin_top_30">
+			<div class="col-xs-12">
+				<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right fa-2x"></i></span>{{'Payment method'|trans}}</h1>
+			</div>
+        </div>
+		
+        <div class="row margin_top_30">
+			<div class="col-xs-12 payment_panel">
+				
+				<div class="row corporate_code_wrapper">
+					<div class="col-md-10 col-xs-12">
+						<div class="row">
+							<div class="col-md-6 col-xs-8 no_padding_right">
+								<input type="text" name="corporate_code" class="flight_input" placeholder="Enter your corporate code" />
+							</div>
+							<div class="col-md-6 col-xs-4">
+								<div class="circlimg_arrow grey_arrow"><i class="fas fa-angle-double-right fa-2x"></i></div>
+							</div>
+							<div class="col-xs-12 margin_top_15">
+								<p class="txt-black">Enter your corporate code in order to proceed directly</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12"><div class="border-bottom-2 margin_top_20"></div></div>
+				</div>
+				
+				<div class="row card_detail_wrapper margin_top_30">
+					<div class="col-xs-12"><img src="{{ generateMediaURL('/media/images/payment/visa_master.jpg') }}" /></div>
+					<div class="col-md-10 col-xs-12 margin_top_10">
+						<div class="row">
+							<div class="col-md-6 col-xs-12 no_padding_right">
+								<input type="text" name="card_number" class="flight_input" placeholder="Credit Card number" required />
+							</div>
+							<div class="col-md-6 col-xs-12 small_padding_right_left">
+								<p class="margin_top_20">No spaces or special characters</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="col-md-10 col-xs-12 margin_top_10">
+						<div class="row">
+							<div class="col-md-6 col-xs-12 no_padding_right">
+								<div class="row">
+									<div class="col-xs-4 no_padding_right">
+										<input type="text" name="expiry_date" class="flight_input" placeholder="Expiry date" disabled />
+									</div>
+									<div class="col-xs-4 small_padding_right_left">
+										<select name="expiry_month" class="flight_input dark_theme">
+											<option value="0">Month</option>
+										</select>
+									</div>
+									<div class="col-xs-4 no_padding_left">
+										<select name="expiry_year" class="flight_input dark_theme">
+											<option value="0">Year</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-xs-12 small_padding_right_left small_margin_top_10">
+								<div class="row">
+									<div class="col-xs-4 no_padding_right">
+										<input type="text" name="card_cvv" class="flight_input" placeholder="CVV" />
+									</div>
+									<div class="col-xs-4 small_padding_right_left small_image max_image_width">
+										<img src="{{ generateMediaURL('/media/images/payment/cvv_number.jpg') }}" />
+									</div>
+									<div class="col-xs-4 no_padding_left">
+										<p class="margin_top_20">3 digits CVV number</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 margin_top_10">
+								<label for="save_card">
+									<input type="checkbox" class="tt_checkbox" name="save_card" id="save_card" value="1" />
+									Save this card for faster payment next time using <img src="{{ generateMediaURL('/media/images/payment/quick_book.jpg') }}" />
+								</label>
+							</div>
+							<div class="col-xs-12"><div class="border-bottom-2 margin_top_20"></div></div>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="col-xs-12 margin_top_30">
+						<div class="row">
+							<div class="col-xs-12">Or pay by using one of the following services:</div>
+							<div class="col-xs-12 max_image_width"><img src="{{ generateMediaURL('/media/images/payment/master_pass_visa.jpg') }}" /></div>
+							<div class="col-xs-12"><div class="border-bottom-2 margin_top_20"></div></div>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="col-xs-12 margin_top_30">
+						<div class="row">
+							<div class="col-xs-12">Secure payment with:</div>
+							<div class="col-md-1 col-sm-2 col-xs-4 margin_top_10"><img src="{{ generateMediaURL('/media/images/payment/verified_visa.jpg') }}" /></div>
+							<div class="col-md-11 col-sm-10 col-xs-8 margin_top_10">
+								<p class="margin_top_20 small_no_margin_top">if your card is set up with a protective password, you will redirected to your bank’s website to authorise the transaction.</p>
+							</div>
+							<div class="col-xs-12"><div class="border-bottom-2 margin_top_20"></div></div>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="col-xs-12 margin_top_30">
+						<div class="row">
+							<div class="col-md-1 col-sm-2 col-xs-4"><img src="{{ generateMediaURL('/media/images/payment/secure_global_sign.jpg') }}" /></div>
+							<div class="col-md-11 col-sm-10 col-xs-8">
+								<p>
+									the data transmitted are coded using SSL (Secure Socket Layer) technology.<br />
+									the session in progress on this iste is secure and protected by maximum privacy.
+								</p>
+							</div>
+							<div class="col-xs-12 margin_top_20">
+								<p>
+								Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.
+								For flight tickets modifications and other cancellations airlines ticketing policies apply.<br />
+								Kindly Contact: <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - Expected reply within 24 hours.<br />
+								</p>
+								<p>
+								By submitting this form, you confirm that you have read, agreed and accepted the <a href="#">terms and conditions</a> and the <a href="#">privacy policy.</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="col-md-2 col-sm-4 col-xs-12 margin_top_30">
+						<button class="btn search_hpage">Submit</button>
+					</div>
+					
+				</div>
+				
+				
+			</div>
+        </div>
+    </section>
+{% endblock %}

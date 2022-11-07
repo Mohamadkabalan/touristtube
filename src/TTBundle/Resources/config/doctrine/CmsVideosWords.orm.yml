@@ -1,0 +1,46 @@
+TTBundle\Entity\CmsVideosWords:
+    type: entity
+    table: cms_videos_words
+    indexes:
+        word:
+            columns:
+                - word
+        vid:
+            columns:
+                - vid
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        vid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'the video id'
+        word:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+                comment: 'the word'
+        weight:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        colType:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: true
+            column: col_type
+    lifecycleCallbacks: {  }

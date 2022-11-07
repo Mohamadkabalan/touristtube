@@ -1,0 +1,19 @@
+{% extends 'baseFinal.html.twig' %}
+{% block body %}
+    <section class="container book_hotel_container margin_top_30">
+	{% for itemMain in mainEntityArray %}
+	    <div class="row new_margin margin_divs">
+		{% for subItemMain in itemMain.subItem %}
+		    <a href="{{ subItemMain.link|raw }}" title="{{ subItemMain.namealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 new_padding">
+			<h2 class="hotel_in_title">{{'Hotels in'|trans}} <span>{{ subItemMain.name|raw }}</span></h2>
+			<img class="width-100" src="{{ subItemMain.img }}" alt="{{ subItemMain.namealt|raw }}">
+			<div class="but_greyback_conatiner">
+			    <button class="btn btn-info">{{'Book now'|trans}}</button>
+			</div>
+		    </a>
+		{% endfor %}
+	    </div>
+	{% endfor %}
+	<div class="row margin-top-35"></div>
+    </section>
+{% endblock %}

@@ -1,0 +1,133 @@
+<body>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="padding-left: 17px; padding-right: 17px; width:600px;">
+	<tbody>
+	    {% include 'emails/header.twig' %}
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="6" bgcolor="#ffffff">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="2" bgcolor="#eac31a">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 22px; font-family: Arial; color: black; margin-top: 19px; line-height: 22px; font-weight: bold; margin-bottom: 0;">{{dealName|trans}} - {{departureTime|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="21" bgcolor="#ffffff">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="219" height="35" style="text-align: left; font-size: 16px; background-color: #eac31a;font-family: Arial;">
+				<p style="color:#fffffe; padding-left: 8px; margin-bottom: 0;margin-top: 0; font-weight: bold;">{{'TouristTube Referene'|trans}}</p>
+			    </td>
+			    <td style="font-size: 0; line-height: 0;" width="10">
+				&nbsp;
+			    </td>
+			    <td width="351" height="35" style="text-align: left; font-size: 17px; background-color: #000000;font-family: Arial;">
+				<p style="color: #ffffff;text-align: left; margin-bottom: 0; padding-left: 8px; margin-top: 0;">{{bookingReference|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="10">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="219" height="35" style="text-align: left; font-size: 16px; background-color: #eac31a;font-family: Arial;">
+				<p style="color:#fffffe; padding-left: 8px; margin-bottom: 0;margin-top: 0; font-weight: bold;">{{'Date and time of activity'|trans}}</p>
+			    </td>
+			    <td style="font-size: 0; line-height: 0;" width="10">
+				&nbsp;
+			    </td>
+			    <td width="351" height="35" style="text-align: left; font-size: 17px; background-color: #000000;font-family: Arial;">
+				<p style="color: #ffffff;text-align: left; margin-bottom: 0; padding-left: 8px; margin-top: 0;">{{bookingDate|date("F d, Y")}} {{'at'|trans}} {{departureTime|capitalize}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="10">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="219" height="35" style="text-align: left; font-size: 16px; background-color: #eac31a;font-family: Arial;">
+				<p style="color:#fffffe; padding-left: 8px; margin-bottom: 0;margin-top: 0; font-weight: bold;">{{'Booking Price'|trans}}</p>
+			    </td>
+			    <td style="font-size: 0; line-height: 0;" width="10">
+				&nbsp;
+			    </td>
+			    <td width="351" height="35" style="text-align: left; font-size: 17px; background-color: #000000;font-family: Arial;">
+				<p style="color: #ffffff;text-align: left; margin-bottom: 0; padding-left: 8px; margin-top: 0;">{{currency|raw}} {{totalPrice|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="10">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="219" height="35" style="text-align: left; font-size: 16px; background-color: #eac31a;font-family: Arial;">
+				<p style="color:#fffffe; padding-left: 8px; margin-bottom: 0;margin-top: 0; font-weight: bold;">{{'Refunded Amount'|trans}}</p>
+			    </td>
+			    <td style="font-size: 0; line-height: 0;" width="10">
+				&nbsp;
+			    </td>
+			    <td width="351" height="35" style="text-align: left; font-size: 17px; background-color: #000000;font-family: Arial;">
+				<p style="color: #ffffff;text-align: left; margin-bottom: 0; padding-left: 8px; margin-top: 0;">
+				    {% if refund is defined %}
+					{{refund|raw}}
+				    {% else %}
+					{{'No Refund.'|trans}}
+				    {% endif %}
+				</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="43">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 27px; font-family: Arial; color: black; margin-top: 0px; line-height: 27px; margin-bottom: 0;">
+			{% if autoSend is defined and autoSend %}
+			    {{'We apologize for the inconvinience but we are unable to issue your ticket due to availability of your selected deal. Your money will be refunded within 5 to 10 days. We apologize for the inconvinience.'|trans}}
+			{% else %}
+			    {{'Your booking has been successfully cancelled!'|trans}}
+			{% endif %}
+		    </p>
+		</td>
+	    </tr>	    
+	    {% include 'emails/footer.twig' %}
+	</tbody>
+    </table>
+</body>

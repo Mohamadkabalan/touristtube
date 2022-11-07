@@ -1,0 +1,124 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}
+    {{ 'Attractions Book New'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container deals_container">
+	<form method="POST" action="{{ generateLangRoute(LanguageGet,'_deals_book_now') }}" autocomplete="off">
+	    <div id="fieldsContainer" class="row dynamic_fields_container">
+		<div class="col-md-9 col-xs-12">
+		    <div class="row no-margin margin_top_40">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad">
+				    <p class="font-24 black padding_left_10">{{'Select the start time'|trans}}</p>
+				</div>
+			    </div>
+			    <div class="row no-margin">
+				<div class="col-xs-12 margin_top_20 nopad">
+				    <div class="row no-margin">
+					<div class="col-xs-5 nopad">
+					    <p class="blue font-16">{{'Time (09:00 - 15:00)'|trans}}</p>
+					</div>
+					<div class="col-xs-7 nopad">
+					    <p class="blue font-16">{{'Booking type'|trans}}</p>
+					</div>
+				    </div>
+				    <!--<div class="row no-margin bordered_row_grey">
+					<div class="col-xs-5 line-height-36 nopad">
+					    <input id="" name="" disabled value="0" type="radio">
+					    <label class="disabled_label font-normal font-16 margin_bottom_0" for="">{{'09:00'|trans}}</label>
+					</div>
+					<div class="col-xs-7 line-height-36 nopad">
+					    <p class="disabled_text font-16 margin_bottom_0">{{'Closed'|trans}}</p>
+					</div>
+				    </div>-->
+				    <!-- Time Option -->
+				    {% if bookingQuote is defined %}
+					{% set quoteCounter = 1 %}
+					{% for bqKey,bqVal in bookingQuote %}
+					    <div class="row no-margin bordered_row_grey">
+						<div class="col-xs-5 line-height-36 nopad">
+						    <input id="bookingQuoteId{{quoteCounter}}" name="bookingQuoteId" value="{{bqVal.id}}" {{ (quoteCounter == 1)  ? 'checked' : '' }} type="radio">
+						    <label for="bookingQuoteId{{quoteCounter}}" class="font-16 black font-normal margin_bottom_0" for="">{{(bqVal.time|length > 0) ? bqVal.time : 'Within operating hours'|trans }}</label>
+						</div>
+						<div class="col-xs-7 line-height-36 nopad">
+						    <p class="font-16 black margin_bottom_0">{{'Request'|trans}}</p>
+						</div>
+					    </div>
+					    {% set quoteCounter = quoteCounter + 1 %}
+					{% endfor %}
+				    {% endif %}
+				    <div class="row no-margin margin_top_10">
+					<div class="col-xs-12 nopad">
+					    <div class="interrogation_circle_grey"><p>?</p></div>
+					    <a href="#" class="font-16 blue underline padding_left_30">{{'About booking type'|trans}}</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+
+
+		    {% if mandatoryFields is defined and mandatoryFields|length > 0 %}
+			<div class="row no-margin margin_top_40">
+			    <div class="col-xs-6 nopad">
+				<div class="row no-margin">
+				    <div class="col-xs-12 nopad">
+					<p class="font-24 black padding_left_10">{{'Personal Information (mandatory)'|trans}}</p>
+				    </div>
+				</div>
+				{% if mandatoryFields.perBooking is defined and mandatoryFields.perBooking |length > 0 %}
+				    {% for pbKey,pbfVal in mandatoryFields.perBooking  %}
+					{{pbfVal|raw}}
+				    {% endfor %}
+				{% endif %}
+				{% if mandatoryFields.perPerson is defined and mandatoryFields.perPerson |length > 0 %}
+				    {% set ppCounter = 1 %}
+				    {% for ppKey1,ppVal1 in mandatoryFields.perPerson  %}
+					<div class="row no-margin margin_top_20">
+					    <div class="col-xs-12 nopad">
+						<p class="blue font-16">{{'Participant '|trans}}{{ppCounter}}: {{ppVal1.blockLabel}}</p>
+					    </div>
+					    {% for ppKey2,ppVal2 in ppVal1.display  %}
+						{{ppVal2|raw}}
+					    {% endfor %}
+					</div>
+					{% set ppCounter = ppCounter + 1 %}
+				    {% endfor %}
+				{% endif %}
+			    </div>
+			</div>
+		    {% endif %}
+		    <span class="wrong_credentials wrong_credentialsmsg margintop2 col-xs-12"></span>
+		    <div class="row no-margin margin_top_40">
+			<div class="col-xs-12 nopad">
+			    <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+				<button id="mandatoryCancel" name="cancel" class="btn prev_grey_button" type="button">{{'Cancel'|trans}}</button>
+			    </div>
+			    <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+				<input id="packageId" name="packageId" type="hidden" value="{{ packageId }}">
+				<input id="tourCode" name="tourCode" type="hidden" value="{{ tourCode}}">
+				<input id="bookingDate" name="bookingDate" type="hidden" value="{{ bookingDate }}">
+				<input id="totalPrice" name="totalPrice" type="hidden" value="{{ totalPrice }}">
+				<input id="numOfPassenger" name="numOfPassenger" type="hidden" value="{{ numOfPassenger }}">
+				<input id="currency" name="currency" type="hidden" value="{{ currency }}">
+				<input id="startingPlace" name="startingPlace" type="hidden" value="{{ startingPlace }}">
+				<input id="dealHighlights" name="dealHighlights" type="hidden" value="{{ dealHighlights }}">
+				<input id="cancellationPolicy" name="cancellationPolicy" type="hidden" value="{{ cancellationPolicy }}">
+				<input type="hidden" id="returnPath" value="{{path('_deals_details_new', {'city': cityName,'dealName': dealName,'packageId': packageId})}}">
+				<button id="mandatoryContinue" name="continue" class="btn next_yellow_button" type="button" >{{'Go to next step'|trans}}</button>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</form>
+    </section>
+{% endblock %}

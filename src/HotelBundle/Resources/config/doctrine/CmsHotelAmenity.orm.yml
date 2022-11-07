@@ -1,0 +1,37 @@
+HotelBundle\Entity\CmsHotelAmenity:
+    type: entity
+    table: cms_hotel_amenity
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_id
+        amenityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: amenity_id
+        countValue:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: count_value
+    lifecycleCallbacks: {  }

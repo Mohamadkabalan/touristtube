@@ -1,0 +1,44 @@
+TTBundle\Entity\CmsPlacesStay:
+    type: entity
+    table: cms_places_stay
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+            column: country_code
+        count:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: name
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+    lifecycleCallbacks: {  }

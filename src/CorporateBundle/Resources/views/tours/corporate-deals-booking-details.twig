@@ -1,0 +1,205 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-booking-details.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}{{'Attractions Booking Details'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad">
+            {% include '@Corporate/tours/corporate-deals-common-header.twig' %}
+        </div>
+	{% if bookingDetails['error'] is defined %}
+	    <div class="col-xs-12 nopad pad-top-40 error-block inline-error">
+		<label class="error-label inline-error">{{ bookingDetails['error']|trans }}</label>
+	    </div>
+	{% endif %}
+	{% if bookingDetails['success'] is defined %}
+	    <div class="col-xs-12 nopad">
+		<div class="activateMsg">
+		    {{bookingDetails['success']|trans}}
+		</div>
+	    </div>
+	    <div class="col-xs-12">{{'Please check your inbox for an email confirming your cancellation.'|trans}}</div>
+	{% endif %}
+        <div class="col-xs-12 nopad">
+            <div class="col-xs-12 nopad">
+                <h2 class="ttle_detatt">{{bookingDetails['db_dealName']|trans}}</h2>
+            </div>
+	    {% if bookingDetails['db_dealHighlights'] is defined and bookingDetails['db_dealHighlights']|striptags|length %}
+		<div class="col-xs-12 nopad">
+		    <p class="boldblacktextcomm_deatt">{{'Highlights'|trans}}</p>
+		    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 nopad">
+			<p class="greytextcom_deatt">{% autoescape %}{{bookingDetails['db_dealHighlights']|trans}}{% endautoescape %}</p>
+		    </div>
+		</div>
+	    {% endif %}
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Reference Number:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+		    <p class="rightullistpink_deatt">{{bookingDetails['db_bookingReference']|raw}}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Booking Status:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+
+                    <p class="rightgreynormaltext_deatt">
+			{% if bookingDetails['db_bookingStatus']|lower == 'processing' %} {{'Cancellation is '|trans}} {% endif %} {{bookingDetails['db_bookingStatus']|trans}}
+		    </p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Booking Date:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+                    <p class="rightgreynormaltext_deatt">{{bookingDetails['db_bookingDate']|date("F d, Y")}}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Name of passenger:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+                    <p class="rightgreynormaltext_deatt">{{bookingDetails['db_title']|raw}} {{bookingDetails['db_firstName']|raw}} {{bookingDetails['db_lastName']|raw}}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Number of Adults:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+                    <p class="rightgreynormaltext_deatt">{{bookingDetails['db_numOfAdults']|raw}}</p>
+                </div>
+            </div>
+	    {% if bookingDetails['db_numOfChildren'] is defined and bookingDetails['db_numOfChildren'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+			<p class="leftblackboldtext_deatt">{{'Number of Children:'|trans}}</p>
+		    </div>
+		    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+			<p class="rightgreynormaltext_deatt">{{bookingDetails['db_numOfChildren']|raw}}</p>
+		    </div>
+		</div>
+	    {% endif %}
+	    {% if bookingDetails['dc_cityCode'] is defined and bookingDetails['dc_cityCode'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+			<p class="leftblackboldtext_deatt">{{'Departs From:'|trans}}</p>
+		    </div>
+		    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+			<p class="rightgreynormaltext_deatt">{{bookingDetails['dc_cityCode']|raw}}</p>
+		    </div>
+		</div>
+	    {% endif %}
+	    {% if bookingDetails['db_startingPlace'] is defined and bookingDetails['db_startingPlace'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+			<p class="leftblackboldtext_deatt">{{'Meeting Point:'|trans}}</p>
+		    </div>
+		    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+			<p class="rightgreynormaltext_deatt">{{bookingDetails['db_startingPlace']|raw}}</p>
+		    </div>
+		</div>
+	    {% endif %}
+	    {% if bookingDetails['db_departureTime'] is defined and bookingDetails['db_departureTime'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+			<p class="leftblackboldtext_deatt">{{'Departure Time:'|trans}}</p>
+		    </div>
+		    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+			<p class="rightgreynormaltext_deatt">{{bookingDetails['db_departureTime']|capitalize}}</p>
+		    </div>
+		</div>
+	    {% endif %}
+	    {% if bookingDetails['db_duration'] is defined and bookingDetails['db_duration'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+			<p class="leftblackboldtext_deatt">{{'Duration:'|trans}}</p>
+		    </div>
+		    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+			<p class="rightgreynormaltext_deatt">{{bookingDetails['db_duration']|capitalize}}</p>
+		    </div>
+		</div>
+	    {% endif %}
+	    {% if bookingDetails['db_dealCode'] is defined and bookingDetails['db_dealCode'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+			<p class="leftblackboldtext_deatt">{{'Product Code:'|trans}}</p>
+		    </div>
+		    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+			<p class="rightgreynormaltext_deatt">{{bookingDetails['db_dealCode']|raw}}</p>
+		    </div>
+		</div>
+	    {% endif %}
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Total Price:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+                    <p class="bbpinkprop_deatt"><span class="a_price newprice_dat price-convert" data-price="{{bookingDetails['convertedTotalPrice']}}"><span class="currency-convert-text">{{bookingDetails['selectedCurrency']}}</span> <span class="price-convert-text">{{bookingDetails['formattedTotalPrice']}}</span></span></p>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 nopad">
+                    <p class="leftblackboldtext_deatt">{{'Languages:'|trans}}</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 nopad">
+                    <img class="prcodeimg_deatt" src="{{ generateMediaURL('/media/images/attraction_detailed/us-flag_detatt.png') }}" />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 nopad">
+            <p class="boldblacktextcomm_deatt mar-top-25_deatt">{{'Description:'|trans}}</p>
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 nopad">
+                <p class="greytextcom_deatt">{{bookingDetails['db_dealDescription']|raw|nl2br }}</p>
+            </div>
+        </div>
+	{% if bookingDetails['db_voucherInformation'] is defined and bookingDetails['db_voucherInformation'] %}
+	    <div class="col-xs-12 nopad">
+		<p class="boldblacktextcomm_deatt">{{'Voucher Information:'|trans}}</p>
+		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 nopad">
+		    <p class="greytextcom_deatt">{{bookingDetails['db_voucherInformation']|raw|nl2br }}</p>
+		</div>
+	    </div>
+	{% endif %}
+        <div class="col-xs-12 nopad">
+            <p class="boldblacktextcomm_deatt">{{'Cancellation Policy'|trans}}</p>
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 nopad">
+                <p class="greytextcom_deatt">
+		    {% if cancellationDetails['cancellationPolicy'] is defined %}
+			{% for info in cancellationDetails['cancellationPolicy'] %}
+			    {{info|nl2br|raw}}<br>
+			{% endfor %}
+		    {% else %}
+			{{'None'|nl2br|trans}}<br>
+		    {% endif %}
+                </p>
+            </div>
+        </div>
+	{% if bookingDetails['db_bookingStatus']|lower != 'cancelled' and bookingDetails['db_bookingStatus']|lower != 'processing' %}
+	    <div class="col-xs-12 nopad">
+		<form method="post" action="" onsubmit="return confirm({{'Do you really want to Cancel your reservation?'|trans}});" autocomplete="off">
+		    <input name="bookingId" type="hidden" value="{{bookingDetails['db_id']}}">
+		    <input name="referenceNumber" type="hidden" value="{{bookingDetails['db_bookingReference']}}">
+		    <input name="apiId" type="hidden" value="{{bookingDetails['db_apiId']|raw}}">
+		    <div class="col-xs-12 nopad">
+			<button id="cancel_whole_reservation" class="btn-link padleft0dbd" type="submit" name="cancel">
+			    <ul class="rightullistpink_deatt padleft0dbd">
+				<li class="cancel_rightpink_deatt">{{'Cancel'|trans}}</li>
+			    </ul>
+			</button>
+		    </div>
+		</form>
+	    </div>
+	{% endif %}
+    </section>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block title %}
+    {{ 'Hotel Booking Results' |trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block filter_your_search %}
+    <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+	<div class="container-fluid nopad filters-group">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+		    {{'Refine your search'|trans}}
+		</button>
+	    </div>
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+		<input class="filter-max-price" type="hidden" value="0"/>
+		<input class="filter-max-distance" type="hidden" value="0"/>
+		{% set prefix="mobile_" %}
+		{% include "@Corporate/hotels/hotel-booking-results-filters.twig" %}
+	    </div>
+	    <!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+{% block body %}
+    <section class="container book_hotel_search_container hotel_main_conatainer">
+	<div class="row margin_top_30">
+	    <div class="col-sm-9 col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Make a hotel booking'|trans}} | <span>{{'Search'|trans}}</span></h1>
+	    </div>
+	    <div class="col-sm-3 col-xs-12 currencyselectbox_top">
+		<div class="currency_top_but">
+		    <p class="curtext_hp"><span>{{currency_symbol.symbol|raw}}</span> {{selected_currency|raw}}</p>
+		</div>
+	    </div>
+	</div>
+	{% if hotelupdatesearchIndex == 1 %}
+	    <div class="row update_search_container div_wiz_border">
+		{% include "@Corporate/hotels/hotel-your-search.twig" %}
+	    </div>
+	{% endif %}
+	<div class="row hotel_search_input_container" style="display:none;">
+	    <div class="col-xs-12">
+		{% include "default/searchinput3.twig" %}
+		<div class="close_container">
+		    <i class="fas fa-times fa-lg"></i>
+		</div>
+	    </div>
+	</div>
+	<div class="row border_top_but_row"></div>
+	<div class="row margin-top-20 main_conatainer filters-group round-down-price">
+	    <div class="col-md-3 left_panel filter-options hidden-sm hidden-xs">
+		{% set prefix="desktop_" %}
+		{% include "@Corporate/hotels/hotel-booking-results-filters.twig" %}
+	    </div>
+	    <div class="col-md-9 col-xs-12 right_panel">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad margin_top_3 sort_by_tabs">
+			<div class="row no-margin">
+			    <div class="col-md-1 col-xs-12 nopad hidden-sm hidden-xs">
+				<div class="float_left sort_down_img_arrow"><i class="fas fa-arrow-down"></i></div>
+			    </div>			    
+			    <div class="col-md-11 col-xs-12 nopad">
+				<div class="row no-margin filters-group">
+				    <div class="btn-group sort-options">
+					<label class="hand-default">{{'Sort by'|trans}}:</label>
+					{% if (input.fromDate is not empty) and (input.toDate is not empty) %}
+					    <label class="sort_item border-left" data-value="category" data-text="{{'Stars'|trans}}">
+						<span class="sort_text_hldr">{{'Stars'|trans}}</span>
+						<div class="sort_submenu  hidden">
+						    <ul>
+							<li data-sortOrder="desc" data-sortBy="category">{{'Stars 5 to 1'|trans}}</li>
+							<li data-sortOrder="asc" data-sortBy="category">{{'Stars 1 to 5'|trans}}</li>
+						    </ul>
+						</div>
+					    </label>
+					    <label class="sort_item border-left" data-value="price" data-text="{{'Price'|trans}}">
+						<span class="sort_text_hldr">{{'Price'|trans}}</span>
+						<div class="sort_submenu  hidden">
+						    <ul>
+							<li data-sortOrder="asc" data-sortBy="price">{{'Lowest Price First'|trans}}</li>
+							<li data-sortOrder="desc" data-sortBy="price">{{'Highest Price First'|trans}}</li>
+						    </ul>
+						</div>
+					    </label>
+					{% endif %}
+					<label class="sort_item border-left border-right" data-value="distance" data-text="{{'Distance'|trans}}">
+					    <span class="sort_text_hldr">{{'Distance'|trans}}</span>
+					    <div class="sort_submenu hidden">
+						<ul>
+						    <li data-sortOrder="asc" data-sortBy="distance">{{'Near From The City Center'|trans}}</li>
+						    <li data-sortOrder="desc" data-sortBy="distance">{{'Far From The City Center'|trans}}</li>
+						</ul>
+					    </div>
+					</label>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+
+		{% if error is defined and error is not empty %}
+		    {% set errorClass = '' %}
+		{% else %}
+		    {% set errorClass = 'hidden' %}
+		    {% set error = '' %}
+		{% endif %}
+
+		<div class="row no-margin error-block {{errorClass}}">
+		    <label class="error-label">{{error|raw}}</label>
+		</div>
+
+		<div class="row no-margin hidden hotel-overlay-loading-fix{% if LanguageGet!='en' %} hotel-overlay-loading-fix_{{LanguageGet|raw}}{% endif %}">
+		    <div></div>
+		</div>
+
+		<div id="hotel-list" class="row no-margin my-shuffle-container" style="width:100%; min-height: 468px;">
+		    <div class="col-xs-1 my-sizer-element"></div>
+		</div>
+		<div class="row no-margin pagerWrapper hotel-paginationdata">
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,1 @@
+ALTER TABLE `corpo_account` DROP COLUMN `city_name`;

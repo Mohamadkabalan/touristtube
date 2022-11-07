@@ -1,0 +1,86 @@
+HotelBundle\Entity\CmsHotelImage:
+    type: entity
+    table: cms_hotel_image
+    repositoryClass: HotelBundle\Repository\HRSRepository
+
+    indexes:
+        hotel_id:
+            columns:
+                - hotel_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: user_id
+        filename:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_id
+        hotelDivisionId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_division_id
+        mediaTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: tt_media_type_id
+        mediaSettings:
+            type: string
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: media_settings
+        location:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        defaultPic:
+            type: integer
+            nullable: false
+            options:
+                default: '0'
+            column: default_pic
+        isFeatured:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+            column: is_featured
+        sortOrder:
+            type: integer
+            nullable: false
+            options:
+                default: '999'
+            column: sort_order
+    lifecycleCallbacks: {  }

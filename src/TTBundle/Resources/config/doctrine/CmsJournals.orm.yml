@@ -1,0 +1,185 @@
+TTBundle\Entity\CmsJournals:
+    type: entity
+    table: cms_journals
+    indexes:
+        user_id:
+            columns:
+                - user_id
+                - journal_link
+        latitude:
+            columns:
+                - latitude
+                - longitude
+                - city_id
+                - location_id
+        start_date:
+            columns:
+                - start_date
+                - end_date
+        location_id:
+            columns:
+                - location_id
+        city_id:
+            columns:
+                - city_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        journalName:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: journal_name
+        journalDesc:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: journal_desc
+        journalLink:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: journal_link
+        journalTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: journal_ts
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_comments
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_shares
+        isPublic:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: is_public
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        cityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_id
+        locationId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: location_id
+        locationName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: location_name
+        keywords:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+        startDate:
+            type: date
+            nullable: false
+            column: start_date
+        endDate:
+            type: date
+            nullable: false
+            column: end_date
+        built:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+        vpath:
+            type: string
+            nullable: false
+            length: 16
+            options:
+                fixed: false
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+        enableShareComment:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+            column: enable_share_comment
+        published:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,75 @@
+<div class="row margin_top_30">
+    <div class="col-xs-12">
+	<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ "Hotel Reservation Confirmation"|trans }}</h1>
+    </div>
+</div>
+<div class="row margin_top_15 padding_left_68">
+    <div class="col-xs-12">
+	<div class="row">
+	    <div class="col-md-6 col-sm-4 col-xs-12">
+		<a href="{{hotelBookingURL}}" class="font-13 font-bold blue underline xs_style"><i class="fas fa-angle-double-left blue_font-awsome_logo"></i>{{ "Book your next place to stay"|trans }}</a>
+	    </div>
+	    <div class="col-md-6 col-sm-8 col-xs-12 text-right-container">
+		<div class="row no-margin">
+		    <div class="col-md-5 col-sm-6 col-xs-6 nopad pull-right">
+			<p class="cursor_pointer font-bold blue font-13" onclick="window.print()"><i class="fas fa-print blue_font-awsome_logo"></i>{{ "Print confirmation"|trans }}</p>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row margin_top_15">
+	    <div class="col-xs-12">
+		<p class="font-22 black font-bold">{{ "Is everything correct?"|trans }}</p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+		<p class="font-16 grey">{{ "You can always manage your booking online - no registration required."|trans }}</p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-md-11 col-xs-12">
+		<div class="row no-margin">
+		    <ul class="edit_booking_details_list">
+			{% if hotelDetails.email is defined and hotelDetails.email is not empty %}
+			    <li><a href="mailto:{{hotelDetails.email}}">{{'Contact the property'|trans}}</a></li>
+			    {% endif %}
+		    </ul>
+		</div>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+		<a href="{{ bookingDetailsURL }}"><button class="btn view_booking">{{'View booking'|trans}}</button></a>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+		<p class="grey font-13 signin_txt">{{'Tip'|trans}}: {{'You can make changes to this booking anytime. Check your email or your bookings section.'}}</p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+		<p class="margin_top_30 font-22 black font-bold title_style-xs">{{topTitle}}</p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12 grey font-16 booking_confirmation_txt">
+
+		<div class="margin_bottom_7">
+		    <div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+		    <div class="side-right-icon">
+			{{'We have sent a confirmation email to'|trans}} <a href="mailto:{{ordererDetails.email}}">{{ordererDetails.email}}. </a>
+		    </div>
+		</div>
+		<div class="margin_bottom_7">
+		    <div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+		    <div class="side-right-icon">
+			{{'Your booking at'|trans}} <a>{{hotelDetails.name}} </a> {{'is already confirmed.'|trans}}
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>
+<div class="row border_top_but_row_7 margin_top_20"></div>

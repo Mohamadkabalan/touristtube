@@ -1,0 +1,24 @@
+TTBundle\Entity\DistancePoiTypeGroup:
+    type: entity
+    table: distance_poi_type_group
+    repositoryClass: TTBundle\Repository\DistancePoiRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: name
+    lifecycleCallbacks: {  }
+    

@@ -1,0 +1,335 @@
+_channels_home:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/"
+    defaults: { _controller: TTBundle:Channels:channelsHome, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Channels Tourist Tube", seodescription: "Tourist Channels, tourist channels provides you with all the channels you are interested in and need to see", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channels/{page}"
+    defaults: { _controller: TTBundle:Channels:channels, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Channels - %s Tourist Tube", seodescription: "Tourist Channels - %s, tourist channels provides you with all the channels you are interested in and need to see", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_redirect:
+    path:      "/channels/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsRedirect, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels1:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channels/page/{page}"
+    defaults: { _controller: TTBundle:Channels:channels, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Channels - %s Tourist Tube", seodescription: "Tourist Channels - %s, tourist channels provides you with all the channels you are interested in and need to see", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels1_redirect:
+    path:      "/channels/page/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsRedirect, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_category:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channels-category-{search}/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsCategory, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "%s - Channels - %s Tourist Tube", seodescription: "%1$s - Channels - %2$s, visit Tourist Tube and get to know everything about %1$s", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_category_redirect:
+    path:      "/channels-category-{search}/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsCategoryRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_category_old:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channels-category/{search}/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsCategory, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "%s - Channels - %s Tourist Tube", seodescription: "%1$s - Channels - %2$s, visit Tourist Tube and get to know everything about %1$s", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_category_old_redirect:
+    path:      "/channels-category/{search}/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsCategoryRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_category_old2:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channels-category/{search}/page/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsCategory, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "%s - Channels - %s Tourist Tube", seodescription: "%1$s - Channels - %2$s, visit Tourist Tube and get to know everything about %1$s", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_category_old2_redirect:
+    path:      "/channels-category/{search}/page/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsCategoryRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_search:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channels-search-{srch}/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "%s - channel search - %s Tourist Tube", seodescription: "%1$s channel search, come and see our %1$s channel and have your best experience on Tourist Tube platform", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_search_redirect:
+    path:      "/channels-search-{srch}/{page}"
+    defaults: { _controller: TTBundle:Channels:channelsSearchRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, search: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channels_search_old:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-search/{v1}/{v10}/{v2}/{v20}/{v3}/{v30}/{v4}/{v40}/{v5}/{v50}/{v6}/{v60}"
+    defaults: { _controller: TTBundle:Channels:channelsSearchOld, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", v1: "", v10: "", v2: "", v20: "", v3: "", v30: "", v4: "", v40: "", v5: "", v50: "", v6: "", v60: "", seotitle: "%s - channel search - %s Tourist Tube", seodescription: "%1$s channel search, come and see our %1$s channel and have your best experience on Tourist Tube platform", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        v1: ".*"
+        v10: ".*"
+        v2: ".*"
+        v20: ".*"
+        v3: ".*"
+        v30: ".*"
+        v4: ".*"
+        v40: ".*"
+        v5: ".*"
+        v50: ".*"
+        v6: ".*"
+        v60: ".*"
+
+_channels_search_old_redirect:
+    path:      "/channel-search/{v1}/{v10}/{v2}/{v20}/{v3}/{v30}/{v4}/{v40}/{v5}/{v50}/{v6}/{v60}"
+    defaults: { _controller: TTBundle:Channels:channelsSearchOldRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", v1: "", v10: "", v2: "", v20: "", v3: "", v30: "", v4: "", v40: "", v5: "", v50: "", v6: "", v60: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        v1: ".*"
+        v10: ".*"
+        v2: ".*"
+        v20: ".*"
+        v3: ".*"
+        v30: ".*"
+        v4: ".*"
+        v40: ".*"
+        v5: ".*"
+        v50: ".*"
+        v6: ".*"
+        v60: ".*"
+
+_channel:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel/{srch}"
+    defaults: { _controller: TTBundle:Channels:channel, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Channel | Tourist Tube", seodescription: "%s channel on Tourist Tube only. Visit our platform and create your own channel, discover new countries", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_redirect:
+    path:      "/channel/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_add:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-add"
+    defaults: { _controller: TTBundle:Channels:channelAdd, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Add Channel | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_add_redirect:
+    path:      "/channel-add"
+    defaults: { _controller: TTBundle:Channels:channelAddRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_my_channels:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/my-channels/{page}"
+    defaults: { _controller: TTBundle:Channels:myChannels, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "My Channels | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        page: ".*"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_my_channels_redirect:
+    path:      "/my-channels/{page}"
+    defaults: { _controller: TTBundle:Channels:myChannelsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        page: ".*"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_CreateChannelForm_redirect:
+    path:      "/CreateChannelForm"
+    defaults: { _controller: TTBundle:Channels:createChannelForm, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_create_channel:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/create-channel/{id}"
+    defaults: { _controller: TTBundle:Channels:createChannel, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Create %s Channel | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_create_channel_redirect:
+    path:      "/create-channel/{id}"
+    defaults: { _controller: TTBundle:Channels:createChannelRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_channel_delete:
+    path:      "/ajax/channel_delete"
+    defaults: { _controller: TTBundle:Channels:channelDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_channel_info_update:
+    path:      "/ajax/channel_info_update"
+    defaults: { _controller: TTBundle:Channels:channelInfoUpdate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_channel_links_update:
+    path:      "/ajax/channel_links_update"
+    defaults: { _controller: TTBundle:Channels:channelLinksUpdate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_channel_list_links_update:
+    path:      "/ajax/channel_list_links_update"
+    defaults: { _controller: TTBundle:Channels:channelListOfLinksUpdate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_channel_settings:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-settings/{id}"
+    defaults: { _controller: TTBundle:Channels:channelSettings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Channel %s Settings | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_settings_redirect:
+    path:      "/channel-settings/{id}"
+    defaults: { _controller: TTBundle:Channels:channelSettingsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_upload:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-upload/{id}"
+    defaults: { _controller: TTBundle:Channels:channelUpload, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Channel %s Upload | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_upload_redirect:
+    path:      "/channel-upload/{id}"
+    defaults: { _controller: TTBundle:Channels:channelUploadRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_channel_add:
+    path:      "/ajax/channel-add"
+    defaults: { _controller: TTBundle:Channels:updateChannelAdd, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_channel_media_data:
+    path: "/ajax/channel_media_data"
+    defaults: { _controller: TTBundle:Channels:getChannelMediaData, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        
+_channel_photos:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-photos/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelPhotos, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Channel Photos | Tourist Tube", seodescription: "%s channel photos on Tourist Tube only. Visit our platform and create your own channel, channel photos, discover new countries", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_channel_photos_redirect:
+    path:      "/channel-photos/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelPhotosRedirect, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_channel_videos:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-videos/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelVideos, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Channel Videos | Tourist Tube", seodescription: "%s channel videos on Tourist Tube only. Visit our platform and create your own channel, channel videos, discover new countries", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_channel_videos_redirect:
+    path:      "/channel-videos/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelVideosRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_channel_albums:
+    host: "channels{subdomain_suffix}.{domain}"
+    path:      "/channel-albums/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelAlbums, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Channel Albums | Tourist Tube", seodescription: "%s channel albums on Tourist Tube only. Visit our platform and create your own channel, channel albums, discover new countries", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_channel_albums_redirect:
+    path:      "/channel-albums/{srch}"
+    defaults: { _controller: TTBundle:Channels:channelAlbumsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_channel_301_redirect:
+    path:      "/channel{srch}"
+    defaults: { _controller: TTBundle:Channels:channel301Redirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"

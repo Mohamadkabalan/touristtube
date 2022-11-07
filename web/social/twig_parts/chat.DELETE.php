@@ -1,0 +1,25 @@
+<?php
+include_once('/home/para-tube/www/ttsvn1/services/lib/chat_server_config.inc.php');
+include_once('/home/para-tube/www/ttsvn1/services/lib/chat.inc.php');
+$data['chatOff'] = CHAT_STATUS_OFFLINE;
+$data['chatOn'] = CHAT_STATUS_ONLINE;
+$data['chatAppearOff'] = CHAT_STATUS_APPEAROFFLINE;
+$data['chatAway'] = CHAT_STATUS_AWAY;
+$data['chatBusy'] = CHAT_STATUS_BUSY;
+$data['ddCssLink'] = ReturnLink("css/dd.css");
+$data['contextmenuCssLink'] = ReturnLink("css/jquery.contextmenu.css");
+$data['ddslickJsLink'] = ReturnLink("js/jquery.ddslick.js");
+$data['contextmenuR2JsLink'] = ReturnLink("js/jquery.contextmenu.r2.js");
+$data['emoticonJsLink'] = ReturnLink("js/emoticon.js");
+$data['swfobjectJsLink'] = ReturnLink('services/js/FlashWebSocket/swfobject.js');
+$data['webSocketJsLink'] = ReturnLink('services/js/FlashWebSocket/web_socket.js');
+$data['WebSocketMainSwfLink'] = ReturnLink('services/js/FlashWebSocket/WebSocketMain.swf');
+$data['gracefulWebSocketJsLink'] = ReturnLink('services/js/jquery.gracefulWebSocket.js');
+$data['chatCssLink'] = ReturnLink("css/chat.css");
+$data['chatBehaviorJsLink'] = ReturnLink("js/chat-behavior.js");
+$data['chatUpBehaviorJsLink'] = ReturnLink("js/chat-upload-behavior.js");
+$data['userGetID'] = userGetID();
+$data['getChatServer'] = ServerConfig::getChatServer();
+$data['sessionId'] = session_id();
+$data['chatOnTxt'] = _('switch chat on');
+$data['searchChatTxt'] = _('Search for a friend to chat with...testing');

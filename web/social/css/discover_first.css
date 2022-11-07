@@ -1,0 +1,505 @@
+#MiddleBody{
+    margin-bottom: 30px;
+}
+#MiddleMainLive {
+    position:relative;
+    left:0px;
+    width:100%;
+    min-height: 175px;
+}
+#mapLiveCam{
+    position:relative;
+    left:0px;
+    width:100%;
+    height: 175px;
+}
+#mapLiveCam.full{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width :100%;
+    height : 100%;
+    z-index: 100;
+}
+#mapLiveCam.middle{
+    height: 480px;
+}
+#googlemap_places{
+    height: 100%; 
+    width: 100% ! important; 
+    position: relative; 
+    background-color: #e5e3df; 
+    overflow: hidden;
+}
+.mtooltipbig{
+    top:0;
+    width:86px;
+    height:56px;
+    left:11px;
+    top:-10px;
+}
+.liveBar{    
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 981px;
+    z-index: 101;
+}
+.liveBarIn{
+    background-color: #e0e0e0;
+    display: block;
+    position: relative;
+    text-align: center;
+}
+.liveBar.full{
+     position: fixed;
+     z-index: 101;
+     bottom: 0;
+}
+.liveMapOptions{
+    position: relative;
+    float:left;
+    display:block;
+    margin:7px 0 0 24px;
+    padding:0;
+    width:130px;
+}
+.liveMapOptions span{
+    position: relative;
+    float:left;
+    display:block;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:20px;
+    font:normal 11px/20px Arial, Helvetica, sans-serif;
+    text-indent:30px;
+    color:#c7c7c7;
+    cursor:pointer;
+    background: #3f3f3f url(/media/images/discover/mapGlobeGray.png) no-repeat 7px 1px;
+}
+.liveMapOptions .arrowDown{
+    position:absolute;
+    top:9px;
+    right:12px;
+    width:7px;
+    height:4px;
+    background:url(/media/images/discover/liveOptArrowDwn.png) no-repeat 0 0;
+}
+.liveMapOptionsCont{
+    position: absolute;
+    bottom:27px;
+    left:0;
+    background: #3f3f3f;
+    width:130px;
+    height:63px;
+    display:none;
+}
+.liveMapOpt{
+    position: relative;
+    float: left;
+    height:21px;
+    width:100%;
+    clear: both;
+    font:normal 11px/21px Arial, Helvetica, sans-serif;
+    text-indent:30px;
+    color:#c7c7c7;
+    cursor:pointer; 
+}
+.liveMapOpt:hover{
+    background:#c7c7c7;
+    color: #3f3f3f;
+}
+#menu_discover_content{
+    height: auto;
+    margin: 0 auto;
+    padding-top: 17px;    
+    position: relative;
+    max-width: 856px;
+    width: 88%;
+    padding-left: 15px;
+}
+.menu_discover_contentleft{
+    float: left;    
+    width: 100%;    
+}
+.menu_discover_contentright{
+    float: left; 
+    width: 100%; 
+    display:block;
+}
+.menu_discover_contentrightSRCH{
+    position: relative;
+    display: none;
+    float: left;
+    background-color:#303030;  
+    height: 62px; 
+    width: 190px;
+    padding: 11px 16px 11px 16px;
+}
+.menu_discover_contentrightTXT{
+    position: relative;
+    display: block;
+    float: left;
+    height: auto; 
+    width: 210px;
+    clear: both;
+}
+.discover_left_line{ 
+    position: relative;
+    display: block;
+    float: left;    
+    width: 100%;    
+}
+.city_search span{
+    display: none;
+}
+#inputArea{
+    font-family: Arial,sans-serif;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    display: none;
+    margin-top: 5px;
+    width: 174px;
+    position: relative;
+    float: left;
+    border: none;
+}
+
+#inputArea input[type="text"], #inputArea textarea
+{
+      font-family: Arial, Sans-Serif;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+    padding: 4px;
+    border: solid 1px #85b1de; 
+    width: 300px;
+    background-color: #EDF2F7;
+}
+.discover_heading{
+    position: relative;
+    display: block;
+    float: left;
+    width:100% ;
+    font-size:11px;
+    color:#FFF;
+    font-family:Arial, Helvetica, sans-serif;
+    height: 14px;
+    line-height: 14px;
+}
+.discover_button{
+    color: #ffffff;
+    cursor: pointer;
+    display: none;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 13px;
+    padding-top: 3px;
+    text-align: right;
+    width: 192px;
+}
+.t_discover {
+    color: #d1ab32;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin-top: 19px;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    line-height: 14px;
+}
+.bagcontainer_a{
+    color: #d1ab32;
+}
+.discover {
+    color: #303030;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin-top: 15px;
+    line-height: 14px;
+    text-align: left;
+    width: 100%;
+    font-style:italic;
+    font-weight: bold;
+    float: left;
+    width: 90%;
+    padding-left: 16px;
+}
+.discover_a { text-decoration:none;
+}
+.discover_left_line span{ 
+    position: relative;
+    display: block;
+    float: left;    
+    width: auto;
+    height: 15px;
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #424242;
+    margin-top: -4px;
+}
+ul.products{
+    margin-top: 24px;
+}
+ul.products li {
+    width: 202px;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    display: inline-block;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+}
+ul.products h4{
+    text-align:center;
+    margin-top:0px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    font-weight:normal;
+    color: #333333;
+    font-weight: normal;
+}
+.avb_discover_item{
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: normal;
+    height: auto;
+    line-height: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 205px;
+    color: #808080;
+    font-family: Arial,Helvetica,sans-serif;
+}
+.avb_discover_yellowline{
+    position: relative;
+    display: block;
+    float: left;
+    width: 6px;
+    height: 2px;
+    background-color: #e3b721;
+    margin-right: 5px;
+    margin-top: 11px;
+}
+span.item_black_bold {
+    color: #000000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.avb_discover_item:hover{
+	color:#e3b721;
+}
+.avb_discover_item:hover > span.item_black_bold{
+	color:#e3b721;
+}
+.mtooltip {
+    display: block;
+    height: auto;
+    left: -18px;
+    top: -45px;
+    position: absolute;
+    width: 142px;
+    height: 63px;
+}
+.mtooltipin {
+    background-color: #333333;
+    display: block;
+    padding: 3px 9px;
+    position: absolute;
+    width: 124px;
+    z-index: 10;
+    height: 57px;
+}
+.mtooltip_title {
+    clear: both;
+    color: #b5b5b5;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 13px;
+    position: relative;
+    text-align: left;
+    width: 122px;
+    z-index: 4;
+    overflow: hidden;
+}
+.mtooltip_title span.mtooltip_title_white{
+    font-size: 12px;
+    color: #ffffff;
+    margin-top: 1px;
+}
+.anchor_bk {
+    background: url("/media/images/discover/toRightPin.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    top: 28px;
+    display: block;
+    height: 7px;
+    position: absolute;
+    right: -4px;
+    width: 4px;
+    z-index: 1;
+}
+.clsgoo {
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    height: 13px;
+    line-height: 13px;
+    overflow: hidden;
+    position: absolute;
+    right: 2px;
+    text-align: center;
+    top: 0px;
+    width: auto;
+    z-index: 20;
+}
+.mtooltip_buttons{
+    position: absolute;
+    display: block;
+    background-color: #000000;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 19px;
+    z-index: 10;
+}
+.mtooltip_buts{
+    position: relative;
+    display: block;
+    float: left;
+    width: auto;
+    cursor: pointer;
+    font-family: Arial;
+    height: 19px;
+    line-height: 19px;
+    font-size: 9px;
+    color: #e3b721;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.mtooltip_buts:hover{
+    color: #ffffff;
+}
+.marginleft9{
+    margin-left: 9px;
+}
+#collapsemenu {
+    left: 0;
+    position: absolute;
+    top: 16px;
+    width: 130px;
+    z-index: 300;
+}
+.collapse_thumb {
+    height: 20px;
+    left: 4px;
+    position: absolute;
+    top: 1px;
+    width: 18px;
+    z-index: 11;
+}
+.thingsToDo_left_part{
+    float: left;
+    margin-right: 7px;
+    width: 629px;
+    min-height: 100px;
+    background-color: #f1f1f1;
+    overflow: hidden;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.thingsToDo_right_part {
+    float: left;
+    min-height: 120px;
+    width: 205px;
+}
+.city_search {
+    background-color: #303030;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    height: 70px;
+    padding-left: 15px;
+    padding-top: 10px;
+    position: relative;
+    text-align: left;
+    width: 190px;
+}
+.bag_container {
+    background-color: #000000;
+    height: 38px;
+    margin-top: 2px;
+    padding-left: 10px;
+    width: 195px;
+}
+.bag_add {
+    color: #f1f1f1;
+    float: left;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    height: 20px;
+    margin-top: 10px;
+    width: 150px;
+}
+.bagcontainer {
+    background: url("/media/images/thingstodo/bag.png") no-repeat;
+    display: block;
+    float: left;
+    height: 25px;
+    margin-top: 4px;
+    position: relative;
+    width: 38px;
+}
+.bag_count {
+    color: #ffffff;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 18px;
+}
+.thingsToDo_title{
+    width: 613px;
+    min-height: 30px;
+    background-color: #303030;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 8px;
+    padding-left: 16px;
+}
+.thingsToDo_description{
+    color: #333333;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: auto;
+    line-height: 17px;
+    padding-left: 15px;
+    padding-top: 15px;
+    position: relative;
+    text-align: left;
+    width: 600px;
+}

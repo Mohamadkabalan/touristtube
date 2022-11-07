@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="{{ asset("/assets/uploads/css/marker.css")|raw }}" />
+
+	<script type="text/javascript" src="{{ asset("/assets/vendor/jquery/dist/jquery-1.9.1.min.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/common/js/utils.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/uploads/js/prototype.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/uploads/js/rectmarquee.js")|raw }}"></script>
+	<script type="text/javascript" src="/assets/uploads/js/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="{{ asset("/assets/uploads/js/previewtt.js")|raw }}"></script>
+	<script type="text/javascript">
+		var filetype = '{{ type|raw }}';
+		var pathto = '{{ pathto|raw }}';
+		var curname = '{{ curname|raw }}';
+		var code = '{{ code|raw }}';
+		var discover_nam = '';
+	</script>
+	<script type="text/javascript" src="{{ asset("/assets/uploads/js/home-upload-fancy.js")|raw }}"></script>
+	<style type="text/css">
+	    #element_container{ height:{{ h|raw }}px; }
+	</style>
+    </head>
+    <body id="body">
+        <div id="element_container">
+	    <img src="{{ link|raw }}" alt="" id="sampleid"/>
+	</div>
+	<input type="hidden" name="x" value="0" id="coord_x" />
+	<input type="hidden" name="y" value="0" id="coord_y" />
+	<input type="hidden" name="w" value="{{ ww|raw }}" id="coord_w" />
+	<input type="hidden" name="h" value="{{ hh|raw }}" id="coord_h" />
+	<input type="hidden" name="f" value="0" id="filename" />
+	
+	<table border="0" cellpadding="0" cellspacing="0" id="coordinates" width="" style="margin-bottom:10px; margin-top:2px" align="center">
+	    <tr>
+		<td align="center" nowrap="nowrap">
+		    {% if type!="channel_profile" and type!="channel_cover" and type!="account_pic" %}
+			<div class="accountbutcontainer">
+			    <div id="CreateImage" class="accountbuts">{{"adjust the crop"|trans}}</div>
+			</div>
+		    {% else %}
+			    <div class="accountbutcontainer">
+			    <div class="accountbutBRCancel accountbuts">{{"cancel"|trans}}</div>
+			    <div class="accountbutseperator"></div>
+			    <div class="accountbut2 accountbuts">{{"save"|trans}}</div>
+			</div>
+		    {% endif %}
+		</td>
+	    </tr>
+	    <tr>
+		<td align="center" nowrap="nowrap" height="5"></td>
+	    </tr>
+	</table>
+    </body>
+</html>

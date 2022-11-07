@@ -1,0 +1,23 @@
+TTBundle\Entity\CmsMobileSession:
+    type: entity
+    table: cms_mobile_session
+    id:
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+        tokenid:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            id: true
+    fields:
+        expiryDate:
+            type: datetime
+            nullable: true
+            column: expiry_date
+    lifecycleCallbacks: {  }

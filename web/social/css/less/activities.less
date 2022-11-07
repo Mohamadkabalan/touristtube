@@ -1,0 +1,454 @@
+@import "elements.less";
+@fFamily: arial;
+@titleColor: #E7BA20;
+@gray1Color: #626262;
+@gray2Color: #5c5c5d;
+@bgcolor: #f4f4f4;
+.relative{margin:0;
+    padding:0;
+    float:left;
+    position:relative;
+    display:block}
+.absolute{display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    text-align:left}
+.relativeauto{.relative;
+    width:auto;
+    height:auto}
+.absoluteauto{.absolute;
+    width:auto;
+    height:auto}
+.accountActivitiesCont{
+    .relative;
+    width:656px;
+    height:auto;
+    clear:both}
+.accountActivitiesSep{.relative;
+  width:100%;
+  height:5px}
+.accountActivitiesSepTop{.relative;
+  width:100%;
+  background-color:#dedede;
+  border-top:1px solid #ebebeb;
+  height:1px}
+.accountActivitiesSepBottom{.relative;
+  width:100%;
+  margin:1px 0 0 0;
+  background-color:#d4d4d4;
+  border-top:1px solid #e0e0e0;
+  height:1px}
+.aCont{.relative;
+    margin:0 0 40px 0;
+    height:auto;
+    width:100%}
+.ActivitiesTitle{.relative;
+    color: #686868;
+    cursor: pointer;
+    font: 12px/22px Arial,Helvetica,sans-serif;
+    height: 22px;
+    margin: 12px 0 0 0px;
+    width: 657px}
+.ActivitiesOrder {background: url(/media/images/modal_number_circle.png) no-repeat 0 0;
+    color: #000000;
+    float: left;
+    font: bold 9px Arial,Helvetica,sans-serif;
+    height: 14px;
+    margin: 3px 0 0 5px;
+    padding: 1px 0 0;
+    position: relative;
+    text-align: center;
+    width: 15px}
+.ActivitiesSubTitle{.relative;
+    color:@titleColor;
+    font:17px/22px @fFamily;
+    height: 22px;
+    text-transform:capitalize;
+    margin:0 0 0 5px}
+.ActivitiesTitleDesc{.relative;
+    color:#909090;
+    font:11px/22px @fFamily;
+    height: 22px;
+    margin:0 0 0 5px}
+.globSummary{.relative;
+    width:636px;
+    height:96px;
+    margin:18px 0 0 20px}
+.logosCont{.relative;
+    width:471px;
+    height:30px}
+.activLike{position:relative;
+    background:url(/media/images/activLike.png) no-repeat 0 0;
+    width:30px;
+    clear:both;
+    margin:0 auto;
+    height:30px}
+.activcomment{position:relative;
+    background:url(/media/images/activcomment.png) no-repeat 0 0;
+    width:31px;
+    margin:0 auto;
+    height:28px}
+.activShare{position:relative;
+    background:url(/media/images/activShare.png) no-repeat 0 0;
+    width:30px;
+    margin:0 auto;
+    height:30px}
+.activRate{position:relative;
+    background:url(/media/images/activRate.png) no-repeat 0 0;
+    width:20px;
+    margin:6px auto 0 auto;
+    height:22px}
+.globNum{.relative;
+    height:23px;
+    width:150px;
+    clear:both;
+    font:16px @fFamily;
+    color:#000000}
+.mediaLogosCont{.relative;
+    width: 471px;
+    height: 44px}
+.globNumCon{.relative;
+    width: 165px;
+    margin:28px 0 0;
+    height: 68px}
+.mediaValuesCont{.relative;
+    margin:20px 0 0;
+    width: 471px;
+    height: 44px}
+.ProfileHeader2 {.relative;
+    background-color: #3F3F3F;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 28px;
+    margin:0 1px 0 0}
+.photosLogo{background-image: url("/media/images/profile_header/photos.png")}
+.videosLogo{background-image: url("/media/images/profile_header/videos.png")}
+.albumsLogo{background-image: url("/media/images/profile_header/albums.png")}
+.eventsLogo{background-image: url("/media/images/profile_header/events.png")}
+.journalsLogo{background-image: url("/media/images/profile_header/journals.png")}
+.globLikes{.relative;
+    width:88px;
+    text-align: center}
+.globcomment{.relative;
+    width:115px;
+    margin:0 0 0 25px;
+    text-align: center}
+.globShare{.relative;
+    width:143px;
+    margin:0 0 0 3px;
+    text-align: center}
+.globRate{.relative;
+    width:91px;
+    margin:0 0 0 6px;
+    text-align: center}
+.globVal{
+    height:30px;
+    font:17px/30px @fFamily;
+    color:#000000}
+.globDesc{
+    height:14px;
+    font:11px/14px @fFamily;
+    color:#000000}
+.mediaTableCont{.relative;
+    margin:68px 0 0 1px;
+    width:655px;
+    height:auto;
+    clear:both;
+    .mediaTableHead1{.relative;
+        width:100%;
+        height:25px;
+        background:#3f3f3f;
+        color:#fff;
+        .tableH{.relative;font:bold 11px/25px @fFamily;
+            width:113px;
+            height:25px;
+            margin:0;
+            padding:0 0 0 52px;}
+        .tableCell{.relative;text-align:center;
+            margin:0 0 0 6px;
+            width:92px;
+            height:25px;
+            font:11px/25px @fFamily}
+    }
+    .mediaTableHead2{.relative;
+        width:100%;
+        height:26px;
+        background:#000000;
+        color:#fff;
+        font:bold 11px/26px @fFamily;
+           .tableH{.relative;font:bold 11px/25px @fFamily;
+                width:113px;
+                margin:0;
+                padding:0 0 0 52px}
+           .tableCell{.relative;text-align:center;
+                width:92px;
+                height:26px;
+                margin:0 0 0 6px}
+    }
+    .mediaTableRow{.relative;
+        width:100%;
+        height:26px;
+        margin:6px 0 0;
+        background:#fff;
+        .tableH{.relative;background:#f3f3f3;
+            font:12px/26px @fFamily;
+            height:26px;
+            width:113px;
+            padding:0 0 0 52px;
+            color:#808080}
+        .tableCell{.relative;text-align:center;
+            margin:0 0 0 6px;
+            font:12px/26px @fFamily;
+            width:92px;
+            height:26px;
+            color:@titleColor;
+            background:#f3f3f3}
+    }
+}
+.cellHeader{.absolute;
+    left:-5px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+}
+.cellViewsLogo{.absolute;
+    width:6px;
+    height:6px;
+    top:10px;
+    left:22px;
+    background:url(/media/images/eventsdetailed/views.png) no-repeat 0 0}
+.cellLikesLogo{.absolute;
+    width:16px;
+    height:16px;
+    top:7px;
+    left:16px;
+    background:url(/media/images/eventsdetailed/like.png) no-repeat 0 0}
+.cellCommentsLogo{.absolute;
+    width:14px;
+    height:14px;
+    top:7px;
+    left:17px;
+    background:url(/media/images/eventsdetailed/comment.png) no-repeat 0 0}
+.cellSharesLogo{.absolute;
+    width:17px;
+    height:17px;
+    top:4px;
+    left:15px;
+    background:url(/media/images/eventsdetailed/share.png) no-repeat 0 0}
+.cellRatesLogo{.absolute;
+    width:12px;
+    height:11px;
+    top:7px;
+    left:19px;
+    background:url(/media/images/eventsdetailed/rates.png) no-repeat 0 0}
+#mediaUploadedCon{.relative;
+    margin:23px 0 0 15px;
+    width:432px;
+    font:bold 10px @fFamily;
+    color:#000;
+    height:210px}
+#networkGrowthCon{.relative;
+    margin:23px 0 0 15px;
+    width:575px;
+    font:bold 10px @fFamily;
+    color:#000;
+    height:267px}
+#contentDistCon{.relative;
+    margin:23px 0 0 3px;
+    width:410px;
+    font:bold 10px @fFamily;
+    color:#000;
+    height:235px}
+.mediaUploadedLabel{.relative;
+    margin:115px 0 0 -50px;
+    height:13px;
+    font:12px/13px @fFamily;
+    color:#000;
+    .rotation(270deg);}
+.networkGrowthLabel{.relative;
+    margin:115px 0 0 -30px;
+    height:13px;
+    font:12px/13px @fFamily;
+    color:#000;
+    .rotation(270deg);}
+.contentDistLabel{.relative;
+    margin:115px 0 0 -30px ;
+    height:13px;
+    font:12px/13px @fFamily;
+    color:#000;
+    .rotation(270deg);
+}
+#mediaUploadedPieCon{.relative;
+    margin:40px 0 0 15px;
+    width:300px;
+    font:bold 10px @fFamily;
+    height:180px}
+#engagementPieCon{.relative;
+    margin:40px 0 0 15px;
+    width:320px;
+    font:bold 10px @fFamily;
+    height:180px}
+.labelContainer{height:18px}
+.labeltitle{
+    height:18px;
+    font:11px/18px arial;
+    position:relative;
+    text-align: left;
+    float:left;
+    padding:0 5px}
+.labelVal{
+    height:18px;
+    font:10px/18px arial;
+    position:relative;
+    float:right;
+    text-align: right;
+    padding:0 5px}
+.mediaUploadedPieLabel{.relative;
+    margin:15px 0 0 128px;
+    font:11px @fFamily;
+    color:#000;
+    width:120px}
+.engagementPieLabel{.relative;
+    margin:15px 0 0 215px;
+    font:11px @fFamily;
+    color:#000}
+#legend7Cont{.relative;
+    background:#3F3F3F;
+    margin:23px 0 0 22px;
+    height:215px;
+    width:155px}
+#legend7{.relative;
+    background:#3F3F3F;
+    height:215px;
+    width:155px}
+#legend7 .legendColorBox>div>div{
+    border-top:2px !important;
+    width:9px !important;
+    margin-bottom:34px;
+    margin-top:4px !important}
+#legend7>table{
+    margin:25px 0 0 30px;
+}
+.legendLabel{
+    margin:5px 0 36px 7px !important;
+    display:block;
+    font:11px @fFamily;
+    vertical-align:top;
+    color:#919191 !important}
+#networkGrowthCon .legendColorBox>div>div{
+    border-top:2px !important;
+    margin-left:25px !important;
+    width:9px !important}
+#networkGrowthCon  .legendLabel{
+    margin:0 0 0 7px !important;
+    font:11px @fFamily;
+    vertical-align:top;
+    color:#000 !important}
+.networkValCont{.relative;
+    margin:25px 0 0 20px;
+    width:600px;
+    height:auto}
+.networkValTitleCont{.relative;
+    font:12px/33px @fFamily;
+    color:#000;
+    width:auto;
+    height:100px}
+.networkValValCont{.relative;
+    font:17px/33px @fFamily;
+    color:#b3b3b3;
+    width:auto;
+    margin:0 0 0 5px;
+    height:100px}
+.networkValPrevCont{.relative;
+    width:22px;
+    margin:0 0 0 30px;
+    height:100px}
+.prevSocial{position:relative;
+    float:left;
+    width:22px;
+    height:22px;
+    padding:0;
+    clear:both;
+    background:url(/media/images/previewSocial.png) no-repeat 0 0}
+#prevFriends{margin:5px 0 0 0;}
+#prevFollowers{margin:11px 0 0 0;}
+#prevFollowings{margin:12px 0 0 0;}
+.networkValTitleCont2{.relative;
+    font:12px/33px @fFamily;
+    color:#000;
+    margin:0 0 0 20px;
+    width:auto;
+    height:100px}
+.networkValValCont2{.relative;
+    font:17px/33px @fFamily;
+    color:#b3b3b3;
+    margin:0 0 0 30px;
+    width:auto;
+    height:100px}
+.networkValSymbCont{.relative;
+    margin:0 0 0 140px;
+    width:17px;
+    height:100px}
+.prevSocial1{.relative;
+    width:17px;
+    height:8px;
+    padding:0;
+    margin:12px 0 0;
+    clear:both;
+    background:url(/media/images/followRight.png) no-repeat 0 0}
+.prevSocial2{.relative;
+    width:17px;
+    height:17px;
+    padding:0;
+    margin:22px 0 0;
+    clear:both;
+    background:url(/media/images/followBoth.png) no-repeat 0 0}
+.prevSocial3{.relative;
+    width:17px;
+    height:8px;
+    padding:0;
+    margin:20px 0 0;
+    clear:both;
+    background:url(/media/images/followLeft.png) no-repeat 0 0}
+.followFriendCont{.relative;
+    margin:40px 0 0 20px;
+    width:411px;
+    height:auto}
+.followFriendTitle{.relative;
+    font:11px @fFamily;
+    margin:0 0 3px 0;
+    color:#000}
+.followBar{.relative;
+    height:28px;
+    text-align:right;
+    font:20px/28px @fFamily;
+    color:#fff;
+    background:#000}
+.friendBar{.relative;
+    height:28px;
+    text-align:right;
+    font:20px/28px @fFamily;
+    color:#fff;
+    background:#e7ba20}
+.followFriendVal{.relative;
+    font:11px @fFamily;
+    margin:3px 0 0;
+    color:#000}
+.min2Val{position:absolute;
+    top:25px;
+    right:35px;
+    font:17px @fFamily;
+    color:#fff}
+.min1Val{position:absolute;
+    top:81px;
+    right:35px;
+    font:17px @fFamily;
+    color:#fff}
+.currVal{position:absolute;
+    top:136px;
+    right:35px;
+    font:17px @fFamily;
+    color:#fff}

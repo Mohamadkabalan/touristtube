@@ -1,0 +1,23 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Reservation Approval'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer">
+        <div class="row no-margin margin_bottom_20">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20">
+                    <div class="col-xs-12 nopad">
+                        <div class="circlimg_arrow"><i class="fas fa-angle-down"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad notificationMsg">{{'Thank you. You will be notified via email once your reservation request is approved.'|trans}}</div>
+        </div>
+        <div class="row no-margin bordered_row"></div>
+    </section>
+{% endblock %}

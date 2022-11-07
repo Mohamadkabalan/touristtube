@@ -1,0 +1,378 @@
+CorporateBundle\Entity\CmsUsers:
+    type: entity
+    table: cms_users
+    repositoryClass: CorporateBundle\Repository\Admin\CmsUsersRepository
+    indexes:
+        YourCountry:
+            columns:
+                - YourCountry
+        YourUserName:
+            columns:
+                - YourUserName
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fullname:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: FullName
+        fname:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        lname:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        gender:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: true
+                default: O
+        youremail:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: YourEmail
+        websiteUrl:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: website_url
+        smallDescription:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: small_description
+        yourcountry:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: true
+            column: YourCountry
+        hometown:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        city:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        yourip:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: YourIP
+        yourbday:
+            type: date
+            nullable: false
+            column: YourBday
+        yourusername:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: YourUserName
+        profilePic:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: profile_Pic
+        profileId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: profile_id
+        corpoUserProfileId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+            column: corpo_user_profile_id
+        displayAge:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: display_age
+        displayYearage:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: display_yearage
+        displayGender:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: display_gender
+        yourpassword:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: YourPassword
+        password:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+            column: password
+        salt:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+            column: salt
+        registereddate:
+            type: datetime
+            nullable: false
+            column: RegisteredDate
+        profileViews:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: profile_views
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        notifs:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        chkey:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+                comment: 'the key to change the email'
+        nFlashes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: n_flashes
+        nJournals:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: n_journals
+        occupation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        employment:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        highEducation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: high_education
+        uniEducation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: uni_education
+        intrestedIn:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: intrested_in
+        displayInterest:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: display_interest
+        displayFullname:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+            column: display_fullname
+        contactPrivacy:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: contact_privacy
+        searchEngine:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: search_engine
+        feedsPrivacy:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: feeds_privacy
+        commentPrivacy:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: comment_privacy
+        ischannel:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: isChannel
+        otheremail:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: otherEmail
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        fbToken:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: fb_token
+        fbUser:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: fb_user
+        chatStatus:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: chat_status
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        invitesMax:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '50'
+            column: invites_max
+        isCorporateAccount:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: true
+                default: false
+            column: is_corporate_account
+        corporateAccountPin:
+            type: string
+            nullable: true
+            length: 7
+            options:
+                fixed: false
+        corpoAccountId:
+            type: integer
+            nullable: true
+            length: 11      
+            column: corpo_account_id     
+        cmsUserGroupId:
+            type: integer
+            nullable: true
+            length: 11      
+            column: cms_user_group_id    
+        allowAccessSubAcc:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: allow_access_to_sub_accounts
+        allowAccessSubAccUsers:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: allow_access_to_sub_accounts_users
+    lifecycleCallbacks: {  }

@@ -1,0 +1,626 @@
+_deals_locale:
+    host: "{_locale}.{domain}"
+    path: "/deals/{page}"
+    defaults: { _controller: DealBundle:Packages:deals, _locale: "%locale%", page: 1, domain: "%domain%", seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/deals/{page}"
+    defaults: { _controller: DealBundle:Packages:dealsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/deals/{page}"
+    defaults: { _controller: DealBundle:Packages:deals, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_new_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/deals_new"
+    defaults: { _controller: DealBundle:Packages:dealsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_book_now_locale:
+    host: "{_locale}.{domain}"
+    path: "/deals-bookNow"
+    defaults: { _controller: DealBundle:Packages:dealsBookNow, _locale: "%locale%", page: 1, domain: "%domain%", seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_book_now:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/deals-bookNow"
+    defaults: { _controller: DealBundle:Packages:dealsBookNow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_list_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/deals-list"
+    defaults: { _controller: DealBundle:Packages:dealsListRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_booking_steps_new_locale:
+    host: "{_locale}.{domain}"
+    path: "/deals-booking-steps_new"
+    defaults: { _controller: DealBundle:Packages:dealsBookingStepsNew, _locale: "%locale%", page: 1, domain: "%domain%", seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_booking_steps_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/deals-booking-steps_new"
+    defaults: { _controller: DealBundle:Packages:dealsBookingStepsNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_booking_details_locale:
+    host: "{_locale}.{domain}"
+    path: "/deals-booking-details/{bookingId}"
+    defaults: { _controller: DealBundle:Packages:dealsBookingDetails, _locale: "%locale%", page: 1, domain: "%domain%", seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_booking_details_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/deals-booking-details/{bookingId}"
+    defaults: { _controller: DealBundle:Packages:dealsBookingDetailsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_booking_details:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/deals-booking-details/{bookingId}"
+    defaults: { _controller: DealBundle:Packages:dealsBookingDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "deals | Tourist Tube", seodescription: "Looking for activities and deals or a fun outdoor activity? If you're searching for exciting adventures and unique packages for your vacation visist Tourist Tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_locale:
+    host: "{_locale}.{domain}"
+    path: "/deals-and-activities"
+    defaults: { _controller: DealBundle:Packages:dealSearchAll, _locale: "%locale%", type: "", city: "", priority: "", domain: "%domain%", seotitle: "%1$s activities | Tourist Tube", seodescription: "Top %1$s activities! places to visit in %1$s! Louvre, Palace of Versailles, Moulin Rouge, Eiffel Tower and Notre Dame Cathedral only on Tourist Tube", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_dealSearch_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/deals-and-activities"
+    defaults: { _controller: DealBundle:Packages:dealSearchAllRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/deals-and-activities"
+    defaults: { _controller: DealBundle:Packages:dealSearchAll, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "", city: "", priority: "", seotitle: "%1$s activities | Tourist Tube", seodescription: "Top %1$s activities! places to visit in %1$s! Louvre, Palace of Versailles, Moulin Rouge, Eiffel Tower and Notre Dame Cathedral only on Tourist Tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_activities_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/activities"
+    defaults: { _controller: DealBundle:Packages:dealSearchActivitiesRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", dealName: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_activities:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/activities"
+    defaults: { _controller: DealBundle:Packages:dealSearchActivities, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", dealName: "", seotitle: "activities | Tourist Tube", seodescription: "activities to do, outdoor activities, tourist activities and unique activities with best prices only and exclusive on Tourist Tube visit us now and skip the line", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_activities_locale:
+    host: "{_locale}.{domain}"
+    path: "/activities"
+    defaults: { _controller: DealBundle:Packages:dealSearchActivities, _locale: "%locale%", type: "", city: "", priority: "", domain: "%domain%", dealName: "", seotitle: "activities | Tourist Tube", seodescription: "activities to do, outdoor activities, tourist activities and unique activities with best prices only and exclusive on Tourist Tube visit us now and skip the line", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_cityDealSearch_locale:
+    host: "{_locale}.{domain}"
+    path: "/activities/{city}"
+    defaults: { _controller: DealBundle:Packages:dealSearch, _locale: "%locale%", type: "all", city: "", priority: "", dealName: "", domain: "%domain%", seotitle: "%1$s activities | Tourist Tube", seodescription: "Top %1$s activities! places to visit in %1$s! Best deals and tours only on Tourist Tube", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_cityDealSearch_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/activities/{city}"
+    defaults: { _controller: DealBundle:Packages:dealSearchRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "all", city: "", priority: "", dealName: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_cityDealSearch:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/activities/{city}"
+    defaults: { _controller: DealBundle:Packages:dealSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "all", city: "", priority: "", dealName: "", seotitle: "%1$s activities | Tourist Tube", seodescription: "Top %1$s activities! places to visit in %1$s! Best deals and tours only on Tourist Tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_tourDetails_activities_locale:
+    host: "{_locale}.{domain}"
+    path: "/activities/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", domain: "%domain%", city: "", dealName: "", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_activities_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/activities/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", city: "", dealName: "", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_tourDetails_activities:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/activities/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", city: "", dealName: "", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_tours_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/tours"
+    defaults: { _controller: DealBundle:Packages:dealSearchToursRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_tours:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/tours"
+    defaults: { _controller: DealBundle:Packages:dealSearchTours, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", seotitle: "tours | Tourist Tube", seodescription: "tours, sightseeing tours  and fun day trips best prices available on Tourist Tube visist us now and plan your adventure tours.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_tours_locale:
+    host: "{_locale}.{domain}"
+    path: "/tours"
+    defaults: { _controller: DealBundle:Packages:dealSearchTours, _locale: "%locale%", type: "", city: "", priority: "", domain: "%domain%", seotitle: "tours | Tourist Tube", seodescription: "tours, sightseeing tours  and fun day trips best prices available on Tourist Tube visist us now and plan your adventure tours.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_tours_locale:
+    host: "{_locale}.{domain}"
+    path: "/tours/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", packageId: "", domain: "%domain%", city: "", dealName: "", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_tours_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/tours/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:tourDetailsToursRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", city: "", dealName: "", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_tourDetails_tours:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/tours/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", city: "", dealName: "", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_attractions_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/attractions"
+    defaults: { _controller: DealBundle:Packages:dealSearchAttractionsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", dealName: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_attractions:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/attractions"
+    defaults: { _controller: DealBundle:Packages:dealSearchAttractions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", dealName: "", seotitle: "attractions | Tourist Tube", seodescription: "wondering about activities and attractions  to do in your vacation? Searching for the fun places to see? Tourist Tube offers you tourist attractions, places to visit and tourist destination.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_attractions_locale:
+    host: "{_locale}.{domain}"
+    path: "/attractions"
+    defaults: { _controller: DealBundle:Packages:dealSearchAttractions, _locale: "%locale%", type: "", city: "", priority: "", domain: "%domain%", dealName: "", seotitle: "attractions | Tourist Tube", seodescription: "wondering about activities and attractions  to do in your vacation? Searching for the fun places to see? Tourist Tube offers you tourist attractions, places to visit and tourist destination.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_dealSearch_attractions_dealName_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/attractions/{dealName}"
+    defaults: { _controller: DealBundle:Packages:dealNameSearchAttractionsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", dealName: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_attractions_dealName:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/attractions/{dealName}"
+    defaults: { _controller: DealBundle:Packages:dealNameSearchAttractions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "activities", city: "", priority: "", dealName: "", seotitle: "attractions %1$s | Tourist Tube", seodescription: "Top activities and attractions in %1$s! Find the best prices and deals related to %1$s on Tourist Tube don’t miss your chance visit us now and learn more about your next destination!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_dealSearch_attractions_dealName_locale:
+    host: "{_locale}.{domain}"
+    path: "/attractions/{dealName}"
+    defaults: { _controller: DealBundle:Packages:dealNameSearchAttractions, _locale: "%locale%", type: "", city: "", priority: "", domain: "%domain%", dealName: "", seotitle: "attractions %1$s | Tourist Tube", seodescription: "Top activities and attractions in %1$s! Find the best prices and deals related to %1$s on Tourist Tube don’t miss your chance visit us now and learn more about your next destination!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_attractions_locale:
+    host: "{_locale}.{domain}"
+    path: "/attractions/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", city: "", dealName: "", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_attractions_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/attractions/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:tourDetailsAttractionsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", city: "", dealName: "", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_tourDetails_attractions:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/attractions/{city}/{dealName}/{packageId}"
+    defaults: { _controller: DealBundle:Packages:dealsDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", city: "", dealName: "", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getLoadMoreResultsList:
+    path: "/ajax/getLoadMoreResultsList"
+    defaults: { _controller: DealBundle:Packages:getLoadMoreResultsList, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getLoadMoreResultsList_locale:
+    path: "/ajax/getLoadMoreResultsList"
+    defaults: { _controller: DealBundle:Packages:getLoadMoreResultsList, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_locale:
+    host: "{_locale}.{domain}"
+    path: "/tourDetails-{packageId}"
+    defaults: { _controller: DealBundle:Packages:tourDetails, _locale: "%locale%", packageId: "", domain: "%domain%", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_tourDetails_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/tourDetails-{packageId}"
+    defaults: { _controller: DealBundle:Packages:tourDetails1Redirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_tourDetails:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/tourDetails-{packageId}"
+    defaults: { _controller: DealBundle:Packages:tourDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", packageId: "", seotitle: "%s | Tourist Tube", seodescription: "Tour details in %s %s only on Tourist Tube.com", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getTourPriceDetails:
+    path: "/ajax/getTourPriceDetailsNew"
+    defaults: { _controller: DealBundle:Packages:getTourPriceDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getTourPriceDetails_locale:
+    path: "/ajax/getTourPriceDetailsNew"
+    defaults: { _controller: DealBundle:Packages:getTourPriceDetails, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_getActivityReviews:
+    path: "/ajax/getActivityReviews"
+    defaults: { _controller: DealBundle:Packages:getActivityReviews, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getActivityReviews_locale:
+    path: "/ajax/getActivityReviews"
+    defaults: { _controller: DealBundle:Packages:getActivityReviews, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_airport_transport_locale:
+    host: "{_locale}.{domain}"
+    path:      "/transport/airport"
+    defaults: { _controller: DealBundle:Packages:airportTransport, _locale: "%locale%", domain: "%domain%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_airport_transport_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/transport/airport"
+    defaults: { _controller: DealBundle:Packages:airportTransportRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_airport_transport:
+    host: "deals{subdomain_suffix}.{domain}"
+    path:      "/transport/airport"
+    defaults: { _controller: DealBundle:Packages:airportTransport, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_attraction_form_locale:
+    host: "{_locale}.{domain}"
+    path:      "/attraction-form"
+    defaults: { _controller: DealBundle:Packages:attractionForm, _locale: "%locale%", domain: "%domain%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_attraction_form_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/attraction-form"
+    defaults: { _controller: DealBundle:Packages:attractionFormRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_attraction_form:
+    host: "deals{subdomain_suffix}.{domain}"
+    path:      "/attraction-form"
+    defaults: { _controller: DealBundle:Packages:attractionForm, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_airport_cities_listing_locale:
+    path:      "/ajax/airport-cities-listing"
+    defaults: { _controller: DealBundle:Packages:airportCitiesListing, _locale: "%locale%", domain: "%domain%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_airport_cities_listing:
+    path:      "/ajax/airport-cities-listing"
+    defaults: { _controller: DealBundle:Packages:airportCitiesListing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_airport_listing_locale:
+    path:      "/ajax/airport-listing"
+    defaults: { _controller: DealBundle:Packages:airportListing, _locale: "%locale%", domain: "%domain%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_airport_listing:
+    path:      "/ajax/airport-listing"
+    defaults: { _controller: DealBundle:Packages:airportListing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_booking_locale:
+    host: "{_locale}.{domain}"
+    path: "/processBooking"
+    defaults: { _controller: DealBundle:Packages:processBooking, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_booking_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/processBooking"
+    defaults: { _controller: DealBundle:Packages:processBookingRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_booking:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/processBooking"
+    defaults: { _controller: DealBundle:Packages:processBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_airport_vehicles_listing_locale:
+    path: "/ajax/airport-vehicles-listing"
+    defaults: { _controller: DealBundle:Packages:getTransportVehicles, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_airport_vehicles_listing:
+    path: "/ajax/airport-vehicles-listing"
+    defaults: { _controller: DealBundle:Packages:getTransportVehicles, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+# Payment Routes
+_deals_payment_success_locale:
+    host: "{_locale}.{domain}"
+    path:      "/deals/payment/success"
+    defaults: { _controller: DealBundle:Packages:paymentSuccess, _locale: "%locale%", domain: "%domain%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_payment_success_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/deals/payment/success"
+    defaults: { _controller: DealBundle:Packages:paymentSuccessRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_payment_success:
+    host: "deals{subdomain_suffix}.{domain}"
+    path:      "/deals/payment/success"
+    defaults: { _controller: DealBundle:Packages:paymentSuccess, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_payment_failure_locale:
+    host: "{_locale}.{domain}"
+    path:      "/deals/payment/failure"
+    defaults: { _controller: DealBundle:Packages:paymentFailed, _locale: "%locale%", domain: "%domain%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_deals_payment_failure_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/deals/payment/failure"
+    defaults: { _controller: DealBundle:Packages:paymentFailedRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_deals_payment_failure:
+    host: "deals{subdomain_suffix}.{domain}"
+    path:      "/deals/payment/failure"
+    defaults: { _controller: DealBundle:Packages:paymentFailed, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_quoteBooking_locale:
+    path: "/ajax/quoteBooking"
+    defaults: { _controller: DealBundle:Packages:quoteBooking, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_quoteBooking:
+    path: "/ajax/quoteBooking"
+    defaults: { _controller: DealBundle:Packages:quoteBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getMandatoryFields_locale:
+    host: "{_locale}.{domain}"
+    path: "/getMandatoryFields"
+    defaults: { _controller: DealBundle:Packages:getMandatoryFields, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_getMandatoryFields_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/getMandatoryFields"
+    defaults: { _controller: DealBundle:Packages:getMandatoryFieldsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_getMandatoryFields:
+    host: "deals{subdomain_suffix}.{domain}"
+    path: "/getMandatoryFields"
+    defaults: { _controller: DealBundle:Packages:getMandatoryFields, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_city_activities_locale:
+    host: "{_locale}.{domain}"
+    path:      "/city-activities"
+    defaults: { _controller: DealBundle:Packages:cityActivities, _locale: "%locale%", domain: "%domain%", seotitle: "city activities | Tourist Tube", seodescription: "Top city activities in the world check photos of outdoor activities in New York, Paris, london and many other cities.", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_city_activities_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/city-activities"
+    defaults: { _controller: DealBundle:Packages:cityActivitiesRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_city_activities:
+    host: "deals{subdomain_suffix}.{domain}"
+    path:      "/city-activities"
+    defaults: { _controller: DealBundle:Packages:cityActivities, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "city activities | Tourist Tube", seodescription: "Top city activities in the world check photos of outdoor activities in New York, Paris, london and many other cities.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_attractions_skip_the_line_locale:
+    host: "{_locale}.{domain}"
+    path:      "/attractions-skip-the-line"
+    defaults: { _controller: DealBundle:Packages:attractionsSkipTheLine, _locale: "%locale%", domain: "%domain%", seotitle: "Attractions skip the line | Tourist Tube", seodescription: "looking for Attractions? want to skip the line? Visit Tourist Tube now and book your Attractions skip the line with the best prices Online", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_attractions_skip_the_line_redirect:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/attractions-skip-the-line"
+    defaults: { _controller: DealBundle:Packages:attractionsSkipTheLineRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_attractions_skip_the_line:
+    host: "deals{subdomain_suffix}.{domain}"
+    path:      "/attractions-skip-the-line"
+    defaults: { _controller: DealBundle:Packages:attractionsSkipTheLine, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Attractions skip the line | Tourist Tube", seodescription: "looking for Attractions? want to skip the line? Visit Tourist Tube now and book your Attractions skip the line with the best prices Online", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

@@ -1,0 +1,44 @@
+TTBundle\Entity\CmsHotelReviews:
+    type: entity
+    table: cms_hotel_reviews
+    repositoryClass: TTBundle\Repository\ReviewsRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,6 @@
+_rest_restaurant_divisions_lang:
+    path:      "/{_locale}/api/restaurant/divisions/{restaurantId}"
+    defaults: { _controller: RestBundle:restaurant\Restaurant:divisions, _locale: "%locale%", restaurantId: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET

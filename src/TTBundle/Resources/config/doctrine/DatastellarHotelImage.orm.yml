@@ -1,0 +1,73 @@
+TTBundle\Entity\DatastellarHotelImage:
+    type: entity
+    table: datastellar_hotel_image
+    indexes:
+        hotel_id:
+            columns:
+                - hotel_id
+        dir:
+            columns:
+                - dir
+        dir_2:
+            columns:
+                - dir
+    uniqueConstraints:
+        title:
+            columns:
+                - title
+        path:
+            columns:
+                - path
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        dir:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        path:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fileSizeBytes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: file_size_bytes
+        widthPx:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: width_px
+        heightPx:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: height_px
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+    lifecycleCallbacks: {  }

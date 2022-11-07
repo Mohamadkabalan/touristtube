@@ -1,0 +1,183 @@
+<div class="row margin_top_20 margin_bottom_20">
+    <div class="col-xs-12">
+        <p class='common_txt_container big_title_txt'>{{"Who's checking in"|trans}}?</p>
+    </div>
+</div>
+
+{% for offer in offersSelected %}
+    {% set offerDetail = offer %}
+    {% if pageSrc != HOTEL_CONSTANTS.page_src.hotels %}
+        {% set offerDetail = offer.details %}
+    {% endif %}
+
+    <div class="row margin_top_10">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row no-margin bookcond_container">
+                        <div class="col-xs-12 nopad">
+                            <p class='common_txt_container font_24 float_left padding_right_20 line-height-24'>{{'Guest'|trans}} {{loop.index}}</p>
+                            <p class='common_txt_container color_blue float_left padding_right_20 margin_bottom_10 line-height-24'>{{offerDetail.name}}{% if pageSrc != HOTEL_CONSTANTS.page_src.hotels %}&nbsp;{% if offer.roomTypeInfo.guestInfo is not empty %}{{ offer.roomTypeInfo.guestInfo }}{% endif %}{% endif %}</p>
+                            <p class='common_txt_container float_left line-height-24 bookcond'>{{'Booking Conditions'|trans}}<i class="fas fa-angle-down"></i></p>
+                        </div>
+                        <div class="col-xs-12 nopad colored text_container room_conditions_container full_background">
+                            <ul class="pinklistul backgrounded_ul">
+                                {% if offerDetail.conditions.mainInfo.breakfast is not empty %}
+                                    <li class='common_txt_container padding_left_5 margin_bottom_0'>{{ offerDetail.conditions.mainInfo.breakfast|trans|raw }}</li>
+				    {% endif %}
+
+                                {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                                    {% if offerDetail.conditions.moreInfo.deposit is defined and offerDetail.conditions.moreInfo.deposit is not empty %}
+                                        {% for info in offerDetail.conditions.moreInfo.deposit %}
+                                            <li class='common_txt_container padding_left_5 margin_bottom_0'>{{info|raw}}</li>
+					    {% endfor %}
+					{% endif %}
+				    {% else %}
+					{% if offerDetail.conditions.moreInfo.prepayment is defined and offerDetail.conditions.moreInfo.prepayment is not empty %}
+					    {% for info in offerDetail.conditions.moreInfo.prepayment %}
+                                            <li class='common_txt_container padding_left_5 margin_bottom_0'>{{info|raw}}</li>
+					    {% endfor %}
+					{% endif %}
+				    {% endif %}
+
+
+                                {% if offerDetail.conditions.moreInfo.cancellation is defined and offerDetail.conditions.moreInfo.cancellation is not empty %}
+                                    {% for info in offerDetail.conditions.moreInfo.cancellation %}
+                                        <li class='common_txt_container padding_left_5 margin_bottom_0'>{{info|raw}}</li>
+					{% endfor %}
+				    {% elseif offerDetail.conditions.mainInfo.cancellation is defined and offerDetail.conditions.mainInfo.cancellation is not empty %}
+                                    <li class='common_txt_container padding_left_5 margin_bottom_0'>{{ offerDetail.conditions.mainInfo.cancellation|trans }}</li>
+				    {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin_top_20">
+                <div class="col-xs-12 hotel_book_new_inputconatiner">
+                    <div class="row new_small_margin">
+                        {% set room_guestFirstName = '' %}
+                        {% set room_guestLastName = '' %}
+                        {% set room_guestEmail = '' %}
+
+                        {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                            {% if attribute(guestFirstName, loop.index0) is defined %}
+                                {% set room_guestFirstName = guestFirstName[loop.index0] %}
+                            {% endif %}
+                            {% if attribute(guestLastName, loop.index0) is defined %}
+                                {% set room_guestLastName = guestLastName[loop.index0] %}
+                            {% endif %}
+                            {% if attribute(guestEmail, loop.index0) is defined %}
+                                {% set room_guestEmail = guestEmail[loop.index0] %}
+                            {% endif %}
+                        {% else %}
+                            {% if offer.reservationPersons is defined%}
+                                {% set room_guestFirstName = offer.reservationPersons[0].firstName %}
+                            {% endif %}
+                            {% if offer.reservationPersons is defined%}
+                                {% set room_guestLastName = offer.reservationPersons[0].lastName %}
+                            {% endif %}
+                            {% if offer.reservationPersons is defined and offer.reservationPersons[0].email is defined %}
+                                {% set room_guestEmail = offer.reservationPersons[0].email %}
+                            {% endif %}
+                        {% endif %}
+
+                        <div class="col-sm-4 col-xs-12 new_smal_padding">
+                            <label class="">{{'First name'|trans}}</label>
+                            <input class="hotel_book_input textOnly" data-alert="Guest {{ loop.index0 }} first name" name="guestFirstName[{{ loop.index0 }}]" value="{{room_guestFirstName}}" placeholder="{{ 'First name*'|trans }}" id="guestFirstName[{{ loop.index0 }}]" required="true" type="text"/>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 new_smal_padding">
+                            <label class="">{{'Last name'|trans}}</label>
+                            <input class="hotel_book_input textOnly" data-alert="Guest {{ loop.index0 }} last name" name="guestLastName[{{ loop.index0 }}]" value="{{room_guestLastName}}" placeholder="{{ 'Last name*'|trans }}" id="guestLastName[{{ loop.index0 }}]" required="true" type="text"/>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 new_smal_padding">
+                            <label class="">{{'Email'|trans}}</label>
+                            <input class="hotel_book_input guestEmail" data-alert="Guest {{ loop.index0 }} email" name="guestEmail[{{ loop.index0 }}]" value="{{room_guestEmail}}" placeholder="{{ 'Email address'|trans }}" id="guestEmail[{{ loop.index0 }}]" type="email"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                {% for child in offerDetail.bookableInfo.children %}
+                    <div class="row margin_top_20">
+                        <div class="col-xs-12">
+                            <p class='common_txt_container font_24 float_left padding_right_20 line-height-24'>{{'Child '|trans ~ loop.index ~ ' (Age: ' ~ child ~ ')'}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input class="hidden" name="childAge[{{loop.parent.loop.index0}}][{{ loop.index0 }}]" value="{{child}}"/>
+                        <div class="col-xs-12 hotel_book_new_inputconatiner">
+                            <div class="row new_small_margin">
+                                <div class="col-sm-6 col-xs-12 new_smal_padding">
+                                    <label class="">{{'First name'|trans}}</label>
+                                    <input class="hotel_book_input textOnly" data-alert="Child {{ loop.index0 }} first name" name="childFirstName[{{loop.parent.loop.index0}}][{{ loop.index0 }}]" value="{% if attribute(childFirstName, loop.parent.loop.index0) is defined %}{{childFirstName[loop.parent.loop.index0][loop.index0]}}{% endif %}" placeholder="{{ 'First name*'|trans }}" id="childFirstName[{{loop.parent.loop.index0}}][{{ loop.index0 }}]" required="true" type="text"/>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 new_smal_padding">
+                                    <label class="">{{'Last name'|trans}}</label>
+                                    <input class="hotel_book_input textOnly" data-alert="Child {{ loop.index0 }} last name" name="childLastName[{{loop.parent.loop.index0}}][{{ loop.index0 }}]" value="{% if attribute(childLastName, loop.parent.loop.index0) is defined %}{{childLastName[loop.parent.loop.index0][loop.index0]}}{% endif %}" placeholder="{{ 'Last name*'|trans }}" id="childLastName[{{loop.parent.loop.index0}}][{{ loop.index0 }}]" required="true" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="border-bottom-2 margin_top_30"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div class="row margin_top_20">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <p class='common_txt_container big_title_txt'>{{'Special Requests'|trans}}</p>
+            </div>
+        </div>
+
+        {% set reservation_remarks = '' %}
+        {% set reservation_quiteRoom = '' %}
+        {% set reservation_nonSmoking = '' %}
+
+        {% if pageSrc != HOTEL_CONSTANTS.page_src.hotels %}
+            {% if wish.reservationWish is defined %}
+                {% set reservation_remarks = wish.reservationWish %}
+            {% endif %}
+            {% if wish.quietRoom is defined %}
+                {% set reservation_quiteRoom = 'checked' %}
+            {% endif %}
+            {% if wish.nonSmoking is defined %}
+                {% set reservation_nonSmoking = 'checked' %}
+            {% endif %}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-xs-12">
+                <textarea id="reservationWish" name="remarks[reservationWish]" class="hotel_book_textarea reservationWish" placeholder="{{"Special requests are subject to hotel\'s approval and are not guaranteed."|trans}}" pattern="^[a-zA-Z0-9\s ]+" maxlength="127">{{reservation_remarks}}</textarea>
+            </div>
+        </div>
+        <div class="row margin_top_5">
+            <div class="col-xs-12">
+                <div class="form-check">
+                    <input id="quietRoom" class="form-check-input alphaNumeric" type="checkbox" name="remarks[quietRoom]" value="1" {{reservation_quiteRoom}}/>
+                    <label for="quietRoom" class="form-check-label">{{"I\'d like a quiet room"|trans}}</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-check">
+                    <input id="nonSmoking" class="form-check-input alphaNumeric" type="checkbox" name="remarks[nonSmoking]" value="1" {{reservation_nonSmoking}}/>
+                    <label for="nonSmoking" class="form-check-label">{{'Non-smoking room'|trans}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="border-bottom-2 margin_top_30"></div>
+            </div>
+        </div>
+    </div>
+</div>

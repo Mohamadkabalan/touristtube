@@ -1,0 +1,56 @@
+DealBundle\Entity\DealBookingPassengers:
+    type: entity
+    table: deal_booking_passengers
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealBookingId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_booking_id
+        firstName:
+            type: string
+            nullable: true
+            length: 255
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            length: 255
+            column: last_name
+        age:
+            type: integer
+            nullable: true
+            column: age
+        ageType:
+            type: string
+            nullable: true
+            length: 100
+            column: age_type
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP            
+            column: updated_at    
+    lifecycleCallbacks: {  }

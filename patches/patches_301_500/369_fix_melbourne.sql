@@ -1,0 +1,1 @@
+UPDATE cms_hotel_city SET location_id = 54543 WHERE city_name = 'Melbourne (State of Victoria)' && location_id = 98352 && city_id = 1136268;

@@ -1,0 +1,53 @@
+{% extends 'basecorporate.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-requestServicesList.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Request Services List'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Request Services List'|trans}}</h1>
+	    </div></br>
+	    <div class="AddAdmin tt_buttons_bar_add">
+		<button data-role="button" data-type="add" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_request_services_add') }}')">{{'Add'|trans}}</button>
+	    </div>
+	    <table class="accountTable">
+		<tr class="TopBar">
+		    <td class="topBarlist">{{'Id'|trans }}</td>
+		    <td class="topBarlist">{{'Title'|trans }}</td>
+		    <td class="topBarlist">{{'Account'|trans }}</td>
+		    <td class="topBarlist">{{'From Date'|trans }}</td>
+		    <td class="topBarlist">{{'To Date'|trans }}</td>
+		    <td class="topBarlist">{{'Destination City'|trans }}</td>
+		    <td class="topBarlist">{{'Departure City'|trans }}</td>
+		    <td class="topBarlist">{{'Country'|trans }}</td>
+		    <td class="topBarlist">{{'Approved'|trans }}</td>
+		    <td class="topBarlist">{{'actions'|trans }}</td>
+		</tr>
+		{% for requestService in requestServicesList %}
+		    <tr>
+			<td class="topBarlist">{{requestService.p_id|raw}}</td>
+			<td class="topBarlist alignLeft">{{requestService.p_title}}</td>
+			<td class="topBarlist alignLeft">{{requestService.accountName|raw}}</td>
+			<td class="topBarlist">{{requestService.p_fromDate|date("m/d/Y")}}</td>
+			<td class="topBarlist">{{requestService.p_toDate|date("m/d/Y")}}</td>
+			<td class="topBarlist alignLeft">{{requestService.destinationCityName|raw}}</td>
+			<td class="topBarlist alignLeft">{{requestService.departureCityName|raw}}</td>
+			<td class="topBarlist alignLeft">{{requestService.countryName|raw}}</td>
+			<td class="topBarlist alignLeft">{% if requestService.p_isApproved == 1 %}{{'Approved'|trans}}{% else %}{{'Not Approved'|trans}}{% endif %}</td>
+			<td class="topBarlist actions">
+			    <div class="tt_buttons_bar">
+				<button data-role="button" data-type="modify" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_request_services_edit', { 'id':requestService.p_id})}}')">{{'Edit'|trans}}</button>
+				<button data-role="button" data-type="delete" onclick="deleteRequestServices({{requestService.p_id|raw}})">{{'Delete'|trans}}</button>
+			    </div>
+			</td>
+		    </tr>
+		{% endfor %}
+	    </table>
+	</div>
+    </section>
+{% endblock %}

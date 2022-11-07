@@ -1,0 +1,2 @@
+
+ALTER TABLE corpo_account CHANGE COLUMN website website VARCHAR(100) DEFAULT NULL;

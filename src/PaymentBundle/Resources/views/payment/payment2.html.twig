@@ -1,0 +1,77 @@
+<div class="modal-header">
+
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	&times;
+    </button>
+
+    <h4 class="modal-title">Payment (1)</h4>
+
+</div>
+<div class="modal-body no-padding">
+
+    <div class="alert alert-warning" role="alert">
+	{{ form_errors(form.server_error_callback) }}
+    </div>
+
+    <form action="" method="POST" id="login-form" class="smart-form">
+
+
+
+	<fieldset>
+	    <div class="row">
+		<label class="label col col-4">Name on Card</label>
+		<section>
+		    <label class="input">
+			{{ form_widget(form.cardholder)}}
+			{{ form_errors(form.cardholder) }}
+		    </label>
+		</section>
+		<label class="label col col-4">Card Number</label>
+		<section>
+		    <label class="input">
+			{{ form_widget(form.cardnumber )}}
+			{{ form_errors(form.cardnumber) }}
+		    </label><em for="card" class="invalid" style="display: none;">Please enter a valid credit card number</em>
+		</section>
+
+		<label class="label col col-4">Expiration date</label>
+		<section class="col col-5">
+		    <label class="select">
+			{{ form_widget(form.card_expire_month) }}
+			<i></i> </label>
+		</section>
+		<section class="col col-3">
+		    <label class="select">
+			{{ form_widget(form.card_expire_year) }}
+			<i></i>
+		    </label>
+		</section>
+		<section class="col col-3">
+		    <label class="select">
+			{{ form_widget(form.cvv) }}
+			<i></i>
+		    </label>
+		</section>
+	    </div>
+	</fieldset>
+	<hr>
+	<p class="info"><img src="" alt="lock">Your payment is secured using 128 bit SSL encryption.
+	    This is the same encryption used by the financial industry.
+	</p>
+
+	<footer>
+	    <button type="submit" class="pull-left btn btn-success">Pay</button>
+	    <button type="button" class="pull-left btn btn-default" data-dismiss="modal">Cancel</button>
+	</footer>
+	{# Token CSRF #}
+	{{ form_widget(form._token) }}
+    </form>
+
+    <script>
+
+
+
+    </script>
+
+</div>
+

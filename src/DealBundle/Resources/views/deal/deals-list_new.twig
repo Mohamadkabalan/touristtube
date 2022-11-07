@@ -1,0 +1,177 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/daterangepicker.min.css")|raw }}" >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deal_header_without_backimg.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deals_common_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/deals-list_new.js")|raw }}"></script>
+{% endblock %}
+{% block title %}
+    {{ 'Attractions List'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container deals_container">
+        <div class="row margin_top_30">
+            <div class="col-xs-12">
+                <div class="circlimg_arrow"><i class="fas fa-angle-right"></i></div>
+                <h1 class="search_title">{{ 'Make an attraction booking'|trans }}</h1>
+            </div>
+        </div>
+        <div class="row attraction_search_input_container">
+            <div class="col-xs-12">
+                {% include "default/searchinput3.twig" %}
+            </div>
+        </div>
+        <div class="row border_top_but_row margin_top_45 margin_bottom_45"></div>
+
+
+        <div class="row">
+            <div class="col-md-3 left_panel hidden-sm hidden-xs">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="refine_title">{{'Filters'|trans}}</h3>
+                    </div>
+                </div>
+                <div class="row margin_bottom_38">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p class="refine_subtitles data-price price-convert"><i class="fas fa-angle-right fa-lg"></i>{{'TOTAL BUDGET'|trans}} (<span class="currency-convert-text">USD</span>)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="deals-price-slider" class="col-xs-12 bigpad_right price-slider">
+                                <div class="price-convert"><div class="hidden price-slider-maxPrice price-convert-text">0</div></div>
+                                <div class="price-convert"><div class="hidden price-slider-minValue price-convert-text">0</div></div>
+                                <div class="price-convert"><div class="hidden price-slider-maxValue price-convert-text">0</div></div>
+                                <span id="{{ random('abcd') }}_{{ random('123') }}" class="low hidden">{{'Example low value'|trans}}</span>
+                                <span id="{{ random('efgh') }}_{{ random('456') }}" class="high hidden">{{'Example high value'|trans}}</span>
+                                <input id="{{ random('ijkl') }}_{{ random('789') }}" class="budgetslider" data-value="budget" type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		{% if (result['categoryList'] is defined and result['categoryList']) %}
+		    <div id="categoryListResults">
+			{% include "@Deal/deal/deals-list-category-new.twig" %}
+		    </div>
+		{% endif %}
+	    </div>
+            <div id="dealListResults" class="col-md-9 col-xs-12 right_panel">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad sort_by_tabs">
+                                <div class="row no-margin filters-group">
+                                    <div class="sort-options">
+                                        <a id="defaultSort" href="{{defaultURL|raw}}" class="sort_item col-sm-2 col-xs-3 {{ (type is defined and type == 'all') ? ' active'}}" data-value="all">
+                                            {{'Default'|trans}}
+                                        </a>
+                                        <a id="toursSort" href="{{tourURL|raw}}" class="sort_item col-sm-2 col-xs-3{{ (type is defined and type == 'tours') ? ' active'}}" data-value="tours">
+                                            {{'Tours'|trans}}
+                                        </a>
+                                        <a id="activitiesSort" href="{{activityURL}}" class="sort_item col-sm-2 col-xs-3{{ (type is defined and type == 'activities') ? ' active'}}" data-value="activities">
+                                            {{'Activities'|trans}}
+                                        </a>
+                                        <a id="attractionsSort" href="{{attractionsURL}}" class="sort_item col-sm-2 col-xs-3{{ (type is defined and type == 'attractions') ? ' active'}}" data-value="attractions">
+                                            {{'Attractions'|trans}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+			<input name="getLoadMoreURL" type="hidden" value="{{ generateLangRoute(LanguageGet,'_getLoadMoreResultsNewList') }}">
+			<input name="dealType" type="hidden" value="{{ type }}">
+			<input name="langCode" type="hidden" value="{{ langCode }}">
+			<input name="priority" type="hidden" value="{{ priority }}">
+			<input name="hasSearch" type="hidden" value="{{ hasSearch }}">
+			<input name="priceRange" type="hidden" value="{{ priceRange }}">
+			<input name="newMinPrice" type="hidden" value="">
+			<input name="newMaxPrice" type="hidden" value="">
+			<input name="categoryIds" type="hidden" value="">
+			<input name="loadMoreChange" type="hidden" value="0">
+			<input name="offset" type="hidden" value=0>
+			<input id="dealsMinPrice" type="hidden" class="minPriceHidden" name="minPrice" value="{{minPrice}}" class="form-control">
+			<input id="dealsMaxPrice" type="hidden" class="maxPriceHidden" name="maxPrice" value="{{maxPrice}}" class="form-control">
+			<div class="price-convert"><input class="currency-convert-val" type="hidden" name="currency_code" value="{{ selected_currency|raw }}" /></div>
+                        <div class="row no-margetLoadMoreURLgin">
+                            <div class="col-xs-12 nopad">
+				{% if (result['result'] is defined and result['result']) %}
+				    <div id="searchResults">
+					{% include "@Deal/deal/deal-list-new-search-results.twig" %}
+				    </div>
+				{% endif %}
+				{% if result['numRowsCnt'] is defined and result['numRowsCnt'] >= 20 %}
+				    <div id="loadMoreBtn" class="col-xs-12 nopad padtop20">
+					<div class="loadmore_dat">
+					    {{'load more'|trans}}
+					</div>
+				    </div>
+				{% endif %}
+			    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 margin_top_45">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="reasonsdeals">{{'Reasons to book with us'|trans}}</p>
+                                        <p class="greytextdeals">{{'Applies to selected holidays. See our terms & Conditions'|trans}}</p>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <ul class="dealsulreasons">
+                                            <div class="row no-margin">
+                                                <li class="borderright col-sm-3 col-xs-6 nopad">
+                                                    <div class="imgdiv_butlist">
+                                                        <img src="/images/firstreason.png" alt="cost_spread">
+                                                    </div>
+                                                    <div class="text_div_butlist">
+                                                        <p class="bigultext">{{'Spread the cost'|trans}}</p>
+                                                        <p class="smalultxt">{{'with Direct Debit'|trans}}</p>
+                                                    </div>
+                                                </li>
+                                                <li class="borderright col-sm-3 col-xs-6 nopad">
+                                                    <div class="imgdiv_butlist">
+                                                        <img src="/images/sndreason.png" alt="24 hour">
+                                                    </div>
+                                                    <div class="text_div_butlist">
+                                                        <p class="bigultext">{{'24 hour'|trans}}</p>
+                                                        <p class="smalultxt">{{'Hotel satisfaction promise'|trans}}</p>
+                                                    </div>
+                                                </li>
+                                                <li class="borderright col-sm-3 col-xs-6 nopad">
+                                                    <div class="imgdiv_butlist">
+                                                        <img src="/images/thrdreason.png" alt="Deposit">
+                                                    </div>
+                                                    <div class="text_div_butlist">
+                                                        <p class="bigultext">{{'Deposit from $25'|trans}}</p>
+                                                        <p class="smalultxt">{{'when payimg by Direct Debit'|trans}}</p>
+                                                    </div>
+                                                </li>
+                                                <li class="col-sm-3 col-xs-6 nopad">
+                                                    <div class="imgdiv_butlist">
+                                                        <img src="/images/frthreason.png" alt="book">
+                                                    </div>
+                                                    <div class="text_div_butlist">
+                                                        <p class="bigultext">{{'Flexi Book'|trans}}</p>
+                                                        <p class="smalultxt">{{'book'|trans}}</p>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

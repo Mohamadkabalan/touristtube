@@ -1,0 +1,29 @@
+TTBundle\Entity\CmsChatStatus:
+    type: entity
+    table: cms_chat_status
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: user_id
+        status:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+    fields:
+        lastAction:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_action
+    lifecycleCallbacks: {  }

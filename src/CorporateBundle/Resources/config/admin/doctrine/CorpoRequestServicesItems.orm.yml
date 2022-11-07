@@ -1,0 +1,27 @@
+CorporateBundle\Entity\CorpoRequestServicesItems:
+    type: entity
+    table: corpo_request_services_items
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoRequestServicesItemsRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        serviceId:
+            type: integer
+            nullable: false
+            column: service_id
+        requestId:
+            type: integer
+            nullable: false
+            column: request_id
+    lifecycleCallbacks: {  }

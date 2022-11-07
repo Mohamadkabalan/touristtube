@@ -1,0 +1,38 @@
+TTBundle\Entity\CmsSearchLog:
+    type: entity
+    table: cms_search_log
+    indexes:
+        query_string:
+            columns:
+                - search_string
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        searchType:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: search_type
+        searchString:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: search_string
+        searchTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: search_ts
+    lifecycleCallbacks: {  }

@@ -1,0 +1,107 @@
+
+/*-----------------------------------------------------
+Page not found
+*/
+*{ margin:0; padding:0}
+/*.top_header{ background:#000 url(/media/images/top_header.jpg) no-repeat center  top; height:90px;}
+.footer{ background:#000 url(/media/images/footer.jpg) no-repeat center  top; height:60px; margin-top:40px;
+ cursor: default; bottom: 0; position: fixed; width: 100%; z-index: 1000;}*/
+
+.pagenotfound_body{ background:#231f20;}
+
+.middle_body{background:#231f20 url(/media/images/pagenotfound/pagenotfound_bg.jpg) repeat-x 0 0;}
+.pagenotfound_txtbody{ background: url(/media/images/pagenotfound/pagenotfound_cloud_1.png) no-repeat top center; width:100%;  min-height:450px;  padding: 251px 0 0;}
+
+.pagentfnd_txt{ position: absolute; display: block; left: 217px; z-index: 10;} 
+.pagentfnd_txt h1{  color: #2e2e2e; font: normal 25px/64px "Arial"; margin: 0; padding: 0; }
+.trip_search {
+    background:url("/media/images/banner_bg404.jpg") no-repeat scroll center top / cover;    
+    padding-top: 0;
+    height: 600px;
+}
+.couldntfind {
+    display: block;
+    min-height: 60px;
+    position: relative;
+    width: 100%;
+    background-color: rgba(255,255,255,0.4);
+    margin-bottom: 5px;
+}
+.couldntfindtext {
+    position: relative;
+    display: block;
+    min-height: 60px;
+    width: 100%;
+    font-family: Arial;
+    font-size: 22px;
+    color:#2e2e2e;
+    line-height: 60px;
+    padding-left: 12px;
+}
+.page_not_cntr {background:url(/media/images/Search20.png) no-repeat 40px 0px; height:300px; width:100%}
+.cntr_text{ display: block;
+            margin: 0 0 0 150px;
+            padding:50px 0 50px 150px; 
+} 
+.cntr_text h1{  color: #dfb0b0;
+                font: 500 130px/110px arial; }
+
+.cntr_text h1 span{ color: #dfb0b0;
+                    display: inline-block;
+                    font: 500 30px/13px arial;
+                    margin: 0 0 0 -43px; }
+
+.cntr_text h2{ color: #999;
+               font: 500 40px/40px arial;
+               margin: 0;
+               padding: 0}
+
+.cntr_text p{font: bold 13px/20px arial; color: #cea113; }
+.min-heightdiv{
+    min-height: 100px;
+}
+.yellowtab{
+    background-color: #eac31a;
+    color: white;
+    font-size: 22px;
+    padding-left: 20px;
+    width: 284px;
+    height: 38px;
+    line-height: 38px;
+    margin-top: 40px;
+}
+.list404{
+    list-style: none;
+}
+.padleft10{
+    padding-left: 10px !important;
+}
+.list404 li {
+    display: inline-block;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: auto;
+    height: 40px;
+    border-right: 1px solid #eac31a;
+    font-size: 18px;
+    color: #2e2e2e;
+    line-height: 40px;
+}
+.list404 li.noborder {
+    border-right: none;
+}
+.list404 li a ,.list404 li a:hover{
+   color: #2e2e2e;
+   text-decoration: none;
+}
+.mar-top-10{
+    margin-top: 10px;
+}
+@media (max-width:767px){
+    .trip_search .trip_search_box .text {
+        line-height: 28px;
+    }
+    .yellowtab {
+        margin-left: 5px;
+    }
+}

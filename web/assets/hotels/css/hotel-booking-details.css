@@ -1,0 +1,96 @@
+.booking-details_container .font-13{font-size: 13px;}
+.booking-details_container .font-weight_normal{font-weight: normal;}
+.booking-details_container .black{color: black;}
+.booking-details_container .blue{color: #00b7d9;}
+.booking-details_container .grey{color: #5f5f5f;}
+.booking-details_container .pink{color: #db3a69;}
+.booking-details_container .font-22{font-size: 22px;}
+.booking-details_container .font-14{font-size: 14px;}
+.booking-details_container .font-16{font-size: 16px;}
+.booking-details_container .font-17{font-size: 17px;}
+.booking-details_container .font-bold{font-weight: bold;}
+.booking-details_container .blue_font-awsome_logo{color: #00b7d9; padding-right: 3px;}
+.booking-details_container .underline{text-decoration: underline;}
+.booking-details_container .cursor_pointer{cursor: pointer;}
+.booking-details_container .edit_booking_details_list{padding-left: 0;list-style: none;}
+.booking-details_container .edit_booking_details_list li{border-right: 2px solid #000000;margin-bottom: 10px;padding-right: 15px;margin-right: 15px;float: left;}
+.booking-details_container .edit_booking_details_list li:first-child{padding-left: 0px;}
+.booking-details_container .edit_booking_details_list li:last-child{border-right: none;padding-right: 0px;margin-right: 0px}
+.booking-details_container .edit_booking_details_list li a{font-size: 16px;color:#db3a69;text-decoration: none;}
+.booking-details_container .view_booking{width: 222px;height: 60px;border: none;color: #201b1d;background-color: #eac31a;font-size: 22px;margin-bottom: 10px;}
+.booking-details_container .signin_txt a{color: #00b7d9;text-decoration: underline;}
+.booking-details_container .yellow_font-awsome_logo{color: #eac31a;padding-right: 7px;}
+.booking-details_container .pink_font-awsome_logo{color: #db3a69;margin-right: 15px;}
+.booking-details_container .booking_confirmation_txt a{color: #00b7d9;}
+.booking-details_container .border_top_but_row_7 {height: 7px;border-top: 3px solid #bababa;border-bottom: 3px solid #bababa;}
+.booking-details_container .border_top_but_row_3 {height: 3px;border-top: 1px solid #bababa;border-bottom: 1px solid #bababa;}
+.booking-details_container .location_txt img {padding-right: 6px;}
+.booking-details_container .stars_block {margin-top: 5px;}
+.booking-details_container .yellowsmal_font-awsome_logo {padding-right: 3px;color: #eac31a;}
+.booking-details_container .price_common_bigtxt {color: black;font-weight: bold;font-size: 30px;}
+.booking-details_container .price_common_bigtxt span.normaltxt{color: #404141;font-weight: normal;font-size: 12px;padding-right: 10px;}
+.booking-details_container .blueblack span{color: #00b7d9;font-weight: normal;font-size: 16px;}
+.booking-details_container .greyblack span{color: #404141;font-weight: normal;font-size: 16px;}
+.booking-details_container .cancel_booking{width: 278px;height: 60px;border: none;color: white;background-color: #828282;font-size: 22px}
+.line-height-31{line-height: 31px;}
+.line-height-38{line-height: 38px;}
+.line-height-24{line-height: 24px;}
+.line-height-20{line-height: 20px;}
+.right-separation:before{position: absolute;content:" ";left:15px;top:0px;height: 18px;width: 2px;background:#00b7d9;}
+.blue-fa{color:#00b7d9}
+.text-right-container{text-align: right;}
+.side-left-icon{float: left;width:25px;}
+.side-right-icon{float: left;width:calc(100% - 25px);}
+/*Margins:*/
+.margin_top_5{margin-top: 5px;}
+.margin_top_10{margin-top: 10px;}
+.margin_top_15{margin-top: 15px;}
+.margin_top_20{margin-top: 20px;}
+.margin_top_30{margin-top: 30px;}
+.margin_top_40{margin-top: 40px;}
+.margin_top_50{margin-top: 50px;}
+.margin_bottom_0{margin-bottom: 0px;}
+.margin_bottom_5{margin-bottom: 5px;}
+.margin_bottom_7{margin-bottom: 7px;}
+.margin_bottom_10{margin-bottom: 10px;}
+.margin_bottom_20{margin-bottom: 20px;}
+.margin_bottom_30{margin-bottom: 30px;}
+.margin_top-5{margin-top: 5px;}
+.padding_left_5{padding-left: 5px;}
+.padding_left_0{padding-left: 0;}
+.padding_left_68{padding-left: 68px;}
+.padding_right_20{padding-right: 20px;}
+.padding_right_10{padding-right: 10px;}
+
+.cancelled{color: #ce0000 !important;}
+.btn-bookingdetails{background: #FFF; border: 0px none; outline: 0px none; padding: 0px; margin: 0px; position: relative;}
+.cancelbookdetailbut{top: 8px;}
+.editbookdetailbut{top: -5px;}
+
+.cancelled_price{text-decoration: line-through;}
+
+@media(max-width:404px){
+    .col-xss{
+	float: left;
+	width: 100%;
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+    }
+}
+
+@media (max-width:1199px){
+    .booking-details_container .view_booking{margin-top: 15px;}
+}
+@media (max-width:767px){
+    .booking-details_container .title_style-xs{font-weight: normal;margin-top: 0;}
+    .xs_style{margin-bottom: 10px;display: block;}
+    .right-separation:before{left: -13px;top: 2px;height: 14px;}
+    .padding_left_68{padding-left: 45px;}
+    .booking-details_container .edit_booking_details_list li a{font-size: 14px;}
+    .text-right-container{text-align: left;}
+    .booking-details_container .edit_booking_details_list li{padding-right: 12px; margin-right: 12px;}
+    .mobile_margin_top_40{margin-top: 40px;}
+    .mobile_text_right{text-align: right;}
+}

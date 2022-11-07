@@ -1,0 +1,229 @@
+{# Template for Channel Page#}
+
+{% include "headChannel.html" %}
+
+<script type="text/javascript">
+    var indexArray = new Array();
+    var pagetab = {{ pagetab|raw }};
+    var globchannelid = {{ channelInfoId|raw }};
+    channelGlobalID(globchannelid);
+    var is_owner = {{ is_owner|raw }};
+    var user_Is_channel = {{ userIsChannel|raw }};
+    var user_is_logged = {{ user_is_logged|raw }};
+    reactivateAccount(false);
+</script>
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleChannel" style="background:{{ bg_src|raw }}">
+
+    <div id="ChannelContainer">
+        {% include "parts/channelHeader.twig" %}
+        <div id="MainChannelContainer">
+            <div class="privacybuttonsOver">
+                <div class="ProfileHeaderOverin"></div>
+                <div class="icons-overtik"></div>
+            </div>
+            {% include "parts/myChannelRight.twig" %}
+            <div class="objectContainerOver">
+                <div class="objectContainerOverin"></div>
+                <div class="icons-overtik"></div>
+            </div>
+            {% if TubersNumConnected1 > 0 %}
+                <div id="ChannelLeft">
+                    <div class="searchcontainer">
+                        <div id="searchinput">
+                            <input type="text" name="name" id="srchtxt" style="width:138px; margin:0; padding:0; border:0; margin-left:4px;" value="{{ searchString|raw }}" onfocus="removeValue1(this)" onblur="addValue1(this)" data-val="{{ searchString|raw }}" onKeyPress="return checkSubmitSearch(event)"/>
+                        </div>                   
+                        <div id="searchbut"></div>
+                        <div id="searchbutalphabetcontainer">
+                            <div id="searchbutalphabet"></div> 
+                            <div id="alphabetcnt">
+                                <ul>
+                                    {% for p in 0..alphArray|length %}
+                                        {% if p == alphArray|length - 1 %}
+                                            {% if txtbegins is null and txtbegins is empty %}
+                                                <li data-value="{{ alphArray[p] }}" class="activeall active selectable">{{ alphArray[p] }}</li>
+                                            {% else %}
+                                                <li data-value="{{ alphArray[p] }}" class="activeall selectable">{{ alphArray[p] }}</li>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if retcount[p] == 0 %}
+                                                <li id="{% if alphArray|length - 1 == p %}dyese{% else %}{{ alphArray[p] }}{% endif %}" data-value="{{ alphArray[p] }}" class="inactive">{{ alphArray[p] }}</li>
+                                            {% elseif alphArray[p] == txtbegins and txtbegins is not empty %}
+                                                <li id="{% if alphArray|length - 1 == p %}dyese{% else %}{{ alphArray[p] }}{% endif %}" data-value="{{ alphArray[p] }}" class="active selectable">{{ alphArray[p] }}</li>
+                                            {% else %}
+                                                <li id="{% if alphArray|length - 1 == p %}dyese{% else %}{{ alphArray[p] }}{% endif %}" data-value="{{ alphArray[p] }}" class="selectable">{{ alphArray[p] }}</li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>                   
+                        </div>
+                    {% if is_owner == 1 %}
+                        <div id="privacy_button" class="privacy_button privacy_icon{{ privacy_icon_val|raw }}" data-title="{{ privacy_icon_str|raw }}"></div>            
+                        <div id="privacy_box" class="privacy_box">   
+                            <div class="privacy_selector_text formtt11new">{{ 'Who can see my sponsors?'|lang }}</div>
+                            <select id="privacy_select" class="privacy_select">  
+                                {% if privacy_icon_val == PRIVACY_EXTAND_KIND_PUBLIC %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_PUBLIC|raw }}" selected="selected">{{ 'public'|lang }}</option>
+                                {% else %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_PUBLIC|raw }}">{{ 'public'|lang }}</option>
+                                {% endif %}
+                                {% if privacy_icon_val == PRIVACY_EXTAND_KIND_CONNECTIONS %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_CONNECTIONS|raw }}" selected="selected">{{ 'connections'|lang }}</option>
+                                {% else %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_CONNECTIONS|raw }}">{{ 'connections'|lang }}</option>
+                                {% endif %}
+                                {% if privacy_icon_val == PRIVACY_EXTAND_KIND_SPONSORS %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_CONNECTIONS|raw }}" selected="selected">{{ 'sponsors'|lang }}</option>
+                                {% else %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_CONNECTIONS|raw }}">{{ 'sponsors'|lang }}</option>
+                                {% endif %}
+                                {% if privacy_icon_val == PRIVACY_EXTAND_KIND_PRIVATE %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_PRIVATE|raw }}" selected="selected">{{ 'private'|lang }}</option>
+                                {% else %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_PRIVATE|raw }}">{{ 'private'|lang }}</option>
+                                {% endif %}
+                                {% if privacy_icon_val == PRIVACY_EXTAND_KIND_CUSTOM %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_CUSTOM|raw }}" selected="selected">{{ 'custom'|lang }}</option>
+                                {% else %}
+                                    <option value="{{ PRIVACY_EXTAND_KIND_CUSTOM|raw }}">{{ 'custom'|lang }}</option>
+                                {% endif %}
+                            </select>
+                            <div id="privacy_icon" class="privacy_icon privacy_icon1"></div> 
+                            <div id="privacy_picker" class="privacy_picker displaynone">
+                                <div class="peoplecontainer formContainer100 margintop2" style="width:220px;margin-left:1px;margin-top:25px;">
+                                    <div class="emailcontainer emailcontainer_privacy" style="width:216px">
+                                        <div class="addmore"><input name="addmoretext" id="addmoretext_privacy" type="text" class="addmoretext_css" {{ 'add more'|lang }} data-value="<?php echo _('add more'); ?>" onfocus="removeValue2(this)" onblur="addValue2(this)" data-id=""/></div>
+                                    </div>
+                                    <div class="friendscontainer" style="width:100%">
+                                        <div class="uploadinfocheckbox uploadinfocheckbox5 formttl13 margintop8 marginleft5" data-value="">
+                                            <div class="uploadinfocheckboxpic"></div>
+                                            <div class="uploadinfocheckboxtxt" style="font-weight:normal; color:#000000;"> {{ 'connections'|lang }} <span id="privacy_connections_count" style="color:#b8b8b8;">{ {{ TubersNumConnected0|raw }} )</span></div>
+                                        </div>
+                                        <div class="uploadinfocheckbox uploadinfocheckbox6 formttl13 margintop8 marginleft5" data-value="">
+                                            <div class="uploadinfocheckboxpic"></div>
+                                            <div class="uploadinfocheckboxtxt" style="font-weight:normal; color:#000000;"> {{ 'sponsors'|lang }} <span id="privacy_sponsors_count" style="color:#b8b8b8;">( {{ TubersNumConnected1|raw }} )</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearboot"></div>
+                            <div class="sharepopup_buts private_save_buts" style="right:15px;">{{ 'save'|lang }}</div>
+
+                            <div id="privacy_close_button" class="privacy_close_button"></div>
+                        </div>
+                    {% endif %}
+                    
+                    </div>
+                    {% if TubersConnected  %}
+                         <div class="MediaCont">
+                            <div class="Line"></div>
+                            {% if is_owner == 1 %}
+                                <div id="privacy_open" class="privacy_open">
+                                    <div id="privacy_open_button" class="privacy_open_button"></div>
+                                    <div id="privacy_open_text" class="privacy_open_text">{{ 'edit privacy'|lang }}</div>
+                                </div>
+                            {% endif %}
+                            <div class="mediaConnections margintop13">
+                                <h2 class="mediaConnectionsData h2bottom0 h2top0">{{ 'SPONSORS'|lang }}</h2>
+                                <div class="mediaConnectionsDataCount" data-number="{{ TubersNumConnected|raw }}">{{ TubersNumConnected|raw }}</div>
+                            </div>
+                            <div class="MediaList" id="MediaImage" data-channelid="{{ channelInfoId|raw }}">
+                                <ul>
+                                    {% for tubersInfo in tubersSponsorsInfoArray %}
+                                        <li data-sponsorid="{{ tubersInfo.sponsor_id|raw }}" data-userid="{{ tubersInfo.channel_id|raw }}" class="{{ tubersInfo.is_visibleclassli|raw }}">
+                                            <div class="image">
+                                                <div class="hide_img{{ tubersInfo.is_visibleclass|raw }}"></div>
+                                                <div class="channel-connection-pic">
+                                                    <div class="plusSign"></div>
+                                                    <img class="" src="{{ tubersInfo.prfpic|raw }}" width="80" height="80" title="" alt="{{ tubersInfo.title|raw }}"/>
+                                                </div>
+                                                <div class="channel-connection-content">
+                                                    {{ tubersInfo.str|raw }}
+                                                    {{ tubersInfo.str2|raw }}
+                                                        
+                                                    <div class="closeSign hide closeSign{{ is_owner|raw }}"></div>
+                                                    <div class="hide_connection_content{{ tubersInfo.is_visibleclass|raw }}">">
+                                                        <div class="unhide_connection_content">{{ 'click to unhide'|lang }} </div>
+                                                    </div>                                       
+                                                </div>
+                                            </div>
+
+                                            <div class="popUp {{ tubersInfo.popclass|raw }}">
+                                                <div class="main">
+                                                    <div class="maininside margintop5">
+                                                        <div class="yellows11bold">{{ tubersInfo.TubersNumConn|raw }}</div>
+                                                        <div class="gray11">{{ tubersInfo.getTubersNumConn|raw }}</div>
+                                                    </div>
+
+                                                    <div class="overdatabutcontainer">
+                                                    {% if is_owner == 1 %}
+                                                         <a href="{{ tubersInfo.uslnk|raw }}" title="{{ tubersInfo.title|raw }}"><div class="overdatabut">{{ 'sponsor'|lang }}</div></a>
+                                                        <div class="overdatabutseperator"></div>
+                                                        <div id="removeSponsor" class="overdatabut">{{ 'remove'|lang }}</div>
+                                                        <div class="overdatabutseperator"></div>
+                                                        <div id="reportSponsors" class="overdatabut"><a href="#sharepopup" rel="nofollow" id="reportSponsorsOwner" class="reportSponsorsOwner_reason">{{ 'report'|lang }}</a></div>
+                                                    {% else %}
+                                                        {% if user_is_logged == 0 %}
+                                                            <a class="connectBTN connectstylePG overdatabut" data-case="0" data-name="{{ tubersInfo.title|raw }}" data-id="{{ tubersInfo.channel_id|raw }}" href="javascript:">{{ 'connect'|lang }}</a>
+                                                            <div class="overdatabutseperator"></div>
+                                                            <div data-case="0" class="overdatabut sponsoring_channel_tuber" data-id="{{ tubersInfo.channel_id|raw }}"> {{ 'sponsor'|lang }}</div>
+                                                        {% elseif userid == sponsor_owner_id  %}
+                                                        {% elseif userIschannel == 0 %}
+                                                            {% if tubersInfo.checkconnectedTubers == false %}
+                                                                <a class="connectChannel connectstylePG overdatabut" data-status="11" data-name="{{ tubersInfo.title|raw }}" data-id="{{ tubersInfo.channel_id|raw }}" href="javascript:;">{{ 'connect'|lang }}</a>
+                                                            {% else %}
+                                                                <a class="disconnectChannel connectstylePG overdatabut" data-status="11" data-name="{{ tubersInfo.title|raw }}" data-id="{{ tubersInfo.channel_id|raw }}" href="javascript:;">{{ 'discnnect'|lang }}</a>
+                                                            {%endif %}
+                                                        {% else %}
+                                                            {% if tubersInfo.checkconnected_channel == false %}
+                                                                <a href="{{ tubersInfo.uslnk|raw }}" title="{{ tubersInfo.title|raw }}'"><div class="overdatabut">{{ 'sponsor'|lang }}</div></a>
+                                                            {% else %}
+                                                                <div class="overdatabut active">{{ 'sponsor'|lang }}</div>
+                                                            {%endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    </div>
+
+                                                </div>
+                                                <div class="minus"></div>
+                                            </div>
+
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <div style="clear:both;"></div>							
+                                <div class="buttonmorecontainer" style="float:none; width:584px;">
+                                    {%  if pagcount > currentpage + 1 %}
+                                        <a id="load_more_next" class="loadmoremedia load_more_previous_new" href="{{ pagelink|raw }}">{{ 'Load More...'|lang }}</a>
+                                    {% endif %}
+                                    {% if page2 and currentpage != 0 %}
+                                        <a id="load_more_previous" class="load_more_previous_new" href="{{ pagelink2|raw }}">{{ 'Load Previous...'|lang }}</a>
+                                    {% endif %}
+                                    <script>
+                                        $(document).ready(function(e) {
+                                            var load_more_next_diff = 4;
+                                            if ($('#load_more_next').length > 0) {
+                                                load_more_next_diff += 29;
+                                            }
+                                            if ($('#load_more_previous').length > 0) {
+                                                load_more_next_diff += 29;
+                                            }
+                                            $('.buttonmorecontainer').css('width', ($('#load_more_next').width() + $('#load_more_previous').width() + load_more_next_diff) + "px");
+                                        });
+                                    </script> 
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% else %}
+                <div class="notFoundCon">{{ 'No sponsors found'|lang }}</div>
+            {% endif %}   
+        </div>
+
+    </div>
+
+</div> 

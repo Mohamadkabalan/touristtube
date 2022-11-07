@@ -1,0 +1,28 @@
+CorporateBundle\Entity\CorpoProfiles:
+    type: entity
+    table: corpo_profiles
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoProfilesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            column: name
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id            
+    lifecycleCallbacks: {  }

@@ -1,0 +1,92 @@
+_delete_bag_item:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/delete-bag-item"
+    defaults: { _controller: TTBundle:Bags:deleteBagItem, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_update_bag_item:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/update-bag-item"
+    defaults: { _controller: TTBundle:Bags:updateBagItem, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_add_bag_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/add-bag_new"
+    defaults: { _controller: TTBundle:Bags:addBagNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_get_bag_info_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/get-bag-info_new"
+    defaults: { _controller: TTBundle:Bags:getBagInfoNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_edit_bag_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/edit-bag_new"
+    defaults: { _controller: TTBundle:Bags:editBagNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_delete_bag_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/delete-bag_new"
+    defaults: { _controller: TTBundle:Bags:deleteBagNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_get_bag_item_info:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/get-bag-item-info"
+    defaults: { _controller: TTBundle:Bags:getBagItemInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_bags:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/bags"
+    defaults: { _controller: TTBundle:Bags:bags, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_bag:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/bag-{id}"
+    defaults: { _controller: TTBundle:Bags:bag, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_add_to_bag:
+    path:      "/ajax/add_to_bag"
+    defaults: { _controller: TTBundle:Bags:addToBag, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_add_item_to_bag:
+    path:      "/ajax/add_item_to_bag"
+    defaults: { _controller: TTBundle:Bags:addItemToBag, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_add_item_to_old_bag:
+    path:      "/ajax/add_item_to_old_bag"
+    defaults: { _controller: TTBundle:Bags:addItemToOldBag, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

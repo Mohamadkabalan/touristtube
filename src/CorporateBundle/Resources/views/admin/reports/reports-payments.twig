@@ -1,0 +1,96 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/corporate/corporate/js/corporate-reports-filter.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/corporate/js/corporate-reports-payments.js')|raw }}"></script>
+	<script type="text/javascript">
+		window.fromDate = "{{monthAgoDate}}";
+		{% if accountId is defined %}
+            window.accountId = "{{accountId}}";
+        {% endif %}
+	</script>
+{% endblock %}
+
+{% block title %}
+    {{'Payments Reports'|trans}}
+{% endblock %}
+{% block body %}
+    {% set report_menu = 'payments' %}
+    <section class="container corporate_common_new_container">
+	<nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+	    <div class="container-fluid nopad filters-group">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+			{{'Filters'|trans}}
+		    </button>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    {% include '@Corporate/admin/reports/filter.twig' %}
+			</div>
+			<!-- /.navbar-collapse -->
+		    </div>
+		</div>
+	    </div>
+	    <!-- /.container-fluid -->
+	</nav>
+	<div class="row no-margin">
+	    {% include '@Corporate/admin/reports/add_edit_payment_popup.twig' %}
+	</div>
+	<div class="row no-margin">
+	    {% include '@Corporate/admin/reports/reports_header.twig' %}
+	    <div class="col-xs-12">
+		<div class="row margin_top_60">
+		    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+			{% set filterSuffix = "_2" %}
+			{% include '@Corporate/admin/reports/filter.twig' %}
+		    </div>
+		    <div class="col-md-9 col-xs-12 right_panel">
+			<div class="row no-margin">
+			    {% include '@Corporate/admin/reports/reports_menu.twig' %}
+			    <div class="col-xs-12 nopad">
+				<img class="width-100" src="{{ generateMediaURL('/media/images/corporate_new/reports_img.jpg') }}" alt="reports_img">
+			    </div>
+			    <div class="col-xs-12 nopad margin_top_50" id="tableResult">
+				{% set fromReports = true %}
+				{% include '@Corporate/admin/accountPayment/accountPaymentTableList.twig' %}
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin">
+				    <div class="col-xs-12 nopad margin_top_40">
+					<p class="float-left">
+					    <span class="black font-20 underline">{{'Total'|trans}}</span>
+					    <span class="padding_left_13">
+						<i class="fas fa-arrow-right pink font-14"></i>
+					    </span>
+					    <span class="font-17 black padding_left_28" id="FBCCurrency">{{amountFBC|raw}}</span>
+					    <span class="font-20 pink padding_left_5" id="totalFbcAmt">{{sumFBC|number_format(2, '.', ',')}}</span>
+					    <span class="padding_left_60 padding_right_60">.</span>
+					</p>
+					<p class="float-left">
+					    <span class="font-17 black" id="SBCCurrency">{{amountSBC|raw}}</span>
+					    <span class="font-20 pink padding_left_5" id="totalSbcAmt">{{sumSBC|number_format(2, '.', ',')}}</span>
+					</p>
+				    </div>
+				    <div class="col-xs-12 nopad margin_top_20">
+					<p>
+					    <span id="due_amount" class="black font-20 underline">{{'Due amount'|trans}}</span>
+					    <span class="padding_left_13">
+						<i class="fas fa-arrow-right pink font-14"></i>
+					    </span>
+					    <span class="font-17 black padding_left_28" id="preferredCurrency">{{accountPrefferedCurrency}}</span>
+					    <span class="font-20 pink padding_left_5" id="dueAmount">{{accountDueBalance|number_format(2, '.', ',')}}</span>
+					</p>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

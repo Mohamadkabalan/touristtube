@@ -1,0 +1,46 @@
+TTBundle\Entity\ThingstodoDivision:
+    type: entity
+    table: thingstodo_division
+    repositoryClass: TTBundle\Repository\DiscoverQueryRQRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            column: name
+        divisionCategoryId:
+            type: integer
+            nullable: false
+            column: division_category_id
+        parentId:
+            type: integer
+            nullable: true
+            column: parent_id
+        ttdId:
+            type: integer
+            nullable: true
+            column: ttd_id
+        mediaSettings:
+            type: string
+            nullable: true
+            options:
+                unsigned: false
+            column: media_settings
+        sortOrder:
+            type: integer
+            nullable: false
+            column: sort_order
+    lifecycleCallbacks: {  }

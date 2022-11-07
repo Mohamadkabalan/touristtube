@@ -1,0 +1,52 @@
+TTBundle\Entity\CmsBag:
+    type: entity
+    table: cms_bag
+    repositoryClass: TTBundle\Repository\UserLoginRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        imgname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        imgpath:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_shares
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+    lifecycleCallbacks: {  }

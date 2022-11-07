@@ -1,0 +1,1 @@
+UPDATE `cms_thingstodo_region` SET `image` = SUBSTR( image, 18, CHARACTER_LENGTH(image)), `mobile_image` = SUBSTR( mobile_image, 18, CHARACTER_LENGTH(mobile_image));

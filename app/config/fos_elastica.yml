@@ -1,0 +1,68 @@
+#app/config/fos_elastica.yml
+
+fos_elastica:
+    clients:
+        default: { host: %elastic_host%, port: %elastic_port%, compression: true }
+#         default: { host: 172.16.124.222, port: 9200 }
+    indexes:
+        %elastic_index%:
+            client: default
+#            finder: ~
+#            settings:
+#                index:
+#                    analysis:
+#                        analyzer:
+#                            autocomplete_analyzer:
+#                                type: custom
+#                                tokenizer: lowercase
+#                                filter: [asciifolding, name_ngram, stateName_ngram, countryName_ngram, countryThreeCode_ngram, countryFullname_ngram]
+#                        filter:
+#                            name_ngram:
+#                                type: edgeNGram
+#                                min_gram: 1
+#                                max_gram: 20
+#                            stateName_ngram:
+#                                type: edgeNGram
+#                                min_gram: 1
+#                                max_gram: 20
+#                            countryName_ngram:
+#                                type: edgeNGram
+#                                min_gram: 1
+#                                max_gram: 20
+#                            countryThreeCode_ngram:
+#                                type: edgeNGram
+#                                min_gram: 1
+#                                max_gram: 20
+#                            countryFullname_ngram:
+#                                type: edgeNGram
+#                                min_gram: 1
+#                                max_gram: 20
+#                locality:
+#                    mappings:
+#                        name: { type: string, analyzer: autocomplete_analyzer }
+#                        state.name: { type: string, analyzer: autocomplete_analyzer }
+#                        state.state_name: { type: string, analyzer: autocomplete_analyzer }
+#                        state.full_name: { type: string, analyzer: autocomplete_analyzer }
+#                        stateName: { type: string, analyzer: autocomplete_analyzer }
+#                        countryName: { type: string, analyzer: autocomplete_analyzer }
+#                        countryThreeCode: { type: string, analyzer: autocomplete_analyzer }
+#                        countryFullName: { type: string, analyzer: autocomplete_analyzer }
+#                        popularity: { type: integer }
+#                locality:
+#                    mappings:
+#                        id:
+#                            type: integer
+#                        country_code:
+#                            type: string
+#                        state_code:
+#                            type: string
+#                        name:
+#                            type: string
+#                        popularity:
+#                            type: integer
+#                    persistence:
+#                        driver: orm
+#                        model: TTBundle\Entity\Webgeocities
+#                        finder: ~
+#                        provider: ~
+#                        listener: ~

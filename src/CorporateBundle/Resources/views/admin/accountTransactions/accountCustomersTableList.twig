@@ -1,0 +1,24 @@
+<section class="content">
+    <table id="transactionsTbl" align="center" class="dataTable table table-striped table-bordered" cellspacing="0" width="100%"
+       ajax_url                     = "{{ path('_corpo_account_customers_datatable') }}"
+       default_order_column_id      = "id_ID"
+       default_order_direction      = "asc"
+       parameters = "userId,accountId,currencyCode,serviceType,accountTypeId"
+       footerCallBack=""
+       >
+        <thead>
+            <tr>
+                <th id="id_ID" dbname="cu__id" classname="dt-left">{{'Id'|trans}}</th>
+                <th id="fullname_ID" dbname="FullName" classname="dt-left" width="200px">{{'Full Name'|trans}}</th>
+                <th id="username_ID" dbname="username" classname="dt-left" width="200px">{{'User Name'|trans}}</th>
+                <th id="mail_ID" dbname="YourEmail" classname="dt-left" width="200px">{{'Email'|trans}}</th>
+                <th id="country_ID" dbname="YourCountry" classname="dt-left" width="200px">{{'Country'|trans}}</th>
+                <th id="accountname_ID" dbname="ca__name" classname="dt-left" width="200px">{{'Account Name'|trans}}</th>
+                <th id="userProfile_ID" dbname="userProfile" classname="dt-left" width="200px">{{'User Profile'|trans}}</th>
+            </tr>
+        </thead>
+    </table>
+    <br><br>
+</section>
+
+

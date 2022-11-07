@@ -1,0 +1,75 @@
+/*General css:
+============================================*/
+
+.margin_top_20{margin-top: 20px;}
+.margin_top_10{margin-top: 10px;}
+.margin_bottom_40{margin-bottom: 40px;}
+.margin_bottom_20{margin-bottom: 20px;}
+.margin_top_15{margin-top: 15px;}
+.padding_left_20{padding-left: 20px;}
+.noResult {
+    font-size: 20px;
+    color: #2e2e2e;
+    margin-top: 20px;
+    text-align: center;
+}
+.noResult span {
+    font-size: 28px;
+    color: #000000;
+}
+.right_floatet_container{float: right;margin-bottom: 10px;}
+.right_floatet_container .close_class{color: black;font-weight: bold;margin-right: 13px;font-size: 18px;text-decoration: none; float: right; cursor: pointer;}
+.right_floatet_container .edit_bar_pic{float: right; cursor: pointer;}
+/*CSS Right Panel/left panel */
+.channels_container .right_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;left:0px;top:0px;}
+.channels_container .left_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;right:-5px;top:0px;}
+.channels_container .right_panel{padding-right: 0;}
+.channels_container .new_padding{padding: 5px;}
+.txtContainer{ padding: 0;}
+.txtContainer p{ font-size: 15px; color:#585858;}
+.txtPink{color:#db3a69;}
+.subtitle_home_new{color:#585858;font-size: 16px;margin-top: 10px; line-height: 18px; overflow: hidden; margin-bottom:8px;}
+.txtContainer p{ font-size: 15px; color:#585858;}
+.small_height_img_link_pink_connect{color: #d10b3a;font-size: 15px;text-decoration: underline; padding-left: 10px;}
+
+@media (max-width:991px){
+    /*CSS Right Panel */
+    .channels_container .right_panel:after,.left_panel:after{display: none;}
+}
+@media (min-width:768px) and (max-width:991px){
+    /*CSS Right Panel */
+    .channels_container .right_panel{padding-left: 0px;}
+}
+@media (max-width:767px){
+    /*CSS Right Panel */
+    .channels_container .right_panel{padding-left: 15px;padding-right: 15px;}
+    /*=============================================*/
+}
+
+.channels_container .leftmenue_subtitles{color: #00b7d9;font-size: 24px; }
+.channels_container .leftmenue_subtitles i{padding-right: 8px;color: #00b7d9;}
+.channels_container ul.list_left_menue_ainfo {padding-left: 0;}
+.channels_container ul.list_left_menue_ainfo{margin-left: 16px;}
+.channels_container ul.list_left_menue_ainfo li{list-style: none;margin-top: 2px;}
+.channels_container ul.list_left_menue_ainfo li a{font-size: 14px;color: #606060;text-decoration: none;padding-left: 10px;line-height: 30px;display: block;}
+.channels_container ul.list_left_menue_ainfo li a:hover{ color: #00b7d9; text-decoration: underline;}
+.channels_container ul.list_left_menue_ainfo li.active a{ color: #00b7d9; text-decoration: underline;}
+.search_title span {
+    font-size: 19px;
+}
+
+/*Popup CSS:
+=============*/
+.modal-header .modal-title{font-size: 24px;color: black;}
+.modal-header{border-bottom: none;padding: 25px;padding-bottom: 10px;}
+.modal-body{padding: 25px;padding-top: 0px;}
+.channel_input_commun input{cursor: initial;height: 74px; width: 100%; border: 1px solid #d5d6d8;padding-left: 20px;text-align: left;box-shadow: inset 0 1px 1px rgba(0,0,0,0);background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px; border-radius: 5px;}
+.channel_input_commun select{width: 100%; height: 74px; border: 1px solid #d5d6d8; padding-left: 20px;appearance:none;-moz-appearance:none;-webkit-appearance:none;-moz-border-radius: 5px;-webkit-border-radius: 5px; border-radius: 5px;cursor: pointer;font-size: 16px;color: black;}
+.channel_input_commun label{color: #787878;font-size: 16px;font-weight: normal;padding-bottom: 3px;margin-top: 20px;}
+.small_row_margin{margin-right: -5px;margin-left: -5px;}
+.small_col_padding{padding-left: 5px;padding-right: 5px;}
+.popup_input{margin-bottom: 0;}
+.popup_input textarea{resize: none;width: 100%;border: 1px solid #d5d6d8;padding: 8px;color: #000000;font-size: 15px;border-radius: 5px;height: 160px;margin-bottom: 20px;}
+.create_but {background-color: #eac31a;border: 0 none;color: #201b1d;font-size: 22px;height: 60px; padding: 5px 20px;}
+.error_hints{color: #db3a69;}
+/*===================================================*/

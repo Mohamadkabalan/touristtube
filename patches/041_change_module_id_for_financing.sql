@@ -1,0 +1,1 @@
+UPDATE `corpo_request_services_details` SET `module_id` = 4 WHERE `module_id` = -1

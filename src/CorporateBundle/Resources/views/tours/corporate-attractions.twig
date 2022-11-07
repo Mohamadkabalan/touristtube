@@ -1,0 +1,131 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme"~corporate_theme~".css")|raw }}"/>
+    {#<link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme2.css")|raw }}"/>#}
+    {#<link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme3.css")|raw }}"/>#}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-attractions.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-activities-and-deals.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/deals/corporate-attraction-search.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Attractions'|trans}}{% endblock %}
+{% block body %}
+    {% set page_menu_name = 'attractions' %}
+    <section class="container corporate_container1">
+        <div class="col-xs-12 nopad">
+            <div class="row rowspecialstyle">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 nopad leftmenuebackcolor_corp borderrightgrey_corpfl">
+		    {% include '@Corporate/corporate/corporate-leftmenu.twig' %}
+		</div>
+		<div class="col-lg-8 col-md-10 col-sm-8 col-xs-12 nopad contentbackcolor_corp">
+		    {% if error is defined and error %}
+			<div class="display-error-msg">
+			    {{ error|trans }}
+			</div>
+		    {% endif %}
+		    <div class="col-xs-12 nopad">
+			<h2 class="headerstyle_corp">{{'step1'|trans}} <span class="error_cnt_corporate"></span></h2>
+			    {% include '@Corporate/tours/tours-form.twig' %}
+		    </div>
+		    <div class="col-xs-12">
+			{% include '@Corporate/tours/corporate-deals-common-header.twig' %}
+		    </div>
+		    {% if destinations is defined and destinations|length %}
+			<div class="col-xs-12 containerTops">
+			    <div class="col-xs-12">
+				<h2 class="section_header marginbottom0">
+				    <span class="destinations_title">{{'Top Destinations'|trans}} | </span>
+				    <span class="destinations_subtitle">{{'DISCOVER GREAT ACTIVITIES JUST A CLICK AWAY'|trans}}</span>
+				</h2>
+			    </div>
+			    {% for item in destinations %}
+				{% if  isMobile == 1  and (loop.index == 1 or loop.index == 5 or loop.index == 9) %}
+				    <div class="col-xs-12">
+				    {% endif %}
+				    <a class="col-lg-3 col-md-3 col-sm-6 col-xs-6 xsnewstyle100p overlayedbackground" href="{{item.link|raw}}" title="{{item.name|raw}}">
+					{% if item.img is defined and item.img is not null %}
+					    <img src="{{item.img|raw}}" alt="{{item.name|raw}}">
+					{% else %}
+					    <img src="{{ generateMediaURL('/media/images/deals/default.jpg') }}" alt="{{item.name|raw}}">
+					{% endif %}
+					<div class="overblackbaack">
+					    <p class="citytextoveerlay">{{item.name|raw}}</p>
+					    <div class="desctextoveerlay_content">
+						<span class="desctextoveerlay">{{item.tours_number|raw}} {{'TOURS AND ACTIVITIES'|trans}}</span>
+					    </div>
+					</div>
+				    </a>
+				    {% if isMobile == 1  and (loop.index == 4 or loop.index == 8 or loop.index == 12) %}
+				    </div>
+				{% endif %}
+			    {% endfor %}
+			</div>
+		    {% endif %}
+		    {% if attractions is defined and attractions|length %}
+			<div class="col-xs-12 containerTops containerTopsAttractions">
+			    <div class="col-xs-12">
+				<h2 class="section_header marginbottom0">
+				    <span class="destinations_title">{{'Top Attractions'|trans}}</span>
+				</h2>
+			    </div>
+			    {% for item in attractions %}
+				<a class="col-lg-3 col-md-3 col-sm-6 col-xs-6 xsnewstyle100p overlayedbackground" href="{{item.link|raw}}" title="{{item.name|raw}}">
+				    <img src="{{item.img|raw}}" alt="{{item.name|raw}}">
+				    <div class="overblackbaack">
+					<p class="citytextoveerlay citytextoveerlay_attractions">{{item.name|raw}}</p>
+					<div class="desctextoveerlay_content">
+					    <span class="desctextoveerlay">{{item.tours_number|raw}} {{'TOURS AND ACTIVITIES'|trans}}</span>
+					</div>
+				    </div>
+				</a>
+			    {% endfor %}
+			</div>
+		    {% endif %}
+		    {% if deals is defined and deals|length %}
+			<div class="col-xs-12 containerTops containerTopsAttractions">
+			    <div class="col-xs-12">
+				<h2 class="section_header marginbottom0">
+				    <span class="destinations_title">{{'Top Deals'|trans}}</span>
+				</h2>
+			    </div>
+			    {% for item in deals %}
+				{% if  isMobile == 1  and (loop.index == 1 or loop.index == 5 or loop.index == 9) %}
+				    <div class="col-xs-12">
+				    {% endif %}
+				    <a class="col-lg-3 col-md-3 col-sm-6 col-xs-6 xsnewstyle100p overlayedbackground" href="{{ item.urlPath|raw }}" title="{{item.dealName|raw}}">
+					<img src="{{ item.imagePath|raw }}" alt="{{item.dealName|raw}}">
+					<div class="deal_txt_content">
+					    <div class="deal_stars_content">{{'Special deal: up to 8% off'|trans}}<span class="deal_stars"><img title="{{'deal stars'|trans}}" src="{{ generateMediaURL('/media/images/d_rating4.png') }}"></span></div>
+					    <div class="deal_gray_content">
+						<p class="deal_gray_title">
+						    {% if item.dealNameTrans is defined and item.dealNameTrans %}
+							{{item.dealNameTrans|raw}}
+						    {% else %}
+							{{item.dealName|raw}}
+						    {% endif %}
+						</p>
+						<p class="deal_gray_txt deal_gray_location">{{item.cityName|raw}}, {{item.countryName|raw}}</p>
+						<p class="deal_gray_txt deal_gray_price"><b><span class="a_price price-convert" data-price="{{ item.priceBeforePromo|raw }}"><span class="currency-convert-text">{{item.currency|raw}}</span> <span class="price-convert-text">{{ item.formattedPriceBeforePromo|raw }}</span></span></b></p>
+						<p class="deal_gray_txt">{{item.durationText|raw}}</p>
+					    </div>
+					</div>
+				    </a>
+				    {% if isMobile == 1 and (loop.index == 4 or loop.index == 8 or loop.index == 12) %}
+				    </div>
+				{% endif %}
+			    {% endfor %}
+			</div>
+		    {% endif %}
+		</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

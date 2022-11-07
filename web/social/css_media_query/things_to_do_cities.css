@@ -1,0 +1,705 @@
+@charset "utf-8";
+/* CSS Document */
+.topThingsToDo_info {
+    color: #333;
+    float: left;
+    font-size: 13px;
+    font-weight: normal;
+    height: auto !important;
+    margin-top: 20px;
+    text-align: left;
+    width: 100% !important;
+}
+
+ @media only screen and (max-width:767px) {
+/*----bag---*/
+.dotedline{
+display:none;
+}
+
+#bagArea1 {
+    height: 135px;
+    margin-left: 2%;
+    width: 95%;
+}
+	 
+#bagArea2 {
+    margin: 2%;
+    width: 95%;
+}
+.bagPart {
+    float: left;
+    width: 100%;
+	margin-bottom:2%;
+}
+
+.cntInner {
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+.cntInner2 {
+    margin: 0 auto;
+    width: 100%;
+}
+	 
+#search01_filterTitle, #search01_filterTitle2, #search01_filterTitle_share {
+    clear: both;
+    color: #626262;
+    display: block;
+    float: left;
+    font-size: 11px;
+    height: 21px;
+    margin: 10px 0 0;
+    padding: 2px 0 0 3px;
+    position: relative;
+    width: 98%;
+}	 
+	 
+	 
+/*end of bag---*/	 
+	 
+#MainContent {
+    min-height: 120px;
+    width: 94% !important;
+}
+.thingsToDoheadTOP {
+    display: block;
+    float: left;
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+.thingsToDoheadTOPright {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: auto;
+	display:none;
+
+}	 
+	
+.thingsToDohead {
+    display: block;
+    float: left;
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+.thingsToDo_left_part {
+    background-color: #f1f1f1;
+    float: left;
+    margin-right: 5px;
+    min-height: 120px;
+    width: 100% !important;
+}
+.thingsToDo_title {
+    background-color: #303030;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 30px;
+    padding-left: 16px;
+    padding-top: 8px;
+    text-align: left;
+    width: 95%;
+}
+
+.thingsToDo_description {
+    color: #333333;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: auto;
+    line-height: 17px;
+    padding-left: 15px;
+    padding-top: 15px;
+    position: relative;
+    text-align: left;
+    width: 86%;
+}
+
+h3.thingsToDo_special_desc {
+    margin-top: 2%;
+    padding-left: 15px;
+    padding-right: 0px;
+    text-align: left;
+    width: 87% !important;
+}
+
+.city_search {
+    background-color: #303030;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    height: 65px;
+    padding: 5%;
+    
+    position: relative;
+    text-align: left;
+    width: 90% !important;
+}
+
+#citySearch {
+    height: 18px;
+    margin-top: 5px;
+    width: 98%;
+}
+.search-button {
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right:0px !important;
+    padding-top: 3px;
+    text-align: right;
+    width: 197px;
+}
+.thingsToDo_right_part {
+    float: left;
+    margin-top: 3% !important;
+    min-height: 120px;
+    width: 100% !important;
+}
+
+.bag_add {
+    color: #f1f1f1;
+    float: left;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    height: 20px;
+    margin-top: 10px;
+    width: 53%;
+}
+.bag_container {
+    background-color: #000000;
+    height: 46px;
+    margin-top: 5px;
+    padding-left: 0px;
+    width: 100%;
+}
+
+.city {
+    display: inline-flex;
+    float: left;
+    height: auto;
+    margin-bottom: 2%;
+    margin-right: 0;
+    width: 100%;
+}
+.bagcontainer {
+    background: rgba(0, 0, 0, 0) url("/media/images/thingstodo/bag.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 25px;
+    margin-left: 16px;
+    margin-top: 9px;
+    position: relative;
+    width: 38px;
+}
+
+.cities {
+    display: block;
+    float: left;
+    height: auto;
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
+}
+
+.city_info {
+    background-color: #f1f1f1;
+    height: auto !important;
+  
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 95%;
+} 
+
+.city_image {
+    background-color: #000 !important;
+    height: 100% !important;
+    width: 25% !important;
+}
+.city_title {
+    color: #333333;
+    font-size: 16px;
+    font-weight: normal;
+    padding-top: 4px;
+    text-align: left;
+}
+
+/*---thing to do in paris*/
+
+.stationBagAct {
+    background: rgba(0, 0, 0, 0) url("/media/images/planner/bag.png") no-repeat scroll 0 0;
+    cursor: default;
+    height: 18px;
+    position: absolute;
+    right: 3px;
+    top: -1px;
+    width: 22px;
+}
+
+.topThingsToDo_left_part {
+    float: left;
+    height: auto;
+  /*  margin-right: 2%;
+    padding-left: 15px;
+    width: 97%;
+*/
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+}
+
+.topThingsToDo_title {
+    color: #333333;
+    float: left;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 15px;
+   /* margin-left: -10px;*/
+    margin-left: 0 !important;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.topThingsToDo_info {
+    color: #333333;
+    float: left;
+    font-size: 13px;
+    font-weight: normal;
+   /* height: 300px;*/
+    height: auto !important;
+    margin-left:20px !important;
+    margin-top: 20px;
+    text-align: left;
+    width: 90% !important;
+}
+
+.topThingsToDo_content {
+    display: block;
+    float: left;
+    height: auto;
+    margin-top: 5px;
+    position: relative;
+    width: 100% !important;
+}
+.topThingsToDo_all {
+    float: left;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-right: 0px;
+    position: relative;
+    width: 100% !important;
+}
+.topThingsToDo_img {
+    display: block;
+    float: left;
+    height: 100%;
+    margin-top: 4px;
+    position: relative;
+    width: 100% !important;
+}
+.topThingToDo_titre {
+    color: #cea113;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    width: 100% !important;
+}
+.hotelsplus {
+    background: rgba(0, 0, 0, 0) url("/media/images/discover/plus_btn.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    height: 17px;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    width: 19px;
+}
+/*---end of paris*/
+.topThingsToDo_right_part{display: none !important;}
+.bestofcity {
+    background-color: #e5e5e5;
+    color: #333333;
+    
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    height: 70px;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-top: 25px;
+    text-align: left;
+    width: 160px;
+}
+	 
+ }
+@media only screen and (min-width: 768px) and (max-width:960px) {
+	
+	
+/*----bag---*/
+.dotedline{
+display:none;
+}
+
+#bagArea1 {
+    height: 135px;
+    margin-left: 2%;
+    width: 95%;
+}
+	 
+#bagArea2 {
+    margin: 2%;
+    width: 95%;
+}
+.bagPart {
+    float: left;
+    width: 100%;
+	margin-bottom:2%;
+}
+
+.cntInner {
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+.cntInner2 {
+    margin: 0 auto;
+    width: 100%;
+}
+	 
+.things_cont_inside, .hotels_cont_inside, .echoes_cont_inside {
+    float: left;
+    height: 115px;
+    position: relative;
+    width: 40%;
+}
+
+.things_cont {
+    float: left;
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 8px;
+    position: relative;
+    width: 100%;
+}
+#search01_filterTitle, #search01_filterTitle2, #search01_filterTitle_share {
+    clear: both;
+    color: #626262;
+    display: block;
+    float: left;
+    font-size: 11px;
+    height: 21px;
+    margin: 10px 0 0;
+    padding: 2px 0 0 3px;
+    position: relative;
+    width: 98%;
+}	 
+	 
+	 
+/*end of bag---*/	
+	
+	
+	
+	
+	#MainContent {
+    min-height: 120px;
+    width: 94% !important;
+}	
+.thingsToDoheadTOP {
+    display: block;
+    float: left;
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+.thingsToDoheadTOPright {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: auto;
+	display:none;
+} 
+.bagcontainer {
+    background: rgba(0, 0, 0, 0) url("/media/images/thingstodo/bag.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 25px;
+    margin-left: 16px;
+    margin-top: 9px;
+    position: relative;
+    width: 38px;
+}	
+.thingsToDohead {
+    display: block;
+    float: left;
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+.thingsToDo_left_part {
+    background-color: #f1f1f1;
+    float: left;
+    margin-right: 5px;
+    min-height: 120px;
+    width: 100% !important;
+}
+.thingsToDo_title {
+    background-color: #303030;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 30px;
+    padding-left: 16px;
+    padding-top: 8px;
+    text-align: left;
+    width: 95%;
+}
+
+.thingsToDo_description {
+    color: #333333;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: auto;
+    line-height: 17px;
+    padding-left: 15px;
+    padding-top: 15px;
+    position: relative;
+    text-align: left;
+    width: 86%;
+}
+
+h3.thingsToDo_special_desc {
+    margin-top: 1%;
+    padding-left: 15px;
+    padding-right: 0px;
+    text-align: left;
+    width: 87% !important;
+}
+
+
+.city_search {
+    background-color: #303030;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    height: 84px;
+    position: relative;
+    text-align: left;
+    width: 63% !important;
+}
+
+
+#citySearch {
+    height: 18px;
+    margin-top: 9px;
+    width: 94%;
+}
+.search-button {
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 5%;
+    padding-top: 3px;
+    text-align: right;
+    width: 195px;
+}
+.thingsToDo_right_part {
+    float: left;
+    margin-top: 1% !important;
+    min-height: 104px;
+    width: 100% !important;
+	display:inline-flex;
+}
+
+.bag_add {
+    color: #f1f1f1;
+    float: left;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    height: 20px;
+    margin-top: 10px;
+    width: 53%;
+}
+
+.bag_container {
+    background-color: #000000;
+    height: 92px;
+    margin-left: 2%;
+    margin-top: 0;
+    padding-left: 0;
+    width: 33%;
+}
+
+.city {
+    display: inline-flex;
+    float: left;
+    height: auto;
+    margin-bottom: 1%;
+    margin-right: 0;
+    width: 100%;
+}
+
+.cities {
+    display: block;
+    float: left;
+    height: auto;
+    margin-top: 0px;
+    position: relative;
+    width: 100%;
+}
+
+.city_info {
+    background-color: #f1f1f1;
+    height: auto !important;
+  
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 95%;
+} 
+
+.city_image {
+    background-color: #000 !important;
+    height: 100% !important;
+    width: 17% !important;
+}
+.city_title {
+    color: #333333;
+    font-size: 16px;
+    font-weight: normal;
+    padding-top: 4px;
+    text-align: left;
+}
+
+/*---thing to do in paris*/
+
+.stationBagAct {
+    background: rgba(0, 0, 0, 0) url("/media/images/planner/bag.png") no-repeat scroll 0 0;
+    cursor: default;
+    height: 18px;
+    position: absolute;
+    right: 3px;
+    top: -1px;
+    width: 22px;
+}
+
+.topThingsToDo_left_part {
+    float: left;
+    height: auto;
+    margin-right: 5px;
+    padding-left: 15px;
+    width: 100%;
+}
+.topThingsToDo_title {
+    color: #333333;
+    float: left;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 15px;
+    margin-top: 10px;
+	margin-left: -13px;
+    text-align: left;
+    width: 100%;
+}
+
+.topThingsToDo_info {
+    color: #333333;
+    float: left;
+    font-size: 13px;
+    font-weight: normal;
+    height: 300px;
+    margin-top: 20px;
+    text-align: left;
+    width: 83% !important;
+}
+.topThingsToDo_content {
+    display: block;
+    float: left;
+    height: auto;
+    margin-top: 5px;
+    position: relative;
+    width: 87% !important;
+}
+.topThingsToDo_all {
+    float: left;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-right: 0px;
+    position: relative;
+    width: 85% !important;
+}
+.topThingsToDo_img {
+    display: block;
+    float: left;
+    height: 100%;
+    margin-top: 4px;
+    position: relative;
+    width: 100% !important;
+}
+.topThingToDo_titre {
+    color: #cea113;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    width: 100% !important;
+}
+.hotelsplus {
+    background: rgba(0, 0, 0, 0) url("/media/images/discover/plus_btn.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    height: 17px;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    width: 19px;
+}
+.topThingsToDo_desc {
+    color: #333333;
+    float: left;
+    font-size: 13px;
+    line-height: 17px;
+    margin-bottom: 5px;
+    margin-top: 6px;
+    position: relative;
+    width: 100%;
+}
+
+/*---end of paris*/
+.topThingsToDo_right_part{display: none !important;}
+
+.bestofcity {
+    background-color: #e5e5e5;
+    color: #333333;
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    height: 70px;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-top: 25px;
+    text-align: left;
+    width: 160px;
+}
+	 
+	
+	}
+ @media only screen and (min-width: 961px) {
+ }

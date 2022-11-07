@@ -1,0 +1,18 @@
+parameters:
+    otp:
+      time_limit: 900 #in seconds
+      password_length: 7
+      callback_corporate:
+          1:
+              success: _corpo_payment_flights_proceed
+          2:
+              success: _corporate_hotel_proceed_payment
+          3:
+              success: _corpo_payment_deals_proceed
+          4:
+              success: 
+          default:
+              success: defaultOTPCallback
+      callback_web:
+          1:
+              success: _payment_flights_proceed

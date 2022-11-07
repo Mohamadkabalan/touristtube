@@ -1,0 +1,103 @@
+TTBundle\Entity\CmsCountries:
+    type: entity
+    table: cms_countries
+    repositoryClass: TTBundle\Repository\CmsCountriesRepository
+    indexes:
+        code:
+            columns:
+                - code
+        continent_code:
+            columns:
+                - continent_code
+        name:
+            columns:
+                - name
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+                comment: 'Two-letter country code (ISO 3166-1 alpha-2)'
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'English country name'
+        fullName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Full English country name'
+            column: full_name
+        iso3:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+                comment: 'Three-letter country code (ISO 3166-1 alpha-3)'
+        number:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: true
+                comment: 'Three-digit country number (ISO 3166-1 numeric)'
+        dialingCode:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: dialing_code
+        continentCode:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+            column: continent_code
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        iocCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: ioc_code
+        popularity:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        flagIcon:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+            column: flag_icon
+    lifecycleCallbacks: {  }

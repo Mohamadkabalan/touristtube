@@ -1,0 +1,67 @@
+<div class="col-xs-12 nopad {% if travel.statusName|lower == 'cancelled' %} canceldivoverback {% endif %}">
+    {% if travel.statusName|lower == 'cancelled' %}<div class="absolutebackground"></div>{% endif %}
+    <!-- start of hotels -->
+    <div class="row no-margin">
+	<div id="my-bookings-hotels" class="col-xs-12 nopad">
+	    <div class="row margin_bottom_60 mbsmall_margin copy_image_height relative_column">
+
+		<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 mbsmall_padding clone_height" style="min-height: 202px;">
+		    <div class="checkin_checkout_container" style="height: 96px;">
+			<p class="in_out">{{'Booking Date'|trans}} </p>
+			<p class="date">{{travel.fromdate|date('d')}}</p>
+			<p class="month_day">{{travel.fromdate|date('M Y D')}}</p>
+		    </div>
+		    {#<div class="checkin_checkout_container"
+			 style="height: 96px; position: absolute; bottom: 0px; left: 5px; right: 5px;"
+			 >
+			<p class="in_out">Check-out</p>
+			<p class="date">26</p>
+			<p class="month_day">Apr 2018 Thursday</p>
+		    </div>#}
+		</div>
+
+		<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 img_container mbsmall_padding copy_height" style="height: 202px;">
+		    <img alt="hotel_img_small" src="{{ generateDefaultDealImage({'apiId': travel.apiId, 'dealCode': travel.dealCode, 'categoryName': travel.categoryName, 'cityName': travel.cityName,  'imageId': travel.imageId})}}">
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mbsmall_padding clone_height custom_form"
+		     style="min-height: 202px;"
+		     >
+		    <p class="hotel_name">{{travel.name|raw}}</p>
+		    <p class="booking_number font-15">
+			{{'Booking number:'|trans}}<span>{{travel.reference|raw}}
+		    </p>
+		    {#<p class="booking_number font-15">
+			PIN Code: <span>21486</span>
+		    </p>#}
+		    <div class="clearfix"></div>
+		    {#		    <div class="form-group">
+					    <select class="form-control">
+						<option>Select a travel type XXX</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					    </select>
+					</div>#}
+		    <div class="clearfix"></div>
+		</div>
+
+
+		<a class="col-md-2 hidden-sm hidden-xs view_details_link"
+		   href="{{ generateLangRoute(LanguageGet,'_deals_booking_details', {'bookingId': travel.reservationId}) }}">{{'View details'|trans}}</a>
+
+		<div class="col-md-2 visible-lg mbsmall_padding button_price_container">
+		    <span class="a_price price-convert" data-price="{{travel.amount|raw|number_format(2, '.', ',')}}"><p>
+			    <span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.amount|raw|number_format(2, '.', ',')}}</span>
+			</p> </span>
+		    <a href="{{ generateLangRoute(LanguageGet,'_dealSearch', {'reservationId':travel.reservationId}) }}">
+			<button id="" class="btn pink_bookagain_button">{{'Book again'|trans}}</button>
+		    </a>
+		    {% if travel.statusName|lower == 'cancelled' %}<button id="" class="btn pink_cancelled_button">{{'Cancelled'|trans}}</button>{% endif %}
+		</div>
+	    </div>
+	</div>
+    </div>
+    <!-- end of hotels -->
+    <!-- end of flights -->
+</div>

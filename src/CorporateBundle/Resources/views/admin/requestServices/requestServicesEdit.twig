@@ -1,0 +1,108 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/daterangepicker.min.css')|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/css/jquery.auto-complete.css')|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/autocomplete/TTAutocomplete.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/daterangepicker/TTDateRangePicker.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/form/TTFormValidator.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/moment.2.16.0.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/jquery.daterangepicker.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/js/jquery.autocomplete.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/form_validator/validator.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/admin/js/corporate_requestServices.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-requestServicesEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Request Services Add/Edit'|trans}}{% endblock %}
+{% block body %}
+    {% set defaultValues  = {'p_id': 0, 'p_title': '', 'p_accountId': 0, 'p_fromDate': '', 'p_toDate': '', 'p_description': '', 'p_destinationCityId': 0, 'p_departureCityId': 0,  'p_countryId': 0, 'p_isApproved': 0, 'accountName':'', 'countryName':'', 'destinationCityName':'', 'departureCityName':'' } %}
+    {% set defaultValues2 = { } %}
+    {% set defaultValues3 = { } %}
+
+    {% set requestService	= defaultValues|merge(requestService) %}
+    {% set employeeIdListArray	= defaultValues|merge(employeeIdListArray) %}
+    {% set itemsIdListArray	= defaultValues|merge(itemsIdListArray) %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Request Services Add/Edit'|trans}}</h1>
+	    </div></br>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_request_services_addSubmit') }}">
+		<input type="hidden" class="id" name="id" value="{{requestService.p_id|raw}}">
+		<div class="inputFields"><label id="titleLabel">{{'Title'|trans}} </label></div>
+		<input type="text" class="inputForm" name="title" value="{{requestService.p_title|raw}}" required label="#titleLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="accountNameLabel">{{'Account'|trans}} </label></div>
+		<input type="text" class="inputForm" name="accountName" data-toggle="ttautocompleteAccount" id="accountName" value="{{requestService.accountName|raw}}" placeholder="{{'Search for account'|trans}}" required label="#accountNameLabel"/>
+		{% if requestService.p_accountId %}
+		    <input type="hidden" id="accountNameCode" name="accountId" value="{{requestService.p_accountId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<span class="daterangepicker_inputs"> 
+		    <div class="inputFields"><label id="fromDateLabel">{{'From Date'|trans}} </label></div>
+		    <input class="inputForm" name="fromDate" id="fromDate" value="{{requestService.p_fromDate|date("m/d/Y")}}" required label="#fromDateLabel" >
+		    <div class="clear"></div>
+		    <div class="inputFields"><label id="toDateLabel">{{'To Date'|trans}} </label></div>
+		    <input class="inputForm" name="toDate" id="toDate" value="{{requestService.p_toDate|date("m/d/Y")}}" required label="#toDateLabel"> 
+		</span>
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Description'|trans}} </label></div>
+		<textarea name="description" class="inputForm">{{requestService.p_description|raw}}</textarea>
+		<div class="clear"></div>
+		<div class="inputFields"><label id="destinationCityNameLabel">{{'Destination City Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="destinationCityName" data-toggle="ttautocompleteDestinationCity" id="destinationCityName" value="{{requestService.destinationCityName|raw}}" placeholder="{{'Search for destination city'|trans}}" required label="#destinationCityNameLabel"/>
+		{% if requestService.p_destinationCityId %}
+		    <input type="hidden" id="destinationCityNameCode" name="destinationCityId" value="{{requestService.p_destinationCityId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label id="departureCityNameLabel">{{'Departure City Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="departureCityName" data-toggle="ttautocompleteDepartureCity" id="departureCityName" value="{{requestService.departureCityName|raw}}" placeholder="{{'Search for departure city'|trans}}" required label="#departureCityNameLabel"/>
+		{% if requestService.p_departureCityId %}
+		    <input type="hidden" id="departureCityNameCode" name="departureCityId" value="{{requestService.p_departureCityId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label id="countryNameLabel">{{'Country'|trans}} </label></div>
+		<input type="text" class="inputForm" name="countryName" data-toggle="ttautocompleteCountry" id="countryName" value="{{requestService.countryName|raw}}" placeholder="{{'Search for country'|trans}}" required label="#countryNameLabel"/>
+		{% if requestService.p_countryId %}
+		    <input type="hidden" id="countryNameCode" name="countryId" value="{{requestService.p_countryId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields"><label for="approvedCheckbox">{{'Approved'|trans}} </label></div>
+		<input type="checkbox" id="approvedCheckbox" name="isApproved" {% if requestService.p_isApproved == 1 %} checked {% endif %}>
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Employees:'|trans}} </label></div>
+		<div class="clear"></div>
+		<ul class="checkboxList">
+		    {% for employee in employeesList %}
+			<li class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+			    <input type="checkbox" id="{{employee.ap_id}}" name="employees[]" value="{{employee.ap_id}}" class="inputCheckbox"{% if employee.ap_id in employeeIdListArray %}  checked="checked" {% endif %}>
+			    <label class="inputName" for="{{employee.ap_id}}">{{employee.ap_fname}} {{employee.ap_lname}}</label>
+			</li>
+		    {% endfor %}
+		</ul>
+		<div class="clear"></div>
+		<div class="inputFields"><label>{{'Services'|trans}} </label></div>
+		<div class="clear"></div>
+		<ul class="checkboxList">
+		    {% for services in servicesList %}
+			<li class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+			    <input type="checkbox" id="{{services.ds_id}}" name="services[]" value="{{services.ds_id}}" class="inputCheckbox"{% if services.ds_id in itemsIdListArray %}  checked="checked" {% endif %}>
+			    <label class="inputName" for="{{services.ds_id}}">{{services.ds_name}}</label>
+			</li>
+		    {% endfor %}
+		</ul>
+		<div class="clear"></div>
+		<div class="inputFields tt_buttons_bar"><button data-role="button" data-type="validate" type="submit">{{'Submit'|trans}}</button></div>
+		<div class="clear"></div>
+		{% if requestService.p_id%}
+		    <div class="inputFields2"><button onclick="searchForAvailibility()"/>{{'Search For Availability'|trans}}</button></div>
+		{% endif %}
+	    </form>
+	</div>
+    </section>
+{% endblock %}

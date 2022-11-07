@@ -1,0 +1,500 @@
+{# twig file for profile_notifaction.php page #}
+
+<script type="text/javascript">
+    userGlobalID({{userId|raw}});
+    var no_socials_links = 0;
+    var user_is_logged = '{{user_is_logged|raw}}';
+    var user_Is_channel = '{{userIschannel|raw}}';
+    var is_owner = '{{is_owner|raw}}';
+</script>
+
+
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;libraries=places"></script>
+
+<a href="" id="picfancyboxbutton" rel="nofollow" style="width:0px;height:0px;" class="displaynone"></a>
+<a href="#sharepopup" rel="nofollow" id="addbrochure_buttonbk" class="displaynone"></a>
+<div id="sharepopup"></div>
+
+{#
+    uncomment the below when the twig files of the below file get done
+    {% include 'parts/profile_TTpage_header.twig' %}
+    {% include 'parts/profile_TTpage_leftTwig.php' %}
+#}
+
+<div id="right_container">
+    <div id="log_data_container" class="log_data_container" data-profile="{{userId|raw}}">
+
+        {% for news in newsArr %}
+            <div class="log_item_list'{{news.new_post_class|raw}}">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div data-id="{{news.id|raw}}" class="log_top_arrow"></div>
+                <div class="log_top_buttons_container">
+                    <div id="log_hidden_buttons_{{news.id|raw}}" class="log_hidden_buttons">
+                        <div class="log_top_button" id="stop_getnotif_button" data-notification="{{news.data_notification|raw}}" data-id="{{news.hide_all_button_id|raw}}" data-uid="{{news.userId|raw}}" data-ischannel="{{news.ischannel|raw}}">_({{news.data_notification_str|raw}})</div>
+                    </div>
+                </div>
+
+                {% if news.entity_type == SOCIAL_ENTITY_USER_EVENTS %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk|raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <a href="{{news.media_uri|raw}}" target="_blank">
+                                    <img height="40" width="62" border="0" src="{{news.event_photo}}" class="event_photo">
+                                </a>
+                                <div class="event_name">{{news.media_name|raw}}</div>
+                                {% if news.overhead_text!='' %}
+                                    <br>
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 eventcomment">{{news.overhead_text |raw}}</div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_EVENTS %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk|raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <a href="{{news.media_uri|raw}}" target="_blank">
+                                    <img height="40" width="62" border="0" src="{{news.event_photo}}" class="event_photo">
+                                </a>
+                                <div class="event_name">{{news.media_name|raw}}</div>
+                                {% if news.overhead_text!='' %}
+                                    <br>
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 eventcomment">{{news.overhead_text |raw}}</div>
+                                    {% endif %}
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_USER %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk|raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text"></a>{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts |raw}}</div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_JOURNAL %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action |raw}}">
+                        </a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <a href="{{news.media_uri|raw}}" target="_blank">
+                                    <img height="40" width="70" border="0" src="{{news.thumb_pic|raw}}" class="event_photo">
+                                </a>
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 mediacomment">{{news.overhead_text|raw}}</div>
+                                    {% endif %}
+                                {% endif%}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_USER_PROFILE %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk|raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action |raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <img height="49" width="49" border="0" src="{{news.thumb_pic|raw}}" class="event_photo">
+                                {% if news.overhead_text!=''%}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 mediacomment">{{news.overhead_text|raw}}</div>
+                                    {% endif%}
+                                {% endif%}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_CHANNEL %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk|raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action |raw}}">
+                        </a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <a href="{{ news.media_uri|raw}}" target="_blank">
+                                    <img class="img_left" src="{{header_src|raw}}" />
+                                    <img class="img_right" src="{{ news.channel_src |raw}}" /></a>
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 mediacomment" style="width:350px;">{{news.overhead_text|raw}}</div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        <div class="connecton_data">{{news.connection|raw}}</div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_CHANNEL_COVER %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk|raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action |raw}}">
+                        </a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <img class="img_left" src="{{news.header_src |raw}}" />
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 mediacomment" style="width:350px;">{{news.overhead_text |raw}}</div>
+                                    {% endif %}
+                                {% endif%}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_CHANNEL_PROFILE %}
+                    <div class="thumbBack">
+                        <a href="{{ news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw }}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{ news.feed_ts|raw }}</div>
+
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <img class="img_left" src="{{ news.header_src|raw}}" />
+                                    {% if news.overhead_text!='' %}
+                                        {% if news.showcommentclass==1 %}
+                                            <div class="comment_Div media"></div>
+                                            <div class="event_text1 mediacomment" style="width:350px;">
+                                                {{ news.overhead_text|raw}}
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_CHANNEL_INFO  %}
+                    <div class="thumbBack">
+                        <a href="{{ news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw }}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{ news.feed_ts|raw }}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <div class="log_post_left">
+                                    <div class="log_post_type">{{ 'info'|lang }}</div>
+                                    <div class="log_post_left_text">{{ news.post_text|raw}}"</div>
+                                </div>
+                                    {% if overhead_text!='' %}
+                                        {% if news.showcommentclass==1 %}
+                                            <div class="comment_Div media margintop10" style="margin-left:0px;"></div>
+                                            <div class="event_text1 mediacomment margintop10">{{ news.overhead_text|raw }}</div>
+                                        {% endif %}
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% elseif news.entity_type == SOCIAL_ENTITY_CHANNEL_SLOGAN %}
+                    <div class="thumbBack">
+                        <a href="{{ news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw }}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{ news.feed_ts|raw }}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <div class="log_post_left">
+                                    <div class="log_post_type">{{ 'info'|lang }}</div>
+                                    <div class="log_post_left_text">{{ news.post_text|raw}}"</div>
+                                </div>
+                                {% if overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media margintop10" style="margin-left:0px;"></div>
+                                        <div class="event_text1 mediacomment margintop10">{{ news.overhead_text|raw }}</div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% elseif entity_type == SOCIAL_ENTITY_BROCHURE %}
+                    <div class="thumbBack">
+                        <a href="{{ news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw }}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{ news.feed_ts|raw }}</div>
+                        <div class="notif_event">
+                            <div class="event_pic"><a href="{{ news.media_uri|raw}}" target="_blank">
+                                    <img height="76" width="55" border="0" src="{{ news.thumb_pic|raw}}" class="event_photo"></a>
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 mediacomment">{{news.overhead_text|raw}}</div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_MEDIA or news.entity_type == SOCIAL_ENTITY_ALBUM %}
+                    <div class="thumbBack">
+                        <a href="{{ news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw }}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{ news.feed_ts|raw }}</div>
+                        <div class="notif_event">
+                            <div class="event_pic"><a href="{{ news.media_uri|raw}}" target="_blank">
+                                    <img height="76" width="55" border="0" src="{{ news.thumb_pic|raw}}" class="event_photo"></a>
+                                        {% if news.overhead_text!='' %}
+                                            {% if news.showcommentclass==1 %}
+                                                <div class="comment_Div media"></div>
+                                                <div class="event_text1 mediacomment">{{ news.overhead_text |raw}}</div>
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if news.rating_data!='' %}
+                                            <div class="listVideoRating insidevideolistrating'{{ news.rating_data|raw }}{{ '3'|lang }}" style="left: 2px; top:24px;"></div>
+                                        {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_POST and ( news.post_type == SOCIAL_POST_TYPE_PHOTO or news.post_type == SOCIAL_POST_TYPE_VIDEO) %}
+                    <div class="thumbBack">
+                        <a href="{{ news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw }}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{ news.feed_ts|raw }}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <a href="#sharepopup" rel="nofollow" class="{{news.stanClick_vtype|raw}}" id="{{news.stanClick_vtype|raw}}" data-channelid="{{news.channel_id_post|raw}}" data-id="{{news.media_id|raw}}" s_val="more">
+                                    <img height="40" width="70" border="0" src="{{news.thumb_pic|raw}}" class="event_photo">
+                                </a>
+                                {% if news.overhead_text!=''%}
+                                    {% if news.showcommentclass==1%}
+                                        <div class="comment_Div media"></div>
+                                        <div class="event_text1 mediacomment">{{news.overhead_text|raw}}</div>
+                                    {% endif %}
+                                {% endif %}
+                                {% if news.rating_data!='' %}
+                                    <div class="listVideoRating insidevideolistrating{{ news.rating_data|raw}}{{ '3'|lang }}" style="left: 2px; top:24px;"></div>
+                                {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_POST and ( news.post_type == SOCIAL_POST_TYPE_LINK or news.post_type == SOCIAL_POST_TYPE_TEXT) %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <div class="log_post_left">
+                                    <div class="log_post_type">_({{news.posttype|raw}})</div>
+                                    <div class="log_post_left_text">{{news.post_text |raw}}</div>
+                                </div>
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media margintop10" style="margin-left:0px;"></div>
+                                        <div class="event_text1 mediacomment margintop10">{{news.overhead_text|raw}}</div>
+                                    {% endif%}
+                                {% endif%}
+                            </div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_POST and news.post_type == SOCIAL_POST_TYPE_LOCATION %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+
+                        <div class="notif_event">
+                            <div id="event_googlemap" class="event_googlemap">
+                                <div id="googlemap{{news.id|raw}}" class="googlemap_location" data-lng="{{news.longitude|raw}}" data-lat="{{news.lattitude|raw}}"></div>
+                            </div>
+                            {% if news.overhead_text!='' %}
+                                {% if news.showcommentclass==1 %}
+                                    <div class="comment_Div media margintop10" style="margin-left:6px;"></div>
+                                    <div class="event_text1 mediacomment margintop10" style="width:345px;">{{news.overhead_text|raw }}</div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_VISITED_PLACES %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div id="event_googlemap" class="event_googlemap">
+                                <div id="googlemap{{news.id|raw}}" class="googlemap_location" data-lng="{{news.longitude|raw}}" data-lat="{{news.lattitude|raw}}"></div>
+                            </div>
+                            {% if news.overhead_text!='' %}
+                                {% if news.showcommentclass==1 %}
+                                    <div class="comment_Div media margintop10" style="margin-left:6px;"></div>
+                                    <div class="event_text1 mediacomment margintop10" style="width:345px;">{{news.overhead_text|raw }}</div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_NEWS %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <div class="log_post_left">
+                                    <div class="log_post_type">{{ 'news'|lang}}</div>
+                                    <div class="log_post_left_text">{{ news.post_text|raw}}</div>
+                                </div>
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media margintop10" style="margin-left:0px;"></div>
+                                        <div class="event_text1 mediacomment margintop10">{{ news.overhead_text|raw}}</div>
+                                    {% endif %}
+                                {% endif %}
+                                </div>
+                        </div>
+                    </div>
+
+                {% elseif news.entity_type == SOCIAL_ENTITY_BAG %}
+                    <div class="thumbBack">
+                        <a href="{{news.uslnk |raw}}" target="_blank">
+                            <img height="40" width="40" class="log_tuber_logo" src="{{news.logo_src_action|raw}}"></a>
+                        <div class="thbArrow"></div>
+                    </div>
+                    <div class="textsDiv">
+                        <div class="log_header_text">{{news.action_text_display|raw}}</div>
+                        <div class="log_header_time">{{news.feed_ts|raw}}</div>
+                        <div class="notif_event">
+                            <div class="event_pic">
+                                <div class="log_post_left">
+                                    <div class="log_bag_right"></div>
+                                    <a href="{{ news.bag_link|raw}}" target="_blank"><div class="log_bag_left_text">{{ news.post_text|raw}}</div></a>
+                                </div>
+                                {% if news.overhead_text!='' %}
+                                    {% if news.showcommentclass==1 %}
+                                        <div class="comment_Div media margintop10" style="margin-left:0px;"></div>
+                                        <div class="event_text1 mediacomment margintop10">{{ news.overhead_text |raw}}</div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+        {% endfor %}
+    </div> {# log_data_container #}
+    <div class="log_data_footer">
+        <div style="height:26px;">
+            <div class="buttonmorecontainer" style="float: none;width: 104px;margin-left: 280px;">
+                <a id="log_not_load_more" class="loadmoreevents load_more_previous_new">{{ 'Load More...'|lang }}</a>
+            </div>
+        </div>
+        <script type="text/ecmascript">
+            {% if news_feed_count > 10 %}
+                $(".buttonmorecontainer").show();
+            {% else %}
+                $(".buttonmorecontainer").hide();
+            {% endif %}
+        </script>
+
+        <div class="cal_year_container">
+            <img id="cal_left_arrow_NOT" class="cal_left_arrow" src="{{ 'images/channel/calpicker/year_arrow_left.png'|link}}" />
+            <div id="cal_year_display" class="cal_year_display">{{ date_Y|raw}}</div>
+            <img id="cal_right_arrow_NOT" class="cal_right_arrow" src="{{ 'images/channel/calpicker/year_arrow_right.png'|link}}" />
+        </div>
+
+        <div class="cal_months_container">
+            <img class="cal_months_bar" alt="{{ 'month'|lang }}" src="{{ 'images/channel/calpicker/months_bar.png'|link}}" />
+
+            <div class="cal_months">
+                <div id="month_1" class="cal_month cal_month_NOT">{{ 'jan'|lang }}</div>
+                <div id="month_2" class="cal_month cal_month_NOT">{{ 'feb'|lang }}</div>
+                <div id="month_3" class="cal_month cal_month_NOT">{{ 'mar'|lang }}</div>
+                <div id="month_4" class="cal_month cal_month_NOT">{{ 'apr'|lang }}</div>
+                <div id="month_5" class="cal_month cal_month_NOT">{{ 'may'|lang }}</div>
+                <div id="month_6" class="cal_month cal_month_NOT">{{ 'jun'|lang }}</div>
+                <div id="month_7" class="cal_month cal_month_NOT">{{ 'jul'|lang }}</div>
+                <div id="month_8" class="cal_month cal_month_NOT">{{ 'aug'|lang }}</div>
+                <div id="month_9" class="cal_month cal_month_NOT">{{ 'sep'|lang }}</div>
+                <div id="month_10" class="cal_month cal_month_NOT">{{ 'oct'|lang }}</div>
+                <div id="month_11" class="cal_month cal_month_NOT">{{ 'nov'|lang }}</div>
+                <div id="month_12" class="cal_month cal_month_NOT">{{ 'dec'|lang }}</div>
+            </div>
+
+            <input type="hidden" id="cal_selected_month" value="{{ date_n|raw }}" />
+        </div><!-- cal_months_container -->
+    </div> <!-- log_data_footer -->
+</div> <!-- right_container -->

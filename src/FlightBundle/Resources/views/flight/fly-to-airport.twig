@@ -1,0 +1,75 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/flights/css/flight-to-airport_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+	<script type="text/javascript">
+        var flyToAirport = '{{ app.request.attributes.get('_route_params').airportName|raw }}';
+        var flyToAirportCode = '{{ app.request.attributes.get('_route_params').airportCode|raw }}';
+        window.SKIP_AUTO_LOAD_COOKIES_SEARCH_FORM_EXCEPT_FLIGHT_DEPARTURE = true;
+    </script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js") }}"></script>
+{% endblock %}
+{% block body %}
+    {#<section class="container flight_booking_row">
+		<div class="row small_padding">
+			<div class="col-xs-12 small_margin"><h2 class="h3_flight_booking">Cheap flights to Istanbul, Turkey</h2></div>
+			<div class="col-xs-12 small_margin"><p class="font-17">Recently found by travelers</p></div>
+		</div>
+		
+		<div class="row small_padding">#}
+		{#loop here#}
+			{#<div class="col-sm-5 col-xs-12 padding-top-bottom-20 border-grey small_margin">
+				<div class="row no-padding">
+					<div class="col-xs-12 blue-txt font-17">Thu, 10/4 - Tue, 10/9</div>
+					<div class="col-xs-3 font-20">
+						Beirut<br /><span class="font-16">BEY</span>
+					</div>
+					<div class="col-xs-1 text-center">
+						<i class="fas fa-arrow-circle-right fa-lg margin_top_7"></i>
+					</div>
+					<div class="col-xs-3 font-20">
+						Istanbul<br /><span class="font-16">IST</span>
+					</div>
+					<div class="col-xs-5 pull-right">
+					    <img src="{{ generateMediaURL('/media/images/airline-logos/ME.jpg') }}" alt="Middle East Airlines" class="side-left-airlines pull-left max_width_image">
+						<div class="side-right-airlines pull-left font-14">
+							Middle East Airlines<br />
+							<span class="font-17 pink-txt">LBP 308,623</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1 col-xs-12"></div>
+			<div class="col-sm-5 col-xs-12 padding-top-bottom-20 border-grey small_margin">
+				<div class="row no-padding">
+					<div class="col-xs-12 blue-txt font-17">Thu, 10/4 - Tue, 10/9</div>
+					<div class="col-xs-3 font-20">
+						Beirut<br /><span class="font-16">BEY</span>
+					</div>
+					<div class="col-xs-1 text-center">
+						<i class="fas fa-arrow-circle-right fa-lg margin_top_7"></i>
+					</div>
+					<div class="col-xs-3 font-20">
+						Istanbul<br /><span class="font-16">IST</span>
+					</div>
+					<div class="col-xs-5 pull-right">
+					    <img src="{{ generateMediaURL('/media/images/airline-logos/FZ.jpg') }}" alt="flydubai" class="side-left-airlines pull-left max_width_image">#}
+						{#<div class="side-left-airlines pull-left max_width_image"></div>#}
+						{#<div class="side-right-airlines pull-left font-14">
+							Middle East Airlines<br />
+							<span class="font-17 pink-txt">LBP 308,623</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1 col-xs-12"></div>#}
+			{#end loop here#}
+			
+		{#</div>
+		
+		
+    </section>#}
+{% endblock %}

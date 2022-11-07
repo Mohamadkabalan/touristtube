@@ -1,0 +1,35 @@
+TTBundle\Entity\DiscoverHotelsFeatureToHotel:
+    type: entity
+    table: discover_hotels_feature_to_hotel
+    indexes:
+        hotel_feature_id:
+            columns:
+                - hotel_feature_id
+    uniqueConstraints:
+        hotel_id:
+            columns:
+                - hotel_id
+                - hotel_feature_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+        hotelFeatureId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_feature_id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,158 @@
+_ajax_account_check_user:
+    path:      "/ajax/account-check-user"
+    defaults: { _controller: TTBundle:Users:updateAccountCheckUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_account_info:
+    path:      "/ajax/account-info"
+    defaults: { _controller: TTBundle:Users:updateAccountInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_account_settings:
+    path:      "/ajax/account-settings"
+    defaults: { _controller: TTBundle:Users:updateAccountSettings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_process_fb:
+    path:      "/ajax/process_fb"
+    defaults: { _controller: TTBundle:Users:processFB, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_user_report_add:
+    path:      "/ajax/user/report/add"
+    defaults: { _controller: TTBundle:Users:userReportAdd, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_user_activate_account:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/users/activate-account/{key}"
+    defaults: { _controller: TTBundle:Users:activateUsersAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "Account Activation | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_user_reactivate_account:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/users/reactivate-account"
+    defaults: { _controller: TTBundle:Users:reactivateUsersAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "Account Activation | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_reactivate_account:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/reactivate"
+    defaults: { _controller: TTBundle:Users:reactivateUsersAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "Account Activation | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_user_confirm_login:
+    path: "/user/confirm/login"
+    defaults: { _controller: TTBundle:Users:userConfirmLogin, _locale: "%locale%", seotitle: "", seodescription: "", seokeywords: ""}
+
+_user_add_register:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/users/register/addSubmit"
+    defaults: { _controller: TTBundle:Users:addUserSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "login Tourist Tube", seodescription: "Welcome to touristtube.com. Do not have an account yet? Sign up now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_account_info:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/account/info"
+    defaults: { _controller: TTBundle:Users:accountInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_account_settings:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/account/settings"
+    defaults: { _controller: TTBundle:Users:accountSettings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_account_myprofile_tuber:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/myprofile/{params}"
+    defaults: { _controller: TTBundle:Users:accountProfile, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", params: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        params: ".*"
+
+_account_profile_tuber:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/profile/{username}/{params}"
+    defaults: { _controller: TTBundle:Users:accountProfile, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", params: "", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        params: ".*"
+
+_account_upload:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/upload"
+    defaults: { _controller: TTBundle:Users:accountUpload, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Upload | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_unsubscribe_emails:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/unsubscribe/emails/{key}"
+    defaults: { _controller: TTBundle:Users:unsubscribeEmails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "Unsubscribe | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_user_unsubscribe_code:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/user-unsubscribe/code/{key}"
+    defaults: { _controller: TTBundle:Users:userUnsubscribeCode, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "User Unsubscribe | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_user_tt_confirmation:
+    path:      "/TT-confirmation/{params}/{key}"
+    defaults: { _controller: TTBundle:Users:userTTConfirmation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "User Unsubscribe | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_ajax_reactivate_notifications:
+    path:      "/ajax/reactivate_notifications"
+    defaults: { _controller: TTBundle:Users:reactivateNotifications, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_user_unsubscribe_delete:
+    path:      "/ajax/user_unsubscribe_delete"
+    defaults: { _controller: TTBundle:Users:userUnsubscribeDeleteAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_profile_media_data:
+    path: "/ajax/profile_media_data"
+    defaults: { _controller: TTBundle:Users:getProfileMediaData, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"

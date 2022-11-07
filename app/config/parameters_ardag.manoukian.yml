@@ -1,0 +1,196 @@
+---
+parameters:
+  CONFIG_COOKIE_PATH: touristtube.com
+  CONFIG_SERVER_NAME: touristtube.com
+  CONFIG_SERVER_ROOT: /home/mohamad.kabalane/www/web/
+  CONFIG_VIDEO_UPLOADPATH: media/videos/uploads/
+  CONFIG_VIDEO_VIDEOCONVERTER: /home/mohamad.kabalane/www/web/social/ffmpeg/ffmpeg
+  CONFIG_VIDEO_VIDEOCONVERTERFOLDER: /home/mohamad.kabalane/www/web/social/ffmpeg/
+  ENVIRONMENT: development
+  MACHINE_NAME: tt
+  USER_AVATAR_ABSOLUTE_PATH: /home/mohamad.kabalane/www/web/social/media/tubers/
+  USER_AVATAR_RELATIVE_PATH: /media/tubers/
+  database_host: mdbdev01
+  database_name: touristtube
+  database_password: Mr4+%FINDZm,:AGL
+  database_port: 3306
+  database_user: mysql_root
+  domain: touristtube.com
+  elastic:
+    dev:
+      compression: true
+      host: esdev01
+      hosts:
+        '0':
+          host: esdev01
+          pass: 'null'
+          port: 9200
+          scheme: http
+          user: 'null'
+      indexes:
+        airports:
+          docType: airports
+          host: ~
+          index: tt_airports
+          port: ~
+        channels:
+          docType: channels
+          host: ~
+          index: tt_channels
+          port: ~
+        cities:
+          docType: cities
+          host: ~
+          index: tt_cities
+          port: ~
+        deals:
+          docType: deals
+          host: ~
+          index: tt_deals
+          port: ~
+        dictionary:
+          docType: dictionary
+          host: ~
+          index: tt_dictionary
+          port: ~
+        dischotels:
+          docType: dischotels
+          host: ~
+          index: tt_dischotels
+          port: ~
+        hotels:
+          docType: hotels
+          host: ~
+          index: tt_hotels
+          port: ~
+        hotelsCities:
+          docType: hotelsCities
+          host: ~
+          index: tt_hotelscities
+          port: ~
+        hrshotels:
+          docType: hrshotels
+          host: ~
+          index: tt_hrshotels
+          port: ~
+        hrshotelscities:
+          docType: hrshotelscities
+          host: ~
+          index: tt_hrshotelscities
+          port: ~
+        location:
+          docType: location
+          host: ~
+          index: tt_location
+          port: ~
+        media:
+          docType: media
+          host: ~
+          index: tt_media
+          port: ~
+        poi:
+          docType: poi
+          host: ~
+          index: tt_poi
+          port: ~
+        thingstodo:
+          docType: thingstodo
+          host: ~
+          index: tt_thingstodo
+          port: ~
+      port: 9200
+    prod:
+      compression: true
+      host: esdev01
+      hosts:
+        '0':
+          host: esdev01
+          pass: ~
+          port: 9200
+          scheme: http
+          user: ~
+      indexes:
+        airports:
+          docType: airports
+          host: ~
+          index: tt_airports
+          port: ~
+        channels:
+          docType: channels
+          host: ~
+          index: tt_channels
+          port: ~
+        cities:
+          docType: cities
+          host: ~
+          index: tt_cities
+          port: ~
+        deals:
+          docType: deals
+          host: ~
+          index: tt_deals
+          port: ~
+        dictionary:
+          docType: dictionary
+          host: ~
+          index: tt_dictionary
+          port: ~
+        dischotels:
+          docType: dischotels
+          host: ~
+          index: tt_dischotels
+          port: ~
+        hotels:
+          docType: hotels
+          host: ~
+          index: tt_hotels
+          port: ~
+        hotelsCities:
+          docType: hotelsCities
+          host: ~
+          index: tt_hotelscities
+          port: ~
+        hrshotels:
+          docType: hrshotels
+          host: ~
+          index: tt_hrshotels
+          port: ~
+        hrshotelscities:
+          docType: hrshotelscities
+          host: ~
+          index: tt_hrshotelscities
+          port: ~
+        location:
+          docType: location
+          host: ~
+          index: tt_location
+          port: ~
+        media:
+          docType: media
+          host: ~
+          index: tt_media
+          port: ~
+        poi:
+          docType: poi
+          host: ~
+          index: tt_poi
+          port: ~
+        thingstodo:
+          docType: thingstodo
+          host: ~
+          index: tt_thingstodo
+          port: ~
+      port: 9200
+  elastic_host: esdev02
+  elastic_index: tt_v2.2
+  elastic_port: 9200
+  facebook_app_id: 1045138925510219
+  facebook_app_secret: 87378d17c481361e8f8d526da84b3e50
+  facebook_client_secret: 87378d17c481361e8f8d526da84b3e50
+  facebook_default_graph_version: v2.12
+  mailer_host: 127.0.0.1
+  mailer_password: ~
+  mailer_transport: smtp
+  mailer_user: ~
+  secret: 1ae4553a11ce08750181d9295ea837864e699fc2
+  subdomain_suffix: -mohamadkabalane

@@ -1,0 +1,270 @@
+_faq:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/faq"
+    defaults: { _controller: TTBundle:Social:faq, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "faq Tourist Tube", seodescription: "Just set your email and password and we will create your account to enjoy all TouristTube features. You can fill in your profile info at your convenience.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_cookie-policy:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/cookie-policy-{web}"
+    defaults: { _controller: TTBundle:Social:cookiePolicy, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", web: "", seotitle: "cookie policy Tourist Tube", seodescription: "By registering as a member or by using the Tourist Tube services in any way, you accept these Terms of Service ('Agreement')", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        web: ".*"
+        
+_terms-and-conditions:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/terms-and-conditions-{web}"
+    defaults: { _controller: TTBundle:Social:termsAndConditions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", web: "", seotitle: "terms and conditions Tourist Tube", seodescription: "By registering as a member or by using the Tourist Tube services in any way, you accept these Terms of Service ('Agreement')", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        web: ".*"
+        
+_about-us:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/about-us"
+    defaults: { _controller: TTBundle:Social:aboutUs, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "about us Tourist Tube", seodescription: "We give you TouristTube™, a unique platform of appealing colors and original technology specially designed with a wide range of exclusive high end features.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_help:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/help-{web}"
+    defaults: { _controller: TTBundle:Social:help, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", web: "", seotitle: "tourist help Tourist Tube", seodescription: "You can view content in our public section without registration. However you are required to register to use the full features of Tourist Tube.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        web: ".*"
+        
+_privacy-policy:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/privacy-policy-{web}"
+    defaults: { _controller: TTBundle:Social:privacyPolicy, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", web: "", seotitle: "privacy policy Tourist Tube", seodescription: "Tourist Tube LTD has developed this Privacy Policy to demonstrate its commitment to respecting your privacy.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        web: ".*"
+        
+_contact:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/contact"
+    defaults: { _controller: TTBundle:Social:contact, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "contact Tourist Tube", seodescription: "To report security / hacking issues on the site, please contact us at security@touristtube.com", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_disclaimer:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/disclaimer-{web}"
+    defaults: { _controller: TTBundle:Social:disclaimer, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", web: "", seotitle: "disclaimer Tourist Tube", seodescription: "We provide our Services using a commercially reasonable level of skill and care and we hope that you will benefit from them.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        web: ".*"
+        
+_support:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/support"
+    defaults: { _controller: TTBundle:Social:support, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "support Tourist Tube", seodescription: "For your queries / feedback, please fill in the form in our page on tourist tube platform.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_addRestaurant:
+    path:      "/addRestaurant" 
+    defaults: { _controller: TTBundle:Social:addRestaurantRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Add Restaurant Tourist Tube", seodescription: "looking to promote your restaurant? Visit tourist tube and add your restaurant to our page.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_things_to_do_vienna_french:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Les-choses-a-faire-a-Vienne/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_top_bridges_to_visit_paris:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Top-Bridges-to-visit-in-Paris/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_things_to_do_general_french:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Choses-a-faire-en-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+        
+_top_five_things_to_do_in_Paris:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/top-five-things-to-do-in-Paris/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+
+_thingsToDo:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/things-to-do"
+    defaults: { _controller: TTBundle:Social:thingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Things to do in Paris, California, Vienna | Tourist Tube", seodescription: "Read about all essential things to do in Paris, California, Vienna, London and more. Visit us for more information about activities and things to do on Tourist Tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_thingsToDo2:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/thingsToDo"
+    defaults: { _controller: TTBundle:Social:thingsToDo2, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Things to do in Paris, California, Vienna | Tourist Tube", seodescription: "Read about all essential things to do in Paris, California, Vienna, London and more. Visit us for more information about activities and things to do on Tourist Tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Top_Destinations_in:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Top-Destinations-in-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "Top Destinations in %1$s, places to visit in %1$s and everything you need to know about your next trip", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+        
+_Top_Ski_Destinations_in:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Top-Ski-Destinations-in-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "Top Ski Destinations in %1$s, places to visit in %1$s and everything you need to know about your next trip", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+
+_things_to_do_360_photos_vr:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/360-photos-vr/Things-to-do-in-{target}/{slug}"
+    defaults: { _controller: TTBundle:Social:thingsToDo360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_things_to_do_360_photos_vr1:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/360-photos-vr/Top-Ski-Destinations-in-{target}/{slug}"
+    defaults: { _controller: TTBundle:Social:thingsToDo360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_things_to_do_360_photos_vr2:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/360-photos-vr/Top-Destinations-in-{target}/{slug}"
+    defaults: { _controller: TTBundle:Social:thingsToDo360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_things_to_do_360_photos_vr3:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/360-photos-vr/Top-Bridges-to-visit-in-{target}/{slug}"
+    defaults: { _controller: TTBundle:Social:thingsToDo360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_things_to_do_general:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Things-to-do-in-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+        
+_things_to_do_general1:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Things-To-Do-In-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+        
+_things_to_do_general2:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/things-to-do-in-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "Top %s | Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+      
+_things_to_do_generalnew:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Things-to-do-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+      
+_things_to_do_generalnew11:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{srch}/Things-to-do-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, srch: "", seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        page: ".*"
+        
+_things_to_do_generalnew1:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/things-to-do-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+
+_things_to_do_generalnew2:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Things-To-Do-{target}/{page}"
+    defaults: { _controller: TTBundle:Social:topthingsToDo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        page: ".*"
+
+_ajax_show_on_map:
+    path:      "/ajax/show-on-map"
+    defaults: { _controller: TTBundle:Social:showOnMap, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_things_to_san_francisco:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Things-to-in-San-Francisco"
+    defaults: { _controller: TTBundle:Social:topThingsToDoWrong, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_things_to_San_Diego:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/Things-to-do-San-Diego"
+    defaults: { _controller: TTBundle:Social:topThingsToDoWrong2, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

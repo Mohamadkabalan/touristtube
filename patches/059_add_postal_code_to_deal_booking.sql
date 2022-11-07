@@ -1,0 +1,1 @@
+ALTER TABLE  `deal_booking` ADD  `postal_code` VARCHAR( 25 ) NULL AFTER  `address` ;

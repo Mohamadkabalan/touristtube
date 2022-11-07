@@ -1,0 +1,13 @@
+_rest_countries_lang:
+    path:      "/{_locale}/api/countries"
+    defaults: { _controller: RestBundle:countries\Countries:getCountries, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+        
+_rest_countries_dialing_codes_lang:
+    path:      "/{_locale}/api/countries/dialing-codes"
+    defaults: { _controller: RestBundle:countries\Countries:getCountriesDialingCodes, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET

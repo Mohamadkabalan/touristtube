@@ -1,0 +1,145 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-payment.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}   
+    <script type="text/javascript" src="{{ asset("assets/payment/vendors/jquery.min.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("assets/payment/js/jquery.creditCardValidator.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Payment'|trans}}{% endblock %}
+{% block body %} 
+    {% set page_menu_name = 'flights' %}
+    <section class="container containerwhite paddingBottom10">
+        <div class="col-xs-12 nopad">
+            <div class="row rowspecialstyle">		
+                <div class="col-xs-12 nopad contentbackcolor_corp">
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+			    <h2 class="headerstyle_corp">{{'Payment method'|trans}} <span class="error_cnt_corporate"></span></h2>
+			    <form action="" method="POST" novalidate="">
+				<div class="box-container paymentcontainer col-xs-12">  
+
+				    <div class="botborder paddongtopbut40">
+					<div class="col-xs-12 nopad">
+					    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<img alt="payment" src="{{ generateMediaURL('/media/images/paymentpics.png') }}">
+					    </div>
+					</div>
+					<div class="col-xs-12 nopad">
+					    <div class="col-xs-12 nopad">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 {% if form.cardholder.vars.errors|length %}has-error {% endif %} ">
+						    
+							<label class="control-label" for="cc-name"><b>Name on card</b></label>
+							{{ form_widget(form.cardholder, {'attr': { 'class':'form-control selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback'}})}}
+							<div {% if form.cardholder.vars.errors|length %} style="color:red" {% endif %}>
+							    {{ form_errors(form.cardholder) }}
+							</div>	
+						   
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <p class="downinputtext">{{'No special characters'|trans}}</p>
+						</div>
+					    </div>
+					    <div class="col-xs-12 nopad">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12{% if form.cardnumber.vars.errors|length %}has-error {% endif %} ">
+						    
+							<label class="control-label" for="cc-number"><b>Credit card number</b></label>
+							{{ form_widget(form.cardnumber, {'attr': { 'class':'form-control selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback'}})}}
+							<div {% if form.cardnumber.vars.errors|length %} style="color:red" {% endif %}>
+							    {{ form_errors(form.cardnumber) }}
+							</div>
+						    
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <p class="downinputtext">{{'No spaces or special characters'|trans}}</p>
+						</div>
+					    </div>
+					    <div class="col-xs-12 nopad">
+						    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+							<p class="expiredatetextwizborder_corppayment">{{'Expiry date'|trans}}</p>
+						    </div>
+						    <div class="form-group">
+							{#<label for="expiryDateMonth" class="labelstyle smalfont">Expiry date</label>#}
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 expiry-date-wrap newpadcorpinput_corpayment {% if form.card_expire_month.vars.errors|length %}has-error {% endif %} ">
+							    
+					
+								{{ form_widget(form.card_expire_month, {'attr': { 'class':'expire-month select-expiry-date selectcomm_copayment'}})}}
+								<div {% if form.card_expire_month.vars.errors|length %} style="color:red" {% endif %}>
+								    {{ form_errors(form.card_expire_month) }}
+								</div>
+							    
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 expiry-date-wrap newpadcorpinput_corpayment  {% if form.card_expire_year.vars.errors|length %}has-error {% endif %} ">
+						
+							    {{ form_widget(form.card_expire_year, {'attr': { 'class':'expire-year select-expiry-date selectcomm_copayment'}})}}
+							    <div {% if form.card_expire_year.vars.errors|length %} style="color:red" {% endif %}>
+								{{ form_errors(form.card_expire_year) }}
+							    </div>
+							</div>
+							{#<div class="clear"></div>#}
+							<input type="hidden" value="" maxlength="4" id="expiry_date" name="expiry_date">
+						    </div>
+						
+						<div class="ccol-lg-2 col-md-2 col-sm-2 col-xs-12 expiry-date-wrap newpadcorpinput_corpayment {% if form.cvv.vars.errors|length %}has-error {% endif %} ">
+							    {{ form_widget(form.cvv, {'attr': { 'class':'form-control smaldivmargin padsm cvv_corppayment'}})}}
+							    <div {% if form.cvv.vars.errors|length %} style="color:red" {% endif %}>
+								{{ form_errors(form.cvv) }}
+							    </div>
+							
+						    </div>
+						    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 expiry-date-wrap newpadcorpinput_corpayment">
+							<img alt="CVV" src="{{ generateMediaURL('/media/images/corporate-payment/cvvimg_corppayment.png') }}" class="img-responsive">
+						    </div>
+						    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 widthcvv100xs">
+							<p class="cvvtext_corppayment">{{'3 digit CVV Number'|trans}}</p>
+						    </div>
+						</div>
+					    </div>
+					</div>
+				    </div>
+
+				    <div class="col-xs-12">
+					<div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+					    <img alt="secure" src="{{ generateMediaURL('/media/images/secureres.png') }}" class="img-responsive">
+					</div>
+					<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+					    <p class="warningtextstyle">{{'The data transmitted are coded using SSL (Secure Socket Layer) technology.'|trans}} <br>
+						{{'The session in progress on this site is secure and protected by maximum privacy.'|trans}}</p>
+					</div>
+				    </div>
+				    <div class="clear"></div>
+				    <div class="terms-wrap">
+					<div class="checkbox checkbox-terms form-group-wrap">
+					    <div>
+						{{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br>
+						{{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br>
+						{{'Kindly Contact:'|trans}}  <a href="mailto:support@touristtube.com">support@touristtube.com</a> {{'- Expected reply within 24 hours.'|trans}}
+						<br>
+						<br>
+						{{'By submitting this form, you confirm that you have read, agreed and accepted the'|trans}} <a target="_blank" title="terms &amp; conditions" href="/terms-and-conditions">{{'terms and conditions'|trans}}</a> {{'and the'|trans}} <a target="_blank" title="privacy policy" href="/privacy-policy">{{'privacy policy'|trans}}</a>.
+					    </div>
+					</div>
+				    </div>
+				    <div class="col-xs-12">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+					    
+					    <input type="submit" class="bluesbmit" value="submit">
+					</div>
+				    </div>
+					    				<hr class="mb-4">
+				{# Token CSRF #}
+				{{ form_widget(form._token) }}
+				 </form>
+
+				</div>
+				<div class="clear"></div>
+			</div>
+		    </div>
+		</div>
+            </div>
+     
+    </section>
+{% endblock %}

@@ -1,0 +1,17 @@
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`) VALUES ('1326', 'Suite 7', '15');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1327', 'Suite 7.1', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1328', 'Suite 7.2', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1329', 'Suite 7.3', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1330', 'Suite 7.4', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1331', 'Suite 7.5', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1332', 'Suite 7.6', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1333', 'Suite 7.7', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1334', 'Suite 7.8', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1335', 'Suite 7.9', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1336', 'Suite 7.10', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1337', 'Suite 7.11', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1338', 'Suite 7.12', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1339', 'Suite 7.13', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1340', 'Suite 7.14', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1341', 'Suite 7.15', '15', '1326');
+INSERT INTO `hotel_divisions` (`id`, `name`, `hotel_division_category_id`, `parent_id`) VALUES ('1342', 'Restaurant 3.11', '6', '173');

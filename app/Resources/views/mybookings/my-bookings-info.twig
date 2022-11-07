@@ -1,0 +1,41 @@
+{% if (myBookings) %}
+    {% for travel in myBookings %}
+	<div class="col-xs-12 nopad">
+	    <!-- start of hotels -->
+	    {% if travel.moduleId == hotelModuleId %}
+		<div class="row no-margin">
+		    <div id="my-bookings-hotels" class="col-xs-12 nopad">
+			{% include 'mybookings/my-bookings-hotel-loop.twig' %}
+		    </div>
+		</div>
+		<!-- end of hotels -->
+	    {% elseif travel.moduleId == flightModuleId %}
+		<!-- start of flights -->
+		<div class="row no-margin">
+		    <div id="my-bookings-flight" class="bookDataContainer">
+			{% include 'mybookings/my-bookings-flight-loop.twig' %}
+		    </div>
+		</div>
+	    {% elseif travel.moduleId == dealModuleId %}
+		<!-- start of flights -->
+		<div class="row no-margin">
+		    <div id="my-bookings-deals" class="bookDataContainer">
+			{% include 'mybookings/my-bookings-deal-loop.twig' %}
+		    </div>
+		</div>
+	    {% endif %}
+	    <!-- end of flights -->
+	</div>
+    {% endfor %}
+	<div class="pagination pagerWrapper" id="paginationPages">
+		{{pagination|raw}}
+	</div>
+{% else %}
+    <div class="row no-margin">
+	<div class="col-xs-12 nopad">
+	    <p class="leftmenue_subtitles">
+		{{'No Records found'|trans}}
+	    </p>
+	</div>
+    </div>
+{% endif %}

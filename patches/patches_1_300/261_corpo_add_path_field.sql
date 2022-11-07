@@ -1,0 +1,1 @@
+ALTER TABLE `corpo_admin_menu` ADD `path` VARCHAR(50) NULL AFTER `mobile_trigger_method`;

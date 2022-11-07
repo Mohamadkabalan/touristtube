@@ -1,0 +1,528 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/flights/css/flight-details_new1.css")|raw }}">
+
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}
+    {{ 'Flight Details New'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container new_flight_container">
+        <div class="row margin_top_30">
+            <div class="col-xs-12">
+                <h1 class="search_title padding_left_0"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ 'Flight details'|trans }}
+                </h1>
+            </div>
+        </div>
+        {#------------------------------------FLIGHT OVERVIEW SECTION-----------------------------------#}
+        {% if isFlightDetailsValidFromPayment == false %}
+            <br/>
+            <p>{{ 'Sorry, We cannot issue ticket for some reasons.'|trans }}</p>
+            <p>{{ 'Kindly Contact: '|trans }} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a>
+            </p>
+        {% else %}
+
+            <div class="row">
+            <div class="col-xs-12">
+                <div class="row margin_top_20">
+                    <div class="col-xs-12">
+                        <h2 class="fdt_sub_title black">{{ 'Flight overview'|trans }}</h2>
+                    </div>
+                </div>
+                <div class="row margin_top_10">
+                    <div class="col-xs-12">
+                        <p class="font-16 line-height-20 black margin_bottom_0">{{ 'Your reservation is booked and confirmed. There is no need to call us to reconfirm this reservation'|trans }}</p>
+                    </div>
+                </div>
+                <div class="row margin_top_10">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3 col-xs-5">
+                                <p class="grey font-14 uppercase line-height-20">{{ 'Booking ID'|trans }}</p>
+                            </div>
+                            <div class="col-lg-10 col-md-9 col-xs-7">
+                                <p class="black font-16 line-height-20">{{ flight.pnr_id|raw }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3 col-xs-5">
+                                <p class="grey font-14 uppercase line-height-20">{{ 'Ticket'|trans }} #</p>
+                            </div>
+                            <div class="col-lg-10 col-md-9 col-xs-7">
+                                <p class="black font-16 line-height-20">
+
+                                    {% for passenger in passengers %}
+                                        {{ passenger.ticket_number|raw }} ({{ passenger.first_name|raw }} {{ passenger.surname|raw }}) ,
+                                    {% endfor %}
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>{#------------------------------------END FLIGHT OVERVIEW SECTION-----------------------------------#}
+
+            {#------------------------------------DEPARTURE CONTAINER-----------------------------------#}
+            {% if flight.leaving is defined %}
+                <div class="row margin_top_30">
+                    <div class="col-xs-12">
+
+
+                        {% if flight.leaving.flight_info is iterable %}
+                            {% for flight_info in flight.leaving.flight_info %}
+                                {% if flight_info.stop_info is defined and flight_info.stop_info is iterable %}
+                                    {% set duration = flight_info.raw_duration %}
+                                    {% set type = '' %}
+                                {% else %}
+                                    {% set duration = flight_info.flight_duration %}
+                                    {% set type = 'direct'|trans %}
+                                {% endif %}
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="plane_with_left_border_container">
+                            <span>
+                                <img class="plane_with_left_border"
+                                     src="{{ generateMediaURL('/media/images/goplane.png') }}"
+                                     alt="{{ 'goplane logo'|trans }}">
+                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h2 class="font-27 black float-left">{{ 'Departure'|trans }}</h2>
+                                        <p class="font-16 black float-right total_duration_txt font-bold">
+                                            <span>{{ 'Total Duration'|trans }}</span>{{ flight_info.flight_duration }}
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row margin_top_5">
+                                    <div class="col-xs-12">
+                                        <p class="font-17 black float-left"><span
+                                                    class="font-bold">{{ flight.leaving.raw_departure_main_date|date('D d M') }}</span><span
+                                                    class="point_separator">.</span><span
+                                                    class="font-16">{{ flight.leaving.main_airline|raw }}</span></p>
+                                        <p class="font-16 black float-right"><span
+                                                    class="grey padding_right_5">{{ 'Confirmation'|trans }}</span>{{ flight_info.airline_pnr }}
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                {% set origin_airport_code = flight_info.origin_airport_code %}
+                                <div class="row margin_top_5">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 col-sm-3 col-xs-4 xs_full_style">
+                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ flight.leaving.main_airline|raw }} </p>
+                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.airline_code|raw }}{{ flight_info.flight_number|raw }}</p>
+                                                <p class="font-14 grey margin_bottom_0 line-height-16">{{ flight_info.cabin|raw }}</p>
+
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 col-sm-9 col-xs-8 xs_full_style">
+                                                <div class="row row_commun_height">
+                                                    <div class="col-lg-1 col-sm-2 col-xs-3 from_to_logo">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.departure_time|raw }}</p>
+                                                    </div>
+                                                    <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.origin_airport_code|raw }}</p>
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.origin_airport|raw }}</p>
+                                                        <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ flight_info.departure_terminal|raw }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_commun_height">
+                                                    <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                        <p class="font-16 blue margin_bottom_0 line-height-16">{{ type }}</p>
+                                                    </div>
+                                                    <div class="col-lg-11 col-sm-10 col-xs-9 text-align-center">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.elapsedTime }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_commun_height">
+                                                    <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.arrival_time|raw }}</p>
+                                                    </div>
+                                                    <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.destination_airport_code|raw }}</p>
+                                                        <p class="font-16 black margin_bottom_0 line-height-16 float-left padding_right_20">{{ flight_info.destination_airport|raw }}</p>
+                                                        <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ flight_info.arrival_terminal|raw }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if flight_info.stop_info is defined and flight_info.stop_info is iterable %}
+                                    {% for stop_info in flight_info.stop_info %}
+                                        <div class="row">
+                                            <div class="col-xs-12">
+
+                                                {#------------------------------------STOP SECTION-----------------------------------#}
+
+                                                <div class="row margin_top_30 margin_bottom_35">
+                                                    <div class="col-lg-9 col-md-8 col-sm-9 col-xs-8 col-lg-offset-3 col-md-offset-4 col-sm-offset-3 col-xs-offset-4">
+                                                        <div class="bordered_stop_container">
+                                                            <div class="row row_commun_height">
+                                                                <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                                    <p class="font-16 blue margin_bottom_0 line-height-47">
+                                                                        stop</p>
+                                                                </div>
+                                                                <div class="col-lg-11 col-sm-10 col-xs-9 text-align-center">
+                                                                    <p class="font-16 black margin_bottom_0 line-height-47">{{ stop_info.stop_duration|raw }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {#------------------------------------END STOP SECTION-------------------------------#}
+                                            </div>
+                                        </div>
+                                        <div class="row margin_top_5">
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-3 col-xs-4 xs_full_style">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.airline_name|raw }}</p>
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.operating_airline_code|raw }}{{ stop_info.flight_number|raw }}</p>
+                                                        <p class="font-14 grey margin_bottom_0 line-height-16">{{ stop_info.cabin|raw }}</p>
+
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-9 col-xs-8 xs_full_style">
+                                                        <div class="row row_commun_height">
+                                                            <div class="col-lg-1 col-sm-2 col-xs-3 from_to_logo">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.departure_time|raw }}</p>
+                                                            </div>
+                                                            <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.origin_airport_code|raw }}</p>
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.origin_airport|raw }}</p>
+                                                                <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ stop_info.departure_terminal|raw }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row row_commun_height">
+                                                            <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                                <p class="font-16 blue margin_bottom_0 line-height-16">{{ type }}</p>
+                                                            </div>
+                                                            <div class="col-lg-11 col-sm-10 col-xs-9 text-align-center">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.raw_duration|raw }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row row_commun_height">
+                                                            <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.arrival_time|raw }}</p>
+                                                            </div>
+                                                            <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.destination_airport_code|raw }}</p>
+                                                                <p class="font-16 black margin_bottom_0 line-height-16 float-left padding_right_20">{{ stop_info.destination_airport|raw }}</p>
+                                                                <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ stop_info.arrival_terminal|raw }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    {% endfor %}
+                                {% endif %}
+
+
+
+                            {% endfor %}
+                        {% endif %}
+                        <div class="row margin_top_40">
+                            <div class="col-xs-12">
+                                <ul class="list_of_fac_ul">
+                                    <li>Bag fees: Baggage fees when purchased at the airport (Prices may be cheaper if
+                                        purchased online with {{ flight.leaving.main_airline|raw }})
+                                    </li>
+                                    <li>Carry on: No fee</li>
+                                    <li>1st checked bag: No fee up to {{ passengers[0].leaving_baggage_info|raw }}</li>
+                                    <li>2nd checked bag: No info</li>
+                                    <li>Baggage Information: {{ flight.leaving.main_airline|raw }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {#------------------------------------END DEPARTURE CONTAINER-----------------------------------#}
+
+
+            {#------------------------------------RETURN CONTAINER-----------------------------------#}
+            {% if flight.returning is defined %}
+                <div class="row margin_top_30">
+                    <div class="col-xs-12">
+
+
+                        {% if flight.returning.flight_info is iterable %}
+                            {% for flight_info in flight.returning.flight_info %}
+                                {% if flight_info.stop_info is defined and flight_info.stop_info is iterable %}
+                                    {% set duration = flight_info.raw_duration %}
+                                    {% set type = '' %}
+                                {% else %}
+                                    {% set duration = flight_info.flight_duration %}
+                                    {% set type = 'direct'|trans %}
+                                {% endif %}
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="plane_with_left_border_container">
+                            <span>
+                                <img class="plane_with_left_border"
+                                     src="{{ generateMediaURL('/media/images/returnplanelogo.png') }}"
+                                     alt="{{ 'returnplanelogo logo'|trans }}">
+                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h2 class="font-27 black float-left">{{ 'Return'|trans }}</h2>
+                                        <p class="font-16 black float-right total_duration_txt font-bold">
+                                            <span>{{ 'Total Duration'|trans }}</span>{{ flight_info.flight_duration }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row margin_top_5">
+                                    <div class="col-xs-12">
+                                        <p class="font-17 black float-left"><span
+                                                    class="font-bold">{{ flight.returning.raw_departure_main_date|date('D d M') }}</span><span
+                                                    class="point_separator">.</span><span
+                                                    class="font-16">{{ flight_info.airline_name|raw }}</span></p>
+                                        <p class="font-16 black float-right"><span
+                                                    class="grey padding_right_5">{{ 'Confirmation'|trans }}</span>{{ flight_info.airline_pnr }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row margin_top_5">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 col-sm-3 col-xs-4 xs_full_style">
+                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.airline_name|raw }}</p>
+                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.airline_code|raw }}{{ flight_info.flight_number|raw }}</p>
+                                                <p class="font-14 grey margin_bottom_0 line-height-16">{{ flight_info.cabin|raw }}</p>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 col-sm-9 col-xs-8 xs_full_style">
+                                                <div class="row row_commun_height">
+                                                    <div class="col-lg-1 col-sm-2 col-xs-3 from_to_logo">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.departure_time|raw }}</p>
+                                                    </div>
+                                                    <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.origin_airport_code|raw }}</p>
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.origin_airport|raw }}</p>
+                                                        <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ flight_info.departure_terminal|raw }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_commun_height">
+                                                    <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                        <p class="font-16 blue margin_bottom_0 line-height-16">{{ type }}</p>
+                                                    </div>
+                                                    <div class="col-lg-11 col-sm-10 col-xs-9 text-align-center">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.elapsedTime|raw }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_commun_height">
+                                                    <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.arrival_time|raw }}</p>
+                                                    </div>
+                                                    <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ flight_info.destination_airport_code|raw }}</p>
+                                                        <p class="font-16 black margin_bottom_0 line-height-16 float-left padding_right_20">{{ flight_info.destination_airport|raw }}</p>
+                                                        <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ flight_info.arrival_terminal|raw }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% if flight_info.stop_info is defined and flight_info.stop_info is iterable %}
+                                    {% for stop_info in flight_info.stop_info %}
+                                        <div class="row">
+                                            <div class="col-xs-12">
+
+                                                {#------------------------------------STOP SECTION-----------------------------------#}
+
+                                                <div class="row margin_top_30 margin_bottom_35">
+                                                    <div class="col-lg-9 col-md-8 col-sm-9 col-xs-8 col-lg-offset-3 col-md-offset-4 col-sm-offset-3 col-xs-offset-4">
+                                                        <div class="bordered_stop_container">
+                                                            <div class="row row_commun_height">
+                                                                <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                                    <p class="font-16 blue margin_bottom_0 line-height-47">
+                                                                        stop</p>
+                                                                </div>
+                                                                <div class="col-lg-11 col-sm-10 col-xs-9 text-align-center">
+                                                                    <p class="font-16 black margin_bottom_0 line-height-47">{{ stop_info.stop_duration|raw }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {#------------------------------------END STOP SECTION-------------------------------#}
+                                            </div>
+                                        </div>
+                                        <div class="row margin_top_5">
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-3 col-xs-4 xs_full_style">
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.airline_name|raw }}</p>
+                                                        <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.operating_airline_code|raw }}{{ stop_info.flight_number|raw }}</p>
+                                                        <p class="font-14 grey margin_bottom_0 line-height-16">{{ stop_info.cabin|raw }}</p>
+
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-9 col-xs-8 xs_full_style">
+                                                        <div class="row row_commun_height">
+                                                            <div class="col-lg-1 col-sm-2 col-xs-3 from_to_logo">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.departure_time|raw }}</p>
+                                                            </div>
+                                                            <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.origin_airport_code|raw }}</p>
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.origin_airport|raw }}</p>
+                                                                <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ stop_info.departure_terminal|raw }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row row_commun_height">
+                                                            <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                                <p class="font-16 blue margin_bottom_0 line-height-16">{{ type }}</p>
+                                                            </div>
+                                                            <div class="col-lg-11 col-sm-10 col-xs-9 text-align-center">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.raw_duration|raw }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row row_commun_height">
+                                                            <div class="col-lg-1 col-sm-2 col-xs-3">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.arrival_time|raw }}</p>
+                                                            </div>
+                                                            <div class="col-lg-11 col-sm-10 col-xs-9">
+                                                                <p class="font-16 black margin_bottom_0 line-height-16">{{ stop_info.destination_airport_code|raw }}</p>
+                                                                <p class="font-16 black margin_bottom_0 line-height-16 float-left padding_right_20">{{ stop_info.destination_airport|raw }}</p>
+                                                                <p class="font-14 grey margin_bottom_0 line-height-16 float-left">{{ stop_info.arrival_terminal|raw }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+
+
+
+
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="row margin_top_40">
+                            <div class="col-xs-12">
+                                <ul class="list_of_fac_ul">
+                                    <li>Bag fees: Baggage fees when purchased at the airport (Prices may be cheaper if
+                                        purchased online with {{ flight.returning.main_airline|raw }})
+                                    </li>
+                                    <li>Carry on: No fee</li>
+                                    <li>1st checked bag: No fee up
+                                        to {{ passengers[0].returning_baggage_info|raw }}</li>
+                                    <li>2nd checked bag: {{ 'No info'|trans }}</li>
+                                    <li>Baggage Information: {{ flight.returning.main_airline|raw }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {#------------------------------------END RETURN CONTAINER-----------------------------------#}
+
+            <div class="row padding_right_15 margin_top_40">
+                <div class="but_border_row"></div>
+            </div>   {#--------   SEPERATOR  -------------#}
+
+            {#------------------------------------PRICE SUMMARY-----------------------------------#}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="font-27 black">{{ 'Price summary'|trans }}</h2>
+                    <p class="font-17 black font-bold line-height-20 margin_bottom_0"><span
+                                class="padding_right_5">{{ 'Flight Total:'|trans }}</span><span
+                                class="pink">{{ flight.currency_code|raw }} {{ flight.price|raw }}</span></p>
+                    <p class="font-17 black line-height-20 margin_bottom_0"><span
+                                class="padding_right_5">{{ 'Base Price:'|trans }}</span><span
+                                class="pink">{{ flight.currency_code|raw }} {{ flight.base_fare|raw }}</span></p>
+                    <p class="font-17 black line-height-20 margin_bottom_0"><span
+                                class="padding_right_5">{{ 'Taxes and fees:'|trans }}</span><span
+                                class="pink">{{ flight.currency_code|raw }} {{ flight.taxes|raw }}</span>
+                    </p>
+                </div>
+            </div>
+            {#------------------------------------PRICE SUMMARY-----------------------------------#}
+            <div class="row padding_right_15 margin_top_20">
+                <div class="but_border_row"></div>
+            </div>   {#--------   SEPERATOR  -------------#}
+            <div class="row margin_top_30">
+                <div class="col-xs-12">
+                    <p class="font-16 blue font-bold line-height-20 margin_bottom_0">Traveler(s)</p>
+                    <p class="font-16 black line-height-20 margin_bottom_0">
+                        {% for passenger in passengers %}
+                            {{ passenger.first_name|raw }} {{ passenger.surname|raw }} ,
+                            (Leaving Baggage: {{ passenger.leaving_baggage_info|raw }} |
+                            Returning Baggage: {{ passenger.returning_baggage_info|raw }})
+                        {% endfor %}
+                    </p>
+                    <p class="font-16 black line-height-20 margin_bottom_0">Frequent flyer and special assistance
+                        requests should be confirmed directly with the airline.</p>
+                </div>
+            </div>
+            <div class="row margin_top_20">
+                <div class="col-xs-12">
+                    <p class="font-16 blue font-bold line-height-20 margin_bottom_0">Note:</p>
+                    <p class="font-16 black line-height-20 margin_bottom_0">The airline often charges a penalty and/or a
+                        reissue fee at time of redemption.</p>
+                    <p class="font-16 black line-height-20 margin_bottom_0">All prices are quoted
+                        in {{ flight.currency_code|raw }}</p>
+                </div>
+            </div>
+            <div class="row margin_top_20 min_height_45">
+                <div class="col-xs-12">
+                {% if enableCancelation %}
+
+                        <p class="font-16 blue font-bold line-height-20 margin_bottom_0">{{ 'Airline rules'|trans }}
+                            + {{ 'restrictions'|trans }}</p>
+                        <p class="font-16 black line-height-20 margin_bottom_0">{{ 'We understand that sometimes plans change. We do not charge a cancel or change fee. When the airline charges such fees in accordance with its own policies, the cost will be passed on to you.'|trans }}</p>
+                        <p class="font-16 black line-height-20 margin_bottom_0">
+                            {{ 'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans }}
+                            <br/>
+                            {{ 'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans }}
+                            <br/>
+                            {{ 'Kindly Contact: '|trans }} <a
+                                    href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a>
+                            - {{ 'Expected reply within 24 hours.'|trans }}
+                        </p>
+
+                        <div class="col-xs-12 nopad">
+                            {% if (isUserLoggedIn == 1) %}
+                                <a href="javascript:void(0)" id="cancel_url"
+                                   data-link="{{ generateLangRoute(LanguageGet,"_flight_cancelation") }}?transaction_id={{ flight.leaving.transaction_id|raw }}">
+                                    Cancel
+                                </a>
+                            {% endif %}
+                        </div>
+
+                {% endif %}
+                </div>
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+{% endblock %}

@@ -1,0 +1,62 @@
+TTBundle\Entity\DatastellarCountry:
+    type: entity
+    table: datastellar_country
+    uniqueConstraints:
+        title:
+            columns:
+                - title
+        slug:
+            columns:
+                - slug
+        iso_country_code_2:
+            columns:
+                - iso_country_code_2
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        isoCountryCode2:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+            column: iso_country_code_2
+        isoCountryCode3:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+            column: iso_country_code_3
+        callingCode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: calling_code
+        count:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

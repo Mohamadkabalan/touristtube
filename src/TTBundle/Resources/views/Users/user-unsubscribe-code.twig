@@ -1,0 +1,65 @@
+{% extends 'baseFinal.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+        $(document).ready(function() 
+	{
+	    if( !ttModal ) {
+		ttModal = window.getTTModal("myModalZ", {});
+	    }
+	    
+	    $(document).on('click',".delete_account" ,function()
+	    {
+		$('.upload-overlay-loading-fix').show();
+		var $this=$(this);
+		var code= $this.attr('data-code');
+		$.ajax({
+		    url: generateLangURL( '/ajax/user_unsubscribe_delete', 'empty' ),
+		    data: {code:code},
+		    type: 'post',
+		    success: function (data) {
+			$('.upload-overlay-loading-fix').hide();
+			var jres = null;
+			try {
+			    jres = data;
+			    var status = jres.status;
+			} catch (Ex) {
+			}
+			if (!jres) {
+			    ttModal.alert(Translator.trans("Couldn't save please try again later"), null, null, {ok:{value:Translator.trans("close")}});
+			    return;
+			}	    
+			ttModal.alert(jres.msg, null, null, {ok:{value:Translator.trans("close")}});			
+		    }
+		});
+		
+	    });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <section class="container message_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-down"></i></span>{{'User Unsubscribe Account'|trans}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activateMsg col-xs-12 no-margin">
+			{% if msg == '' %}
+			    <p>{{ 'If you did not create a tuber account on Tourist Tube, and believe this email was sent by error or someone might have used your email, please confirm to delete the tuber account created using'|trans }} {{email|raw}}</p>
+			    <p><span class='delete_account notifications_btn' data-code="{{email_key|raw}}">{{'confirm'|trans}}</span></p>
+			{% else %}
+			    <p>{{ msg|raw }}</p>
+			{% endif %}
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

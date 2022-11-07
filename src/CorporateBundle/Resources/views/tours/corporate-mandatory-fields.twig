@@ -1,0 +1,137 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/indexNew.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/attraction-form.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/indexNew.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<form method="POST" action="{{ generateLangRoute(LanguageGet,'_corporate_book_now') }}" autocomplete="off">
+	    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+		<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 nopad">
+		    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			<h2 class="attoff_atf"> {{'Attractions offers'|trans}}</h2>
+		    </div>
+		    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			<h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span>{{'Select the start time'|trans}} </h3>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey1border_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad pink2border_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey3border_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+				    <p class="afn_atf"> {{'Time (09:00 - 15:00)'|trans}} </p>
+				</div>
+				<div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+				    <p class="afn_atf"> {{'Booking type'|trans}} </p>
+				</div>
+			    </div>
+			    <!-- Time Option -->
+			    {% if bookingQuote is defined %}
+				{% set quoteCounter = 1 %}
+				{% for bqKey,bqVal in bookingQuote %}
+				    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+					<div class="col-lg-5 col-md-6 col-sm-5 col-xs-6 nopad">
+					    <div class="radio-item">
+						<input type="radio" id="bookingQuoteId{{quoteCounter}}" name="bookingQuoteId" value="{{bqVal.id}}" {{ (quoteCounter == 1)  ? 'checked' : '' }}>
+						<label for="bookingQuoteId{{quoteCounter}}">{{(bqVal.time|length > 0) ? bqVal.time : 'Within operating hours'|trans }}</label>
+					    </div>
+					</div>
+					<div class="col-lg-7 col-md-6 col-sm-7 col-xs-6 nopad">
+					    <p class="labelliketext_atf"> {{'Request'|trans}} </p>
+					</div>
+				    </div>
+				    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad greyradioseperator_atf"></div>
+				    {% set quoteCounter = quoteCounter + 1 %}
+				{% endfor %}
+			    {% endif %}
+
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<a href="#" class="abt_atf">{{'About booking type'|trans}}</a>
+			    </div>
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad greysepborder_atf"></div>
+			</div>
+		    </div>
+		    {% if mandatoryFields is defined and mandatoryFields|length > 0 %}
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			    <h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span>{{'Personal Information (mandatory)'|trans}} </h3>
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey1border_atf"></div>
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad pink2border_atf"></div>
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey3border_atf"></div>
+			    {% if mandatoryFields.perBooking is defined and mandatoryFields.perBooking |length > 0 %}
+				{% for pbKey,pbfVal in mandatoryFields.perBooking  %}
+				    {{pbfVal|raw}}
+				{% endfor %}
+			    {% endif %}
+			    {% if mandatoryFields.perPerson is defined and mandatoryFields.perPerson |length > 0 %}
+				{% set ppCounter = 1 %}
+				{% for ppKey1,ppVal1 in mandatoryFields.perPerson  %}
+				    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey3border_atf"><p class="afn_atf">{{'Paticipant '|trans}}{{ppCounter}}: {{ppVal1.blockLabel}}</p></div>
+				    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey3border_atf">
+					{% for ppKey2,ppVal2 in ppVal1.display  %}
+					    {{ppVal2|raw}}
+					{% endfor %}
+				    </div>
+				    {% set ppCounter = ppCounter + 1 %}
+				{% endfor %}
+			    {% endif %}
+			</div>
+		    {% endif %}
+		    <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			<h3 class="pinktextwizarrow_atf"><span class="arrowblueimg_atf"><img src="{{ generateMediaURL('/media/images/attraction-form/bluearr_atf.png') }}" alt="{{'title'}}"/></span>{{'Transportation'|trans}} </h3>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey1border_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad pink2border_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad grey3border_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<div class="radio-item">
+				    <input type="radio" id="transportation1" name="transportation" value="0" checked>
+				    <label for="transportation1">{{'Without Pickup'|trans}}</label>
+				</div>
+			    </div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad greyradioseperator_atf"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<div class="radio-item">
+				    <input type="radio" id="transportation2" name="transportation" value="1">
+				    <label for="transportation2">{{'With Pickup'|trans}}</label>
+				</div>
+			    </div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad greyradioseperator_atf"></div>
+		    </div>-->
+		    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<span class="wrong_credentials wrong_credentialsmsg margintop2 col-xs-12"></span>
+				<div class="col-xs-12 bar"></div>
+				<div class="twobutcont_atf">
+				    <input id="packageId" name="packageId" type="hidden" value="{{ packageId }}">
+				    <input id="tourCode" name="tourCode" type="hidden" value="{{ tourCode}}">
+				    <input id="bookingDate" name="bookingDate" type="hidden" value="{{ bookingDate }}">
+				    <input id="totalPrice" name="totalPrice" type="hidden" value="{{ totalPrice }}">
+				    <input id="numOfPassenger" name="numOfPassenger" type="hidden" value="{{ numOfPassenger }}">
+				    <input id="currency" name="currency" type="hidden" value="{{ currency }}">
+				    <input id="startingPlace" name="startingPlace" type="hidden" value="{{ startingPlace }}">
+				    <input id="dealHighlights" name="dealHighlights" type="hidden" value="{{ dealHighlights }}">
+				    <input id="cancellationPolicy" name="cancellationPolicy" type="hidden" value="{{ cancellationPolicy }}">
+				    <input type="hidden" id="returnPath" value="{{path('_corporate_tourDetails_' ~ category ~ '_', {'city': cityName,'dealName': dealName,'packageId': packageId})}}">
+				    <input class="combutstyle_atf cancelstyle_atf" id="mandatoryCancel" name="cancel" type="button" value="Cancel">
+				    <input id="mandatoryContinue" class="combutstyle_atf nxtpage_atf" name="continue" type="button" value="Go to next step">
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</form>
+    </section>
+{% endblock %}

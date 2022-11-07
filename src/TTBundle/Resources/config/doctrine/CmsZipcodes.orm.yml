@@ -1,0 +1,59 @@
+TTBundle\Entity\CmsZipcodes:
+    type: entity
+    table: cms_zipcodes
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: false
+            column: country_code
+        zipCode:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: zip_code
+        city:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        state:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        longitude:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+        lattitude:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+    lifecycleCallbacks: {  }

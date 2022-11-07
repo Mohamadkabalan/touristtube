@@ -1,0 +1,656 @@
+{% extends 'baseFinal.html.twig' %}
+{% block structureddatablock %}
+    {% if hotelDetails is defined and hotelDetails is not empty %}
+	<script type="application/ld+json">
+	    {
+	    "@context": "http://schema.org",
+	    "@type": "Hotel",
+	    {% if hotelDetails.mainImage!='' %}
+		"image" : "{{subdomain_link|raw}}{{hotelDetails.mainImage}}",
+	    {% endif %}
+	    {% if hotelDetails.address!='' %}
+		"address" : {
+		"postalCode" : "{{ hotelDetails.zipCode|raw }}",
+		"streetAddress" : "{{ hotelDetails.street|raw }}{% if hotelDetails.district !='' %}, {{ hotelDetails.district|raw }}{% endif %}",
+		"addressLocality" : "{% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}{{ hotelDetails.city.name|raw }}{% else %}{{ hotelDetails.city|raw }}{% endif %}",
+		"@type" : "PostalAddress",
+		"addressCountry" : "{% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}{{ hotelDetails.city.countryName|raw }}{% else %}{{ hotelDetails.country|raw }}{% endif %}"
+		},
+	    {% endif %}
+	    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+		{% if hotelDetails is defined and hotelDetails.mapImage is defined and hotelDetails.mapImage is not empty %}
+		    "hasMap" : "{{subdomain_link|raw}}{{hotelDetails.mapImage }}",		    
+		{% endif %}
+	    {% else %}
+		{% if hotelDetails is defined and hotelDetails.mapImageSource is defined and hotelDetails.mapImageSource is not empty %}
+		    "hasMap" : "{{subdomain_link|raw}}{{hotelDetails.mapImageSource }}",
+		{% endif %}
+	    {% endif %}
+	    "geo": {
+	    "@type": "GeoCoordinates",
+	    "latitude": "{{ hotelDetails.latitude|raw }}",
+	    "longitude": "{{ hotelDetails.longitude|raw }}"
+	    }, 
+	    {% if hotelDetails.trustyou.summary.score is defined and hotelDetails.trustyou.summary.score is not empty %}
+		"aggregateRating" : {
+		{% if hotelDetails.trustyou.reviews_count>0  %}
+		    "reviewCount" : "{{ hotelDetails.trustyou.reviews_count|raw }}",
+		{% endif %}
+		"bestRating" : {{hotelDetails.trustyou.category_list[0].score|raw}},
+		"ratingValue" : {{hotelDetails.trustyou.summary.score}},
+		"@type" : "AggregateRating"
+		},
+	    {% endif %} 
+	    "name" : "{{hotelDetails.namealt|raw|e('html')}}",
+	    {% if hotelDetails.description!='' %}
+		"description" : "{{hotelDetails.description|raw|e('html')}}",
+	    {% endif %}
+	    "url" : "{{ canonicallink|raw }}"
+	    }
+	</script>
+    {% endif %}
+{% endblock %}
+{% block body %}
+    {% set hotel_city_name = '' %}
+    {% set template_hotel_details_offers = '@Hotel/hotel-details-offers.twig' %}
+
+    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}	
+	{% set route_hotel_reviews = '_hotel_reviews_tt' %}
+	{% set route_360 = '_hotel_360_full_tour' %}
+	{% set route_hotel_book = '_hotel_book_tt' %}		
+	{% set hotel_city_name = hotelDetails.city.name %}
+    {% else %}
+	{% set route_hotel_reviews = '_hotel_reviews' %}
+	{% set route_360 = '_hotel_360_tour' %}
+	{% set route_hotel_book = '_hotel_book' %}
+	{% set hotel_city_name = hotelDetails.city %}
+    {% endif %}    
+
+    {% set sourceTT = (hotelDetails.hotelSource == 'tt') ? 1 : 0 %}
+    {% set isActive = hotelDetails.isActive %}
+
+    <section class="container hotel_booking_details_container" data-sourceTT="{{sourceTT}}" data-isActive="{{isActive}}">
+	<div class="row margin_top_30">
+	    <div class="col-sm-9 col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{  hotelDetails.name }}</span>
+			{% if hotelDetails.category > 0 %}
+			<span class="star_rating" data-rating="{{hotelDetails.category}}" data-font="11" data-color="#eac31a"></span>
+		    {% endif %}</h1>
+	    </div>
+	    <div class="col-sm-3 col-xs-12 currencyselectbox_top">
+		<div class="currency_top_but">
+		    <p class="curtext_hp"><span>{{currency_symbol.symbol|raw}}</span> {{selected_currency|raw}}</p>
+		</div>
+	    </div>
+	</div>
+	{% if hotelupdatesearchIndex == 1 %}
+	    <div class="row update_search_container div_wiz_border">
+		{% include "@Hotel/hotel-your-search.twig" %}
+	    </div>
+	{% endif %}
+	<div class="row hotel_search_input_container searchcontainer_homep searchcontainer_content" style="display:none;">
+	    <div class="col-xs-12">
+		{% include "default/searchinput3.twig" %}
+		<div class="close_container">
+		    <i class="fas fa-times fa-lg"></i>
+		</div>
+	    </div>
+	</div>
+	<div class="row border_top_but_row"></div>
+	<div class="row margin-top-40 hotel_details_main_conatainer new_margin round-down-price">
+	    <div class="col-md-9 col-xs-12 right_panel col-md-push-3">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad sort_by_tabs">
+			<div class="filters-group">
+			    <div class="col-xs-12 nopad btn-group sort-options">
+				<a class="hidden-xs" rel="nofollow" href="#available_rooms" title="{{'Available Rooms'|trans}}">
+				    <label class="sort_item" data-value="">
+					{{'Available Rooms'|trans}}
+				    </label>
+				</a>
+				{% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+				    <a rel="nofollow" class="last hidden-xs" href="#guest_reviews" title="{{'Guest Reviews'|trans}}">
+					<label class="sort_item border-left" data-value="">
+					    {{'Guest Reviews'|trans}}
+					</label>
+				    </a>
+				{% endif %}
+				<a rel="nofollow" class="last hidden-xs" href="#good_to_know" title="{{'Good To Know'|trans}}">
+				    <label class="sort_item border-left {% if hotelDetails.nearbyAttraction is not defined %}border-right{% endif %}" data-value="">
+					{{'Good To Know'|trans}}
+				    </label>
+				</a>
+				{% if (hotelDetails.nearbyAttraction is defined and hotelDetails.nearbyAttraction is not empty) or pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+				    <a rel="nofollow" class="last hidden-xs" href="#attr_near_by" title="{{'Near By'|trans}}">
+					<label class="sort_item border-left border-right" data-value="">
+					    {{'Near By'|trans}}
+					</label>
+				    </a>
+				{% endif %}
+
+				{% if hotelDetails.has360 == true %}
+				    <a class="view-full-tour-link" rel="nofollow" data-id="{{ input.hotelId|raw }}" title="{{ 'View Full Tour'|trans }}" data-entity_type="{{ entity_type|raw }}" href="{{ generateLangRoute(LanguageGet, route_360, {'name':hotelDetails.hotelNameURL, 'id':hotelDetails.hotelId})}}" target="_blank">
+					<label class="sort_item border-left" data-id="{{ input.hotelId|raw }}" data-type="{{ entity_type|raw }}" data-href=href="{{ generateLangRoute(LanguageGet, route_360, {'name':hotelDetails.hotelNameURL, 'id':hotelDetails.hotelId})}}">
+					    {{ 'View Full Tour'|trans }}
+					</label>
+				    </a>
+				{% endif %}
+
+			    </div>
+			</div>
+		    </div>
+		</div>
+
+		{% if hotelDetails.has360 == true %}
+
+		    <div class="row">
+			<div class="col-xs-12">
+			    <div class="large_image_container container_360">
+				<div id="pano" style="width:100%;height:100%;">
+				    <noscript><div style="text-align:center; width: 100%;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></noscript>
+				</div>
+				{% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+				    {% for imageCategory in hotelDetails.images[:1]%}
+					{% for images in imageCategory[:1] %}
+					    <img alt="{{images['info']['hotel']['name']}}" class="slider_big_360" src="{{images['info']['preview_360']}}">
+					{% endfor %}
+				    {% endfor %}
+				{% else %}
+				    {% for images in hotelDetails.images[:1]%}
+					<img alt="{{images['info']['hotelName']}}" class="slider_big_360" src="{{images['info']['preview_360']}}">
+				    {% endfor %}
+				{% endif %}
+			    </div>
+			</div>
+		    </div>
+		    <div class="row small_image_container hidden-xs">
+			<div class="col-xs-12 margin-top-5">
+			    <div class="row new_small_margin img_parent_holder image-thumb-section">
+				{% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+				    {% for imageCategory in hotelDetails.images %}
+					{% for images in imageCategory %}
+					    {% if images['info']['defaultPic'] == 1 %}
+						{% set active = 'true' %}
+					    {% else %}
+						{% set active = '' %}
+					    {% endif %}
+					    <div class="col-sm-2 col-xs-4 new_smal_padding xs-new_width img_holder img_holder_360 {% if loop.first %}active{% endif %}" main-img="{{images['info']['preview_360']}}" ismain="{{active}}" data-ctrycode="{{images['info']['hotel']['countryCode']}}" data-hotelid="{{images['info']['hotel']['id']}}" data-hotelname="{{images['info']['hotel']['name']}}" data-catgid="{{images['info']['division']['category']['id']}}" data-catgname="{{images['info']['division']['category']['name']}}" data-divid="{{images['info']['division']['id']}}" data-divname="{{images['info']['division']['name']}}" data-parentdivid="{{images['info']['division']['parent']['id']}}" main-img="{{images['info']['preview_360']}}" ismain="{{active}}">
+						<img src="{{images[0]}}" alt="{{images['info']['division']['parent']['name']}}-{{images['info']['division']['name']}}">
+						<span>{{images['info']['division']['parent']['name']}}</span>
+					    </div>
+					{% endfor %}
+				    {% endfor %}
+				{% else %}
+				    {% for images in hotelDetails.images %}
+					{% if images['info']['isMainImage'] == 1 %}
+					    {% set active = 'true' %}
+					{% else %}
+					    {% set active = '' %}
+					{% endif %}
+					<div class="col-sm-2 col-xs-4 new_smal_padding xs-new_width img_holder img_holder_360 {% if loop.first %}active{% endif %}" data-ctrycode="{{images['info']['countryCode']}}" data-hotelid="{{images['info']['hotelId']}}" data-hotelname="{{images['info']['hotelName']}}" data-catgid="{{images['info']['categoryId']}}" data-catgname="{{images['info']['categoryName']}}" data-divid="{{images['info']['divisionId']}}" data-divname="{{images['info']['divisionName']}}" data-parentdivid="{{images['info']['parentId']}}" main-img="{{images['info']['preview_360']}}" ismain="{{active}}">
+					    <img src="{{images[0]}}" alt="{{images['info']['parentName']}}-{{images['info']['divisionName']}}">
+					    <span>{{images['info']['parentName']}}</span>
+					</div>
+				    {% endfor %}
+				{% endif %}
+				<a class="view-full-tour-link thumb_view_full_tour" rel="nofollow" data-id="{{ input.hotelId|raw }}" title="{{ 'View Full Tour'|trans }}" data-entity_type="{{ entity_type|raw }}" href="{{ generateLangRoute(LanguageGet, route_360, {'name':hotelDetails.hotelNameURL, 'id':hotelDetails.hotelId})}}" target="_blank"><img src="{{ generateMediaURL('/media/images/hotels/gray_pic.jpg') }}" alt="{{ 'View Full Tour'|trans }}"/><span>{{ 'View Full Tour'|trans }}</span></a>
+			    </div>
+			</div>
+		    </div>
+
+
+		{% else %}
+		    {% if hotelDetails.images is defined and hotelDetails.images is not empty %}
+			<div class="row">
+			    <div class="col-xs-12">
+				{% if hotelDetails.trustyou.badge_list is defined and hotelDetails.trustyou.badge_list is not empty %}
+				    <div class="sliderOverlay hidden-xs">
+					<ul>
+					    {% for badge in hotelDetails.trustyou.badge_list %}
+						<li>
+						    {% set badge_img = '/media/images/hotel_booking_details_new/slider_1.png' %}
+						    {% if badge.cat_icon is not empty  %}
+							{% set badge_img = '/media/images/trustyou/' ~ badge.cat_icon ~ '.png' %}
+						    {% endif %}
+						    <div class="pull-left"><img src="{{ generateMediaURL(badge_img) }}" alt="badge" /></div>
+						    <div class="pull-left margin-top-5 margin-left-5">
+							{% set badge_text_words = badge.text|split(' ', 2) %}
+							{% for badge_text in badge_text_words %}
+							    {{badge_text|trans}}<br/>
+							{% endfor %}
+						    </div>
+						</li>
+					    {% endfor %}
+					</ul>
+				    </div>
+				{% endif %}
+				<div id="hotel-images-slider" data-unique="main" class="slider-for slider-for-main col-xs-12 lazy large_image_container">
+				    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+					{% for category, images in hotelDetails.images %}
+					    {% for image in images %}
+						<div>
+						    <img alt="{{hotelDetails.namealt}}" data-lazy="{{image[1]}}">
+						</div>
+					    {% endfor %}
+					{% endfor %}
+				    {% else %}
+					{% for image in hotelDetails.images %}
+					    <div>
+						<a rel="nofollow" href="{{image[3]}}" title="{{hotelDetails.namealt}}" data-fancybox="gallery">	
+						    <img alt="{{hotelDetails.namealt}}" data-lazy="{{image[1]}}">
+						</a>
+					    </div>
+					{% endfor %}
+				    {% endif %}
+				</div>
+			    </div>
+			</div>
+			<div class="row small_image_container hidden-xs">
+			    <div class="col-xs-12 margin-top-5">
+				<div id="hotel-images-thumb" class="slider-nav-main col-xs-12 slider-nav nopad hidden-xs row new_small_margin img_parent_holder image-thumb-section">
+				    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+					{% for category, images in hotelDetails.images %}
+					    {% set isActiveImage = '' %}
+					    {% if loop.first %}
+						{% set isActiveImage = 'active' %}
+					    {% endif %}
+
+					    {% for image in images %}
+						<div class="mediathumb col-sm-2 col-xs-4 new_smal_padding xs-new_width img_holder {{isActiveImage}}">
+						    <img alt="{{hotelDetails.namealt}}" src="{{image[0]}}">
+						</div>
+
+						{% set isActiveImage = '' %}
+					    {% endfor %}
+					{% endfor %}
+				    {% else %}
+					{% for image in hotelDetails.images %}
+					    <div class="mediathumb col-sm-2 col-xs-4 new_smal_padding xs-new_width img_holder {% if loop.first %}active{% endif %}">
+						<img alt="{{hotelDetails.namealt}}" src="{{image[0]}}">
+					    </div>
+					{% endfor %}
+				    {% endif %}
+				</div>
+			    </div>
+			</div>
+		    {% endif %}
+		{% endif %}
+
+
+		<div class="row margin_top_20">
+		    <div class="col-xs-12 info_hotel_text_container">
+			<div id="readmoreHolder" class="hotel-description">
+			    {{hotelDetails.description}}
+			</div>
+		    </div>
+		</div>
+		<div class="row margin_top_20 hotel-amenities">
+		    {% include '@Hotel/hotel-amenities.twig' %}
+		</div>
+		<div class="row visible-xs">
+		    <div class="col-xs-12">
+			{% if hotelDetails is defined and hotelDetails.mapImageUrl is defined and hotelDetails.mapImageUrl is not empty %}
+			    <a rel="nofollow" href="{{ hotelDetails.mapImageUrl }}" class="map_link_txt showOnMap" title="{{'Show On Map'|trans}}">{{'Show On Map'|trans}}</a>
+			{% endif %}
+		    </div>
+		</div>
+		<div class="row visible-xs hotel-city-name hidden">
+		    <div class="col-xs-12">
+			<h3 class="blue_title_header">{{'Stay in the heart of'|trans}} {{hotel_city_name}}</h3>
+		    </div>
+		</div>
+		<div class="row visible-xs hotel-distances">
+		    {#{% include '@Hotel/hotel-distances.twig' %}#}
+		</div>
+		<div class="row visible-xs hotel-review-highlights">
+		    {#{% include '@Hotel/hotel-review-highlights.twig' %}#}
+		</div>
+		<div class="row hidden-xs">
+		    {% if hotelDetails.nearbyRestaurants is defined and hotelDetails.nearbyRestaurants is not empty %}
+			<div class="col-xs-12 accordion">
+			    <p class="black_wzarrow_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Restaurants and markets'|trans}}</p>
+			</div>
+			<div class="col-xs-12 panel">
+			    <ul class="landmarks_list">
+				{% for item in hotelDetails.nearbyRestaurants %}
+				    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6 nopad listyle">
+					<a href="{{ item.link }}" title="{{ item.name }}" target="_blank">{{ item.name }}</a>
+				    </li>
+				{% endfor %}
+			    </ul>
+			</div>
+		    {% endif %}
+		</div>
+
+		{% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+		    <div class="row visible-xs">
+			<div class="col-xs-12">
+			    <h3 class="blue_title_header">{{'Review Score'|trans}}</h3>
+			</div>
+		    </div>
+		    <div class="row visible-xs">
+			{% for review_cat in hotelDetails.trustyou.category_list %}
+			    <div class="col-xs-6 margin_bottom_5">
+				<div class="greyline_hoteldetail">
+				    <p class="uperlefttext">{{review_cat.category_name}}</p>
+				    <p class="uperrightnumb">{{review_cat.score}}</p>
+				    <p class="downlefttext">{{review_cat.count ~ ' ' ~ 'reviews'|trans}}</p>
+				    <div class="darckfreybardiv" style="width:{{(review_cat.score/hotelDetails.trustyou.scale)*100}}%;"></div>
+				</div>
+			    </div>
+			{% endfor %}
+		    </div>
+		{% endif %}
+
+		<input type="hidden" id="inputData" name="inputData" value="{{input|json_encode()}}" />
+		<form name="hotel-book" id="hotel-book" action="{{ generateLangRoute(LanguageGet, route_hotel_book)}}" method="post" autocomplete="off">
+		    {% if sourceTT == 0 and isActive == 1 %}
+			<div class="row margin_top_30 hidden-xs" id="available_rooms">
+			    <div class="col-xs-12 containerPrices">
+				<div class="row no-margin containerPricesHead">
+				    <div class="col-sm-10 col-xs-12 nopad ">
+					<div class="row no-margin">
+					    <div class="col-sm-3 col-xs-12 nopad">
+						<h4 class="blue_menue_titles">{{'Room type'|trans}}</h4>
+					    </div>
+					    <div class="col-sm-9 col-xs-12 nopad">
+						<div class="row no-margin">
+						    <div class="col-sm-2 col-xs-12 nopad">
+							<h4 class="blue_menue_titles">{{'Sleeps'|trans}}</h4>
+						    </div>
+						    <div class="col-md-2 col-sm-3 col-xs-12 nopad">
+							<h4 class="blue_menue_titles">
+							    {% if nightsCount is defined and nightsCount > 0 %}
+								{{'Price for'|trans}}<br/>{{nightsCount}} {{'night'|trans}}{% if (nightsCount > 1) %}s{% endif %}
+							    {% else %}
+								{{'No. of nights'|trans}}
+							    {% endif %}
+							</h4>
+						    </div>
+						    <div class="col-md-6 col-sm-5 col-xs-12 nopad">
+							<h4 class="blue_menue_titles">{{'Conditions'|trans}}</h4>
+						    </div>
+						    <div class="col-sm-2 col-xs-12 nopad">
+							<h4 class="blue_menue_titles">{{'No. of rooms'|trans}}</h4>
+						    </div>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				    <div class="col-sm-2 col-xs-12 nopad containerPricesReserve">
+					<h4 class="blue_menue_titles no_border_right">{{'Reservation'|trans}}</h4>
+					<div class="col-xs-12 reserve_room_container">
+					    <button class="btn reserve_hotel_button reserve reserveDisabled" disabled="disabled">{{'Reserve'|trans}}</button>
+					    <p class="registration_txt">{{'No registration required'|trans}}.</p>
+					    <p class="tax_bold tax_hldr"></p>
+
+					    <p class="selected_room_txt nomargin"><span class="selected_room_count"></span> {{'selected'|trans}}</p>
+					    <p class="price_pink_txt price_txt_total price_txt">
+						<span class="price-convert" data-price="0.00" >
+						    <span class="currency-convert-text">{{selected_currency}}</span>
+						    <span class="price-convert-text">0.00</span>
+						</span>
+					    </p>
+					    <br><p class="offer_note nomargin">{{'NOTE: Your reservation includes freely cancelable and non-cancelable rooms. Cancellation charges might apply.'|trans}}</p>
+					    <div class="selected_room_details">
+						<p class="nomargin">{{'Details'|trans}}:</p>
+						<div class="details nopad">
+						</div>
+					    </div>
+					    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+						<div class="selected_room_details selected_room_details_taxInfo_hldr margin_top_10" style="display:none;">
+						    <p class="nomargin">{{'Taxes'|trans}}:</p>
+						    <div class="taxInfo nopad">
+						    </div>
+						</div>
+					    {% endif %}
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    {% endif %}    
+		    <div class="row no-margin" id="hotel-offers" {% if sourceTT == 0 and isActive == 1 %}style="min-height: 200px;"{% endif %}>
+			{#{% include template_hotel_details_offers %}#}
+			<input type="hidden" id="offers_rates_refresh_timespan" value="{{offers_rates_refresh_timespan}}"/>
+			<div class="hotel-offer-message col-sm-10 col-xs-12"></div>
+		    </div>
+		</form>
+
+		<div class="hotel-facilities">
+		    {% include '@Hotel/hotel-facilities.twig' %}
+		</div>
+		<div class="row margin_bottom_10">
+		    <div class="col-xs-12">
+			<div class="row no-margin" id="good_to_know">
+			    <div class="col-xs-12 nopad">
+				<h2 class="blue_commun_title">{{'Good To Know'|trans}}</h2>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin">
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<p class="left_text_blue">{{'Check-In'|trans}}</p>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<p class="right_text_grey" id="check-in-earliest">{{hotelDetails.checkInEarliest}}</p>
+				    </div>
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin">
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<p class="left_text_blue">{{'Check-Out'|trans}}</p>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<p class="right_text_grey" id="check-out-latest">{{hotelDetails.checkOutLatest}}</p>
+				    </div>
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin">
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<p class="left_text_blue">{{'Cancellation / Prepayment'|trans}}</p>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<p class="right_text_grey">{{hotelDetails.cancellationAndPrepayment}}</p>
+				    </div>
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin">
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<p class="left_text_blue">{{'Children And Extra Beds'|trans}}</p>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<p class="right_text_grey">{{hotelDetails.childrenAndExtraBeds}}</p>
+				    </div>
+				    <div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				    <div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+					<div class="border_relative_height_div"></div>
+				    </div>
+				</div>
+			    </div>
+
+			    <div class="col-xs-12 nopad" id="hotel-credit-cards">
+				{#{% include '@Hotel/hotel-credit-cards.twig' %}#}
+			    </div>
+			</div>
+		    </div>
+		</div>
+		{% if hotelDetails.nearbyAttraction is defined and hotelDetails.nearbyAttraction is not empty %}
+		    <div class="row margin_bottom_10 hidden-xs">
+			<div class="col-xs-12" id="attr_near_by">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad">
+				    <h2 class="blue_commun_title">{{'What’s near'|trans }} {{hotelDetails.name}}, {{hotel_city_name}}?</h2>
+				</div>
+			    </div>
+			    <div class="row new_small_margin near_by_img_conatiner">
+				{% for item in hotelDetails.nearbyAttraction %}
+				    <a href="{{item.link}}" title="{{item.titlealt}}" target="_blank" class="col-sm-3 col-xs-4 new_smal_padding xs-new_width">
+					<img alt="{{item.titlealt}}" src="{{item.img}}">
+					<p class="img_link_info_txt">{{item.title}}</p>
+				    </a>
+				{% endfor %}
+			    </div>
+			</div>
+		    </div>
+		{% endif %}
+	    </div>
+	    <div class="col-md-3 col-xs-12 left_panel new_padding col-md-pull-9">
+		{% if hotelupdatesearchIndex == 0 %}
+		    <div class="row ">
+			<div class="col-xs-12">
+			    {% if sourceTT == 1 or isActive == 0 %}
+				<button class="btn btn-info bookHotelButton">{{'Search'|trans}}</button>
+			    {% else %}
+				<button class="btn btn-info bookHotelButton">{{'Book Now'|trans}}</button>
+			    {% endif %}
+			</div>
+		    </div>
+		{% endif %}
+		{% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+		    {% if hotelDetails is defined and hotelDetails.mapImage is defined and hotelDetails.mapImage is not empty %}
+			<div class="row map_img_conatiner hidden-xs">
+			    <div class="col-xs-12">
+				<a rel="nofollow" href="{{ hotelDetails.mapImageUrl }}" class="map_link_txt showOnMap" title="{{'Show On Map'|trans}}"><img src="{{hotelDetails.mapImage}}" alt="{{'Show On Map'|trans}}"></a>
+			    </div>
+			</div>
+		    {% endif %}
+		{% else %}
+		    {% if hotelDetails is defined and hotelDetails.mapImageSource is defined and hotelDetails.mapImageSource is not empty %}
+			<div class="row map_img_conatiner hidden-xs">
+			    <div class="col-xs-12">
+				<a rel="nofollow" href="{{ hotelDetails.mapImageUrl }}" class="map_link_txt showOnMap" title="{{'Show On Map'|trans}}"><img src="{{hotelDetails.mapImageSource}}" alt="{{'Show On Map'|trans}}"></a>
+			    </div>
+			</div>
+		    {% endif %}
+		{% endif %}	
+		<div class="row map_img_conatiner hidden-xs">
+		    <div class="col-xs-12 padding_top_5">
+			{#<a rel="nofollow" href="{{ hotelDetails.mapImageUrl }}" class="map_link_txt showOnMap" title="{{'Show On Map'|trans}}">{{'Show On Map'|trans}}</a>#}
+			<a rel="nofollow" href="{{ hotelDetails.mapImageUrl }}" class="location_div location_txt showOnMap" title="{{'Show On Map'|trans}}"><i class="fas fa-map-marker-alt"></i>{{hotelDetails.address}}</a><br/>
+		    </div>
+		</div>
+		<div class="row hidden-xs hotel-city-name hidden">
+		    <div class="col-xs-12">
+			<h3 class="blue_title_header">{{'Stay in the heart of'|trans}} {{hotel_city_name}}</h3>
+		    </div>
+		</div>
+		<div class="row hidden-xs hotel-distances">
+		    {#{% include '@Hotel/hotel-distances.twig' %}#}
+		</div>
+		<div class="row hidden-xs hotel-review-highlights">
+		    {#{% include '@Hotel/hotel-review-highlights.twig' %}#}
+		</div>
+		<div class="row ">
+		    <div class="col-xs-12">
+			<a rel="nofollow" data-id="{{hotelDetails.hotelId|raw}}" title="{{'Add to Tour Bag'|trans}}" data-type="{{entity_type|raw}}" href="#popup_creatid" class="addtobagImage addtobagNew addtobaginactive{{isUserLoggedIn|raw}} addtobagNewButton"> 
+			    <div class="addtobag_hover">{{'Add to Tour Bag'|trans}}</div>
+			</a>
+		    </div>
+		</div>
+		<div class="row ">
+		    <div class="col-xs-12">
+			{% if hotelDetails.trustyou.summary.score is defined and hotelDetails.trustyou.summary.score is not empty %}
+			    {% set reviewPath = generateLangRoute(LanguageGet, route_hotel_reviews, {"name":input.hotelNameURL, "id":input.hotelId}) %}
+			    <a target="_blank" href="{{reviewPath}}">
+				<div class="heartratecontainer">
+				    <div class="based-on-review" ><span class="based-on-review-span"  class="based-text-review">{{'Based on'|trans ~ ' ' ~ hotelDetails.trustyou.reviews_count ~ ' ' ~ 'reviews'|trans}}</span></div>
+
+				    <div class="heart-rating-review" >
+					<img alt="heart_hoteldetailed" src="{{ generateMediaURL('/media/images/hotel_booking_details_new/heart_rating_review.png') }}" alt="{{'heart_hoteldetailed'|trans}}">
+					<p alt="{{ (hotelDetails.trustyou.summary.score/2)|round(1, 'floor') }} out of 5" content=" '{{ (hotelDetails.trustyou.summary.score/2)|round(1, 'floor') }}'}}" itemprop="ratingValue" class="ratetext">{{hotelDetails.trustyou.summary.score}}</p>
+				    </div>
+				</div>
+			    </a>
+			{% endif %}
+		    </div>
+		</div>
+
+		{% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+		    <div class="row hidden-xs">
+			<div class="col-xs-12">
+			    <h3 class="blue_title_header margin-top-17">{{'Review Score'|trans}}</h3>
+			</div>
+		    </div>
+		    <div class="row hidden-xs">
+			{% for review_cat in hotelDetails.trustyou.category_list %}
+			    <div class="col-xs-12 margin_bottom_5">
+				<div class="greyline_hoteldetail">
+				    <p class="uperlefttext">{{review_cat.category_name}}</p>
+				    <p class="uperrightnumb">{{review_cat.score}}</p>
+				    <p class="downlefttext">{{review_cat.count ~ ' ' ~ 'reviews'|trans}}</p>
+				    <div class="darckfreybardiv" style="width:{{(review_cat.score/hotelDetails.trustyou.scale)*100}}%;"></div>
+				</div>
+			    </div>
+			{% endfor %}
+		    </div>
+		{% endif %}
+		{% if hotelDetails.trustyou.category_list is defined and hotelDetails.trustyou.category_list is not empty %}
+		    <div class="row hidden-xs" id="guest_reviews">
+			<div class="col-xs-12">
+			    <h3 class="blue_title_header margin-top-36">{{'Reviews'|trans}} <a target="_blank" class="view_all_link pull-right" href="{{reviewPath}}">{{'view all'|trans}} <i class="fas fa-angle-right fa-lg"></i></a></h3>
+			</div>
+		    </div>
+		    <div id="myCarousel" class="carousel slide vertical" data-interval="3000" data-ride="carousel">
+			<div class="carousel-inner">
+			    <div class="nopad active item">
+				{% set numOfCat = hotelDetails.trustyou.category_list|length %}
+				{% if numOfCat >= 3 %}
+				    {% set numOfCat = 2 %}
+				{% endif %}
+				{% for review_cat in hotelDetails.trustyou.category_list[0:numOfCat] %}
+				    <div class="row margin_bottom_20 hidden-xs">
+					<div class="col-xs-12 margin_bottom_5">
+					    <div class="imagecircletxtcont_dat">
+						<div class="greycircle_dat"></div>
+						<p class="textingreycircle_dat">{{review_cat.score}}</p>
+					    </div>
+					    <p class="nextcircletext_dat">“{{review_cat.short_text}}”</p>
+					</div>
+					<div class="col-xs-12">
+					    <ul class="pinklistul">
+						{% for summary in review_cat.summary_sentence_list %}
+						    <li class="review_grey_text">{{summary.text ~ ' '}}</li>
+						    {% endfor %}
+					    </ul>
+					</div>
+					<div class="col-xs-12">
+					    <div class="one_line_separator"></div>
+					</div>
+				    </div>
+				{% endfor %}
+			    </div>
+			</div>
+		    </div>
+		    <div class="row margin-top-40 trusted_logo_container hidden-xs">
+			<div class="col-xs-12">
+			    <img src="{{ generateMediaURL('/media/images/hotel_booking_details_new/trusted_you_logo.jpg') }}" alt="TrustYou">
+			</div>
+		    </div>
+		{% endif %}
+	    </div>
+	</div>
+    </section>
+{% endblock %}

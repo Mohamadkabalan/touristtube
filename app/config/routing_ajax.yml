@@ -1,0 +1,97 @@
+_search_locality:
+    path: "/ajax/search_locality"
+    defaults: { _controller: TTBundle:Ajax:searchLocality, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_search_airport_code_locality:
+    path: "/ajax/search_airport_code"
+    defaults: { _controller: TTBundle:Ajax:searchAirportCode, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_search_things_to_do:
+    path: "/ajax/search_things_to_do"
+    defaults: { _controller: TTBundle:Ajax:searchThingsToDo, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        
+_albums_data:
+    path: "/ajax/albums_data"
+    defaults: { _controller: TTBundle:Ajax:getAlbumsData, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_review_autocomplete:
+    path: "/ajax/review_autocomplete"
+    defaults: { _controller: TTBundle:Ajax:reviewAutocomplete, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_search_Hotel:
+    path: "/ajax/search_Hotel"
+    defaults: { _controller: TTBundle:Ajax:filterHotelsIn, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_remove_Hotel_images:
+    path: "/ajax/remove/hotel/images"
+    defaults: { _controller: TTBundle:Ajax:removeHotelImages, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        
+_Hotel_search_amadeus:
+    path:      "/ajax/Hotel_search_for_amadeus"
+    defaults: { _controller: TTBundle:Ajax:HotelSearchForAmadeus, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""} 
+    requirements:
+        domain: "[^/]+"
+
+_Deals_search:
+    path: "/ajax/deal_search_for"
+    defaults: { _controller: TTBundle:Ajax:DealSearch, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_Hotel_search_1_:
+    path: "/ajax/Hotel_search_for1"
+    defaults: { _controller: TTBundle:Ajax:HotelSearchFor1, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_Hotel_search_new:
+    path: "/ajax/Hotel_search"
+    defaults: { _controller: TTBundle:Ajax:HotelSearchForAmadeus, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_search_prefix_Hotel:
+    path: "/ajax/search_prefix_Hotel"
+    defaults: { _controller: TTBundle:Ajax:prefixSearchHotel, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_search_near_by_Hotel:
+    path: "/ajax/search_near_by_Hotel"
+    defaults: { _controller: TTBundle:Ajax:nearByHotel, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_search_Hotels:
+    path: "/ajax/search_Hotels"
+    defaults: { _controller: TTBundle:Ajax:searchHotelsName, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+
+_verify_coupon_code_api:
+    path:      "/ajax/verify-coupon"
+    defaults: { _controller: TTBundle:Ajax:verifyCouponApi, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    methods:  [POST]
+    requirements:
+        domain: "[^/]+"
+
+_campaigns_banner_info:
+    path:      "/ajax/campaigns-banner-info"
+    defaults: { _controller: TTBundle:Ajax:campaignsBannerInfo, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    methods:  [POST]
+    requirements:
+        domain: "[^/]+"

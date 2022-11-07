@@ -1,0 +1,41 @@
+HotelBundle\Entity\HotelPoi:
+    type: entity
+    table: hotel_poi
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: name
+        distancePoiTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: distance_poi_type_id
+        distance:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: distance
+    lifecycleCallbacks: {  }

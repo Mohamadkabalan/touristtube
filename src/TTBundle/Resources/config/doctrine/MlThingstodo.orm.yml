@@ -1,0 +1,91 @@
+TTBundle\Entity\MlThingstodo:
+    type: entity
+    table: ml_thingstodo
+    indexes:
+        id:
+            columns:
+                - id
+        id_2:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        language:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+                default: fr
+        h3:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p3:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        h4:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p4:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+        descThingstodo:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: desc_thingstodo
+        descDiscover:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: desc_discover
+        descHotelsin:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: desc_hotelsin
+    lifecycleCallbacks: {  }

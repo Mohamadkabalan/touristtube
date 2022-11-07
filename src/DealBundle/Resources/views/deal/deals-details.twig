@@ -1,0 +1,881 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+	function myMap() {
+	var lat = {{ (details['latitude'] is defined and details['latitude']|trim != '')  ? details['latitude'] : 0 }};
+	var long = {{ (details['longitude'] is defined and details['longitude']|trim != '')  ? details['longitude'] : 0 }};
+	if (lat > 0 || long > 0) {
+	$('#checkinMap').show();
+	var myCenter = new google.maps.LatLng(lat, long);
+	var mapOptions = {center: myCenter, zoom: 10};
+	var mapCanvas = document.getElementById("checkinMap");
+	var map = new google.maps.Map(mapCanvas, mapOptions);
+	var marker = new google.maps.Marker({position: myCenter});
+	marker.setMap(map);
+	var mapCanvas2 = document.getElementById("checkoutMap");
+	var map2 = new google.maps.Map(mapCanvas2, mapOptions);
+	var marker2 = new google.maps.Marker({position: myCenter});
+	marker2.setMap(map2);
+	}
+	}
+    </script>
+    <script src="https:///maps.googleapis.com/maps/api/js?callback=myMap&sensor=true&key={{ (mapKey is defined)  ? mapKey }}"></script>
+{% endblock %}
+{% block title %}
+    {{ 'Attractions Details'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    {% if details['errorMessage'] is defined and details['errorMessage'] != '' %}
+	<section id="dealsContainer" class ="container deals_container">
+	    <div class="col-xs-12 nopad">
+		<p class="has-error">
+		    {% if details['errorCode'] is defined and details['errorCode'] == 203 %}
+			{{'Tour is not available.'| trans}}
+		    {% else %}
+			{{details['errorMessage']}}
+		    {% endif %}
+		</p>
+		<p class="dealErrMsgSub">{{'Please'|trans}} <a href="{{ (returnUrl is defined)  ? returnUrl : '' }}">{{'click here'|trans}}</a> {{'to return to deals section'|trans}}</p>
+	    </div>
+	</section>
+    {% else %}	
+    <section id="dealsContainer" class="container deals_container">
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Make an attraction booking'|trans}}</h1>
+	    </div>
+	</div>
+	<div class="row attraction_search_input_container">
+	    <div class="col-xs-12">
+		{% include "default/searchinput3.twig" %}
+	    </div>
+	</div>
+	<div class="row margin_bottom_37">
+	    <div class="col-xs-12 ">
+		<div class="border_top_but_row"></div>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-md-9 col-xs-12 left_panel">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<div class="row no-margin">
+			    <div class="col-xs-12 nopad">
+				<p class="font-bold font-18 black margin_bottom_0">{{ (details['dealName'] is defined)  ? details['dealName'] }}</p>
+				<p class="font-bold font-18 black">{{'Tickets & Seine Cruise'|trans}} {% if details['reviews'] is defined and details['reviews']|length > 0 %}<span class="star_rating stars_block" data-rating="4" data-font="11" data-color="#eac31a"></span><span class="grey font-13">{{'Read our'|trans}}</span> <span><a href="#" class="font-normal font-13 blue underline">{{ details['reviews']|length ~ ' reviews' | trans }}</a></span>{% endif %}</p>
+			    </div>
+			    <div class="col-xs-12 nopad margin_top_10">
+				<p class="margin_bottom_0 padding_right_10 float-left font-14 font-bold blue"><i class="fas fa-check black-chek_logo"></i>{{'No booking or credit card fees'|trans}}</p>
+				<p class="margin_bottom_0 padding_right_10 float-left font-14 font-bold blue"><i class="fas fa-check black-chek_logo"></i>{{'Instant confirmation'|trans}}</p>
+			    </div>
+			</div>
+			<div class="row no-margin">
+			    <div class="col-xs-12 nopad">
+				<div class="row deals_new_margin">
+				    <div class="col-xs-12 deals_new_padding">
+					<div data-unique="main" class="slider-for slider-for-main col-xs-12 lazy large_image_container">
+					    {% for deal_image in details['dealMainImages'] %}
+						<div>
+						    <img alt="text" data-lazy="{{deal_image}}">
+						</div>
+					    {% endfor %}
+					</div>
+				    </div>
+				</div>
+				<div class="row deals_new_margin img_parent_holder image-thumb-section small_image_container">
+				    <div class="slider-nav-main slider-nav hidden-xs">
+					{% for deal_image in details['dealThumbImages'] %}
+					    <div class="mediathumb col-sm-2 col-xs-4 deals_new_padding xs-new_width img_holder active">
+						<img alt="text" src="{{ asset(deal_image) }}">
+					    </div>
+					{% endfor %}
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="row no-margin">
+			    {% if details['dealHighlights'] is defined and details['dealHighlights']|striptags|length %}
+				<div class="col-xs-12 nopad margin_top_20">
+				    <p class="font-24 black">{{'Highlights'|trans}}</p>
+				    <p class="font-16 grey">
+					{% autoescape %}
+					    {{ details['dealHighlights'] | raw}}
+					{% endautoescape %}
+				    </p>
+				</div>
+			    {% endif %}
+			    <div class="col-xs-12 nopad">
+				<p class="font-24 black">{{'Specifications'|trans}}</p>
+				<div class="row">
+				    <div class="col-xs-12">
+					<div class="row">
+					    <div class="col-sm-3 col-xs-4">
+						<p class="font-16 font-bold black">{{'Type:'|trans}}</p>
+					    </div>
+					    <div class="col-sm-9 col-xs-8">
+						<p class="font-16 grey">{{ details['specifications']['type']}}</p>
+					    </div>
+					</div>
+					<div class="row">
+					    <div class="col-sm-3 col-xs-4">
+						<p class="font-16 font-bold black">{{'Departs From:'|trans}}</p>
+					    </div>
+					    <div class="col-sm-9 col-xs-8">
+						<p class="font-16 grey">{{ details['specifications']['departsFrom'] }}</p>
+					    </div>
+					</div>
+					{% if details['specifications']['meetingPoint'] is defined and details['specifications']['meetingPoint'] %}
+					    <div class="row">
+						<div class="col-sm-3 col-xs-4">
+						    <p class="font-16 font-bold black">{{'Meeting Point:'|trans}}</p>
+						</div>
+						<div class="col-sm-9 col-xs-8">
+						    <p class="font-16 grey">{{ details['specifications']['meetingPoint']}}</p>
+						</div>
+					    </div>
+					{% endif %}
+					{% if details['specifications']['duration'] is defined and details['specifications']['duration'] %}
+					    <div class="row">
+						<div class="col-sm-3 col-xs-4">
+						    <p class="font-16 font-bold black">{{'Duration'|trans}}</p>
+						</div>
+						<div class="col-sm-9 col-xs-8">
+						    <p class="font-16 grey">{{ details['specifications']['duration']}}</p>
+						</div>
+					    </div>
+					{% endif %}
+					<div class="row">
+					    <div class="col-sm-3 col-xs-4">
+						<p class="font-16 font-bold black">{{'Product Code'|trans}}</p>
+					    </div>
+					    <div class="col-sm-9 col-xs-8">
+						<p class="font-16 grey">{{ details['specifications']['productCode'] }}</p>
+					    </div>
+					</div>
+					<div class="row">
+					    <div class="col-sm-3 col-xs-4">
+						<p class="font-16 font-bold black">{{'Voucher info:'|trans}}</p>
+					    </div>
+					    <div class="col-sm-9 col-xs-8">
+						<p class="font-16 grey">{{ details['specifications']['voucherinfo'] }}</p>
+					    </div>
+					</div>
+					<div class="row">
+					    <div class="col-sm-3 col-xs-4">
+						<p class="font-16 font-bold black">{{'Languages'|trans}}</p>
+					    </div>
+					    <div class="col-sm-9 col-xs-8">
+						<img src="{{ asset(details['specifications']['languageFlag']) }}" alt="{{'title'}}">
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="col-xs-12 nopad margin_top_20">
+				<p class="font-24 black">{{'Description'|trans}}</p>
+				<p class="font-16 grey">{{ (details['dealDescription'] is defined)  ? details['dealDescription'] | raw }}</p>
+			    </div>
+			    {% if details['inclusion'] is defined and details['inclusion']|length > 0 %}
+				<div class="col-xs-12 nopad margin_top_20">
+				    <p class="font-24 black">{{'Includes'|trans}}</p>
+				    {{ details['inclusion'] | raw }}
+				</div>
+			    {% endif %}
+
+
+
+			    {% if details['dealSchedules'] is defined and details['dealSchedules']|length > 0 %}
+				<div class="col-xs-12 nopad">
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad margin_top_20">
+					    <p class="font-24 black">{{'Schedule'|trans}}</p>
+					    <ul class="starting_time_list">
+						<li>{{'Starting time:'|trans}}</li>
+						    {% set timeCounter = 0  %}
+						    {% for dsKey, dsVal in details['dealSchedules'] %}
+							{% set timeCounter = timeCounter + 1 %}
+							{% for dsKey2, dsVal2 in dsVal if dsKey2 == 0 %}
+							<li id="swTime_{{timeCounter}}" class="swTime {{ timeCounter == 1 ? 'active_date' }}">{{dsVal2['time']}}</li>
+							{% endfor %}
+						    {% endfor %}
+					    </ul>
+					</div>
+
+					{% set timeCounter = 0  %}
+					{% for dsKey, dsVal in details['dealSchedules'] %}
+					    {% set timeCounter = timeCounter + 1 %}
+					    <div id="swTimeBox_{{timeCounter}}" class="swTimeBox col-xs-12 nopad {{ timeCounter == 1 ? 'swShowOption' : 'swHideOption' }}">
+						<div class="row no-margin">
+						    {% set firstInGroup = true  %}
+						    {% for dsKey2, dsVal2 in dsVal %}
+							{% set nextValHasTime = (dsVal[dsKey2+1]['time'] is defined and dsVal[dsKey2+1]['time'] != '') ? true : false %}
+							{% if dsVal2['time'] != '' %}
+							    {% if nextValHasTime  %}
+								<div class="col-xs-12 nopad">
+								    <div class="row no-margin">
+									<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+									    <p class="pink_common_txt_but">{{dsVal2['time']}}</p>
+									</div>
+									<div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+									    <p class="grey_right_but_txt font-bold">{{dsVal2['title']}}</p>
+									</div>
+								    </div>
+								</div>
+								<div class="col-xs-12 nopad">
+								    <div class="row no-margin autoborder height-13">
+									<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+									</div>
+								    </div>
+								</div>
+							    {% elseif loop.last %}
+								<div class="col-xs-12 nopad">
+								    <div class="row no-margin">
+									<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+									    <p class="pink_common_txt_but">{{dsVal2['time']}}</p>
+									</div>
+									<div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+									    <p class="grey_right_but_txt font-bold">{{dsVal2['title']}}</p>
+									</div>
+								    </div>
+								</div>
+							    {% else %}
+								{% if firstInGroup %}
+								    {% set firstInGroup = false  %}
+								    <div class="col-xs-12 nopad">
+									<div class="row no-margin">
+									    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+										<p class="pink_common_txt_but">{{dsVal2['time']}}</p>
+									    </div>
+									</div>
+								    </div>
+								    <div class="col-xs-12 nopad">
+									<div class="row no-margin autoborder">
+									    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+									    </div>
+									    <div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+										<div class="row no-margin bullet_left">
+										    <div class="col-lg-2 col-sm-2 col-xs-4 nopad xxs_full_width">
+											<img class="right_div_img" src="{{ generateMediaURL('/media/images/deals-details_new/test_img1.png') }}" alt="test">
+										    </div>
+										    <div class="col-lg-10 col-sm-10 col-xs-8 nopad xxs_full_width">
+											<p class="font-14 grey font-bold">{{dsVal2['title']}}</p>
+											{% if dsVal2['description'] != '' %}
+											    <p class="font-14 grey margin_bottom_20">{{dsVal2['description']}}</p>
+											{% endif %}
+										    </div>
+										</div>
+									    {% endif %}
+									{% endif %}
+								    {% else %}
+									<!-- IF current array has no time -->
+									{% if firstInGroup %}
+									    {% set firstInGroup = false  %}
+									    <div class="col-xs-12 nopad">
+										<div class="row no-margin">
+										    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+											<p class="pink_common_txt_but">{{'Start'|trans}}</p>
+										    </div>
+										</div>
+									    </div>
+									    <div class="col-xs-12 nopad">
+										<div class="row no-margin autoborder">
+										    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+										    </div>
+										    <div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+											<div class="row no-margin bullet_left">
+											    <div class="col-lg-2 col-sm-2 col-xs-4 nopad xxs_full_width">
+												<img class="right_div_img" src="{{ generateMediaURL('/media/images/deals-details_new/test_img1.png') }}" alt="test">
+											    </div>
+											    <div class="col-lg-10 col-sm-10 col-xs-8 nopad xxs_full_width">
+												<p class="font-14 grey font-bold">{{dsVal2['title']}}</p>
+												{% if dsVal2['description'] != '' %}
+												    <p class="font-14 grey margin_bottom_20">{{dsVal2['description']}}</p>
+												{% endif %}
+											    </div>
+											</div>
+										    {% elseif not loop.last %}
+											<div class="row no-margin bullet_left">
+											    <div class="col-lg-2 col-sm-2 col-xs-4 nopad xxs_full_width">
+												<img class="right_div_img" src="{{ generateMediaURL('/media/images/deals-details_new/test_img1.png') }}" alt="test">
+											    </div>
+											    <div class="col-lg-10 col-sm-10 col-xs-8 nopad xxs_full_width">
+												<p class="font-14 grey font-bold">{{dsVal2['title']}}</p>
+												{% if dsVal2['description'] != '' %}
+												    <p class="font-14 grey margin_bottom_20">{{dsVal2['description']}}</p>
+												{% endif %}
+											    </div>
+											</div>
+											{% if nextValHasTime %}
+											    {% set firstInGroup = true  %}
+											</div>
+										    </div>
+										</div>
+									    {% endif %}
+									{% else %}
+									    {% if not firstInGroup %}
+										{% set firstInGroup = true  %}
+									    </div>
+									</div>
+								    </div>
+								{% endif %}
+								<div class="col-xs-12 nopad">
+								    <div class="row no-margin">
+									<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+									    <p class="pink_common_txt_but">{{'End'|trans}}</p>
+									</div>
+									<div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+									    <p class="grey_right_but_txt font-bold">{{dsVal2['title']}}</p>
+									</div>
+								    </div>
+								</div>
+							    {% endif %}
+							{% endif %}
+						    {% endfor %}
+						</div>
+					    </div>
+					{% endfor %}
+				    </div>
+				</div>
+			    {% endif %}
+
+
+			    <div class="col-xs-12 nopad margin_top_20">
+				<ul class="inout_list">
+				    <li id="checkin" class="cMapsLabel active_check">{{'Check-in Time & Location'|trans}}</li>
+				    <li class="black_separator">|</li>
+				    <li id="checkout" class="cMapsLabel">{{'Check-out Time & Location'|trans}}</li>
+				</ul>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin">
+				    <div id="checkinMap" class="cMaps col-lg-8 col-sm-7 col-xs-12 nopad">
+				    </div>
+				    <div id="checkoutMap" class="cMaps col-lg-8 col-sm-7 col-xs-12 nopad">
+				    </div>
+				    <div id="checkinText" class="cMaps col-lg-4 col-sm-5 col-xs-12 nopad xs-margin_top_10 margin_top_10">
+					<div class="location_div new_style_pad_margin xs-margin_top_10"><i class="fas fa-map-marker-alt"></i></div>
+					<p class="font-14 grey location_txt">{{'(For Check-In)'|trans}}<br>
+					    <span class="font-14 blue font-bold">{{ (details['startingPlace'] is defined)  ? details['startingPlace'] }}</span>
+					    <!--<br>PARISCityVISION 2
+					    <br>Rue des Pyramides
+					    <br>75001 Paris France)
+					    <br>Time: 08:30:00-->
+					</p>
+				    </div>
+				    <div id="checkoutText" class="cMaps col-lg-4 col-sm-5 col-xs-12 nopad xs-margin_top_10 margin_top_10">
+					<div class="location_div new_style_pad_margin xs-margin_top_10"><i class="fas fa-map-marker-alt"></i></div>
+					<p class="font-14 grey location_txt">{{'(For Check-Out)'|trans}}<br>
+					    <span class="font-14 blue font-bold">{{ (details['startingPlace'] is defined)  ? details['startingPlace'] }}</span>
+					</p>
+				    </div>
+				</div>
+			    </div>
+			    <div class="col-xs-12 nopad padding_right_30">
+				<div class="row no-margin margin_top_30">
+				    <div class="col-xs-12 nopad">
+					<p class="font-24 black float-left">{{'Price & Options'|trans}}</p>
+					<div class="centeredtext_selectbox float-right floating_right_width">
+					    <select id="priceOptionSelect" class="selectoptionprice_dat" name="priceOptionSelect" required="required">
+						{% for poKey,poVal in details['priceOptions'] %}
+						    {% set opDate = poKey|split('_') %}
+						    <option value="{{poKey}}">{{opDate[0]|date("F d, Y")}} {{'to'|trans}} {{opDate[1]|date("F d, Y")}}</option>
+						{% endfor %}
+					    </select>
+					</div>
+				    </div>
+				</div>
+				<div class="row no-margin">
+				    {% set showFirst = true %}
+				    {% set popCounter = 0  %}
+				    {% for poKey,poVal in details['priceOptions'] %}
+					<div id="option_{{poKey}}" class="col-xs-12 nopad priceOptions {{(showFirst)  ? 'showOption' : 'hideOption' }}">
+					    {% for po in poVal %}
+						{% set popCounter = popCounter + 1 %}
+						<div class="bordered_section_grey  margin_top_10">
+						    <div class="row no-margin section_line-height">
+							<div class="col-sm-7 col-xs-12 nopad">
+							    <p class="font-17 pink">
+								{{ (po['optionLabel'] != '') ? po['optionLabel']| capitalize }}
+
+								{% if(po['optionGroupMinPax'] > 0) %}
+								    For {{ po['optionGroupMinPax'] }}
+								    {{(po['optionGroupMaxPax'] > po['optionGroupMinPax'])  ? 'to ' ~ po['optionGroupMaxPax'] }}
+								    {{(po['optionGroupMaxPax'] == 1)  ? 'Person' : 'Persons' }}
+								{% endif %}
+							    </p>
+							    <p class="font-14 grey">{{po['optionAvailableDays']}}</p>
+							    {% if po['Schedules'] is defined and po['Schedules']|length > 0 %}
+								<a href="#divpopup_{{popCounter}}" id="btnpopup" class="btnpopup font-16 blue font-bold underline">{{'View details and schedule'|trans}}</a>{% endif %}
+							    </div>
+							    <div class="col-sm-5 col-xs-12 nopad">
+								{% for unitKey,unitVal in po['Units'] %}
+
+								{% endfor %}
+								<div class="row no-margin">
+								    <div class="col-xs-4 nopad">
+									{% for unitKey,unitVal in po['Units'] %}
+									    <p class="font-14 grey">{{unitVal['unitLabel'] |trans}} ({{unitVal['ageText']|trans}})</p>
+									{% endfor %}
+								    </div>
+								    <div class="col-xs-8 nopad">
+									{% for unitKey,unitVal in po['Units'] %}
+									    <p class="font-17 font-bold pink"><span class="a_price newprice_dat price-convert" data-price="{{unitVal['optionPrice']}}"><span class="currency-convert-text">{{unitVal['optionPriceCurrency']}}</span> <span class="price-convert-text">{{unitVal['optionPriceFormatted']}}</span></span></p>
+										{% endfor %}
+								    </div>
+								    <!--<div class="col-xs-12 nopad">
+									<p class="font-16 blue margin_bottom_0 font-bold float-right">USD (US$)<i class="fas fa-sort grey_sort_icon"></i></p>
+								    </div>-->
+								</div>
+							    </div>
+							</div>
+						    </div>
+
+
+						    <!-- @TODO fixing this in another ticket -->
+						    <div id="divpopup_{{popCounter}}" class="poPopDiv col-xs-12 nopad" style="display:none;padding: 10px;">
+							<div class="deals_container">
+							    <div class="row no-margin">
+								<div class="col-xs-12 nopad margin_top_20">
+								    <p class="font-24 black">{{po['optionLabel']}}</p>
+								    {% if details['dealDuration'] is defined and details['dealDuration'] %}
+									<p class="font-16 black margin_bottom_0"><span class="pink padding_right_10">{{'Duration:'|trans}}</span>{{ (details['dealDuration'] is defined)  ? details['dealDuration'] }}</p>
+									{% endif %}
+								    <p class="font-16 black margin_bottom_0"><span class="pink padding_right_10">{{'Available:'|trans}}</span>{{po['optionAvailableDays']}}</p>
+								    <!--<p class="font-16 black margin_bottom_0"><span class="pink padding_right_10">{{'Pick-up:'|trans}}</span>{{'Not available'|trans}}</p>-->
+								    <p class="font-16 black margin_bottom_0"><span class="pink padding_right_10">{{'Inclusions:'|trans}}</span>{{po['inclusions']}}</p>
+								</div>
+								<div class="col-xs-12 nopad margin_top_30">
+								    <div class="border_5_grey"></div>
+								</div>
+								{% if po['Schedules'] is defined and po['Schedules']|length > 0 %}
+								    <div class="col-xs-12 nopad margin_top_20">
+									<p class="font-24 black">{{'Schedule'|trans}}</p>
+									<ul class="starting_time_list">
+									    <li>{{'Starting time:'|trans}}</li>
+										{% set timeCounter = 0  %}
+										{% for dsKey, dsVal in po['Schedules']  %}
+										    {% set timeCounter = timeCounter + 1 %}
+										    {% for dsKey2, dsVal2 in dsVal if dsKey2 == 0 %}
+										    <li id="spTime_{{timeCounter}}" class="spTime_{{timeCounter}} spTime {{ timeCounter == 1 ? 'active_date' }}">{{dsVal2['time']}}</li>
+										    {% endfor %}
+										{% endfor %}
+									</ul>
+								    </div>
+
+								    {% set timeCounter = 0  %}
+								    {% for dsKey, dsVal in po['Schedules']  %}
+									{% set timeCounter = timeCounter + 1 %}
+									<div id="spTimeBox_{{timeCounter}}" class="spTimeBox_{{timeCounter}} spTimeBox col-xs-12 nopad  {{ timeCounter == 1 ? 'spShowOption' : 'spHideOption' }}">
+									    <div class="row no-margin">
+										{% set firstInGroup = true  %}
+										{% for dsKey2, dsVal2 in dsVal %}
+										    {% if dsVal2['time'] != '' %}
+											{% set nextValHasTime = (po['Schedules'][dsKey2+1]['time'] is defined and po['Schedules'][dsKey2+1]['time'] != '') ? true : false %}
+											{% if nextValHasTime %}
+											    <div class="col-xs-12 nopad">
+												<div class="row no-margin">
+												    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+													<p class="pink_common_txt_but">{{dsVal2['time']}}</p>
+												    </div>
+												    <div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+													<p class="grey_right_but_txt">{{dsVal2['title']}}</p>
+												    </div>
+												</div>
+											    </div>
+											    <div class="col-xs-12 nopad">
+												<div class="row no-margin autoborder height-13">
+												    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+												    </div>
+												</div>
+											    </div>
+											{% elseif loop.last %}
+											    <div class="col-xs-12 nopad">
+												<div class="row no-margin">
+												    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+													<p class="pink_common_txt_but">{{dsVal2['time']}}</p>
+												    </div>
+												    <div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+													<p class="grey_right_but_txt">{{dsVal2['title']}}</p>
+												    </div>
+												</div>
+											    </div>
+											{% else %}
+											    {% if firstInGroup %}
+												{% set firstInGroup = false  %}
+												<div class="col-xs-12 nopad">
+												    <div class="row no-margin">
+													<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+													    <p class="pink_common_txt_but">{{dsVal2['time']}}</p>
+													</div>
+												    </div>
+												</div>
+												<div class="col-xs-12 nopad">
+												    <div class="row no-margin autoborder">
+													<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+													</div>
+													<div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+													    <div class="row no-margin bullet_left">
+														<div class="col-lg-2 col-sm-2 col-xs-4 nopad xxs_full_width">
+														    <img class="right_div_img" src="{{ generateMediaURL('/media/images/deals-details_new/test_img1.png') }}" alt="test">
+														</div>
+														<div class="col-lg-10 col-sm-10 col-xs-8 nopad xxs_full_width">
+														    <p class="font-14 grey font-bold">{{dsVal2['title']}}</p>
+														    {% if dsVal2['description'] != '' %}
+															<p class="font-14 grey margin_bottom_20">{{dsVal2['description']}}</p>
+														    {% endif %}
+														</div>
+													    </div>
+													{% endif %}
+												    {% endif %}
+												{% else %}
+												    <!-- IF current array has no time -->
+												    {% if firstInGroup %}
+													{% set firstInGroup = false  %}
+													<div class="col-xs-12 nopad">
+													    <div class="row no-margin">
+														<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+														    <p class="pink_common_txt_but">{{'Start'|trans}}</p>
+														</div>
+													    </div>
+													</div>
+													<div class="col-xs-12 nopad">
+													    <div class="row no-margin autoborder">
+														<div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+														</div>
+														<div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+														    <div class="row no-margin bullet_left">
+															<div class="col-lg-2 col-sm-2 col-xs-4 nopad xxs_full_width">
+															    <img class="right_div_img" src="{{ generateMediaURL('/media/images/deals-details_new/test_img1.png') }}" alt="test">
+															</div>
+															<div class="col-lg-10 col-sm-10 col-xs-8 nopad xxs_full_width">
+															    <p class="font-14 grey font-bold">{{dsVal2['title']}}</p>
+															    {% if dsVal2['description'] != '' %}
+																<p class="font-14 grey margin_bottom_20">{{dsVal2['description']}}</p>
+															    {% endif %}
+															</div>
+														    </div>
+														{% elseif not loop.last %}
+														    <div class="row no-margin bullet_left">
+															<div class="col-lg-2 col-sm-2 col-xs-4 nopad xxs_full_width">
+															    <img class="right_div_img" src="{{ generateMediaURL('/media/images/deals-details_new/test_img1.png') }}" alt="test">
+															</div>
+															<div class="col-lg-10 col-sm-10 col-xs-8 nopad xxs_full_width">
+															    <p class="font-14 grey font-bold">{{dsVal2['title']}}</p>
+															    {% if dsVal2['description'] != '' %}
+																<p class="font-14 grey margin_bottom_20">{{dsVal2['description']}}</p>
+															    {% endif %}
+															</div>
+														    </div>
+														    {% if nextValHasTime is defined and nextValHasTime %}
+															{% set firstInGroup = true  %}
+														    </div>
+														</div>
+													    </div>
+													{% endif %}
+												    {% else %}
+													{% if not firstInGroup %}
+													    {% set firstInGroup = true  %}
+													</div>
+												    </div>
+												</div>
+											    {% endif %}
+											    <div class="col-xs-12 nopad">
+												<div class="row no-margin">
+												    <div class="col-lg-2 col-sm-2 col-xs-4 nopad">
+													<p class="pink_common_txt_but">{{'End'|trans}}</p>
+												    </div>
+												    <div class="col-lg-10 col-sm-10 col-xs-8 nopad">
+													<p class="grey_right_but_txt">{{dsVal2['title']}}</p>
+												    </div>
+												</div>
+											    </div>
+											{% endif %}
+											<!-- IF current array has no time -->
+										    {% endif %}
+
+										{% endfor %}
+
+									    </div>
+									</div>
+								    {% endfor %}
+								{% endif %}
+
+							    </div>
+							</div>
+						    </div>
+						    <!-- @TODO fixing this in another ticket -->
+
+						    {% set showFirst = false %}
+						    {% endfor %}
+
+						    </div>
+						    {% endfor %}
+						    </div>
+						</div>
+						<div class="col-xs-12 nopad">
+						    <div class="row no-margin">
+							<div class="col-xs-12 nopad margin_top_20">
+							    <p class="font-24 black">{{'Notes'|trans}}</p>
+							</div>
+						    </div>
+						    {% if details['notes'] is defined and details['notes']|length > 0 %}
+							{% for nKey, nVal in details['notes'] %}
+							    <div class="row no-margin">
+								<div class="col-xs-12 nopad margin_top_10">
+								    {% for nKey2, nVal2 in nVal %}
+									{% if nKey2 == 0 %}
+									    <p class="font-16 black margin_bottom_0 font-bold">{{nVal2['title']}}</p>
+									    {% if nVal2['info'] is iterable %}
+										{% for nInfo in nVal2['info'] %}
+										    <p class="font-16 grey margin_bottom_0">{{nInfo}}</p>
+										{% endfor %}
+									    {% else %}
+										<p class="font-16 grey margin_bottom_0">{{nVal2['info']}}</p>
+									    {% endif %}
+									{% endif %}
+									<ul class="grey_list_common">
+									    <li>{{nVal2['note']}}</li>
+										{% if nVal2['pdfPath']|trim != '' %}
+										<li>{{nVal2['pdfPath']}}</li>
+										{% endif %}
+									</ul>
+								    {% endfor %}
+								</div>
+							    </div>
+							{% endfor %}
+						    {% endif %}
+						</div>
+						{% if details['faq'] is defined and details['faq']|length > 0 %}
+						    <div class="col-xs-12 nopad">
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad margin_top_20">
+								<p class="font-24 black">{{'Frequently Asked Questions'|trans}}</p>
+							    </div>
+							</div>
+							{% for fKey, fVal in details['faq'] %}
+							    <div class="row no-margin">
+								<div class="col-xs-12 nopad margin_top_10">
+								    <p class="font-16 black margin_bottom_0 font-bold">{{fVal['question']}}</p>
+								    <p class="font-16 grey margin_bottom_0">{{fVal['answer']}}</p>
+								</div>
+							    </div>
+							{% endfor %}
+						    </div>
+						{% endif %}
+						{% if details['reviews'] is defined and details['reviews'] %}
+						    <div class="col-xs-12 nopad">
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad margin_top_20">
+								<p class="font-24 black float-left">{{'Tour Reviews'|trans}}</p>
+								<div class="centeredtext_selectbox float-right floating_right_width">
+								    <select id="reviewSorting" class="selectoptionprice_dat" name="reviewSorting" required="required">
+									<option value="rating_desc" selected="selected">{{'View by Rating (High to Low)'|trans}}</option>
+									<option value="rating_asc">{{'View by Rating (Low to High)'|trans}}</option>
+									<option value="date_desc">{{'View by Date (Newest to Oldest)'|trans}}</option>
+									<option value="date_asc">{{'View by Date (Oldest to Newest)'|trans}}</option>
+								    </select>
+								</div>
+							    </div>
+							</div>
+							<div  id="reviewContainer" class="row no-margin margin_top_4">
+							    {% for review in details['reviews'] %}
+								<div class="col-xs-12 nopad margin_bottom_20 reviewList">
+								    <div class="greycontainer_reviews">
+									<div class="col-xs-12 nopad">
+									    <div class="imagecircletxtcont_reviews">
+										<p class="textingreycircle_reviews">{{ review.rating|raw }}</p>
+									    </div>
+									    <p class="nextcircletext_reviews">{{ review.owner|raw|trim }} <span class="wherefromgreytext_reviews">{{review.country|raw}}, {{review.date|date("m/d/Y")}}</span></p>
+									    <div class="col-xs-12 nopad">
+										<p class="ingreytext_reviews">{{ review.comment|raw }}</p>
+									    </div>
+									</div>
+								    </div>
+								</div>
+							    {% endfor %}
+							    <div id="loadMoreBtn" class="col-xs-12 nopad padtop20">
+								<div class="loadmore_dat">
+								    {{'load more'|trans}}
+								</div>
+							    </div>
+							</div>
+						    </div>
+						{% endif %}
+						<div class="col-xs-12 nopad  margin_top_10">
+						    <div class="row no-margin">
+							<div class="col-xs-12 nopad">
+							    <p class="font-24 black">{{'Cancellation Policy'|trans}}</p>
+							    <ul class="grey_list_common">
+								{% if details['cancellationPolicy'] is defined %}
+								    {% for cp in details['cancellationPolicy'] %}
+									<li>{{cp|raw}}</li>
+									{% endfor %}
+								    {% else %}
+								    <li>{{'None'|trans}}</li>
+								    {% endif %}
+							    </ul>
+							</div>
+						    </div>
+						    {% if details['changePolicy'] is defined and details['changePolicy']|length > 0 %}
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad margin_top_10">
+								<p class="font-24 black">{{'Change Policy'|trans}}</p>
+								<ul class="grey_list_common">
+								    <li>{{ details['changePolicy'] }}</li>
+								</ul>
+							    </div>
+							</div>
+						    {% endif %}
+						</div>
+					    </div>
+					</div>
+				    </div>
+				</div>
+				<div id="priceOptions" class="col-md-3 right_panel hidden-sm hidden-xs">
+				    <form method="POST" action="{{ generateLangRoute(LanguageGet,'_getMandatoryFields') }}" autocomplete="off">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad padding_left_20">
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad">
+								<p class="red font-17 margin_bottom_0">{{'Starting at'|trans}}</p>
+							    </div>
+							    <div class="col-xs-12 nopad">
+								<p class="font-35 red line-height-35"><span id="topBookingTotalConverted" class="a_price price-convert" data-price="{{ (details['dealPrice'] is defined)  ? details['dealPrice'] }}"><span class="currency-convert-text">{{ (details['dealCurrency'] is defined)  ? details['dealCurrency'] }}</span> <span id="topBookingPrice" class="price-convert-text">{{ (details['formattedDealPrice'] is defined)  ? details['formattedDealPrice'] }}</span></span></p>
+							    </div>
+							    <div class="col-xs-12 nopad">
+								<p class="font-16 font-bold blue underline"><span class="no-underline">{{'1-'|trans}} </span>{{'Select travel date'|trans}}</p>
+							    </div>
+							</div>
+						    </div>
+						</div>
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad">
+							<div class="form-group new_input_deals_common height-small">
+							    <input type="hidden" id="startingPlace" name="startingPlace" value="{{details['startingPlace']}}" />
+							    <input type="hidden" id="dealHighlights" name="dealHighlights" value="{{details['dealHighlights']}}" />
+							    <input type="hidden" id="cancellationData" name="cancellationData" value="{{details['cancellationData']}}" />
+							    <input type="hidden" id="reviewPath"  value="{{ generateLangRoute(LanguageGet,'_getActivityReviews') }}">
+							    <input type="hidden" id="activityId"  value="{{ details['productCode'] }}">
+							    <input type="hidden" id="apiId"  value="{{ apiId }}">
+							    <input type="hidden" id="packageId" name="packageId" value="{{packageId}}">
+							    <input type="hidden" id="tourCode" name="tourCode" value="{{details['productCode']}}">
+							    <input type="hidden" id="priceDetailsPath"  value="{{ generateLangRoute(LanguageGet,'_getTourPriceDetails') }}">
+							    <input type="hidden" id="quoteBookingPath"  value="{{ generateLangRoute(LanguageGet,'_quoteBooking') }}">
+							    <div class="col-sm-12 col-xs-12 nopad">
+								<input type="text" id="bookingDate" name="bookingDate" class="form-control" placeholder="Please choose your date" autocomplete="off" data-error="" required>
+							    </div>
+							    <div class="help-block with-errors"></div>
+							</div>
+						    </div>
+						</div>
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad padding_left_20">
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad">
+								<p class="font-14 grey margin_bottom_0 margin_bottom_20">{{'Can I change my date after booking?'|trans}}</p>
+								<p class="font-13 grey margin_bottom_20">{{'Yes! *'|trans}}<br>
+								    {{"You can change your date after booking.
+					    Once confirmed, you will receive a voucher with all the information about your activity including the provider's local contact details, which you can contact if you have any question or if you need to change the date. We will try our best to accommodate your request."|trans}}</p>
+								<p class="font-13 grey margin_bottom_0">{{'*Subject to availability.'|trans}}</p>
+								<p class="font-13 grey margin_bottom_0">{{'Fees might apply.'|trans}}</p>
+								<p class="font-13 grey margin_bottom_0">{{'Please check our terms and'|trans}}<br>
+								    {{'conditions for more information.'|trans}}</p>
+							    </div>
+							    <div id="bookingBox">
+								<div class="col-xs-12 nopad margin_top_20">
+								    <p class="red font-17 margin_bottom_0">{{'Starting at'|trans}}</p>
+								</div>
+								<div class="col-xs-12 nopad">
+								    <p class="font-35 red line-height-35"><span class="a_price price-convert" data-price="{{ (details['dealPrice'] is defined)  ? details['dealPrice'] }}"><span class="currency-convert-text">{{ (details['dealCurrency'] is defined)  ? details['dealCurrency'] }}</span> <span class="price-convert-text">{{ (details['formattedDealPrice'] is defined)  ? details['formattedDealPrice'] }}</span></span></p>
+								</div>
+
+								<div class="col-xs-12 nopad margin_top_4">
+								    <p class="green font-14 font-bold"><img class="padding_right_5" src="{{ generateMediaURL('/media/images/deals-details_new/best_price_logo.png') }}" alt="best price">Best Price Guaranteed</p>
+								</div>
+								<div class="col-xs-12 nopad ">
+								    <p class="black font-14 font-bold">{{'Please select your desired tour date'|trans}}</p>
+								</div>
+								<div class="col-xs-12 nopad margin_top_20">
+								    <button class="btn pink_button_60_center">{{'buy now'|trans}}</button>
+								</div>
+							    </div>
+							    <div class="col-xs-12 nopad margin_top_10">
+								<p class="font-14 grey">{{'you’ll receive your confirmation
+					    and voucher by email.'|trans}}</p>
+							    </div>
+							    <div class="col-xs-12 nopad margin_top_10">
+								<a href="#" class="addtobag"><img src="{{ generateMediaURL('/media/images/deals-details_new/addtobag_logo.png') }}" alt="addtobag_logo">{{'Add to tour bag'|trans}}</a>
+							    </div>
+							    <div class="col-xs-12 nopad margin_top_45">
+								<p class="font-19 font-bold black">{{'Why ToursitTube?'|trans}}</p>
+								<ul class="whytt_list">
+								    <li class=""><i class="fas fa-check pink-chek_logo"></i>{{'Easy booking'|trans}}</li>
+								    <li class=""><i class="fas fa-check pink-chek_logo"></i>{{'Instant confirmation'|trans}}</li>
+								    <li class=""><i class="fas fa-check pink-chek_logo"></i>{{'Reschedule anytime'|trans}}</li>
+								    <li class=""><i class="fas fa-check pink-chek_logo"></i>{{'Best price guaranteed'|trans}}</li>
+								    <li class=""><i class="fas fa-check pink-chek_logo"></i>{{'24/5 Customer support'|trans}}</li>
+								</ul>
+							    </div>
+							</div>
+						    </div>
+						    <div class="col-xs-12 nopad margin_top_20">
+							<div class="border_1_grey"></div>
+						    </div>
+						    <div class="col-xs-12 nopad margin_top_30 padding_left_20">
+							<p class="black font-16 font-bold line-height-16 margin_bottom_0">{{'Need Help?'|trans}} <a class="font-16 font-bold pink underline" href="#">{{'Contact Us'|trans}}</a></p>
+						    </div>
+						    <div class="col-xs-12 nopad margin_top_30">
+							<div class="border_1_grey"></div>
+						    </div>
+						    <div class="col-xs-12 nopad margin_top_30 padding_left_20">
+							<p class="black font-16 font-bold">{{'Secure & simple payments'|trans}}</p>
+							<p class="grey font-14">{{'All our card payments are protected
+				    by thawte to give you peace of mind.'|trans}}</p>
+							<img class="margin_top_10" src="{{ generateMediaURL('/media/images/deals-details_new/secure_logo_sponcers.png') }}" alt="secure_logo_sponcers">
+						    </div>
+						</div>
+					    </div>
+					</div>
+				    </form>
+				</div>
+			    </div>
+			    {% if details['topDeals'] %}
+				<div class="row no-margin">
+				    <div class="col-xs-12 nopad margin_top_10">
+					<p class="font-24 black">{{'Our travelers also loved'|trans}}</p>
+					<div class="row deals_new_margin">
+					    {% for topList in details['topDeals'] %}
+						<div class="col-md-3 col-sm-6 col-xs-12 deals_new_padding">
+						    <div class="row no-margin">
+							<a href="{{ topList.urlPath|raw }}" title="" class="col-xs-12 nopad grey_img_and_txt_container">
+							    <div class="row no-margin">
+								<div class="col-xs-12 nopad image_style_container">
+								    <img class="full_width" src="{{ topList.imagePath|raw }}" alt="test_img_2">
+								    <div class="discount_img"><p>{{'-5%'|trans}}</p></div>
+								</div>
+								<div class="col-xs-12 nopad text_style_container">
+								    <h4 class="image_txt_subtitle">
+									{{ topList.dealName|length > 100 ? topList.dealName|slice(0, 100) ~ '...' : topList.dealName}}
+								    </h4>
+								    <p class="travelers_recommendation">{{'86% of travelers recommend'|trans}}</p>
+								    <p class="price_pink">
+									<span class="a_price price-convert" data-price="{{ topList.priceBeforePromo|raw }}"><span class="currency-convert-text">{{topList.currency}}</span> <span class="price-convert-text">{{ topList.formattedPriceBeforePromo|raw }}</span></span>
+								    </p>
+								</div>
+							    </div>
+							</a>
+						    </div>
+						</div>
+					    {% endfor %}
+					</div>
+				    </div>
+				</div>
+			    {% endif %}
+			</section>
+			{% endif %}
+			{% endblock %}

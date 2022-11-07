@@ -1,0 +1,51 @@
+TTBundle\Entity\CmsTubersLoginTracking:
+    type: entity
+    table: cms_tubers_login_tracking
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        ipAddress:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: ip_address
+        forwardedIpAddress:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: forwarded_ip_address
+        userAgent:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: user_agent
+        userId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: user_id
+        logTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: log_ts
+    lifecycleCallbacks: {  }

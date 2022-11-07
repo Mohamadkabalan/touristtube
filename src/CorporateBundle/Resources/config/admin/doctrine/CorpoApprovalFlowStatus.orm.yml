@@ -1,0 +1,40 @@
+CorporateBundle\Entity\CorpoApprovalFlowStatus:
+    type: entity
+    table: corpo_aproval_flow_status
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAdminApprovalFlowRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 20
+            column: name
+        sortOrder:
+            type: integer
+            nullable: false
+            column: sort_order    
+        isApproved:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_approved
+        isCanceled:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_canceled
+    lifecycleCallbacks: {  }

@@ -1,0 +1,77 @@
+TTBundle\Entity\CmsReport:
+    type: entity
+    table: cms_report
+    repositoryClass: TTBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        ownerId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: owner_id
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        channelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: channel_id
+        msg:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                default: ''
+                fixed: false
+        reason:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                default: ''
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                default: ''
+                fixed: false
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+    lifecycleCallbacks: {  }

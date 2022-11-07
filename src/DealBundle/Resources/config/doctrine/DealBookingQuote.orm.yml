@@ -1,0 +1,79 @@
+DealBundle\Entity\DealBookingQuote:
+    type: entity
+    table: deal_booking_quote
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        packageId:
+            type: integer
+            nullable: false
+            column: package_id
+        tourCode:
+            type: string
+            nullable: false
+            length: 45
+            column: tour_code
+        activityPriceId:
+            type: string
+            nullable: false
+            length: 45
+            column: activity_price_id
+        priceId:
+            type: string
+            nullable: false
+            length: 45
+            column: price_id
+        quoteKey:
+            type: string
+            nullable: false
+            length: 150
+            column: quote_key
+        total:
+            type: decimal
+            nullable: false
+            column: total
+        timeId:
+            type: string
+            nullable: true
+            length: 45
+            column: time_id
+        time:
+            type: string
+            nullable: true
+            length: 20
+            column: time
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+        dynamicFields:
+            type: text
+            nullable: true
+            length: 255
+            column: dynamic_fields
+        dynamicFieldsValues:
+            type: text
+            nullable: true
+            length: 255
+            column: dynamic_fields_values
+    lifecycleCallbacks: {  }

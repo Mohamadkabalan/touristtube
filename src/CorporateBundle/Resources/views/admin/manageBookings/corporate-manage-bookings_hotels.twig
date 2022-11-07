@@ -1,0 +1,76 @@
+<div class="col-xs-12 nopad">
+    <div class="row no-margin margin_top_20">
+        <div class="col-sm-9 col-xs-12 nopad">
+            <div class="row no-margin">
+                <div class="col-xs-12 nopad">
+                    <p class="font-16 black float-left padding_right_10">{{travel.name|raw}}</p>
+                    <p class="font-16 grey_dark float-left padding_right_10">Booking number: <span class="black">{{travel.reservationId|raw}}</span></p>
+                    <p class="font-16 grey_dark float-left padding_right_10">{#PIN Code: <span class="black">{{ 123 }}</span><#}</p>
+                </div>
+
+                <div class="col-xs-12 nopad">
+                    <p class="font-13 grey_light float-left padding_right_10 font-bold">
+                        CHECK-IN <span class="black font-16">{{travel.fromdate|date('d M Y')}}</span> <span class="black">{{travel.fromdate|date('l')}}</span>
+                    </p>
+                    <p class="font-13 grey_light float-left padding_right_10 font-bold">
+                        CHECK-OUT <span class="black font-16">{{travel.todate|date('d M Y')}}</span> <span class="black">{{travel.todate|date('l')}}</span>
+                    </p>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="font-14 grey_light">Requested by: {{travel.userName|raw}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-xs-12 nopad">
+            <div class="row no-margin">
+                <div class="col-xs-12 nopad">
+                    <p class="ttl_price float-right">{{travel.currency|raw}} {{travel.amount|raw|number_format(2, '.', ',')}}</p>
+                    <img class="float-right" src="{{ generateMediaURL('/media/images/corporate_new/room_service_logo.png') }}" alt="{{'room_service_logo'|trans}}">
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="row no-margin">
+	<div class="col-xs-12 nopad">
+	    <ul class="vc_list">
+		<li>		
+		    {% if travel.status == approveStatus %}
+			<a class="vd_li viewHotelDetails" href="javascript:void(0)" data-toggle="modal1" data-target="#myModal1" onclick="detailPopup('{{ generateLangRoute(LanguageGet, '_corporate_hotel_reservation_request_details', {'reservationId':travel.reservationId}) }}')">{{'View details'|trans}}</a>
+		    {% else %}
+			{% set travelDetails = decodeJSON(travel.details) %}
+			<a class="vd_li viewHotelDetails" target="_blank" href="{{ generateLangRoute(LanguageGet, '_corporate_booking_details', {'reference':travelDetails.reference}) }}">{{'View details'|trans}}</a>
+		    {% endif %}		    
+		</li>
+		{% if travel.status == expiredStatus %}
+		    <li class="">{{'Expired'|trans}} |</li>
+		{% elseif travel.status == approvedStatus %}
+		    <li class="sep_li"> | 
+			{{'Approved'|trans}}
+			{% if date().timestamp >=  travel.fromdate|date('l, F d, Y') %}
+			    {% set transactionDate = (date(travel.transactionDate).timestamp) %}
+			    {% set today = date("H", "GMT") %}
+			    {% if (transactionDate <= date().timestamp and  today|date("H", "GMT") < FLIGHT_LAST_HOUR_TO_CANCEL )  %}
+				<a href="javascript:void(0)" class="c_li" onclick="cancelRequest({{travel.reservationId|raw}}, {{travel.requestServicesDetailsId|raw}}, {{travel.moduleId|raw}}, {{travel.transactionUserId|raw}})">{{'Cancel'|trans}}</a>
+			    {% endif %}
+			{% endif %}
+			|</li>
+		{% elseif travel.status == canceledStatus %}
+		    <li class=""> | {{'Canceled'|trans}}</li>
+		{% elseif travel.status == rejectedStatus %}
+		    <li class=""> | {{'Rejected'|trans}}</li>
+		{% else %}
+            {% if allowApprove %}
+                <li class="">
+                    &nbsp;| <a href="javascript:void(0)" class="vd_li" onclick="approveRequest({{travel.reservationId|raw}},{{travel.moduleId|raw}},{{travel.accountId|raw}},{{travel.transactionUserId|raw}},{{travel.requestServicesDetailsId|raw}})">{{'Approve'|trans}}</a>
+                |</li>
+                <li class="">
+                    &nbsp;| <a href="javascript:void(0)" class="vd_li" onclick="rejectRequest({{travel.requestServicesDetailsId|raw}},{{travel.transactionUserId|raw}})">{{'Reject'|trans}}</a>
+                </li>
+            {% endif %}
+		{% endif %}
+	    </ul>
+	</div>
+    </div>
+    <div class="row no-margin bordered_row_1"></div>
+</div>
+

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with WSDLGenerator 1.0.0 by Amadeus SAS -->
+<!-- "Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved." -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.amadeus.com" xmlns:awsse="http://xml.amadeus.com/2010/06/Session_v3" xmlns:awsl="http://wsdl.amadeus.com/2010/06/ws/Link_v1" xmlns:amasec="http://xml.amadeus.com/2010/06/Security_v1" xmlns:hotel_sell_15_4="http://xml.amadeus.com/HBKRCQ_15_4_1A" xmlns:hotel_sellreply_15_4="http://xml.amadeus.com/HBKRCR_15_4_1A" xmlns:hotel_completereservationdetails_7_1="http://xml.amadeus.com/HCRDRQ_07_1_1A" xmlns:hotel_completereservationdetailsreply_7_1="http://xml.amadeus.com/HCRDRR_07_1_1A" xmlns:pnr_namechange_14_1="http://xml.amadeus.com/NMEREQ_14_1_1A" xmlns:pnr_namechangereply_14_1="http://xml.amadeus.com/NMERES_14_1_1A" xmlns:pnr_reply_15_1="http://xml.amadeus.com/PNRACC_15_1_1A" xmlns:pnr_addmultielements_15_1="http://xml.amadeus.com/PNRADD_15_1_1A" xmlns:pnr_retrieve_15_1="http://xml.amadeus.com/PNRRET_15_1_1A" xmlns:pnr_cancel_15_1="http://xml.amadeus.com/PNRXCL_15_1_1A" xmlns:pnr_list_0_1="http://xml.amadeus.com/TNLRES_00_1_1A" xmlns:security_authenticate_6_1="http://xml.amadeus.com/VLSSLQ_06_1_1A" xmlns:security_authenticatereply_6_1="http://xml.amadeus.com/VLSSLR_06_1_1A" xmlns:security_signout_4_1="http://xml.amadeus.com/VLSSOQ_04_1_1A" xmlns:security_signoutreply_4_1="http://xml.amadeus.com/VLSSOR_04_1_1A" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" targetNamespace="http://xml.amadeus.com">
+  <wsp:Policy wsu:Id="MessagingPolicy">
+    <wsam:Addressing wsp:Optional="true">
+      <wsp:Policy>
+        <wsam:AnonymousResponses />
+      </wsp:Policy>
+    </wsam:Addressing>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="AmadeusPolicy">
+    <wsp:PolicyReference URI="#MessagingPolicy" />
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema>
+      <xs:import schemaLocation="AMA/2012B/AMA_WS_Session.xsd" namespace="http://xml.amadeus.com/2010/06/Session_v3" />
+      <xs:import schemaLocation="AMA_WSLink.xsd" namespace="http://wsdl.amadeus.com/2010/06/ws/Link_v1" />
+      <xs:import schemaLocation="AMA/2012B/AMA_SecurityHostedUser.xsd" namespace="http://xml.amadeus.com/2010/06/Security_v1" />
+      <xs:import schemaLocation="Hotel_Sell_15_4_1A.xsd" namespace="http://xml.amadeus.com/HBKRCQ_15_4_1A" />
+      <xs:import schemaLocation="Hotel_SellReply_15_4_1A.xsd" namespace="http://xml.amadeus.com/HBKRCR_15_4_1A" />
+      <xs:import schemaLocation="Hotel_CompleteReservationDetails_07_1_1A.xsd" namespace="http://xml.amadeus.com/HCRDRQ_07_1_1A" />
+      <xs:import schemaLocation="Hotel_CompleteReservationDetailsReply_07_1_1A.xsd" namespace="http://xml.amadeus.com/HCRDRR_07_1_1A" />
+      <xs:import schemaLocation="PNR_NameChange_14_1_1A.xsd" namespace="http://xml.amadeus.com/NMEREQ_14_1_1A" />
+      <xs:import schemaLocation="PNR_NameChangeReply_14_1_1A.xsd" namespace="http://xml.amadeus.com/NMERES_14_1_1A" />
+      <xs:import schemaLocation="PNR_Reply_15_1_1A.xsd" namespace="http://xml.amadeus.com/PNRACC_15_1_1A" />
+      <xs:import schemaLocation="PNR_AddMultiElements_15_1_1A.xsd" namespace="http://xml.amadeus.com/PNRADD_15_1_1A" />
+      <xs:import schemaLocation="PNR_Retrieve_15_1_1A.xsd" namespace="http://xml.amadeus.com/PNRRET_15_1_1A" />
+      <xs:import schemaLocation="PNR_Cancel_15_1_1A.xsd" namespace="http://xml.amadeus.com/PNRXCL_15_1_1A" />
+      <xs:import schemaLocation="PNR_List_00_1_1A.xsd" namespace="http://xml.amadeus.com/TNLRES_00_1_1A" />
+      <xs:import schemaLocation="Security_Authenticate_06_1_1A.xsd" namespace="http://xml.amadeus.com/VLSSLQ_06_1_1A" />
+      <xs:import schemaLocation="Security_AuthenticateReply_06_1_1A.xsd" namespace="http://xml.amadeus.com/VLSSLR_06_1_1A" />
+      <xs:import schemaLocation="Security_SignOut_04_1_1A.xsd" namespace="http://xml.amadeus.com/VLSSOQ_04_1_1A" />
+      <xs:import schemaLocation="Security_SignOutReply_04_1_1A.xsd" namespace="http://xml.amadeus.com/VLSSOR_04_1_1A" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Session_3.000">
+    <wsdl:part name="session" element="awsse:Session" />
+  </wsdl:message>
+  <wsdl:message name="TransactionFlowLink_1.0">
+    <wsdl:part name="link" element="awsl:TransactionFlowLink" />
+  </wsdl:message>
+  <wsdl:message name="AMA_SecurityHostedUser_1.000">
+    <wsdl:part name="security" element="amasec:AMA_SecurityHostedUser" />
+  </wsdl:message>
+  <wsdl:message name="Hotel_CompleteReservationDetails_7_1">
+    <wsdl:part name="Hotel_CompleteReservationDetails_7_1" element="hotel_completereservationdetails_7_1:Hotel_CompleteReservationDetails" />
+  </wsdl:message>
+  <wsdl:message name="Hotel_CompleteReservationDetailsReply_7_1">
+    <wsdl:part name="Hotel_CompleteReservationDetailsReply_7_1" element="hotel_completereservationdetailsreply_7_1:Hotel_CompleteReservationDetailsReply" />
+  </wsdl:message>
+  <wsdl:message name="Hotel_Sell_15_4">
+    <wsdl:part name="Hotel_Sell_15_4" element="hotel_sell_15_4:Hotel_Sell" />
+  </wsdl:message>
+  <wsdl:message name="Hotel_SellReply_15_4">
+    <wsdl:part name="Hotel_SellReply_15_4" element="hotel_sellreply_15_4:Hotel_SellReply" />
+  </wsdl:message>
+  <wsdl:message name="PNR_AddMultiElements_15_1">
+    <wsdl:part name="PNR_AddMultiElements_15_1" element="pnr_addmultielements_15_1:PNR_AddMultiElements" />
+  </wsdl:message>
+  <wsdl:message name="PNR_Cancel_15_1">
+    <wsdl:part name="PNR_Cancel_15_1" element="pnr_cancel_15_1:PNR_Cancel" />
+  </wsdl:message>
+  <wsdl:message name="PNR_List_0_1">
+    <wsdl:part name="PNR_List_0_1" element="pnr_list_0_1:PNR_List" />
+  </wsdl:message>
+  <wsdl:message name="PNR_NameChange_14_1">
+    <wsdl:part name="PNR_NameChange_14_1" element="pnr_namechange_14_1:PNR_NameChange" />
+  </wsdl:message>
+  <wsdl:message name="PNR_NameChangeReply_14_1">
+    <wsdl:part name="PNR_NameChangeReply_14_1" element="pnr_namechangereply_14_1:PNR_NameChangeReply" />
+  </wsdl:message>
+  <wsdl:message name="PNR_Reply_15_1">
+    <wsdl:part name="PNR_Reply_15_1" element="pnr_reply_15_1:PNR_Reply" />
+  </wsdl:message>
+  <wsdl:message name="PNR_Retrieve_15_1">
+    <wsdl:part name="PNR_Retrieve_15_1" element="pnr_retrieve_15_1:PNR_Retrieve" />
+  </wsdl:message>
+  <wsdl:message name="Security_Authenticate_6_1">
+    <wsdl:part name="Security_Authenticate_6_1" element="security_authenticate_6_1:Security_Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="Security_AuthenticateReply_6_1">
+    <wsdl:part name="Security_AuthenticateReply_6_1" element="security_authenticatereply_6_1:Security_AuthenticateReply" />
+  </wsdl:message>
+  <wsdl:message name="Security_SignOut_4_1">
+    <wsdl:part name="Security_SignOut_4_1" element="security_signout_4_1:Security_SignOut" />
+  </wsdl:message>
+  <wsdl:message name="Security_SignOutReply_4_1">
+    <wsdl:part name="Security_SignOutReply_4_1" element="security_signoutreply_4_1:Security_SignOutReply" />
+  </wsdl:message>
+  <wsdl:portType name="AmadeusWebServicesPT">
+    <wsdl:operation name="Hotel_CompleteReservationDetails">
+      <wsdl:input message="tns:Hotel_CompleteReservationDetails_7_1" />
+      <wsdl:output message="tns:Hotel_CompleteReservationDetailsReply_7_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_Sell">
+      <wsdl:input message="tns:Hotel_Sell_15_4" />
+      <wsdl:output message="tns:Hotel_SellReply_15_4" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_AddMultiElements">
+      <wsdl:input message="tns:PNR_AddMultiElements_15_1" />
+      <wsdl:output message="tns:PNR_Reply_15_1" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Cancel">
+      <wsdl:input message="tns:PNR_Cancel_15_1" />
+      <wsdl:output message="tns:PNR_Reply_15_1" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_NameChange">
+      <wsdl:input message="tns:PNR_NameChange_14_1" />
+      <wsdl:output message="tns:PNR_NameChangeReply_14_1" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Retrieve">
+      <wsdl:input message="tns:PNR_Retrieve_15_1" />
+      <wsdl:output message="tns:PNR_Reply_15_1" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Retrieve2">
+      <wsdl:input message="tns:PNR_Retrieve_15_1" />
+      <wsdl:output message="tns:PNR_List_0_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Security_Authenticate">
+      <wsdl:input message="tns:Security_Authenticate_6_1" />
+      <wsdl:output message="tns:Security_AuthenticateReply_6_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Security_SignOut">
+      <wsdl:input message="tns:Security_SignOut_4_1" />
+      <wsdl:output message="tns:Security_SignOutReply_4_1" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AmadeusWebServicesBinding" type="tns:AmadeusWebServicesPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Hotel_CompleteReservationDetails">
+      <soap:operation soapAction="http://webservices.amadeus.com/HCRDRQ_07_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_Sell">
+      <soap:operation soapAction="http://webservices.amadeus.com/HBKRCQ_15_4_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_AddMultiElements">
+      <soap:operation soapAction="http://webservices.amadeus.com/PNRADD_15_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Cancel">
+      <soap:operation soapAction="http://webservices.amadeus.com/PNRXCL_15_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_NameChange">
+      <soap:operation soapAction="http://webservices.amadeus.com/NMEREQ_14_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Retrieve">
+      <soap:operation soapAction="http://webservices.amadeus.com/PNRRET_15_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Retrieve2">
+      <soap:operation soapAction="http://webservices.amadeus.com/PNRRET_15_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Security_Authenticate">
+      <soap:operation soapAction="http://webservices.amadeus.com/VLSSLQ_06_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Security_SignOut">
+      <soap:operation soapAction="http://webservices.amadeus.com/VLSSOQ_04_1_1A" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+        <soap:header part="security" use="literal" message="tns:AMA_SecurityHostedUser_1.000" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header part="session" use="literal" message="tns:Session_3.000" />
+        <soap:header part="link" use="literal" message="tns:TransactionFlowLink_1.0" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AmadeusWebServices">
+    <wsdl:port name="AmadeusWebServicesPort" binding="tns:AmadeusWebServicesBinding">
+      <wsp:PolicyReference URI="#AmadeusPolicy" />
+      <soap:address location="https://nodeD1.production.webservices.amadeus.com/1ASIWTOTOUT" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+
+
+<!-- Build Key: 1F8B080000000000000025CDCB0AC2301040D17DBF62968AB44C8A0F9A5D7D500A4A8546BA8E3A94603B29492AF8F706DDDEC5B91531391D8C650866241FF43849C851EC522C5291839AC93FF50750C87521375BA82E6A85281193AE3D9EA1FA03D6C19B9C8F8E04916186C96130C4A0A769308FDF4082B2B3333EA8F94E507320C714606FEDCB700F27EE0D132C54A396912EAFC07AA4A8956DDDC5D8DCD41773AC531BAD000000 -->

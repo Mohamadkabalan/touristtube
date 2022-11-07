@@ -1,0 +1,53 @@
+{% set data = decodeJSON(travel.details) %}
+<div class="row no-margin">
+    <div class="col-xs-12 nopad">
+	<div class="row no-margin margin_top_20 margin_bottom_20">
+	    <div class="col-sm-9 col-xs-12 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<p class="font-22 black float-left padding_right_10 line-height-35">{{travel.name|raw}}</p>
+			<p class="font-17 black float-left padding_right_10 line-height-35">{{data.airline|raw}}{{data.flightNumber|raw}}</p>
+			<img class="float-left" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{data.logo|raw}}" alt="{{'flight_comp_img'|trans}}">
+		    </div>
+		    <div class="col-sm-6 col-xs-12 nopad">
+			<p class="font-14 blue">{{'Departure'|trans}}</p>
+			<p class="font-14 black">{{travel.fromdate|date('d M Y l')}}</p>
+			<p class="font-14 black"><span class="font-bold">{{travel.fromdate|date('h:i A')}}</span> {{data.departureAirportName|raw}} <span class="font-bold">{{data.departureAirport|raw}}</span></p>
+			<p class="font-14 grey_light">{{'Stop:'|trans}}<span class="black">{{data.nStops|raw}}</span></p>
+			<p class="font-14 grey_light">{{'Flight type:'|trans}}<span class="black">{{data.flightType|raw}}</span></p>
+			<p class="font-14 grey_light margin_top_10">{{'Requested By:'|trans}} {{travel.userName|raw}}</p>
+		    </div>
+		    <div class="col-sm-6 col-xs-12 nopad">
+			<p class="font-14 blue">{{'Arrival'|trans}}</p>
+			<p class="font-14 black">{{travel.todate|date('d M Y l')}}</p>
+			<p class="font-14 black"><span class="font-bold">{{travel.todate|date('h:i A')}}</span> {{data.arrivalAirportName|raw}} <span class="font-bold">{{data.arrivalAirport|raw}}</span></p>
+			<p class="font-14 grey_light">{{'Number of passengers:'|trans}}<span class="black">{{data.nPassengers|raw}}</span></p>
+			<p class="font-14 grey_light"><span class="black">{{'Non-refundable'|trans}}</span></p>
+			<p class="font-14 grey_light">{{'Requested On: '|trans}}{{travel.transactionDate|date("l, F, d Y")}}</p>
+		    </div>
+		</div>
+
+	    </div>
+	    <div class="col-sm-3 col-xs-12 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<p class="ttl_price float-right price-convert" data-price="{{ travel.amount|raw }}"><span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.amount|raw|number_format(2, '.', ',')}}</span></p>
+			<img class="float-right" src="{{ generateMediaURL('/media/images/corporate_new/flight_logo.png') }}" alt="{{'flight_logo'|trans}}">
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<ul class="vc_list">
+			    <li>
+    				{% if flights_link is defined and flights_link is not empty %}
+    				    <a type="button" data-toggle="modal1" data-target="#myModal1" class="vd_li" href="{{ flights_link ~ travel.reservationId }}">{{'View details'|trans}}</a>
+    				{% else %}
+    				    <a type="button" href="{{ generateLangRoute(LanguageGet, '_corporate_flight_details', {'reservationId':travel.reservationId, 'hideHeader':1})}}" target="_blank">{{'View details'|trans}}</a>
+    				{% endif %}
+			    </li>
+			</ul>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row no-margin bordered_row_1"></div>
+    </div>
+</div>

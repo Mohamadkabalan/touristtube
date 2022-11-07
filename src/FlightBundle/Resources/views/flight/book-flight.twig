@@ -1,0 +1,638 @@
+{# app/Resources/views/default/flight-booking.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/book-flight.css">   
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-breadcrumb.css" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+        var isCorporate = false;
+    </script>
+    <script type="text/javascript" src="/assets/vendor/jquery/plugins/session/js/jquery.sessionTimeout.min.js"></script>
+    <script type="text/javascript" src="/assets/flights/js/book-flight.js"></script>
+{% endblock %}
+{% block body %}
+    <section class="container containerresume">
+
+        {% set err = false %}
+
+        {% if priceError is defined %}
+            {% set err = true %}
+            <div class="price_error">
+                <p>{{'The price is no longer available.'|trans}}</p> 
+                <p>{{'This might happen if the trip is sold out or its price has changed.'|trans}}</p>
+                <p>{{'Kindly click'|trans}} <a href="javascript:history.back();">{{'here'|trans}}</a> {{'to choose another flight or'|trans}} <a id="searchAgain" href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}">{{'here'|trans}}</a> {{'to search again.'|trans}}</p>
+            </div>
+        {% elseif errors is defined %}
+            <div class="alert-danger error-container">
+                <ul>
+                    {% for message in errors %}
+                        <li>
+                            {{message|raw}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% elseif error is defined %}
+            <div class="alert-danger error-container">
+                {{error}}
+            </div>
+        {% endif %}
+
+        {% if not err %}
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 divstepspad hidden-sm hidden-xs flight-breadcrumb">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 firststep hidden-xs">
+                    <div class="bullet">
+                        <p>1</p>
+                    </div>
+                    <p class="number-step-text">{{'Select your flight'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sndstep blue_bullet">
+                    <div class="bullet">
+                        <p>2</p>
+                    </div>
+                    <p class="number-step-text">{{'Enter your details'|trans}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 thirdstep hidden-xs">
+                    <div class="bullet">
+                        <p>3</p>
+                    </div>
+                    <p class="number-step-text">{{'Confirm your payment'|trans}}</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            {{ form_start(form, {'action': path('_flight_controller_service'), 'attr': {'id': 'bookAirTicket'}}) }}
+            <div class="error form-errors">{{ form_errors(form) }}</div>
+            {% if flight_segments.leaving.multi_destination == 1 %}
+                <div class="multi-destination-container">
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad mar-top-40">
+                            <div id="left">
+                                {% for flight_info in flight_segments.leaving.flight_info %}
+                                    <a href="#target{{loop.index}}" rel="nofollow" class="tabslide">trip {{loop.index}}</a>
+                                    <div class="borderrdiv"></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div id="right">
+                                {% for key, flight_info in flight_segments.leaving.flight_info %}
+                                    <div class="tabslide slider" id="target{{loop.index}}">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="col-xs-12 blueresume">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopad">
+                                                    <div class="textdiv floatlefttext">
+                                                        <div class="departresume">{{'departing from:'|trans}}</div>
+                                                        <div class="cityresume">{{flight_info.origin_city |raw}}</div>
+                                                    </div>
+                                                    <div class="newimgdiv">
+                                                        <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                                    </div>
+                                                    <div class="textdiv floatrighttext">
+                                                        <div class="destinationresume">{{'destination:'|trans}}</div>
+                                                        <div class="destinationcityresume">
+                                                            {% if flight_info.stop_segment is iterable %}
+                                                                {% set city = "" %}
+                                                                {% for index, stop_segment in flight_info.stop_segment %}
+                                                                    {% set city = stop_segment.destination_city |raw %}
+                                                                {% endfor %}
+                                                                {{city}}
+                                                            {% else %}
+                                                                {{flight_info.destination_city |raw}}
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 greyresume">
+                                                <div class="textdivresume">
+                                                    <div class="flight-fields">
+                                                        <div class="flight-field locdepartresume flight-bullet">{{flight_info.origin_airport|raw}}</div>
+                                                        <div class="flight-field firstnumbresume">{{flight_info.airline_name|raw}} - {{flight_info.airline_code|raw}}{{flight_info.flight_number|raw}}</div>
+                                                        <div class="flight-field firstnumbresume">{{flight_info.departure_date|raw}} - {{flight_info.departure_time|raw}}</div>
+                                                        <div class="flights-border-link"></div>
+                                                        <div class="flight-field destresume flight-bullet {% if flight_info.stop_segment is iterable %} small-flight-bullet {% endif %}">
+                                                            <div class="compflimg">
+                                                                <img class="chtimg" alt="{{flight_info.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{flight_info.airline_code|raw}}.jpg"/>
+                                                            </div>
+                                                            <div>{{flight_info.destination_airport|raw}}</div>
+                                                            <div class="firstnumbresume">{{flight_info.arrival_date|raw}} - {{flight_info.arrival_time|raw}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="stop-flight-fields">
+                                                        {% if flight_info.stop_segment is iterable %}
+                                                            {% for stop_segment in flight_info.stop_segment %}
+                                                                <div class="stop-wrap">
+                                                                    <div class="stopsresume">{{'Stop:'|trans}}<span class="spanfirstresume">{{stop_segment.stop_duration|raw}}</span></div>
+                                                                    <div class="stop-border-link"></div>
+                                                                </div>
+                                                                <div class="flight-fields">
+                                                                    <div class="flight-field locdepartresume flight-bullet small-flight-bullet">{{stop_segment.origin_airport|raw}}</div>
+                                                                    <div class="flight-field firstnumbresume">{{stop_segment.airline_name|raw}} - {{stop_segment.airline_code|raw}}{{stop_segment.flight_number|raw}}</div>
+                                                                    <div class="flight-field firstnumbresume">{{stop_segment.departure_date|raw}} - {{stop_segment.departure_time|raw}}</div>
+                                                                    <div class="flights-border-link"></div>
+                                                                    <div class="flight-field destresume flight-bullet small-flight-bullet">
+                                                                        <div class="compflimg">
+                                                                            <img class="chtimg" alt="{{stop_segment.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{stop_segment.airline_code|raw}}.jpg"/>
+                                                                        </div>
+                                                                        <div>{{stop_segment.destination_airport|raw}}</div>
+                                                                        <div class="firstnumbresume">{{stop_segment.arrival_date|raw}} - {{stop_segment.arrival_time|raw}}</div>
+                                                                    </div>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="round-or-one-trip-container">
+                    {% set flightType = "" %}
+                    {% set col = "" %}
+                    {% if flight_segments.leaving.one_way %}
+                        {% set flightType = "one-way" %}
+                        {% set col = "12" %}
+                    {% else %}
+                        {% set flightType = "roundtrip" %}
+                        {% set col = "6" %}
+                    {% endif %}
+                    {% for key, flight_segment in flight_segments %}
+                        <div class="col-lg-{{col}} col-md-{{col}} col-sm-{{col}} col-xs-12 padlefresume {{flightType}}">
+                            <div class="col-xs-12 blueresume">
+                                <div class="textdiv floatlefttext">
+                                    <div class="departresume">{{'departing from:'|trans}}</div>
+                                    <div class="cityresume">{{flight_segment.origin_city|raw}}</div>
+                                </div>
+                                <div class="newimgdiv">
+                                    <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="{{'airplane'|trans}}">
+                                </div>
+                                <div class="textdiv floatrighttext">
+                                    <div class="destinationresume">{{'destination:'|trans}}</div>
+                                    <div class="destinationcityresume">{{flight_segment.destination_city|raw}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 greyresume">
+                                {% for flight_info in flight_segment.flight_info %}
+                                    <div class="textdivresume">
+                                        {% if flight_info.stop_indicator != 1 %}
+                                            <div class="dateresume">{{flight_info.departure_date|raw}}</div>
+                                        {% else %}
+                                            <div class="stopsresume">Stop:<span class="spanfirstresume">{{flight_info.stop_duration|raw}}</span></div>
+                                            <div class="stop-border-link"></div>
+                                        {% endif %}
+                                        <div class="flight-fields">
+                                            <div class="flight-field locdepartresume flight-bullet">{{flight_info.origin_airport|raw}}</div>
+                                            <div class="flight-field firstnumbresume">{{flight_info.airline_name|raw}} - {{flight_info.airline_code|raw}}{{flight_info.flight_number|raw}}</div>
+                                            <div class="flight-field firstnumbresume">{{flight_info.departure_date|raw}} - {{flight_info.departure_time|raw}}</div>
+                                            <div class="flights-border-link"></div>
+                                            <div class="flight-field destresume flight-bullet">
+                                                <div class="compflimg">
+                                                    <img class="chtimg" alt="{{flight_info.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{flight_info.airline_code|raw}}.jpg"/>
+                                                </div>
+                                                <div>{{flight_info.destination_airport|raw}}</div>
+                                                <div class="firstnumbresume">{{flight_info.arrival_date|raw}} - {{flight_info.arrival_time|raw}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% for index, passenger in form.passengerDetails %}
+                <div class="box-container adultcontainer col-xs-12">
+                    <h1 class="adultstyletext">{{passengersArray[index].name}}</h1>
+                    {{ form_widget(passenger.type, {'attr': {'value': passengersArray[index].type}}) }}
+                    <div class="col-xs-12 gender-wrapper">
+                        {{ form_widget(passenger.gender) }}
+                        <div class="error">{{ form_errors(passenger.gender) }}</div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                        <div class="form-group">
+                            {{ form_label(passenger.firstName) }}
+                            {{ form_widget(passenger.firstName) }}
+                            <div class="error">{{ form_errors(passenger.firstName) }}</div>
+                            <p class="downinputtext">{{'As it appears on your travel document'|trans}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                        <div class="form-group">
+                            {{ form_label(passenger.surname) }}
+                            {{ form_widget(passenger.surname) }}
+                            <div class="error">{{ form_errors(passenger.surname) }}</div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                        <div class="form-group">
+                            {{ form_label(passenger.dateOfBirth) }}
+                            {{ form_widget(passenger.dateOfBirth) }}
+                            <div class="error">{{ form_errors(passenger.dateOfBirth) }}</div>
+                        </div>
+                    </div>
+                    {% if isPassportRequired == 1 %}
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                        <div class="form-group col-lg-6 col-md-5 col-sm-5 col-xs-10">
+                            {{ form_label(passenger.passportNo) }}
+                            {{ form_widget(passenger.passportNo) }}
+                            <div class="error">{{ form_errors(passenger.passportNo) }}</div>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-5 col-sm-5 col-xs-10">
+                                {{ form_label(passenger.idNo) }}
+                                {{ form_widget(passenger.idNo) }}
+                                <div class="error">{{ form_errors(passenger.idNo) }}</div>
+                            </div>
+                        <div class="form-group">
+                            {{ form_label(passenger.passportExpiry) }}
+                            {{ form_widget(passenger.passportExpiry) }}
+                            <div class="error">{{ form_errors(passenger.passportExpiry) }}</div>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-5 col-sm-5 col-xs-10">
+                            {{ form_label(passenger.passportIssueCountry) }}
+                            {{ form_widget(passenger.passportIssueCountry) }}
+                            <div class="error">{{ form_errors(passenger.passportIssueCountry) }}</div>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-5 col-sm-5 col-xs-10">
+                            {{ form_label(passenger.passportNationalityCountry) }}
+                            {{ form_widget(passenger.passportNationalityCountry) }}
+                            <div class="error">{{ form_errors(passenger.passportNationalityCountry) }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-10 col-xs-12">
+                            {% if flight_segments.leaving.multi_destination == 1 %}
+                                <div>
+                                    <ul class="nostyleul">
+                                        {% for key, flight_info in flight_segments.leaving.flight_info %}
+                                            <li class="greylistyle col-xs-12 nopad">
+                                                <div class="flight-info col-lg-5 col-md-5 col-sm-5 col-xs-12 nopad form-group-wrap">
+                                                    {{flight_info.origin_airport_code|raw}} -
+                                                    {% if flight_info.stop_segment is iterable %}
+                                                        {% set airport = "" %}
+                                                        {% for index, stop_segment in flight_info.stop_segment %}
+                                                            {% set airport = stop_segment.destination_airport_code|raw %}
+                                                        {% endfor %}
+                                                        {{airport}}
+                                                    {% else %}
+                                                        {{flight_info.destination_airport_code |raw}}
+                                                    {% endif %}
+                                                    , {{flight_info.airline_name|raw}}
+                                                </div>
+                                                <div class="baggage-info col-lg-5 col-md-5 col-sm-5 col-xs-12 nopad">
+                                                    {% if passengersArray[index].leaving_baggage_info == "" or passengersArray[index].leaving_baggage_info == 0%}
+                                                        No information about baggage fees (Please confirm with airline)
+                                                    {% else %}
+                                                        {{passengersArray[index].leaving_baggage_info|raw}} {{'of hold luggage included.'|trans}}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="clear"></div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div>
+                                    <ul class="nostyleul">
+                                        {% for key, flight_segment in flight_segments %}
+                                            <li class="greylistyle col-xs-12 nopad">
+                                                <div class="flight-info col-lg-5 col-md-5 col-sm-5 col-xs-12 nopad form-group-wrap">{{flight_segment.origin_main_airport|raw}} - {{flight_segment.destination_main_airport|raw}}, {{flight_segment.main_airline|raw}}</div>
+                                                <div class="baggage-info col-lg-5 col-md-5 col-sm-5 col-xs-12 nopad">
+                                                    {% if key == 'returning' %}
+                                                        {% if passengersArray[index].returning_baggage_info == "" or passengersArray[index].returning_baggage_info == 0%}
+                                                            No information about baggage fees (Please confirm with airline)
+                                                        {% else %}
+                                                            {{passengersArray[index].returning_baggage_info|raw}} of hold luggage included.
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {% if passengersArray[index].leaving_baggage_info == "" or passengersArray[index].leaving_baggage_info == 0%}
+                                                            No information about baggage fees (Please confirm with airline)
+                                                        {% else %}
+                                                            {{passengersArray[index].leaving_baggage_info|raw}} of hold luggage included.
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                </div>
+                                                <div class="clear"></div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="box-container requirementscontainer col-xs-12">
+                <h2 class="adultstyletext">{{'Special Requirements'|trans}}</h2>
+                {{ form_widget(form.specialRequirement) }}
+                <div class="error">{{ form_errors(form.specialRequirement) }}</div>
+            </div>
+            <div class="box-container contactcontainer col-xs-12">
+                <h2 class="adultstyletext">{{'Contact'|trans}}</h2>
+
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                    <div class="form-group">
+                        {{ form_label(form.firstName) }}
+                        {{ form_widget(form.firstName) }}
+                        <div class="error">{{ form_errors(form.firstName) }}</div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                    <div class="form-group">
+                        {{ form_label(form.surname) }}
+                        {{ form_widget(form.surname) }}
+                        <div class="error">{{ form_errors(form.surname) }}</div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                    <div class="form-group">
+                        {{ form_label(form.countryOfResidence) }}
+                        {{ form_widget(form.countryOfResidence) }}
+                        <div class="error">{{ form_errors(form.countryOfResidence) }}</div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                    <div class="form-group">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email, {'value' : user_email}) }}
+                        <div class="error">{{ form_errors(form.email) }}</div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 padtz form-group-wrap">
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4 padlz">
+                        {{ form_label(form.mobileCountryCode) }}
+                        {{ form_widget(form.mobileCountryCode) }}
+                        <div class="error">{{ form_errors(form.mobileCountryCode) }}</div>
+                    </div>
+                    <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8 padrz">
+                        {{ form_widget(form.mobile) }}
+                        <div class="error">{{ form_errors(form.mobile) }}</div>
+                    </div>
+                    <div class="clear"></div>
+                    {#<p class="downinputtext">{{'Free SMS confirmation & trip information'|trans}}</p>#}
+                    <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8 padrz">
+                        <div class="form-group">
+                            {{ form_label(form.membership_id) }}
+                            {{ form_widget(form.membership_id) }}
+                            <div class="error">{{ form_errors(form.membership_id) }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                    <div class="form-group">
+                        {{ form_label(form.alternativeNumber) }}
+                        {{ form_widget(form.alternativeNumber) }}
+                        <div class="error">{{ form_errors(form.alternativeNumber) }}</div>
+                    </div>
+                </div>
+                {#{% if is_corporate_account == true %}
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 form-group-wrap">
+                        <div class="form-group">
+                            {{ form_label(form.pin) }}
+                            {{ form_widget(form.pin) }}
+                            <div class="error">{{ form_errors(form.pin) }}</div>
+                        </div>
+                    </div>
+                {% endif%}#}
+                {% if isUserLoggedIn != 1 %}
+
+                    <div id="passworddiv">
+                        <div class="col-xs-12 nopad padding-top-10">
+                            <p class="createacctxt">
+                                <span class="optionalacc">{{'(Optional)'|trans}}</span>
+                                {{'Create a TouristTube account'|trans}}
+                            </p>
+                        </div>
+                        <div class="col-xs-12 nopad padding-top-10">
+                            <p class="enterpasstxt">{{'Enter a password to create an account using the email address above.'|trans}}</p>
+                        </div>
+                        <div class="col-xs-12 nopad padding-top-10">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 smalpadleft0 bigleftpad0 form-group-wrap">
+                                <p class="createpassconf">{{'Create password'|trans}}</p>
+                                <div class="inputbox">
+                                    <input class="form-control1 formControlYourPassword" id="YourPassword" name="pass" type="password" value="" placeholder="{{'enter your password'|trans}}">
+                                </div>
+                                <label for="password" generated="true" class="error-label error-labelpassword"></label>
+                                <p class="chanospaces">{{'(should be at least 8 characters long and must be a combination of letters and numbers.)'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <span class="confemailwarning">
+                                    {{'By joining TouristTube, you agree to our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{ 'terms and conditions'|trans }}" class="termsncond">{{'terms and conditions'|trans}}</a> {{'and consent to our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{ 'privacy policy'|trans }}" class="termsncond">{{'privacy policy'|trans}}</a>.
+                                    </label>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {#<div id="passworddiv">
+                    <div class="col-xs-12 nopad padding-top-10">
+                        <p class="createacctxt"><span class="optionalacc">(Optional)</span> Create a TouristTube account</p>
+                    </div>
+                    <div class="col-xs-12 nopad padding-top-10">
+                        <p class="enterpasstxt">Enter a password to create an account using the email address above.</p>
+                    </div>
+                    <div class="col-xs-12 nopad padding-top-10">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 smalpadleft0 bigleftpad0 form-group-wrap">
+                            <p class="createpassconf">Create password</p>
+                            <div class="inputbox">
+                                <input type="text" name="pass" class="form-control1">
+                            </div>
+                            <p class="chanospaces">{{'(6 - 30 characters, no spaces)'|trans}}</p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 smalpadleft0">
+                            <p class="createpassconf">Confirm password</p>
+                            <div class="inputbox">
+                                <input type="text" name="pass" class="form-control2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value=""><span class="confemailwarning">{{'by joining TouristTube, I accept all'|trans}} <a class="termsncond" href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'terms & conditions'|trans}}"> {{'terms & conditions'|trans}}</a></span></label>
+                        </div>
+                    </div>
+                </div>#}
+
+            </div>
+
+            <div class="greylastdiv col-xs-12">
+                <div class="col-xs-12">
+                    <p class="flt">{{'Rates, taxes and fees included'|trans}}</p>
+                    <p id="displayAmount" class="frt price-convert" data-price="{{price|raw}}">{{'Amount'|trans}} <span id="displayCurrency" class="currency-convert-text">{{displayed_currency|raw}}</span> <span class="price-convert-text">{{displayed_price|raw}}</span></p>
+                </div>
+                {% if flight_segments.leaving.multi_destination == 1 %}
+                    <div class="multi-destination-container-wrap">
+                        {% for key, flight_info in flight_segments.leaving.flight_info %}
+                            {% if flight_info.stop_segment is iterable %}
+                                {%set destinationCity = "" %}
+                                {%set departureDate = "" %}
+                                {%set arrivalTime = "" %}
+                                {% for index, stop_segment in flight_info.stop_segment %}
+                                    {% set destinationCity = stop_segment.destination_city|raw %}
+                                    {% set departureDate = stop_segment.departure_date|raw %}
+                                    {% set arrivalTime = stop_segment.arrival_time|raw %}
+                                {% endfor %}
+                            {% else %}
+                                {% set destinationCity = flight_info.destination_city|raw %}
+                                {% set departureDate = flight_info.departure_date|raw %}
+                                {% set arrivalTime = flight_info.arrival_time|raw %}
+                            {% endif %}
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 bigdivpadlr multi-bottom-container">
+                                <div class="bluebigdiv">
+                                    <div class="col-xs-12 npsmdiv">
+                                        <ul class="textdiv floatlefttext">
+                                            <li class="departresume padleft20">{{'departing from:'|trans}}</li>
+                                            <li class="cityresume padleft20">{{flight_info.origin_city|raw}}</li>
+                                        </ul>
+                                        <div class="newimgdiv">
+                                            <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="{{'airplane'|trans}}">
+                                        </div>
+                                        <ul class="textdiv floatrighttext padright20">
+                                            <li class="destinationresume">{{'destination:'|trans}}</li>
+                                            <li class="destinationcityresume">{{destinationCity}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-12 npsmdiv">
+                                        <ul class="textdiv floatlefttext">
+                                            <li class="departresume depstyle padleft20">{{'Date'|trans}}</li>
+                                            <li class="cityresume depstyle2 padleft20">{{departureDate}}</li>
+                                        </ul>
+                                        <div class="absoultetextdiv">
+                                            <p class="depstyle">{{'Departs'|trans}}</p>
+                                            <p class="depstyle2">{{flight_info.departure_time|raw}}</p>
+                                        </div>
+                                        <ul class="textdiv floatrighttext padright20">
+                                            <li class="destinationresume depstyle">{{'Arrives'|trans}}</li>
+                                            <li class="destinationcityresume depstyle2">{{arrivalTime}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {% for key, flight_segment in flight_segments %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 bigdivpadlr">
+                            <div class="bluebigdiv">
+                                <div class="col-xs-12 npsmdiv">
+                                    <ul class="textdiv floatlefttext">
+                                        <li class="departresume padleft20">{{'departing from:'|trans}}</li>
+                                        <li class="cityresume padleft20">{{flight_segment.origin_city|raw}}</li>
+                                    </ul>
+                                    <div class="newimgdiv">
+                                        <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="{{'airplane'|trans}}">
+                                    </div>
+                                    <ul class="textdiv floatrighttext padright20">
+                                        <li class="destinationresume">{{'destination:'|trans}}</li>
+                                        <li class="destinationcityresume">{{flight_segment.destination_city|raw}}</li>
+                                    </ul>
+                                </div>
+                                {%set departureDate = "" %}
+                                {%set departureTime = "" %}
+                                {%set arrivalTime = "" %}
+                                {% for flight_info in flight_segment.flight_info %}
+                                    {% if flight_info.stop_indicator != 1 %}
+                                        {% set departureDate = flight_info.departure_date|raw %}
+                                        {% set departureTime = flight_info.departure_time|raw %}
+                                    {% endif %}
+                                    {% set arrivalTime = flight_info.arrival_time|raw %}
+                                {% endfor %}
+                                <div class="col-xs-12 npsmdiv">
+                                    <ul class="textdiv floatlefttext">
+                                        <li class="departresume depstyle padleft20">{{'Date'|trans}}</li>
+                                        <li class="cityresume depstyle2 padleft20">{{departureDate}}</li>
+                                    </ul>
+                                    <div class="absoultetextdiv">
+                                        <p class="depstyle">{{'Departs'|trans}}</p>
+                                        <p class="depstyle2">{{departureTime}}</p>
+                                    </div>
+                                    <ul class="textdiv floatrighttext padright20">
+                                        <li class="destinationresume depstyle">{{'Arrives'|trans}}</li>
+                                        <li class="destinationcityresume depstyle2">{{arrivalTime}}</li>
+                                    </ul>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="clear"></div>
+                <div class="terms-wrap">
+                    {# <div class="checkbox checkbox-terms form-group-wrap">
+                         <div>
+                             {{ form_widget(form.bestOffersPrivacy) }} {{'Tick this box to confirm you have read and accept on the basis of paragraph of the <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'privacy policy'|trans}}"> privacy policy</a> the best offers available'|trans}}
+                         </div>
+                         <div class="error">{{ form_errors(form.bestOffersPrivacy) }}</div>
+                     </div>#}
+
+                    <div class="checkbox checkbox-terms form-group-wrap">
+                        <div>
+                            {{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br/>
+                            {{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br/>
+                            {{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - {{'Expected reply within 24 hours.'|trans}}
+                            <br/>
+                            <br/>
+                            {{ form_widget(form.terms) }} {{'Check this box to confirm you have read, understood and accept the'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'terms & conditions'|trans}}">{{'terms and conditions'|trans}}</a> {{'and the '|trans}}<a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'privacy policy'|trans}}">{{'privacy policy'|trans}}</a>.
+                        </div>
+                        <div class="error">{{ form_errors(form.terms) }}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 coupon-wrap bigdivpadlr">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <p class="coupon-txt">{{'Discount Code'|trans}}</p>
+                        {% if campaign_helper_text is defined %}
+                            <div><span class="coupon-shade-txt">{{campaign_helper_text|raw}}</span></div>
+                            {% endif %}
+                        <div class="inputbox">
+                            <input type="text" value="" name="coupon_code" id="couponCode" class="coupon-code" placeholder="{{'enter your discount code'|trans}}"><div class="coupon-codeverification"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 new-price">
+                        <p id="discountedAmount" class="frt price-convert" data-price="">{{'Discount Amount'|trans}} <span class="currency-convert-text display-discounted-currency">{{displayed_currency|raw}}</span> <span class="price-convert-text"></span></p>
+                        <p id="finalPrice" class="frt price-convert" data-price="">{{'Final Price'|trans}} <span class="currency-convert-text display-discounted-currency">{{displayed_currency|raw}}</span> <span class="price-convert-text"></span></p>
+                    </div>
+                </div>
+               {# {% if is_corporate_account == true %}
+                    <div class="col-xs-12 bigdivpadlr">
+                        <div class="form-group">
+                            <p class="coupon-txt">{{'Enter your new PIN here'|trans}}</p>
+                            <input type="text" value="" name="pin" id="pinCode" class="pin-code" required="required" placeholder="{{'Pin Code'|trans}}">
+                            {% if pin_mismatch is defined%}
+                                <div class="error">{{pin_mismatch|raw}}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif%}#}
+                <div>
+                    {% for key, hiddenField in hiddenFields %}
+                        {% if key == 'price_attr' or key == 'price' or key == 'base_fare' or key == 'base_fare_attr' or key == 'taxes' or key == 'taxes_attr' %}
+                            <div class="price-convert" data-price="{{hiddenField|raw}}"><input class="price-convert-val" type="hidden" name="{{key}}" value="{{ hiddenField|raw }}"></div>
+                            {% elseif  key == 'currency_code' %}
+                            <div class="price-convert"><input class="currency-convert-val" type="hidden" name="{{key}}" value="{{ hiddenField|raw }}"></div>
+                            {% elseif  key != 'pin' %}
+                            <input type="hidden" name="{{key}}" value="{{ hiddenField|raw }}">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="butbluebut">
+                    {{ form_widget(form.save) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+    </section>
+	     {% endif %}
+{% endblock %}

@@ -1,0 +1,544 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block title %}{{'Flight Search'|trans}}{% endblock %}
+
+{% block pagenewjs %}
+    <script type="text/javascript">
+      var isCorporate = true;
+    </script>
+{% endblock %}
+
+{% block refine_your_search %}
+    <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+        <div class="container-fluid nopad filters-group">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                    {{'Refine your search'|trans}}
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                {% set refine_search='first' %}
+                {% include "default/refine_your_search.twig" %}
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="overlay-loading-flights"><div></div></div>
+    <section class="container main_flight_container">
+
+        <div class='flight-update-search-container'>
+            <div class="row margin_top_10">
+                <div class="col-xs-12">
+                    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ 'Your Search'|trans }}</h1>
+                </div>
+            </div>
+            <div class="row update_search_container div_wiz_border">
+                {% include "@Flight/flight/your-search.twig" %}
+            </div>
+            <div class="row flight_search_input_container flight_container_style">
+                <div class="col-xs-12 searchcontainer_homep searchcontainer_content">
+                    {% set isCorporate = 1 %}
+                    {% include "default/searchinput3.twig" %}
+                    <div class="close_container">
+                        <i class="fas fa-times fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row border_top_but_row"></div>
+        </div>
+
+        {{ include('@Flight/flight/flight-steps-bar.twig', { 'step': 1 }) }}
+
+        <div class="row margin-top-20 main_conatainer filters-group">
+            <div class="col-md-3 left_panel filter-options hidden-sm hidden-xs" id="filterleft">
+                {% set refine_search='second' %}
+                {% include "default/refine_your_search.twig" %}
+            </div>
+
+            <div class="col-md-9 col-xs-12 right_panel">
+                {%if response['outbound'] is not empty %}
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad change_currency_container">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-12 airlines_refine">
+                                    <p class="header_text_left">{{'You are viewing prices in'|trans}} <span class="currency-convert-text">{{response['currency_code']}}</span> . {{'You can change currency from here'|trans}}</p>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
+                                    <button class="btn btn-info change_currency_button">{{'Change currency'|trans}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row tootltip_row">
+                                <div class="col-sm-4 col-xs-12 airlines_refine" data-price="{{response['minimum_price']|raw}}">
+                                    <p class="greyback_tooltip_text">{{'Lowest price for all passengers'|trans}}<br><span class="currency-convert-text">{{response['currency_code']|raw}}</span> <span class="price-convert-text">{{response['minimum_price']|number_format(2, '.', ',')}}</span></p>
+                                    <img class="tooltipimg" src="{{ generateMediaURL('/media/images/flights_new/tooltip_arrow_grey.png') }}" alt="tooltip">
+                                    <input type="hidden" id="minimum_price" name="minimum_price" value="{{response['minimum_price']|round(0, 'floor')}}" class="airlines_refine" data-price="{{response['minimum_price']|raw}}">
+                                    <input type="hidden" id="maximum_price" name="maximum_price" value="{{response['maximum_price']|round}}" class="airlines_refine" data-price="{{response['maximum_price']|raw}}">
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <p class="right_tooltip_text">{{'This price is the lowest available price combination for your selected dates.
+                                    Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and
+                                    carrier-imposed charges for 1 passenger (1 adult).'|trans}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#<div class="row">
+                        <div class="col-xs-12">
+                            <p class="communtext_grey">{{'All times displayed are local for each city.'|trans}}</p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p class="communtext_grey">{{'Please ensure you read the fare conditions at the bottom before selecting your flights.'|trans}}</p>
+                        </div>
+                    </div>#}
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad grey_back_container_destination margin-top-10">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    {% for idx, departure in response['request']['departureairportC'] %}
+                                        <div class="col-xs-1">
+                                            <p>{{departure|raw}}</p>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <div class="dest_img_container">
+                                                <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <p>{{response['request']['arrivalairportC'][idx]|raw}}</p>
+                                        </div>
+                                    {% endfor %}
+                                    {% if response['request']['oneway'] is empty and response['request']['multidestination'] is empty %}
+                                        {% for idx, arrival in response['request']['arrivalairportC'] %}
+                                            <div class="col-xs-1">
+                                                <p>{{arrival|raw}}</p>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <div class="dest_img_container">
+                                                    <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <p>{{response['request']['departureairportC'][idx]|raw}}</p>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% set selectedRequest = response['request'] %}
+
+                    {% if response['selectedRequest'] is defined %}
+
+                        {% set selectedRequest = response['selectedRequest'] %}
+                    {% endif %}
+
+                    <input type="hidden" name="flightrequestMain" value="{{ selectedRequest | json_encode() }}"/>
+                    <input type="hidden" id="flightrequestMainStep" value="0"/>
+
+                    {% if selectedRequest['segments'] is defined %}
+
+                        {#{{ dump(selectedRequest) }}#}
+
+                        {% set counter = 0 %}
+
+                        {% set segCounter = 0 %}
+
+                        {% set flightIndex = 0 %}
+
+                        {% set counterForReturning = 0 %}
+
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                {% for selectedSegment in selectedRequest['segments'] %}
+
+                                    {% if selectedSegment['stop_indicator'] == "" %}
+                                        {#Stops naming#}
+                                        {% set stopCountWord = "non-" %}
+                                        {% set stopWord = "stop" %}
+
+                                        {# get total flight segment in number#}
+                                        {% set totalFlightSegments = selectedSegment['total_flight_segments']|number_format %}
+
+                                        {% set arrivalDateTime = selectedSegment['arrival_date_time']|split('T') %}
+
+                                        {# total flight segment more then one that means that it include at least one stop #}
+
+                                        {# start totalFlightSegments if #}
+                                        {% if totalFlightSegments >= 2 %}
+                                            {% set stopCountWord = totalFlightSegments -1 %}
+                                            {% set stopWord = "stop" %}
+                                            {# end totalFlightSegments if #}
+                                        {% endif %}
+
+                                        {# start totalFlightSegments if #}
+                                     {% if totalFlightSegments >= 3 %}
+                                         {% set stopCountWord = totalFlightSegments -1 %}
+                                         {% set stopWord = "stops" %}
+                                         {# end totalFlightSegments if #}
+                                     {% endif %}
+
+                                        {# start loop.index if #}
+                                        {% if loop.index > 1 %}
+                                            {% set segCounter = segCounter + 1 %}
+
+                                            {% set flightIndex = selectedRequest['flightIndex'][segCounter] %}
+
+                                            {% set counterForReturning = loop.index - 1 %}
+                                            {# end loop.index if #}
+                                        {% endif %}
+                                        {#{% if loop.index >= 2 %}#}
+                                            {#{% set counterForReturning = loop.index %}#}
+                                            {#{% endif %}#}
+
+                                        {% set arrivalDateTime = selectedRequest['segments'][counterForReturning]['arrival_date_time']  %}
+                                        {#{{ arrivalDateTime.0 }}#}
+
+                                            {% set stop = [stopCountWord, stopWord]|join(' ') %}
+                                        <div class="col-xs-12 nopad main_dep_container">
+                                        <div class="col-md-6 col-xs-12 nopad">
+                                            <img class="float_left airplane_img_fn" src="{{ generateMediaURL('/media/images/corporate/titleplane_dfc.png') }}" alt="titleplane_dfc">
+                                            <p class="float_left dep_arr_style">{{'Departure'|trans}} |</p>
+                                            <div class="float_left">
+                                                <p class="city_text">{{selectedRequest['main']['departureairportC'][segCounter]|trans}} {{'to'|trans}} {{selectedRequest['main']['arrivalairportC'][segCounter]|trans}}</p>
+                                                {% set departureDateTime = selectedSegment['departure_date_time']  %}
+                                                <p class="date_text">  {{departureDateTime|date('Y-m-d')}} - {{arrivalDateTime|date('Y-m-d')}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12 nopad">
+
+                                            {% set airlineLogo = 'media/images/airline-logos/' ~ selectedSegment['airline_code'] ~ '.jpg' %}
+
+                                            <img class="sndimg_afc" src="{{ generateMediaURL(airlineLogo) }}" alt="{{'sndimg_afc'|trans}}"/>
+
+                                            <p class="float_left company_fd">{{selectedSegment['airline_name']}}, {{selectedSegment['airline_code']}} {{selectedSegment['flight_number']}}
+                                                <br>{{departureDateTime|date('H:i')}} {{selectedSegment['origin_location_city']|trans}} - {{arrivalDateTime|date('H:i')}} {{selectedSegment['destination_location_city']|trans}}
+                                            </p>
+					    <div class="modify_container">
+						<a rel="nofollow" href="#popup" title="{{ stop|raw }}" class="flight_stops nonstop" data-segmentIndex="{{ flightIndex }}">{{ stop|raw }}</a>
+
+						<form id="updateSelectedSegments_{{segCounter}}" name="updateSelectedSegments" action="{{ generateLangRoute(LanguageGet, '_corporate_next_flight') }}" method="post">
+						    <input type="hidden" name="flightrequest" value="" />
+						    <!--	<button data-counter="{{counter}}" type="button" class="col-xs-12 updateSelectedSegment">{{'Modify'|trans}}</button> -->
+						    <a href="#" data-counter="{{segCounter}}"  type="button" class="modify_link updateSelectedSegment">{{'Modifiy'|trans}}</a>
+						</form>
+					    </div>
+                                        </div>
+                                        
+                                        </div>
+
+                                    {% endif %}
+
+                                    {% set counter  = counter + 1 %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <p class="total_price_section">{{'Total :'|trans}}<span>{{ selectedRequest['main']['currency_code']}} {{selectedRequest['main']['totalPriceAttr']|number_format(2, '.', ',')}}</span></p>
+                                {#<p class="total_price_section">{{'Taxes :'|trans}}<span>{{selectedRequest['main']['currency_code']}} {{selectedRequest['main']['totalTaxes']|number_format(2, '.', ',')}}</span></p>#}
+                                {#<p class="total_price_section">{{'Base Fare :'|trans}}<span>{{selectedRequest['main']['currency_code']}} {{selectedRequest['main']['totalBaseFare']|number_format(2, '.', ',')}}</span></p>#}
+                            </div>
+                        </div>
+
+
+                        {% if selectedRequest['nextSegment'] is defined  %}
+
+                            {% set nextSegment = selectedRequest['nextSegment']|number_format %}
+
+                        {% else %}
+
+                            {% set nextSegment = 0 %}
+
+                        {% endif %}
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+
+                                {% if response['request']['oneway'] == 1 %}
+
+                                    {% set flightTypeText = 'Departure' %}
+                                    {% set nextFlightDate = selectedRequest['main']['fromDate'][nextSegment] %}
+
+                                {% else %}
+
+                                     {% set flightTypeText = 'Return' %}
+                                     {% set nextFlightDate = selectedRequest['main']['toDate'][nextSegment] %}
+
+                                {% endif %}
+                                {#{{ dump(selectedRequest['main']) }}#}
+				<div class="col-md-6 col-xs-12 nopad">
+				    <img class="float_left airplane_img_fn" src="{{ generateMediaURL('/media/images/corporate/titleplane_dfc.png') }}" alt="{{'titleplane_dfc'|trans}}">
+				    <p class="float_left dep_arr_style">{{flightTypeText|trans}} |</p>
+				    {% if response['request']['oneway'] == 0 %}
+					<div class="float_left">
+					    <p class="city_text">{{ selectedRequest['main']['arrivalairportC'][nextSegment]|trans}} {{'to'|trans}} {{ selectedRequest['main']['departureairportC'][nextSegment]|trans }}</p>
+					</div>
+                                    {% else %}
+					<div class="float_left">
+					    <p class="city_text">{{ selectedRequest['main']['departureairportC'][nextSegment]|trans}} {{'to'|trans}} {{ selectedRequest['main']['arrivalairportC'][nextSegment]|trans }}</p>
+					</div>
+                                    {% endif %}
+				</div>                                
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <p class="datelefttextday_dfc">{{ nextFlightDate|trans }}</p>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                    {#========================================================================================================================================================================#}
+
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad margin-top-10">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="responsiveSlider">
+                                        {% for code, airline in response['airlines'] %}
+                                            <div class="airlines_refine airlines_carousel" data-price="{{airline['amount_attr']}}" data-code="{{code}}">
+                                                <p><img src="{{ asset(airline['airline_logo']) }}" /></p>
+                                                <p>{{ airline['name'] }}</p>
+                                                <p class="txt-light-grey">{{'From'|trans}} <span class="currency-convert-text">{{response['currency_code']|raw}}</span> </p>
+                                                <p class="price-convert-text">{{ airline['amount']|raw }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad margin-top-20 sort_by_tabs">
+                        <div class="row no-margin">
+                            <div class="col-md-1 col-xs-12 nopad">
+                                <div class="float_left sort_down_img_arrow"><i class="fas fa-arrow-down"></i></div>
+                            </div>
+                            <div class="col-md-1 col-xs-12 nopad">
+                                <p class="srt_by_txt_blue">{{'Sort by'|trans}}:</p>
+                            </div>
+                            <div class="col-md-10 col-xs-12 nopad">
+                                <div class="row no-margin filters-group">
+
+                                    <div class="btn-group sort-options">
+                                        <label class="active sort_item" data-value="dom">
+                                            {{'Default'|trans}}
+                                        </label>
+                                        <label class="sort_item" data-value="title">
+                                            {{'Recommended'|trans}}
+                                        </label>
+                                        <label class="sort_item" data-value="price">
+                                            {{'Price'|trans}}
+                                        </label>
+                                        <label class="sort_item" data-value="arrival_time">
+                                            {{'Arrival Time'|trans}}
+                                        </label>
+                                        <label class="sort_item" data-value="departure_time">
+                                            {{'Departure time'|trans}}
+                                        </label>
+                                        <label class="sort_item" data-value="duration">
+                                            {{'Duration'|trans}}
+                                        </label>
+                                        <label class="sort_item" data-value="miles">
+                                            {{'Miles earned'|trans}}
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#{{ dump() }}#}
+                {% set segmentType = response['outbound'] %}
+
+                {% if response['request']['oneway'] is not empty and response['request']['multidestination'] is empty %}
+                    {% set isbooking = 1 %}
+                {% endif %}
+
+                {% set isCorporate = 1 %}
+                {% if isbooking is defined and isbooking == 1 and (response['request']['multidestination'] is defined and response['request']['multidestination'] == 1)%}
+                    {% include "@Flight/flight/flight-segments-multi.twig" %}
+                {% else %}
+                    {% include "@Flight/flight/flight-segments.twig" %}
+                {% endif %}
+
+                {% if response['inbound'] is defined  %}
+                    <textarea id="segmentsInbound" name="segmentsInbound" style="display:none;">{{response['inbound']|json_encode()}}</textarea>
+                {% endif %}
+
+            </div>
+    </section>
+
+    <section class="popup" style="display:none" id="popup">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="departure_popup_container">
+                    <div class="flight_segments"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/template" id="flight_details_tmpl">
+	
+        <div class="#{has_stop}">
+			<div class="row no-margin">
+				<div class="col-xs-12 nopad">
+					<h2 class="popup_title"><img class="" src="{{ generateMediaURL('/media/images/flights_new/plane_logo.png') }}" alt="plane_logo"><span>{{'Departure'|trans}}</span>  <span class="sndspan">|  #{departure_airport_city} (#{departure_airport_code}) {{'to'|trans}} #{arrival_airport_city} (#{arrival_airport_code})</span></h2>
+				</div>
+			</div>
+			<div class="row no-margin">
+				<div class="col-xs-12 nopad">
+					<p class="font-15 pink line-height-20 float_right margin_buttom_0">#{refundable} {{'*charges may apply'|trans}}</p>
+				</div>
+			</div>
+			<div class="row no-margin">
+				<div class="col-xs-12 nopad">
+					<p class="subtitle_total_duration">{{'Total duration'|trans}}: <span id="total_duration"> #{total_duration}</span> <span style="color: #747474; font-size: 12px;">- #{seats}</span></p>
+				</div>
+			</div>
+        </div>
+		
+        <div class="row mar_top_20 mar_but_20 #{stop_indicator}">
+			<div class="col-md-3 col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-8 nopad sndrowrow_fourthdiv"><p style="line-height:69px; color: #00b7d9;">{{'Stop'|trans}}</p></div>
+                    <div class="col-xs-4 nopad sndrowrow_snddiv bordered_row clock_border_extender">
+                        <img class="clock-design" src="{{ generateMediaURL('/media/images/flights_new/clock_vector.png') }}" alt="clock_vector">
+                    </div>
+                </div>
+            </div>
+			
+			<div class="col-md-9 col-xs-12 bordered_row normal-ligne-height">
+				<div class="row stop-details-row no-margin">
+					<div class="col-xs-12 nopad">
+						<p>
+						<span class="separator_border">|</span>#{stop_duration}<span class="sndspan">{{'in'|trans}} #{stop_city} (#{origin_code})</span>
+							 
+						<span class="thirdspan">{{'Passengers on connecting flights will need to change aircrafts'|trans}}. </span>
+						</p>
+					</div>
+				</div>
+			</div>
+        </div>
+		
+        <div class="row mar_top_20 mar_but_20">
+            <div class="col-md-3 col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-8 nopad firstrow_firstdiv">
+                        <p>#{departure_date}</p>
+                    </div>
+                    <div class="col-xs-4 nopad firstrow_snddiv">
+                        <p>{{'From'|trans}}<br>{{'To'|trans}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-9 nopad firstrow_thirddiv">
+                        <p>#{origin_airport}(#{origin_code})<br>#{arrival_airport} (#{arrival_code})</p>
+                    </div>
+                    <div class="col-xs-3 nopad firstrow_fourthdiv">
+                        <p>#{departure_terminal}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+        <div class="row mar_top_20 mar_but_20">
+            <div class="col-md-3 col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-8 nopad sndrowrow_firstdiv">
+                        <p>#{origin_code}<br><span>#{departure_time}</span></p>
+                    </div>
+                    <div class="col-xs-4 nopad sndrowrow_snddiv">
+                    	<div class="dest_img_arrow pull-left"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+			
+            <div class="col-md-4 col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-6 nopad sndrowrow_thirddiv">
+                        <p>#{arrival_code}<br><span class="time">#{arrival_time}</span><span class="bonus">#{days_difference}</span></p>
+                    </div>
+                    <div class="col-xs-6 nopad sndrowrow_fourthdiv">
+                        <p>&nbsp;<br/>#{duration}</p>
+                    </div>
+                </div>
+            </div>
+			
+            <div class="col-md-5 col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-6 nopad sndrowrow_fifthdiv">
+                        <p class="flight_num">
+							<img src="#{airline_logo}" align="left" alt="plane_tail">
+							<span class="flight_num_txt">{{'Flight number'|trans}}</span> #{flight_number}
+						</p>
+                    </div>
+					<div class="col-xs-6 nopad sndrowrow_sixdiv">
+                        <p>{{'Aircraft type'|trans}}</p>
+                        <p>#{aircraft_type}</p>
+                        <p>#{cabin}</p>
+                        <p>#{operating_airline}</p>
+                    </div>
+                </div>
+            </div>
+			
+        </div>
+		
+	<div class="row mar_top_20 mar_but_20 baggage-section">
+		<div class="col-md-3 col-xs-12"></div>
+		<div class="col-md-8 col-xs-12">
+	<div class="row no-margin">
+				<div class="col-md-2 col-xs-6 nopad">
+					<p>{{'Bag fees'|trans}}</p>
+				</div>
+				<div class="col-md-10 col-xs-6 nopad">
+		{#
+					<div class="row no-margin">
+						<div class="col-xs-12 nopad"><p>{{'Estimated baggage fees charged by Gulf Air (Please confirm with airline)'|trans}}</p></div>
+					</div>
+					<div class="row no-margin">
+						<div class="col-xs-5">
+							{{'Carry on'|trans}}:
+						</div>
+						<div class="col-xs-7">
+							No fee
+						</div>
+					</div>
+		#}
+					<div class="row no-margin">
+					    <div class="col-xs-12">
+						#{baggageInfoADTLabel} #{baggageInfoADT}
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12">
+						#{baggageInfoCNNLabel} #{baggageInfoCNN}
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12">
+						#{baggageInfoINFLabel} #{baggageInfoINF}
+					    </div>        
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/admin/css/styletree.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/tt/js/jstree/jstree.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-approvalFlowAddEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Approval Flow Add/Edit'|trans}}{% endblock %}
+{% block body %}
+    {% set defaultValues = {'p_id': 0, 'p_mainUserId': 0, 'p_userId': 0, 'p_parentId': 0, 'p_approveAllUsers': 0, 'p_approvalFlowParent': 0, 'p_approvalFlowRoot': 0, 'p_approvalFlowUser': 0, 'p_otherUserId': 0, 'parentName':'', 'userName': '' } %}
+
+    {% set approvalFlowInfo = defaultValues|merge(approvalFlowInfo) %}
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Approval Flow'|trans}} / <span class="add_edit">add/edit</span></h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_approval_flow_addSubmit') }}">
+		<div class="col-lg-10 col-xs-12 nopad margin_top_40">
+		    <div class="row corporate_small_row_margin">
+			<input type="hidden" id="type" name="type" value="{{type|raw}}"/>
+			<input type="hidden" id="accountId" name="approvalFlowId" value="{{approvalFlowInfo.p_id|raw}}"/>
+			<input type="hidden" id="accountId" name="mainUserId" value="{{approvalFlowInfo.p_mainUserId|raw}}"/>
+			<input type="hidden" id="accountId" name="accountId" value="{{accountId|raw}}"/>			
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="reqLabel" class="form-check-label">{{'User'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="userName" data-toggle="ttautocompleteUser" id="userName" value="{% if type == 2 %}{{approvalFlowInfo.userName|raw}}{% endif %}" placeholder="{{'Search for user'|trans}}*" required label="#reqLabel"/>
+			    {% if type == 2 %}
+				<input type="hidden" id="userNameCode" name="userId" value="{{approvalFlowInfo.p_userId|raw}}">
+			    {% endif %}
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Parent'|trans}}</label>
+			    <input type="text" class="col-xs-12" name="parentName" data-toggle="ttautocompleteParent" id="parentName" value="{% if type == 1 %}{{approvalFlowInfo.userName|raw}}{% else %}{{approvalFlowInfo.parentName|raw}}{% endif %}" placeholder="{{'Search for parent'|trans}}"/>  
+
+			    {% if type == 1 %}
+				<input type="hidden" id="parentNameCode" name="parentId" value="{{approvalFlowInfo.p_userId|raw}}">
+			    {% else %}
+				<input type="hidden" id="parentNameCode" name="parentId" value="{{approvalFlowInfo.p_parentId|raw}}">
+			    {% endif %}
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">
+			    <input id="approvalForAllUsers" class="col-xs-12" name="approvalForAllUsers" type="checkbox" {% if approvalFlowInfo.p_approveAllUsers == 1 and type == 2%}checked{% endif %}>
+			    <label for="approvalForAllUsers" class="form-check-label">{{'Allow approval for all users'|trans}}</label>
+			</div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">
+			    <p class="approval_p">{{'Need approval from'|trans}}</p> 
+			</div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">
+			    <input id="approvalParent" class="col-xs-12" name="approvalParent" type="checkbox"{% if approvalFlowInfo.p_approvalFlowParent == 1 and type == 2 %}checked{% endif %}>
+			    <label for="approvalParent" class="form-check-label">{{'Parent'|trans}}</label>
+			</div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">			    
+			    <input id="approvalMain" class="col-xs-12" name="approvalMain" type="checkbox"{% if approvalFlowInfo.p_approvalFlowRoot == 1 and type == 2 %}checked{% endif %}>
+			    <label for="approvalMain" class="form-check-label">{{'Main'|trans}}</label>
+			</div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">			    
+			    <input id="approvalUser" class="col-xs-12" name="approvalUser" type="checkbox"{% if approvalFlowInfo.p_approvalFlowUser == 1 and type == 2 %}checked{% endif %}>
+			    <label for="approvalUser" class="form-check-label">{{'Self Approval'|trans}}</label>
+			</div>
+			<div class="col-xs-12 corporate_small_col_padding lofaff">			    
+			    <input id="approvalOther" class="col-xs-12" name="approvalOther" type="checkbox"{% if approvalFlowInfo.p_otherUserId and type == 2 %}checked{% endif %}>
+			    <label for="approvalOther" class="form-check-label">{{'Other'|trans}}</label>			    
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <input type="text" name="otherName" data-toggle="ttautocompleteOther" id="otherName"  placeholder="{{'Search for other user'|trans}}" class="col-xs-12 hidenInput"> 
+			    {% if approvalFlowInfo.p_otherUserId %}
+				<input type="hidden" id="otherNameCode" name="otherId" value="{{approvalFlowInfo.p_otherUserId|raw}}">
+			    {% endif %}
+			</div>
+		    </div>
+		    <div class="row corporate_small_row_margin">
+			<div class="col-xs-12 corporate_small_col_padding margin_top_20">
+			    <a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corpo_approval_flow') }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+			    <button data-type="add" data-role="submit" type="submit" class="btn submit_yellow">{{'Submit'|trans}}</button>
+			</div>
+		    </div>
+		</div>
+	    </form>
+        </div>
+    </section>
+{% endblock %}

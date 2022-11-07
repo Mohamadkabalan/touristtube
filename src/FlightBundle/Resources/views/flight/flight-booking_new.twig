@@ -1,0 +1,39 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewjs %}
+{% endblock %}
+{% block pagenewcss %}
+<style type="text/css">
+.more_flights {
+	display: block;
+}
+
+.moreoptionsclass {
+	display: none;
+}
+</style>
+{% endblock %}
+{% block body %}
+<section class="container flight_booking_row">
+	<div class="row small_padding">
+		{% for itemMain in mainEntityArray %}
+		<a href="{{ itemMain.viewAll|raw }}" title="{{'Fly to'|trans}} {{ itemMain.namealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 small_margin">
+			<div class="max_width_image">
+				<h2 class="h3_flight_booking">
+					{{'Fly to'|trans}}
+					<span>{{itemMain.name|raw}}
+				</h2>
+				<img src="{{ itemMain.img }}" alt="{{'Fly to'|trans}} {{ itemMain.namealt|raw }}">
+			</div>
+		</a>
+		{% if (loop.index%4)==0 %}
+		<div class="clearfix visible-lg visible-md"></div>
+		{% endif %}
+		{% if (loop.index%2)==0 %}
+		<div class="clearfix visible-sm"></div>
+		{% endif %}
+		{% endfor %}
+	</div>
+</section>
+{% endblock %}

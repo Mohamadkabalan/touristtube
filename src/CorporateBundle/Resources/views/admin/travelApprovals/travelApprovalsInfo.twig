@@ -1,0 +1,15 @@
+{% for travel in travelApproval %}
+    {% if travel.moduleId == hotelModuleId %}
+	<div id="hotelApprovalInfo">
+	    {% include '@Corporate/admin/travelApprovals/hotelInfo.twig' %}
+	</div>
+    {% elseif travel.moduleId == flightModuleId %}
+	<div id="flightApprovalInfo">
+	    {% include '@Corporate/admin/travelApprovals/flightInfo.twig' %}
+	</div>
+    {% elseif travel.moduleId == dealModuleId %}
+	<div id="dealApprovalInfo">
+	    {% include '@Corporate/admin/travelApprovals/dealInfo.twig' %}
+	</div>
+    {% endif %}
+{% endfor %}

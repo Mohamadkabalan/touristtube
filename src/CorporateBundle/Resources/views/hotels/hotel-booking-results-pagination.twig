@@ -1,0 +1,19 @@
+{% if pageCount > 1 %}
+    <ul class="pagination-controls">
+        <li class="first_pg padding-right-5" title="{{'First page'|trans}}"></li>
+        <li class="prev_pg padding-right-5" title="{{'Previous page'|trans}}"></li>
+        <div class="pageNumbers displayPagination">
+            {% for x in 1..pageCount %}
+                {% set separator = (x in [pageCount, maxPageToDisplay]) ? 'hidden' : '' %}
+                <li data-page="{{x}}" class="page page-{{x}}">
+                    <span>{{x}}</span>
+                    <span class="separator {{separator}}">.</span>
+                </li>
+            {% endfor %}
+        </div>
+        <li class="next_pg padding-left-5" title="{{'Next page'|trans}}"></li>
+	    {% if pageSrc == HOTEL_CONSTANTS.page_src.hrs%}
+	    <li class="last_pg padding-left-5" title="{{'Last page'|trans}}"></li>
+	    {% endif %}
+    </ul>
+{% endif %}

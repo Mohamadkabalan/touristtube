@@ -1,0 +1,428 @@
+TTBundle\Entity\CmsChannelPrivacy:
+    type: entity
+    table: cms_channel_privacy
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        emailNotifications:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_notifications
+        channelNotifications:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_notifications
+        emailSponsorschannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_sponsorschannel
+        channelSponsorschannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_sponsorschannel
+        emailSponsorsevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_sponsorsevent
+        channelSponsorsevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_sponsorsevent
+        emailCancelsponsoring:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_cancelsponsoring
+        channelCancelsponsoring:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_cancelsponsoring
+        emailConnects:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_connects
+        channelConnects:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_connects
+        emailAcceptsinvitation:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+            column: email_acceptsinvitation
+        channelAcceptsinvitation:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_acceptsinvitation
+        emailInvites:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_invites
+        channelInvites:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_invites
+        emailCommentscontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_commentscontent
+        channelCommentscontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_commentscontent
+        emailLikescontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_likescontent
+        channelLikescontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_likescontent
+        emailSharedcontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_sharedcontent
+        channelSharedcontent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_sharedcontent
+        emailRatedmedia:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_ratedmedia
+        channelRatedmedia:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_ratedmedia
+        emailRepliedcomments:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_repliedcomments
+        channelRepliedcomments:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_repliedcomments
+        emailRepliedcommentsSomeone:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_repliedcomments_someone
+        channelRepliedcommentsSomeone:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_repliedcomments_someone
+        emailLikedcomment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_likedcomment
+        channelLikedcomment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_likedcomment
+        emailLikedcommentSomeone:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_likedcomment_someone
+        channelLikedcommentSomeone:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_likedcomment_someone
+        emailSharedchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_sharedchannel
+        channelSharedchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_sharedchannel
+        emailReportedconnections:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_reportedconnections
+        channelReportedconnections:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_reportedconnections
+        emailJoinsevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_joinsevent
+        channelJoinsevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_joinsevent
+        emailCommentedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_commentedevent
+        channelCommentedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_commentedevent
+        emailLikedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_likedevent
+        channelLikedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_likedevent
+        emailSharedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_sharedevent
+        channelSharedevent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_sharedevent
+        emailAcceptedinvitationEvent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_acceptedinvitation_event
+        channelAcceptedinvitationEvent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_acceptedinvitation_event
+        emailSubchannelrequest:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_subchannelrequest
+        channelAddsubchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: channel_addsubchannel
+        emailNewstt:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_newsTT
+        emailUpdatesMedia:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: email_updates_media
+        privacySponsoring:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_sponsoring
+        privacySharing:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_sharing
+        privacyInvitations:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_invitations
+        privacySocial:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_social
+        privacyEventsponsors:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_eventsponsors
+        privacySponsoringEvent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_sponsoring_event
+        privacySharescomments:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_sharescomments
+        privacyGuestsInvite:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_guests_invite
+        privacyLog:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_log
+        privacyMysponsoredChannels:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_mysponsored_channels
+        privacyOtherChannels:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_other_channels
+        privacyMysponsoredEvents:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_mysponsored_events
+        privacyActivechannels:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_activechannels
+        privacyActivetubers:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_activetubers
+        privacySharescommentsContent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_sharescomments_content
+        privacyLogTtpage:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_log_TTPage
+        privacyBesubchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_besubchannel
+        privacyBeparentchannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_beparentchannel
+        privacyMysubChannels:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: privacy_mysub_channels
+        published:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+    lifecycleCallbacks: {  }

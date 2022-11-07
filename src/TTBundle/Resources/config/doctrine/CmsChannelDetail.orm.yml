@@ -1,0 +1,83 @@
+TTBundle\Entity\CmsChannelDetail:
+    type: entity
+    table: cms_channel_detail
+    repositoryClass: TTBundle\Repository\ChannelRepository
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        detailText:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: detail_text
+        detailType:
+            type: boolean
+            nullable: false
+            column: detail_type
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+                unsigned: false
+            column: like_value
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+                unsigned: false
+            column: down_votes
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+                unsigned: false
+            column: nb_shares
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+                unsigned: false
+            column: nb_comments
+        enableShareComment:
+            type: boolean
+            nullable: false
+            options:
+                default: 1
+            column: enable_share_comment
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: 1
+    lifecycleCallbacks: {  }

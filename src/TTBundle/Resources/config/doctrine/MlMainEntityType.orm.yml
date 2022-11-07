@@ -1,0 +1,32 @@
+TTBundle\Entity\MlMainEntityType:
+    type: entity
+    table: ml_main_entity_type
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+        language:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

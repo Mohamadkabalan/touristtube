@@ -1,0 +1,1 @@
+UPDATE cms_hotel SET name = 'Copthorne Kuwait City' WHERE id = 55806;

@@ -1,0 +1,40 @@
+<div class="col-xs-12 nopad">
+    <div class="col-xs-12 marbut10_corp nopad firstmenuedivborderbut_corpfl">
+        <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'title'}}"/>
+        <div class ="absoluteindiv {{page_menu_logo|raw}}">
+            <p class="textunimg_corp">{{page_menu_name|trans|capitalize }}</p>
+        </div>
+    </div>
+
+    <div class="col-xs-12 menuestyle_leftmenue-click nopad">
+        <div class="col-xs-12 nopad">
+            <img class="downarrow_menuefilters" src="{{ generateMediaURL('/media/images/corporate/downarrow_menuefilters.png') }}" alt="{{'title'}}"/>
+        </div>
+        <div class="col-xs-12 nopad">
+            <p class="menuestyle_leftmenue">{{'menu'|trans}}</p>
+        </div>
+    </div>
+    <div id="leftmenuecorpcontainer" class="col-xs-12 nopad ulcontainerpadding_corp">
+        <ul class="corpleftmenue_corp">
+	    {% if SHOW_FLIGHTS_CORPORATE_BLOCK==1 %}
+		<li><a href="{{ generateLangRoute(LanguageGet,'_corporate_flight') }}" title="{{'flights'|trans}}" {% if page_menu_logo=='flight_corp' %}class="active"{% endif %}>{{'flights'|trans}}</a></li>
+	    {% else %}
+		<li><a href="#">{{'flights'|trans}}</a></li>
+	    {% endif %}
+            <li><a href="{{ generateLangRoute(LanguageGet,'_corporate_hotel_search') }}" title="{{'hotels'|trans}}" {% if page_menu_logo=='hotel_corp' %}class="active"{% endif %}>{{'hotels'|trans}}</a></li>
+	    {% if SHOW_DEALS_BLOCK==1 %}
+		<li><a  href="{{ generateLangRoute(LanguageGet,'_corporate_attractions') }}" title="{{'attractions'|trans}}" {% if page_menu_logo=='attraction_corp' %}class="active"{% endif %}>{{'attractions'|trans}}</a></li>
+	    {% else %}
+		<li><a href="#">{{'attractions'|trans}}</a></li>
+	    {% endif %}
+            <li><a href="#">{{'flights'|trans}}<br>+<br>{{'hotels'|trans}}</a></li>
+            <li><a href="#">{{'flights'|trans}}<br>+<br>{{'attractions'|trans}}</a></li>
+            <li><a href="#">{{'hotels'|trans}}<br>+<br>{{'attractions'|trans}}</a></li>
+            <li class="lastlinoborder"><a href="#">{{'flights'|trans}}+{{'hotels'|trans}}<br>+<br>{{'attractions'|trans}}</a></li>
+        </ul>
+        <div class="col-xs-12 uparrow_menuefilters-click nopad">
+            <img class="uparrow_menuefilters" src="{{ generateMediaURL('/media/images/corporate/uparrow_menuefilters.png') }}" alt="{{'title'}}"/>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,110 @@
+
+<div class="col-xs-12 nopad">
+    <!-- start of hotels -->
+    <!-- start of flights -->
+    <div class="row no-margin">
+	<div class="bookDataContainer" id="my-bookings-flight">
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad padright5 {% if travel.statusName|lower == 'cancelled' %} canceldivoverback {% endif %}">
+		    {% if travel.statusName|lower == 'cancelled' %}<div class="absolutebackground"></div>{% endif %}
+		    <div class="row margin_bottom_60 mbsmall_margin">
+			<div class="col-xs-12 nopad relative_column">
+			    <div class="relative_column">
+				<div class="row no-margin">
+				    <div class="col-md-2 col-xs-12 mbsmall_padding visible-lg">
+					<div class="row">
+					    <div class="col-xs-12 margin_bottom_6">
+						<div class="checkin_checkout_container">
+						    <p class="in_out">{{'Departure'|trans}}</p>
+						    <p class="date">{{travel.fromdate|date('D')}}</p>
+						    <p class="month_day">{{travel.fromdate|date('M Y D')}}</p>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				    <div class="col-lg-7 col-xs-12 mbsmall_padding">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<p class="flight_my_bookings_title">
+						    <img alt="{{'flight_comp_img'|trans}}" src="{{travel.airline_logo|raw}}">{{travel.airline_name|raw}} <span>{{travel.flight_details[0].airline|raw}}{{travel.flight_details[0].flightNumber|raw}}</span>
+						</p>
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<p class="flight_my_bookings_dep_arr">{{'Departure'|trans}}</p>
+					    </div>
+					    <div class="col-xs-12 nopad">
+						<ul class="flight_details_list_mb">
+						    <li>{{travel.fromdate|date('D d/m')}}</li>
+						    <li><span class="bold">{{travel.fromdate|date('h:i')}}</span><br>{{travel.flight_details[0].departure_airport_code|raw}}</li>
+						    <li class="noborder_right">{{travel.flight_details[0].stop_number|raw}}<br></li>
+						    <li class="border_left"><span class="bold">{{travel.fromdate|date('h:i')}}</span><br>{{travel.flight_details[0].airline|raw}}</li>
+						    <li><span class="bold">{{ travel.flight_details[0].flight_duration|raw }}</span></li>
+						</ul>
+					    </div>
+					</div>
+				    </div>
+				</div>
+				<div class="row no-margin">
+				    <div class="col-md-2 col-xs-12 mbsmall_padding visible-lg">
+					<div class="row">
+					    <div class="col-xs-12">
+						<div class="checkin_checkout_container">
+						    <p class="in_out">{{'Arrival'|trans}}</p>
+						    <p class="date">{{travel.todate|date('d')}}</p>
+						    <p class="month_day">{{travel.todate|date('M Y D')}}</p>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				    <div class="col-lg-7 col-xs-12 mbsmall_padding">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<p class="flight_my_bookings_dep_arr margin_top_arrival">{{'Arrival'|trans}}</p>
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<ul class="flight_details_list_mb">
+						    <li>{{travel.todate|date('D d/m')}}</li>
+						    <li><span class="bold">{{travel.todate|date('h:i')}}</span><br>{{travel.flight_details[travel.flight_details|length - 1].arrival_airport_code|raw}}</li>
+						    <li class="noborder_right">{{travel.flight_details[travel.flight_details|length - 1].stop_number|raw}}<br></li>
+						    <li class="border_left"><span class="bold">{{travel.todate|date('h:i')}}</span><br>{{travel.flight_details[travel.flight_details|length - 1].airline|raw}}</li>
+						    <li><span class="bold">{{ travel.flight_details[travel.flight_details|length - 1].flight_duration|raw }}</span></li>
+						</ul>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			    <a href="{{ generateLangRoute(LanguageGet,'_flight_details', {'transaction_id': travel.transaction_id|raw}) }}"
+			       class="col-sm-3 col-xs-4 view_details_link visible-lg"
+			       >{{'View details'|trans}}</a>
+			    <div class="col-lg-3 col-xs-12 mbsmall_padding button_price_container_flight button_price_container">
+				<a href="{{ generateLangRoute(LanguageGet,'_flight_details', {'transaction_id': travel.transaction_id|raw}) }}" class="view_details_link view_details_link_flight hidden-lg">{{'View details'|trans}}</a>
+				<div class="clearfix visible-xs"></div>
+				<span data-price="{{travel.price|raw|number_format(2, '.', ',')}}" class="a_price flight_price1 price-convert">
+				    <p>					
+					<span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.price|raw|number_format(2, '.', ',')}}</span>
+				    </p>
+				</span>
+				<a href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}" class="">
+				    <button class="btn pink_bookagain_button" id="">{{'Book again'|trans}}</button>
+				</a>
+				{% if travel.statusName|lower == 'cancelled' %}<button id="" class="btn pink_cancelled_button">{{'Cancelled'|trans}}</button>{% endif %}
+				<span data-price="{{travel.price|raw|number_format(2, '.', ',')}}" class="a_price flight_price2 price-convert">
+				    <p>					
+					<span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.price|raw|number_format(2, '.', ',')}}</span>
+				    </p>
+				</span>
+			    </div>
+			</div>
+
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+    <!-- end of flights -->
+</div>

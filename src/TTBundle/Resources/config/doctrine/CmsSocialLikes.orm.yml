@@ -1,0 +1,60 @@
+TTBundle\Entity\CmsSocialLikes:
+    type: entity
+    table: cms_social_likes
+    indexes:
+        channel_id:
+            columns:
+                - channel_id
+        single_like:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        likeDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: like_date
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        channelId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: channel_id
+    lifecycleCallbacks: {  }

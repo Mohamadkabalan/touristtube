@@ -1,0 +1,133 @@
+
+/*Video Page Media Style */
+#LeftMainChannel h1.channelyellowttl, #MiddelMainChannel h1.channelyellowttl, h1.h1Style, h2.h2Style {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+h1#MostViewedTTL, h1#CategoriesTTL, h1#CategoriesTTL_search, h2#VideoTTL, h1#TouristTubersTTL, h1.LocationTTL, #MiddelMainChannel h1.channelyellowttl, #LeftMainChannel h1.channelyellowttl, h1#VideoInsideTTL, h1.h1Style, h1.h1NoBold, h2.h2Style {
+    font-weight: normal;
+}
+.yellow20 {
+    color: #eac31a;
+    font-size: 20px;
+}
+.StaticTitle {
+    color: #dcaf1a;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 17px;
+    height: 53px;
+    margin-top: 34px !important;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+}
+.StaticBody {
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 97%;
+}
+.width480 {
+    width: 480px;
+}
+.ttl25 {
+    font-size: 25px;
+}
+.StaticTxt {
+    color: #686868;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    height: auto;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
+}
+.about {
+    background: rgba(0, 0, 0, 0) url("/media/images/bg-about.jpg") no-repeat scroll right top;
+}
+@media only screen and (max-width:767px) {
+.StaticBody {
+    margin: 0 2% !important;
+    width: 96% !important;
+}
+
+.StaticTitle {
+    margin-top: 34px !important;
+    width: 100% !important;
+	text-align:center
+}
+.StaticTxt { width:100% !important}
+
+
+.width480 {
+    font-size: 12px;
+    margin: 0 2%;
+    text-align: justify;
+    width: 96% !important;
+}
+
+.footer_container_all {
+    position: relative !important;
+	display:block  !important
+}
+
+.about{ background:none !important}
+
+.ttl25 {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+}
+
+
+.yellow20 {
+    color: #eac31a;
+    font-size: 14px;
+    margin-bottom: 4px !important;
+}
+
+}
+
+/*===================================== @media 767px ====================================*/
+
+@media only screen and (min-width: 768px) and (max-width:960px) {
+
+
+.StaticBody {
+    margin: 0 2% !important;
+    width: 96% !important;
+}
+
+.StaticTitle {
+    margin-top: 34px !important;
+    width: 100% !important;
+}
+
+ 
+.width480 {
+    font-size: 12px;
+    margin: 0 2%;
+    text-align: justify;
+    width: 96% !important;
+}
+
+ 
+.about{ background:none !important}
+
+.ttl25 {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+}
+
+
+.yellow20 {
+    color: #eac31a;
+    font-size: 14px;
+    margin-bottom: 4px !important;
+}
+}
+
+/*===================================== @media  768px-960px ====================================*/

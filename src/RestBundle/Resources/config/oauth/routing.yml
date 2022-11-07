@@ -1,0 +1,15 @@
+fos_oauth_server_token:
+    path: "/oauth/v2/token"
+    defaults: { _controller: RestBundle:oauth\OAuth2Token:token, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        methods: POST
+
+fos_oauth_create_client:
+    path: "/api/create-client"
+    defaults: { _controller: RestBundle:oauth\OAuth2Token:createClient, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        methods: GET

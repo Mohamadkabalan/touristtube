@@ -1,0 +1,30 @@
+TTBundle\Entity\TTVendorsSource:
+    type: entity
+    table: tt_vendors_source
+        
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        vendorId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: tt_vendor_id
+        name:
+            type: string
+            nullable: false
+            length: 20
+            column: name    
+    lifecycleCallbacks: {  }

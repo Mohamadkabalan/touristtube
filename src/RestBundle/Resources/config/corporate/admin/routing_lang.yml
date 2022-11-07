@@ -1,0 +1,132 @@
+_rest_corpo_account_transactions_lang:
+    path:      "/{_locale}/api/corporate/transactions/{accountId}"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:getAccountTransactions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        methods: POST
+        
+_rest_corpo_account_transactions_details_lang:
+    path:      "/{_locale}/api/corporate/transactions/details/{accountTransactionId}/{moduleId}"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:getAccountTransactionDetails, _locale: "%locale%", domain: "%domain%", accountTransactionId: "", moduleId: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_corpo_account_transactions_due_amount_lang:
+    path:      "/{_locale}/api/corporate/transactions/due-amount/{accountId}"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:getAccountTransactionsDueAmount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        methods: GET
+
+_rest_corpo_get_approvals_account_lang:
+    path:      "/{_locale}/api/corporate/transactions/approvals/{accountId}"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:getAccountApprovals, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_corpo_transaction_approved_lang:
+    path:      "/{_locale}/api/corporate/transactions/approvals"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:approvedTransaction, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_corpo_get_users_hierarchy_lang:
+    path:      "/{_locale}/api/corporate/users/hierarchy/{accountId}"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoApprovalFlow:getSubUsersAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_corpo_update_users_hierarchy_lang:
+    path:      "/{_locale}/api/corporate/users/hierarchy/{approvalFlowId}"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoApprovalFlow:updateSubUsersAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_corpo_add_users_hierarchy_lang:
+    path:      "/{_locale}/api/corporate/users/hierarchy"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoApprovalFlow:addSubUsersAccount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+        
+_rest_corpo_my_booking_lang:
+    path:      "/{_locale}/api/corporate/mybooking"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:corpoMyBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+        
+_rest_corpo_my_booking_filter_lang:
+    path:      "/{_locale}/api/corporate/mybooking/filter"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:corpoMyBookingFilter, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+        
+_rest_corpo_currency_search_lang:
+    path:      "/{_locale}/api/corporate/currency/search"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:corpoCurrencySearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+        
+        
+_rest_corpo_sum_travel_approval_status_lang:
+    path:      "/{_locale}/api/corporate/travel/approval/total"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:sumOfTravelApprovalStatus, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+        
+_rest_corpo_user_search_local_lang:
+    path:      "/{_locale}/api/corporate/user/search"
+    defaults: { _controller: RestBundle:corporate\admin\CorpoAccountTransactions:adminSearchUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        title: ".*"
+        srch: ".*"
+        methods: GET

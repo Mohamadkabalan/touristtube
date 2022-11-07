@@ -1,0 +1,64 @@
+parameters:
+    payment_parameters:
+        vendors:
+            cc:
+                4:
+                    id: 4
+                    name: areeba
+                    className: PaymentBundle\vendors\areeba\v1\AreebaHandler
+                    initCallBackUrl: _paymentview
+                    gatewayService: areeba_gateway_service
+                    currencies:
+                       - USD
+                2:
+                    id: 2
+                    name: paytabs
+                    className: PaymentBundle\vendors\paytabs\v3\PaytabsHandler
+                    initCallBackUrl: _paymentview
+                    gatewayService: 
+                    currencies:
+                       - AED
+                       - USD
+                3:
+                    id: 3
+                    name: payfort
+                    className: PaymentBundle\vendors\payfort\v2\PayfortHandler
+                    initCallBackUrl: _paymentview
+                    gatewayService: payfort_gateway_service
+                    currencies:
+                       - AED
+            coa:
+                1:
+                    id: 1
+                    name: CorpoOnAccountHandler
+                    className: PaymentBundle\vendors\corpoOnaccount\v1\CorpoOnAccountHandler
+                    initCallBackUrl: _corpo_on_account_payment_process
+        callBackUrl:
+            0:
+                name: default
+                success: _payment_default_success_callback
+                failed: _payment_default_failed_callback
+                rest_success:
+                rest_failed:
+                module_landing_page: 
+            1:
+                name: flights
+                success: _issue_ticket
+                failed: _corporate_flight
+                rest_success:
+                rest_failed:
+                module_landing_page: _flight_booking
+            2:
+                name: hotels
+                success: _hotels_payment_success
+                failed: _hotels_payment_failure
+                rest_success: _rest_hotels_payment_success
+                rest_failed: _rest_hotels_payment_failure
+                module_landing_page: _hotel_booking
+            3:
+                name: deals
+                success: _deals_payment_success
+                failed: _deals_payment_failure
+                rest_success:
+                rest_failed:
+                module_landing_page: 

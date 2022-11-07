@@ -1,0 +1,648 @@
+{% if printView is not defined %}<body style="font-family: Arial;">{% endif %}
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="padding-left: 17px; padding-right: 17px;">
+	<tbody>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td align="left" bgcolor="#ffffff" style="padding: 13px 0 0 0px; border: none;">
+				<img src="{{ generateMediaURL('/media/images/Logo.png', true)}}" alt="touristtube_logo" width="172" height="68" style="display: block;" />
+			    </td>
+			    <td></td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 19px;  color: black; margin-top: 7px; line-height: 22px; margin-bottom: 2px;">{{'Thanks'|trans}}{% if ordererDetails.firstName is defined and ordererDetails.firstName is not empty %}, {{ordererDetails.firstName|raw}}{% endif %}!</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 19px;  color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">{% if action is defined and action == 'reservation' %}{{'Your reservation is now confirmed.'|trans}}{% else %}{{'Your reservation is now changed.'|trans}}{% endif %}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 24px;  color: black; margin-top: 25px; line-height: 34px; margin-bottom: 20px;">{{'Your Booking'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Booking Number'|trans}}</p>
+			    </td>
+			    <td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">
+				    {% if reservationDetails.reservationProcessKey is defined and reservationDetails.reservationProcessKey is not empty %}
+					{{reservationDetails.reservationProcessKey|raw}}
+				    {% else %}
+					{{reservationDetails.controlNumber|raw}}
+				    {% endif %}
+				</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    {% if reservationDetails.reservationProcessPassword is defined and reservationDetails.reservationProcessPassword is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'PIN Code'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{reservationDetails.reservationProcessPassword|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Reservation Date'|trans}}</p>
+			    </td>
+			    <td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{reservationDate|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Booked By'|trans}}</p>
+			    </td>
+			    <td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{ordererDetails.firstName|raw}} {{ordererDetails.lastName|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Email'|trans}}</p>
+			    </td>
+			    <td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{ordererDetails.email|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    {% if ordererDetails.phone is defined and ordererDetails.phone is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Telephone'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{% if ordererDetails.dialingCode is defined %}{{ordererDetails.dialingCode|raw}}{% endif %}{{ordererDetails.phone|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 17px;  color: black;font-weight:bold; margin-top: 35px; line-height: 17px; margin-bottom: 8px;">{{hotelDetails.name|raw}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="20" height="18" style="text-align: left; background-color: #ffffff; padding:0px; border: none;">
+				<img src="{{ generateMediaURL('/media/images/emails/yellow_location_logo.png', true)}}" alt="location" width="14" height="18" style="display: block;" />
+			    </td>
+			    <td width="546" height="18" style="background-color: #ffffff;padding:0px; border: none;text-align: left;">
+				<p style="color: #606060;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px;">{{hotelDetails.address|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="26">
+		    &nbsp;
+		</td>
+	    </tr>
+	    {% if hotelDetails.phone is defined and hotelDetails.phone is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Telephone'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{hotelDetails.phone|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+	    {% if hotelDetails.fax is defined and hotelDetails.fax is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Fax'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{hotelDetails.fax|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+	    {% if hotelDetails.email is defined and hotelDetails.email is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Email'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{hotelDetails.email|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Earliest Check-in'|trans}}<br>({{'Local time'|trans}})</p>
+			    </td>
+			    <td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{hotelDetails.checkInEarliest|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Latest Check-out'|trans}}<br>({{'Local time'|trans}})</p>
+			    </td>
+			    <td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{hotelDetails.checkOutLatest|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="45">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="376" height="31" style="text-align: left; background-color: #ffffff;">
+				<p style="color:#000000; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 24px;">{{'Price'|trans}}</p>
+			    </td>
+			    <td width="190" height="31" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #db3a69;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 30px;font-weight: bold;">{{ reservationDetails.grandTotalPriceInclusiveHotelDisplay|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="376" height="23" style="text-align: left; background-color: #ffffff;">
+			    </td>
+			    <td width="190" height="23" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 20px;font-weight: bold;"><span style="color: #404141;font-size:12px;font-weight:normal;padding-right: 5px;">approx.</span>{{ reservationDetails.grandTotalPriceInclusiveCustomerDisplay|raw}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="376" height="23" style="text-align: left; background-color: #ffffff;">
+			    </td>
+			    <td width="190" height="23" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 13px;font-weight: bold;background-image: url('{{ generateMediaURL('/media/images/emails/best_price_logo.png', true)}}');background-repeat: no-repeat;padding-left: 23px;">{{'Best Price Guaranteed'|trans}}</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="15">
+		    &nbsp;
+		</td>
+	    </tr>
+
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 16px;  color: #00b7d9; margin-top: 0px; line-height: 16px; margin-bottom: 0px;">{{'You will pay when you stay at'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 17px;  color: black;font-weight:bold; margin-top: 5px; line-height: 17px; margin-bottom: 15px;">{{hotelDetails.name|raw}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 14px; color: #404141; margin-top: 0px; line-height: 17px; margin-bottom: 0px;">{{'Pre-authorisation: To check the validity of your credit card and guarantee your booking, the property reserves the right to temporarily hold an amount prior to arrival.'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="40">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 22px;color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">{{'Room Details'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="25">
+		    &nbsp;
+		</td>
+	    </tr>
+
+	    {% for roomReservation in roomsToDisplay %}
+
+		<tr>
+		    <td bgcolor="#ffffff">
+			<p style="font-size: 17px;color: black; margin-top: 0px; line-height: 17px; margin-bottom: 0px;font-weight:bold;">
+			    {{loop.index ~ '. ' ~ roomReservation.name|raw}}
+			    {% if roomReservation.roomTypeInfo.guestInfo is not empty %}&nbsp;{{ roomReservation.roomTypeInfo.guestInfo|raw}}{% endif %}
+			    <br/>
+			    {{roomReservation.description|raw}}
+			</p>
+		    </td>
+		</tr>
+		<tr>
+		    <td style="font-size: 0; line-height: 0;" height="25">
+			&nbsp;
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Room reservation'|trans}}<br>{{'number'|trans}}</p>
+				</td>
+				<td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.reservationKey|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Arriving guests'|trans}}</p>
+				</td>
+				<td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.guestName|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Arrival / Departure'|trans}}</p>
+				</td>
+				<td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.checkIn|raw}} - {{ roomReservation.checkOut|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Breakfast'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.breakfastDetails|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Total room price'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.totalPrice|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Type of reservation'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.typeOfReservation|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+
+		{% if roomReservation.prepaymentDetails is defined and roomReservation.prepaymentDetails is not empty %}
+		    <tr>
+			<td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+				    <td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+					<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Prepayment'|trans}}</p>
+				    </td>
+				    <td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+					<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">
+					    {% for info in roomReservation.prepaymentDetails %}
+						{{ info|trans|raw }}
+					    {% endfor %}
+					</p>
+				    </td>
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		{% endif %}
+
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="95" style="text-align: left; background-color: #ffffff;vertical-align: top;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 10px;font-size: 16px;">{{'Cancellation'|trans}}</p>
+				</td>
+				<td width="388" height="95" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">
+					{% for info in roomReservation.cancellationDetails %}
+					    {{ info|trans|raw }}<br/>
+					{% endfor %}
+				    </p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+
+		{% if roomReservation.reservationStatus is defined %}
+		    <tr>
+			<td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+				    <td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+					<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Reservation Status'|trans}}</p>
+				    </td>
+				    <td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+					<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{roomReservation.reservationStatus}}</p>
+				    </td>
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		{% endif %}
+
+		<tr>
+		    <td style="font-size: 0; line-height: 0;" height="40">
+			&nbsp;
+		    </td>
+		</tr>
+
+	    {% endfor %}
+
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 22px;color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">{{'Is everything correct?'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 16px;color: #616161; margin-top: 20px; line-height: 16px; margin-bottom: 0px;">{{'You can always view or change your booking online - no registration required.'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <a href="{{ url(bookingDetailsRouteName, {'reference': reference}) }}" style="font-size: 13px;color: #00b7d9; margin-top: 20px; line-height: 16px; margin-bottom: 0px;font-weight:bold;text-decoration:underline;display:block;">{{'Change reservation'|trans}}</a>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			    <td>
+				<div>
+				    {% if reservationDetails.cancelable %}
+					<a href="{{ url(bookingDetailsRouteName, {'reference': reference}) }}"
+					   {% if printView is not defined %}
+					       style="margin-top: 25px;background-color:#828282;border:none;border-radius:5px;color:#ffffff;display:inline-block;font-size:22px;line-height:60px;text-align:center;height: 60px;text-decoration:none;width:277px;-webkit-text-size-adjust:none;mso-hide:all;"
+					   {% else %}
+					       style="font-size: 13px;color: #00b7d9; margin-top: 20px; line-height: 16px; margin-bottom: 0px;font-weight:bold;text-decoration:underline;display:block;"
+					   {% endif %}
+					   >{{'Cancel your booking'|trans}}</a>
+				    {% else %}
+					{{'Your reservation includes non-cancellable rooms and hence cannot be cancelled.'|trans}}
+				    {% endif %}
+				</div>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="40">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 22px;color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">{{'Important Information'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 16px;color: #616161; margin-top: 20px; line-height: 16px; margin-bottom: 0px;">- {{'Please check your visa requirements before you travel.'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="40">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 22px;color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">{{'Payment'|trans}}</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 16px;color: #616161; margin-top: 20px; line-height: 20px; margin-bottom: 0px;">
+			{{'You have now confirmed and guaranteed your reservation by credit card.'|trans}}
+			{{'All payments are to be made at the property during your stay, unless otherwise stated in the'|trans}} <a href="{{url(hotelDetailsRouteName, {'name':hotelDetails.hotelNameURL, 'id':hotelDetails.hotelId})~'#good_to_know'}}" style="color: #00b7d9;text-decoration: underline;">{{'policies'|trans}}</a>.
+			<br>
+			{{'Please note that your credit card may be pre-authorised prior to your arrival.'|trans}}
+		    </p>
+		</td>
+	    </tr>
+
+	    {% if hotelDetails.freeServices is defined and hotelDetails.freeServices is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Free Services'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">
+					{% for service in hotelDetails.freeServices %}
+					    {{ service.description|trans|raw }}{% if not loop.last%}{{ ', ' }}{% endif %}
+					{% endfor %}
+				    </p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+
+	    {% if hotelDetails.facilities is defined and hotelDetails.facilities is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Facilities'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">
+					{% for facility in hotelDetails.facilities %}
+					    <b>{{facility.type|raw}}:&nbsp;&nbsp;&nbsp;</b>
+					    {% for name in facility.names %}
+						{{ name|raw }}{% if facility.type is not empty and not loop.last%}{{ ', ' }}{% endif %}
+					    {% endfor %}
+					    <br/>
+					{% endfor %}
+				    </p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="40">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td bgcolor="#ffffff">
+		    <p style="font-size: 22px;color: black; margin-top: 0px; line-height: 22px; margin-bottom: 0px;">{{'Need help with your reservation'|trans}}?</p>
+		</td>
+	    </tr>
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="20">
+		    &nbsp;
+		</td>
+	    </tr>
+	    {% if hotelDetails.phone is defined and hotelDetails.phone is not empty %}
+		<tr>
+		    <td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			    <tr>
+				<td width="178" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Contact the property'|trans}}</p>
+				</td>
+				<td width="388" height="26" style="text-align: left; background-color: #ffffff;">
+				    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">+{{hotelDetails.phone|raw}}</p>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+	    {% endif %}
+	    <tr>
+		<td style="font-size: 0; line-height: 0;" height="5">
+		    &nbsp;
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			    <td width="178" height="45" style="text-align: left; background-color: #ffffff;vertical-align: top;">
+				<p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0;font-size: 16px;">{{'Manage your booking'|trans}}</p>
+			    </td>
+			    <td width="388" height="45" style="text-align: left; background-color: #ffffff;">
+				<p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{'You can view your reservation or make changes'|trans}}<br>{{'online anytime'|trans}}. <a href="mailto:support@touristtube.com" style="color: #00b7d9;text-decoration: underline;">{{'Email Customer Service'|trans}}</a>.</p>
+			    </td>
+			</tr>
+		    </table>
+		</td>
+	    </tr>
+	    {% include '@Hotel/hotel-email-footer.twig' %}
+	</tbody>
+    </table>
+    {% if printView is not defined %}</body>{% endif %}
+

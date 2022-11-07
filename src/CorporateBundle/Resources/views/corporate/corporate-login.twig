@@ -1,0 +1,78 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/js/loginNew.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Login'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="col-xs-12 nopad">
+	    <div class="col-xs-12 nopad">
+		<p class="corplogintxtgig_corporate">{{'Corporate Login'|trans}} /<span class="spanlogintxt_cologin">{{'LOG INTO YOUR ACCOUNT'|trans}}</span></p>
+	    </div>
+	</div>
+	<div class="col-xs-12 nopad">
+	    <div class="col-xs-12 nopad logincontainer">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 nopad marginright20_corlogin">
+		    <div id="" class="corporate_email_form">
+			<input id="email" placeholder="{{'email address'|trans}}" class="communInput" type="email">
+		    </div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 nopad marginright20_corlogin">
+		    <div id="" class="corporate_pass_form">
+			<input id="pwd" placeholder="{{'password'|trans}}" class="communInput" type="password">
+			<p class="resetpasstxt_corpl forgetbutton">{{'Reset my password'|trans}}?</p>
+		    </div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 nopad marginright20_corlogin">
+		    <div class="signinbucontainer_corpotateform">
+			<button id="LogInSignIn" type="button" class="search-btn signinbut_corpotateform">{{'SIGN-IN'|trans}}</button>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="checkbox">
+			<input id="chKeepmelogged" type="checkbox" class="checkboxlabelinput" checked><label for="chKeepmelogged" class="checkboxlabel">{{'Keep me logged in'|trans}}</label>
+		    </div>
+		</div>
+		<span class="wrong_credentials col-xs-12">{{'invalid credentials'|trans}}</span>
+	    </div>
+	    <div class="col-xs-12 nopad forgot_your_password">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad marginright20_corlogin">
+		    <div id="" class="corporate_email_form">
+			<input id="emailforget" placeholder="{{'enter your email or username'|trans}}" class="communInput" type="email">
+		    </div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 nopad marginright20_corlogin">
+		    <div class="signinbucontainer_corpotateform">
+			<button type="button" class="SendForgot signinbut_corpotateform">{{'RESET'|trans}}</button>
+		    </div>
+		</div>
+		<span class="wrong_credentials col-xs-12">{{'invalid credentials'|trans}}</span>
+	    </div>
+	    <div class="col-xs-12">
+		<div class="col-xs-12 nopad">
+		    <p class="blackxortextcommin martop25_cororate">{{'We can provide your company swiftly with adapted travel plans while we optimize your corporate travel budget. Our travel experts are always set and ready to bring you quality services and utmost convenience during your business trips.'|trans}}</p>
+		    <p class="blackxortextcommin">{{'Tourist Tube offers you the following Corporate Services:'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'International and domestic air ticket booking, hotel reservations and car rentals'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Best Deals for corporate domestic and international agreements with airlines and hotel aggregators'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Cruise / Holiday / Leisure / Activities & Events'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Inbound and outbound group tours and MICE (Meetings, incentives, conferences and exhibitions)'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Overseas medical policy and travel insurance'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Meet and greet services at selected airports'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Travel desk implementation services'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Offshore ticketing from our multiple PCCs'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Visa and Passport facilitation and Foreign exchange services'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{"Tourist Tube's Miles (reward points) on every domestic airline booking that could be redeemed for discounts"|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{"Tourist Tube's own online Corporate Booking Tool"|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Service Level Agreements'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Dedicated customer care service and corporate relationship management'|trans}}</p>
+		    <p class="blackxortextcommin"><span class="padrightdash">-</span>{{'Quarterly review meets / service camps / feedback'|trans}}</p><br>
+		    <p class="blackxortextcommin">{{'For our specialists to serve you best, kindly fill up the form below and our corporate travel consultants will contact you personally.'|trans}}</p>
+		    <p class="blackxortextcommin">{{'For your inquiries, contact us at +'|trans}}</p>
+
+		</div>
+	    </div>
+	</div>
+    </div>
+</section>
+{% endblock %}

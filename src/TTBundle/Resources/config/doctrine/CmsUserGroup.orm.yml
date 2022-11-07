@@ -1,0 +1,31 @@
+TTBundle\Entity\CmsUserGroup:
+    type: entity
+    table: cms_user_group
+    repositoryClass: TTBundle\Repository\UserRepository
+    oneToOne:
+        cmsUsers:
+            targetEntity: CmsUsers
+            mappedBy: cmsUserGroup
+            cascade: [persist]
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 30
+            column: name
+        role:
+            type: string
+            nullable: false
+            length: 20
+            column: role
+    lifecycleCallbacks: {  }
+

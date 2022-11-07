@@ -1,0 +1,457 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-common_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}{{'Manage Bookings'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporate_common_new_container">
+        <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+            <div class="container-fluid nopad filters-group">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                        {{'Filters'|trans}}
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By date Interval'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div id="dateRange" class="col-xs-12 nopad">
+                                            <div class="row no-margin">
+                                                <div id="fromContainer" class="col-xs-12 nopad mybookinginput">
+                                                    <input type="text" class="col-xs-12" id="fromDate" name="fromDateC" value="" placeholder="{{'from'|trans}}">
+                                                </div>
+                                            </div>
+                                            <div class="row no-margin">
+                                                <div id="toContainer" class="col-xs-12 nopad mybookinginput">
+                                                    <input type="text" class="col-xs-12" id="toDate" name="toDateC" value="" placeholder="{{'to'|trans}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By currency'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div id="curr" class="col-xs-12 nopad mybookinginput">
+                                            <input type="text" class="col-xs-12" id="" name="" value="" placeholder="{{'by currency'|trans}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by Type of booking'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="allCheckBox" value="all" id="all" class="form-check-input">
+                                                <label for="all" class="form-check-label">
+                                                    {{'All'|trans}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="flightsCheckBox" value="1" id="flights" class="form-check-input">
+                                                <label for="flights" class="form-check-label">
+                                                    {{'Flights'|trans}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="hotelsCheckBox" value="2" id="hotels" class="form-check-input">
+                                                <label for="hotels" class="form-check-label">
+                                                    {{'Hotels'|trans}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by booking status'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="radio" name="statusradio" value="past" id="past" class="">
+                                                <label for="past" class="form-check-label">
+                                                    {{'Past'|trans}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="radio" name="statusradio" value="cancelled" id="cancelled" class="">
+                                                <label for="cancelled" class="form-check-label">
+                                                    {{'Cancelled'|trans}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="radio" name="statusradio" value="upcoming" id="upcoming" class="">
+                                                <label for="upcoming" class="form-check-label">
+                                                    {{'Upcoming'|trans}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <button id="" class="btn yellow_search_common_button">{{'Search'|trans}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <div class="circlimg_arrow"><i class="fas fa-angle-right"></i></div>
+                        <h1 class="search_title">Manage bookings</h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row margin_top_60">
+                    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <p class="blue font-24 line-height-26 padding_left_17">{{'Filters'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By date Interval'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div id="dateRange" class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div id="fromContainer" class="col-xs-12 nopad mybookinginput">
+                                                <input type="text" class="col-xs-12" id="fromDate" name="fromDateC" value="" placeholder="{{'from'|trans}}">
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div id="toContainer" class="col-xs-12 nopad mybookinginput">
+                                                <input type="text" class="col-xs-12" id="toDate" name="toDateC" value="" placeholder="{{'to'|trans}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By currency'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div id="curr" class="col-xs-12 nopad mybookinginput">
+                                        <input type="text" class="col-xs-12" id="" name="" value="" placeholder="{{'by currency'|trans}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by Type of booking'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="allCheckBox" value="all" id="all" class="form-check-input">
+                                            <label for="all" class="form-check-label">
+                                                {{'All'|trans}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="flightsCheckBox" value="1" id="flights" class="form-check-input">
+                                            <label for="flights" class="form-check-label">
+                                                {{'Flights'|trans}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="hotelsCheckBox" value="2" id="hotels" class="form-check-input">
+                                            <label for="hotels" class="form-check-label">
+                                                {{'Hotels'|trans}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by booking status'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="radio" name="statusradio" value="past" id="past" class="">
+                                            <label for="past" class="form-check-label">
+                                                {{'Past'|trans}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="radio" name="statusradio" value="cancelled" id="cancelled" class="">
+                                            <label for="cancelled" class="form-check-label">
+                                                {{'Cancelled'|trans}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="radio" name="statusradio" value="upcoming" id="upcoming" class="">
+                                            <label for="upcoming" class="form-check-label">
+                                                {{'Upcoming'|trans}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <button id="" class="btn yellow_search_common_button">{{'Search'|trans}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <p class="pending_ammount">Amount of the pending list<span class="price_unit">USD</span><span class="price">2,752</span></p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin bordered_row_small"></div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_top_20 margin_bottom_20">
+                                    <div class="col-sm-9 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-16 black float-left padding_right_10">The Milestone Hotel</p>
+                                                <p class="font-16 grey_dark float-left padding_right_10">Booking number: <span class="black">1010207061</span></p>
+                                                <p class="font-16 grey_dark float-left padding_right_10">PIN Code: <span class="black">4491</span></p>
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-13 grey_light float-left padding_right_10 font-bold">CHECK-IN <span class="black font-16">16 Oct 2016</span><span class="black">sunday</span></p>
+                                                <p class="font-13 grey_light float-left padding_right_10 font-bold">CHECK-OUT <span class="black font-16">20 Oct 2016</span><span class="black">thurday</span></p>
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-14 grey_light">Requested by: Ardag Manoukian</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="ttl_price float-right">USD 2,752</p>
+                                                <img class="float-right" src="/images/corporate_new/room_service_logo.png" alt="{{'room_service_logo'|trans}}">
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <ul class="vc_list">
+                                                    <li><a class="vd_li" href="#">View details</a></li>
+                                                    <li class="sep_li">|</li>
+                                                    <li><a class="c_li" href="#">Cancel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin bordered_row_1"></div>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_top_20 margin_bottom_20">
+                                    <div class="col-sm-9 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-16 black float-left padding_right_10">The Royal Horseguards</p>
+                                                <p class="font-16 grey_dark float-left padding_right_10">Booking number: <span class="black">1010207061</span></p>
+                                                <p class="font-16 grey_dark float-left padding_right_10">PIN Code: <span class="black">4491</span></p>
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-13 grey_light float-left padding_right_10 font-bold">CHECK-IN <span class="black font-16">16 Oct 2016</span><span class="black">sunday</span></p>
+                                                <p class="font-13 grey_light float-left padding_right_10 font-bold">CHECK-OUT <span class="black font-16">20 Oct 2016</span><span class="black">thurday</span></p>
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-14 grey_light">Requested by: Ardag Manoukian</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="ttl_price float-right">USD 3,491</p>
+                                                <img class="float-right" src="/images/corporate_new/room_service_logo.png" alt="{{'room_service_logo'|trans}}">
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <ul class="vc_list">
+                                                    <li><a class="vd_li" href="#">View details</a></li>
+                                                    <li class="sep_li">|</li>
+                                                    <li><a class="c_li" href="#">Cancel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin bordered_row_1"></div>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_top_20 margin_bottom_20">
+                                    <div class="col-sm-9 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-16 black float-left padding_right_10">The Royal Horseguards</p>
+                                                <p class="font-16 grey_dark float-left padding_right_10">Booking number: <span class="black">1010207061</span></p>
+                                                <p class="font-16 grey_dark float-left padding_right_10">PIN Code: <span class="black">4491</span></p>
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-13 grey_light float-left padding_right_10 font-bold">CHECK-IN <span class="black font-16">16 Oct 2016</span><span class="black">sunday</span></p>
+                                                <p class="font-13 grey_light float-left padding_right_10 font-bold">CHECK-OUT <span class="black font-16">20 Oct 2016</span><span class="black">thurday</span></p>
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-14 grey_light">Requested by: Ardag Manoukian</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="ttl_price float-right">USD 3,491</p>
+                                                <img class="float-right" src="/images/corporate_new/room_service_logo.png" alt="{{'room_service_logo'|trans}}">
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <ul class="vc_list">
+                                                    <li><a class="vd_li" href="#">View details</a></li>
+                                                    <li class="sep_li">|</li>
+                                                    <li><a class="c_li" href="#">Cancel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin bordered_row_1"></div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">                 
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_top_20 margin_bottom_20">
+                                    <div class="col-sm-9 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-22 black float-left padding_right_10 line-height-35">Middle East Airlines</p>
+                                                <p class="font-17 black float-left padding_right_10 line-height-35">ME426</p>
+                                                <img class="float-left" src="/images/corporate_new/comp_logo.png" alt="{{'comp_logo'|trans}}">
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12 nopad">
+                                                <p class="font-14 blue">Departure</p>
+                                                <p class="font-14 black">Tue 13/12</p>
+                                                <p class="font-14 black"><span class="font-bold">07:30</span> Beirut Int  <span class="font-bold">BEY</span></p>
+                                                <p class="font-14 grey_light">Stop:<span class="black">0</span></p>
+                                                <p class="font-14 grey_light">Flight type:<span class="black">roundtrip</span></p>
+                                                <p class="font-14 grey_light margin_top_10">Requested by: Ardag Manoukian</p>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12 nopad">
+                                                <p class="font-14 blue">Arrival</p>
+                                                <p class="font-14 black">Sun 18/12</p>
+                                                <p class="font-14 black"><span class="font-bold">15:05</span> Dubai Inl Airport <span class="font-bold">DXB</span></p>
+                                                <p class="font-14 grey_light">Number of passengers:<span class="black">1</span></p>
+                                                <p class="font-14 grey_light"><span class="black">Non-refundable</span></p>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="ttl_price float-right">USD 3,491</p>
+                                                <img class="float-right" src="/images/corporate_new/flight_logo.png" alt="{{'flight_logo'|trans}}">
+                                            </div>
+                                            <div class="col-xs-12 nopad">
+                                                <ul class="vc_list">
+                                                    <li><a class="vd_li" href="#">View details</a></li>
+                                                    <li class="sep_li">|</li>
+                                                    <li><a class="c_li" href="#">Cancel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin bordered_row_1"></div>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

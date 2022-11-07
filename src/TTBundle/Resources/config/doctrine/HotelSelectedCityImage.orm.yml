@@ -1,0 +1,58 @@
+TTBundle\Entity\HotelSelectedCityImage:
+    type: entity
+    table: hotel_selected_city_image
+
+    indexes:
+        hotel_selected_city_id:
+            columns:
+                - hotel_selected_city_id
+        published:
+            columns:
+                - published
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+        image:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        avgPrice:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: avg_price
+        hotelSelectedCityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_selected_city_id
+        displayOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: display_order
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

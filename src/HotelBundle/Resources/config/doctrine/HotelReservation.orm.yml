@@ -1,0 +1,205 @@
+HotelBundle\Entity\HotelReservation:
+    type: entity
+    table: hotel_reservation
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        source:
+            targetEntity: AmadeusHotelSource
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: reservations
+            joinColumns:
+                hotel_source_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    fields:
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        userId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: user_id
+        title:
+            type: string
+            nullable: true
+            length: 4
+            options:
+                fixed: false
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: last_name
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+        dialingCode:
+            type: integer
+            nullable: true
+            options:
+                fixed: false
+            column: dialing_code
+        mobile:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        fromDate:
+            type: date
+            nullable: true
+            column: from_date
+        toDate:
+            type: date
+            nullable: true
+            column: to_date
+        doubleRooms:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: double_rooms
+        singleRooms:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: single_rooms
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                fixed: false
+            column: hotel_id
+        hotelSourceId:
+            type: integer
+            nullable: false
+            options:
+                fixed: false
+            column: hotel_source_id
+        hotelGrandTotal:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: hotel_grand_total
+        hotelCurrency:
+            type: string
+            nullable: false
+            length: 3
+            column: hotel_currency
+        customerGrandTotal:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: customer_grand_total
+        customerCurrency:
+            type: string
+            nullable: false
+            length: 3
+            column: customer_currency
+        amountFbc:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_fbc
+        amountSbc:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_sbc
+        accountCurrencyAmount:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: true
+            column: account_currency_amount
+        reservationProcessKey:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: reservation_process_key
+        reservationProcessPassword:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: reservation_process_password
+        controlNumber:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: control_number
+        reservationStatus:
+            type: string
+            nullable: false
+            options:
+                fixed: false
+            column: reservation_status
+        reference:
+            type: string
+            nullable: false
+            options:
+                fixed: false
+            column: reference
+        paymentUUID:
+            type: string
+            nullable: true
+            length: 36
+            options:
+                fixed: false
+            column: payment_uuid
+        details:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: details
+        transactionSourceId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: transaction_source_id
+    lifecycleCallbacks: {  }

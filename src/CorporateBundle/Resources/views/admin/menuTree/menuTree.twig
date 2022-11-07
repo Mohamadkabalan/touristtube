@@ -1,0 +1,37 @@
+<div class="col-xs-12 corporate_small_col_padding lofaff">
+    <label class="form-check-label">{{'Menu Access'|trans}}</label>
+</div>
+<div class="col-xs-12 corporate_small_col_padding lofaff">
+    <input {{ (sectionData[0].id is defined) ? '' : 'checked' }} type="checkbox" id="check_all">
+    <label for="check_all" class="form-check-label">{{'Check All'|trans}}</label>
+    <table class="tree">
+    {% for menu in menuTree %}
+        {% if menu|length > 1 %}
+            {% set parentMenu = menu|first %}
+            <tr class="treegrid-{{parentMenu.m_id}}">
+                <td>
+                <input {{ (parentMenu.m_id in menuListArray) ? 'checked' : '' }} value="{{parentMenu.m_id}}" name="menu[]" {{ (sectionData[0].id is defined) ? '' : 'checked' }} type="checkbox" class="menus parent parent-{{parentMenu.m_id}}" id="{{parentMenu.m_id}}">
+                <label for="{{parentMenu.m_id}}" class="form-check-label">{{parentMenu.m_name}}</label>
+                </td>
+            </tr>
+            {% for child in menu %}
+                {% if child.m_id != parentMenu.m_id %}
+                <tr class="treegrid-{{child.m_id}} treegrid-parent-{{parentMenu.m_id}}">
+                <td>
+                    <input {{ (child.m_id in menuListArray) ? 'checked' : '' }} value="{{child.m_id}}" name="menu[]" {{ (sectionData[0].id is defined) ? '' : 'checked' }} type="checkbox" class="child-{{parentMenu.m_id}} menus child" parentId="{{parentMenu.m_id}}" id="{{parentMenu.m_id}}-{{child.m_id}}">
+                    <label for="{{parentMenu.m_id}}-{{child.m_id}}" class="form-check-label">{{child.m_name}}</label>
+                </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        <tr class="treegrid-{{menu[0].m_id}}">
+            <td>
+            <input {{ (menu[0].m_id in menuListArray) ? 'checked' : '' }} value="{{menu[0].m_id}}" name="menu[]" {{ (sectionData[0].id is defined) ? '' : 'checked' }} type="checkbox" class="menus parent parent-{{menu[0].m_id}}" id="{{menu[0].m_id}}">
+            <label for="{{menu[0].m_id}}" class="form-check-label">{{menu[0].m_name}}</label>
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </table>
+</div>	

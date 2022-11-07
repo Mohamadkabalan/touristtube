@@ -1,0 +1,66 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewjs %}
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-accountTransactionsEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Statement Of Account Add/Edit'|trans}}{% endblock %}
+{% block body %}
+
+    {% set defaultValues  = {'al_id':0 ,'al_accountId': 0, 'al_userId': 0, 'al_requestDetailId': 0, 'al_currencyCode': 0, 'al_amount': 0 } %}
+
+    {% set accountTransactions = defaultValues|merge(accountTransactions) %}
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Statement Of Account'|trans}} / <span class="add_edit">add/edit</span></h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>		    
+	    <form method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_account_transactions_addSubmit') }}">
+		<div class="col-lg-10 col-xs-12 nopad margin_top_40">
+		    <div class="row corporate_small_row_margin">
+			<input type="hidden" class="id" name="id" value="{{accountTransactions.al_id|raw}}">
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="accountIdLabel" class="form-check-label">{{'Account'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="accountId" value="{{accountTransactions.al_accountId|raw}}" required placeholder="{{'Account'|trans}}*" label="#accountIdLabel"/>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="userIdLabel" class="form-check-label">{{'User'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="userId" value="{{accountTransactions.al_userId|raw}}" required placeholder="{{'User'|trans}}*" label="#userIdLabel"/>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="requestDetailIdLabel" class="form-check-label">{{'Request Detail'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="requestDetailId" value="{{accountTransactions.al_requestDetailId|raw}}" required placeholder="{{'Request Detail'|trans}}" label="#requestDetailIdLabel"/>
+			</div>
+			<div class="clearfix visible-lg visible-md"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="currencyCodeLabel" class="form-check-label">{{'Currency'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="currencyCode" value="{{accountTransactions.al_currencyCode|raw}}" required placeholder="{{'Currency'|trans}}*" label="#currencyCodeLabel"/>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label id="amountLabel" class="form-check-label">{{'Amount'|trans}}*</label>
+			    <input type="text" class="col-xs-12" name="amount" value="{{accountTransactions.al_amount|raw}}" required placeholder="{{'Amount'|trans}}*" label="#amountLabel"/>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+			    <label class="form-check-label">{{'Description'|trans}}</label>
+			    <textarea name="description" class="col-xs-12" placeholder="{{'Description'|trans}}">{{requestService.p_description|raw}}</textarea>
+			</div>
+			<div class="clearfix visible-lg visible-md"></div>
+			<div class="clearfix visible-sm"></div>
+		    </div>
+		    <div class="row corporate_small_row_margin">
+			<div class="col-xs-12 corporate_small_col_padding margin_top_20">
+			    <a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corpo_admin_transactions') }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+			    <button data-role="button" data-type="validate" type="submit" class="btn submit_yellow">{{'Submit'|trans}}</button>
+			</div>
+		    </div>
+		</div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

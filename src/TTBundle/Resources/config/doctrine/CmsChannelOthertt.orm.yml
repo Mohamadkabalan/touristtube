@@ -1,0 +1,36 @@
+TTBundle\Entity\CmsChannelOthertt:
+    type: entity
+    table: cms_channel_otherTT
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        name:
+            type: string
+            nullable: false
+            length: 254
+            options:
+                fixed: false
+        link:
+            type: string
+            nullable: false
+            length: 254
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

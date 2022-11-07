@@ -1,0 +1,21 @@
+{# app/Resources/views/default/flight-booking.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-detailed.css" >      
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="/assets/flights/js/flight-detailed.js"></script>
+{% endblock %}
+{% block body %}
+    <section class="container containerresume">
+
+        <div class="col-xs-12 borderbluepadding">
+            <div class="borderbluediv"></div>
+        </div>
+        <div class="col-xs-12 nopad padding-lr-10">
+            <p class="blackboldtext">{{'No data available'|trans}}</p>
+        </div>
+        
+    </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+_rest_thingstodo_divisions_lang:
+    path:      "/{_locale}/api/thingstodo/divisions/{ttdId}"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:divisions, _locale: "%locale%", ttdId: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+#Things To Do in Region URL 
+_rest_things_region_lang:
+    path:      "/{_locale}/api/discover/thingstodo_region"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoRegion, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+#Things To Do in Country URL 
+_rest_things_country_lang:
+    path:      "/{_locale}/api/discover/thingstodo_country"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoCountry, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+        
+# Things To Do Url
+_rest_things_search_lang:
+    path:      "/{_locale}/api/discover/thingstodo"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoSearch, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+# Things To Do Details
+_rest_things_details_lang:
+    path:      "/{_locale}/api/discover/thingstodo_details"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoDetails, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET

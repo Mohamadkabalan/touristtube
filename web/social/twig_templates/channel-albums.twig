@@ -1,0 +1,142 @@
+{# Template for Channel Page#}
+
+{% include "headChannel.html" %}
+
+
+<script type="text/javascript">
+    var indexArray = new Array();
+    var pagename = "albums";
+    var pagetype = "albums";
+    var globchannelid = {{ channelInfoId|raw }};
+    channelGlobalID(globchannelid);
+    var txt_srch_init = {{ txt_srch_init|raw }};
+    var user_Is_channel = {{ userIschannel|raw }};
+    var user_is_logged = {{ user_is_logged|raw }};
+    var is_owner = {{ is_owner|raw }};
+    reactivateAccount(false);
+</script>
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleChannel" style="background:{{ bg_src|raw }};">
+	
+    <div id="ChannelContainer">
+        {% include "parts/channelHeader.twig" %}
+        <div id="MainChannelContainer">
+
+            {% include "parts/myChannelRight.twig" %}
+            {% if ChanelNumAlbumC > 0 %}
+                     
+        	<div id="ChannelLeft">
+            	<div class="calendarcontainer">
+                    <div id="frombutcontainer">
+                    	<div id="frombut" class="calbut">{{ 'From'|lang }}</div>
+                    	<div id="fromtxt" class="caltxt" data-cal=""></div>
+                    </div>
+                    <div id="tobutcontainer" class="marginleft10">
+                        <div id="tobut" class="calbut">{{ 'To'|lang }}</div>
+                        <div id="totxt" class="caltxt" data-cal=""></div>
+                    </div>
+                    <div id="searchCalendarbut"></div>
+                    <div class="load_more_previous_new" id="resetpagebut">{{ 'reset'|lang }}</div>
+                </div>
+                {% if channelalbumInfo %}
+                    <div class="MediaCont">
+                        <div class="Line"></div>
+                        <h2 class="TTL h2bottom0">{{ 'ALBUMS'|lang }} <span class="YellowTTL albumsmediaDataCount" data-number="{{ formatChanelNumAlbumC|raw }}">({{ formatChanelNumAlbumC|raw }})</span></h2>
+                        <div class="MediaList" id="MediaAlbum" data-channelid="{{ channelInfoId|raw }}" data-number="{{ channelimageInfoCount|raw }}">
+                            <ul>
+                            {% for albumInfo in albumInfoArr %}
+                                <li data-vid="{{ albumInfo.vid_id|raw }}">
+
+                                    <div class="plusSign"></div>
+
+                                    <div class="image">
+                                        {% if albumInfo.album_media_count > 0 %}
+                                            <a href="{{ albumInfo.mediauri|raw }}" title="{{ albumInfo.Title|raw }}"><div class="stanClick"></div></a>
+                                        {% endif %}
+                                        <img width="136" height="76" src="{{ albumInfo.thumb|raw }}" alt="{{ albumInfo.Title|raw }}"/>
+                                        <div class="insideBorder play hide"></div>
+                                        <div class="infoPop hide">
+                                            <div class="views">{{ albumInfo.views|raw }} {{ albumInfo.displayViewsCount|raw }}</div>
+                                        </div>
+                                        <div class="closeSign hide"></div>
+                                    </div>
+
+                                    <div class="ttl medias_title">{{ albumInfo.Title|raw }}</div>
+
+                                    <div class="popUp">
+                                        <div class="main">	
+                                            <div class="ttl popUpDivStandar">{{ albumInfo.formatDate|raw }}</div>
+                                            <div class="popUpDivStandar popUpDivDescription">{{ albumInfo.Description|raw }}</div> 
+                                            {% if albumInfo.album_media_count > 0 %}
+                                                <a href="{{ albumInfo.mediauri|raw }}" class="more0 marginbottom21{% if Description == '' %} displaynone{% endif %}" title="{{ albumInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'more >'|lang }}</div></a>
+                                            {% endif %}
+                                            <div class="overdatabutcontainer">
+                                                {%  if is_owner == 1 %}
+
+                                                    {% if albumInfo.album_media_count > 0 %}                                                       
+                                                        <a href="{{ albumInfo.mediauri ~ '/edit/1'|raw }}" title="{{ albumInfo.catalog_name|raw }}"><div class="overdatabut overdatabutedit">{{ 'edit'|lang }}</div></a>
+                                                        <div class="overdatabutseperator"></div>
+                                                    {% endif %}
+                                                    <div class="overdatabutremove overdatabut">{{ 'remove'|lang }}</div>
+                                                    <div class="overdatabutseperator"></div>
+                                                    <div class="overdatabutenable overdatabut" data-status="{% if albumInfo.can_comment == 0 or albumInfo.can_share == 0%}0{% else %}1{% endif %}">
+                                                        <div class="overdatabutntficon{% if albumInfo.can_comment == 0 or albumInfo.can_share == 0 %} inactive{% endif %}"></div>
+                                                        <div class="overdatabutntftxt marginleft12">{{ 'enable shares & comments'|lang }}</div>
+                                                    </div>
+                                                {% else %}
+                                                    {% if albumInfo.privacy_social == 1 %}
+                                                        <a href="{{ albumInfo.mediauri ~ '/like/1'}}" title="<?php echo $Title; ?>"><div class="overdatabut overdatabutlike">{{ 'like'|lang }}</div></a>
+                                                        <div class="overdatabutseperator"></div>
+                                                        {% if albumInfo.can_comment == 1 and albumInfo.can_share == 1 %}
+                                                            <a href="{{ albumInfo.mediauri ~ '/comment/1'}}" title="{{ albumInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'comment'|lang }}</div></a>
+                                                            <div class="overdatabutseperator"></div>
+                                                            <a href="{{ albumInfo.mediauri ~ '/share/1'}}" title="{{ albumInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'share'|lang }}</div></a>
+                                                            <div class="overdatabutseperator"></div>
+                                                        {% endif %}
+                                                        <a href="{{ albumInfo.mediauri ~ '/rate/1'}}" title="{{ albumInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'rate'|lang }}</div></a>
+                                                       {% if albumInfo.user_is_logged==1 %}
+                                                        <div class="overdatabutseperator"></div>
+                                                        <a href="{{ albumInfo.mediauri ~ '/report/1'}}" title="{{ albumInfo.Title|raw }}"><div class="overdatabut overdatabutlike">{{ 'report'|lang }}</div></a>
+
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="minus"></div>
+                                    </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div style="clear:both;"></div>
+                        <div class="buttonmorecontainer" style="float:none; width:584px;"> 
+                            {% if pagcount > currentpage + 1 %}
+                                <a id="load_more_next" class="loadmoremedia load_more_previous_new" href="{{ loadMoreLink|raw }}">{{ 'Load More...'|lang }}</a>
+                            {% endif %}    
+                            {% if pageArg and currentpage != 0%}
+                                <a id="load_more_previous" class="load_more_previous_new" href="{{ loadPreviousLink|raw }}">{{ 'Load Previous...'|lang }}</a>
+                            {% endif %}  
+                            <script>
+                                $(document).ready(function(e) {
+                                    var load_more_next_diff=4;
+                                    if($('#load_more_next').length>0){
+                                        load_more_next_diff+=29;
+                                    }
+                                    if($('#load_more_previous').length>0){
+                                        load_more_next_diff+=29;
+                                    }
+                                    $('.buttonmorecontainer').css('width',($('#load_more_next').width()+ $('#load_more_previous').width()+load_more_next_diff)+"px");                           
+                                });
+                            </script> 
+                        </div>
+                    </div>
+                </div>   
+                {% endif %}
+            </div>
+            {% else %}
+                <div class="notFoundCon">{{ 'No videos found'|lang }}</div>
+            {% endif %}    
+            {% if channel_type != CHANNEL_TYPE_DIASPORA %}
+                {% include "parts/channelNewsTicker.twig" %}
+            {% endif %}

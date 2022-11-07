@@ -1,0 +1,39 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/hotels/css/hotel-best-in-world.css")|raw }}" >
+{% endblock %}
+{% block body %}
+    <section class="container city_activites_container">
+	{% for itemMain in mainEntityArray %}
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{itemMain.name|raw}}</h1>
+		</div>
+	    </div>
+	    <div class="row new_margin">
+		{% for subItemMain in itemMain.subItem %}
+		    <div class="col-md-3 col-sm-6 col-xs-12 new_padding">
+			<a href="{{ subItemMain.link|raw }}" title="{{ subItemMain.namealt|raw }}">
+			    <img class="width-100" src="{{ subItemMain.img }}" alt="{{ subItemMain.namealt|raw }}" />
+			    <h2 class="subtitle_home_new">{{ subItemMain.name|raw }}{% if subItemMain.city !='' %} <span class="txtPink">| {{ subItemMain.city|raw }}</span>{% endif %}</h2>
+			    {#<img class="small_logo_absolute" src="{{ generateMediaURL('/media/images/360-photos-virtual-tour/360_logo.png') }}" alt="{{ '360 logo'|trans }}">#}
+                            <div class="sprite sprite_360_logo2"></div>
+			</a>
+			<p class="reviews">
+			    {% if subItemMain.reviews_count >0 %}
+				<span class="star_rating" data-rating="{{ subItemMain.score|raw }}" data-font="11" data-color="#eac31a"></span> {{ subItemMain.reviews_count|raw }} {{'reviews'|trans}}
+			    {% endif %}
+			</p>			
+		    </div>
+		    {% if (loop.index%4)==0 %}
+			<div class="clearfix visible-lg visible-md"></div>
+		    {% endif %}		
+		    {% if (loop.index%2)==0 %}
+			<div class="clearfix visible-sm"></div>
+		    {% endif %}
+		{% endfor %}
+	    </div>	    
+	{% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,1199 @@
+{# twig file for profile_TTpage.php #}
+
+<script type="text/javascript">
+    userGlobalID({{userId|raw}});
+    var no_socials_links = 1;
+    var user_is_logged = '{{user_is_logged|raw}}';
+    var user_Is_channel = '{{userIschannel|raw}}';
+    var is_owner = '{{is_owner|raw}}';
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCrxIysSaXDyJxGenBvXJIfqIFclyatYfo&amp;sensor=false&amp;libraries=places"></script>
+
+<a href="" id="picfancyboxbutton" rel="nofollow" style="width:0px;height:0px;" class="displaynone"></a>
+<a href="#sharepopup" rel="nofollow" id="addbrochure_buttonbk" class="displaynone"></a>
+<div id="sharepopup"></div>
+<div class="upload-overlay-loading-fix">
+    <div></div>
+</div>
+{# uncomment if twig files for below file are done
+    {% include 'parts/profile_TTpage_header.twig' %}
+    {% include 'parts/profile_TTpage_left.twig' %}
+#}
+<div id="right_container">
+    <div class="privacybuttonsOver">
+        <div class="ProfileHeaderOverin"></div>
+        <div class="icons-overtik"></div>
+    </div>
+    {% if is_owner==1 %}
+        <div id="activity_log_container">
+            <div id="activity_log_but"></div>
+            <div id="activity_log_back_up">
+                <div id="activity_log_back">
+                    <div id="activity_log_close"></div>
+                    <div id="activity_log_buttons_content">
+                        <div id="activity_log_buttons_all" class="activity_log_buttons active" data-value="all">{{'all'|lang}}</div>
+                        <div id="activity_log_buttons_ttpage" class="activity_log_buttons" data-value="{{ ACTIVITIES_ON_TTPAGE|raw}}">{{'on my TT page'|lang}}</div>
+                        <div id="activity_log_buttons_other_ttpage" class="activity_log_buttons" data-value="{{ ACTIVITIES_ON_TTPAGE_OTHER|raw}}">{{"on others' entries"|lang}}</div>
+                        <div id="activity_log_buttons_channels" class="activity_log_buttons" data-value="{{ ACTIVITIES_ON_TCHANNELS|raw}}">{{'on channels'|lang}}</div>
+                        <div id="activity_log_buttons_hotels" class="activity_log_buttons" data-value="{{ ACTIVITIES_ON_THOTELS|raw}}">{{'on hotels'|lang}}</div>
+                        <div id="activity_log_buttons_restaurants" class="activity_log_buttons" data-value="{{ ACTIVITIES_ON_TRESTAURANTS|raw}}">{{'on restaurants'|lang}}</div>
+                        {% if user_is_logged!=false and is_owner==1 %}
+                            <div id="activity_log_buttons_hidden" class="activity_log_buttons margintop8" data-value="hidden">{{'hidden entries'|lang}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div id="log_data_container" class="log_data_container" data-profile="{{userId|raw}}">
+
+        {% for news in news_feedArr %}
+
+            <div class="log_item_list">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="privacy_icon_glob privacy_icon{{ news.privacy_icon|raw}}" id="privacy_icon_glob" data-title="{{ news.privacy_icon_str|raw}}"></div>
+                <div class="log_top_related_tt_back_{{ news.log_top_related|raw}}" id="log_top_related_tt"></div>
+                <div data-id="{{ news.id|raw}}" class="log_top_arrow"></div>
+                <div class="log_top_buttons_container">
+                    <div data-entity-id="{{ news.entity_id|raw}}" data-entity-type="{{ news.entity_type|raw}}" id="log_hidden_buttons_{{ news.id|raw}}" class="log_hidden_buttons">
+                        {% if is_owner==1 %}
+                            {% if news.is_owner_join==1 %}
+                                {% if news.entity_type_row==SOCIAL_ENTITY_BAG %}
+                                    <div class="log_top_button" id="remove_button_log">{{ 'remove'|lang }}</div>
+                                {% elseif news.entity_type_row == SOCIAL_ENTITY_VISITED_PLACES %}
+                                    <div class="log_top_button" id="remove_button_log">{{ 'remove'|lang }}</div>
+                                    <div class="seperator_button"></div>
+                                    <div class="log_top_button" id="hide_button_log">{{ 'hide'|lang }}</div>
+                                {% else %}
+                                    <div class="overdatabutenable log_top_button" data-status="{{ news.data_status|raw}}">
+                                        <div class="overdatabutntficon{{ news.class|raw}}"></div>
+                                        <div class="overdatabutntftxt marginleft12">{{ news.enable_button_name|raw}}</div>
+                                    </div>
+                                    <div class="seperator_button"></div>
+                                    <div class="log_top_button" id="remove_button_log">{{ 'remove'|lang}}</div>
+                                    <div class="seperator_button"></div>
+                                    <div class="log_top_button" id="hide_button_log">{{ 'hide'|lang}}</div>
+                                {% endif %}
+                            {% else %}
+                                <div class="log_top_button" id="hide_button_log">'._('hide').'</div>
+                            {% endif %}
+                        {% else %}
+
+                            {% if user_is_logged and userIschannel==0 and news.entity_type_row != SOCIAL_ENTITY_VISITED_PLACES %}
+                                <a href="#sharepopup" rel="nofollow" id="report_button_log_viewer{{ news.report_buts|raw}}" class="log_top_button report_button_log_reason">{{ 'report'|lang}}</a>
+                                <div class="seperator_button"></div>
+                             {% endif %}
+                            <div class="log_top_button hide_button_log_viewer">{{ 'hide'|lang}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if news.entity_type_row == SOCIAL_ENTITY_WEBCAM %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state|raw}}"></div>
+                    </div>
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}"</div>
+                    {% endif %}
+                    <div class="log_media_container">
+                        <div class="log_media_container_inside">
+                            <a href="{{ news.media_uri|raw}}" target="_blank"><img class="picture" src="{{ news.impathss|raw}}" />
+                                <div class="enlarge {{ news.enlarge_class|raw}}"></div></a>
+                            <div class="log_item_right">
+                                <div class="text">
+                                    <div class="news_count">{{ news.displayViewsCount|raw}}</div>
+                                    <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                    <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                    <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                                    <div class="news_count">{{ news.displayRatingsCount|raw}}</div>
+                                    <div id="popup_view_rate{{ news.rating|raw}}" class="log_ratings"></div>
+                                </div>
+                            </div>
+                            <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                                <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_LIKE or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT ) and news.entity_type_row == SOCIAL_ENTITY_JOURNAL  %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state|raw}}"></div>
+                    </div>
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}"</div>
+                    {% endif %}
+                    <div class="log_item_container">
+                        <div class="log_item_left">
+                            <a href="{{news.media_uri|raw}}" target="_blank"><div class="picture">
+                                    <img src="{{news.thumb_pic|raw}}">
+                                </div></a>
+                            <div class="text">{{news.journal_desc |raw}}</div>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif (news.action_type == SOCIAL_ACTION_LIKE or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT ) or news.entity_type_row == SOCIAL_ENTITY_BROCHURE %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state|raw}}"></div>
+                    </div>
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}"</div>
+                    {% endif %}
+                    <div class="log_item_container">
+                        <div class="log_item_left">
+                            <a href="{{news.media_uri|raw}}" target="_blank"><div class="picture">
+                                    <img src="{{news.thumb_pic|raw}}">
+                                </div></a>
+                            <div class="text">{{news.media_row_name|raw}}</div>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_UPDATE or news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_LIKE or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_EVENT_JOIN or news.action_type == SOCIAL_ACTION_INVITE or news.action_type == SOCIAL_ACTION_EVENT_CANCEL ) and ( news.entity_type_row == SOCIAL_ENTITY_USER_EVENTS or news.entity_type_row == SOCIAL_ENTITY_EVENTS_LOCATION or news.entity_type_row == SOCIAL_ENTITY_EVENTS_DATE or news.entity_type_row == SOCIAL_ENTITY_EVENTS_TIME ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}"</div>
+                    {% endif %}
+                    <div class="log_events_container">
+                        <div class="picture_container">
+                            <a href="{{news.media_uri|raw}}" target="_blank"><img class="picture" src="{{news.event_photo|raw}}" />
+                                <div class="enlarge enlarge_photo"></div></a>
+                        </div>
+                        <div class="details">
+                            <span class="date">{{news.fromdate_dmy|raw}}</span><br>
+                            <img class="clock_icon" src="{{'images/channel/eventclock.png'|lang}}" />
+                            <span class="time">{{news.fromtime_gia|raw}}</span><br />
+                            <span class="location">{{'location : '|lang}}{{news.location|raw}}</span>
+                        </div>
+                        <div class="log_item_right" style="width:105px">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                                <div class="news_count">{{news.displayJoiningCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_LIKE or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_EVENT_JOIN or news.action_type == SOCIAL_ACTION_INVITE or news.action_type == SOCIAL_ACTION_EVENT_CANCEL ) and ( news.entity_type_row == SOCIAL_ENTITY_EVENTS ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+
+                    <div class="log_events_container">
+                        <div class="picture_container">
+                            <a href="{{news.media_uri|raw}}" target="_blank"><img class="picture" src="{{news.event_photo|raw}}" />
+                                <div class="enlarge enlarge_photo"></div></a>
+                        </div>
+                        <div class="details">
+                            <span class="date">{{news.fromdate_dmy|raw}}</span><br>
+                            <img class="clock_icon" src="{{'images/channel/eventclock.png'|link}}" />
+                            <span class="time">{{news.fromtime_gia|raw}}</span><br />
+                            <span class="location">{{'location : '|lang}}{{news.location|raw}}</span>
+                        </div>
+                        <div class="log_item_right" style="width:105px">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                                <div class="news_count">{{news.displayJoiningCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_RATE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_MEDIA %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_media_container">
+                        <div class="log_media_container_inside">
+                            <img class="picture" src="{{ news.impathss|raw}}" />
+                            <div class="enlarge {{news.enlarge_class|raw}}"></div></a>
+                            <div class="log_item_right">
+                                <div class="text">
+                                    <div class="news_count">{{news.displayViewsCount|raw}}</div>
+                                    <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                    <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                    <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                                    <div class="news_count">{{news.displayRatingsCount|raw}}</div>
+                                    <div id="popup_view_rate{{news.rating|raw}}" class="log_ratings"></div>
+                                </div>
+                            </div>
+                            <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                                <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% elseif (news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_RATE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_ALBUM %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_media_container">
+                        <div class="log_media_container_inside">
+                            <img class="picture" src="{{ news.impathss|raw}}" />
+                            <div class="enlarge enlarge_photo"></div></a>
+                            <div class="log_item_right">
+                                <div class="text">
+                                    <div class="news_count">{{news.displayViewsCount|raw}}</div>
+                                    <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                    <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                    <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                                    <div class="news_count">{{news.displayRatingsCount|raw}}</div>
+                                    <div id="popup_view_rate{{news.rating|raw}}" class="log_ratings"></div>
+                                </div>
+                            </div>
+                            <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                                <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                            </div>
+                        </div>
+                        {{news.footer|raw}}
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_SHARE and news.entity_type_row == SOCIAL_ENTITY_VISITED_PLACES %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div id="event_googlemap" class="event_googlemap">
+
+                        <div id="googlemap{{ news.id|raw}}" class="googlemap_location" data-lng="{{news.longitude|raw}}" data-lat="{{news.latitude|raw}}"></div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state |raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_POST and news.post_type_row == SOCIAL_POST_TYPE_LOCATION %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div id="event_googlemap" class="event_googlemap">
+
+                        <div id="googlemap{{ news.id|raw}}" class="googlemap_location" data-lng="{{news.longitude|raw}}" data-lat="{{news.lattitude|raw}}"></div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state |raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_POST and ( news.post_type_row == SOCIAL_POST_TYPE_TEXT or news.post_type_row == SOCIAL_POST_TYPE_LINK ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_post_container">
+                        <div class="log_post_left">
+                            <div class="log_post_left_text">{{news.post_text|raw}}</div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif (news.action_type == SOCIAL_ACTION_RATE or news.action_type == SOCIAL_ACTION_UPLOAD or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_POST and ( news.post_type_row == SOCIAL_POST_TYPE_PHOTO or news.post_type_row == SOCIAL_POST_TYPE_VIDEO ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_media_container">
+                        <a href="#sharepopup" rel="nofollow" class="{{news.stanClick_vtype|raw}}" id="{{news.stanClick_vtype|raw}}" data-channelid="{{news.channel_id_post|raw}}" data-id="{{news.media_row_id|raw}}" s_val="more"><img class="picture" src="{{news.getPostThumbPath|raw}}" />
+                            <div class="enlarge {{news.enlarge_class|raw}}"></div></a>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{news.displayViewsCount|raw}}</div>
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                                <div class="news_count">{{news.displayRatingsCount|raw}}</div>
+                                <div id="popup_view_rate{{news.rating|raw}}" class="log_ratings"></div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and ( news.entity_type_row == SOCIAL_ENTITY_CHANNEL_SLOGAN or news.entity_type_row == SOCIAL_ENTITY_CHANNEL_INFO ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_slogan_container">
+                        <div class="left_text">{{news.action_text2|raw}}</div>
+                        <div class="right_text">"{{news.slogan|raw}}"</div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>;
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and ( news.entity_type_row == SOCIAL_ENTITY_CHANNEL_COVER or news.entity_type_row == SOCIAL_ENTITY_CHANNEL_PROFILE ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_sponsor_container">
+                        <a href="{{news.channel_url|raw}}">
+                            <img class="img_left{{news.image_class|raw}}" src="{{('/media/channel/'~news.channelid ~'/thumb/'~news.detail_text)|link}}" /></a>
+                        <div class="log_sponsor_right">
+                            <div class="text">
+                                <div class="news_count">{{news.like_value|raw}}</div>
+                                <div class="news_count">{{news.nb_comments|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_CONNECT or news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_INVITE or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_CHANNEL %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_sponsor_container">
+                        <a href="{{('channel/'~news.channel_url_row)|link}}" target="_blank">
+                            <img class="img_left" src="{{news.header_src |raw}}" /></a>
+                        <img class="img_right" src="{{news.channel_src |raw}}" />
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif ( news.action_type == SOCIAL_ACTION_UPDATE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_USER_PROFILE %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_sponsor_container">
+                        <img class="img_left_small" src="{{('media/tubers/'~news..detail_text)|link}}" />
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.like_value|raw}}</div>
+                                <div class="news_count">{{ news.nb_comments|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_SHARE and news.entity_type_row == SOCIAL_ENTITY_BAG %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_bag_container">
+                        <div class="log_bag_right"></div>
+                        <div class="log_bag_left">
+                            <a href="{{ news.bag_link |raw}}" target="_blank"><div class="log_bag_left_text">{{ news.news_body|raw}}</div></a>
+                        </div>
+                    </div>
+                {% elseif (news.action_type == SOCIAL_ACTION_SHARE or news.action_type == SOCIAL_ACTION_COMMENT or news.action_type == SOCIAL_ACTION_LIKE ) and news.entity_type_row == SOCIAL_ENTITY_NEWS %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_news_container">
+                        <div class="log_news_left">
+                            <div class="log_news_left_text">{{news.news_body|raw}}</div>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_JOURNAL %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_item_container">
+                        <div class="log_item_left">
+                            <a href="{{ news.media_uri|raw}}" target="_blank"><div class="picture">
+                                    <img src="{{ news.thumb_pic|raw}}">
+                                </div></a>
+                            <div class="text">{{ news.journal_desc|raw}}</div>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and ( news.entity_type == SOCIAL_ENTITY_CHANNEL_COVER or news.entity_type == SOCIAL_ENTITY_CHANNEL_PROFILE ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_sponsor_container">
+                        <a href="{{ news.channel_url|raw}}">
+                            <img class="img_left{{ news.image_class|raw}}" src="{{ ('/media/channel/'~news.channelid~'/thumb/'~news.detail_text)|raw}}" /></a>
+                        <div class="log_item_right" style="width: 105px;">
+                            <div class="text">
+                                <div class="news_count">{{ news.like_value|raw}}</div>
+                                <div class="news_count">{{ news.nb_comments|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and ( news.entity_type == SOCIAL_ENTITY_CHANNEL_SLOGAN or news.entity_type == SOCIAL_ENTITY_CHANNEL_INFO ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_slogan_container">
+                        <div class="left_text">{{ news.action_text2|raw}}</div>
+                        <div class="right_text">{{ news.slogan|raw}}"</div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_ALBUM %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_media_container">
+                        <div class="log_media_container_inside">
+                            <img class="picture" src="{{ news.impathss |raw}}" />
+                            <div class="enlarge enlarge_photo"></div></a>
+                            <div class="log_item_right">
+                                <div class="text">
+                                    <div class="news_count">{{ news.displayViewsCount|raw }}</div>
+                                    <div class="news_count">{{ news.displayLikesCount|raw }}</div>
+                                    <div class="news_count">{{ news.displayCommentsCount|raw }}</div>
+                                    <div class="news_count">{{ news.displaySharesCount|raw }}</div>
+                                    <div class="news_count">{{ news.displayRatingsCount|raw }}</div>
+                                    <div id="popup_view_rate{{ news.rating|raw }}" class="log_ratings"></div>
+                                </div>
+                            </div>
+                            <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                                <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                            </div>
+                        </div>
+                        {{ news.footer|raw}}
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_MEDIA %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <img class="picture" src="{{ news.impathss|raw}}" />
+                    <div class="log_media_container">
+                        <div class="log_media_container_inside">
+                            <img class="picture" src="{{ news.impathss |raw}}" />
+                            <div class="enlarge {{ news.enlarge_class|raw}}"></div></a>
+                            <div class="log_item_right">
+                                <div class="text">
+                                    <div class="news_count">{{ news.displayViewsCount|raw}}</div>
+                                    <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                    <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                    <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                                    <div class="news_count">{{ news.displayRatingsCount|raw}}</div>
+                                    <div id="popup_view_rate{{ news.rating|raw}}" class="log_ratings"></div>
+                                </div>
+                            </div>
+                            <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                                <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                            </div>
+                        </div>
+                        {{ news.footer|raw}}
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_USER_PROFILE %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_sponsor_container">
+                        <img class="img_left_small" src="{{ ('media/tubers/'~news.detail_text)|link}}" />
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{news.like_value|raw}}</div>
+                                <div class="news_count">{{ news.nb_comments|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_POST and ( news.post_type_row == SOCIAL_POST_TYPE_PHOTO or news.post_type_row == SOCIAL_POST_TYPE_VIDEO ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_media_container">
+                        <a href="#sharepopup" rel="nofollow" class="{{ news.stanClick_vtype|raw}}" id="{{ news.stanClick_vtype|raw}}" data-channelid="{{ news.channel_id_post|raw}}" data-id="{{ news.media_row.id|raw}}" s_val="more">
+                            <img class="picture" src="{{ news.getPostThumbPath|raw}}" />
+                            <div class="enlarge '{{ news.enlarge_class |raw}}"></div></a>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.displayViewsCount|raw}}</div>
+                                <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayRatingsCount|raw}}</div>
+                                <div id="popup_view_rate{{ news.rating|raw}}" class="log_ratings"></div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_POST and ( news.post_type_row == SOCIAL_POST_TYPE_TEXT or news.post_type_row == SOCIAL_POST_TYPE_LINK )  %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_post_container">
+                        <div class="log_post_left">
+                            <div class="log_post_left_text">{{news.post_text|raw}}</div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_POST and news.post_type_row == SOCIAL_POST_TYPE_LOCATION %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div id="event_googlemap" class="event_googlemap">
+                        <div id="googlemap{{ news.id|raw}}" class="googlemap_location" data-lng="{{ news.longitude|raw}}" data-lat="{{ news.lattitude|raw}}"></div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_USER_EVENTS %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_events_container">
+                        <div class="picture_container">
+                            <a href="{{news.media_uri}}" target="_blank">
+                                <img class="picture" src="{{news.event_photo|raw}}" />
+                                <div class="enlarge enlarge_photo"></div>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <span class="date">{{ news.fromdate_dmy|raw}}</span><br>
+                            <img class="clock_icon" src="{{ 'images/channel/eventclock.png'|link}}" />
+                            <span class="time">{{ news.fromtime_gia|raw}}</span><br />
+                            <span class="location">{{ news.location|raw}}</span>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayJoiningCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{ 'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_CHANNEL %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_sponsor_container">
+                        <a href="{{('channel/'~news.channel_url_row)|link}}" target="_blank"><img class="img_left" src="{{news.header_src|raw}}" /></a>
+                        <img class="img_right" src="{{ news.channel_src|raw}}" />
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_EVENTS %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_events_container">
+                        <div class="picture_container">
+                            <a href="{{news.media_uri|raw}}" target="_blank"><img class="picture" src="{{news.event_photo|raw}}" />
+                                <div class="enlarge enlarge_photo"></div>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <span class="date">{{news.fromdate_dmy|raw}}</span><br>
+                            <img class="clock_icon" src="{{'images/channel/eventclock.png'|link}}" />
+                            <span class="time">{{news.fromtime_gia|raw}}</span><br />
+                            <span class="location">{{'location:'|lang}} {{news.location|raw}}</span>
+                        </div>
+                        <div class="log_item_right" style="width:105px">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                                <div class="news_count">{{news.displayJoiningCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_NEWS %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_news_container">
+                        <div class="log_news_left">
+                            <div class="log_news_left_text">{{news.news_body|raw}}</div>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{news.id|raw}}" id="hidden_body_{{news.id|raw}}" class="hidden_body" style="{{news.is_hidden_state |raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.action_type == SOCIAL_ACTION_LIKE and news.entity_type_row == SOCIAL_ENTITY_COMMENT and news.entity_type == SOCIAL_ENTITY_BROCHURE %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+
+                    {% if news.overhead_text!='' %}
+                        <div class="log_overhead_text">{{ news.overhead_text|raw}}</div>
+                    {% endif %}
+                    <div class="log_item_container">
+                        <div class="log_item_left">
+                            <a href="{{ news.media_uri|raw}}" target="_blank"><div class="picture">
+                                    <img src="{{ news.thumb_pic|raw}}">
+                                </div>
+                            </a>
+                            <div class="text">{{news.media_row_name|raw}}</div>
+                        </div>
+                        <div class="log_item_right">
+                            <div class="text">
+                                <div class="news_count">{{ news.displayLikesCount|raw}}</div>
+                                <div class="news_count">{{ news.displayCommentsCount|raw}}</div>
+                                <div class="news_count">{{ news.displaySharesCount|raw}}</div>
+                            </div>
+                        </div>
+                        <div data-id="{{ news.id|raw}}" id="hidden_body_{{ news.id|raw}}" class="hidden_body" style="{{ news.is_hidden_state|raw}}">
+                            <div class="unhide_log">{{'Click to unhide'|lang}}</div>
+                        </div>
+                    </div>
+                {% elseif news.entity_type == SOCIAL_ENTITY_USER and ( news.action_type == SOCIAL_ACTION_FOLLOW or news.action_type == SOCIAL_ACTION_FRIEND ) %}
+                    <div class="log_tuber_header">
+                        <div class="log_header_text" style="left:0;">{{ news.action_text_display|raw}}</div><br />
+                        <div class="log_header_time" style="left:0;">{{ news.feed_ts|raw}}</div>
+                        <div id="hidden_header_{{ news.id|raw}}" class="hidden_header" style="{{ news.is_hidden_state |raw}}"></div>
+                    </div>
+                {% else %}
+
+                {% endif %}
+                <div id="commentDiv" class="social_data_all" style="{{news.is_hidden_social|raw}}" data-category="" data-channel="{{news.social_channel_id|raw}}" data-enable="1" data-id="{{news.data_action_id|raw}}" data-type="{{news.data_action_type|raw}}">
+                    {% if news.hide_all_social == 0 %}
+                        <div class="buttons">
+                            {% if news.action_type != SOCIAL_ACTION_EVENT_CANCEL and ( news.entity_type_row == SOCIAL_ENTITY_MEDIA or news.entity_type_row == SOCIAL_ENTITY_ALBUM or news.entity_type_row == SOCIAL_ENTITY_USER_EVENTS or news.data_action_type==SOCIAL_ENTITY_USER_EVENTS or news.entity_type_row == SOCIAL_ENTITY_JOURNAL or news.entity_type_row == SOCIAL_ENTITY_JOURNAL or news.entity_type == SOCIAL_ENTITY_CHANNEL ) %}
+                                <div class="btn"><div id="description"></div></div>
+                                <div class="btn_txt opacitynone"></div>
+                            {% endif %}
+
+                            {% if news.action_type != SOCIAL_ACTION_EVENT_CANCEL  %}
+                                {% if news.social_can_like!=false %}
+                                    <div class="btn"><div id="likes"></div></div>
+                                    <div class="btn_txt opacitynone"></div>
+                                {% endif %}
+                                {% if news.social_can_comment!=false %}
+                                    <div class="btn btn_comments btn_enabled"><div id="comments"></div></div>
+                                    <div class="btn_txt opacitynone btn_txt_comments btn_enabled"></div>
+                                {% endif %}
+                            {% endif %}
+
+                            {% if news.entity_type_row != SOCIAL_ENTITY_CHANNEL_INFO and news.post_type_row != SOCIAL_POST_TYPE_LOCATION and news.entity_type_row != SOCIAL_ENTITY_CHANNEL_SLOGAN  and news.entity_type_row != SOCIAL_ENTITY_CHANNEL_PROFILE  and news.entity_type_row != SOCIAL_ENTITY_CHANNEL_COVER and news.entity_type != SOCIAL_ENTITY_CHANNEL_SLOGAN  and news.entity_type != SOCIAL_ENTITY_CHANNEL_PROFILE and news.entity_type != SOCIAL_ENTITY_CHANNEL_COVER and news.entity_type != SOCIAL_ENTITY_CHANNEL_INFO %}
+                                {% if news.social_can_share!=false  %}
+                                   <div class="btn btn_shares btn_enabled"><div id="shares"></div></div>
+                                    <div class="btn_txt opacitynone btn_txt_shares btn_enabled"></div>
+                                {% endif %}
+                            {% endif %}
+                            {% if news.entity_type_row == SOCIAL_ENTITY_MEDIA or news.entity_type_row == SOCIAL_ENTITY_ALBUM or news.post_type_row == SOCIAL_POST_TYPE_PHOTO or news.post_type_row == SOCIAL_POST_TYPE_VIDEO %}
+                                {% if news.social_can_rate!=false%}
+                                    <div class="btn btn_rates"><div id="rates"></div></div>
+                                    <div class="btn_txt opacitynone"></div>
+                                {% endif %}
+                            {% endif %}
+                            {% if news.action_type != SOCIAL_ACTION_EVENT_CANCEL and ( news.entity_type_row == SOCIAL_ENTITY_USER_EVENTS  or news.data_action_type==SOCIAL_ENTITY_USER_EVENTS ) %}
+                                {% if news.user_can_join_check!=false %}
+                                    <div class="btn btn_user_joins"><div id="userjoins"></div></div>
+                                    <div class="btn_txt btn_txt_user_joins opacitynone"></div>
+                                {% endif %}
+                            {% endif %}
+
+                        </div>
+                        {% if news.action_type != SOCIAL_ACTION_EVENT_CANCEL and ( news.entity_type_row == SOCIAL_ENTITY_MEDIA or news.entity_type_row == SOCIAL_ENTITY_ALBUM or entity_type_row == SOCIAL_ENTITY_USER_EVENTS or news.data_action_type==SOCIAL_ENTITY_USER_EVENTS or news.entity_type_row == SOCIAL_ENTITY_JOURNAL or news.entity_type == SOCIAL_ENTITY_JOURNAL or news.entity_type == SOCIAL_ENTITY_CHANNEL )  %}
+                            <div class="descriptionDiv socialInitDiv hide shadow" style="overflow:hidden;">
+                                <div class="closeDiv"></div>
+                                <div class="containerDiv" style="height:auto; margin-top:6px;">
+                                    <div class="yellow_font11">{{news.title|raw}}</div>
+                                    <div class="commentsAll scrollpane_description" style="max-height:520px; top:3px;">
+                                        <div class="albumdesc">{{news.seoHyperlinkText|raw}}</div>
+                                    </div>
+                                    <div class="yellow_font11"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if news.action_type != SOCIAL_ACTION_EVENT_CANCEL %}
+                            {% if news.social_can_like!=false  %}
+                                <div class="likesDiv socialInitDiv hide shadow">
+                                    <div class="closeDiv"></div>
+                                    <div class="likeTTL">{{ "LIKES"|lang}} (<span class="likesNumber">{{news.likeNumber|raw}}</span>)</div>
+                                        {% if news.user_is_logged==1  and (news.userIschannel==0 or news.is_owner==1) %}
+                                            <div class="meDiv">
+                                                <img src="{{ news.profilePic|raw}}" alt="{{ news.fullName|raw }}" width="45" height="45"/>
+                                                <div class="mynameDiv">{{news.fullName|raw}}</div>
+                                                    {% if news.channelInfo_disable !=false %}
+                                                        <div class="likeDiv" data-action="" data-media=""></div>
+                                                    {% endif %}
+                                            </div>
+
+                                        {% else %}
+                                            <div class="toplikes">
+                                                <div class="likepop"></div>
+                                                <div class="meStanDiv displaynone">
+                                                    <div class="meStanDivText">{{'you need to have a'|lang}}
+                                                        <a class="black_link" href="{{ '/register'|link}}" target="_blank">{{ 'TT account'|lang}}</a><br />{{ 'in order to like'|lang}}</div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    <div class="containerDiv" style="height:auto; overflow:hidden;">
+                                        <div class="commentsAll" style="max-height:446px;">
+                                            <div class="social_not_refreshed"></div>
+                                        </div>
+                                    </div>
+                                    <div class="showMore_like showMore">{{ 'show more'|lang}}</div>
+                                </div>
+                            {% endif %}
+                            {% if news.social_can_comment!=false %}
+                                <div class="commentsDiv socialInitDiv hide shadow">
+                                    <div class="closeDiv"></div>
+                                    <div class="likeTTL">{{ "COMMENTS"|lang}}(<span class="commentsNumber">{{ news.commentsNumber|raw}}</span>)</div>
+                                    {% if news.user_is_logged==1 and (news.userIschannel==0 or news.is_owner==1) %}
+                                        <div class="meDiv">
+                                            <img src="{{ news.profilePic|raw}}" alt="{{news.fullName|raw}}" width="45" height="45"/>
+                                        <div class="mynameDiv">{{ news.fullName|raw}}</div>
+
+                                        <div class="writecommentDiv writecommentDivAuto">
+                                            <div class="examples">
+                                                <textarea class="mention textareaclass" placeholder="{{ 'write a comment / @T Tuber to reply'|lang }}" style="height: 28px; overflow: hidden;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                        <div class="meStanDiv_comment displaynone disabledmessage">
+                                            {{'you need to have a'|lang}}
+                                            <a class="black_link" href="{{'/register'|link}}" target="_blank">{{'TT account'|lang}}</a><br />
+                                            {{ 'in order to write a comment'|lang }}
+                                    </div>
+                                    <div class="meDiv">
+                                        <div class="writecommentDiv">
+                                            <input type="text" name="commentText" value="{{ 'write a comment / @T Tuber to reply'|lang }}" onblur="addValueInput(this)" onFocus="removeValueInput(this)" data-value="{{ 'write a comment / @T Tuber to reply'|lang }}" class="notsigned" data-mode="photo"/></div>
+
+                                    </div>
+                                    {% endif %}
+                                    <div class="containerDiv">
+                                        <div class="commentsAll" style="max-height:412px;"></div>
+                                    </div>
+                                    <div class="showMore_comments showMore">{{'show more'|lang}}</div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% if news.social_can_share!=false  %}
+                        {% if news.entity_type_row != SOCIAL_ENTITY_CHANNEL_INFO and news.post_type_row != SOCIAL_POST_TYPE_LOCATION and news.entity_type_row != SOCIAL_ENTITY_CHANNEL_SLOGAN  and news.entity_type_row != SOCIAL_ENTITY_CHANNEL_PROFILE  and news.entity_type_row != SOCIAL_ENTITY_CHANNEL_COVER and news.entity_type != SOCIAL_ENTITY_CHANNEL_SLOGAN  and news.entity_type != SOCIAL_ENTITY_CHANNEL_PROFILE and news.entity_type != SOCIAL_ENTITY_CHANNEL_COVER and news.entity_type != SOCIAL_ENTITY_CHANNEL_INFO %}
+                            <div class="sharesDiv socialInitDiv hide shadow">
+                                <div class="closeDiv"></div>
+                                <div class="likeTTL">{{"SHARES"|lang}}
+                                    (<span class="sharesNumber">{{ news.sharesNumber|raw}}</span>)</div>
+                                    {% if news.user_is_logged==1  and (news.userIschannel==0 or news.is_owner==1) %}
+
+                                        <div class="meDiv" style="width:243px;">
+                                            <img src="{{ news.profilePic|raw}}" alt="{{ news.fullName|raw}}" width="45" height="45"/>
+                                            <div class="mynameDiv" style="width:195px;">{{ news.fullName|raw}}</div>
+
+                                        </div>
+                                        <div class="formttl13 formContainer100 margintop26" style="margin-top:6px;">{{"write something"|lang}}</div>
+                                        <textarea id="invitetext" class="ChaFocus margintop5" onBlur="addValue2(this)" onFocus="removeValue2(this)" data-value="{{ 'write something...'|lang}}" style="font-family:Arial, Helvetica, sans-serif; width:249px; height:38px; background-color:#ebebeb;" type="text" name="invitetext">{{ "write something...|lang"}}</textarea>
+
+                                        <div>
+                                        <select id="share_select" style="margin-top:14px;">
+                                            <option value="0" selected="selected" disabled="disabled">{{'share this entry with...'|lang}}</option>
+
+                                            {% if news.channelInfo_disable!=false %}
+                                                <option value="6" data-text="connections">{{"connections"|lang}}</option>
+                                            {% else %}
+                                                <option value="2" data-text="friends and followers">{{ "friends and followers"|lang}}</option>
+                                                <option value="1" data-text="friends">{{"friends"|lang}}</option>
+                                                <option value="3" data-text="followers">{{ "followers"|lang}}</option>
+                                            {% endif %}
+
+                                            <option value="4" data-text="custom">{{'custom'|lang}}</option>
+                                            <option value="5" data-text="by mail">{{ 'by mail'|lang}}</option>
+                                        </select>
+                                        </div>
+
+                                        <div class="formttl13 formContainer100 margintop15" style="margin-top:12px;">{{ "add people (T tubers, emails)"|lang}}</div>
+                                        <div class="peoplecontainer peoplecontainer_boxed formContainer100 margintop2" style="width:251px; background:none">
+                                            <div class="emailcontainer_boxed emailcontainer_boxed_share" style="width:245px;">
+                                                <div class="addmore"><input name="addmoretext_brochure" id="addmoretext_brochure" type="text" class="addmoretext_css" data-value="{{ 'add more'|lang}}" value="{{ 'add more'|lang}}" onFocus="removeValue2(this)" onBlur="addValue2(this)" data-id=""/></div>
+                                            </div>
+                                            <div id="share_boxed_send" class="sharepopup_but2 sharepopup_buts">{{'send'|lang}}</div>
+                                        </div>
+                                    {% else %}
+                                        <select id="share_select1" onChange="share_selectDisabled(this)">
+                                            <option value="0" selected="selected" disabled="disabled">{{ 'share this entry with...'|lang}}</option>
+                                            <option value="2">{{ 'friends and followers'|lang}}</option>
+                                            <option value="1">{{ 'friends'|lang}}</option>
+                                            <option value="3">{{ 'followers'|lang}}</option>
+                                            <option value="4">{{ 'custom'|lang}}</option>
+                                            <option value="5">{{ 'by mail'|lang}}</option>
+                                        </select>
+                                        <div class="meStanDiv_comment meStanDiv_share displaynone disabledmessage">
+                                            {{'you need to have a'|lang}}<a class="black_link" href="{{ '/register'|link}}" target="_blank">{{ 'TT account'|lang}}</a><br />{{ 'in order to share this entry.'|lang}}
+                                        </div>
+                                    {% endif %}
+                                <div class="containerDiv">
+                                    <div class="commentsAll" style="max-height:446px;"></div>
+                                </div>
+                                <div class="showMore_shares showMore">{{ 'show more'|lang}}</div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if social_can_rate!=false %}
+                        {% if news.entity_type_row == SOCIAL_ENTITY_MEDIA or news.entity_type_row == SOCIAL_ENTITY_ALBUM or news.post_type_row == SOCIAL_POST_TYPE_PHOTO or news.post_type_row == SOCIAL_POST_TYPE_VIDEO %}
+                            <div class="ratesDiv socialInitDiv hide shadow">
+                                <div class="closeDiv"></div>
+                                <div class="likeTTL" style="width:auto;">{{"RATING"|lang}} (<span class="ratesNumber">{{news.ratesNumber|raw}}</span>)</div>
+                                <div class="popup_view_rate"></div>
+                                {% if news.user_is_logged==1  and (news.userIschannel==0 or news.is_owner==1) %}
+                                    <div class="meDiv">
+                                        <img src="{{ news.profilePic|raw}}" alt="{{ news.fullName|raw}}" width="45" height="45"/>
+                                        <div class="mynameDiv">{{ news.fullName|raw}}</div>
+                                        {% if news.channelInfo_disable!=false %}
+                                            <div class="NewsFeed_ModalRating" id="myrating">
+                                                {% set i=0 %}
+                                                {% for i in 0..news.irating %}
+                                                    <img src="{{'images/ratingbig_1.png'|link}}" width="9" height="9" style="margin:0; padding:0;" class="rating_star"/>
+                                                    {% set i=i+1 %}
+                                                {% endfor %}
+                                                {% for c in i..5 %}
+                                                    <img src="{{'images/ratingbig_0.png'|link}}" width="9" height="9" style="margin:0; padding:0;" class="rating_star"/>
+                                                    {% set i=i+1 %}
+                                                {% endfor %}
+                                            </div>
+                                            <input type="hidden" id="myrating_score" value="{{ news.irating|raw}}"/>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div class="toplikes">
+                                        <div class="ratepop"></div>
+                                        <div class="meStanDiv displaynone">
+                                            <div class="meStanDivText">{{'you need to have a'|lang}}
+                                                <a class="black_link" href="{{ 'register'|link}}" target="_blank">{{ 'TT account'|lang}}</a>
+                                                <br /> {{ 'in order to rate this entry'|lang}}</div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="containerDiv" style="height:auto; overflow:hidden;">
+                                    <div class="commentsAll" style="max-height:446px;">
+                                    </div>
+                                </div>
+                                <div class="showMore_rates showMore">{{'show more'|lang}}</div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if news.action_type != SOCIAL_ACTION_EVENT_CANCEL and ( news.entity_type_row == SOCIAL_ENTITY_USER_EVENTS or news.data_action_type==SOCIAL_ENTITY_USER_EVENTS ) %}
+                        {% if news.user_can_join_check!=false %}
+                            <div class="userjoinsDiv socialInitDiv hide shadow">
+                                <div class="closeDiv"></div>
+                                <div class="likeTTL">{{'JOINING PEOPLE'|lang}} (<span class="joinsNumber"></span>)</div>
+                                {% if news.userIsLogged and (news.userIschannel==0 or news.is_owner==1 or news.is_owner_join==1) %}
+                                    <div class="meDiv">
+                                        <img src="{{ news.profilePic|raw}}" alt="{{ news.fullName|raw}}" width="45" height="45"/>
+                                        <div class="mynameDiv">{{ news.fullName|raw}}</div>
+                                    </div>
+                                    {% if news.is_owner_join==0 %}
+                                        <div id="side_panel_join_text" class="side_panel_join_text"></div>
+                                            <div style="margin-top:14px; position: relative; float: left;">
+                                            <div class="join_event_yesnobox">
+                                                <div class="option_container"><div><input id="event_join_yes" type="radio" name="event_join" value="yes" /><div class="join_event_text">{{ 'YES'|lang}}</div></div></div>
+                                                <div class="option_container"><div><input id="event_join_no" type="radio" name="event_join" value="no" /><div class="join_event_text">{{ 'NO'|lang}}</div></div></div>
+                                            </div>
+                                            <div id="join_guests" class="join_guests">
+                                                <div class="join_guests_text">{{ 'going with me'|lang}}</div>
+                                                <select id="join_guests_number">
+                                                    <option value="0">{{ 'going alone'|lang}}</option>
+                                                    <option value="1">{{ '1 guest'|lang}}</option>
+                                                    <option value="2">{{ '2 guests'|lang}}</option>
+                                                    <option value="3">{{ '3 guests'|lang}}</option>
+                                                    <option value="4">{{ '4 guests'|lang}}</option>
+                                                    <option value="5">{{ '5 guests'|lang}}</option>
+                                                    <option value="6">{{ '6 guests'|lang}}</option>
+                                                    <option value="7">{{ '7 guests'|lang}}</option>
+                                                    <option value="8">{{ '8 guests'|lang}}</option>
+                                                    <option value="9">{{ '9 guests'|lang}}</option>
+                                                    <option value="10">{{ '10 guests'|lang}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                {% else %}
+                                    <div id="side_panel_join_text" class="side_panel_join_text"></div>
+                                    <div style="margin-top:14px;">
+                                        <div class="join_event_yesnobox">
+                                            <div class="option_container"><div><input class="joins_disabled_radio" type="radio" name="event_join_disabled" value="yes" /><div class="join_event_text">{{ 'YES'|lang}}</div></div></div>
+                                            <div class="option_container"><div><input class="joins_disabled_radio" type="radio" name="event_join_disabled" value="no" /><div class="join_event_text">{{ 'NO'|lang}}</div></div></div>
+                                        </div>
+                                        <div id="joins_login_error_msg" class="meStanDiv displaynone" style="">
+                                            <div class="meStanDivText">{{ 'you need to have a'|lang}}<a class="black_link" href="{{'/register'|link}}" target="_blank">{{ 'TT account'|lang}}</a><br />{{ 'in order to join this event'|lang}}</div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="containerDiv" style="height:auto; overflow:hidden;">
+                                    <div class="commentsAll" style="max-height:446px;">
+                                    </div>
+                                </div>
+                                <div class="showMore_joins showMore">{{ 'show more'|lang}}</div>
+                            </div>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %} {# hide all socials#}
+                    </div> {# CommentDiv #}
+                </div>
+        {% endfor %}
+    </div> {# log_data_container #}
+    <div class="log_data_footer">
+        <div style="height:26px;">
+            <div class="buttonmorecontainer" style="float: none;width: 104px;margin-left: 280px;">
+                <a id="log_load_more" class="loadmoreevents load_more_previous_new">{{ 'Load More...'|lang}}</a>
+            </div>
+        </div>
+        <script type="text/ecmascript">
+            {% if news_feed_count > 10 %}
+                $(".buttonmorecontainer").show();
+            {% else %}
+                $(".buttonmorecontainer").hide();
+            {% endif %}
+        </script>
+
+        <div class="cal_year_container">
+            <img id="cal_left_arrow" alt="{{ 'year'|lang }}" class="cal_left_arrow" src="{{'images/channel/calpicker/year_arrow_left.png'|link}}" />
+            <div id="cal_year_display" class="cal_year_display">{{ date_Y|raw}}</div>
+            <img id="cal_right_arrow" alt="{{ 'year'|lang }}" class="cal_right_arrow" src="{{ 'images/channel/calpicker/year_arrow_right.png'|link}}" />
+        </div>
+
+        <div class="cal_months_container">
+            <img class="cal_months_bar" alt="{{ 'month'|lang }}" src="{{ 'images/channel/calpicker/months_bar.png'|lang}}" />
+
+            <div class="cal_months">
+                <div id="month_1" class="cal_month cal_month_NOT">{{ 'jan'|lang }}</div>
+                <div id="month_2" class="cal_month cal_month_NOT">{{ 'feb'|lang }}</div>
+                <div id="month_3" class="cal_month cal_month_NOT">{{ 'mar'|lang }}</div>
+                <div id="month_4" class="cal_month cal_month_NOT">{{ 'apr'|lang }}</div>
+                <div id="month_5" class="cal_month cal_month_NOT">{{ 'may'|lang }}</div>
+                <div id="month_6" class="cal_month cal_month_NOT">{{ 'jun'|lang }}</div>
+                <div id="month_7" class="cal_month cal_month_NOT">{{ 'jul'|lang }}</div>
+                <div id="month_8" class="cal_month cal_month_NOT">{{ 'aug'|lang }}</div>
+                <div id="month_9" class="cal_month cal_month_NOT">{{ 'sep'|lang }}</div>
+                <div id="month_10" class="cal_month cal_month_NOT">{{ 'oct'|lang }}</div>
+                <div id="month_11" class="cal_month cal_month_NOT">{{ 'nov'|lang }}</div>
+                <div id="month_12" class="cal_month cal_month_NOT">{{ 'dec'|lang }}</div>
+            </div>
+
+            <input type="hidden" id="cal_selected_month" value="{{date_n|raw}}" />
+        </div>{# cal_months_container #}
+    </div> {# log_data_footer #}
+</div> {# right_container #}
+

@@ -1,0 +1,82 @@
+TTBundle\Entity\CmsSocialShares:
+    type: entity
+    table: cms_social_shares
+    indexes:
+        from_user:
+            columns:
+                - from_user
+        share_fk:
+            columns:
+                - entity_id
+        channel_id:
+            columns:
+                - channel_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fromUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: from_user
+        allUsers:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: all_users
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        shareTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: share_ts
+        msg:
+            type: string
+            nullable: false
+            length: 512
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        channelId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: channel_id
+        shareType:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: share_type
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+    lifecycleCallbacks: {  }

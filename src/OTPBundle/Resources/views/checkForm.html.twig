@@ -1,0 +1,51 @@
+{% extends ((isCorpoSite == false) ? 'baseFinal.html.twig' : 'basecorporateFinal.html.twig') %}
+{% block title %}
+    {{ 'Verification Code'|trans }}
+    {{ ' | TouristTube' }}
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/otpCheckForm.js")|raw }}"></script>
+{% endblock %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset("/assets/common/css/otpCheckForm.css")|raw }}" />
+{% endblock %}
+
+{% block body %}
+    <section class="container" id="checkFormContainer">
+        <div class="col-xs-12 checkFormContainer" >
+            {{ form_start(form, {'attr': {'class': 'otpForm'}}) }}
+            {#{ form_label(form.Code) }#}
+            {{ form_errors(form.Code) }}
+
+                <div class="row new_margin_5 margin_top_10">
+                    <div class="col-md-4 col-sm-6 col-xs-8 new_padding_5">
+                        <div class="form-group new_input_common">
+                            {{ form_widget(form.Code, {'attr': {'autocomplete': 'off', 'class': 'form-control', 'placeholder': 'Enter your code*', 'data-error': 'Please enter your code', 'required': 'true'}}) }}
+                            <div id="errorMessage" class="help-block with-errors">
+                                {% if message is defined %}
+                                    {{ message|trans }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            	<div class="row new_margin_5">
+                	<div class="col-md-4 col-sm-6 col-xs-8 new_padding_5">
+                        {{ form_widget(form.Check, { 'label': 'Check Code', 'attr': {'class': 'btn new_yellow_button'} }) }}
+                    </div>
+                </div>
+
+            {{ form_end(form) }}
+
+            <div class="row new_margin_5">
+                <div class="col-md-4 col-sm-6 col-xs-8 new_padding_5">
+	                <button id="resendCode" href={{ generateLangRoute(LanguageGet,'resendCodeRoute',{module_id : module_id, reservation_id : reservation_id, gen_id: genId , user_id : user_id}) }} class="btn new_yellow_button" type="button">{{'Resend Code'|trans}}</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+{% endblock %}

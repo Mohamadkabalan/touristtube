@@ -1,0 +1,60 @@
+{% if dealBookings is defined and dealBookings is not empty %}
+    {% for reservation in dealBookings %}
+	<div class="dealBookingList">
+	    <div class="col-xs-12 nopad"></div>
+	    <div class="col-xs-12 nopad min-heightdiv bordereddiv">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 imgdivallsizespad">
+		    <a href=""><img class="img-responsive fullwidth" src={{reservation.imagePath}} alt="{{reservation.dealName}}"/></a>
+		</div>
+		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 nopad">
+		    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-8 nopad xxsmalnewstyle">
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad">
+				<h1 class="hotel_title_style_allbook">
+				    <div class="displayPagination">{{reservation.dealName}}</div>
+				</h1>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="booknumbp_allbook">
+				    <span class="bookingnumb_albook">{{'Booking Number:'|trans}}</span>
+				    {% if reservation.bookingReference is defined and reservation.bookingReference is not empty %}
+					<span class="bookingnumb_numb_albook">{{reservation.bookingReference}}</span>
+				    {% endif %}
+				</p>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<p class="lbpus_allbook"><span class="lbpprice_allbook"> USD {{reservation.totalPrice|number_format(2, '.', '')}}</span></p>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 nopad xxsmalnewstyle">
+			<div class="paddingrightdivxxs">
+			    <div class="chekindiv">
+				<p class="checktext_albook">{{'Booking-date'|trans}}</p>
+				<p class="day_num_albook">{{reservation.bookingDate}}</p>
+				<p class="month_albook">{{reservation.bookingMonth}}</p>
+				<p class="day_allbook">{{reservation.bookingDay}}</p>
+			    </div>
+			</div>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+		    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+			<a class="viewdetails_allbook" href="{{ generateLangRoute(LanguageGet,'_dealBookingDetails', {'bookingId': reservation.bookingId}) }}">{{'View details'|trans }}</a>
+			<p class="bar_allbook">|</p>
+			<a class="clicktobookagain" href={{ reservation.urlPath|raw }}>{{'Click here to book again'|trans }}</a>
+			{% if reservation.bookingStatus == 'CANCELLED' %}<p class="cancelled_allbook">{{'Cancelled'|trans }}</p>{% endif %}
+		    </div>
+		</div>
+	    </div>
+	</div>
+    {% endfor %}
+    {% if showMore==1 %}
+	<div id="dealsShowMoreBtn" class="col-xs-12 smalxspadlfz" data-page="1">
+	    <div class="showmore_expand_allbook_deals">
+		{{'show more'|trans}} &gt;&gt;
+	    </div>
+	</div>
+    {% endif %}
+{% endif %}

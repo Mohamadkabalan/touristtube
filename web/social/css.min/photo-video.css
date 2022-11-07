@@ -1,0 +1,681 @@
+@charset "utf-8";
+/* CSS Document */
+
+textarea{resize: none;border: 0}
+
+.write_combo{
+    margin-top: 10px;
+    padding-top: 6px;
+    border-color: #c2c2c2 -moz-use-text-color -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 2px medium medium;    
+}
+
+.fl{float: left;}
+.fr{float: right;}
+.travel-photo img{
+	width:100%;
+}
+.social-pad{
+    padding: 0 0 0 9px;
+    text-align: right;
+    margin-left: 10px
+}
+.comment {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border: 5px solid #e6e6e6;
+    height: auto;
+    margin-top: 4px;
+}
+.comment h1 {
+    border-bottom: 2px solid #c2c2c2;
+    font-size: 14px;
+    font-weight: bold;
+    height: 45px;
+}
+.comment-ul {
+    margin-top: 20px;
+    position: relative;
+}
+.comment-ul li {
+    position: relative;
+    list-style:none;
+}
+.comment-ul h2 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.comment-ul p {
+    color: #727272;
+}
+.cmnt-like {
+    border-right: 1px solid #000;
+    left: 80px;
+    position: absolute;
+    top: 56px;
+    width: 12%;
+}
+.more {
+    left: 187px;
+    position: absolute;
+    top: 56px;
+}
+.min-ago {
+    color: #727272;
+    font-size: 12px;
+    left: 234px;
+    position: absolute;
+    top: 59px;
+}
+.border {
+    background: #cccccc none repeat scroll 0 0;
+    height: 1px;
+    display: block;
+    margin-top: 8px
+}
+.write-cmnt {
+    background: #f2f2f2 none repeat scroll 0 0;
+    color: #878787;
+    font-size: 22px;
+    font-weight: bold;
+}
+.write-cmnt-share {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border-color:none;
+    border-style: solid none none;
+    border-width: 2px medium medium;
+    color: #878787;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+}
+.select-share{
+	border-color: #c2c2c2 -moz-use-text-color -moz-use-text-color;
+	    border-style: solid none none;
+    border-width: 2px medium medium;
+}
+.select-share select {
+    font-size: 16px;
+    height: 35px;
+    margin-top: 4px;
+    width: 250px;
+}
+	
+.cmnt-btn {
+    background: #c7c7c7 none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+    text-transform: uppercase;
+    margin-top: 2px
+}
+.min-ago-share {
+    color: #727272;
+    font-size: 12px;
+    left: 80px;
+    position: absolute;
+    top: 59px;
+}
+.photo-view{
+	float:left;
+	padding-top:8px;
+}
+.photo-view li {
+    border-right: 1px solid #fff;
+    color: #000;
+    display: block;
+    float: right;
+    line-height: 9px;
+    padding: 1px 6px;
+    text-decoration: none;
+}
+.photo-view li.npr {padding: 1px 0 1px 6px}
+.photo-view li:first-child{
+	border:none;
+}
+.photo-view li a {
+    color: #fff;
+    
+	font-size:12px;
+	text-decoration:none;
+}
+.photo-view-like{
+    padding-top: 8px;
+}
+.photo-view-like li {
+  border-right: 1px solid #000;
+    color: #000;
+    float: right;
+    height: 13px;
+    line-height: 13px;
+    padding: 0 15px;
+    text-decoration: none;
+}
+.photo-view-like li.npd{padding: 0 0 0 15px }
+.photo-view-like li:first-child{
+	border:none;
+
+}
+.photo-view-like li a {
+    color: #000;
+    
+	font-size:15px;
+	text-decoration:none;
+}
+.photo-view-like img {  height: 16px;
+    margin-right: 0;
+    margin-top: -5px;
+    width: 21px;}
+.content{
+	overflow:hidden; height:495px;}
+.edit {
+	font-size: 25px;
+	color: #000;
+	margin-left: 8px;
+}
+.edit-border {
+	border: 1px solid #ababab;
+	height: 1px;
+	width: 100%;
+	margin-top: 20px;
+}
+.edit-border-add-friend {
+	border: 1px solid #ababab;
+	height: 1px;
+	width: 100%;
+	margin-top: 5px;
+}
+.site-map {
+	margin-top: 20px;
+}
+.cities li {
+	background: rgba(0, 0, 0, 0) url("../images/search-restaurant-sitemap.png") no-repeat scroll left center;
+	color: #000;
+	display: block;
+	float: left;
+	line-height: 16px;
+	padding: 0 20px;
+	text-decoration: none;
+}
+.cities li:first-child {
+	background: none;
+	padding: 0 20px 0 0;
+}
+.cities li a {
+	color: #2e2e2e;
+	text-decoration: underline;
+}
+.cities li .active {
+	color: #eac31a;
+}
+.adf li {
+	color: #000;
+	display: block;
+	line-height: 14px;
+	padding: 0 10px;
+	text-decoration: none;
+	border-right: 1px solid #000;
+	float: right;
+}
+.adf li a {
+	color: #2e2e2e;
+	text-decoration: underline;
+}
+.adf li:first-child {
+	border: none;
+}
+.photo-heading {
+	background: #eac31a none repeat scroll 0 0;
+	color: #fff;
+	height: 44px;
+	padding: 3px;
+}
+.pad-photo {
+	padding-left:0px;
+	padding-right:0px;
+}
+.photo-heading span:nth-child(1) {
+	font-size: 36px;
+}
+.photo-heading span:nth-child(2) {
+	font-size: 28px;
+}
+.photo-heading span:nth-child(3) {
+	font-size: 23px;
+}
+.pad-trvl {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.suggested-photo {
+	font-size: 13px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.travel-photo {
+	margin-top: 5px;
+}
+.travel-photo li {
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 5px;
+}
+.pad-photo-open {
+	padding-left: 10px;
+	padding-right: 7px;
+}
+.photo-detail {
+	border: 5px solid #e6e6e6;
+	height: auto;
+	padding: 10px;
+}
+.photo-detail img {
+	margin-bottom: 15px;
+	padding: 4px;
+}
+.photo-detail h1 {
+	font-size: 15px;
+	font-weight: bold;
+	left: 109px;
+	position: absolute;
+	top: 27px;
+}
+.photo-detail h3 {
+	color: #e3b825;
+	font-size: 12px;
+	left: 110px;
+	position: absolute;
+	top: 44px;
+}
+.photo-detail h2 {
+	font-size: 16px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+.photo-detail p {
+	font-size: 13px;
+	text-align: justify;
+}
+.add-friends {
+	background: #f2f2f2 none repeat scroll 0 0;
+	border: 5px solid #e6e6e6;
+	height: auto;
+}
+.add-friends h1 {
+	border-bottom: 2px solid #c2c2c2;
+	font-size: 14px;
+	font-weight: bold;
+	height: 45px;
+}
+.add-friends ul {
+	margin-top: 20px;
+	position: relative;
+	margin-bottom: -30px;
+}
+.add-friends-ul li {
+	height: 100px;
+	position: relative;
+	display: inline-block;
+	width: 49%;
+}
+.add-friends-ul h2 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.add-friends-border {
+	background: #cccccc none repeat scroll 0 0;
+	height: 1px;
+        display: block;
+        margin-top: 10px;
+}
+.add-friends-btn {
+	background: #eac31a none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	height: 27px;
+	width: 100px;
+        float: right;
+        margin-top: 2px;
+}
+.like {
+	margin-left: 0;
+	margin-top: -9px;
+	padding: 20px 60px 20px 20px;
+}
+.extra-space {
+	height: 100px;
+	float: right;
+	margin-top: 5px;
+}
+.categories {
+	
+	width: 100%;
+	font-size: 13px;
+	font-weight: bold;
+}
+.categories li a {
+	color: #000;
+	text-decoration: underline;
+}
+.categories li:first-child {
+	display: inline-block;
+	border-right: 1px solid rgb(0, 0, 0);
+	padding: 2px;
+	line-height: 8px;
+	width: 38%;
+}
+.categories li:last-child {
+	display: inline-block;
+	padding: 2px;
+	line-height: 8px;
+	width: 52%;
+}
+.bag_search_bar {
+	background: #edecec none repeat scroll 0 0;
+	display: block;
+	margin: 1px 0;
+	padding: 5px 0;
+}
+.bag-search {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 0;
+	position: relative;
+}
+.bag-search .i-search-map {
+	background-position: 0 -1px;
+	display: inline-block;
+	height: 28px;
+	padding: 2px;
+	position: absolute;
+	width: 28px;
+	z-index: 10;
+}
+.bag-search .i-search-mgf {
+	background-position: -28px 0;
+	display: inline-block;
+	height: 28px;
+	padding: 2px;
+	position: absolute;
+	width: 28px;
+	z-index: 10;
+}
+.tt-sprites {
+	background: rgba(0, 0, 0, 0) url("../images/tt-sprites.png") no-repeat scroll 0 0;
+}
+.bag-search .i-search-crose {
+	background-position: -58px -26px;
+	cursor: pointer;
+	display: inline-block;
+	height: 18px;
+	left: 204px;
+	position: absolute;
+	text-indent: -9999px;
+	top: 6px;
+	width: 20px;
+	z-index: 10;
+}
+.bag-search .input-search {
+	background: #fff none repeat scroll 0 0;
+	border: medium none;
+	color: #111;
+	font-size: 14px;
+	height: 30px;
+	padding: 2px 20px 2px 30px;
+	position: relative;
+	width: 240px;
+}
+.bag-search .search-btn {
+	background: #eac31a none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 600;
+	height: 28px;
+	padding: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 72px;
+}
+
+@media(max-width:340px) {
+
+}
+@media(max-width:566px) {
+
+}
+@media (max-width:690px) {
+.pad-photo-open {
+    padding-left: 0;
+    padding-right: 0;
+}
+.social-pad {
+    padding-left: 1px;
+    padding-right: 0;
+}
+.add-friends {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border: 5px solid #e6e6e6;
+    height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.add-friends h1 {
+    border-bottom: 2px solid #c2c2c2;
+    font-size: 12px;
+    font-weight: bold;
+    height: 45px;
+}
+.like {
+    margin-left: 0;
+    margin-top: -9px;
+    padding: 20px 14px 20px 20px;
+}
+.add-friends-ul li {
+    display: inline-block;
+    height: 100px;
+    position: relative;
+    width: 100%;
+}
+.add-friends-border {
+    background: #cccccc none repeat scroll 0 0;
+    height: 1px;
+    width: 100%;
+}
+.write-cmnt-share {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border-style: solid none none;
+    border-width: 2px medium medium;
+    color: #878787;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+}
+.select-share select {
+    font-size: 12px;
+    height: 25px;
+    margin-top: 3px;
+    width: 198px;
+}
+.comment {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border: 5px solid #e6e6e6;
+    height: auto;
+    margin-top: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.comment h1 {
+    border-bottom: 2px solid #c2c2c2;
+    font-size: 12px;
+    font-weight: bold;
+    height: 45px;
+}
+.comment-ul p {
+    color: #727272;
+    font-size: 12px;
+}
+.photo-view-like {
+    padding-left:2px;
+    padding-top: 8px;
+}
+.photo-view-like li a {
+    color: #000;
+    font-size: 12px;
+    text-decoration: none;
+}
+.photo-view-like li {
+    border-right: 1px solid #000;
+    color: #000;
+    display: block;
+    float: right;
+    height: 13px;
+    line-height: 12px;
+    padding: 0 7px;
+    text-decoration: none;
+}
+.photo-view-like li a {
+    color: #000;
+    font-size: 12px;
+    text-decoration: none;
+}
+.border {
+    background: #cccccc none repeat scroll 0 0;
+    height: 1px;
+    width: 100%;
+}
+.comment-ul p {
+    color: #727272;
+    font-size: 12px;
+}
+.comment-ul h2 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.cmnt-btn{
+	margin-right:0px;
+}
+.content {
+    height: 155px;
+    overflow: hidden;
+}
+.categories li:first-child {
+    border-right: 1px solid rgb(0, 0, 0);
+    display: inline-block;
+    line-height: 7px;
+    padding: 3px;
+    width: 46%;
+}
+.categories {
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+}
+}
+@media (max-width:760px) {
+
+.bag-search .input-search {
+	background: #fff none repeat scroll 0 0;
+	border: medium none;
+	color: #111;
+	font-size: 14px;
+	height: 30px;
+	padding: 2px 20px 2px 30px;
+	position: relative;
+	width: 100%;
+}
+.bag-search .i-search-crose {
+	display: none;
+}
+.bag-search .search-btn {
+	background: #eac31a none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 600;
+	height: 28px;
+	padding: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+}
+.form-control {
+	display: block !important;
+	box-shadow: none !important;
+}
+.form-control:focus {
+	border-color: #eac31a !important;
+	box-shadow: none !important;
+}
+}
+@media(max-width:760px) {
+.bag_search_bar {
+	background: #000 none repeat scroll 0 0;
+	display: block;
+	margin: 19px 0;
+	padding: 12px 0;
+}
+.bag-search {
+	display: inline-block;
+	margin-bottom: 13px;
+	margin-right: 10px;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+}
+@media (max-width:991px) {
+
+}
+@media(min-width:691px) and (max-width:992px) {
+.travel-photo li {
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 32.9%;
+}	
+.content {
+    height: 135px;
+    overflow: hidden;
+}
+}
+@media (min-width:992px) and (max-width:1199px) {
+.travel-photo li {
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 24.6%;
+}
+.content {
+    height: 120px;
+    overflow: hidden;
+}	
+}
+@media (min-width:1200px) {
+.img-ldn {
+	height: 345px;
+	width: 100%;
+}
+.btn-group {
+	display: none;
+}
+.atm{
+		display:none;
+	}
+}
+.overview {
+    padding-bottom: 36px;
+    padding-top: 20px;
+}
+.pagerWrapper {
+    padding-bottom: 5px;
+    padding-right: 4px;
+    padding-top: 20px;
+}
+.no-gutter .col-lg-3, .no-gutter .col-lg-9 {
+    padding: 0;
+}

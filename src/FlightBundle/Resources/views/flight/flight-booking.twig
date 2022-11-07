@@ -1,0 +1,211 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+<link rel="stylesheet" type="text/css" href="/assets/vendor/jquery/plugins/dateRangePicker/css/daterangepicker.min.css">
+{#<link rel="stylesheet" type="text/css" href="{{ asset("/css/jscal2Airplane.css")|raw }}" > #}
+<link rel="stylesheet" type="text/css" href="/assets/common/css/bootstrap-chosen.css">
+<link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-booking.css">
+<link rel="stylesheet" type="text/css" href="/assets/common/css/bootstrap-select.css">
+
+{% endblock %}
+{% block pagenewjs %}
+<script type="text/javascript" src="/assets/vendor/jquery/plugins/dateRangePicker/js/moment.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/jquery/plugins/dateRangePicker/js/jquery.daterangepicker.js"></script>
+<script type="text/javascript" src="/assets/common/js/bootstrap-select.js"></script>
+<script type="text/javascript" src="/assets/flights/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/assets/flights/js/flight-booking.js"></script>
+<script>
+	$('.chosen-select').chosen();
+</script>
+{% endblock %}
+{% block body %}
+<section class="flightAllSection container">
+	<div class="container containerFirstAll" data-name="fly-search">
+		<div class="col-xs-12 bookflight-sect">
+			{% if timedOut != null or app.request.get('timedOut') == 1 %}
+			<div class="timed-out alert-danger">
+				{{'Oops!! you have been timed-out. Please try to search again'|trans}}
+			</div>
+			{% endif %}
+			{% if error != null or app.request.get('error') == 1%}
+			<div class="timed-out alert-danger">
+				{{error}}
+			</div>
+			{% endif %}
+			<div class="bookflightbk"></div>
+			<h1 class="col-xs-12 bookflight-title zindex10">
+				&raquo;
+				{{'Book your Flight'|trans}}
+			</h1>
+			<div class="col-xs-12 nopad">
+				<ul class="typeflighttabs">
+					<li class="flight_buts roundtripclass active">{{'Roundtrip'|trans}}</li>
+					<li class="flight_buts onewayclass">{{'One way'|trans}}</li>
+					<li class="flight_buts multipledestclass">{{'Multiple destinations'|trans}}</li>
+				</ul>
+			</div>
+			<div class="col-xs-12 bookflight_desp zindex10">
+				<form id="airplaneform" name="airplaneform" method="post" action="flight-booking-result">
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 padding0">
+						<div id="departurecontainer" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<input type="text" id="departureairport" name="departureairport" placeholder="{{'Departure airport / city'|trans}}" value="" required="required">
+							<input type="hidden" id="departureairportC" name="departureairportC" value="">
+						</div>
+						<div id="arrivalcontainer" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<input type="text" id="arrivalairport" name="arrivalairport" placeholder="{{'Arrival airport / city'|trans}}" value="" required="required">
+							<input type="hidden" id="arrivalairportC" name="arrivalairportC" value="">
+						</div>
+					</div>
+					<div class="col-xs-12 padding0">
+						<span id="datesContainer" class="col-lg-8 col-md-8 col-sm-12 col-xs-12 nopad">
+							<div id="fromContainer" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<input type="text" id="fromDate" name="fromDateC" placeholder="{{'Departure date'|trans}}" value="">
+							</div>
+							<div id="toContainer" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<input type="text" id="toDate" name="toDateC" placeholder="{{'Return date'|trans}}" value="">
+							</div>
+						</span>
+
+						<div id="flexibleDateContainer" class="checkbox rightcheckbox col-lg-4 col-md-4 col-sm-6 col-xs-12">
+							<label>
+								<input class="flexibledate" name="flexibledate" value="1" type="checkbox">
+								{{'My dates are flexible (lowest prices on + / - 3 days)'|trans}}
+							</label>
+							<br>
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 padding0">
+						<div class="economy col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<select id="cabinselect" name="cabinselect" ta bindex="1">
+								<option value="">{{'Select class'|trans}}</option>
+								<option value="Y">{{'Economy class'|trans}}</option>
+								<option value="S">{{'Premium Economy'|trans}}</option> {#<option value="J">{{'Premium Business'|trans}}</option>#}
+								<option value="C">{{'Business class'|trans}}</option> {#<option value="P">{{'Premium First'|trans}}</option>#}
+								<option value="F">{{'First class'|trans}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 padding0">
+						<div class="economy col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<select id="adultsselect" name="adultsselect">
+								<option value="1">{{'1 adult (12+ year)'|trans}}</option>
+								<option value="2">{{'2 Adults'|trans}}</option>
+								<option value="3">{{'3 Adults'|trans}}</option>
+								<option value="4">{{'4 Adults'|trans}}</option>
+								<option value="5">{{'5 Adults'|trans}}</option>
+								<option value="6">{{'6 Adults'|trans}}</option>
+								<option value="7">{{'7 Adults'|trans}}</option>
+								<option value="8">{{'8 Adults'|trans}}</option>
+							</select>
+						</div>
+						<div class="economy col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<select id="childsselect" name="childsselect">
+								<option value="0">{{'children (2-12 year)'|trans}}</option>
+								<option value="1">{{'1 child'|trans}}</option>
+								<option value="2">{{'2 children'|trans}}</option>
+								<option value="3">{{'3 children'|trans}}</option>
+								<option value="4">{{'4 children'|trans}}</option>
+								<option value="5">{{'5 children'|trans}}</option>
+								<option value="6">{{'6 children'|trans}}</option>
+								<option value="7">{{'7 children'|trans}}</option>
+								<option value="8">{{'8 children'|trans}}</option>
+							</select>
+						</div>
+						<div class="economy col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<select id="infantsselect" name="infantsselect">
+								<option value="0">{{'infants (0-2 year)'|trans}}</option>
+								<option value="1">{{'1 infant'|trans}}</option>
+								<option value="2">{{'2 infants'|trans}}</option>
+								<option value="3">{{'3 infants'|trans}}</option>
+								<option value="4">{{'4 infants'|trans}}</option>
+								<option value="5">{{'5 infants'|trans}}</option>
+								<option value="6">{{'6 infants'|trans}}</option>
+								<option value="7">{{'7 infants'|trans}}</option>
+								<option value="8">{{'8 infants'|trans}}</option>
+							</select>
+						</div>
+
+						{#<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-sm-push-6 col-lg-push-0 col-md-push-0 col-xs-push-0"> <p class="firsttextspan">{{'Add child / infant'|trans}}</p> <p
+						class="sndtextspan">{{'a child’s age must be over years and under 12 years old<br> an infant’s age must be over 14 days and under 2 years old'|trans}}</p> </div>#}
+					</div>
+					<div class="col-xs-12">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 butpaddifsizes marginTop15">
+							<div id="myDropdown" class="dropdown-content">
+								<select id="cabinselect" class="selectpicker chosen-select" data-live-search="true" ta bindex="1" width="100%" name="chosenAirline">
+									<option data-tokens="" value="">{{'Select Airline'|trans}}</option>
+									{% for airline in airline %}
+									<option data-tokens="{{airline.nameCode}}" value="{{airline.code}}">{{airline.nameCode}}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+					</div>
+					<div id="multiDestinationContainer" class="multi-destination-container">
+						<div class="col-xs-12 padding0 marginTop15">
+							<div class="col-xs-12 nopad snd3dflightstyle">
+								{{'flight 2'|trans}}
+							</div>
+							<div id="departurecontainer-0" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<input type="text" id="departureairport-0" name="departureairport-0" placeholder="{{'Departure airport / city'|trans}}" value="">
+								<input type="hidden" id="departureairport-0C" name="departureairportC-0" value="">
+							</div>
+							<div id="arrivalcontainer-0" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<input type="text" id="arrivalairport-0" name="arrivalairport-0" placeholder="{{'Arrival airport / city'|trans}}" value="">
+								<input type="hidden" id="arrivalairport-0C" name="arrivalairportC-0" value="">
+							</div>
+							<div id="fromContainer-0" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<input type="text" id="fromDate-0" name="fromDateC-0" placeholder="{{'Departure date'|trans}}" value="">
+							</div>
+						</div>
+						<div class="col-xs-12 padding0 marginTop15">
+							<div class="col-xs-12 nopad snd3dflightstyle">
+								{{'flight 3'|trans}}
+							</div>
+							<div id="departurecontainer-1" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<input type="text" id="departureairport-1" name="departureairport-1" placeholder="{{'Departure airport / city'|trans}}" value="">
+								<input type="hidden" id="departureairport-1C" name="departureairportC-1" value="">
+							</div>
+							<div id="arrivalcontainer-1" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<input type="text" id="arrivalairport-1" name="arrivalairport-1" placeholder="{{'Arrival airport / city'|trans}}" value="">
+								<input type="hidden" id="arrivalairport-1C" name="arrivalairportC-1" value="">
+							</div>
+							<div id="fromContainer-1" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<input type="text" id="fromDate-1" name="fromDateC-1" placeholder="{{'Departure date'|trans}}" value="">
+							</div>
+						</div>
+						{#<div class="col-xs-12 padding0 marginTop15"> <div class="col-xs-12 nopad snd3dflightstyle">{{'flight 4'|trans}}</div> <div id="departurecontainer-2" class="col-lg-4
+						col-md-4 col-sm-4 col-xs-12"> <input type="text" id="departureairport-2" name="departureairport-2" placeholder="{{'Departure airport / city'|trans}}" value=""> <input
+						type="hidden" id="departureairport-2C" name="departureairportC-2" value=""> </div> <div id="arrivalcontainer-2" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <input
+						type="text" id="arrivalairport-2" name="arrivalairport-2" placeholder="{{'Arrival airport / city'|trans}}" value=""> <input type="hidden" id="arrivalairport-2C"
+						name="arrivalairportC-2" value=""> </div> <div id="fromContainer-2" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <input type="text" id="fromDate-2" name="fromDate-2"
+						placeholder="{{'Departure date'|trans}}" value=""> </div> </div> <div class="col-xs-12 padding0 marginTop15"> <div class="col-xs-12 nopad snd3dflightstyle">{{'flight
+						5'|trans}}</div> <div id="departurecontainer-3" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <input type="text" id="departureairport-3" name="departureairport-3"
+						placeholder="{{'Departure airport / city'|trans}}" value=""> <input type="hidden" id="departureairport-3C" name="departureairportC-3" value=""> </div> <div
+						id="arrivalcontainer-3" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <input type="text" id="arrivalairport-3" name="arrivalairport-3" placeholder="{{'Arrival airport /
+						city'|trans}}" value=""> <input type="hidden" id="arrivalairport-3C" name="arrivalairportC-3" value=""> </div> <div id="fromContainer-3" class="col-lg-4 col-md-4 col-sm-4
+						col-xs-12"> <input type="text" id="fromDate-3" name="fromDate-3" placeholder="{{'Departure date'|trans}}" value=""> </div> </div>#}
+
+					</div>
+					<div class="col-xs-12">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 butpaddifsizes marginTop15">
+							<input id="oneway" class="oneway" name="oneway" value="" type="hidden">
+							<input id="multiDestination" class="multi-destination" name="multidestination" value="" type="hidden">
+							<button name="search-flights" type="submit" class="find_flights">
+								&raquo;
+								{{'Find flights'|trans}}
+							</button>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 butpaddifsizesreset marginTop15">
+							<button name="search-flights" type="button" class="find_flightsreset" onclick="resetForm()">
+								&raquo;
+								{{'Reset form'|trans}}
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

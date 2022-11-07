@@ -1,0 +1,113 @@
+_search_locality_lang:
+    path:      "/{_locale}/ajax/search_locality"
+    defaults: { _controller: TTBundle:Ajax:searchLocality, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_search_airport_code_locality_lang:
+    path:      "/{_locale}/ajax/search_airport_code"
+    defaults: { _controller: TTBundle:Ajax:searchAirportCode, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_search_things_to_do_lang:
+    path: "/{_locale}/ajax/search_things_to_do"
+    defaults: { _controller: TTBundle:Ajax:searchThingsToDo, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_albums_data_lang:
+    path:      "/{_locale}/ajax/albums_data"
+    defaults: { _controller: TTBundle:Ajax:getAlbumsData, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_review_autocomplete_lang:
+    path:      "/{_locale}/ajax/review_autocomplete"
+    defaults: { _controller: TTBundle:Ajax:reviewAutocomplete, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_search_Hotel_lang:
+    path:      "/{_locale}/ajax/search_Hotel"
+    defaults: { _controller: TTBundle:Ajax:filterHotelsIn, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_remove_Hotel_images_lang:
+    path:      "/{_locale}/ajax/remove/hotel/images"
+    defaults: { _controller: TTBundle:Ajax:removeHotelImages, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_Hotel_search_amadeus_lang:
+    path:      "/{_locale}/ajax/Hotel_search_for_amadeus"
+    defaults: { _controller: TTBundle:Ajax:HotelSearchForAmadeus, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""} 
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_Deals_search_lang:
+    path:      "/{_locale}/ajax/deal_search_for"
+    defaults: { _controller: TTBundle:Ajax:DealSearch, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""} 
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_Hotel_search_1__lang:
+    path:      "/{_locale}/ajax/Hotel_search_for1"
+    defaults: { _controller: TTBundle:Ajax:HotelSearchFor1, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+" 
+
+_Hotel_search_new_lang:
+    path:      "/{_locale}/ajax/Hotel_search"
+    defaults: { _controller: TTBundle:Ajax:HotelSearchForAmadeus, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_search_prefix_Hotel_lang:
+    path:      "/{_locale}/ajax/search_prefix_Hotel"
+    defaults: { _controller: TTBundle:Ajax:prefixSearchHotel, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_search_near_by_Hotel_lang:
+    path:      "/{_locale}/ajax/search_near_by_Hotel"
+    defaults: { _controller: TTBundle:Ajax:nearByHotel, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_search_Hotels_lang:
+    path:      "/{_locale}/ajax/search_Hotels"
+    defaults: { _controller: TTBundle:Ajax:searchHotelsName, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_verify_coupon_code_api_lang:
+    path:      "/{_locale}/ajax/verify-coupon"
+    defaults: { _controller: TTBundle:Ajax:verifyCouponApi, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_campaigns_banner_info_lang:
+    path:      "/{_locale}/ajax/campaigns-banner-info"
+    defaults: { _controller: TTBundle:Ajax:campaignsBannerInfo, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"

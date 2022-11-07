@@ -1,0 +1,985 @@
+.nostylebutstyle{
+    display: block;
+    height: 41px;
+    list-style: outside none none;
+    margin-top: 10px;
+    position: relative;
+}
+.nostylebutstyle li{
+    display: inline-block;
+    float: left;
+    height: 41px;
+    padding: 0 5px;
+    position: relative;
+}
+.texttabs{
+    background-color: #d10c3b;
+    font-size: 16px;
+    color: white;  text-align: center;
+    text-transform: uppercase;
+    line-height: 41px;
+    cursor: pointer;
+    width: 100%;
+    float:left;
+}
+.texttabs.texttabsSelected{
+    background-color: #eac31a;
+}
+.texttabs:hover{
+    color: white;
+}
+.containerTops{
+    position: relative;
+    float: left;
+    display: block; 
+    margin-top: 69px;   
+}
+.containerTops.containerTopsAttractions{
+    margin-top: 41px;  
+}
+.destinations_title {
+    color: #000000;
+    font-size: 25px;
+}
+.destinations_subtitle {
+    color: #000000;
+    font-size: 17px;
+}
+h2.section_header {
+    height: 37px;
+    border: none;
+}
+/*filter section:
+=====================*/
+
+.filtersearchtogglecontainer{
+    display: none;
+}
+.downarrow_filter{
+    position: relative;
+    left: calc(50% - 15px);
+    cursor: pointer;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+.menuestyle_filter{
+    font-size: 25px;
+    line-height: 25px;
+    padding-left: 8px;
+}
+.uparrow_filter{
+    position: relative;
+    left: calc(50% - 15px);
+    cursor: pointer;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.menuestyle_filter-click{
+    cursor: pointer;
+    height: 94px;
+}
+.uparrow_filter-click{
+    cursor: pointer;
+}
+@media (max-width:414px){
+    h2.section_header {
+        height: 90px;
+    }
+}
+
+.imgdiscover {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.imgdiscover img {
+    width: 100%;
+}
+.overblackbaack {
+    display: block;
+    position: absolute;
+    left: 5px;
+    padding: 0;
+    right: 5px;
+    top: 50%;
+}
+.deal_txt_content {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.deal_stars_content {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: #5662bc;
+    padding: 0 10px;
+    height: 35px;
+    line-height: 35px;
+    text-align: left;
+    font-size: 14px;
+    color: #ffffff;
+}
+.deal_gray_content {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 10px 10px 15px;
+    line-height: 17px;
+    text-align: left;
+    font-size: 15px;
+    color: #000000;
+    min-height: 175px;
+}
+
+@media (max-width:736px){
+    .deal_txt_content {
+        height: 220px;
+    }
+    .deal_gray_content {
+        height: 180px;
+    }
+}
+
+.deal_gray_title {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-top: 8px;
+}
+.deal_gray_txt{
+    display: block;
+    position: relative;
+    float: left;
+    padding-left: 18px;
+    font-size: 15px;
+    color: #313131;
+    width: 100%;
+    line-height: 22px;
+}
+.deal_gray_location{
+    margin-top: 12px;
+    background: rgba(0,0,0,0) url("/media/images/deals1/locd1.png") no-repeat scroll 0 0px;
+}
+.deal_gray_price{
+    font-size: 15px;
+    color:#d10b3a;
+}
+.deal_stars{
+    display: block;
+    position: relative;
+    float: right;
+}
+.citytextoveerlay {
+    bottom: -4px;
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0 10px;
+    min-height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-weight: bold;
+}
+.overlayedbackground img {
+    width: 100%;
+}
+.citytextoveerlay.citytextoveerlay_attractions {
+    bottom: -3px;
+    font-size: 21px;
+    min-height: 22px;
+    line-height: 22px;
+}
+.desctextoveerlay_content {
+    top: 7px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.desctextoveerlay {
+    color: white;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 2px 5px;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(0, 0, 0,0.5);
+    min-height: 18px;
+    line-height: 18px;
+}
+.booknowbluebut{
+    min-width: 102px;
+    min-height: 27px;
+    line-height: 27px;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    position: absolute;
+    left: 18px;
+    bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.absolutediv{
+    background-color: white;
+    border: 2px solid #e3e3e3;
+    float: left;
+    height: auto;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 3px;
+    width: 618px;
+    z-index: 1071;
+}
+.displayimages{
+    position: relative;
+}
+#first {
+    display: none;
+}
+
+p:hover + #first , #first:hover{
+    display: none;
+}
+.bestbuytitle{
+    font-size: 25px;
+    color: #d10c3b;
+    padding-top: 14px;
+}
+.pinkarrow{
+    position: absolute;
+    top: 0;
+    left: 26px;
+}
+.citystyle{
+    color: #5763bd;
+    font-size: 17px;
+}
+.pricetrip{
+    font-size: 17px;
+    color: #49494a;
+}
+.smalfrom{
+    font-size: 13px;
+}
+.borderinsidediv{
+    border-top: 1px solid #e3e3e3;
+    margin-top: 16px;
+    padding-bottom: 16px;
+}
+.butcomonstyle{
+    border: none;
+    background-color: #d10c3b;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+    height: 42px;
+    text-transform: uppercase;
+}
+.text-allign-center{
+    text-align: center;
+}
+.expand{
+    cursor: pointer;
+}
+.allbutdiv{
+    display: none;
+}
+.snddivbutstyle button{
+    margin-bottom: 10px;
+}
+.refinetitle{
+    font-size: 25px;
+    color: black;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.searchcontainerfilter .dealcontent{
+    display: block;
+}
+.trip_search{
+    height: 359px;
+}
+.searchdest{
+    background: rgb(233, 233, 233);
+    border: medium none;
+    border-radius: 0;
+    height: 38px;
+    padding-left: 34px;
+    background-image: url(/media/images/playimg.png), url(/media/images/searchiconyellow.png);
+    background-position: 5px center, 97% center;
+    background-repeat: no-repeat;
+}
+.searchdest::-moz-placeholder{
+    color: black;
+    font-size: 16px;
+}
+.searchinput::-moz-placeholder{
+    color: black;
+    font-size: 16px;
+}
+.searchinput{
+    background: rgb(255, 255, 255) url("/media/images/map_marker.png") no-repeat scroll 3px center;
+    border: medium none;
+    border-radius: 0;
+    height: 38px;
+    margin: 10px;
+    padding-left: 27px;
+    width: 322px;
+    float: left;
+}
+.datesearchdet{
+    background: rgb(255, 255, 255);
+    border: medium none;
+    border-radius: 0;
+    height: 38px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 30%;
+}
+.searchbout{
+    border: none;
+    background-color: black;
+    width: 38px;
+    height: 38px;
+    background: rgb(0, 0, 0) url("/media/images/searchiconyellow.png") no-repeat scroll center center;
+    float: left;
+    margin-top: 10px;
+}
+.passengerinput{
+    background: rgb(255, 255, 255);
+    border: medium none;
+    border-radius: 0;
+    height: 38px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 30%;
+}
+.selectstyle{
+    background: rgb(233, 233, 233);
+    border: medium none;
+    border-radius: 0;
+    height: 38px;
+    padding-left: 34px;
+    background-image: url(/media/images/playimg.png), url(/media/images/flechedownblack.png);
+    background-position: 5px center, 97% center;
+    background-repeat: no-repeat;
+}
+.selectstyle::-moz-placeholder{
+    color: black;
+    font-size: 16px;
+}
+.biggreydiv{
+    height: 326px;
+    background-color:#f1f1f1;
+    padding-bottom: 10px;
+}
+.prpp{
+    background: rgba(0, 0, 0, 0) url("/media/images/playimg.png") no-repeat scroll 5px center;
+    color: black;
+    font-size: 16px;
+    margin-top: 12px;
+    padding-left: 34px;
+}
+.margin-but-15{
+    margin-bottom: 15px;
+}
+.width-100{
+    width: 100%;
+    height: 50%;
+}
+.dealstitle{
+    font-size: 17px;
+    color: black;
+    text-decoration: none;
+}
+.seconddiv{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.triptime{
+    color: #313131;
+    font-size: 16px;
+}
+.citynameheight{
+    height: auto;
+    line-height: 18px;
+    max-height: 45px;
+    padding-top: 8px;
+}
+.dealsprice{
+    color: #5763bd;
+    font-size: 25px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+}
+.hashedprice{
+    color: #c8c8c8;
+    font-size: 20px;
+}
+.goimgstyle{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 15px;
+}
+.addimg{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+}
+.reasonsdeals{
+    font-size: 22px;
+    color: black;
+    padding-top: 20px;
+}
+.greytextdeals{
+    color: #737373;
+    font-size: 13px;
+}
+.dealsulreasons{
+    list-style: none;
+}
+.dealsulreasons li{
+    display: inline-block;
+    width: auto;
+    padding-right: 15px;
+    padding-left: 5px;
+}
+.bigultext{
+    font-size: 17.22px;
+    color: black;
+    padding-left: 48px;
+    height: 42px;
+}
+.smalultxt{
+    color: black;
+    font-size: 10.6px;
+    margin-top: -16px;
+    padding-left: 48px;
+}
+.firstimgback{
+    background: rgba(0, 0, 0, 0) url("/media/images/firstreason.png") no-repeat scroll 5px center;
+}
+.sndimgback{
+    background: rgba(0, 0, 0, 0) url("/media/images/sndreason.png") no-repeat scroll 5px center;
+}
+.thrdimgback{
+    background: rgba(0, 0, 0, 0) url("/media/images/thrdreason.png") no-repeat scroll 5px center;
+}
+.frthimgback{
+    background: rgba(0, 0, 0, 0) url("/media/images/frthreason.png") no-repeat scroll 5px center;
+}
+.borderright{
+    border-right: 1px solid #e0e0e0;
+}
+.full-width{
+    width: 100%;
+}
+.position-absolute{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#searchdivcontainer{
+    height: 255px;
+    background: url("/media/images/dealsjumbotrone.png") center center no-repeat;
+}
+#searchdiv{
+    margin: auto;
+    width: 646px;
+    height: 80px;
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 510px;
+    text-align: center;
+    background: rgba(128, 128, 128, 0.4);
+}
+/*custom slider:
+===============*/
+
+.slider-selection {
+    background: #d10c3b none repeat scroll 0 0;
+}
+.slider.slider-horizontal {
+    height: 4px !important;
+    width: 100%;
+}
+.slider.slider-horizontal .slider-track {
+    height: 4px;
+}
+.slider.slider-horizontal .slider-tick, .slider.slider-horizontal .slider-handle {
+    margin-left: -6px;
+    margin-top: -5px;
+}
+.slider-handle.round {
+    border-radius: 0;
+}
+.slider-handle {
+    background-color: #d10c3b;
+    background-image: url("/media/images/handlepink.png");
+    background-repeat: repeat-x;
+    border: 0 solid transparent;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    height: 14px;
+    position: absolute;
+    width: 6px;
+}
+.tooltip.top .tooltip-arrow {
+    border-top-color: transparent;
+    border-width: 5px 5px 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+}
+.tooltip-inner {
+    background-color: transparent;
+    color: black;
+    padding: 3px 8px;
+}
+.tooltip {
+    position: absolute;
+    top: 36px;
+}
+/*new css:
+========================*/
+.add-bag ,.add-bag:hover{
+    background-image: url("/media/images/add_icon.png");
+    background-repeat: no-repeat;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 0;
+    padding-left: 25px;
+    position: relative;
+    text-decoration: navajowhite;
+    margin-left: 10px;
+}
+.greytextdiv_d1{
+    background-color: #f1f1f1;
+    height: auto;
+}
+.addtobagbluediv_deals{
+    background-color: #5662bc;
+    height: 35px;
+    line-height: 35px;
+}
+.deals1offerimgs_d1{
+    width: 100%;
+}
+.marbut20_d1{
+    margin-bottom: 20px;
+}
+.fboltxt_d1{
+    font-size: 15px;
+    color: black;
+    padding-left: 27px;
+    padding-right: 5px;
+    line-height: 21px;
+    padding-top: 8px;
+}
+.fgreytxt_d1{
+    font-size: 15px;
+    color: #313131;
+    padding-left: 27px;
+    padding-right: 5px;
+    line-height: 21px;
+    padding-top: 4px;
+}
+.patextbut_d1{
+    margin-left: 9px;
+    padding-left: 18px;
+    background: rgba(0,0,0,0) url("/media/images/deals1/locd1.png") no-repeat scroll 0 0px;
+    font-size: 13px;
+    color: #5662bc;
+    margin-top: 19px;
+    font-weight: bold;
+}
+.fphashed_d1{
+    font-size: 15px;
+    color: #313131;
+    text-decoration: line-through;
+    padding-left: 9px;
+    line-height: 20px;
+    padding-top: 7px;
+}
+.tonprice_d1{
+    color: #d10b3a;
+    font-size: 17px;
+    padding-left: 9px;
+    line-height: 20px;
+    padding-top: 7px;
+}
+.bpgar_d1{
+    font-size: 17px;
+    color: #313131;
+    padding-left: 9px;
+    line-height: 20px;
+}
+.lernmorebut_d1 ,.lernmorebut_d1:hover{
+    width: 111px;
+    height: 36px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 36px;
+    text-decoration: none;
+    background-color: #d10c3b;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-left: 9px;
+    margin-top: 20px;
+    float: left;
+}
+.discountimgright_deals1{
+    position: absolute;
+    right: -8px;
+    top: 17px;
+    z-index: 10;
+}
+.bigdealimg_deals1{
+    width: 100%;
+    height: 148px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.discountimg_deals1{
+    position: absolute;
+    right: -10px;
+    top: 17px;
+    z-index: 10;
+}
+.allgrey7back_deal1{
+    background-color: #f1f1f1; 
+    min-height: 158px;
+}
+.secdivgreyback_deal1{
+    background-color: #f1f1f1; 
+    min-height: 158px;
+    padding-left: 21px;
+}
+.padright5_deals1{
+    padding-right: 5px;
+}
+.padleft5_deals1{
+    padding-left: 5px;
+}
+.dealsfirstblacktext_deal1{
+    font-size: 15px;
+    color: black;
+    padding-left: 15px;
+    line-height: 20px;
+    padding-top: 7px;
+}
+.dealsgreytext_deals1{
+    font-size: 13px;
+    color: #313131;
+    padding-left: 15px;
+    line-height: 20px;
+    padding-top: 2px;
+}
+.bluedealsul_deals1{
+    padding-top: 13px;
+}
+.greendealsul_deals1{
+    padding-left: 36px;
+}
+.bluedealsul_deals1 li{
+    list-style: none;
+    color: #5662bc;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+    float: left;
+}
+.greendealsul_deals1 li{
+    list-style: none;
+    color: #108741;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+    float: left;
+}
+.bluedealsul_deals1 li.dealspipeblueimg ,.greendealsul_deals1 li.greendealspipeimg{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.bluedealsul_deals1 li.dealslocimgback_deals1{
+    background: rgba(0,0,0,0) url("/media/images/deals1/locd1.png") no-repeat scroll 0 0px;
+    margin-left: 15px;
+    padding-left: 21px;
+}
+.section9martop5{
+    margin-top: 5px;
+}
+.bestpricewizlogo_deals1{
+    font-size: 14px;
+    font-weight: bold;
+    color: #108741;
+    background: rgba(0,0,0,0) url("/media/images/deals1/pgdeal1.png") no-repeat scroll 0 0px;
+    margin-left: 6px;
+    padding-left: 37px;
+    line-height: 32px;
+    margin-top: 7px;
+}
+.addtobagtextstyle, .addtobagtextstyle:hover {
+    font-size: 13px;
+    color: black;
+    padding-left: 28px;
+    background: rgba(0,0,0,0) url("/media/images/deals-attractive/addtotourbaglogo.png") no-repeat scroll 0 0px;
+    line-height: 24px;
+    text-decoration: none;
+    display: block;
+}
+.addtobagcontainer_deals1{
+    float: left;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+@media (min-width:992px){  
+    .lgmdw_d1{
+        width: 22.5%;
+    }
+    .sndlgmdw_d1{
+        width: 55%;
+    }
+    .deals1offerimgs_d1{
+        height: 143px;
+    }
+    .greytextdiv_d1{
+        height: 143px;
+    }
+}
+
+
+
+@media (max-width:1200px){  
+    #searchdiv{
+        right: 400px;
+    }
+}
+@media (max-width:1180px){  
+    #searchdiv{
+        right: 300px;
+    }
+}
+
+@media (max-width:991px){    
+    .nostylebutstyle li {
+        margin-bottom: 10px;
+    }
+    #searchdiv{
+        right: 100px;
+    }
+}
+@media  (min-width:768px) and (max-width:1199px){
+    .lernmorebut_d1, .lernmorebut_d1:hover {
+        margin-top: 5px;
+    }
+    .addtobagcontainer_deals1 {
+        margin-top: 4px;
+    }
+} 
+@media  (min-width:768px) and (max-width:991px){
+    .prpp {
+        margin-top: 7px;
+    } 
+    .dealsulreasons li{
+        padding-right: 5px;
+        padding-left: 0px;
+    }
+    .deals1offerimgs_d1 {
+        height: 158px;
+    }
+    .greytextdiv_d1 {
+        height: 158px;
+    }
+
+
+}
+@media  (max-width:767px){
+    .seconddiv {
+        min-height: 160px;
+    }
+    .biggreydiv {
+        height: auto;
+    }
+    .hashedprice {
+        position: relative;
+    }
+    #geo_city{
+        margin-left: 0;
+    }
+    #searchdivcontainer{
+        width: 97%;
+        margin-left: 10px;
+    }
+    #searchdiv{
+        width: 100%;
+        height: 110px;
+    }
+    .deal-dateSearch{
+        width: 40%;
+        margin-top: 0;
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    .searchbout{
+        margin-top: 0;
+        margin-left: 10px;
+    }
+    .greytextdiv_d1 {
+        margin-top: -10px;
+        float: left;
+        width: 100%;
+    }
+    .greytextdiv_d1 {
+        margin-top: -10px;
+
+    }
+    .bigdealimg_deals1{
+        height: auto;
+        padding-right: 10px;
+    }
+    .padright5_deals1 , .padleft5_deals1{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+}
+@media  (max-width:600px){
+    #searchdivcontainer{
+        width: 95%;
+    }
+}
+@media  (min-width:992px) and (max-width:1199px){
+    .mdmartopten{
+        margin-top: 10px;
+    }
+}
+
+
+/**
+  * Css for multiple search detail
+  *
+  */
+.bgGray{
+    background-color: #f3f3f3 !important;
+}
+.redz{
+    border: 1px solid red;
+}
+.pad10{
+    padding: 10px 10px 12px 10px;
+}
+.padTB10{
+    padding: 10px 0;
+}
+.width-150px{
+    width: 150px !important;
+    height: 100px;
+}
+.sectionHdr{
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.1;
+    color: inherit;
+    border-bottom: 1px solid #aaa !important;
+}
+.photoGallery{
+    margin: 20px 0;
+}
+.photoGallery .images{
+    margin: 10px 0;
+}
+.ui-datepicker table{
+    background-color: #f9f9f9 !important;
+}
+#cancel, #bookNow{
+    display: none;
+}
+.tourSubmit{
+    color: #fff;
+    background-color: #eac31a;
+    border: none;
+    border-radius: 0;
+    text-shadow: none;
+    font-weight: bold;
+    width: 100%;
+    text-transform: uppercase;
+    height: 36px;
+}
+.section_header{
+    border-bottom: 1px solid #999;
+}
+.section_title{
+    font-size: 18px;
+    color: #2e2e2e;
+}
+.section_subtitle{
+    font-size: 15px;
+    color: #2e2e2e;
+
+}
+.width-thumbnail {
+    width: 80px !important;
+    height: 60px;
+}
+.errorMsg-class {
+    padding-left: 0;
+    color: #d93c61 !important;
+    font-size: 35px;
+    text-transform: capitalize;
+}
+.color-red {
+    color: #d93c61 !important;
+}
+ul{
+    padding: 0;
+}
+p{
+    padding-bottom: 0;
+    margin: 0;
+}
+.marleft5slik{
+    margin-left: 5px;
+}
+@media (max-width:580px){
+    .xsnewstyle100p{
+        width: 50%;
+    }
+}
+@media (max-width:400px){
+    .xsnewstyle100p{
+        width: 100%;
+    }
+}
+.loadmore_dat{
+    background-color: #d10c3b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    height: 42px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    line-height: 42px;
+}

@@ -1,0 +1,36 @@
+TTBundle\Entity\BoActivityLog:
+    type: entity
+    table: bo_activity_log
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        activityCode:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: activity_code
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        timestamp:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

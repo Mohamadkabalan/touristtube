@@ -1,0 +1,1 @@
+UPDATE cms_hotel_city SET city_name = 'Rome (Lazio)' WHERE location_id = 54084 AND city_id = 2211494;

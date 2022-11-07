@@ -1,0 +1,67 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/tuber/css/tuber_commun.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/tuber/js/account_common.js") }}"></script>
+{% endblock %}
+{% block title %}{{'Sharing'|trans}} | Tourist Tube{% endblock %}
+{% block body %}
+    <section class="container tuuber-container">
+        <div class="row">
+            <div class="col-xs-12">
+		{% set account_header_name = 'account sharing'|trans %}
+                {% include "account/account-header.twig" %}
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+                        <div class="row no-margin">
+                            {% include "account/account-menu.twig" %}
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+				{% if msg!='' %}
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <p class="sharing_account_p">{{msg|raw}}</p>
+					    <br/>
+					</div>
+				    </div>
+				{% endif %}
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="sharing_account_p">{{'Interested in sharing your Tourist Tube posts with your favorite social networking websites?'|trans}}</p>
+                                        <p class="sharing_account_p">{{'Just set up a connection between Tourist Tube and your favorite service and let the sharing begins!'|trans}}</p>
+                                    </div>
+                                </div>                            
+                                <div class="row no-margin margin_top_40">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="socialsection">
+					    <p class="fa fa-facebook fa-2x"></p>
+					    <a href="{{fbLink|raw}}" class="connect_sharing">{{fbConnect|raw}}</a>
+                                        </div>
+                                        {#<div class="socialsection">
+                                            <p class="fa fa-google-plus fa-2x"></p>
+                                            <a href="#" class="connect_sharing">connect</a>
+                                        </div>#}
+                                        <div class="socialsection">
+                                            <p class="fa fa-twitter fa-2x"></p>
+                                            <a href="{{twitterLink|raw}}" class="connect_sharing">{{twitterConnect|raw}}</a>
+                                        </div>
+                                        {#<div class="socialsection">
+                                            <p class="fa fa-pinterest fa-2x"></p>
+                                            <a href="#" class="connect_sharing">connect</a>
+                                        </div>#}
+                                    </div>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+{% endblock %}

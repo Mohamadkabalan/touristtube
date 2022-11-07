@@ -1,0 +1,120 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/pages/css/bags.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/pages/css/popup.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/bags.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <div id="popup_editid" class="popup_edit bag_popup">
+	<div class="edit_your_bag">{{'edit your bag'|trans}}</div>
+	<div><input type="text" class="bageditname" value="" id="name"></div>
+	<div><button data-id="" class="delete deletebag" type="button">{{'Delete bag'|trans}}</button></div>
+	<div><button data-id="" class="cancel cancelBag" type="button">{{'Cancel'|trans}}</button></div>
+	<div><button data-id="" class="save savebagedit" type="button">{{'Save'|trans}}</button></div>
+	<div class="bag_edit"><a target="_blank" class="redlinks" title="" href="">{{'discover'|trans}}</a></div>
+	<div class="bag_edit marginbotton10"><a target="_blank" class="redlinks" title="" href="">{{'hotels'|trans}}</a></div>
+    </div>
+    <div id="popup_creatid" class="popup_creat bag_popup"></div>
+    <section class="container bag_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Bag'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_top_20">
+                    <div class="col-md-3 col-xs-12 left_panel">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <p class="blue font-24">{{'Follow the steps'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-md-12 col-sm-3 col-xs-6 nopad small-xs-width">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <input id="addBagPath" type="hidden" name="addBagPath" value="{{ generateLangRoute(LanguageGet,'_add_bag_new')}}">
+                                        <input id="getBagInfo" type="hidden" name="getBagInfo" value="{{ generateLangRoute(LanguageGet,'_get_bag_info_new')}}">
+                                        <input id="editBagPath" type="hidden" name="editBagPath" value="{{ generateLangRoute(LanguageGet,'_edit_bag_new')}}">
+                                        <input id="deleteBagPath" type="hidden" name="deleteBagPath" value="{{ generateLangRoute(LanguageGet,'_delete_bag_new')}}">
+                                        <p class="bag_subtitle"><span>1</span>{{'Add a new bag'|trans}}</p>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <a href="#popup_creatid" id="addNewbag"><img src="{{ generateMediaURL('/media/images/bag_new/bag_img.png') }}" class="bagimg" alt="{{'add bag'|trans}}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-3 col-xs-6 nopad small-xs-width">
+                                <p class="bag_subtitle"><span>2</span>{{'name it'|trans}}</p>
+                            </div>
+                            <div class="col-md-12 col-sm-3 col-xs-6 nopad small-xs-width">
+                                <p class="bag_subtitle"><span>3</span>{{'go to'|trans}}</p>
+                                <ul class="links_list">
+                                    <li class="redlinks_discover"><a href="{{ generateLangRoute(LanguageGet,'_discover')}}" title="{{'discover'|trans}}" class="redlinks" target="_blank">{{'discover'|trans}}</a></li>
+                                    <li><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo')}}" title="{{'things to do'|trans}}" class="redlinks" target="_blank">{{'things to do'|trans}}</a></li>
+                                    <li class="redlinks_hotels"><a href="{{ generateLangRoute(LanguageGet,'_hotel_booking')}}" title="{{'hotels'|trans}}" class="redlinks" target="_blank">{{'hotels'|trans}}</a></li>
+				    {% if SHOW_DEALS_BLOCK==1 %}
+					<li><a href="{{ generateLangRoute(LanguageGet,'_deals')}}" title="{{'attractions'|trans}}" class="redlinks" target="_blank">{{'attractions'|trans}}</a></li>
+				    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="col-md-12 col-sm-3 col-xs-6 nopad small-xs-width">
+                                <p class="bag_subtitle"><span>4</span>{{'add items to your bag'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad ">
+                                <div class="grey_borger_5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-9 col-xs-12 right_panel">
+                        <div class="row margin-5">
+                            {% for bags in bagsListarray %}
+                                <div class="col-sm-4 col-xs-6 small-xs-width padding-5 existing_bag_item">                                    
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad ">
+						{% if bags.count>0 %}<a href="{{ bags.link|raw }}" title="{{bags.namealt|raw}}">{% endif %}
+						    {% if bags.img=='' %}
+							<div class="containeradd">
+							    <div class="containeraddicon containeraddicon1"></div>
+							</div>
+							<img class="width-100" alt="{{bags.namealt|raw}}" src="{{ generateMediaURL('/media/images/add_bagBK.jpg') }}"/>
+						    {% else %}
+							<img class="width-100" alt="{{bags.namealt|raw}}" src="{{bags.img|raw}}" />
+						    {% endif %}
+						{% if bags.count>0 %}</a>{% endif %}
+                                                <a href="#popup_editid" class="edit_bag attach" data-id="{{ bags.id|raw }}" title="{{bags.namealt|raw}}">
+						    <img class="edit_class_blue" alt="edit" src="{{ generateMediaURL('/media/images/bag_new/blue_edit_logo.png') }}">
+						</a>
+                                                <div class="image_circle_back">
+                                                    <p class="image_circle_text"><span>{{ bags.count|raw }}</span><br>{{'items'|trans}}<p>
+                                                </div>
+                                            </div>
+					    {% if bags.count>0 %}
+						<a href="{{ bags.link|raw }}" title="{{bags.namealt|raw}}" class="col-xs-12 nopad items_txt1">
+						    <p class="bgname grey_img_subtitle">{{ bags.name|raw }}</p>
+						</a>
+					    {% else %}
+						<div class="col-xs-12 nopad items_txt1">
+						    <p class="bgname grey_img_subtitle">{{ bags.name|raw }}</p>
+						</div>
+					    {% endif %}                                            
+                                        </div>
+                                </div>				
+				{% if (loop.index%3)==0 %}
+				    <div class="clearfix visible-lg visible-md visible-sm"></div>
+				{% endif %}				
+				{% if (loop.index%2)==0 %}
+				    <div class="clearfix visible-xs"></div>
+				{% endif %}	
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

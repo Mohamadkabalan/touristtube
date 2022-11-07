@@ -1,0 +1,10 @@
+$(function(){
+    $('#is_admin').click(function(){
+        if($(this).prop('checked')){
+            $(this).val("1");
+        }
+        else{
+            $(this).val("0");
+        }
+    });
+});

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title itemprop="name">{% block title %}{{ seotitle|raw }}{% endblock %}</title>
+        <meta name="description" content="{{ seodescription|raw }}"/>
+        <meta property="og:title" content="{{ seotitle|raw }}" />
+        {% if canonicallink !='' %}
+	    <meta property="og:url" content="{{ canonicallink|raw }}" />
+        {% endif %}
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="{{ fbdesc|raw }}"/>
+        <meta property="og:image" content="{{ fbimg|raw }}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="p:domain_verify" content="056eb74cdb3b22b0a5fac2556b434c47"/>
+
+        <link rel="shortcut icon" href="{{ generateMediaURL('/media/images/favicon.ico') }}" />
+        {% if canonicallink !='' %}
+            <link rel="canonical" href="{{canonicallink|raw}}" />
+        {% endif %}
+        {% if canonicalprevlink !='' %}
+            <link rel="prev" href="{{canonicalprevlink|raw}}" />
+        {% endif %}
+        {% if canonicalnextlink !='' %}
+            <link rel="next" href="{{canonicalnextlink|raw}}" />
+        {% endif %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="google-site-verification" content="UA-37276506-1" />        
+        {{ ur_arraydata|raw }}
+        {% stylesheets 'assets/vendor/bootstrap/css/bootstrap.css' 'assets/vendor/jquery/plugins/jquery-ui/css/jquery-ui-1.10.0.custom-new.css' 'assets/common/css/header-footerNew.css' 'assets/common/css/MainStyleNew.css' 'assets/common/css/base.New.css' 'assets/vendor/jquery/plugins/fancybox/css/jquery.fancybox-new.css' filter='uglifycss' output='generated/tt_test_all_base_main.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+        {% endstylesheets %}
+        {{ tmzone|raw }}
+</head>
+<body>
+{% block structureddatablock %}{% endblock %}
+<div id="popup_creatid" class="popup_creat bag_popup"></div>
+{% if popupOffers==1 %}
+    <a rel="nofollow" href="{{ generateLangRoute(LanguageGet,'_popup_offer') }}" title="{{'popup offers'|trans}}" class="popupOffers displaynone"></a>
+{% endif %}
+{% if webview !='webview' %}
+    <header>
+	<div class="top-header">
+	    <div class="container">
+		<div class="row top_links">
+		    <div class="col-lg-10 col-md-9 top_links_white">
+			<div class="logo col-lg-4 col-md-4 col-sm-4 logoheighttop">
+			    <a href="{{ generateLangRoute(LanguageGet,'_welcome') }}" title="tourist tube"><img src="{{ generateMediaURL('/media/images/Logo.png') }}" alt="tourist tube logo" class="logo_img" ></a>
+			</div>
+			{#<img src="{{ generateMediaURL('/media/images/banner/banner-top.gif') }}" alt="tourist tube logo" class="banner_top"/>#}
+			<div class="left col-lg-8 col-md-8 col-sm-8 col-xs-12 xsnopad langcontainerposition">
+			    <div class="div regiser_login_links" data-logged="{{isUserLoggedIn|raw}}">
+				<ul class="link">
+				    {% if isUserLoggedIn == 0 %}
+					<li><a href="{{ generateLangRoute(LanguageGet,'_register') }}" title="{{'Register'|trans}}">{{'Register'|trans}} </a></li>
+					<li><a href="{{ generateLangRoute(LanguageGet,'_log_in') }}" title="{{'Sign In'|trans}}" id="SignInBtn">{{'Sign In'|trans}}</a></li>
+					{% else %}
+					<li><a id="uploadLink" class="requestinvite" href="{{ upload_link|raw }}" title="{{'Upload'|trans}}">{{'Upload'|trans}}</a></li>
+					<li><a class="requestinvite" href="{{ generateLangRoute(LanguageGet,'_my_bookings') }}" title="{{'My Bookings'|trans}}">{{'My Bookings'|trans}}</a></li>
+					<li><a href="{{ userProfile|raw }}" class="bordernone paddingright3" title="{{ userNameWelcome|raw }}">{{ userNameWelcome|raw }}</a></li>
+					<li class="flech_out">
+					    <a rel="nofollow" class="opensubout" title="tourist tube"></a>
+					    <div id="TopProfileDiv">						
+						<ul>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/account/info') }}" title="{{'profile account info'|trans}}"><div class="TopProfileDivIcon TopProfileDivAccountIcon"></div><div class="TopProfileDivText">{{'Account Info'|trans}}</div></a></li>
+						
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/TTpage') }}" title="{{'profile TTpage'|trans}}"><div class="TopProfileDivIcon TopProfileDivTTpageIcon"></div><div class="TopProfileDivText">{{'Tourist tube page'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/network/friends') }}" title="{{'profile friends'|trans}}"><div class="TopProfileDivIcon TopProfileDivFriendsIcon"></div><div class="TopProfileDivText">{{'Friends'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/newsfeed') }}" title="{{'profile news feeds'|trans}}"><div class="TopProfileDivIcon TopProfileDivFeedIcon"></div><div class="TopProfileDivText">{{'News feed'|trans}}</div></a></li>								
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/photos') }}" title="{{'profile photos'|trans}}"><div class="TopProfileDivIcon TopProfileDivPhotosIcon"></div><div class="TopProfileDivText">{{'Photos'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/videos') }}" title="{{'profile videos'|trans}}"><div class="TopProfileDivIcon TopProfileDivVideosIcon"></div><div class="TopProfileDivText">{{'Videos'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/albums') }}" title="{{'profile albums'|trans}}"><div class="TopProfileDivIcon TopProfileDivAlbumsIcon"></div><div class="TopProfileDivText">{{'Albums'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/events') }}" title="{{'profile events'|trans}}"><div class="TopProfileDivIcon TopProfileDivEventIcon"></div><div class="TopProfileDivText">{{'Events'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/journal') }}" title="{{'profile journal'|trans}}"><div class="TopProfileDivIcon TopProfileDivJournalIcon"></div><div class="TopProfileDivText">{{'Journals'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/myprofile/echoes') }}" title="{{'profile echoes'|trans}}"><div class="TopProfileDivIcon TopProfileDivEchoesIcon"></div><div class="TopProfileDivText">{{'Echoes'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/favorites') }}" title="{{'favorites'|trans}}"><div class="TopProfileDivIcon TopProfileDivFavoritesIcon"></div><div class="TopProfileDivText">{{'Add to favorites'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/account/privacy') }}" title="{{'account privacy'|trans}}"><div class="TopProfileDivIcon TopProfileDivPrivacyIcon"></div><div class="TopProfileDivText">{{'My privacy'|trans}}</div></a></li>
+						    <li><a rel="nofollow" href="{{ generateLangURL(LanguageGet,'/logout') }}" title="{{'logout'|trans}}"><div class="TopProfileDivIcon"></div><div class="TopProfileDivText">{{'sign out'|trans}}</div></a></li>
+						</ul>
+					    </div>
+					</li>
+				    {% endif %}
+				</ul>
+			    </div>
+			    <div class="div language_switcher">
+				<select>{{lang_arraydata|raw}}</select>
+			    </div>
+			    {# LBP BUTTON:
+			    ===============#}
+			    {% if needpayment ==1 %}
+				<div id="currencyTab" class="fixposbout fixposboutNew">
+				    <div class="arrowbluediv">
+					<img class="imagarrowblue" src="{{ generateMediaURL('/media/images/whiteuparr.png') }}" alt="{{'white arrow'|trans}}" />
+				    </div>
+				    <div class="blacklbpbout">
+					<a href="javascript:" rel="nofollow" title="{{selected_currency|raw}}" class="menu1 menunew">{{selected_currency|raw}}</a>
+				    </div>
+				</div>
+			    {% endif %}
+			    {#=================#}
+			</div>
+		    </div>
+		    <div class="hidden-lg hidden-md">
+			<div class="phone_datasm"><span class="newmenue-icon phone-icon"></span><span class="texthfstylephone">+33 970 467 333</span></div>
+		    </div>
+		    <div class="right tt_bag_wrapper col-lg-2 col-md-3 col-sm-12 col-xs-12">
+			<div class="tt-bag">
+			    <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_bags') }}{% endif %}" class="{% if isUserLoggedIn==0 %}bagdisaable{% endif %}" title="{{'tour bag'|trans}}">
+				<div class="right_bag">
+				    <div class="right_bag_pic"></div>
+				    <span>{{'TOUR BAG'|trans}} <sup>&reg;</sup></span> <br>
+				    <span class="right_span_bag">
+					<span>&raquo;</span> {{'All your trip<br>in one place!'|trans|raw}}</span>
+				</div>
+			    </a>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<nav id="nav-wrap" class="nav-bar navbar-default nav-wrappadding">
+	    <div class="container smalpadingzero">
+		<div class="navbar-header">
+		    <button id="collapbout" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+		</div>
+
+		{% if needpayment ==1 %}
+		    <div class="navbar-header">
+			<div id="currencyTab2" class="hidden-lg hidden-md hidden-sm">
+			    <div class="arrowbluediv"><img class="imagarrowblue" src="{{ generateMediaURL('/media/images/whiteuparr.png') }}" alt="{{'white arrow'|trans}}" /></div>
+			    <div class="blacklbpbout2">
+				<a href="javascript:" rel="nofollow" title="{{selected_currency|raw}}" class="menu1 menunew">{{selected_currency|raw}}</a>
+			    </div>
+			</div>
+		    </div>
+		{% endif %}
+
+
+		<div class="collapse navbar-collapse small-menu" id="bs-example-navbar-collapse-1">
+		    <ul id="navtab" class="nav ">
+			<li><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span><div class="x_cross"></div></button></li>
+				{#{% if USERID==1012 or USERID==42 or USERID==43 %}#}
+				{#<li class="first"><a href="{{ generateLangRoute(LanguageGet,'_deals') }}" title="{{'Tourist Deals'|trans}}" class="menu newmenue">{{'Tourist Deals'|trans}}</a></li>
+				<li><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{'Things To Do'|trans}}" class="menu newmenue padleft30imp"><span class="things-to-do-icon"></span>{{'Things To Do'|trans}}</a></li>#}
+				{#{% else %}#}
+			<li class="first"><a href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}" title="{{'Book your hotel'|trans}}" class="menu newmenue padleft30imp"><span class="newmenue-icon book-hotel-icon hidden-xs"></span>{{'Book your hotel'|trans}}</a></li>
+			<li><a href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}" title="{{'Book your flight'|trans}}" class="menu newmenue padleft30imp"><span class="newmenue-icon book-flight-icon hidden-xs"></span>{{'Book your flight'|trans}}</a></li>
+			<li><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{'Things To Do'|trans}}" class="menu newmenue padleft30imp"><span class="newmenue-icon things-to-do-icon hidden-xs"></span>{{'Things To Do'|trans}}</a></li>
+				{# {% endif %}#}
+			<li><a href="{{ generateLangRoute(LanguageGet,'_discover') }}" title="{{'Discover'|trans}}" class="menu newmenue padleft30imp "><span class="newmenue-icon discover-icon hidden-xs"></span>{{'Discover'|trans}}</a></li>
+			<li><a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'Review & Rate'|trans}}" class="menu newmenue padleft30imp"><span class="newmenue-icon new_review-rate-icon hidden-xs"></span>{{'Review & Rate'|trans}}</a> </li>
+				{#<li><a href="{{ generateLangRoute(LanguageGet,'_channels') }}" title="{{'Tourist Channels'|trans}}" class="menu newmenue padleft30imp"><span class="newmenue-icon channels-icon hidden-xs"></span>{{'Channels'|trans}}</a></li>
+				<li><a href="http://blog.touristtube.com/" title="{{'traveler Blog'|trans}}" class="menu newmenue padleft30imp"><span class="newmenue-icon blog-icon hidden-xs"></span>{{'traveler Blog'|trans}}</a></li>#}
+			<li class="phone_index col-lg-2 col-md-3 hidden-sm hidden-xs"><div class="phone_data"><span class="newmenue-icon phone-icon"></span><span class="texthfstylephone">+33 970 467 333</span></div></li>
+			<li>
+			    <ul class="display">
+				<li><a title="{{'Photo Video Sharing'|trans}}" href="{{ generateLangRoute(LanguageGet,'_photo_video_sharing_media') }}" class="menu1">{{'media'|trans}}</a></li>
+				<li><a title="{{'where is'|trans}}" href="{{ generateLangRoute(LanguageGet,'_where_is_general') }}" class="menu1">{{'where is'|trans}}</a></li>
+				<li><a title="{{'nearby'|trans}}" href="{{ generateLangRoute(LanguageGet,'_nearby_general') }}" class="menu1">{{'nearby'|trans}}</a></li>
+				<li><a title="{{'traveler blog'|trans}}" href="http://blog.touristtube.com/" class="menu1" target="_blank">{{'traveler blog'|trans}}</a></li>
+				<li><a title="{{'about us'|trans}}" href="{{ generateLangRoute(LanguageGet,'_about-us') }}" class="menu1">{{'about us'|trans}}</a></li>
+				<li><a title="{{ 'contact us'|trans }}" href="{{ generateLangRoute(LanguageGet,'_contact') }}" class="menu1">{{ 'contact us'|trans }}</a></li>
+				<li><div class="menu1 follow_us_on">{{'follow us on'|trans}}</div></li>
+				<li>
+				    <span>
+					<a href="https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts" rel="nofollow" target="_blank" class="ftr_social fb_icon" title="facebook">facebook</a>
+					<a href="https://twitter.com/TouristTube" rel="nofollow" target="_blank" title="twitter" class="ftr_social tw_icon">twitter</a>
+					<a  href="https://plus.google.com/u/0/+touristtubepage/posts" rel="nofollow" target="_blank"  class="ftr_social gp_icon" title="google+">google+</a>
+					<a href="https://www.pinterest.com/touristtube/" rel="nofollow" target="_blank" class="ftr_social pt_icon" title="pinterest">pinterest</a>
+				    </span>
+				</li>
+				<li class="display support_border_top"><a title="{{'support'|trans}}" href="{{ generateLangRoute(LanguageGet,'_support') }}" class="menu1">{{'support'|trans}}</a></li>
+				<li><a title="{{'help'|trans}}" href="{{ generateLangRoute(LanguageGet,'_help') }}" class="menu1">{{'help'|trans}}</a></li>
+				<li class="no_bb"><a title="{{'faq'|trans}}" href="{{ generateLangRoute(LanguageGet,'_faq') }}" class="menu1">{{'faq'|trans}}</a></li>
+			    </ul>
+			</li>
+		    </ul>
+
+		</div>
+	    </div>
+	    {% if needpayment ==1 %}
+		<div class="container currencyUpperContainer">
+		    <section id="currencyContainer">
+			<div class="blueairptab mCustomScrollbar " data-mcs-theme="3d">
+			    <div id="smallsizescroll" class=" col-xs-12">
+				<div class="perclbp">
+				    <h1 class="bluedivtablbp">top currencies</h1>
+				</div>
+				<div class="col-xs-12 borderbutclass">
+				    {% for currency in currencies %}
+					{% if currency.top_currency %}
+					    <div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.symbol | raw}}" currency-rate-data="{{currency.rate | raw}}">
+						<p class="nodecstyle"><i>{{currency.symbol | raw}}</i><span>{{currency.name | raw}}</span></p>
+					    </div>
+					{%endif%}
+				    {% endfor %}
+				</div>
+				<div class="perclbp">
+				    <h1 class="bluedivtablbp">all currencies</h1>
+				</div>
+				<div class="col-xs-12">
+				    {% for currency in currencies|sort %}
+					<div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.symbol | raw}}" currency-rate-data="{{currency.rate | raw}}">
+					    <p class="nodecstyle"><i>{{currency.symbol | raw}}</i><span>{{currency.name | raw}}</span></p>
+					</div>
+				    {% endfor %}
+				</div>
+			    </div>
+			</div>
+		    </section>
+		</div>
+	    {% endif %}
+	</nav>
+    </header>
+{% endif %}
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<section>
+    <div class="container">
+	<div id="TTAlertContainer">
+	    <div id="TTAlertContainerInside" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div id="TTAlertContainerInside_data">
+		    <div id="TTAlert_content">
+			<div class="TTAlert_text col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+		    </div>
+		    <div id="TTAlert_shadow"></div>
+		    <div id="TTAlert_button_container">
+			<div class="TTAlert_buts1 TTAlert_buts">{{'cancel'|trans}}</div>
+			<div class="TTAlert_seperator"></div>
+			<div class="TTAlert_buts2 TTAlert_buts">{{'register'|trans}}</div>
+		    </div>
+		    <div id="TTAlert_close"></div>
+		</div>
+	    </div>
+	    <div class="TTAlert_back_fix"></div>
+	</div>
+    </div>
+</section>
+{% if use_cookie == 0 %}
+    <section>
+	<div id="TTCookieContainer">
+	    <div class="TTCookie_text">{{'We use cookies to help us deliver our online services. By using our website or by closing this message box, you agree to our use of cookies as described in our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie Policy'|trans}}"><u>{{'Cookie Policy'|trans}}</u></a>.</div>
+	    <div class="TTCookie_buts">{{'use'|trans}}</div>	
+	    <div class="TTCookie_close"></div>
+	</div>
+    </section>
+{% endif %}
+
+{% if webview !='webview' %}
+    {% if showHeaderSearch==1 %}
+	{% if isindexpage==1 or hotelblocksearchIndex==1 or flightblocksearchIndex==1 or dealblocksearchIndex==1 %}
+	    <div class="container header-img">
+		<div class="trip_search" {% if pageBannerImage!='' %}style="background-image: url('{{ pageBannerImage|raw }}');"{% endif %}>
+		    {% if hidefirstsearch ==0 %}
+			{% if (hotelblocksearchIndex !=1 and flightblocksearchIndex!=1 and dealblocksearchIndex!=1) or isindexpage ==1 %}
+			    <div class="container containerBody xsmalnopad newxsmartopvs">
+				<div class="trip_search_box">
+				    <div class="seacr_pannel">
+					<div class="search-bar" id="searchcontid">
+					    {% include "default/searchinput-New.twig" %}
+					</div>
+				    </div>
+				</div>
+			    </div>
+			{% endif %}
+		    {% endif %}
+		    <div class="col-xs-12 nopad marginbutdiv zindexh">
+			<div class="container containerBody xsmalnopad margin-top-hotelflight-search">
+			    {% include "default/searchinput2.twig" %}
+			</div>
+		    </div>
+		    {#{% if (hotelblocksearchIndex !=1 and flightblocksearchIndex!=1 and dealblocksearchIndex!=1) or isindexpage ==1 %}
+			<div class="trendsBar hidden-xs">
+			    <div class="container padleftsm0">
+				<div class="trendContainer">
+				    <a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{'Things To Do'|trans}}" class="col-sm-3 col-md-3 col-lg-3 nopad greybackcolor"><span class="yellowpart"> >> </span><h1 class="greypart">{{'Things to do'|trans}}</h1></a>
+				    <div id="TrendsDesc" class="trendsDesc mscroller_horz col-sm-9 col-md-9 col-lg-9">
+					<ul class="scroller" style="left: -455px;">
+					    {% for trend in trendsAll %}
+						{{ trend|raw }}
+					    {% endfor %}
+					</ul>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    {% endif %}#}
+		</div>
+	    </div>
+	{% else %}
+	    <section class="grey-back">
+		<div class="container containernewpad">
+		    <div class="other_greyback">
+			<div class="trip_search trip_searchOtherPages">
+			    {% if hotelblocksearchIndex !=1 and flightblocksearchIndex!=1 and dealblocksearchIndex!=1 %}
+				<div class="container xsmalnopad newxsmartopvs">
+				    <div class="trip_search_box">
+					<div class="seacr_pannel">
+					    <div class="search-bar" id="searchcontid">
+						{% include "default/searchinput-New.twig" %}
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    {% endif %}
+			    {#<div class="bag_search_bar">
+				<div class="container" id="searchcontid">
+				    {% include "default/searchinput-New.twig" %}
+				</div>
+			    </div>#}
+			</div>
+		    </div>
+		</div>
+	    </section>
+	{% endif %}
+    {% endif %}
+    <div>
+    {% block mediaswiper %}{% endblock %}
+</div>
+{% endif %}
+<div class="bodyblocks">
+    <div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+	   <span class="close">&times;</span>
+	  <h2>{% block notificationModalHeader %}{% endblock %}</h2><br/>
+	  <p>{%block notificationModelContent %}{% endblock %}</p>
+	  <br/> <p><b>Thank you </b></p>
+	</div>
+    </div>
+    {% block body %}{% endblock %}
+</div>
+<footer class="footer-responsive hidden-xs">
+    {% if showfooter==1 %}
+        <div class="container">
+            <div class="footer_row">
+                <div class="footer_logo"><a href="{{ generateLangRoute(LanguageGet,'_welcome') }}" title="tourist tube"> <img src="{{ generateMediaURL('/media/images/Logo.png') }}" alt="touristtube logo"></a></div>
+                <ul>
+		    <li><a href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}" title="{{'Book your hotel'|trans}}">{{'Book your hotel'|trans}}</a></li>
+		    <li><a href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}" title="{{'Book your flight'|trans}}">{{'Book your flight'|trans}}</a></li>
+			{% if USERID==1012 or USERID==42 or USERID==43 %}
+                        <li><a href="{{ generateLangRoute(LanguageGet,'_deals') }}" title="{{'Tourist Deals'|trans}}">{{'Tourist Deals'|trans}} </a></li>
+                        {% endif %}
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{'Things to do'|trans}}">{{'Things to do'|trans}} </a></li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_discover') }}" title="{{'Discover'|trans}}">{{'Discover'|trans}}</a></li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_best_restaurants_restaurants') }}" title="{{'restaurants'|trans}}">{{'tourist restaurants'|trans}} </a></li>
+                </ul>
+                <ul>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_channels') }}" title="{{'tourist channels'|trans}}">{{'tourist channels'|trans}}</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'review & rate'|trans}}">{{'review & rate'|trans}} </a></li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_photo_video_sharing_media') }}" title="{{'Photo Video Sharing'|trans}}">{{'media'|trans}} </a></li>
+                    <li><a title="{{'where is'|trans}}" href="{{ generateLangRoute(LanguageGet,'_where_is_general') }}" class="menu1">{{'where is'|trans}}</a></li>
+                    <li><a title="{{'nearby'|trans}}" href="{{ generateLangRoute(LanguageGet,'_nearby_general') }}" class="menu1">{{'nearby'|trans}}</a></li>
+                    <li><a href="http://blog.touristtube.com/" title="{{'traveler blog'|trans}}"> {{'traveler blog'|trans}}</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_about-us') }}" title="{{'about us'|trans}}">{{'about us'|trans}} </a></li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_contact') }}" title="{{'contact us'|trans}}"> {{'contact us'|trans}} </a></li>
+                    <li><div class="fl a">{{'follow us on'|trans}}</div>
+                        <ul class="social_footer fl">
+                            <li class="fb first"><a href="https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts" rel="nofollow" target="_blank" class="ftr_social fb_icon" title="facebook">facebook</a></li>
+                            <li class="tw"><a href="https://twitter.com/TouristTube" rel="nofollow" target="_blank" title="twitter"  class="ftr_social tw_icon">twitter</a></li>
+                            <li class="gp"><a  href="https://plus.google.com/u/0/+touristtubepage/posts" rel="nofollow" target="_blank"  class="ftr_social gp_icon" title="google+">google+</a></li>
+                            <li class="pi"><a href="https://www.pinterest.com/touristtube/" rel="nofollow" target="_blank" class="ftr_social pt_icon" title="pinterest">pinterest</a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <ul>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_support') }}" title="{{'support'|trans}}">{{'support'|trans}} </a></li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_help') }}" title="{{'help'|trans}}">{{'help'|trans}}</a></li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_faq') }}" title="{{'faq'|trans}}">{{'faq'|trans}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <div class="container">
+                <div class="footer_row">
+                    <p class="copyright">{{'now'|date('Y')}} &copy; {{'Copyright Tourist Tube all rights reserved.'|trans}}</p>
+                    <div class="terms_box">
+                        <ul>
+                            <li><a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'privacy policy'|trans}}">{{'privacy policy'|trans}} </a></li>
+                            <li><a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie Policy'|trans}}">{{'Cookie Policy'|trans}} </a></li>
+                            <li><a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'terms & conditions'|trans}}"> {{'terms & conditions'|trans}} </a></li>
+                            <li><a href="{{ generateLangRoute(LanguageGet,'_disclaimer') }}" title="{{'disclaimer'|trans}}"> {{'disclaimer'|trans}} </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+{% if datapagename=='index' %}
+    {% stylesheets 'assets/common/css/daterangepicker.min.css' 'assets/common/css/indexNew.css' filter='uglifycss' output='generated/tt_test_indexNew_main.css' %}
+	<link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+    {% endstylesheets %}
+{% elseif datapagename=='rate_review' %}
+    {% stylesheets 'assets/vendor/jquery/plugins/slick/css/slick.css' 'assets/vendor/jquery/plugins/slick/css/slick-theme.css' 'assets/common/css/ratereview.css' filter='uglifycss' output='generated/tt_test_ratereview_main.css' %}
+	<link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+    {% endstylesheets %}
+{% elseif datapagename=='things_to_do' %}
+    {% stylesheets 'assets/common/css/things_to_do.css' filter='uglifycss' output='generated/tt_test_things_to_do_new_main.css' %}
+	<link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+    {% endstylesheets %}
+{% endif %}
+{% block pagenewcss %}{% endblock %}
+<script type="text/javascript" src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+<script type="text/javascript" src="{{ path('bazinga_jstranslation_js', { 'domain': 'client' }) }}?locales={{ app.request.locale|split('_')[0] }}"></script>
+
+{% javascripts 'assets/vendor/jquery/dist/jquery-1.9.1.min.js' 'assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js' 'assets/vendor/bootstrap/plugins/notify/bootstrap-notify.min.js' 'assets/common/tt/js/utils/TTUtils.js' 'assets/common/tt/js/notify/TTNotify.js' 'assets/vendor/bootstrap/js/bootstrap.js' 'assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js' 'assets/vendor/jquery/plugins/number/js/jquery.number.min.js' 'assets/vendor/jquery/plugins/mscroll/js/jquery.mscroll.min.js' 'assets/vendor/jquery/plugins/migrate/js/jquery-migrate-1.1.1.js' 'assets/common/js/utils.js' 'assets/common/js/topHeader.js' 'assets/vendor/jquery/plugins/fancybox/js/jquery.fancybox.js' 'assets/vendor/jquery/plugins/jcarousellite/js/jcarousellite_1.0.1c5.js' filter='uglifyjs2' output='generated/tt_test_base70_min.js' %}
+
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% if datapagename=='index' %}
+	{% javascripts 'assets/photos_videos/jwplayer/jwplayer.js' 'assets/photos_videos/js/video-page-behavior.js' 'assets/vendor/jquery/plugins/dateRangePicker/js/moment.min.js' 'assets/vendor/jquery/plugins/dateRangePicker/js/jquery.daterangepicker.js' 'assets/flights/js/flight-booking.js' 'assets/deals/js/deals1.js' 'assets/common/js/indexNew.js' filter='uglifyjs2' output='generated/tt_test_index_min.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">jwplayer.key ="5BF7jaLushMRXxwL4oDpC1ldCscI8upqkfv5Uu68J44=";</script>
+{% endif %}
+
+{% block pagenewjs %}{% endblock %}
+{% block googlemaps %}{% endblock %}
+<script>if (navigator.userAgent.match(
+	    /IEMobile\/10\.0/)) {
+	var msViewportStyle = document.createElement("style");
+	msViewportStyle.appendChild(
+		document.createTextNode(
+			"@-ms-viewport{width:auto!important}"));
+	document.getElementsByTagName(
+		"head")[0].appendChild(
+		msViewportStyle)
+    }</script>
+<script type="text/javascript">
+    $(
+	    document).
+	    ready(
+		    function () {
+			var opt =
+				{
+				    behavior: 'circle',
+				    mouseover: function (o) {
+					o.stop();
+					o.css(
+						{
+						    cursor: 'pointer'
+						});
+				    },
+				    mouseout: function (o) {
+					o.start();
+				    }
+				}
+			$(document).
+				on(
+					'change',
+					'.language_switcher select',
+					function () {
+					    var optionvalue = $(this).val();
+					    window.location = optionvalue;
+					});
+			$('.menu-toggle').
+				click(
+					function () {
+					    $("#mobile_tabsmain").slideToggle(500);
+					});
+		    });
+</script>
+{#{% if needpayment == 1 %}#}
+<script type="text/javascript" src="/assets/vendor/jquery/plugins/cookie/js/jquery.cookie.min.js"></script>
+{#{% endif %}#}
+</footer>
+{% block googleConversion %}{% endblock %}
+</body>
+</html>

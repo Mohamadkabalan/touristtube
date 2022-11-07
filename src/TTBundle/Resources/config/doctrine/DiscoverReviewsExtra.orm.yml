@@ -1,0 +1,54 @@
+TTBundle\Entity\DiscoverReviewsExtra:
+    type: entity
+    table: discover_reviews_extra
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        date:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        near:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        theme:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+    lifecycleCallbacks: {  }

@@ -1,0 +1,53 @@
+{% extends 'basecorporate.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-employeeList.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Employee List'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Employee Lis'|trans}}t</h1>
+	    </div></br>
+	    <div class="AddAdmin tt_buttons_bar_add">
+		<button data-role="button" data-type="add" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_employee_add') }}')">{{'Add'|trans}}</button>
+	    </div>
+	    <table class="accountTable">
+		<tr class="TopBar">
+		    <td class="topBarlist">{{'Id'|trans }}</td>
+		    <td class="topBarlist">{{'Name'|trans }}</td>
+		    <td class="topBarlist">{{'Acount'|trans }}</td>
+		    <td class="topBarlist">{{'City'|trans }}</td>
+		    <td class="topBarlist">{{'Country'|trans }}</td>
+		    <td class="topBarlist">{{'Mobile'|trans }}</td>
+		    <td class="topBarlist">{{'Passport #'|trans }}</td>
+		    <td class="topBarlist">{{'Department'|trans }}</td>
+		    <td class="topBarlist">{{'User'|trans }}</td>
+		    <td class="topBarlist">{{'actions'|trans }}</td>
+		</tr>
+		{% for employee in employeeList %}
+		    <tr>
+			<td class="topBarlist alignLeft">{{employee.ap_id|raw}}</td>
+			<td class="topBarlist alignLeft">{{employee.ap_fname|raw}} {{employee.ap_mname|raw}} {{employee.ap_lname|raw}}</td>
+			<td class="topBarlist alignLeft">{{employee.accountName|raw}}</td>
+			<td class="topBarlist alignLeft">{{employee.cityName|raw}}</td>
+			<td class="topBarlist alignLeft">{{employee.countryName|raw}}</td>
+			<td class="topBarlist">{{employee.ap_mobile|raw}}</td>
+			<td class="topBarlist">{{employee.ap_passportNumber|raw}}</td>
+			<td class="topBarlist alignLeft">{{employee.departmentName|raw}}</td>
+			<td class="topBarlist alignLeft">{{employee.userName|raw}}</td>
+			<td class="topBarlist actions">
+			    <div class="tt_buttons_bar">
+				<button data-role="button" data-type="modify" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_employee_edit', {'id':employee.ap_idd})}}')">{{'Edit'|trans}}</button>
+				<button data-role="button" data-type="delete" onclick="deleteEmployee({{employee.ap_id|raw}})">{{'Delete'|trans}}</button>
+			    </div>
+			</td>
+		    </tr>
+		{% endfor %}
+	    </table>
+	</div>
+    </section>
+{% endblock %}

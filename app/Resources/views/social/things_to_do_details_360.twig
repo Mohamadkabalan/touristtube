@@ -1,0 +1,232 @@
+{% extends 'baseFinal.html.twig' %}
+{% block googlemaps %}
+    <script async src="https://maps.googleapis.com/maps/api/js?v=3.exp{{MAP_KEY|raw}}&libraries=places&language={{languageISO2Code|raw}}"></script>
+{% endblock %}
+{% block pagenewjs %}
+    <script>
+        var map;
+	var zoomvalue=8;
+	$(document).ready(function () {  
+            window.addEventListener('load', initializeMap);              
+	    $(document).on('click', ".thumb_360", function(){
+		var $this = $(this);
+		if( $this.hasClass('active') ) return;
+		$('.thumb_360').removeClass('active');
+		$this.addClass('active');
+		var $parent = $('.imgpano_container .imgpano');
+		$parent.height('100%');
+		renderTourEngine( $this, $parent );		    
+	    });
+	    $(".thumb_360").first().click();
+	});
+
+	function renderTourEngine( imgDom, panoObj ) {
+	    var obj_id = $(panoObj).attr('id');
+	    var ttdid = $(imgDom).data("ttdid");
+	    var name = ""+$(imgDom).data("name");
+	    var divName = ""+$(imgDom).data("name");
+	    var country = $(imgDom).data("country").toLowerCase();
+	    var divId = $(imgDom).data("divisionid");
+	    var catgId = $(imgDom).data("categoryid");
+	    var subDivId = null;
+	    var parentdivid = $(imgDom).data("parentdivid");
+	    if (parentdivid && parentdivid != "") {
+		subDivId = divId;
+		divId = parentdivid;
+	    }
+	    {#var catgName = $(imgDom).data("catgname");#}
+	    //
+	    new TTTour(obj_id, {
+		loadPopupLibrary: false,
+		usePositionAbsolute: false,
+		showThumbnail: false,
+		autoload: true,
+		fullTour: {
+		    active: true,
+		    linkOrigin: ".view-full-tour-link",
+		    url: "{{ fullTourURL|raw }}",
+		    openTarget: "popup",
+		},
+		params: {
+		    id: ttdid,
+		    type: "thingstodo",
+		    name: name,
+		    countrycode: country,
+		    division: divId,
+		    divisionName: divName,
+		    group: catgId,
+		    subdivision: subDivId
+		    {#groupName: catgName#}
+		}
+	    });
+	}
+        function initializeMap() {            
+            setTimeout(function() {
+                var mapOptions = {
+                    center: new google.maps.LatLng( {{latitude|raw}} , {{longitude|raw}} ),
+                    zoom:zoomvalue,
+                    disableDefaultUI: true,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("googlemap_places"),mapOptions);
+		new google.maps.Marker({
+		    position: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+		    map: map,                
+		    title: '{{titlealt|raw}}',
+		    icon: new google.maps.MarkerImage("{{ generateMediaURL('/media/images/pin_empty.png') }}")
+		});
+            }, 5000);
+        }
+    </script>
+{% endblock %}
+{% block structureddatablock %}
+    {#<script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+                 "item": {
+                   "@id": "{{subdomain_link|raw}}/things-to-do",
+                   "name": "{{ 'Things to do'|trans }}"
+                }
+              }, 
+            {% set BreadcrumbListNumber = '2' %}
+             {% if thirdbreadlink!='' %}
+                 {% set BreadcrumbListNumber = '3' %}
+                     {
+              "@type": "ListItem",
+              "position": 2,
+                "item": {
+                  "@id": "{{thirdbreadlink|raw}}",
+                  "name": "{{(thirdbreadtitle|replace({ ('-'): ' '}))|raw }}"
+
+                  }
+           }, 
+
+            {% endif %}
+            {
+              "@type": "ListItem",
+              "position": {{ BreadcrumbListNumber }},
+                "item": {
+                  "@id": "{{secondbreadlink|raw}}",
+                  "name": "{{(secondbreadtitle|replace({ ('-'): ' '}))|raw }}"
+
+                  }
+           }, 
+           
+         {% set BreadcrumbListNumber = BreadcrumbListNumber+1 %}
+            {
+              "@type": "ListItem",
+              "position": {{ BreadcrumbListNumber }},
+                "item": {
+                  "@id": "{{firstbreadlink|raw}}",
+                  "name": "{{(firstbreadtitle|replace({ ('-'): ' '}))|raw }}"
+
+                  }
+                  }
+                ]
+          }
+    </script>#}
+{% endblock %}
+{% block body %}
+    <section class="container city_activites_container">
+	{% if firstbreadtitle !='' %}
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <ul class="ttd_breadcrumb">
+			<li class="fl first"><a href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{ 'things to do'|trans }}">{{ 'Things to do'|trans }}</a></li>
+			{% if thirdbreadtitle!='' %}
+			    <li class="fl"> > </li>
+                            <li class="fl ico second"><a href="{{thirdbreadlink|raw}}" title="{{ thirdbreadtitlealt|raw }}">{{ thirdbreadtitle|raw }}</a></li>
+			{% endif %}
+			{% if secondbreadtitle!='' %}
+			    <li class="fl"> > </li>
+			    <li class="fl ico second"><a href="{{secondbreadlink|raw}}" title="{{ secondbreadtitlealt|raw }}">{{ secondbreadtitle|raw }}</a></li>
+			{% endif %}
+			{% if firstbreadtitle!='' %}
+			    <li class="fl"> > </li>
+			    <li class="fl ico second"><a href="{{firstbreadlink|raw}}" title="{{ firstbreadtitlealt|raw }}">{{ firstbreadtitle|raw }}</a></li>
+			{% endif %}
+			<li class="fl"> > </li>
+			<li class="ico"><a class="active" href="{{pagelink|raw}}" title="{{ titlealt|raw }}">{{ title|raw }}</a></li>
+		    </ul>
+		</div>
+	    </div>
+	{% endif %}
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{title|raw}}</h1>
+		<div class="search_titleH3">
+		    <div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			    <div class="col-xs-12 new_padding things_to_do_form">
+				<input type="text" placeholder="{{'Search for your destination'|trans|raw }}" id="things_to_to_search" name="things_to_to_search" class="things_to_do_input">
+				<div class="things_to_do_btn"><i class="fa fa-search"></i></div>
+			    </div>
+			</div>
+		    </div>		    
+		</div>
+	    </div>
+	</div>
+	<div class="row border_top_but_row"></div>
+	{#<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h2 class="search_title refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Best attractions to visit in'|trans}} {{cityname|raw}}</h2>
+	    </div>
+	</div>#}
+	
+	<div class="row new_margin">	    
+	    <div class="col-xs-12 new_padding">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad sort_by_tabs">
+			<div class="filters-group">
+			    <div class="col-xs-12 nopad btn-group sort-options">
+				<a class="view-full-tour-link" rel="nofollow" title="{{ 'View Full Virtual Tour'|trans }}" href="{{ fullTourURL|raw }}" target="_blank">
+				    <label class="sort_item border-left">{{ 'View Full Virtual Tour'|trans }}</label>
+				</a>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row new_margin">	    
+	    <div class="col-xs-12 new_padding">
+		<div class="col-xs-12 nopad blackBg">
+		    <div class="media_holder">
+			<div class="table-wrapper imgpano_container">
+			    <div id="pano" class="imgpano">
+				<noscript><table class="panotablestyle"><tr class="panotabletrstyle"><td><div class="panotabletrtdstyle">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+			    </div>
+			    {% if img!='' %}
+				<div class="table-cell">
+				    <span class="section_googlemap_loading"></span>
+				</div>
+			    {% endif %}
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>	
+	<div class="row new_margin{% if divisions_list|length<=1 %} hidden{% endif %}">
+	    {% for itemMain in divisions_list %}
+		<div class="col-sm-2 col-xs-4 new_padding thumb_360" data-ttdid="{{itemMain.id|raw}}" data-divisionid="{{itemMain.division_id|raw}}" data-parentdivid="{{itemMain.parentdiv_id|raw}}" data-categoryid="{{itemMain.category_id|raw}}" data-name="{{ itemMain.namealt|raw }}" data-country="{{ itemMain.country|raw }}">
+		    <img class="width-100" alt="{{ itemMain.namealt|raw }}" src="{{ itemMain.img|raw }}">
+		    <span>{{ itemMain.name|raw }}</span>
+		</div>
+	    {% endfor %}
+	</div>	
+	<div class="row new_margin">   
+	    <div class="col-xs-12 new_padding">
+		<p class="details_new_description details_new_description_margin">{{ desc|raw }}</p>	    
+	    </div>
+	</div>
+	<div class="row new_margin">
+	    <div class="col-xs-12 new_padding"> 
+		<div id="googlemap_places" class="section_googlemap"><span class="section_googlemap_loading"></span></div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,52 @@
+_reports_payments_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/reports/payments"
+    defaults: { _controller: CorporateBundle:ReportsCorpo:reportsPayments, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_reports_sales_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/reports/sales"
+    defaults: { _controller: CorporateBundle:ReportsCorpo:ReportsSales, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_reports_customers_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/reports/customers"
+    defaults: { _controller: CorporateBundle:ReportsCorpo:ReportsCustomers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_reports_allbookings_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/reports/allbooking"
+    defaults: { _controller: CorporateBundle:ReportsCorpo:reportsAllBookings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corpo_filter_my_bookings_lang:
+    path:      "/{_locale}/corporate/admin/filterMyBookings"
+    defaults: { _controller: CorporateBundle:ReportsCorpo:filterMyBookings, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corpo_account_customers_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/customers/datatable"
+    defaults: { _controller: CorporateBundle:ReportsCorpo:getCustomerDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

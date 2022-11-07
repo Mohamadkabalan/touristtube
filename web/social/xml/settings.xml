@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+	<size width="690" height="388"/>
+	<background alpha="0" color="0x000000"/>
+	<tooltip>
+		<background alpha="100" color="0x000000" cornerRadius="3" width="-1" />
+		<border size="1" alpha="100" color="0x444444" rounded="1" />
+		<position default="tr" forced="0" mouseHorizontalDistance="5" mouseVerticalDistance="5" />
+		<!-- the default position of the tooltip in relation to the mouse pointer.
+			values are: "tl", "tc", "tr", "cl", "cc", "cr", "bl", "bc", "br" or "topleft", "topcenter", "topright", "centerleft", "centercenter", "centerright", "bottomleft", "bottomcenter", "bottomright".
+			the tooltip will try to remain within the dockmenu [trying to change its default position - if no position is completely within the menu, it will default to the closest one]
+		-->
+		<text leftPadding="0" topPadding="0" font="font_Default" />
+		<effect type="cubic" method="easeOut" duration="0.5" delay="0" animation="zbc" />
+		<!-- the position and type of fade in animation the tooltip will use for fading in.
+			values are: "moveTop", "moveBottom", "moveLeft", "moveRight", "moveAlpha", "zoomTopLeft", "zoomTopCenter", "zoomTopRight", "zoomCenterLeft", "zoomCenterCenter", "zoomCenterRight", "zoomBottomLeft", "zoomBottomCenter", "zoomBottomRight" 
+			or the abreviations (for example "zoomTopLeft" = "ztl")
+		-->
+	</tooltip>
+	<videoBox>
+		<size width="690" height="388"/>
+		<background alpha="100" color="0x000000"/>
+	</videoBox>
+	<imageBox visible="1">
+		<background alpha="100" color="0xffffff"/>
+	</imageBox>
+	<controlsBox below="0" autohideTime="-1"> <!-- autohide -1 for disabled  or Number of secconds EX: 4, if below = 1 controls do not hide -->
+		<size height="34"/>
+		<background alpha="100" color1="0x000000" color2="0x000000"/>
+		<buttons space="1">
+			<play order="1" visible="1">
+				<size width="30" height="30"/>
+				<symbol>
+					<!-- symbol -->
+					<idle color="0xffffff" alpha="100" />
+					<hover color="0x0ebeea" alpha="100" />
+				</symbol>
+				<backGround>
+					<!-- background -->
+					<idle color1="0x151515" color2="0x252525" alpha="100" />
+					<hover color1="0x252525" color2="0x151515" alpha="100" />
+				</backGround>
+				<tooltip visible="true">
+					<![CDATA[<font  color="#e5e5e5" size="10"  face="Arial">Play / Pause<\font>]]>
+				</tooltip>
+			</play>
+			<seek order="2" visible="1">
+				<size height="30"/>
+				<background alpha="100" color1="0x151515" color2="0x252525"/>
+				<bar order="5" visible="1">
+					<padding size="6"/>
+					<size height="6"/>
+					<backGround>
+						<!-- background -->
+						<idle color="0x474747"  alpha="100" />
+						<hover color="0x474747"  alpha="100" />
+					</backGround>
+					<loader>
+						<!-- buffer line -->
+						<idle color="0x696969" alpha="100" />
+						<hover color="0x696969" alpha="100" />
+					</loader>
+					<scrub>
+						<!-- time line -->
+						<idle color="0xe6b81e" alpha="100" />
+						<hover color="0xe6b81e" alpha="100" />
+					</scrub>
+				</bar>
+				<repeat order="2" visible="1">
+					<size width="30" height="30"/>
+					<symbol>
+						<!-- symbol -->
+						<idle color="0xffffff" alpha="100" />
+						<hover color="0x0ebeea" alpha="100" />
+					</symbol>
+					<backGround>
+						<!-- background -->
+						<idle color1="0x151515" color2="0x252525" alpha="100" />
+						<hover color1="0x151515" color2="0x252525" alpha="100" />
+					</backGround>
+					<tooltip visible="true">
+					<![CDATA[<font  color="#e5e5e5" size="10"  face="Arial">Repeat<\font>]]>
+				</tooltip>
+				</repeat>
+				
+				<time order="3" visible="1">
+					<text font="font_Default" >
+						<![CDATA[{current} / {total}]]>
+					</text>
+				</time>
+			</seek>
+			<volume order="1" visible="1">
+				<size width="30" height="30"/>
+				<symbol>
+						<!-- symbol -->
+						<idle color="0xe7ba20" alpha="100" />
+						<hover color="0xcccccc" alpha="100" />
+					</symbol>
+					<backGround>
+						<!-- background -->
+						<idle color1="0x151515" color2="0x252525" alpha="100" />
+						<hover color1="0x252525" color2="0x151515" alpha="100" />
+					</backGround>
+				<bar>				
+					<backGround>
+						<!-- background -->
+						<idle color="0x4a4a4a" alpha="100" />
+						<hover color="0x737373" alpha="100" />
+					</backGround>
+					<scrub>
+						<!-- time line -->
+						<idle color="0x0ebeea" alpha="100" />
+						<hover color="0xffffff" alpha="100" />
+					</scrub>
+				</bar>
+			</volume>
+			<resolution order="4" visible="1">
+				<size width="30" height="30"/>
+				<symbol>
+						<!-- symbol -->
+						<idle color="0xffffff" alpha="100" />
+						<hover color="0x0ebeea" alpha="100" />
+					</symbol>
+					<backGround>
+						<!-- background -->
+						<idle color1="0x151515" color2="0x252525" alpha="100" />
+						<hover color1="0x252525" color2="0x151515" alpha="100" />
+					</backGround>
+				<tooltip visible="true">
+					<![CDATA[<font  color="#e5e5e5" size="10"  face="Arial">Change Video Quality<\font>]]>
+				</tooltip>
+			</resolution>
+			<info order="1" visible="1">
+				<size width="30" height="30"/>
+				<symbol>
+						<!-- symbol -->
+						<idle color="0xffffff" alpha="100" />
+						<hover color="0x0ebeea" alpha="100" />
+					</symbol>
+					<backGround>
+						<!-- background -->
+						<idle color1="0x151515" color2="0x252525" alpha="100" />
+						<hover color1="0x252525" color2="0x151515" alpha="100" />
+					</backGround>
+				<tooltip visible="false">
+					<![CDATA[<font  color="#e5e5e5" size="10"  face="Arial">Show Info<\font>]]>
+				</tooltip>
+			</info>
+			<fullscreen order="6" visible="1">
+				<size width="30" height="30"/>
+				<symbol>
+						<!-- symbol -->
+						<idle color="0xffffff" alpha="100" />
+						<hover color="0xe7ba20" alpha="100" />
+					</symbol>
+					<backGround>
+						<!-- background -->
+						<idle color1="0x151515" color2="0x252525" alpha="100" />
+						<hover color1="0x252525" color2="0x151515" alpha="100" />
+					</backGround>
+				<tooltip visible="true">
+					<![CDATA[<font  color="#e5e5e5" size="10"  face="Arial">Full screen<\font>]]>
+				</tooltip>
+			</fullscreen>
+		</buttons>
+	</controlsBox>
+	<infoBox>
+		<size height="70"/>
+		<background alpha="100" color="0x000000"/>
+		<text font="font_Default" leftPadding="0" topPadding="0" />
+		<scroll>
+			<backGround>
+						<!-- background -->
+						<idle color="0x4a4a4a" alpha="100" />
+						<hover color="0x737373" alpha="100" />
+					</backGround>
+					<scrub>
+						<!-- time line -->
+						<idle color="0x0ebeea" alpha="100" />
+						<hover color="0xffffff" alpha="100" />
+					</scrub>
+		</scroll>		
+	</infoBox>
+	<bigPlay>
+		<size width="83" height="55"/>
+		<symbol>
+		<!-- symbol -->
+			<idle color="0xffffff" alpha="100" />
+			<hover color="0xe7ba20" alpha="100" />
+		</symbol>
+		<backGround>
+			<!-- background -->
+			<idle color="0x000000"  alpha="100" radius="5" />
+			<hover color="0x000000" alpha="100" radius="5" />
+		</backGround>
+	</bigPlay>
+</settings>

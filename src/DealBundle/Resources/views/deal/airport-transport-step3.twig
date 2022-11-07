@@ -1,0 +1,9 @@
+{% set counter = 1 %}
+{% for key,val in Airport %}
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 xsstylegreydiv_sts">
+	<div class="squrebordereddivgrey_sts {{(counter == 1) ? 'active'}}" onclick="changeTransferAirport(this, '{{val['code']}}', '{{val['name']}}');updateTransferAirportOnChange('{{val['name']}}');">
+	    <p class="squrebordereddivtext_sts">{{val['name']}}</p>
+	</div>
+    </div>
+    {% set counter = counter + 1 %}
+{% endfor %}

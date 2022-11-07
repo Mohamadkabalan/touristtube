@@ -1,0 +1,87 @@
+{% extends ((isCorpoSite == false) ? 'base.html.twig' : 'basecorporate.html.twig') %}
+{% block pagenewcss %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/otpCheckForm.css")|raw }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/payment/css/custom_gateway.css")|raw }}" />
+    <link rel="stylesheet" href="https://www.paytabs.com/express/express.css">
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/utils/TTUtils.js')|raw }}"></script>
+    <script src="https://www.paytabs.com/theme/express_checkout/js/jquery-1.11.1.min.js"></script>
+    <script src="https://www.paytabs.com/express/express_checkout_v3.js"></script>
+    <script type="text/javascript">
+    
+   	var ttUtils = new TTUtils(window, document);
+    
+    function preparePayFrame(settingsValues) {
+        var defSettings = {
+        	merchant_id: "{{merchant}}",
+            secret_key: "{{key}}",
+            display_billing_fields: "1",
+            display_shipping_fields: "0",
+            display_customer_info: "1",
+            language: "en",
+            redirect_on_reject: "1"
+        };
+        //
+        settingsValues = settingsValues || {};
+        settingsValues = ttUtils.extendObject(settingsValues, defSettings, true);
+        //
+        //
+        var checkout = Paytabs("#express_checkout").expresscheckout({
+            settings: settingsValues,
+            customer_info: {
+			    {% if payment is defined %}
+					email_address: "{{payment.email}}",
+                {% endif %}
+                {% if paymentInfo is defined %}
+				    email_address: "{{paymentInfo.customerEmail}}",
+	            {% endif %}
+			    {% if mobileCountryCode is defined %}
+			        country_code: "{{mobileCountryCode}}",
+                {% endif %}
+			    {% if mobileNumber is defined %}
+					phone_number: "{{mobileNumber}}"
+                {% endif %}
+			},
+            billing_address: {
+            } 
+        });
+    }
+    //
+    preparePayFrame({
+        amount: "{{payment.amount}}",
+        currency: "{{payment.currency}}",
+        title: "{{"Payment Checkout"|trans}}",
+        product_names: "{{"Booking"|trans}}",
+        order_id: "{{payment.uuid}}",
+        url_redirect: "{{callbackUrl}}",
+
+        is_iframe: {
+            show: "1",
+            load: "onbodyload" //"onbuttonclick" //"onbodyload"
+        }
+    });
+
+
+    function preventBack() {
+      window.history.forward();
+    }
+
+    $(document).ready(function() {
+        preventBack();
+        window.onunload = function() {
+            null
+        };
+    });
+
+    </script>
+{% endblock %}
+{% block body %}
+    <section class="container">
+    {% if response is defined %}
+    {{ response }}
+    {% endif %}
+	<div class="PT_express_checkout"></div>
+    </section>
+{% endblock %}

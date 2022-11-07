@@ -1,0 +1,82 @@
+CorporateBundle\Entity\CorpoRequestServicesDetails:
+    type: entity
+    table: corpo_request_services-details
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoRequestServicesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id    
+        requestId:
+            type: integer
+            nullable: true
+            column: request_id   
+        userId:
+            type: integer
+            nullable: false
+            column: user_id   
+        reservationId:
+            type: integer
+            nullable: false
+            column: reservation_id  
+        moduleId:
+            type: integer
+            nullable: false
+            column: module_id  
+        currencyCode:
+            type: string
+            nullable: false
+            length: 3
+            column: currency_code
+        status:
+            type: integer
+            nullable: false
+            column: status 
+        amount:
+            type: decimal
+            precision: 20
+            scale: 2
+            nullable: false
+            column: amount  
+        amountFBC:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_fbc
+        amountSBC:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_sbc
+        amountAccountCurrency:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: account_currency_amount
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at   
+        createdBy:
+            type: integer
+            nullable: false
+            column: created_by   
+    lifecycleCallbacks: {  }

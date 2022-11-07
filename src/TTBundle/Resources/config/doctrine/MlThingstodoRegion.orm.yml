@@ -1,0 +1,70 @@
+TTBundle\Entity\MlThingstodoRegion:
+    type: entity
+    table: ml_thingstodo_region
+    indexes:
+        id:
+            columns:
+                - id
+        id_2:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        h3:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p3:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        h4:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p4:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        language:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+                default: fr
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+    lifecycleCallbacks: {  }

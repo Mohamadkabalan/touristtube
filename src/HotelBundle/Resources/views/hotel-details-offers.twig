@@ -1,0 +1,377 @@
+{% if roomOffers is defined and roomOffers is not empty %}
+    <input type="hidden" name="fromDate" value="{{input.fromDate}}"/>
+    <input type="hidden" name="toDate" value="{{input.toDate}}"/>
+    <input type="hidden" name="totalNumOffers" value="{{totalNumOffers}}"/>
+
+    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+        <input type="hidden" name="hotelId" value="{{hotelDetails.hotelId}}"/>
+        <input type="hidden" name="refererURL" value="{{input.refererURL}}"/>
+        <input type="hidden" name="session" value="{{session|json_encode()}}"/>
+        <input type="hidden" name="availRequestSegment" value="{{availRequestSegment|json_encode()}}"/>
+        <input type="hidden" name="gds" id="gds" value="{{gds}}"/>
+        <input type="hidden" name="maxSelectableRooms" id="maxSelectableRooms" data-value="{{maxSelectableRooms|json_encode}}"/>
+    {% else %}
+        <input type="hidden" name="hotelKey" value="{{input.hotelKey}}"/>
+        <input type="hidden" name="hotelDetailsSerialize" value='{{ hotelDetails|json_encode() }}'/>
+
+        {% if roomReserved is defined %}
+            <input type="hidden" name="adultCount" value="{{input.adultCount}}"/>
+            <input type="hidden" name="roomReservedSerialize" value="{{roomReserved|json_encode()}}"/>
+            <input type="hidden" name="ordererDetailsSerialize" value="{{ordererDetailsSerialize}}"/>
+            <input type="hidden" name="creditCardDetailsSerialize" value="{{creditCardDetailsSerialize}}"/>
+        {% endif %}
+    {% endif %}
+    <div id="popup_room_gallery"></div>
+    <div class="row no-margin hidden-xs room-offer-hldr containerPricesContent">
+        <div class="row nomargin col-xs-10">
+            <div class="row">
+                <div class="col-xs-12 nopad ">
+                    {% for key, details in roomOffers %}
+                        {% set roomTypeAndGuestInfoCode = key %}
+
+                        {% set headerText = '' %}
+			{% set category = '' %}
+
+                        {% if details.header.title is defined and details.header.title is not empty%}
+                            {% set headerText = details.header.title ~ ' ' ~  details.header.subTitle %}
+			    {% set category = details.header.title %}
+                        {% elseif details.header is defined and details.header is not empty %}
+                            {% set headerText = details.header %}
+			    {% set category = details.header %}
+                        {% endif %}
+
+			{% set category = category|lower|replace({' ': ''}) %}
+
+                        <div id="{{key}}" class="col-sm-12 col-xs-12 nopad ">
+                            <div class="row no-margin">
+                                <div class="col-xs-12 nopad">
+                                    <p class="room_group_type_txt">{{headerText}}</p>
+                                </div>
+                            </div>
+                            {% for key1, offers in details if key1 != 'header' %}
+                                {% set prev_offer_name = '' %}
+                                {% set ctr = 0 %}
+
+                                {% for key2, offer in offers[1:] %}
+                                    {% if prev_offer_name != offer.name %}
+                                        {% if loop.first == false %}
+                                            <div class="border_separator margin-top-20 margin_bottom_10"></div>
+                                        {% endif %}
+                                        <div class="row no-margin margin_top_10 ">
+                                            <div class="col-xs-12 nopad">
+                                                <a rel="nofollow" href="#popup_room_gallery" class="room_type_txt_first exkiro room-name">
+                                                    {{offer.name|raw}}
+                                                    {% if offers.roomSize is defined and offers.roomSize is not empty%}<span class="room_size">{{offers.roomSize|raw}}</span>{% endif %}
+                                                </a>
+                                                <span class="room-gallery gallery-{{key}}-{{key1}}-{{key2}} gallery-{{offer.counter}} sliderHidden" data-galleryCategory="{{key}}" data-galleryRoomType="{{key1}}" data-galleryRoomTypeIndex="{{key2}}">{#{{offer.gallery|raw}}#}</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="row no-margin {% if prev_offer_name == offer.name %}margin-top-20{% endif %}">
+                                        <div class="col-sm-3 col-xs-12 nopad">
+                                            <p class="row_title_details">
+                                                {% if offer.conditions.mainInfo.roomType is defined and offer.conditions.mainInfo.roomType is not empty %}
+                                                    <i class="fas fa-angle-right fa-lg"></i>{{offer.conditions.mainInfo.roomType|raw}}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-12 nopad">
+                                            <div class="row no-margin lightgreudiv">
+                                                <div class="col-sm-2 col-xs-12 nopad">
+                                                    {% if (offer.roomSleepsImage is defined and offer.roomSleepsImage is not empty) %}
+                                                        {% for i in 1..offer.roomSleepsImage.sleep %}
+                                                            <img class="addmax" src="{{ generateMediaURL('/media/images') }}/{{ offer.roomSleepsImage.image }}" alt="max" />
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-12 nopad offer-price-text">
+                                                    <p class="price_pink_txt price_txt">{{offer.totalPrice|raw}}</p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-5 col-xs-12 nopad">
+                                                    {% set moreInfoXs = '' %}
+                                                    {% set moreInfo = '<strong>' ~ 'Description of Hotel Room'|trans ~ '</strong><br/>' ~ offer.description|raw ~ '<br/><br/>' %}
+                                                    {% if offer.conditions.moreInfo is defined and offer.conditions.moreInfo is not empty %}
+                                                        {% for cat, cond in offer.conditions.moreInfo %}
+                                                            {% set moreInfoXs = moreInfoXs ~ '<li class="add-info visible-xs condition_txt">' ~ cat|capitalize|trans ~ '<br/> ' ~ cond|join("<br/>") ~ '</li>' %}
+                                                            {% set moreInfo = moreInfo ~ '<div class="more-info-entry"><strong>' ~ cat|capitalize|trans ~ '</strong><br/> ' ~ cond|raw|join("<br/>") ~ '<br/><br/></div>' %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    <div class="nomargin nopad recancel col-md-11 col-sm-11 col-xs-11">
+                                                        <ul class="pinklistul">
+                                                            {% for key,cond in offer.conditions.mainInfo %}
+                                                                {% if key !='roomsLeft' and key != 'roomType' and cond is not empty %}
+                                                                    {% if key=='cancellation' %}
+                                                                        <li class="condition_txt pink_txt_condition">{{cond|raw}}</li>
+                                                                        {% elseif key=='payOnSite' %}
+                                                                        <li class="condition_txt"><b>{{cond|raw}}</b></li>
+									    {% elseif key=='breakfast' %}
+                                                                        <li class="condition_txt pink_txt_condition">{{cond|raw}}</li>
+                                                                        {% else %}
+                                                                        <li class="condition_txt">{{cond|raw}}</li>
+                                                                        {% endif %}
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                                {{moreInfoXs|raw}}
+                                                        </ul>
+                                                        {% if offer.conditions.mainInfo.roomsLeft is defined %}
+                                                            <div class="nopad margin_top_10 col-md-12 col-sm-12 col-xs-12">
+                                                                <p class="textRoomLeft condition_txt pink_txt_condition">
+                                                                    <b>{{offer.conditions.mainInfo.roomsLeft|raw}}</b>
+                                                                </p>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    {% if offer.includedTaxesAndFees is defined and offer.includedTaxesAndFees is not empty %}
+                                                        <div class="nomargin nopad retax col-md-11 col-sm-11 col-xs-11" style="display:none;">
+                                                            <ul class="pinklistul">
+                                                                {% for tAndF in offer.includedTaxesAndFees %}
+                                                                    <li class="condition_txt pink_txt_condition">{{ tAndF.description ~ ' '~ tAndF.inclusive}}{% if tAndF.amount is not empty or tAndF.percent is not empty %}{{' ('}}{% if tAndF.amount is not empty %}{{tAndF.amount|raw}}{% elseif tAndF.percent is not empty %}{{tAndF.percent|raw}}%{% endif %}{{')'}}{% endif %}</li>
+                                                                    {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="cond_tooltip_hldr nomargin nopad col-md-1 col-sm-1 col-xs-1">
+                                                        <a rel="tooltip" href="#" data-title='{{moreInfo}}' data-html="true" class="tooltip-trigger hidden-xs">
+                                                            <img class="tooltip_img" src="{{ generateMediaURL('/media/images/hotel_booking_details_new/tooltip.png') }}" alt="{{'more info'|trans}}"/>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2 col-xs-12 nopad hotel_detailed_room_select">
+                                                    {% set SelRoomCountClass = 'form-control room-count {{key}}-offer' %}
+                                                    {% if offer.bookableInfo is defined and offer.bookableInfo is not empty %}
+                                                        {% if offer.bookableInfo.roomID is defined and offer.bookableInfo.roomID is not empty %}
+                                                            {% set SelRoomCountClass = SelRoomCountClass ~ ' roomID-' ~ offer.bookableInfo.roomID ~ ' room-' ~ roomTypeAndGuestInfoCode %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    <select class="{{SelRoomCountClass}}" name="offer_select_{{offer.counter}}" data-price="{{offer.price}}" data-currency="{{selected_currency}}" data-roomcategory="{{category}}">
+                                                        {% for i in 0..offer.maxRoomCount %}
+                                                            {% set pricePerCount = (i > 0 ) ? '(' ~ selected_currency ~ ' ' ~ (i * offer.price)|round(0, 'floor')|number_format() ~ ')' : '' %}
+                                                            <option value="{{i}}">{{i}}&nbsp;&nbsp;&nbsp;{{pricePerCount|raw}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <input type="hidden" name="cancelable_{{offer.counter}}" value="{{offer.cancelable}}" class="offer-cancellation-info">
+                                                    {% if offer.bookableInfo is defined and offer.bookableInfo is not empty %}
+                                                        <input type="hidden" name="bookableInfo_{{offer.counter}}" value="{{offer.bookableInfo|json_encode()}}">
+                                                    {% endif %}
+                                                    {% if offer.room is defined and offer.room is not empty %}
+                                                        <input type="hidden" name="room_{{offer.counter}}" value="{{offer.room}}">
+                                                    {% endif %}
+
+                                                    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                                                        <input type="hidden" name="details_{{offer.counter}}" value="{{offer|json_encode()}}">
+                                                    {% else %}
+                                                        <input type="hidden" name="offerDetail_{{offer.counter}}" value="{{offer.offerDetail}}">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            {% if loop.last == false %}
+                                                <div class="border_separator margin-top-50"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% if loop.last == true %}
+                                        <div class="border_separator margin-top-20 margin_bottom_10"></div>
+                                    {% endif %}
+                                    {% set prev_offer_name = offer.name %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row visible-xs room-offer-hldr margin_top_20">
+        {% for key, details in roomOffers %}
+            {% set roomTypeAndGuestInfoCode = key %}
+
+            {% set headerText = '' %}
+            {% set category = '' %}
+
+            {% if details.header.title is defined and details.header.title is not empty%}
+                {% set headerText = details.header.title ~ ' ' ~  details.header.subTitle %}
+                {% set category = details.header.title %}
+            {% elseif details.header is defined and details.header is not empty %}
+                {% set headerText = details.header %}
+                {% set category = details.header %}
+            {% endif %}
+
+            {% set category = category|lower|replace({' ': ''}) %}
+
+            <div class="col-xs-12">
+                <div class="row no-margin col-xs-12">
+                    <div class="col-xs-12 nopad">
+                        <p class="room_group_type_txt">{{headerText}}</p>
+                    </div>
+                </div>
+                {% for key1, offers in details if key1 != 'header' %}
+                    {% set prev_offer_name = '' %}
+                    {% set ctr = 0 %}
+
+                    {% for key2, offer in offers[1:] %}
+                        <div class="row no-margin lightgreudiv col-xs-12">
+                            {% if prev_offer_name != offer.name %}
+                                <div class="col-xs-12 nopad">
+                                    <p class="tabs_txt_blue">{{'Room type'|trans}}: </p>
+				    <a rel="nofollow" href="#popup_room_gallery" class="room_type_txt_first float_left exkiro room-name">
+                                        {{offer.name|raw}}
+                                        {% if offers.roomSize is defined and offers.roomSize is not empty %}<span class="room_size">{{offers.roomSize|raw}}</span>{% endif %}
+                                    </a>
+                                    <span class="room-gallery gallery-{{key}}-{{key1}}-{{key2}} gallery-{{offer.counter}} sliderHidden" data-galleryCategory="{{key}}" data-galleryRoomType="{{key1}}" data-galleryRoomTypeIndex="{{key2}}">{#{{offer.gallery|raw}}#}</span>
+                                </div>   
+				{% if offer.conditions.mainInfo.roomsLeft is defined %}                             
+				    <div class="col-xs-12 nopad">
+                                        <p class="left_room_pink">{{offer.conditions.mainInfo.roomsLeft|raw}}</p>
+				    </div>
+				{% endif %}
+                            {% endif %}
+			    {% if offer.conditions.mainInfo.roomType is defined and offer.conditions.mainInfo.roomType is not empty %}
+				<div class="col-xs-12 margin_top_10 nopad">
+                                    <p class="row_title_details"><i class="fas fa-angle-right fa-lg"></i>{{offer.conditions.mainInfo.roomType|raw}}</p>
+				</div>
+			    {% endif %}
+			    {% if (offer.roomSleepsImage is defined and offer.roomSleepsImage is not empty) %}
+				<div class="col-xs-12 margin_top_10 nopad">
+				    <p class="tabs_txt_blue">{{'Sleeps'|trans}}</p>
+                                    {% for i in 1..offer.roomSleepsImage.sleep %}
+                                        <img class="addmax max_logo_xs" src="{{ generateMediaURL('/media/images') }}/{{ offer.roomSleepsImage.image }}" alt="sleeps" />
+                                    {% endfor %}
+				</div>
+			    {% endif %}
+                            <div class="col-xs-12 margin_top_10 nopad offer-price-text">
+                                <p class="tabs_txt_blue">
+                                    {% if nightsCount is defined and nightsCount > 0 %}
+                                        {{'Price for'|trans}} {{nightsCount}} {{'night'|trans}}{% if (nightsCount > 1) %}s{% endif %}
+                                    {% else %}
+                                        {{'No. of nights'|trans}}
+                                    {% endif %}
+                                </p>
+                                <p class="price_pink_txt price_txt">{{offer.totalPrice|raw}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                {% set moreInfoXs = '' %}
+                                {% set moreInfo = '<strong>' ~ 'Description of Hotel Room'|trans ~ '</strong><br/>' ~ offer.description|raw ~ '<br/><br/>' %}
+                                {% if offer.conditions.moreInfo is defined and offer.conditions.moreInfo is not empty %}
+                                    {% for cat, cond in offer.conditions.moreInfo %}
+                                        {% set moreInfoXs = moreInfoXs ~ '<li class="add-info visible-xs condition_txt">' ~ cat|capitalize|trans ~ '<br/> ' ~ cond|join("<br/>") ~ '</li>' %}
+                                        {% set moreInfo = moreInfo ~ '<div class="more-info-entry"><strong>' ~ cat|capitalize|trans ~ '</strong><br/> ' ~ cond|raw|join("<br/>") ~ '<br/><br/></div>' %}
+                                    {% endfor %}
+                                {% endif %}
+                                <p class="tabs_txt_blue">{{'Conditions'|trans}}</p>
+                                <div class="conditions_div recancel col-md-11 col-sm-11 col-xs-11">
+                                    <ul class="pinklistul">
+                                        {% for key,cond in offer.conditions.mainInfo %}
+                                            {% if key !='roomsLeft' and key != 'roomType' and cond is not empty %}
+                                                {% if key=='cancellation' %}
+                                                    <li class="condition_txt pink_txt_condition">{{cond|raw}}</li>
+                                                    {% elseif key=='payOnSite' %}
+                                                    <li class="condition_txt"><b>{{cond|raw}}</b></li>
+							{% elseif key=='breakfast' %}
+                                                    <li class="condition_txt pink_txt_condition">{{cond|raw}}</li>
+                                                    {% else %}
+                                                    <li class="condition_txt">{{cond|raw}}</li>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {{moreInfoXs|raw}}
+                                    </ul>
+                                    {% if offer.conditions.mainInfo.roomsLeft is defined %}
+                                        <div class="nopad margin_top_10 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="textRoomLeft condition_txt pink_txt_condition">
+                                                <b>{{offer.conditions.mainInfo.roomsLeft|raw}}</b>
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                {% if offer.includedTaxesAndFees is defined and offer.includedTaxesAndFees is not empty %}
+                                    <div class="nomargin nopad retax col-md-11 col-sm-11 col-xs-11" style="display:none;">
+                                        <ul class="pinklistul">
+                                            {% for tAndF in offer.includedTaxesAndFees %}
+                                                <li class="condition_txt pink_txt_condition">{{ tAndF.description ~ ' '~ tAndF.inclusive}}{% if tAndF.amount is not empty or tAndF.percent is not empty %}{{' ('}}{% if tAndF.amount is not empty %}{{tAndF.amount|raw}}{% elseif tAndF.percent is not empty %}{{tAndF.percent|raw}}%{% endif %}{{')'}}{% endif %}</li>
+                                                {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                <div class="cond_tooltip_hldr conditions_div nopad col-md-1 col-sm-1 col-xs-1">
+                                    <a rel="tooltip" href="#" data-title='{{moreInfo}}' data-html="true" class="tooltip-trigger hidden-xs">
+                                        <img class="tooltip_img" src="{{ generateMediaURL('/media/images/hotel_booking_details_new/tooltip.png') }}" alt="{{'more info'|trans}}"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 margin_top_10 margin_bottom_10 nopad">
+                                <p class="tabs_txt_blue" style="line-height: 31px;">{{'No. of rooms'|trans}}</p>
+                                <div class="hotel_detailed_room_select">
+                                    {% set SelRoomCountClass = 'form-control room-count {{key}}-offer' %}
+                                    {% if offer.bookableInfo is defined and offer.bookableInfo is not empty %}
+                                        {% if offer.bookableInfo.roomID is defined and offer.bookableInfo.roomID is not empty %}
+                                            {% set SelRoomCountClass = SelRoomCountClass ~ ' roomID-' ~ offer.bookableInfo.roomID ~ ' room-' ~ roomTypeAndGuestInfoCode %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    <select class="{{SelRoomCountClass}}" name="offer_select_{{offer.counter}}" data-price="{{offer.price}}" data-currency="{{selected_currency}}" data-roomcategory="{{category}}">
+                                        {% for i in 0..offer.maxRoomCount %}
+                                            {% set pricePerCount = (i > 0 ) ? '(' ~ selected_currency ~ ' ' ~ (i * offer.price)|round(0, 'floor')|number_format() ~ ')' : '' %}
+                                            <option value="{{i}}">{{i}}&nbsp;&nbsp;&nbsp;{{pricePerCount|raw}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="hidden" name="cancelable_{{offer.counter}}" value="{{offer.cancelable}}" class="offer-cancellation-info">
+                                    {% if offer.bookableInfo is defined and offer.bookableInfo is not empty %}
+                                        <input type="hidden" name="bookableInfo_{{offer.counter}}" value="{{offer.bookableInfo|json_encode()}}">
+                                    {% endif %}
+                                    {% if offer.room is defined and offer.room is not empty %}
+                                        <input type="hidden" name="room_{{offer.counter}}" value="{{offer.room}}">
+                                    {% endif %}
+
+                                    {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                                        <input type="hidden" name="details_{{offer.counter}}" value="{{offer|json_encode()}}">
+                                    {% else %}
+                                        <input type="hidden" name="offerDetail_{{offer.counter}}" value="{{offer.offerDetail}}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% if loop.last == false %}
+                            <div class="border_separator margin-top-10 margin_bottom_10 col-xs-12"></div>
+                        {% endif %}
+
+                        {% set prev_offer_name = offer.name %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <div class="col-xs-12">
+            <button class="btn reserve_hotel_button reserve" disabled="disabled">{{'Reserve'|trans}}</button>
+            <p class="registration_txt">{{'No registration required'|trans}}.</p>
+            <p class="tax_bold tax_hldr"></p>
+            <p class="selected_room_txt nomargin"><span class="selected_room_count"></span> {{'selected'|trans}}</p>
+            <p class="price_pink_txt price_txt_total price_txt">
+                <span class="price-convert" data-price="0.00" >
+                    <span class="currency-convert-text">{{selected_currency}}</span>
+                    <span class="price-convert-text">0.00</span>
+                </span>
+            </p>
+            <br />
+            <p class="offer_note nomargin">{{'NOTE: Your reservation includes freely cancelable and non-cancelable rooms. Cancellation charges might apply.'|trans}}</p>
+            <div class="selected_room_details selected_room_details_hldr">
+                <p class="nomargin">{{'Details'|trans}}:</p>
+                <div class="details nopad">
+                </div>
+            </div>
+
+            {% if pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+                <div class="selected_room_details selected_room_details_taxInfo_hldr margin_top_10" style="display:none;">
+                    <p class="nomargin">{{'Taxes'|trans}}:</p>
+                    <div class="taxInfo nopad">
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <script id="room-gallery-template" type="text/template">
+        {% include '@Hotel/hotel-room-gallery.twig' %}
+    </script>
+{% else %}
+    <div class="hotel-offer-message col-sm-10 col-xs-12">
+        {{'There is no availability on the selected dates at this time.'|trans}}
+    </div>
+{% endif %}

@@ -1,0 +1,42 @@
+HotelBundle\Entity\CmsFacility:
+    type: entity
+    table: cms_facility
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        typeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: type_id
+        amenityLevel:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: amenity_level
+        published:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: published
+    lifecycleCallbacks: {  }

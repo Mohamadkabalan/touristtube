@@ -1,0 +1,83 @@
+@import '/assets/flights/css/flight-common.css';
+
+.icon-list{float: left;color:#ebc728;width: 25px;height: 30px;}
+.icon-list-exclamation{float: left;color:#000000;width: 20px;height: 30px;}
+.margin_top_0{margin-top: 0px;}
+.margin_top_5{margin-top: 5px;}
+.margin_top_10{margin-top: 10px;}
+.margin_top_15{margin-top: 15px;}
+.margin_top_20{margin-top: 20px;}
+.margin_top_25{margin-top: 25px;}
+.margin_top_30{margin-top: 30px;}
+.margin_top_40{margin-top: 40px;}
+.margin_bottom_0{margin-bottom: 0px;}
+.margin_bottom_5{margin-bottom: 5px;}
+.side-list{float: left;color:#787878;font-size:16px;width:calc(100% - 30px);}
+.side-list h2{margin-top: 0px; color:#db3a69;font-size:22px;}
+.txt-black{color:#000000;}
+.txtBlue{color:#00b7d9;}
+.border-bottom-2{border-bottom: 2px solid #ebeff1;}
+.txt-dark-grey{color:#00304c;}
+.txt-light-grey{color: #787878;}
+
+.right_panel{color:#000000;font-size: 16px;}
+.right_panel a,.right_panel a:focus,.right_panel a:visited,.right_panel a:hover{color:#00b7d9;text-decoration: underline;}
+.flight_input, .flight_input_pr select{width:100%;height: 60px;border-radius: 5px;border: 1px solid #d5d6d8;text-align: center;font-weight: bold;color:#000000;}
+.flight_input_pr select{width:28%; margin-right: 10px;appearance:none;-moz-appearance:none;-webkit-appearance:none;}
+.flight_input_commun{width:100%;appearance:none;-moz-appearance:none;-webkit-appearance:none;height: 60px;border-radius: 5px;border: 1px solid #d5d6d8;text-align: center;font-weight: bold;color:#000000;}
+.flight_input_pr:last-child select{margin: 0px;}
+.flight_textarea{width:100%;height: 120px;background: #FFFFFF;border-radius: 5px;border: 1px solid #d5d6d8;color:#000000;resize: none;}
+.flight_input option, .flight_input_pr select option{text-align: center;font-weight: bold;color:#000000;}
+.flight_input:focus, .flight_input_pr select:focus{border-color: #db3a69;background: #f1f2f2;}
+.none_input{height: 60px;background: #FFFFFF;font-weight: bold;color:#000000;border-radius: 5px;border: 1px solid #d5d6d8;}
+.small_padding_right{padding-right: 0px;}
+.right_panel label{font-weight: normal; margin-right: 10px; padding: 0 5px;}
+.font-14{font-size: 14px;}
+.font-13{font-size: 13px;}
+.font-16{font-size: 16px;}
+.font-17{font-size: 17px;}
+.right_panel h2{font-size: 27px;}
+.right_panel .search_hpage{width: 100%;line-height: 52px;}
+.right_panel:after,.luggage_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;left:-10px;top:0px;}
+.luggage_panel:after{width: 2px;left:-5px;}
+.font-24{font-size: 24px;}
+.font-30{font-size: 30px;}
+.tt-brand-color{color:#eac31a;}
+.width-54-p{width:38%;}
+.fa-rotate-180{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.yellow_submit{
+    background-color: #eac31a;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #201b1d;
+    font-size: 22px;
+    border: 0;
+    border-radius: 3px;
+    margin: 7px 0;
+    width: 100%;
+
+}
+.flight_add_passport label{font-weight: bold;color: black;font-size: 13px;}
+.flight_add_passport .flight_input_pr select{margin-left: 0;margin-right: 10px;}
+.tt_validation_message{position: absolute;
+                       bottom: -27px;
+                       margin-left: 22px;
+                       left: 0;}
+.main_flight_container label{font-size: 17px;color: #787878;font-weight: normal;margin-bottom: 0;}
+@media (max-width:991px){
+    .right_panel:after{display: none;}
+    .no_small_margin_top{margin-top: 0;}
+    .small_margin_top_10{margin-top: 10px;}
+    .no_small_margin_top{margin-top: 0;}
+}
+
+.receiveAlertsLabel{font-size: 14px;color: #787878;font-weight: normal;font-family:  "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.usePhoneEmailLabel{font-size: 14px;color: #787878;font-weight: normal;font-family:  "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.receiveAlertsMessage{font-size: 14px;color: #db3a69; font-weight: normal;font-family:  "Helvetica Neue",Helvetica,Arial,sans-serif;}

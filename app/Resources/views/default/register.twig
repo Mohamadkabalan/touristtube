@@ -1,0 +1,94 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css" >
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/signin_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/login.js")|raw }}"></script>
+{% endblock %}
+{% block title %}
+    {{ 'Sign up'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container sign_in_container" id="registerContainer">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad"> 
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Welcome to touristtube.com'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row no-margin signupcontainer">
+                    <div class="col-xs-12 nopad">  
+			{% include "default/fb_login.twig" %}
+                    </div>
+                    <div class="col-xs-12 nopad">  
+                        <div class="row no-margin margin_top_30">
+                            <form data-toggle="validator" role="form">
+                                <div class="col-xs-12 nopad">
+                                    <p class="font-27 black margin_bottom_0">{{'Sign up'|trans}}</p>
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <div class="row newrowmargin5">
+                                        <div class="col-md-3 col-sm-6 col-xs-12 newcolpadding5 sign_in_input_common">
+                                            <input type="email" id="YourEmail" name="email_contact" class="required" data-alert="{{'Contact Details email'|trans}}" placeholder="{{'Email address*'|trans}}" />
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12 newcolpadding5 sign_in_input_common">
+                                            <input type="text" id="YourUserName" name="username_contact" class="required" data-alert="{{'Contact Username'|trans}}" placeholder="{{'Username*'|trans}}" />
+                                        </div>
+                                    </div>
+                                    <div class="row newrowmargin5">
+                                        <div class="col-md-3 col-sm-6 col-xs-12 newcolpadding5 sign_in_input_common">
+                                            <input type="password" id="YourPassword" name="password_contact" class="required" data-alert="{{'Contact Details password'|trans}}" placeholder="{{'Password*'|trans}}" />
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12 newcolpadding5 sign_in_input_common">
+                                            <input type="password" id="YourCPassword" name="password_contact_confirm" class="required" data-alert="{{'Contact Details password confirm'|trans}}" placeholder="{{'Confirm Password*'|trans}}" />
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin margin_bottom_15">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="font-14 grey">{{'should be at least 8 characters long<br>and must be a combination of letters and numbers.'|trans|raw}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin margin_bottom_30">
+                                        <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                            <button id="CreateMyAccountNew" type="button" class="btn submit_yellow signup">{{'Create account'|trans}}</button>
+                                        </div>
+                                    </div>
+				    <input type="hidden" class="form-control" id="registerPath" value="{{ generateLangRoute(LanguageGet,'_user_add_register') }}" />
+				    <input type="hidden" class="form-control" id="userId" value="" />
+				    <div id="FormResult" class="col-lg-12 col-md-12 col-sm-12 paddingleft28 wrong_credentials wrong_credentialsmsg"></div>
+				    <div id="ClaimEmail" class="col-lg-12 col-md-12 col-sm-12 paddingleft28"></div>					
+                                    <div class="row no-margin">
+                                        <div class="col-md-6 col-xs-12 nopad">
+                                            <p class="font-14 black font-bold margin_bottom_0">{{'Note'|trans}}</p>
+                                            <p class="font-14 grey margin_bottom_0">{{'By default, others can find you by name. You can change your privacy settings at any time. Your email will never be shown publically.
+                            By clicking on "Create my account", you agree to our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{ 'terms and conditions'|trans }}" class="tems_conditions">{{'terms and conditions'|trans}}</a> {{'and consent to our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{ 'Privacy Policy'|trans }}" class="privacy_policy">{{'Privacy Policy'|trans}}</a>.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-md-10 col-xs-12 nopad margin_top_40">
+                                            <div class="border_grey_2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 nopad">  
+                        <div class="row no-margin margin_top_30">
+                            <div class="col-xs-12 nopad">
+                                <p class="font-16 grey">{{'you already have an account?'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <a href="{{ generateLangRoute(LanguageGet,'_log_in') }}" title="{{ 'Sign in'|trans }}" class="font-27 black underline">{{ 'Sign in'|trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

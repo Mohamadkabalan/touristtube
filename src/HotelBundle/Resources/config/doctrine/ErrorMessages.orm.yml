@@ -1,0 +1,39 @@
+HotelBundle\Entity\ErrorMessages:
+    type: entity
+    table: error_messages
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    indexes:
+        category_code:
+            columns:
+                - category
+                - code
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        category:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+        code:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+        value:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

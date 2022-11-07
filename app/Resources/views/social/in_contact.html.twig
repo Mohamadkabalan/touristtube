@@ -1,0 +1,62 @@
+{# app/Resources/views/social/en_about_us.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+{% endblock %}	
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>हमसे संपर्क करें</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">सुरक्षा समस्याएं</h2>
+                        <p class="sub_header_title">साइट पर मुद्दों हैकिंग / सुरक्षा रिपोर्ट करने के लिए कृपया हमसे संपर्क करें  <a href="mailto:security@touristtube.com" title="security@touristtube.com">security@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">अनुचित सामग्री</h2>
+                        <p class="sub_header_title">साइट पर किसी भी अनुपयुक्त सामग्री की रिपोर्ट करने के लिए, कृपया हमसे संपर्क <a href="mailto:abuse@touristtube.com" title="abuse@touristtube.com">abuse@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">कॉपीराइट समस्याएं</h2>
+                        <p class="sub_header_title">साइट पर कॉपीराइट उल्लंघन की रिपोर्ट करने के लिए कृपया हमसे संपर्क करें <a href="mailto:copyright@touristtube.com" title="copyright@touristtube.com">copyright@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">विज्ञापन</h2>
+                        <p class="sub_header_title">हमारे साथ अपने विज्ञापनों को रखने के लिए, कृपया हमसे संपर्क करें <a href="mailto:advertising@touristtube.com" title="advertising@touristtube.com">advertising@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">हमारा पता</h2>
+                        <p class="sub_header_title">आप नीचे दिए गए पते पर पर्यटक ट्यूब पर संपर्क कर सकते हैं</p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">TouristTube™</h2>
+                        <p class="sub_header_title">
+                            पर्यटकट्यूबएफजेड-एलएलसी<br>
+                            फ्लोर १; डीआईसी बिल्डिंग १२;<br>
+                            ३५, डीआईसी स्ट्रीट; शहर दुबई; यूएई<br>
+                            <a href="mailto:info@touristtube.com" title="info@touristtube.com">info@touristtube.com</a><br><br>
+                            <span>{{'now'|date('Y')}} &copy; पर्यटकट्यूबएफजेड-एलएलसी</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

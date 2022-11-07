@@ -1,0 +1,314 @@
+{# empty Twig template #}
+<body>
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+{{displayTopHead}}
+{{displayPartHeadProfileMentioned}}
+
+
+<tr>
+    <td>
+        <table bgcolor="#ebebeb" width="520" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="14" height="45"> </td>
+                    <td>
+                        <strong><font face="Arial, Helvetica, sans-serif" size="3" color="#000000">
+                            Latest updates from Tourist Tube Channels</font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="41" height="16"> </td>
+                    <td>
+                        <table bgcolor="#ebebeb" cellspacing="0" cellpadding="0">
+                            <tbody><tr>
+                                    <td width="319" >
+                                        <table>
+                                            <tr>
+                                                <td height="16" align="left">
+                                                    <img width="17" height="16" src="{{link_path}}/images/videosicon.jpg">
+                                                </td>
+                                                <td height="16" align="left">
+                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#5f5f5f">
+                                                        VIDEOS
+                                                    </font>
+                                                </td>
+                                            </tr>
+                                                
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table bgcolor="#ebebeb" cellspacing="0" cellpadding="2">
+                                            <tr>
+                                                <td height="16" align="left">
+                                                    <img width="16" height="12" src="{{link_path}}/images/photosicon.jpg">
+                                                </td>
+                                                <td height="16" align="left">
+                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#5f5f5f">
+                                                        PHOTOS
+                                                    </font>
+                                                </td>
+                                            </tr>
+                                                
+                                        </table>
+                                    </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="41" height="16"> </td>
+                    <td>
+                        <table bgcolor="#ebebeb">
+                            <tbody><tr>
+                                    <td width="314" >
+                                    <table border="0" cellspacing="0" cellpadding="0" >
+
+                                            {% set columns = 2 %}
+                                            {% for k,v in col_Arr1 %}
+                                                {% if loop.first or loop.index0 is divisibleby(columns) %}
+                                                    <tr>
+                                                {% endif %}
+                                                <td height="90">
+                                                    <a href="{{v[1]}}" target="_blank">
+                                                        <img width="136" height="76" src="{{ v[0] }}"/>
+                                                    </a>
+                                                </td>
+                                                <td width="14"></td>
+
+                                                {% if loop.last and loop.index is not divisibleby(columns) %}
+                                                    {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                                                        <td width="90"></td>
+                                                        <td width="14"></td>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% if loop.last or loop.index is divisibleby(columns) %}
+                                                    </tr>
+                                                {% endif %}
+
+                                            {% endfor %}
+                                    </table>
+                                    </td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" >
+                                            
+                                                {% set columns = 1 %}
+                                                {% for k,v in col_Arr2 %}
+                                                    {% if loop.first or loop.index0 is divisibleby(columns) %}
+                                                        <tr>
+                                                    {% endif %}
+                                                    <td height="90">
+                                                    <a href="{{v[1]}}" target="_blank">
+                                                        <img width="136" height="76" src="{{ v[0] }}"/>
+                                                    </a>
+                                                </td>
+                                                <td width="14"></td>
+                                                    {% if loop.last and loop.index is not divisibleby(columns) %}
+                                                        {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                                                            <td width="90"></td>
+                                                            <td width="14"></td>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    {% if loop.last or loop.index is divisibleby(columns) %}
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                        </table>
+                                    </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="14" height="45"> </td>
+                    <td>
+                        <a style="text-decoration: none" href="{{checkout_more_link}}">
+                            <font face="Arial, Helvetica, sans-serif" size="2" color="#e7ba20">
+                            <strong><i>check out more</i></strong>
+                            </font>
+                        </a>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </td>
+</tr>
+    
+
+    
+
+
+<tr>
+    <td>
+        <table width="520" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="41" height="15" colspan="2"> </td>
+                </tr>
+                <tr>
+                    <td width="41" height="16"> </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td width="314" valign="top">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td height="35" width="315" colspan="2">
+                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                        <strong>recently added channels</strong>
+                                                    </font></td>
+                                            </tr>
+                                                {% set columns = 2 %}
+                                                {% for k,v in recconnections_Arr %}
+                                                    {% if loop.first or loop.index0 is divisibleby(columns) %}
+                                                        <tr>
+                                                    {% endif %}
+<td width="33%">
+    <table width="100%" valign="top" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="56" valign="top" align="left">
+                    <a style="text-decoration: none; color:#e9c21b" target="_blank" href="{{v[3]}}"><img width="50" height="50" src="{{v[0]}}"></a>
+                </td>
+                <td>
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td valign="top" align="left">
+                                    <font face="Arial, Helvetica, sans-serif" size="1" color="#797979">
+                                        <a style="text-decoration: none; color:#e9c21b" target="_blank" href="{{v[3]}}">{{v[1]}}</a>
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" align="left">
+                                    <font face="Arial, Helvetica, sans-serif" size="1" color="#aaaaaa">
+                                        {{v[2]}} connections
+                                    </font>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</td>
+                                                        
+                                                    {% if loop.last and loop.index is not divisibleby(columns) %}
+                                                        {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                                                            <td></td>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    {% if loop.last or loop.index is divisibleby(columns) %}
+                                                        </tr>
+                                                    {% endif %}
+                                                    
+                                                {% endfor %}
+                                        </table>
+                                    </td>
+                                    <td width="2" bgcolor="#eaeaea"></td>
+                                        
+                                    <td valign="top">
+                                        <table border="0" cellspacing="0" cellpadding="0" >
+                                            <tr>
+                                                <td height="35" width="315" colspan="2">
+                                                    <table width="100%" valign="top" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="top" width="10" align="left"></td>
+                                                                <td valign="top" align="left">                                                       
+                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                                        <strong>best of TT Channels</strong>
+                                                                    </font>
+                                                                 </td>                                            
+                                                                 </tr>                                            
+                                                        </tbody>                                            
+                                                     </table> 
+                                                </td>
+                                            </tr>
+                                            
+                                                {% set columns = 1 %}
+                                                {% for k,v in recconnections_Arr1 %}
+                                                    {% if loop.first or loop.index0 is divisibleby(columns) %}
+                                                        <tr>
+                                                    {% endif %}
+<td width="33%">
+    <table width="100%" valign="top" cellspacing="0" cellpadding="0">
+<tbody>
+    <tr>
+<td width="50" valign="top" align="left">
+    <a style="text-decoration: none; color:#e9c21b" target="_blank" href="{{v[3]}}"><img src="{{v[0]}}" width="48"></a>
+</td>
+<td>
+<table width="100%">
+    <tbody>
+        <tr>
+            <td valign="top" align="left"></td>
+        </tr>
+        <tr>
+            <td valign="top" align="left" style="padding-left:0px">
+                <span style="color: #797979; font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:10px;">
+                    <a style="text-decoration: none; color:#e9c21b" target="_blank" href="{{v[3]}}">{{v[1]}}</a>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" align="left">
+                <span style="color: #aaaaaa; font-family:Arial, Helvetica, sans-serif; font-size:11px;">{{v[2]}} channels</span>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+</td>
+</tr>
+</tbody>
+    </table>
+</td>                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    <td width="14"></td>
+                                                    {% if loop.last and loop.index is not divisibleby(columns) %}
+                                                        {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                                                            <td width="33%"></td>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    {% if loop.last or loop.index is divisibleby(columns) %}
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                        </table>
+                                    </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="14" height="45"> </td>
+                    <td>
+                        <a style="text-decoration: none" href="{{checkout_more_link}}">
+                            <font face="Arial, Helvetica, sans-serif" size="2" color="#e7ba20">
+                            <strong><i>check out more</i></strong>
+                            </font>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </td>
+</tr>
+
+
+
+
+
+{{displayfoot}}
+</table>
+</body>

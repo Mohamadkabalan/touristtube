@@ -1,0 +1,91 @@
+TTBundle\Entity\CmsSocialNewsfeed:
+    type: entity
+    table: cms_social_newsfeed
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        channel_id:
+            columns:
+                - channel_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        ownerId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: owner_id
+        actionId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'the feed foriegn key'
+            column: action_id
+        actionType:
+            type: boolean
+            nullable: false
+            column: action_type
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        feedTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: feed_ts
+        feedPrivacy:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '2'
+            column: feed_privacy
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        channelId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: channel_id
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+        entityGroup:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: entity_group
+    lifecycleCallbacks: {  }

@@ -1,0 +1,97 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/hotel.in_new.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/search_hotel1.js")|raw }}"></script>
+{% endblock %}
+{% block structureddatablock %}
+    <script type="application/ld+json">
+        {  
+        "@context": "http://schema.org",
+        "@type": "ItemList",  
+        "url": "{{app.request.uri}}",
+        "numberOfItems": "10",
+        "itemListElement": [
+        {% for hotel_item in hotels_array %}
+            {
+            "@type": "Hotel",
+            "name": "{{ hotel_item.title|raw|e('html') }}",
+            {% if hotel_item.location|raw!='' %}
+                "address" : "{{ hotel_item.location|raw|e('html') }}",
+            {% endif %}
+            {% if hotel_item.image|raw!='' %}
+                "image": "{{ hotel_item.image|raw }}",
+            {% endif %}
+            "url": "{{ hotel_item.detail_link|raw }}"
+            {% if not loop.last %}     
+                },
+            {% endif %}
+            {% if loop.last %}     
+                }
+            {% endif %}
+        {% endfor %}
+        ]
+
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <input type="hidden" value="{{ pageType|raw }}" name="pageType">
+    <input type="hidden" value="{{ city|raw }}" name="citys">
+    <input type="hidden" value="{{ dest|raw }}" name="dest">
+    <input type="hidden" value="{{ type|raw }}" name="types">
+    <input type="hidden" value="{{ totalpage|raw }}" name="totalpage">
+    <section class="container book_hotel_search_container hotel_main_conatainer">	
+	<div class="row margin_top_30">
+	    <div class="col-xs-12">
+		<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{page_title|raw}}</h1>
+	    </div>
+	</div>
+	<div class="row margin-top-40 main_conatainer filters-group round-down-price">	    
+	    <div class="right_panel_noborder col-xs-12 right_panel">
+		<div class="row no-margin my-shuffle-container" id="hotel-list">
+                    {% include "default/hotel.in.filtered.twig" %}
+		</div>
+		<div class="row no-margin pagerWrapper hotel-paginationdata">
+                    {% include "default/hotel.paging.twig" %}	    
+		</div>
+	    </div>
+	</div>
+	{% if nearbyAttraction is not empty %}
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <div class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i></div>
+		    <h2 class="search_title">{{'Attractions near by'|trans}} {{title|raw}}?</h2>
+		</div>
+	    </div>
+	    <div class="row margin_top_10">
+		<ul class="whereis_nearby_list">
+		    {% for item in nearbyAttraction %}
+			<li class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="{{ item.link|raw }}" title="{{ item.name|raw }}" target="_blank">{{ item.name|raw }}</a></li>
+		    {% endfor %}
+		</ul>
+	    </div>
+	{% endif %}
+	{% if descHotelsinTitle!='' %}
+	    <div class="row new_margin margin_top_30">
+		<div class="col-xs-12 small_margin bottom_link_gray">
+		    {% if hotelsinLink!='' %}
+			<a class="col-xs-12 nopad" href="{{hotelsinLink|raw}}" title="{{ descHotelsinTitle|raw }}">
+			    <h2  class="h_home_new">{{ descHotelsinTitle|raw }}</h2>
+			</a>
+		    {% else %}
+			<h2  class="h_home_new">{{ descHotelsinTitle|raw }}</h2>
+		    {% endif %}
+		    {% if descHotelsin!='' %}
+			<p class="txt_page_container float-left">{{descHotelsin|raw}}</p>
+		    {% endif %}
+		</div>
+	    </div>
+	{% endif %}
+    </section>
+{% endblock %}

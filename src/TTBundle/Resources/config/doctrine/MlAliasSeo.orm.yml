@@ -1,0 +1,44 @@
+TTBundle\Entity\MlAliasSeo:
+    type: entity
+    table: ml_alias_seo
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+        language:
+            type: string
+            nullable: false
+            length: 5
+            options:
+                fixed: false
+        title:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        keywords:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

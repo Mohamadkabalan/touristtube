@@ -1,0 +1,181 @@
+HotelBundle\Entity\AmadeusHotel:
+    type: entity
+    table: amadeus_hotel
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    oneToMany:
+        sources:
+            targetEntity: AmadeusHotelSource
+            mappedBy: hotel
+            cascade: [persist]
+    manyToOne:
+        city:
+            targetEntity: AmadeusHotelCity
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: hotels
+            joinColumns:
+                amadeus_city_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    fields:
+        dupePoolId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: dupe_pool_id
+        amadeusCityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: amadeus_city_id
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        propertyName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: property_name
+        address1:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: address_line_1
+        address2:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: address_line_2
+        latitude:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 6
+            options:
+                default: '0.000000'
+        longitude:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 6
+            options:
+                default: '0.000000'
+        district:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        zipCode:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: zip_code
+        phone:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        stars:
+            type: integer
+            nullable: false
+            length: 4
+            options:
+                default: '0'
+        logo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: logo
+        mapImage:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        selfRating:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: self_rating
+        location:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        transportation:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+        popularity:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        published:
+            type: smallint
+            nullable: false
+            options:
+                default: '1'
+        lastUpdated:
+            type: datetime
+            nullable: false
+            column: last_updated
+        imagesDownloaded:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: true
+                default: false
+            column: images_downloaded
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        has360:
+            type: integer
+            nullable: false
+            column: has_360
+    lifecycleCallbacks: {  }

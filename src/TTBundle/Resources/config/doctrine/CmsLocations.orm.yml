@@ -1,0 +1,127 @@
+TTBundle\Entity\CmsLocations:
+    type: entity
+    table: cms_locations
+    indexes:
+        city_id:
+            columns:
+                - city_id
+        country:
+            columns:
+                - country
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        accentName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'the location name with diacritics'
+            column: accent_name
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+        nbRatings:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_ratings
+        rating:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        cityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_id
+        categoryId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: category_id
+        address:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        cmt:
+            type: string
+            nullable: false
+            length: 500
+            options:
+                fixed: false
+        desc:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        websiteUrl:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: website_url
+        nbViews:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_views
+    lifecycleCallbacks: {  }

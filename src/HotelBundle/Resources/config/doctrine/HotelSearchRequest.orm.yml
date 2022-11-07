@@ -1,0 +1,131 @@
+HotelBundle\Entity\HotelSearchRequest:
+    type: entity
+    table: hotel_search_request
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        creationDate:
+            type: datetime
+            nullable: true
+            options:
+                default: CURRENT_TIMESTAMP
+            column: creation_date
+        hotelCityName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+            column: hotel_city_name
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_id
+        locationId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: location_id
+        hotelCityCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: hotel_city_code
+        country:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        longitude:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 6
+            options:
+                default: '0.000000'
+        latitude:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 6
+            options:
+                default: '0.000000'
+        entityType:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: entity_type
+        fromDate:
+            type: date
+            nullable: false
+            column: from_date
+        toDate:
+            type: date
+            nullable: false
+            column: to_date
+        singleRooms:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: single_rooms
+        doubleRooms:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: double_rooms
+        adultCount:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: adult_count
+        childCount:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: child_count
+        maxPrice:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            options:
+                default: '0.00'
+            column: max_price
+        maxDistance:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            options:
+                default: '0.00'
+            column: max_distance
+    lifecycleCallbacks: {  }

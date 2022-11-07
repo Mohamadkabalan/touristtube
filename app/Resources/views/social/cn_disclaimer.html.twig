@@ -1,0 +1,51 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block body %}
+    <section class="container disclaimer_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>免责声明</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">免责声明</h2>
+                        <p class="sub_header_title text-justify">我们使用合理的商业技能和关怀来提供服务，我们希望您能从中受益。</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">保证</h2>
+                        <p class="sub_header_title text-justify">除了这些条款或附加条款中明确规定外，Tourist Tube及其供应商或分销商均未对服务做出任何具体承诺。此外，我们不对服务内容、服务的具体功能或其可靠性、可用性或满足您需求的能力做出任何承诺。我们“按原样”提供服务。换句话说，在法律允许的范围内，我们不做任何保证。</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">责任</h2>
+                        <p class="sub_header_title text-justify">如法律允许，Tourist Tube及其供应商和分销商将不承担利润、收入或数据损失、财务损失，或间接损失、惩罚性损失的责任。 Tourist Tube及其供应商和分销商对这些条款下的任何索赔（包括任何隐含保证）的全部责任仅限于您向我们支付的使用服务的金额（或者，如果我们愿意再次向您提供该服务）。 </p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <p class="sub_header_title text-justify">{{'now'|date('Y')}} &copy; Tourist Tube FZ-LLC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

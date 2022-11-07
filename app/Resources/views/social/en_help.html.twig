@@ -1,0 +1,364 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>Welcome To Touristtube Help Center</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Getting Started<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">You can view content in our public section without registration. However you are required to register to use the full features of Tourist Tube.</p>
+                        <h3 class="help_h3">registration</h3>
+                        <p class="faq_sub_header_title">Fill in and submit the registration form with all the required fields and we will promptly set up your account and send you a confirmation email.</p>
+                        <h3 class="help_h3">login</h3>
+                        <p class="faq_sub_header_title">Use your username and password to login. If you like to automatically login upon landing, check the tick box. In the event you forget your password, fill in and submit your email or username and we will send a password reset order to your email.</p>
+                        <h3 class="help_h3">mobile</h3>
+                        <p class="faq_sub_header_title">You can freely download and install Tourist Tube mobile application on your Android mobile.</p>
+                        <h3 class="help_h3">search</h3>
+                        <p class="faq_sub_header_title">You can use the search bar to search all media in Tourist Tube using particular keywords or a combination thereof.You can narrow your search by selecting to search only photos, videos, hotels, restaurants, or Tubers.</p>
+                        <h3 class="help_h3">upload</h3>
+                        <p class="faq_sub_header_title">Once you are registered, you can upload up to 1 Tera-byte of photos and videos to your account. For each upload, you can add descriptors such as title, keywords, place, theme or category, and your comments; also for each upload, you can control privacy settings for views, likes, and comments among public (everybody), friends and their connections, friends, or private (only you).</p>
+                        <h3 class="help_h3">chat</h3>
+                        <p class="faq_sub_header_title">Once you are registered, you can use the chat window to chat with other Tubers and to search for / add / delete Tubers. You can also disable / enable this window.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Account management<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Tourist Tube Page</h3>
+                        <p class="faq_sub_header_title">This page shows all your activities on Tourist Tube as well as actions of other Tubers on your activities. It can be made accessible in full or in part to selected users according to the privacy settings you set. This page shows the following elements:</p>
+                        <ul class="main_ul_list_help">
+                            <li>A slider to select the period (month and year) for which my activities are displayed<li>
+                            <li>For the selected period, all postings I made (pictures; videos; text; links; comments; likes; shares; rates) everywhere or selectively on:<li>
+                            <li> 
+                                <ul class="sndul_list_help">
+                                    <li>channels</li>
+                                    <li>others’ entries</li>
+                                    <li>hotels</li>
+                                    <li>restaurants</li>
+                                </ul>
+                            </li>
+                            <li>A list of my Friends<li>
+                            <li>A list of people following me<li>
+                            <li>A list of people I am following<li>
+                            <li>A list of my Events (both those I created and those I joined)<li>
+                            <li>A list of my Channels<li>
+                            <li>A list of Channels I am following<li>
+                            <li>A list of my Channels’ Events<li>
+                            <li>Suggested Channels<li>
+                            <li>An interactive world map of my Visited Places<li>
+                            <li>Tourist Tuber Notifications-showing only you and according to settings you chose return actions-related to your activities<li>
+                        </ul>
+                        <h3 class="help_h3">Account Info</h3>
+                        <p class="faq_sub_header_title"><span class="underline">Personal Info:</span> You can edit your personal info including given names, gender, date of birth, address, picture, web address, comments, educational background, occupation, interests, etc.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Settings:</span> You can edit your Tourist Tube account settings including user name and password. You can also deactivate your account temporarily or delete it permanently. You can also choose to stop receiving emails from Tourist Tube.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Activities:</span> You can see a summary and history of your account activities, including joining date, number of friends, number of uploaded photos, videos,albums, journals and events as well as number of likes and comments received, and statistics on your network followings</p>
+                        <p class="faq_sub_header_title"><span class="underline">Notifications :</span> Add your email address to receive email notifications of your Tourist Tube account activities. You can choose to receive notifications by email and/or on your Tourist Tube page. As an example, Tourist Tube will automatically send you notifications for each of the checked events below:</p>
+                        <ul class="main_ul_list_help">
+                            <li>One of my uploads receives comments or likes<li> 
+                            <li>I receive a friend invitation from another Tuber<li> 
+                            <li>Someone added me as a friend<li> 
+                            <li>Someone follows me<li> 
+                            <li>Someone replies to my comment<li> 
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Invitations :</span> You can send up to 50 invitations to join Tourist Tube just by filling the names and emails of your friends and acquaintances</p>
+                        <p class="faq_sub_header_title"><span class="underline">Sharing :</span> If you wish to share your Tourist Tube posts with your other social networking platforms, you can easily set up a connection between Tourist Tube and your selected platforms, including Facebook, Google+, Twitter and Yahoo. </p>
+                        <p class="faq_sub_header_title"><span class="underline">Privacy Settings :</span> Tourist Tube assigns permissions to people contacting you and to people acting on your activities. </p>
+                        <p class="faq_sub_header_title"><span class="underline">Contact privacy:</span> Who can look me up? </p>
+                        <ul class="main_ul_list_help">
+                            <li>Public<li>  
+                            <li>Friends<li>  
+                            <li>Custom List<li>  
+                            <li>Private<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">My profile appears in search engines</p>
+                        <ul class="main_ul_list_help">
+                            <li>Switch on / off<li>  
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Block users :</span> Once you block someone, they can no longer interact with you or be your friend on Tourist Tube </p>
+                        <ul class="main_ul_list_help">
+                            <li>Add users to your block list<li>  
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Contact privacy</span></p> 
+                        <p class="faq_sub_header_title">Allow on my TT page</p> 
+                        <ul class="main_ul_list_help">
+                            <li>Likes and rates<li>  
+                            <li>Shares and comments<li>  
+                            <li> Posts<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Show on my TT page</p> 
+                        <ul class="main_ul_list_help">
+                            <li>Channels I created<li>   
+                            <li>My Channels’ events<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Events’ privacy </p> 
+                        <ul class="main_ul_list_help">
+                            <li>Enable shares and comments<li>   
+                            <li>Allow guests to invite<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Who can see? </p> 
+                        <ul class="main_ul_list_help">
+                            <li>My friends list <li>   
+                            <li>A list of my Friends<li>  
+                            <li>A list of people following me<li>  
+                            <li>A list of people I am following<li>  
+                            <li> My Visited Places<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">From the following: </p> 
+                        <ul class="main_ul_list_help">
+                            <li>Public<li>  
+                            <li>Friends<li>  
+                            <li>Custom List<li>  
+                            <li>Private<li> 
+                        </ul>
+                        <h3 class="help_h3">Friends</h3>
+                        <p class="faq_sub_header_title">You can search for, see all your friends on Tourist Tube, and get in contact with them. Tubers with similar interests are also suggested for you to contact.</p>
+                        <h3 class="help_h3">News Feeds</h3>
+                        <p class="faq_sub_header_title">This page shows you only activities of Tourist Tube users you are interested in according to the privacy settings they set. These users can be: </p>
+                        <ul class="main_ul_list_help">
+                            <li>Your friends<li>  
+                            <li>People you follow<li>  
+                            <li>Channels you follow<li>  
+                            <li>All of the above<li> 
+                        </ul>
+                        <p class="faq_sub_header_title">These activities can be filtered according to where they occurred such as on:</p>
+                        <ul class="main_ul_list_help">
+                            <li>TT Pages<li>  
+                            <li>Channels<li>  
+                            <li>Hotels Pages<li>  
+                            <li>Restaurants Pages<li> 
+                            <li>TT Planner<li> 
+                        </ul>
+                        <h3 class="help_h3">Photos</h3>
+                        <p class="faq_sub_header_title">This is an organizer to find and / or upload your photos </p>
+                        <h3 class="help_h3">Videos</h3>
+                        <p class="faq_sub_header_title">This is an organizer to find and / or upload your videos. </p>
+                        <h3 class="help_h3">Albums</h3>
+                        <p class="faq_sub_header_title">This is an organizer to create, edit and publish your albums. Albums can contain equally photos and videos. You can add word and place tags to your albums upon publishing to improve Search Engines visibility.  </p>
+                        <h3 class="help_h3">Events</h3>
+                        <p class="faq_sub_header_title">This is an organizer to create, edit and publish your events. You can set your event viewing privacy; you can also show your event’s guests list, allow your guests to invite others and enable shares and comments on the event. </p>
+                        <h3 class="help_h3">Journals</h3>
+                        <p class="faq_sub_header_title">This is an organizer to create, edit and publish your journals. Journals can contain photos and text comments or entries. Journals can be published online to pdf format. You can add word and place tags to your journals upon publishing to improve Search Engines visibility.  </p>
+                        <h3 class="help_h3">Favorites</h3>
+                        <p class="faq_sub_header_title">This is an organizer to find and save your favorite TT photos, videos, albums, and journals </p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Features<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Tourist Channels</h3>
+                        <p class="faq_sub_header_title">Channels are set up by users for a variety of reasons, mainly to reflect a more professional status for individuals or a commercial or official status for organizations. Features available to channels are more extensive and business-oriented than those available to regular users.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Channel Setup:</span> You can setup a channel as a new user or as a regular user. Regular users can set up as many channels as they wish. If you wish to use for your channel an email already associated with an existing account, you are given the opportunity to claim this email for your channel. All created channels are public</p>
+                        <p class="faq_sub_header_title">Once you fill up the fields required for basic channel setup, an activation email will be sent to you. Upon activation, you will be directed to the channel’s owner page where the following customizations can be made:</p>
+                        <p class="faq_sub_header_title"><span class="underline">Quick Customization</span></p>
+                        <ul class="main_ul_list_help">
+                            <li>Choose a channel cover photo<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Select photo from file on your computer or drag and drop photo here</p>
+                        <p class="faq_sub_header_title">Adjust the crop | Insert link on the cover photo</p>
+                        <p class="faq_sub_header_title">Set as cover photo | cancel (TT cover design is displayed by default)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Choose a profile photo<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Select photo from file on your computer or drag and drop photo here</p>
+                        <p class="faq_sub_header_title">Adjust the crop</p>
+                        <p class="faq_sub_header_title">Set as cover photo | cancel (TT profile design is displayed by default)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Add a slogan or a welcome text<li>   
+                            <li>Add some text about your channel <li>   
+                            <li>Edit | Show channel’sname<li>   
+                            <li>Add customized links (+) to add more than one link<li>   
+                            <li>Add social links (from list: Facebook, Twitter, Google +) |(+) to add more than one social network<li>   
+                            <li>Edit | Show created on<li>   
+                            <li>Edit | Show created by<li>   
+                            <li>Edit channel’s category<li>   
+                            <li>Edit | Show location:Country; City; Street; Zip code; Tel. <li>   
+                            <li> Edit URL: Create a unique TT channel URL on Tourist Tube for people to find you<li>   
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Full Customization:</span> As a channel’s owner, clicking on the settings button in the channel’s page will direct you to a full customization menu with the following fields:</p>
+                        <p class="faq_sub_header_title"><span class="underline">Account Info:</span> Edit owner’s name; password; email</p>
+                        <p class="faq_sub_header_title"><span class="underline">Channel’s info</span></p>
+                        <ul class="main_ul_list_help">
+                            <li>Edit | Show channel’sname<li> 
+                            <li>Edit | Show created on<li> 
+                            <li>Edit | Show created by<li> 
+                            <li>Edit channel’s category<li> 
+                            <li>Edit | Show location:Country; City; Street; Zip code; Tel.<li> 
+                            <li>Edit URL: Create a unique TT channel URL on Tourist Tube for people to find you<li> 
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Channel’s page</span></p>
+                        <ul class="main_ul_list_help">
+                            <li> Choose a channel cover photo<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Select photo from file on your computer or drag and drop photo here</p>
+                        <p class="faq_sub_header_title">Adjust the crop</p>
+                        <p class="faq_sub_header_title">Set as cover photo | cancel (TT profile design is displayed by default)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Choose a profile photo<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Select photo from file on your computer or drag and drop photo here</p>
+                        <p class="faq_sub_header_title">Adjust the crop</p>
+                        <p class="faq_sub_header_title">Set as cover photo | cancel (TT profile design is displayed by default)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Choose a background<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Select photo from file on your computer or drag and drop photo here.</p>
+                        <p class="faq_sub_header_title">Recommended size (1920*1080) </p>
+                        <p class="faq_sub_header_title">Adjust the crop| color palette </p>
+                        <p class="faq_sub_header_title">Set as background | cancel(the background is white by default)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Add a slogan or a welcome text<li>
+                            <li>Add some text about your channel <li>
+                            <li>Manage customized links (add | edit | remove)<li>
+                            <li>Manage social links (add | edit | remove) (from list: Facebook, Twitter, Google +) <li>
+                            <li>Add Keywords<li>
+                            <li>Manage your other TT channels (add | edit | remove) <li>
+                            <li>Add other TT channels (Name | URL (error message: this channel does not exist, please make
+                                sure you insert a correct name and URL) <li>
+                            <li>Add events:A form will open here to insert: The event name |cover photo | description | location
+                                | date (from - to) and time | who can join: only connections or everyone Invitations: Guests can
+                                invite | Hide my guests list (+) to add more events <li>
+                            <li>Add news (+) to add more news <li>
+                            <li>Manage your news (add | edit | remove)<li>
+                            <li>Invite people to connect with your channel <li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Channel feeds:</span> You can also choose to show for your channel feeds your activities each time you: </p>
+                        <ul class="main_ul_list_help">
+                            <li>upload (photos, videos, albums, brochures)<li>
+                            <li>add posts<li>
+                            <li>add news<li>
+                            <li>connect to other channels<li>
+                            <li>follow tourist tubers<li>
+                            <li>update my profile, cover, background<li>
+                            <li>like, comment, rate, and share <li>
+                            <li>create a new channel <li>
+                            <li>create an event<li>
+                            <li>join an event<li>
+                        </ul>
+                        <p class="faq_sub_header_title">You can also choose to show for your channel feeds activities of users connected to your channel each time someone: </p>
+                        <ul class="main_ul_list_help">
+                            <li>connected to your channel<li>
+                            <li>likes, rates, comments, shares, and replies to comments on your channel <li>
+                            <li>joins your channel’s events <li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Email Notification:</span> Notifications will be delivered to an email address you choose. You can change the email address associated with your channel̶ any notifications and messages that you have selected to receive via email will be sent to this email address, after you verify it. </p>
+                        <p class="faq_sub_header_title">Email notifications can be set when a different channel: </p>
+                        <ul class="main_ul_list_help">
+                            <li>sponsors your channel<li>
+                            <li>sponsors your event<li>
+                            <li>cancels an event you are sponsoring <li>
+                        </ul>
+                        <p class="faq_sub_header_title">And also when someone has: </p>
+                        <ul class="main_ul_list_help">
+                            <li>connected to your channel<li>
+                            <li>accepted your invitation to connect to your channel<li>
+                            <li>invited people to your channel<li>
+                            <li>commented on your channel’s content<li>
+                            <li>liked your channel’s content<li>
+                            <li>shared your channel’s content<li>
+                            <li>rated your photos (or videos, or albums)<li>
+                            <li>replied to your comments<li>
+                            <li>shared your channel page<li>
+                            <li>reported a tuber from your connections<li>
+                            <li>joined your event<li>
+                            <li>commented on your events<li>
+                            <li>liked your event<li>
+                            <li>shared your event<li>
+                            <li>accepted your invitation to join your event<li>
+                        </ul>
+                        <p class="faq_sub_header_title">And also about:</p>
+                        <ul class="main_ul_list_help">
+                            <li>what’s new on Tourist Tube channels<li>
+                            <li>photo and video of the day (posted by tuber or channel)<li>
+                            <li>updates from channels you’re connected to<li>
+                        </ul>
+                        <p class="faq_sub_header_title">OR</p>
+                        <ul class="main_ul_list_help">
+                            <li>sponsoring your channel<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline"><b>Privacy:</b></span> Channels are public, anyone can connect. However you can allow on your channel </p>
+                        <ul class="main_ul_list_help">
+                            <li>sponsoring your channel<li>
+                            <li>sharing your channel page<li>
+                            <li>invitations to your channel<li>
+                            <li>likes; comments; shares; rates on all or selected content(photos; videos; albums; news;
+                                posts; brochures)<li>
+                        </ul>
+                        <p class="faq_sub_header_title">You can also control what to show on your channel:</p>
+                        <ul class="main_ul_list_help">
+                            {#<li>My Channel Log<li>#}
+                            <li>Channels I’m sponsoring <li>
+                            <li>Other channels I created<li>
+                            <li>Events I’m sponsoring <li>
+                            <li>Most active channels<li>
+                            <li>Most active tubers<li>
+                        </ul>
+                        <p class="faq_sub_header_title">You can setup who can see your connections and /or your channel’s Log:</p>
+                        <ul class="main_ul_list_help">
+                            <li>Public<li>
+                            <li>Custom<li>
+                            <li>Connection<li>
+                            <li>Private<li>
+                            <li>Sponsors<li>
+                        </ul>
+                        <p class="faq_sub_header_title">You can also set your channel’s events privacy:</p>
+                        <ul class="main_ul_list_help">
+                            <li>Who can join? (Everyone; Connections; Custom)<li>
+                            <li>Show my events’ sponsors<li>
+                            <li>Allow sponsoring my event<li>
+                            <li>Enable shares and comments<li>
+                            <li>Allow guests to invite<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline"><b>Delete Channel:</b></span> Before you delete your channel, it is important to know that: </p>
+                        <ul class="main_ul_list_help">
+                            <li>Deleting your channel is permanent.<li>
+                            <li>By deleting your channel, you will permanently delete your entire profile, content and uploads
+                                and you will not be able to retrieve them again.<li>
+                            <li>Links to other social networks or websites will also be deleted.<li>
+                            <li>No one will find you again on Tourist Tube channels.<li>
+                            <li>Your channel will be deleted from Tourist Tube, but some information may still be visible in others
+                                connections’ list.<li>
+                        </ul>
+                        <p class="faq_sub_header_title">You may also choose to tell us why you deleted your channel:</p>
+                        <ul class="main_ul_list_help">
+                            <li>TT channels are complicated to use (click here to get assistance); will go to the help <li>
+                            <li>I have another TT channel<li>
+                            <li>Too many emails from TT (click here to manage the emails you receive from TT); will go to the
+                                email notifications<li>
+                            <li>I want to sign in using another account (click here to modify your account info); will go to
+                                account info<li>
+                            <li>I don’t find TT channels interesting (click here to know more about channels usefulness or try to
+                                connect to other active channels or Tourist Tubers); will go to the help<li>
+                            <li>Report an issue (subject • description box) Bottom of Form<li>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">How to report<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Security Issues</h3>
+                        <p class="faq_sub_header_title">To report security / hacking issues on the site, please contact us at <span class="afaqMainStyle"><a href="mailto:security@touristtube.com" class="afaqMainStyle" title="{{ 'security@touristtube.com' }}">security@touristtube.com</a></span></p>
+                        <h3 class="help_h3">Inappropriate Content</h3>
+                        <p class="faq_sub_header_title">To report any inappropriate content on the site, please contact us at <span class="afaqMainStyle"><a href="mailto:abuse@touristtube.com" class="afaqMainStyle" title="{{ 'abuse@touristtube.com' }}">abuse@touristtube.com</a></span></p>
+                        <h3 class="help_h3">Violation of copyright</h3>
+                        <p class="faq_sub_header_title">To report any Violation of  copyright on the site, please contact us at <span class="afaqMainStyle"><a href="mailto:copyright@touristtube.com" class="afaqMainStyle" title="{{ 'copyright@touristtube.com' }}">copyright@touristtube.com</a></span></p>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

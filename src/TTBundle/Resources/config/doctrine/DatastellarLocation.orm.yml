@@ -1,0 +1,51 @@
+TTBundle\Entity\DatastellarLocation:
+    type: entity
+    table: datastellar_location
+    indexes:
+        slug:
+            columns:
+                - slug
+        location_type_id:
+            columns:
+                - location_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        locationTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: location_type_id
+        latitude:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        longitude:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

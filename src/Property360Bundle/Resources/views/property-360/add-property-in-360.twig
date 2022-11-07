@@ -1,0 +1,83 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/property-360/css/add-property-in-360.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/property-360/js/add-property-in-360.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container commun_container_360">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin margin_top_20 margin_bottom_20">
+                            <div class="col-xs-12 nopad">
+                                <h1 class="search_title padding_left_0"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Get your property in 360°'|trans}}</h1>
+                            </div>
+                        </div>
+                        <div class="row no-margin bordered_row"></div>
+                    </div>
+                </div>
+		<form id="get_property_360_form" method="post" action="" autocomplete="off">
+		    <div class="row commun_small_row_margin">
+			<div class="col-xs-12 commun_small_col_padding margin_top_50 margin_bottom_30">
+			    <h2 class="commun_title_h2">{{'Contact details'|trans}}</h2>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+			    <label class="input_label">{{'Contact name'|trans}}*</label>
+			    <input placeholder="{{'Full name'|trans}}" class="commun_input_style" name="contact_name" type="text" autocomplete="off" maxlength="50"value="{{contact_name|raw}}">
+
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+			    <label class="input_label">{{'Email'|trans}}*</label>
+			    <input placeholder="{{'Email address'|trans}}" class="commun_input_style" name="email" type="text" autocomplete="off" maxlength="100" value="{{email|raw}}">
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+			    <label class="input_label">{{'Phone country code'|trans}}*</label>
+			    <select name="dialing_code" class="commun_select_style">
+				<option value="" data-code="">{{'Select country code'|trans}}</option>
+				{% for item in countries_dialing_codes %}
+				    <option value="{{item.dialing_code}}"{% if item.code == country %} selected="selected"{% endif %} data-code="{{item.iso3}}">{{item.name}} ({{item.dialing_code}})</option>
+				{% endfor %}
+			    </select>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12 commun_small_col_padding">
+			    <label class="input_label">{{'Phone'|trans}}*</label>
+			    <input placeholder="{{'Phone number'|trans}}" class="commun_input_style" name="phone" type="text" autocomplete="off" onkeypress="return isPhoneNumeric(event)" maxlength="20" value="{{phone|raw}}">
+			</div>
+		    </div>
+		    <div class="row commun_small_row_margin">
+			<div class="col-xs-12 commun_small_col_padding margin_top_50 property_info_container">
+			    <h2 class="commun_title_h2 float-left">{{'Property info'|trans}}</h2>
+			    <button class="btn btn-remove-add_property btn_add_property" type="button">+</button>
+			</div>
+			<div class="property_container">
+			    {% include '@Property360/property-360/property_add.twig' %}
+			</div>
+		    </div>
+		    <div class="row no-margin margin_top_50">
+			<div class="col-md-9 col-sm-6 col-xs-12 nopad">
+			    <label class="textarea_label">{{'Please send us your queries, if any'|trans}}</label>
+			    <textarea name="msg" class="commun_textarea" placeholder="{{'Text goes here (max 300 characters)'|trans}}" maxlength="300">{{msg|raw}}</textarea>
+			</div>
+		    </div>
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <button type="button" class="yellow_commun_but req_360_send_message_btn">{{'Send message'|trans}}</button>
+			</div>
+		    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script id="property_add_template" type="text/template">
+	{% set property_name = '' %}
+	{% set country = '' %}
+	{% set city = '' %}
+	{% set city_id = 0 %}
+	{% set rating_value = 0 %}
+        {% include '@Property360/property-360/property_add.twig' %}
+    </script>
+{% endblock %}

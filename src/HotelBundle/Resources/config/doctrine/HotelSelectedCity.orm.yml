@@ -1,0 +1,84 @@
+HotelBundle\Entity\HotelSelectedCity:
+    type: entity
+    table: hotel_selected_city
+    repositoryClass: HotelBundle\Repository\HRSRepository
+
+    indexes:
+        city_id:
+            columns:
+                - city_id
+        published:
+            columns:
+                - published
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        countryCode:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: true
+            column: country_code
+        cityId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        locationId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: location_id
+        image:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        imagesPath:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: images_path
+        avgStars3:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: avg_stars3
+        avgStars4:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: avg_stars4
+        avgStars5:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: avg_stars5
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

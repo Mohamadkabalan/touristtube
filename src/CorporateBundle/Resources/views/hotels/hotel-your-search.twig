@@ -1,0 +1,62 @@
+<div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-12 smalcentered_p bordered_div ">
+	    <p><span>{{ 'Destination'|trans }}</span><br>
+		{% if pageName == "hotel-details" %}
+		    {{  hotelDetails.name }}
+		{% endif %}
+		{% if pageName == "hotel-booking-results" %}
+		    {{ input.city.name }}
+		{% endif %}
+	    </p>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 bordered_div centeredText">
+	    <p><span>{{ 'Check-in'|trans }}</span><br>{{ input.fromDate }}</p>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 bordered_div no_left_border_small centeredText">
+	    <p><span>{{ 'Check-out'|trans }}</span><br>{{ input.toDate }}</p>
+	</div>
+    </div>
+</div>
+<div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="row centered_divs">
+	<div class="col-md-4 col-sm-6 col-xs-12 bordered_div">
+	    {% set roomsTxt = [] %}
+
+	    {% if input.singleRooms > 0 %}
+		{% set roomsTxt = roomsTxt|merge([input.singleRooms ~ ' Single']) %}
+	    {% endif %}
+
+	    {% if input.doubleRooms > 0 %} 
+		{% set roomsTxt = roomsTxt|merge([input.doubleRooms ~ ' Double']) %}
+	    {% endif %}
+
+	    {% if roomsTxt|length > 0 %}
+		{% set roomsTxt = roomsTxt|join(', ') %}
+	    {% else %}
+		{% set roomsTxt = '' %}
+	    {% endif %}
+	    <p><span>{{ 'Room'|trans }}</span><br>  {{roomsTxt}} </p>
+	</div>
+	<div class="col-md-4 col-sm-6 col-xs-12 bordered_div">
+	    {% set showChildCount = false %}
+	    {% if input.childCount > 0 %}
+		{% set showChildCount = true %}
+	    {% endif %}
+
+	    <p>
+		<span>{{ 'Adults'|trans }}</span>
+		{% if not showChildCount %}<br/>{% else %}{{' '}}{% endif %} {{ input.adultCount }}
+
+		{% if showChildCount %}
+		    <br/>
+		    <span>{{ 'Children'|trans }}</span> {{ input.childCount }}
+		{%endif %}
+	    </p>
+	</div>
+	<div class="col-md-4 col-sm-12 col-xs-12  noborrdered_div centeredText">
+	    <button class="btn btn-info update_search_button">{{'Update your search'|trans}}</button>
+	</div>
+    </div>
+</div>
+

@@ -1,0 +1,52 @@
+<body>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="font-family: Arial; padding-left: 17px; padding-right: 17px; width:600px;">
+        <tbody>
+            {% include 'emails/header.twig' %}
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 19px;  color: black; margin-top: 7px; line-height: 22px; margin-bottom: 5px;">{{'Dear'|trans}} {{fullname|raw}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="12">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 14px;  color: black; margin-top: 0px; line-height: 20px; margin-bottom: 0px;">{{'Thanks for joining Tourist Tube Channels!'|trans}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 14px;  color: black; margin-top: 0px; line-height: 20px; margin-bottom: 0px;">{{"We're thrilled that you have joined our community and we are looking forward to help you build your Channel."|trans}}</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="12">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 14px;  color: black; margin-top: 0px; line-height: 20px; margin-bottom: 0px;">{{'Please click below to activate your Tourist Tube Channel'|trans}}</p>
+                    </td>
+                </tr>
+				<tr>
+                    <td>		
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>
+                                    <div style="width: 100%;text-align: center;">
+                                        <a href="{{link|raw}}" style="margin-top: 10px;background-color:#db3a69;border:none;border-radius:5px;color:#ffffff;display:inline-block;font-size:20px;line-height:50px;text-align:center;height: 50px;text-decoration:none;width:250px;-webkit-text-size-adjust:none;mso-hide:all;">{{'ACTIVATE'|trans}}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>               
+            {% include 'emails/footer.twig' %}
+        </tbody>
+    </table>
+</body>

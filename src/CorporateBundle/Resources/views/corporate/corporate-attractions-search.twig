@@ -1,0 +1,165 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme1.css")|raw }}"/>
+    {#<link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme2.css")|raw }}"/>#}
+    {#<link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme3.css")|raw }}"/>#}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-attraction-search.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-attraction-search.js")|raw }}"></script>
+{% endblock %}
+{% block body %} 
+    {% set page_menu_name = 'attractions' %}
+    <section class="container corporate_container1">
+        <div class="col-xs-12 nopad">
+            <div class="row rowspecialstyle">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 nopad leftmenuebackcolor_corp borderrightgrey_corpfl">
+                    {% include '@Corporate/corporate/corporate-leftmenu.twig' %}
+                    <div class="col-xs-12 nopad leftfiltergreybtop_att-search">
+                        <div class="col-xs-12">
+			    <p class="filtersearchgrey_attractionsearch">{{'filter results'|trans}}</p>
+			</div>
+                        <div class="col-xs-12">
+                            <div class="inputbox">
+                                <input type="text" name="" id="" class="form-control searchdest" placeholder="{{'Destinations'|trans}}">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 margin-but-15">
+                            <p class="prpp">{{'Price (per person)'|trans}}</p>
+                            <input id="ex8" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="5100" data-slider-step="10" data-slider-value="5000"/>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="inputbox">
+                                <select class="form-control selectstyle">
+                                    <option value="" selected>{{'Select holiday'|trans}}</option>
+                                    <option value="tea">{{'Tea'|trans}}</option>
+                                    <option value="coffee">{{'Coffee'|trans}}</option>
+                                    <option value="soda">{{'Soda'|trans}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="inputbox">
+                                <select class="form-control selectstyle">
+                                    <option value="" selected>{{'Number of days'|trans}}</option>
+                                    <option value="tea">{{'Tea'|trans}}</option>
+                                    <option value="coffee">{{'Coffee'|trans}}</option>
+                                    <option value="soda">{{'Soda'|trans}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-10 col-sm-8 col-xs-12 nopad contentbackcolor_corp">
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <h2 class="headerstyle_corp">{{'step2'|trans}} <span class="error_cnt_corporate"></span></h2>
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 nopad section9martop5">
+                                <div class="col-xs-12 nopad marbut20_d1">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 nopad padright5_deals1">
+                                        <div class="col-xs-12 nopad allgrey7back_deal1">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nopad">
+                                                <img alt="title" src="{{ generateMediaURL('/media/images/deals1/deals1im1.png') }}" class="bigdealimg_deals1">
+                                                <img alt="title" src="{{ generateMediaURL('/media/images/deals1/discdeals_deals1.png') }}" class="discountimg_deals1">
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 nopad">
+                                                <p class="dealsfirstblacktext_deal1">{{'Eiffel Tower 2nd Floor or Summit skip the line ticket'|trans}}
+                                                    {{'with a host'|trans}}</p>
+                                                <p class="dealsgreytext_deals1">{{'Save your precious time in Paris and pre-book your Skip-the-line'|trans}} 
+                                                    {{'Eiffel Tower ticket now! This prior...'|trans}}</p>
+                                                <div class="col-xs-12 nopad">
+                                                    <ul class="bluedealsul_deals1">
+                                                        <li class="dealslocimgback_deals1">{{'Paris, France'|trans}} </li><li>
+                                                        </li><li class="dealspipeblueimg"><img alt="title" src="{{ generateMediaURL('/media/images/deals1/dealsbluepipe.png') }}"></li><li>
+                                                        </li><li class="">{{'daily tour'|trans}}</li><li>
+                                                        </li><li class="dealspipeblueimg"><img alt="title" src="{{ generateMediaURL('/media/images/deals1/dealsbluepipe.png') }}"></li><li>
+                                                        </li><li class="">{{'available daily'|trans}}</li><li>
+                                                        </li></ul>
+                                                </div>
+                                                <div class="col-xs-12 nopad">
+                                                    <ul class="greendealsul_deals1">
+                                                        <li class="">{{'E-voucher accepted'|trans}}</li><li>
+                                                        </li><li class="greendealspipeimg"><img alt="title" src="{{ generateMediaURL('/media/images/deals1/deelsgreenpipe.png') }}"></li><li>
+                                                        </li><li class="">{{'Free cancellation'|trans}}</li><li>
+                                                        </li></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nopad padleft5_deals1">
+                                        <div class="secdivgreyback_deal1">
+                                            <p class="fphashed_d1">{{'From: US$ 43.38'|trans}}</p>
+                                            <p class="tonprice_d1">{{'From: US$ 41.21'|trans}}</p>
+                                            <p class="bestpricewizlogo_deals1">{{'Price guarantee'|trans}}</p>
+                                            <div class="col-xs-12 nopad">
+                                                <a class="lernmorebut_d1" href="#">{{'learn more'|trans}}</a>
+                                                <div class="addtobagcontainer_deals1">
+                                                    <a class="addtobagtextstyle" href="#">{{'Add to tour bag'|trans}} </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+
+                                <div class="col-xs-12 nopad marbut20_d1">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 nopad padright5_deals1">
+                                        <div class="col-xs-12 nopad allgrey7back_deal1">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nopad">
+                                                <img alt="title" src="{{ generateMediaURL('/media/images/deals1/deals1im1.png') }}" class="bigdealimg_deals1">
+                                                <img alt="title" src="{{ generateMediaURL('/media/images/deals1/discdeals_deals1.png') }}" class="discountimg_deals1">
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 nopad">
+                                                <p class="dealsfirstblacktext_deal1">{{'Eiffel Tower 2nd Floor or Summit skip the line ticket'|trans}} 
+                                                    {{'with a host'|trans}}</p>
+                                                <p class="dealsgreytext_deals1">{{'Save your precious time in Paris and pre-book your Skip-the-line'|trans}} 
+                                                    {{'Eiffel Tower ticket now! This prior...'|trans}}</p>
+                                                <div class="col-xs-12 nopad">
+                                                    <ul class="bluedealsul_deals1">
+                                                        <li class="dealslocimgback_deals1">{{'Paris, France'|trans}} </li><li>
+                                                        </li><li class="dealspipeblueimg"><img alt="title" src="{{ generateMediaURL('/media/images/deals1/dealsbluepipe.png') }}"></li><li>
+                                                        </li><li class="">{{'daily tour'|trans}}</li><li>
+                                                        </li><li class="dealspipeblueimg"><img alt="title" src="{{ generateMediaURL('/media/images/deals1/dealsbluepipe.png') }}"></li><li>
+                                                        </li><li class="">{{'available daily'|trans}}</li><li>
+                                                        </li></ul>
+                                                </div>
+                                                <div class="col-xs-12 nopad">
+                                                    <ul class="greendealsul_deals1">
+                                                        <li class="">{{'E-voucher accepted'|trans}}</li><li>
+                                                        </li><li class="greendealspipeimg"><img alt="title" src="{{ generateMediaURL('/media/images/deals1/deelsgreenpipe.png') }}"></li><li>
+                                                        </li><li class="">{{'Free cancellation'|trans}}</li><li>
+                                                        </li></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nopad padleft5_deals1">
+                                        <div class="secdivgreyback_deal1">
+                                            <p class="fphashed_d1">{{'From: US$ 43.38'|trans}}</p>
+                                            <p class="tonprice_d1">{{'From: US$ 41.21'|trans}}</p>
+                                            <p class="bestpricewizlogo_deals1">{{'Price guarantee'|trans}}</p>
+                                            <div class="col-xs-12 nopad">
+                                                <a class="lernmorebut_d1" href="#">{{'learn more'|trans}}</a>
+                                                <div class="addtobagcontainer_deals1">
+                                                    <a class="addtobagtextstyle" href="#">Add to tour bag'|trans}} </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

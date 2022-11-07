@@ -1,0 +1,50 @@
+parameters:
+    flights:
+        discount: 73.46
+        default_currency: 'USD'
+        currency_pcc: 'AED'
+        enable_cancelation: true
+        enable_refundable: true
+        vendors:
+            sabre:
+                id: 1
+                name: sabre
+                className: NewFlightBundle\vendors\sabre\Services\SoapApiCaller;
+                HTTP_TEST_URL: https://sws-crt.cert.havail.sabre.com
+                HTTP_TEST_USERNAME: 'NONE'
+                HTTP_TEST_PASSWORD: 'NONE'
+                HTTP_PROD_URL: https://webservices.havail.sabre.com
+                HTTP_PROD_USERNAME: 'NONE'
+                HTTP_PROD_PASSWORD: 'NONE'
+                HTTP_AUTH_METHOD: 'NONE'
+                TEST_MODE: true
+                PROJECTDOMAIN: DEFAULT
+                PROJECTPCC: '9J3H'
+                PROJECTIPCC_TEST: '02DH'
+                PROJECTIPCC_PROD: 'YV4I'
+                PROJECTPASSWORD_TEST: 'WS671891'
+                PROJECTPASSWORD_PROD: 'WS328537'
+                PROJECTUSERNAME_TEST: 302504
+                PROJECTUSERNAME_PROD: 141258
+                PARTY_ID_FROM: 'touristtube.com'
+                PARTY_ID_TO: 'webservices.sabre.com'
+                COMPANYNAME: 'TN'
+
+    SCM_SERVICE_HOST: 192.168.2.161,
+    SCM_SERVICE_PORT: 11111,
+    SCM_STATUS_SUCCESS: 0,
+    SCM_STATUS_ERROR: 1,
+    CONNECTION_TYPE_BFM: 1,
+    CONNECTION_TYPE_BOOKING: 2,
+    CONNECTION_TYPE_BFM: 1,
+    CONNECTION_TYPE_BOOKING: 2
+    METHOD_ONE_BY_ID: 'OneById'
+    METHOD_ONE_BY_YOUR_EMAIL: 'OneByYourEmail'
+    PRICE_PERCENT_MARGIN: 20
+    CHECK_AIRLINE_LOCATORS: FALSE
+    CHECK_FIRST_SEGMENT_ONLY: TRUE
+    FETCH_AIRLINE_LOCATORS: TRUE
+    PAUSE_BETWEEN_RETRIES_SECS: 10
+    TIME_LIMIT_MINS: 5
+    ATTEMPT_NUMBER: 5
+

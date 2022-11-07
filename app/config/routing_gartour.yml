@@ -1,0 +1,79 @@
+_staticData_locale:
+    host: "{_locale}.{domain}"
+    path: "/staticData"
+    defaults:  { _controller: TTBundle:Gartour:staticData, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+"
+
+_staticData:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/staticData"
+    defaults:  { _controller: TTBundle:Gartour:staticData, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_serviceList_locale:
+    host: "{_locale}.{domain}"
+    path: "/serviceList"
+    defaults:  { _controller: TTBundle:Gartour:serviceList, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+" 
+        
+_serviceList:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/serviceList"
+    defaults:  { _controller: TTBundle:Gartour:serviceList, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_serviceInfo_locale:
+    host: "{_locale}.{domain}"
+    path: "/serviceInfo"
+    defaults:  { _controller: TTBundle:Gartour:serviceInfo, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+" 
+        
+_serviceInfo:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/serviceInfo"
+    defaults:  { _controller: TTBundle:Gartour:serviceInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_pricesAvailability_locale:
+    host: "{_locale}.{domain}"
+    path: "/pricesAvailability"
+    defaults:  { _controller: TTBundle:Gartour:pricesAvailability, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+" 
+        
+_pricesAvailability:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/pricesAvailability"
+    defaults:  { _controller: TTBundle:Gartour:pricesAvailability, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ati_locale:
+    host: "{_locale}.{domain}"
+    path: "/ati"
+    defaults:  { _controller: TTBundle:Gartour:ati, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%" 
+        domain: "[^/]+" 
+         
+_ati:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/ati"
+    defaults:  { _controller: TTBundle:Gartour:ati, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

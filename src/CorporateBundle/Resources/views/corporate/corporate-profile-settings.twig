@@ -1,0 +1,206 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/cropperjs/cropper.css")|raw }}">
+{% endblock %}
+
+{% block pagenewjs %}
+<script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/cropperjs/cropper.js") }}"></script>
+<script type="text/javascript" src="{{ asset("/assets/uploads/js/tt-cropper.js") }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/corporate/corporate/js/corporate-profileSettings.js')|raw }}"></script>
+{% endblock %}
+{% block title %}
+{{'Profile settings'|trans}}
+{% endblock %}
+{% block body %}
+{% set defaultValues = {'p_id': 0, 'profile_empty_pic':1, 'p_fname': '', 'p_lname': '', 'p_mname': '', 'p_cityId': 0, 'p_countryId': 0, 'p_accountId': 0, 'p_address': '', 'p_mobile': '', 'p_phone1': '', 'p_phone2': '', 'p_email': '', 'p_passportNumber': '', 'p_passportExpiryDate': '', 'p_departmentId': 0, 'p_userId': 0, 'cityName': '', 'accountName': '', 'countryName': '', 'departmentName':'', 'userName': '', 'countryName':'', 'p_issueDate': '', 'p_profilePicture': '', 'p_image_path': '' } %}
+
+<script>
+	window.countryCode = '{{employee.countryCode|raw}}';
+</script>
+
+{% set employee = defaultValues|merge(employee) %}
+<a href="" id="picfancyboxbutton" rel="nofollow" class="hidden"></a>
+<section class="container corporate_common_new_container">
+	<form id="formId" method="POST" enctype="multipart/form-data"
+		action="{{ generateLangRoute(LanguageGet, '_corpo_employee_addSubmit') }}"
+	>
+		<input type="hidden" class="id" name="id" value="{{employee.p_id|raw}}"> <input type="hidden" class="type"
+			name="type" value="{{type|raw}}"
+		>
+		<div class="row no-margin">
+			<div class="col-xs-12 nopad">
+				<div class="row no-margin margin_top_20 margin_bottom_40">
+					<div class="col-xs-12 nopad">
+						<h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>
+							{{'Profile settings'|trans}}
+						</h1>
+					</div>
+				</div>
+				<div class="row no-margin bordered_row"></div>
+			</div>
+			<div class="col-xs-12 nopad">
+				<div class="row no-margin">
+					<div class="col-sm-4 col-xs-12 nopad" id="btnstan_account_about">
+						<div class="row no-margin">
+							<div class="col-xs-12 nopad margin_top_20" id="account_pic">
+							    <div class="cropperUpload" 
+								    data-title="{{'Update photo'|trans}}"
+								    data-image-url="{% if employee.profile_empty_pic == 1 %}{{ generateMediaURL('/media/images/tuber/change_img_logo.png') }}{% else %}{{employee.p_image_path~employee.p_profilePicture}}{% endif %}" 
+								    data-popup-title="{{'Crop the image'|trans}}" 
+								    data-cancel-label="{{'Cancel'|trans}}" 
+								    data-save-label="{{'Save'|trans}}" 
+								    data-aspect-ratio="1" 
+								    data-width="230"
+								    data-height="230"
+								    data-extra-form-data='{"channel_id":0,"which_uploader":"account_pic"}' 
+								    data-submit-url="{{generateLangURL(LanguageGet,'/ajax/image-crop-save')}}"
+							   ></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 nopad">
+				<div class="row no-margin">
+					<div class="col-xs-12 nopad">
+						<div class="row no-margin margin_top_40">
+							<div class="col-xs-12 nopad">
+								<p class="header_txt_common">
+									<span>2.</span>
+									{{'Update profile'|trans}}
+								</p>
+							</div>
+							<div class="col-xs-12 nopad">
+								<div class="row no-margin">
+									<div class="col-lg-9 col-xs-12 nopad">
+										<div class="row corporate_small_row_margin">
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="fnameL">{{'Contact first name'|trans}}*</label> <input id="fname"
+													placeholder="{{'Contact first name'|trans}}*" class="default_input" name="fname" autocomplete="off"
+													type="text" value="{{employee.p_fname|raw}}" required label="#fnameL"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label>{{'Contact middle name'|trans}}</label> <input id="" placeholder="{{'Contact middle name'|trans}}"
+													class="default_input" name="mname" autocomplete="off" type="text" value="{{employee.p_mname|raw}}"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="lnameL">{{'Contact last name'|trans}}*</label> <input id="lname"
+													placeholder="{{'Contact last name'|trans}}*" class="default_input" name="lname" autocomplete="off"
+													type="text" value="{{employee.p_lname|raw}}" required label="#lnameL"
+												>
+											</div>
+										</div>
+										<div class="row corporate_small_row_margin margin_top_30">
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="countryL">{{'Country'|trans}}*</label> <input class="default_input" type="text" id="country"
+													name="countryCode" data-value-id="{{employee.countryCode|raw}}" data-toggle="ttautocompleteCountry"
+													value="{{employee.countryName|raw}}" onDropDownSelect="onCountrySelected"
+													placeholder="{{'Search for country'|trans}}" required label="#countryL"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label>{{'City'|trans}}</label> <input class="default_input" type="text" id="cityName" name="cityId"
+													data-toggle="ttautocompleteCity" value="{{employee.cityName|raw}}"
+													data-value-id="{{employee.p_cityId|raw}}" placeholder="{{'Search for city'|trans}}"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label>{{'Address'|trans}}</label> <input id="addressId" placeholder="{{'Address'|trans}}"
+													class="default_input" name="address" autocomplete="off" type="text" value="{{employee.p_address|raw}}"
+												>
+											</div>
+										</div>
+										<div class="row corporate_small_row_margin margin_top_30">
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="accountL">{{'Account'|trans}}</label> <input id="" placeholder="{{'company name'|trans}}"
+													class="default_input required" id="accountName" name="accountId"
+													data-value-id="{{employee.p_accountId|raw}}" data-toggle="ttautocompleteAccount" type="text"
+													value="{{employee.accountName|raw}}" readonly="readonly" disabled label="#accountL"
+												>
+												{% if employee.p_userId %}
+												<input type="hidden" id="accountUserId" name="accountUserId" value="{{employee.p_userId|raw}}">
+												{% endif %}
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="emailL">{{'Email'|trans}}*</label> <input id="email" placeholder="{{'Email'|trans}}*"
+													class="default_input" name="email" autocomplete="off" type="text" value="{{employee.p_email|raw}}" required
+													label="#emailL"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="mobileL">{{'Mobile'|trans}}*</label> <input id="mobile" placeholder="{{'Mobile'|trans}}*"
+													onkeypress="return isPhoneNumeric(event)" class="default_input" name="mobile" autocomplete="off"
+													type="text" value="{{employee.p_mobile|raw}}" required label="#mobileL"
+												>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 nopad">
+				<div class="row no-margin">
+					<div class="col-xs-12 nopad">
+						<div class="row no-margin margin_top_40">
+							<div class="col-xs-12 nopad">
+								<p class="header_txt_common">
+									<span>3.</span>
+									{{'Passport details'|trans}}
+								</p>
+							</div>
+							<div class="col-xs-12 nopad">
+								<div class="row no-margin">
+									<div class="col-lg-9 col-xs-12 nopad">
+										<div class="row corporate_small_row_margin">
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="passportNumberL">{{'Passport number'|trans}}</label> <input id="passportNumber"
+													placeholder="{{'passport number'|trans}}" class="default_input" name="passportNumber" autocomplete="off"
+													type="text" value="{{employee.p_passportNumber|raw}}" required label="#passportNumberL"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="issueDateL">{{'Issue Date'|trans}}</label> <input id="issueDate"
+													placeholder="{{'issue date'|trans}}" class="default_input issueDate picker_single" name="issueDate"
+													data-toggle="daterangepicker" type="text" value="{{employee.p_issueDate|date('Y-m-d')}}"
+													readonly="readonly" required label="#issueDateL"
+												>
+											</div>
+											<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+												<label id="passportExpiryDateL">{{'Expiry Date'|trans}}</label> <input id="passportExpiryDate"
+													placeholder="{{'expiry date'|trans}}" class="default_input passportExpiryDate picker_single"
+													name="passportExpiryDate" data-toggle="daterangepicker2" type="text"
+													value="{{employee.p_passportExpiryDate|date('Y-m-d')}}" readonly="readonly" required
+													label="#passportExpiryDateL"
+												>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 nopad">
+				<div class="row no-margin margin_top_60">
+					<div class="col-lg-9 col-xs-12 nopad">
+						<div class="row corporate_small_row_margin">
+							<div class="col-sm-4 col-xs-12 corporate_small_col_padding">
+								<button id="" data-role="button" data-type="add" type="submit" class="btn submit_yellow">
+									{{'Submit'|trans}}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+{% endblock %}

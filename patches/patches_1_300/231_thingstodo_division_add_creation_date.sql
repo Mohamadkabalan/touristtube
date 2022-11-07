@@ -1,0 +1,2 @@
+
+ALTER TABLE thingstodo_division ADD COLUMN creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP();

@@ -1,0 +1,73 @@
+{# app/Resources/views/blog/index.html.twig #}
+<html>
+    {% block pagenewcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/bootstrap.min.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/fontello.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/normalize.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/style.css")|raw }}" >
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+    {% endblock %}
+    {% block pagenewjs %}
+	<script type="text/javascript" src="{{ asset("assets/payment/vendors/jquery.min.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("assets/payment/js/jquery.creditCardValidator.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("assets/payment/js/checkout.js")|raw }}"></script>
+    {% endblock %}
+    <header>
+	<div class="logo">
+	    <img src="assets/payment/img/logo.png" alt="">
+	</div>
+    </header>
+    <div class="wrapper">
+	{% block body %}
+	    {# empty Twig template #}
+    <section class="nav">
+        <ul>
+            <li class="lead" > Payment Method</li>
+            <li class="lead" > Pay</li>
+            <li class="active lead" > Done</li>
+        </ul>
+    </section>
+    <section class="confirmation">
+        <label class="success" for="" >Susccess</label>
+        <!-- <label class="failed" for="" >Failed</label> -->
+        <small>Thank You For Your Order</small>
+    </section>
+    <section class="order-confirmation">
+        <label for="" class="lead">Order ID : {{ fort_id }}</label>
+    </section>
+	<div class="h-seperator"></div>
+
+	<section class="details">
+	    <h3>Response Details</h3>
+	    <br/>
+	    <table>
+		<tr>
+		    <th>
+			Parameter Name
+		    </th>
+		    <th>
+			Parameter Value
+		    </th>
+		</tr>
+           
+		{% for key, response in response_details %}
+		    <tr>
+			<td>{{ key }}</td><td>{{ response }}</td>
+		    </tr>
+		{% endfor %}
+	    </table>
+	</section>
+ <div class="h-seperator"></div>
+            <section class="actions">
+                <a class="btm" href="/payment_view">New Order</a>
+            </section>
+	    
+	    {% endblock %}
+        </div>
+        <footer>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptatibus obcaecati eveniet id reiciendis eligendi
+        </footer>
+    </body>
+</html>

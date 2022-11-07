@@ -1,0 +1,23 @@
+TTBundle\Entity\CmsContinents:
+    type: entity
+    table: cms_continents
+    repositoryClass: TTBundle\Repository\CitiesRepository
+    id:
+        code:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+                comment: 'Continent code'
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

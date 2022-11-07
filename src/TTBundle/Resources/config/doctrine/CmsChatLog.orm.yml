@@ -1,0 +1,78 @@
+TTBundle\Entity\CmsChatLog:
+    type: entity
+    table: cms_chat_log
+    indexes:
+        from:
+            columns:
+                - from_user
+        to:
+            columns:
+                - to_user
+        msg_ts:
+            columns:
+                - msg_ts
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fromUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: from_user
+        toUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: to_user
+        msgTxt:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: msg_txt
+        msgTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: msg_ts
+        deliveredTs:
+            type: datetime
+            nullable: true
+            column: delivered_ts
+        clientTs:
+            type: datetime
+            nullable: true
+            column: client_ts
+        readTs:
+            type: datetime
+            nullable: true
+            column: read_ts
+        clientUid:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+            column: client_uid
+        fromTz:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: from_tz
+        viewed:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

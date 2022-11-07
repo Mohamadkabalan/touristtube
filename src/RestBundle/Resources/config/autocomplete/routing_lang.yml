@@ -1,0 +1,41 @@
+_rest_review_autocomplete_search_lang:
+    path: "/{_locale}/api/review/review-autocomplete"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:reviewAutocompleteSearch, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+        
+_rest_hotel_autocomplete_search_lang:
+    path: "/{_locale}/api/hotel/autocomplete"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:hotelAutocompleteSearch, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+        
+_rest_flight_autocomplete_search_lang:
+    path: "/{_locale}/api/flight/autocomplete"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:flightAutocompleteSearch, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_search_locality_lang:
+    path: "/{_locale}/api/search_locality"
+    defaults: { _controller: RestBundle:autocomplete\Autocomplete:searchLocality, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_search_thingstodo_lang:
+    path: "/{_locale}/api/thingstodo/autocomplete"
+    defaults:  { _controller: RestBundle:autocomplete\Autocomplete:searchThingsToDo, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_search_channel_lang:
+    path: "/{_locale}/api/channel/autocomplete"
+    defaults:  { _controller: RestBundle:autocomplete\Autocomplete:searchChannel, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET

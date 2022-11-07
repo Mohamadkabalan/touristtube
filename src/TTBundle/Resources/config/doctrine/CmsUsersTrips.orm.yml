@@ -1,0 +1,37 @@
+TTBundle\Entity\CmsUsersTrips:
+    type: entity
+    table: cms_users_trips
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        tripName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: trip_name
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+    lifecycleCallbacks: {  }

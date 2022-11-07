@@ -1,0 +1,47 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/tuber/css/tuber_commun.css")|raw }}" >
+{% endblock %}
+
+{% block body %}
+    <section class="container tuuber-container">
+        <div class="row">
+            <div class="col-xs-12">
+		{% set account_header_name = 'my channels'|trans %}
+                {% include "account/account-header.twig" %}
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 left_panel">
+                        <div class="row no-margin">
+                            {% include "account/account-menu.twig" %}
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+			{% for item in channel_list %}
+			    <div class="col-md-4 col-sm-6 col-xs-12 new_padding">
+				<a href="{{ item.link|raw }}" title="{{ item.namealt|raw }}">
+				    <img class="width-100" src="{{ item.img }}" alt="{{ item.namealt|raw }}" />
+				    <h2 class="subtitle_home_new">{{ item.name|raw }}{% if item.city !='' %} <span class="txtPink">| {{ item.city|raw }}</span>{% endif %}</h2>
+				</a>
+			    </div>
+			    {% if (loop.index%3)==0 %}
+				<div class="clearfix visible-lg visible-md"></div>
+			    {% endif %}		
+			    {% if (loop.index%2)==0 %}
+				<div class="clearfix visible-sm"></div>
+			    {% endif %}
+			{% endfor %}
+			
+			<div class="row new_margin margin-top-20">
+                            <div class="col-xs-12 small_margin">
+                                <div class="float-right pagerWrapper">
+                                    {{search_paging_output|raw}}
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+		</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

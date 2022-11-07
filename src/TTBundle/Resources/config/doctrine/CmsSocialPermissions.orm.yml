@@ -1,0 +1,45 @@
+TTBundle\Entity\CmsSocialPermissions:
+    type: entity
+    table: cms_social_permissions
+    indexes:
+        to_user:
+            columns:
+                - to_user
+    uniqueConstraints:
+        permission_index:
+            columns:
+                - from_user
+                - to_user
+                - perm_fk
+                - perm_type
+    id:
+        fromUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: from_user
+        toUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: to_user
+        permFk:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: perm_fk
+        permType:
+            type: string
+            nullable: false
+            length: null
+            options:
+                fixed: false
+            id: true
+            column: perm_type
+    lifecycleCallbacks: {  }

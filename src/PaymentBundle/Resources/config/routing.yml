@@ -1,0 +1,59 @@
+_paymentview:
+    path:      "/payment_view"
+    defaults: { _controller: PaymentBundle:Payment:paymentView, _locale: "%locale%"}
+        
+_payment_new:
+    path:      "/payment_new"
+    defaults: { _controller: PaymentBundle:Payment:paymentNew, _locale: "%locale%"}
+        
+_payment_capture:
+    path:      "/payment-capture"
+    defaults: { _controller: PaymentBundle:Payment:paymentCapture, _locale: "%locale%"}
+    
+_payment_refund:
+    path:      "/payment-refund"
+    defaults: { _controller: PaymentBundle:Payment:paymentRefund, _locale: "%locale%"}
+    
+_payment_voidhold:
+    path:      "/payment-voidhold"
+    defaults: { _controller: PaymentBundle:Payment:paymentVoidHold, _locale: "%locale%"}
+    
+_payment_tokeniser:
+    path:      "/payment-tokeniser"
+    defaults: { _controller: PaymentBundle:Payment:paymentTokeniser, _locale: "%locale%"}
+    
+_payment_MerchantPage:
+    path:      "/payment-MerchantPage"
+    defaults: { _controller: PaymentBundle:Payment:paymentMerchantPage, _locale: "%locale%"}
+    
+_payment_processRequest:
+    path:      "/payment-processRequest"
+    defaults: { _controller: PaymentBundle:Payment:paymentProcessCallback, _locale: "%locale%"}
+    
+_root_error:
+    path:      "/error"
+    defaults: { _controller: PaymentBundle:Payment:error, _locale: "%locale%"}
+    
+_root_success:
+    path:      "/success"
+    defaults: { _controller: PaymentBundle:Payment:success, _locale: "%locale%"}
+    
+_root_result:
+    path:      "/payment-result"
+    defaults: { _controller: PaymentBundle:Payment:result, _locale: "%locale%"}
+    
+_corpo_on_account_payment_process:
+    path:      "/payment-on-account"
+    defaults: { _controller: PaymentBundle:Payment:corpoOnAccount, _locale: "%locale%"}
+
+_payment_callback_url:
+    path:      "/payment-callback-url"
+    defaults: { _controller: PaymentBundle:Payment:callbackUrl, _locale: "%locale%"}
+
+_payment_call_back:
+    path:      "/payment-paytabs-callback"
+    defaults: { _controller: PaymentBundle:Payment:paymentGatewayCallback, _locale: "%locale%"}
+
+_payment_checkout_callback:
+    path:      "/payment-checkout-callback"
+    defaults: { _controller: PaymentBundle:Payment:paymentGatewayCheckoutCallback, _locale: "%locale%"}

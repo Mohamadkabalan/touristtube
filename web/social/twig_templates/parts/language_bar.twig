@@ -1,0 +1,27 @@
+<!-- language bar -->
+<div class="languageBar">
+    <!-- language bar Inside 
+    //use padding and margin auto to specify the exact position 
+    -->
+    <div class='languageBarInsideCon'>
+        <div class="languageBarInside">
+            <!-- recently viewed button -->
+            <div class="recentlyViewed">{{ recentlyViewed|raw }}</div>
+            <!--  / recently viewed button -->
+
+            <!-- Currency -->
+            <a href="{{ changeCurLink|raw }}" class="changeCurrencyFromBar"><div class="changeCurrencyBtn">{{ currentCurrency|raw }}</div></a>
+            <!--  / Currency -->
+
+            <!-- language -->
+            <div class="languageBlock">
+                <span>{{ language|raw }}</span>
+                <img src='{{ langIco|raw }}' alt='' />
+            </div>
+            <!--  / language -->
+
+        </div>
+    </div>
+    <!--  / language bar Inside -->
+</div>
+<!--  / language bar -->

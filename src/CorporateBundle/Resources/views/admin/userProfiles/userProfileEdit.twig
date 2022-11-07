@@ -1,0 +1,63 @@
+{% extends 'basecorporateFinal.html.twig' %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/treegrid/css/jquery.treegrid.css')|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/treegrid/js/jquery.treegrid.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-userProfileEdit.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-menuTreeEvent.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'User Profile Add/Edit'|trans}}
+{% endblock %}
+{% block body %}
+    <section class="container corporate_common_new_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'User Profile'|trans}} / <span class="add_edit">{{'add/edit'|trans}}</span></h1>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+            <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_user_profiles_addSubmit') }}">
+                <div class="col-lg-10 col-xs-12 nopad margin_top_40">
+                    <div class="row corporate_small_row_margin">
+                        <input type="hidden" class="id" name="id" value="{{(sectionData[0].id is defined ? sectionData[0].id|raw : '')}}">
+                        <input type="hidden" id="upName"  value="{{(sectionData[0].name is defined ? sectionData[0].name|raw : '')}}">
+                        <input type="hidden" id="upSlug"  value="{{(sectionData[0].slug is defined ? sectionData[0].slug|raw : '')}}">
+
+                        <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+                            <label id="nameLabel" class="form-check-label">{{'Name'|trans}}*</label>
+                            <input type="text" class="col-xs-12 required" id="name" name="name" value="{{(sectionData[0].name is defined ? sectionData[0].name|raw : '')}}" placeholder="{{'Name'|trans}}" required maxlength="100" label="#nameLabel">
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+                            <label id="titleLabel" class="form-check-label">{{'Section Title'|trans}}*</label>
+                            <input type="text" class="col-xs-12 required" name="sectionTitle" value="{{(sectionData[0].sectionTitle is defined ? sectionData[0].sectionTitle|raw : '')}}" placeholder="{{'Section Title'|trans}}" required maxlength="100" label="#titleLabel">
+                        </div>
+			            <div class="clearfix visible-sm"></div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+                            <label id="slugLabel" class="form-check-label">{{'Slug'|trans}}*</label>
+                            <input type="text" class="col-xs-12 required" id="slug" name="slug" value="{{(sectionData[0].slug is defined ? sectionData[0].slug|raw : '')}}" placeholder="{{'Slug'|trans}}" required maxlength="100" label="#slugLabel">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 corporate_small_col_padding lofaff">
+                            <label id="levelLabel" class="form-check-label">{{'Level'|trans}}*</label>
+                            <input type="number" class="col-xs-12 required" id="level" name="level" value="{{(sectionData[0].level is defined ? sectionData[0].level|raw : '')}}" placeholder="{{'Level'|trans}}" required maxlength="3" range="1,999" label="#levelLabel">
+                        </div>
+
+                        {% include '@Corporate/admin/menuTree/menuTree.twig' %} 
+
+                    </div>
+                    <div class="row corporate_small_row_margin">
+                        <div class="col-xs-12 corporate_small_col_padding margin_top_20">
+			                <a class="back_grey" href="{{ generateLangRoute(LanguageGet,'_corpo_user_profiles') }}" title="{{'Back'|trans}}">{{'Back'|trans}}</a>
+                            <button data-role="submit" data-type="validate" class="btn submit_yellow" id="submitBtn" type="submit">{{'Submit'|trans}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

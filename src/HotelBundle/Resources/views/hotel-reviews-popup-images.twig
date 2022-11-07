@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{{namealt|raw}}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/bootstrap/css/bootstrap.css")|raw }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/slick/css/slick.css")|raw }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/slick/css/slick-theme.css")|raw }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset("/assets/hotels/css/hotel-review-popup-images.css")|raw }}" >
+    </head>
+    <body id="body">
+        <div class="col-xs-12 bodyDataContent">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 floatRight reviewscontainerUp">
+		<div class="col-xs-12 reviewscontainer">
+		    <div id="myCarousel" class="carousel slide vertical" data-interval="4000" data-ride="carousel">
+			<div class="carousel-inner">
+			    {% for review_cat in trustyou.category_list %}
+				<div class="subtabgreydiv item{% if loop.index==1 %} active{% endif %}">
+				    <div class="col-xs-12 nopad">
+					<div class="imagecircletxtcont">
+					    <img class="greycircle_hoteldetailed" src="{{ generateMediaURL('/media/images/greycircle_hoteldetailed.png') }}" alt="{{'grey circle'|trans}}"/>
+					    <p class="textingreycircle">{{review_cat.score}}</p>
+					</div>
+					<p class="nextcircletext">"{{review_cat.short_text}}"</p>
+				    </div>
+				    <p class="greynormalreviewtext">
+					{% for summary in review_cat.summary_sentence_list%}
+					    {{summary.text ~ ' '}}
+					{% endfor %}
+				    </p>
+				</div>
+			    {% endfor %}
+			</div>
+		    </div>
+		</div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 floatRight imagescontainer">
+                <div class="col-xs-12 fpadtop slider-for">
+                    {% for image in imagesdetails %}
+                        <div style="background-image: url('{{image[1]}}');" class=""></div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-xs-12 slider-nav hidden-xs">
+                {% for image in imagesdetails %}
+                    <div class="mediathumb">
+                        <div class="mediathumbinside{% if image.id==picid %} mediathumbinsideActive{% endif %}">
+                            <div class="mediathumbcontainer"><img src="{{image[0]}}" alt="{{namealt|raw}}"/></div>
+                            <div class="mediathumbbk"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <footer>
+            <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/dist/jquery-1.9.1.min.js")|raw }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js")|raw }}"></script>
+	    <script type="text/javascript" src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+	    <script type="text/javascript" src="{{ path('bazinga_jstranslation_js', { 'domain': 'client' }) }}?locales={{ app.request.locale|split('_')[0] }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/common/js/utils.js")|raw }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/vendor/bootstrap/js/bootstrap.js")|raw }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/common/js/slick.min.js")|raw }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/hotels/js/hotel-reviews-popup-images.js")|raw }}"></script>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,305 @@
+_rest_get_user_error_lang:
+    path:      "/{_locale}/api/users/get-error"
+    defaults: { _controller: RestBundle:users\Users:getUserError, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_rest_get_user_lang:
+    path:      "/{_locale}/api/users/get"
+    defaults: { _controller: RestBundle:users\Users:getUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_cget_lang:
+    path:      "/{_locale}/api/users/cget"
+    defaults: { _controller: RestBundle:users\Users:cget, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_cpost_lang:
+    path:      "/{_locale}/api/users/cpost"
+    defaults: { _controller: RestBundle:users\Users:cpost, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_cput_lang:
+    path:      "/{_locale}/api/users/cput"
+    defaults: { _controller: RestBundle:users\Users:cput, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: PUT
+
+_rest_cdelete_lang:
+    path:      "/{_locale}/api/users/cdelete-{id}"
+    defaults: { _controller: RestBundle:users\Users:cdelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: DELETE
+
+_rest_view_lang:
+    path:      "/{_locale}/api/users/cview"
+    defaults: { _controller: RestBundle:users\Users:viewUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_rest_serializer_lang:
+    path:      "/{_locale}/api/users/serializer"
+    defaults: { _controller: RestBundle:users\Users:serializer, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_get_user_menus_lang:
+    path:      "/{_locale}/api/users/menus/{userId}"
+    defaults: { _controller: RestBundle:users\Users:getUserMenus, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_corporate_signin_lang:
+    path:      "/{_locale}/api/corporate/users/sign-in"
+    defaults: { _controller: RestBundle:users\Users:corporateSignin, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_users_signin_lang:
+    path:      "/{_locale}/api/users/sign-in"
+    defaults: { _controller: RestBundle:users\Users:usersSignIn, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_facebook_users_signin_lang:
+    path:      "/{_locale}/api/users/facebook/sign-in"
+    defaults: { _controller: RestBundle:users\Users:facebookSignIn, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_corporate_signout_lang:
+    path:      "/{_locale}/api/corporate/users/sign-out"
+    defaults: { _controller: RestBundle:users\Users:corporateSignout, _locale: "%locale%", domain: "%domain%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_users_signout_lang:
+    path:      "/{_locale}/api/users/sign-out"
+    defaults: { _controller: RestBundle:users\Users:usersSignOut, _locale: "%locale%", domain: "%domain%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_update_password_lang:
+    path:      "/{_locale}/api/users/update-password"
+    defaults: { _controller: RestBundle:users\Users:updatePassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: PUT
+
+_rest_reset_password_lang:
+    path:      "/{_locale}/api/users/reset-password"
+    defaults: { _controller: RestBundle:users\Users:resetPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_tell_us_lang:
+    path:      "/{_locale}/api/users/tell-us/{key}"
+    defaults: { _controller: RestBundle:users\Users:tellUs, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_forgot_password_lang:
+    path:      "/{_locale}/api/users/forgot-password/{key}"
+    defaults: { _controller: RestBundle:users\Users:forgotPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_activate_account_lang:
+    path:      "/{_locale}/api/users/activate/{key}"
+    defaults: { _controller: RestBundle:users\Users:activate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: PUT
+
+_rest_modify_user_lang:
+    path:      "/{_locale}/api/users/{userId}"
+    defaults: { _controller: RestBundle:users\Users:modify, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: PUT
+
+_rest_get_user_info_lang:
+    path:      "/{_locale}/api/users/{userId}"
+    defaults: { _controller: RestBundle:users\Users:getUserInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_delete_user_lang:
+    path:      "/{_locale}/api/users/{userId}"
+    defaults: { _controller: RestBundle:users\Users:deleteUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: DELETE
+
+_rest_register_lang:
+    path:      "/{_locale}/api/users"
+    defaults: { _controller: RestBundle:users\Users:register, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+
+_rest_get_profile_settings_lang:
+    path:      "/{_locale}/api/corporate/users/profile/{userId}/{accountId}"
+    defaults: { _controller: RestBundle:users\Users:getProfileSettings, _locale: "%locale%", accountId: 0, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_update_profile_settings_lang:
+    path:      "/{_locale}/api/corporate/users/profile/update/{userId}/{accountId}"
+    defaults: { _controller: RestBundle:users\Users:updateProfileSettings, _locale: "%locale%", accountId: 0, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST
+        
+_rest_update_profile_settings_avatar_lang:
+    path:      "/{_locale}/api/corporate/users/update-avatar/{userId}"
+    defaults: { _controller: RestBundle:users\Users:updateProfileSettingsAvatar, _locale: "%locale%", userId: 0, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        methods: POST
+
+_rest_account_register_lang:
+    path: "/{_locale}/api/account/register"
+    defaults: { _controller: RestBundle:users\Users:accountRegister, _locale: "%locale%", domain: "%domain%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_profile_account_info_lang:
+    path: "/{_locale}/api/profile/account/info"
+    defaults: { _controller: RestBundle:users\Users:accountInfo, _locale: "%locale%", domain: "%domain%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_profile_account_update_info_lang:
+    path: "/{_locale}/api/profile/account/update/info"
+    defaults: { _controller: RestBundle:users\Users:updateAccountInfo, _locale: "%locale%", domain: "%domain%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_upload_image_save_lang:
+    path: "/{_locale}/api/upload/image-save"
+    defaults: { _controller: RestBundle:users\Users:uploadImageSave, _locale: "%locale%", domain: "%domain%" }
+    requirements: 
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        methods: POST

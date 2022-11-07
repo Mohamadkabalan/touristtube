@@ -1,0 +1,108 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block body %}
+    <a href="" id="picfancyboxbutton" rel="nofollow" class="hidden"></a>
+    <section class="container channels_container">
+	{% if category_list|length > 0 %}
+	    <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+		<div class="container-fluid nopad filters-group">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+			    {{'Categories'|trans}}
+			</button>
+		    </div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+			<div class="row no-margin">
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin margin_bottom_20">
+				    <div class="col-xs-12 nopad">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<ul class="list_left_menue_ainfo">
+						    {% for item in category_list %}
+							<li class="col-md-12 col-sm-4 col-xs-6 categoryli{% if item.id==categoryid %} active{% endif %}"><a href="{{ item.link|raw }}" title="{{item.titlealt|raw}}">{{item.title|raw}}</a></li>
+						    {% endfor %}
+						</ul>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			    <!-- /.navbar-collapse -->
+			</div>
+		    </div>
+		</div>
+		<!-- /.container-fluid -->
+	    </nav>
+	{% endif %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Channels'|trans}}{% if realname!='' %} | <span>{{realname|raw}}</span> {% endif %}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 left_panel left_panel hidden-sm hidden-xs">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_bottom_20">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="leftmenue_subtitles">{{'Categories'|trans}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <ul class="list_left_menue_ainfo">
+                                                    {% for item in category_list %}
+                                                        <li class="col-md-12 col-sm-4 col-xs-6 categoryli{% if item.id==categoryid %} active{% endif %}"><a href="{{ item.link|raw }}" title="{{item.titlealt|raw}}">{{item.title|raw}}</a></li>
+						    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        <div class="row new_margin">
+                            <div class="col-xs-12">
+                                {% for item in channel_list %}			    
+                                    <div class="col-md-4 col-sm-6 col-xs-12 new_padding">			    
+                                        <a href="{{ item.link|raw }}" title="{{ item.namealt|raw }}">			    
+                                            <img class="width-100" src="{{ item.img }}" alt="{{ item.namealt|raw }}" />
+                                        </a>
+                                        <div class="col-xs-12 txtContainer">
+                                            <a href="{{ item.link|raw }}" title="{{ item.namealt|raw }}">
+                                                <h2 class="subtitle_home_new txtPink">{{ item.name|raw }}</h2>
+                                            </a>
+                                            <p class="home_new_description">{{ item.desc|raw }}</p>                                            
+                                        </div>
+                                    </div>
+				    {% if (loop.index%3)==0 %}
+					<div class="clearfix visible-lg visible-md"></div>
+				    {% endif %}				
+				    {% if (loop.index%2)==0 %}
+					<div class="clearfix visible-sm"></div>
+				    {% endif %}			    
+                                {% endfor %} 
+                            </div>	    
+                        </div>
+                        <div class="row new_margin">
+                            <div class="col-xs-12 small_margin">
+                                <div class="float-right pagerWrapper">
+                                    {{search_paging_output|raw}}
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+{% endblock %}

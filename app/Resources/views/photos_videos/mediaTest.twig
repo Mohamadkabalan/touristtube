@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content-type="video/mp4" charset="UTF-8">
+        {# <link rel="stylesheet" type="text/css" href="/css/media_detail.css"/> #}
+        <script type="text/javascript" src="/assets/vendor/jquery/dist/jquery-1.9.1.min.js"></script>
+        <script src="/assets/photos_videos/jwplayer/jwplayer.js?v=7.8.2"></script>
+        <script type="text/javascript">jwplayer.key = "5BF7jaLushMRXxwL4oDpC1ldCscI8upqkfv5Uu68J44=";</script>
+    </head>
+    <body>
+        <div id="video_urls"></div>
+        <div class="viderror" style="position: relative;">
+
+        </div>   
+
+        <br><br>
+        <br><br><br>
+        {#         <div class="vid_img" style="position: relative;">#}
+        <video height="480" width="270" type="video/mp4" id="testJwPlayer"></video>
+        <p id="header"></p>
+
+        {#            <div id="flashcontentmedia"></div>#}
+        {#        </div>#}
+        <script>
+
+            var txt = "";
+            txt += "<p>Browser CodeName: " + navigator.appCodeName + "</p>";
+            txt += "<p>Browser Name: " + navigator.appName + "</p>";
+            txt += "<p>Browser Version: " + navigator.appVersion + "</p>";
+            txt += "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>";
+            txt += "<p>Browser Language: " + navigator.language + "</p>";
+            txt += "<p>Browser Online: " + navigator.onLine + "</p>";
+            txt += "<p>Platform: " + navigator.platform + "</p>";
+            txt += "<p>User-agent header: " + navigator.userAgent + "</p>";
+
+            document.getElementById("header").innerHTML = txt;
+
+            var regWidth = 500;
+            var regHeight = 500;
+            $(document).ready(function () {
+                var ThumbPath = '{{res_listimg|raw}}';
+                var res_list = '{{ res_list|raw }}';
+                var videorelated_id
+                = {{ mediaid|raw }};
+                        var res_names = new Array('240 p', '360 p', '480 p', 'HD 720 p', 'HD 1080 p');
+                var res_listarr = res_list.split('/*/');
+                var res_real = new Array();
+                var mobj;
+
+                for (var i = 0; i < res_listarr.length; i++)
+                {
+                    mobj = {"file": "https://www.touristtube.com/" + res_listarr[i], "label": res_names[i]};
+                    res_real.push(mobj);
+
+                    $("#video_urls").append("<br/><br/><a target=\"_blank\" href=\"" + "https://www.touristtube.com/" + res_listarr[i] + "\">" + res_names[i] + "</a>");
+                }
+                console.log(res_real);
+
+                var jw_player = jwplayer("testJwPlayer");
+
+                jw_player.setup({
+                    playlist: [{
+                            sources: res_real
+
+                        }]
+
+                            //// ,
+                            // image: ThumbPath,
+                            // ga: {} ,
+                            // stretching: "uniform", // could not find value:: bestfit at https://developer.jwplayer.com/jw-player/docs/developer-guide/customization/configuration-reference/#setup
+                            // autostart: false, 
+                            /*
+                             logo: {
+                             file: '',
+                             link: 'https://www.touristtube.com/'
+                             },
+                             skin: {
+                             name: "glow"
+                             }, 
+                             tracks: [{ 
+                             file: "", 
+                             kind: "thumbnails"
+                             }], 
+                             */
+                            // startparam: "start",
+                            // startparam: "ec_seek",
+                            // height: regHeight,
+                            // width: regWidth,
+                            // mode: "html",
+            {#                     primary: "HTML5"#}
+                                //hlshtml: true
+
+                                // controlbar: "bottom", 
+                                //  preload: "none"
+                    });
+                    jw_player.on('loadstart', function (p) {
+                        console.log('mediainfo', jw_player.getQualityLevels());
+                        $(".viderror").append("<br/><br/>mediaInfo:: " + jw_player.getQualityLevels()); // JSON.stringify
+                    });
+
+                    jw_player.on("ready", function (p) {
+                        $(".viderror").append("<br/><br/>setupTime:: " + p.setupTime); // JSON.stringify
+                    });
+
+                    jw_player.on("setupError", function (p) {
+                        $(".viderror").append("<br/><br/>state:: " + jw_player.getState() + "<br/>setupError:: " + p.message);
+                    });
+
+                    jw_player.on("error", function (p) {
+                        $(".viderror").append("<br/><br/>state:: " + jw_player.getState() + "<br/>error:: " + p.message);
+                    });
+
+                    jw_player.on('meta', function (metadata) {
+                        $(".viderror").append("<br/><br/>metadata:: " + JSON.stringify(metadata));
+                        // console.log(metadata);
+                    });
+                });
+        </script>
+    </body>
+</html>

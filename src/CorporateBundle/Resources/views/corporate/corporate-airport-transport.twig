@@ -1,0 +1,362 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-airport-transport.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-airport-transport.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad">
+            {% include '@Corporate/corporate/corporate-deals-common-header.twig' %}
+        </div> 
+
+       <div class="col-xs-12 nopad margintop100">
+	    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad rightfourcontainer_sts">  
+		<div id="infoBox" class="col-xs-12 nopad rightcontainerbordergrey_sts hideField">
+		    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+			<div id="infoContainer1" class="col-xs-12 nopad">
+			    <p id="location_text" class="location_sts commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer2" class="col-xs-12 nopad hideField">
+			    <p id="type_of_transfer_text" class="fromto_sts commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer3" class="col-xs-12 nopad hideField">
+			    <p id="airport_text" class="commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer4" class="col-xs-12 nopad hideField">
+			    <p id="address_text" class="homelogo_sts commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+		    </div>
+		    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+			<div id="infoContainer5" class="col-xs-12 nopad hideField">
+			    <p id="arrival_text" class="commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer6" class="col-xs-12 nopad hideField">
+			    <p id="arrivalDate_text" class="commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer7" class="col-xs-12 nopad hideField">
+			    <p id="departure_text" class="commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer8" class="col-xs-12 nopad hideField">
+			    <p id="departureDate_text" class="commontextblack_sts">&nbsp;</p>
+			    <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			</div>
+			<div id="infoContainer9" class="col-xs-12 nopad hideField">
+			    <p id="passengers_text" class="personlogo_sts commontextblack_sts">&nbsp;</p>
+			</div>
+		    </div>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <a class="bookbut_sts" href="#">{{'Book now starting at'|trans}}
+			US$ 11.92</a>
+		</div>
+		<div class="col-xs-12 nopad rightcontainerbordergrey_wtt_sts martop10">
+		    <div class="col-xs-12 nopad">
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+			    <p class="resontt_sts">{{'Why ToursitTube?'|trans}}</p>
+			    <ul class="whyttlist_sts">
+				<li class="">{{'Easy booking'|trans}}</li>
+				<li class="">{{'Instant confirmation'|trans}}</li>
+				<li class="">{{'Reschedule anytime'|trans}}</li>
+				<li class="">{{'Best price guaranteed'|trans}}</li>
+				<li class="">{{'24/5 Customer support'|trans}}</li>
+			    </ul>
+			</div>
+			<div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+			    <div class="col-xs-12 nopad inhorborderstyle_sts"></div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+			    <p class="needhelp_sts">{{'Need Help?'|trans}}<span class="contus_sts"> <a href="#" class=""> {{'Contact Us'|trans}}</a></span></p>
+			    <div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+				<div class="col-xs-12 nopad inhorborderstyle_sts extrabordmarbut_sts"></div>
+			    </div>
+			    <p class="secpay_sts">{{'Secure & simple payments'|trans}}</p>
+			    <p class="protectpay_sts">{{'All our card payments are protected 
+				by thawte to give you peace of mind'|trans}}</p>
+			    <div class="col-xs-12 nopad textalligncenter">
+				<div class="paymimgs_sts_cont">
+				    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/visa_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/mastercard_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/americnexpress_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/discover_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/jcb_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				</div>
+			    </div>
+			</div>
+
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 nopad"> 
+		<!-- Start of Step 0 -->
+		<div id="step-0_sts" class="col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step0'|trans}} /</span> {{'Choose your destination country'|trans}}</p>
+			<select id="country" name="country" class="selectboxlargestandard_sts">
+			    <option value="" selected="selected" >{{'Select your destination Country'|trans}}</option>
+			    {% for key,val in countries %}
+				<option value="{{val['code']}}">{{val['name']}}</option>
+			    {% endfor %}
+			</select> 
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<a id="step0next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+		
+		
+		<!-- Start of Step 1 -->
+		<div id="step-1_sts" class=" hiddensteps_sts col-xs-12 nopad">
+		    <div id="step-1_sts_box" class="col-xs-12 nopad">
+			&nbsp;
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<a id="step1previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step1next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+
+
+		<!-- Start of Step 2 -->
+		<div id="step-2_sts" class="hiddensteps_sts col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<input type="hidden" id="typeOfTransfer" name="typeOfTransfer" value="roundtrip" />
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step2'|trans}} /</span> {{'Choose your type of transfer'|trans}}</p>
+			<div class="step1typetransfer active" onclick="changeTypeOfTransfer(this, 'roundtrip');">
+			    <p class="bluesmtitle_sts">{{'Roundtrip'|trans}}</p>
+			    <p class="textunblack_sts">{{'From Airport / Station / Port to Dropoff point and back'|trans}}</p>
+			</div>
+			<div class="step1typetransfer" onclick="changeTypeOfTransfer(this, 'oneWayFromAirport');">
+			    <p class="bluesmtitle_sts">{{'One way from Airport'|trans}}</p>
+			    <p class="textunblack_sts">{{'From Airport / Station / Port to Dropoff point'|trans}}</p>
+			</div>
+			<div class="step1typetransfer" onclick="changeTypeOfTransfer(this, 'oneWayToAirport');">
+			    <p class="bluesmtitle_sts">{{'One way to Airport'|trans}}</p>
+			    <p class="textunblack_sts">{{'From Pickup point to Airport / Station / Port'|trans}}</p>
+			</div>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<a id="step2previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step2next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+
+
+		<!-- Start of Step 3 -->
+		<div id="step-3_sts" class="hiddensteps_sts col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<input type="hidden" id="transferAirportName" name="transferAirportName" value="roundtrip" />
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step3'|trans}} /</span> {{'Select your Airport / Port / Train Station'|trans}}</p>
+		    </div>
+		    <div id="step-3_sts_box" class="col-xs-12 nopad">
+			&nbsp;
+		    </div>
+		    <div class="col-xs-12 nopad steptwostyle_sts">
+			<a id="step3previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step3next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+
+		<!-- Start of Step 4 -->
+		<div id="step-4_sts" class="hiddensteps_sts col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step4'|trans}} /</span>  {{'Enter your destination hotel or address'|trans}}</p>
+			<select id="address" name="address" class="selectboxlargestandard_sts marg-bottom5">
+			    <option value="" selected="selected" >{{'Destination hotel or address'|trans}}</option>
+			    <option value="Westin Paris 3 Rue de Castiglione, Paris">{{'Westin Paris'|trans}}</option>
+			    <option value="Bar Tuileries 3 Rue de Castiglione, Paris">{{'Bar Tuileries'|trans}}</option>
+			    <option value="Hotel Dabicam Paris SNC 3 Rue de Castiglione, Paris">{{'Hotel Dabicam Paris SNC'|trans}}</option>
+			</select> 
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<div class="hotelpinkcontainer">
+			    <div class="hoteltable_attraction">
+				<ul class="borderedtablelist">
+				    <li class="pinkhederlist_att">{{'Hotels'|trans}}</li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild bluetextwizback">{{'The Westin Paris - Vendome'|trans}}</p>
+					    <p class="listshild greydowntext">{{'3 Rue de Castiglone, Paris'|trans}}</p>
+					</div>
+				    </li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild bluetextwizback">{{'Westin Paris'|trans}}</p>
+					    <p class="listshild greydowntext">{{'3 Rue de Castiglione, Paris'|trans}}</p>
+					</div>
+				    </li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild bluetextwizback">{{'Bar Tuileries'|trans}}</p>
+					    <p class="listshild greydowntext">{{'3 Rue de Castiglione, Paris'|trans}}</p>
+					</div>
+				    </li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild bluetextwizback">{{'Hotel Dabicam Paris SNC'|trans}}</p>
+					    <p class="listshild greydowntext">{{'3 Rue de Castiglione, Paris'|trans}}</p>
+					</div>
+				    </li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild bluetextwizback">{{'Le Meridien Etoile'|trans}}</p>
+					    <p class="listshild greydowntext">{{'81 Boulevard Gouvion-Saint-Cyr, Paris'|trans}}</p>
+					</div>
+				    </li> 
+				</ul>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-xs-12 nopad marbut20">
+			<div class="hotelpinkcontainer">
+			    <div class="hoteltable_attraction">
+				<ul class="borderedtablelist">
+				    <li class="pinkhederlist_att">{{'Addresses'|trans}}</li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild greyadresswizback">{{'Rue Westinghouse, Le Havre, France'|trans}}</p>
+					</div>
+				    </li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild greyadresswizback">{{'Boulevard Westinghouse, Sevra, France'|trans}}</p>
+					</div>
+				    </li> 
+				    <li>
+					<div class="listtextcontainer">
+					    <p class="listshild cntfindboldblack">{{'Can’t find your destination? Click here'|trans}}</p>
+					</div>
+				    </li> 
+				</ul>
+			    </div>
+			</div>
+		    </div> 
+		    <div class="col-xs-12 nopad">
+			<a id="step4previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step4next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+		
+		<!-- Start of Step 5 -->
+		<div id="step-5_sts" class="hiddensteps_sts col-xs-12 nopad">
+		    <input type="hidden" id="step5Cleared" name="step5Cleared" value="No" />
+		    <div class="col-xs-12 nopad">
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step5'|trans}} /</span> {{'Select your schedule'|trans}}</p>
+		    </div>
+		    <div id="arrivalStep" class="col-xs-12 nopad hideField">
+			<p class="pinkarrdeptext_att">{{'Your arrival schedule'|trans}}</p>
+			<p class="bluetextlabel_att">{{'Enter your arrival date'|trans}}</p>
+			<input id="arrivalInput" name="arrivalInput" onchange="updateArrivalAndDeparture();" placeholder="{{'Enter your arrival date'|trans}}" class="inputlargestandard_sts" type="date">
+			<p class="bluetextlabel_att">{{'Enter your arrival time'|trans}}</p>
+			<select id="arrivalHour" name="arrivalHour" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+			    <option value="00" selected="selected" >{{'hours'|trans}}</option>
+			    <option value="00">12am</option>
+			    {% for i in 1..23 %}
+				{% set hv = (i > 12) ? (i - 12) : i %}
+				{% set hx = (i > 11) ? 'pm' : 'am' %}
+				<option value="{{ '%02d'|format(i) }}">{{hv}}{{hx}}</option>
+			    {% endfor %}
+			</select>
+			<select id="arrivalMinute" name="arrivalMinute" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+			    <option value="00" selected="selected" >{{'minutes'|trans}}</option>
+			    {% for i in 0..11 %}
+				{% set m  = i * 5 %}
+				<option value="{{ '%02d'|format(m) }}">{{ '%02d'|format(m) }}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		    <div class="seperatedborderdiv"></div>
+		    <div id="departureStep" class="col-xs-12 nopad hideField">
+			<p class="pinkarrdeptext_att">{{'Your departure schedule'|trans}}</p>
+			<p class="bluetextlabel_att">{{'Enter your departure date'|trans}}</p>
+			<input id="departureInput" name="departureInput" onchange="updateArrivalAndDeparture();" placeholder="{{'Enter your departure date'|trans}}" class="inputlargestandard_sts" type="date">
+			<p class="bluetextlabel_att">{{'Enter your departure time'|trans}}</p>
+			<select id="departureHour" name="departureHour" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+			    <option value="00" selected="selected" >{{'hours'|trans}}</option>
+			    <option value="00">12am</option>
+			    {% for i in 1..23 %}
+				{% set hv = (i > 12) ? (i - 12) : i %}
+				{% set hx = (i > 11) ? 'pm' : 'am' %}
+				<option value="{{ '%02d'|format(i) }}">{{hv}}{{hx}}</option>
+			    {% endfor %}
+			</select>
+			<select id="departureMinute" name="departureMinute" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+			    <option value="00" selected="selected" >{{'minutes'|trans}}</option>
+			    {% for i in 0..11 %}
+				{% set m  = i * 5 %}
+				<option value="{{ '%02d'|format(m) }}">{{ '%02d'|format(m) }}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<a id="step5previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step5next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+		
+		<!-- Start of Step 6 -->
+		<div id="step-6_sts" class=" hiddensteps_sts col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step6'|trans}} /</span> {{'Choose the number of passengers'|trans}}</p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<select id="numOfpassengers" name="numOfpassengers" class="selectboxsmalstandard_sts">
+			    <option value="0" selected="selected" >{{'Choose the'|trans}} #</option>
+			    {% for i in 1..99 %}
+				<option value="{{i}}">{{i}}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<a id="step6previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step6next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+		
+		<!-- Start of Step 7 -->
+		<div id="step-7_sts" class=" hiddensteps_sts col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<p class="titlest0black_sts"><span class="step0pinktext_sts"> {{'Step7'|trans}} /</span> {{'Select your type of transfer'|trans}}</p>
+		    </div>
+		    <div class="imageandtextcontainer">
+			<div class="col-xs-12 nopad">
+			    <img class="imgleftstyle_airtrans" src="{{ generateMediaURL('/media/images/stepseven/stepsiximg1.png') }}" alt="{{'title'}}"/>
+			    <div class="textcontainerright">
+				<p class="pinktext_airtrans">{{'Shared'|trans}}</p>
+				<p class="bluetext_airtrans">{{'Mercedes Benz or equivlent'|trans}}</p>
+				<p class="blacktext_airtrans">{{'An affordable, convenient and secure solution'|trans}}</p>
+				<a class="pinkbutacontainer_airtrans" href="#">US$ 89.82 - {{'add to cart'|trans}}</a>
+			    </div>
+			</div>
+			<div class="seperatedborderdivlarge"></div>
+			<div class="col-xs-12 nopad">
+			    <img class="imgleftstyle_airtrans" src="{{ generateMediaURL('/media/images/stepseven/stepsiximg2.png') }}" alt="{{'title'}}"/>
+			    <div class="textcontainerright">
+				<p class="pinktext_airtrans">{{'Private'|trans}}</p>
+				<p class="bluetext_airtrans">{{'Mercedes Benz or equivlent'|trans}}</p>
+				<p class="blacktext_airtrans">{{'A comfortable, deluxe option with a dedicated driver 
+				    ready for your safe transfer.'|trans}}</p>
+				<a class="pinkbutacontainer_airtrans" href="#">US$ 89.82 - {{'add to cart'|trans}}</a>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<a id="step7previous_sts" class="nextsteps_sts">{{'previous step'|trans}}</a>
+			<a id="step7next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+		    </div>
+		</div>
+	    </div>
+
+	</div>
+    </section>
+{% endblock %}

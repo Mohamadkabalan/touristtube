@@ -1,0 +1,67 @@
+CorporateBundle\Entity\CorpoAdminMenu:
+    type: entity
+    table: corpo_admin_menu
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAdminMenuRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            column: name
+        menuKey:
+            type: string
+            nullable: false
+            length: 50
+            column: menu_key
+        url:
+            type: string
+            nullable: false
+            length: 255
+            column: url
+        order:
+            type: integer
+            nullable: false
+            column: order    
+        parentId:
+            type: integer
+            nullable: true
+            column: parent_id 
+        published:
+            type: integer
+            nullable: false
+            column: published
+        enableForMobile:
+            type: integer
+            nullable: false
+            column: enable_for_mobile
+        mobileTriggerMethod:
+            type: string
+            nullable: true
+            column: mobile_trigger_method
+        onClick:
+            type: string
+            nullable: true
+            length: 100
+            column: onclick
+        path:
+            type: string
+            nullable: true
+            column: path
+        cls:
+            type: string
+            nullable: true
+            column: cls
+    lifecycleCallbacks: {  }

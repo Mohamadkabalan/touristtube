@@ -1,0 +1,306 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/flights/css/flight-details_new.css")|raw }}" >
+
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}
+    {{ 'Flight Details'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container main_flight_container">
+        <div class="row margin_top_30">
+            <div class="col-xs-12">
+                <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ 'Flight details'|trans }}</h1>
+            </div>
+        </div>
+
+        {{ include('@Flight/flight/flight-steps-bar.twig', { 'step': 5 }) }}
+	{% set pnr = response.passengerNameRecord %}
+	{% set passengerDetails = pnr.passengerDetails %}
+	{% set flightIteneraryGrouped = response.flightIteneraryGrouped %}
+	{% set flightItenerary = flightIteneraryGrouped.flightItenerary %}
+	{% set priceInfo = flightItenerary.flightItineraryPricingInfo %}
+	{% set segments = flightItenerary.flightSegment %}
+
+	{% if pnr.isValidForPayment == false or response.status == 'error' %}
+            <br/>
+            <p>{{'Sorry, We cannot issue ticket for some reasons.'|trans}}</p>
+            <p>{{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a></p>
+	{% else %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row no-margin">
+			{% for segment in segments %}
+			    {% set departure = segment.flightDeparture %}
+			    {% set arrival = segment.flightArrival %}
+			    {% set airline = segment.operatingAirline %}
+			    {% set stops = segment.flightStops %}
+			    {% set baggageAllowance = segment.baggageAllowance %}
+			    {% if stops.indicator %}
+				{% set duration = stops.duration %}
+				{% set type = '' %}
+				{% set isStop = 1 %}
+			    {% else %}
+				{% set duration = segment.duration %}
+				{% set type = 'direct'|trans %}
+				{% set isStop = 0 %}
+			    {% endif %}
+			    {% if segment.flightType == 'leaving' %}
+				{% set label = 'Departure' %}
+				{% set logo = '/media/images/flight-details_new/dep_airplane.png' %}
+			    {% else %}
+				{% set label = 'Return' %}
+				{% set logo = '/media/images/flight-details_new/arrival_airplane.png' %}
+			    {% endif %}
+			    {% if isStop == 0 %}
+				<div class="col-md-6 col-xs-12 nopad margin_top_30">
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <img class="airplane_flights_style" src="{{ generateMediaURL(logo) }}" alt="dep_airplane">
+					    <div class="blue_border_6"></div>
+					</div>
+				    </div>
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <h2 class="font-27 black margin_top_7">{{label|trans}}</h2>
+					</div>
+				    </div>
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <p class="font-17 font-bold black">{{ departure.dateTime|date('D d M') }}<span class="separator_point_class">.</span><span class="font-14 font-normal">{{ airline.airlineName|raw }}</span></p>
+					</div>
+				    </div>
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad">
+					    <div class="row no-margin margin_top_30">
+						<div class="col-xs-12 nopad">
+						    <div class="row no-margin">
+							<div class="col-sm-4 col-xs-12 nopad">
+							    <p class="font-16 black line-height-18">{{ airline.airlineName|raw }}<br>{{ airline.airlineCode|raw }} {{ segment.flightNumber|raw }}<br><span class="grey font-14">{{ segment.cabinSelected|raw }}</span></p>
+							</div>
+							<div class="col-sm-2 col-xs-3 nopad">
+							    <p class="font-18 black line-height-18">{{ departure.dateTime|date('H\:i') }}</p>
+							    <img alt="flight_sep_img" src="{{ generateMediaURL('/media/images/flight-details_new/flight_sep_img.png') }}" class="flight_sep_img">
+							</div>
+							<div class="col-sm-6 col-xs-9 nopad">
+							    <p class="font-16 black line-height-18">{{ departure.airport.code|raw }}<br>{{ departure.airport.name|raw }}<br>{{ departure.airport.terminalId|raw }}<span class="grey"></span></p>
+							</div>
+						    </div>
+						    <div class="row no-margin margin_bottom_15">
+							<div class="col-sm-4 col-xs-12 nopad">
+							</div>
+							<div class="col-sm-2 col-xs-3 nopad">
+							    <p class="font-18 blue line-height-18">{{ type }}</p>
+							</div>
+							<div class="col-sm-6 col-xs-9 nopad">
+							    <p class="font-16 black line-height-18">{{ segment.duration|raw }}</p>
+							</div>
+						    </div>
+						    <div class="row no-margin">
+							<div class="col-sm-4 col-xs-12 nopad">
+							</div>
+							<div class="col-sm-2 col-xs-3 nopad">
+							    <p class="font-18 black line-height-18">{{ arrival.dateTime|date('H\:i') }}</p>
+							</div>
+							<div class="col-sm-6 col-xs-9 nopad">
+							    <p class="font-16 black line-height-18">{{ arrival.airport.code|raw }}<br>{{ arrival.airport.name|raw }}<br>{{ arrival.airport.terminalId|raw }}<span class="grey"></span></p>
+							</div>
+						    </div>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    {% else %}
+				<div class="col-xs-12  row no-margin margin_top_30">
+				    <div class="col-md-6 col-xs-12 nopad">
+					<div class="row no-margin margin_bottom_15">
+					    <div class="col-sm-4 col-xs-12 nopad">
+					    </div>
+					    <div class="col-sm-2 col-xs-3 nopad">
+						<p class="font-18 blue line-height-18">{{ 'Stop'|trans }}</p>
+					    </div>
+					    <div class="col-sm-6 col-xs-9 nopad">
+						<p class="font-16 black line-height-18">{{ stops.duration|raw }}</p>
+					    </div>
+					</div>
+				    </div>
+				</div>
+				<div class="col-xs-12 no-margin margin_top_30">
+				    <div class="col-md-6 col-xs-12 nopad">
+					<div class="row no-margin">
+					    <div class="col-sm-4 col-xs-12 nopad">
+						<p class="font-16 black line-height-18">{{ airline.airlineName|raw }}<br>{{ airline.airlineCode|raw }} {{ segment.flightNumber|raw }}<br><span class="grey font-14">{{ segment.cabinSelected|raw }}</span></p>
+					    </div>
+					    <div class="col-sm-2 col-xs-3 nopad">
+						<p class="font-18 black line-height-18">{{ departure.dateTime|date('H\:i') }}</p>
+						<img class="flight_sep_img" src="{{ generateMediaURL('/media/images/flight-details_new/flight_sep_img.png') }}" alt="flight_sep_img">
+					    </div>
+					    <div class="col-sm-6 col-xs-9 nopad">
+						<p class="font-16 black line-height-18">{{ departure.airport.code|raw }}<br>{{ departure.airport.name|raw }}<br>{{ departure.airport.terminalId|raw }}<span class="grey"></span></p>
+					    </div>
+					</div>
+					<div class="row no-margin margin_bottom_15">
+					    <div class="col-sm-4 col-xs-12 nopad">
+					    </div>
+					    <div class="col-sm-2 col-xs-3 nopad">
+						<p class="font-18 blue line-height-18">{{ type }}</p>
+					    </div>
+					    <div class="col-sm-6 col-xs-9 nopad">
+						<p class="font-16 black line-height-18">{{ segment.duration|raw }}</p>
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-sm-4 col-xs-12 nopad">
+					    </div>
+					    <div class="col-sm-2 col-xs-3 nopad">
+						<p class="font-18 black line-height-18">{{ arrival.dateTime|date('H\:i') }}</p>
+					    </div>
+					    <div class="col-sm-6 col-xs-9 nopad">
+						<p class="font-16 black line-height-18">{{ arrival.airport.code|raw }}<br>{{ arrival.airport.name|raw }}<br>{{ arrival.airport.terminalId|raw }}<span class="grey"></span></p>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    {% endif %}
+			{% endfor %}
+			<div class="col-xs-12  row no-margin margin_top_20">
+			    {% for segment in segments %}
+				{% set stops = segment.flightStops %}
+				{% set airline = segment.operatingAirline %}
+				{% set baggageAllowance = segment.baggageAllowance %}
+				{% if stops.indicator %}
+				    {% set isStop = 1 %}
+				{% else %}
+				    {% set isStop = 0 %}
+				{% endif %}
+				{% set returningBaggage = 0 %}
+				{% set leavingBaggage = 0 %}
+				{% for baggage in baggageAllowance %}
+				    {% if baggage.isReturning %}
+					{% set returningBaggage = baggage.weight %}
+				    {% else %}
+					{% set leavingBaggage = baggage.weight %}
+				    {% endif %}
+				{% endfor %}
+				{% if isStop == 0 %}
+				    <div class="col-md-6 col-xs-12 nopad">
+					<ul class="flight_list_facilities">
+					    <li>{{'Bag fees'|trans}}: {{'Baggage fees when purchased at the airport'|trans}}<br>({{'Prices may be cheaper if purchased online with'|trans}} {{ airline.airlineName|raw }})</li>
+					    <li>{{'Carry on'|trans}}: {{'No fee'|trans}}</li>
+					    <li>1{{'st checked bag'|trans}}: {{'No fee up to'|trans}}
+						{% if segment.flightType == 'leaving' %}
+						    {{ leavingBaggage }}
+						{% else %}
+						    {{ returningBaggage }}
+						{% endif %}
+					    </li>
+					    <li>{{'2nd checked bag'|trans}}: {{'No info'|trans}}</li>
+					    <li>{{'Baggage Information'|trans}}: {{ airline.airlineName|raw }}</li>
+					</ul>
+				    </div>
+				{% endif %}
+			    {% endfor %}
+			</div>
+			<div class="col-xs-12 nopad margin_top_30">
+                            <div class="grey_border_5"></div>
+                        </div>
+                        <div class="col-md-7 col-xs-12 nopad margin_top_30">
+			    {% for segment in segments %}
+				{% if segment.duration %}
+				    <div class="row no-margin min_height_45">
+					<div class="col-sm-4 col-xs-12 nopad">
+					    <p class="blue font-16 font-bold margin_bottom_0">
+						{% if segment.flightType == 'leaving' %}
+						    {{'Leaving Total Duration'|trans}}
+						{% else %}
+						    {{'Return Total Duration'|trans}}
+						{% endif %}
+					    </p>
+					</div>
+					<div class="col-sm-8 col-xs-12 nopad">
+					    <p class="black font-16 font-bold margin_bottom_0">{{ segment.duration|raw }}</p>
+					</div>
+				    </div>
+				{% endif %}
+			    {% endfor %}
+                            <div class="row no-margin min_height_45">
+                                <div class="col-sm-4 col-xs-12 nopad">
+                                    <p class="blue font-16 font-bold margin_bottom_0">{{'Traveler'|trans}}(s)</p>
+                                </div>
+                                <div class="col-sm-8 col-xs-12 nopad">
+				    {% for passenger in passengerDetails %}
+					<p class="black font-16">{{passenger.firstName|raw}} {{passenger.surname|raw}}
+					    {% for segment in segments %}
+						{% set baggageAllowance = segment.baggageAllowance %}
+						{% set returningBaggage = 0 %}
+						{% set leavingBaggage = 0 %}
+						{% for baggage in baggageAllowance %}
+						    {% if baggage.isReturning and baggage.weight %}
+							{% set returningBaggage = baggage.weight %}
+						    {% else %}
+							{% set leavingBaggage = baggage.weight %}
+						    {% endif %}
+						{% endfor %}
+						{% if leavingBaggage %}
+						    ({{'Leaving Baggage'|trans}}: {{leavingBaggage}} | {{'Returning Baggage'|trans}}: {{returningBaggage}} )
+						{% endif %}
+					    {% endfor %}
+					    {{'Frequent flyer and special assistance requests should be confirmed directly with the airline'|trans}}. </p>
+					{% endfor %}
+                                </div>
+                            </div>
+                            <div class="row no-margin min_height_45">
+                                <div class="col-sm-4 col-xs-12 nopad">
+                                    <p class="blue font-16 font-bold margin_bottom_0">{{'The booking ID'|trans}}:</p>
+                                </div>
+                                <div class="col-sm-8 col-xs-12 nopad">
+                                    <p class="black font-16 margin_bottom_0">{{ pnr.PNR|raw }}</p>
+                                </div>
+                            </div>
+                            <div class="row no-margin min_height_45">
+                                <div class="col-sm-4 col-xs-12 nopad">
+                                    <p class="blue font-16 font-bold margin_bottom_0">{{'Price Summary'|trans}}</p>
+                                </div>
+                                <div class="col-sm-8 col-xs-12 nopad">
+                                    <p class="black font-16 margin_bottom_0 font-bold price-convert" data-price="{{ priceInfo.price|raw }}">{{'Flight Total'|trans}}: <span class="font-17 pink currency-convert-text">{{ flightItenerary.currency.code|raw }}</span> <span class="price-convert-text">{{ priceInfo.price|raw }}</span></p>
+                                    <p class="black font-16 margin_bottom_0 price-convert" data-price="{{ priceInfo.baseFare|raw }}">{{'Base Price'|trans}}: <span class="font-16 pink currency-convert-text">{{ flightItenerary.currency.code|raw }} </span> <span class="price-convert-text">{{ priceInfo.baseFare|raw }}</span></p>
+                                    <p class="black font-16 price-convert" data-price="{{ priceInfo.taxes|raw }}">{{'Taxes and fees'|trans}}: <span class="font-16 pink currency-convert-text">{{ flightItenerary.currency.code|raw }} </span> <span class="price-convert-text">{{ priceInfo.taxes|raw }}</span></p>
+                                </div>
+                            </div>
+                            <div class="row no-margin min_height_45">
+                                <div class="col-sm-4 col-xs-12 nopad">
+                                    <p class="blue font-16 font-bold margin_bottom_0">{{'Note'|trans}}:</p>
+                                </div>
+                                <div class="col-sm-8 col-xs-12 nopad">
+                                    <p class="black font-16 margin_bottom_0">{{'The airline often charges a penalty and/or a reissue fee at time of redemption'|trans}}.</p>
+                                    <p class="black font-16 margin_bottom_0">{{'All prices are quoted in'|trans}} {{ flightItenerary.currency.code|raw }}</p>
+                                </div>
+
+				<div class="col-sm-8 col-xs-12 nopad">
+				    <p class="blackboldtext">{{ 'Airline rules'|trans }} + {{ 'restrictions'|trans }}</p>
+				    <p class="blacknormaltext lineh20">{{ 'We understand that sometimes plans change. We do not charge a cancel or change fee. When the airline charges such fees in accordance with its own policies, the cost will be passed on to you.'|trans }}</p>
+				    <p class="blackboldtext">
+					{{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br/>
+					{{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br/>
+					{{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - {{'Expected reply within 24 hours.'|trans}}
+				    </p>
+
+				    <div class="col-xs-12 nopad">
+					<a href="javascript:void(0)" id="cancel_url" data-link="{{ generateLangRoute(LanguageGet,"_flight_cancelation") }}?transaction_id=0">
+					    {{ 'Cancel'|trans }}
+					</a>
+				    </div>
+				</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	{% endif %}
+    </section>
+{% endblock %}

@@ -1,0 +1,41 @@
+TTBundle\Entity\MlDealTexts:
+    type: entity
+    table: ml_deal_texts
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealCode:
+            type: string
+            nullable: false
+            length: 45
+            column: deal_code
+        dealName:
+            type: text
+            nullable: true
+            column: deal_name
+        dealHighlights:
+            type: text
+            nullable: true
+            column: deal_highlights
+        dealDescription:
+            type: text
+            nullable: true
+            column: deal_description
+        dealCity:
+            type: text
+            nullable: true
+            column: deal_city
+        langCode:
+            type: string
+            nullable: false
+            length: 2
+            column: lang_code
+    lifecycleCallbacks: {  }
+

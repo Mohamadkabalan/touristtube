@@ -1,0 +1,786 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ 'Flight Booking Result'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/jquery/plugins/dateRangePicker/css/daterangepicker.min.css" >
+    <link rel="stylesheet" type="text/css" href="/assets/common/css/bootstrap-chosen.css">
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-booking-result.css">
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-breadcrumb.css"> 
+ 
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="/assets/vendor/jquery/plugins/dateRangePicker/js/moment.min.js"></script>
+    <script type="text/javascript" src="/assets/vendor/jquery/plugins/dateRangePicker/js/jquery.daterangepicker.js"></script>    
+    <script type="text/javascript" src="/assets/flights/js/flight-booking-result-ui.js"></script>
+    <script type="text/javascript" src="/assets/flights/js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="/assets/flights/js/flight-booking.js"></script>
+    <script type="text/javascript" src="/assets/flights/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="/assets/flights/js/flight-booking-result.js"></script>
+
+    {#{% if is_corporate_account %}
+
+	<script>
+	    $(document).ready(function () {
+			runModal();	
+	    });	
+	</script>
+
+    {% endif %}	#}
+
+{% endblock %}
+{% if is_corporate_account_with_self_approval %}
+    {% block notificationModalHeader %}{{ "Dear Corporate User" }}{% endblock %}
+    {% block notificationModelContent %}{{ "We are happy to announce you that our new corporate platform is now online.
+       <br/>Please <a href='https://corporate.touristtube.com'>Click here</a>, login to our corprate platform, and benefit from all corporate users advantages !" }}
+    {% endblock %}
+{% endif %}	
+{% block body %}
+
+    <div class="overlay-loading-flights"><div></div></div>
+    <div class="container containerFirstAll" id="container-display" data-name="fly-result">
+        {#<div class="pagination pagerWrapper paginationPoi pag-float-right">
+            <ul>
+                <li data-page="1">
+                    <a class="first_pg" title="first page" rel="nofollow"></a>
+                </li>
+                <li data-page="1">
+                    <a class="prev_pg" title="previous page" rel="nofollow"></a>
+                </li>
+                <li class="active" data-page="1">
+                    <a class="discover_a" title="page 1" rel="nofollow">1</a>
+                    <span>.</span>
+                </li>
+                <li data-page="2">
+                    <a class="discover_a" title="page 2" rel="nofollow">2</a>
+                    <span>.</span>
+                </li>
+                <li data-page="3">
+                    <a class="discover_a" title="page 3" rel="nofollow">3</a>
+                    <span>.</span>
+                </li>
+                <li data-page="4">
+                    <a class="discover_a" title="page 4" rel="nofollow">4</a>
+                    <span>.</span>
+                </li>
+                <li data-page="5">
+                    <a class="discover_a" title="page 5" rel="nofollow">5</a>
+                    <span>.</span>
+                </li>
+                <li data-page="6">
+                    <a class="discover_a" title="page 6" rel="nofollow">6</a>
+                    <span>.</span>
+                </li>
+                <li data-page="7">
+                    <a class="discover_a" title="page 7" rel="nofollow">7</a>
+                    <span>.</span>
+                </li>
+                <li data-page="8">
+                    <a class="discover_a" title="page 8" rel="nofollow">8</a>
+                    <span>.</span>
+                </li>
+                <li data-page="9">
+                    <a class="discover_a" title="page 9" rel="nofollow">9</a>
+                    <span>.</span>
+                </li>
+                <li data-page="10">
+                    <a class="discover_a" title="page 10" rel="nofollow">10</a>
+                </li>
+                <li data-page="2">
+                    <a class="next_pg" title="next page" rel="nofollow"></a>
+                </li>
+                <li data-page="10">
+                    <a class="last_pg" title="last page" rel="nofollow"></a>
+                </li>
+            </ul>
+        </div>#}
+    </div>
+    {#% if not is_corporate_account_with_self_approval %}
+        <section class="container">
+            <div class="col-xs-12 flightmessageblock">
+                Airline booking is temporarily disabled because of the payment gateway upgrade, use your corporate account for booking if you have one, otherwise send a request to <a href="mailto:sa@touristtube.com" title="{{ 'sa@touristtube.com' }}">sa@touristtube.com</a>
+            </div>
+        </section>
+    {% endif %#}
+    <section class="container flight-booking-result-page" data-js-module="filtering">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 divstepspad hidden-sm hidden-xs flight-breadcrumb">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 firststep blue_bullet">
+                <div class="bullet">
+                    <p>1</p>
+                </div>
+                <p class="number-step-text">{{'Select your flight'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sndstep hidden-xs">
+                <div class="bullet">
+                    <p>2</p>
+                </div>
+                <p class="number-step-text">{{'Enter your details'|trans}}</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 thirdstep hidden-xs">
+                <div class="bullet">
+                    <p>3</p>
+                </div>
+                <p class="number-step-text">{{'Confirm your payment'|trans}}</p>
+            </div>
+        </div>
+        <div class="col-xs-12 nopad topadjtop"> 
+            {#filter section:
+            ===============#}
+            <div class="left-bar col-lg-3 col-md-3 col-sm-12 col-xs-12 padding0">
+                <div class="fly-filter col-xs-12 {% if no_filter_css is defined %}{{no_filter_css}}{% endif %}">
+                    <div class="block-title col-xs-12">
+                        <h1>{{'Filters'|trans}}</h1>
+                    </div>
+                    <div class="col-xs-12 accordion">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            {% if not multi_destination %}
+                                <div class="accordion-section">
+                                    <div class="block_r leaving-f">
+                                        <div class="title_with_icon">
+                                            <div class="bg fl"></div>
+                                            <h2 class="txt fl  accordion-section-title">{{'leaving flight'|trans}}</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class=" accordion-section-content">
+                                            <div class="wording" data-filter-group="slider-time-1">
+                                                <label for="amount-time-1">{{'depart'|trans}}</label>
+                                                <input class="slider-range" type="text" name="amount-time-1" id="amount-time-1" value="" readonly/>
+                                                <div id="slider-time-1" data-filter="leavingDeparture"></div>
+                                            </div>
+                                            <div class="wording" data-filter-group="slider-time-2">
+                                                <label for="amount-time-2">{{'arrive'|trans}}</label>
+                                                <input class="slider-range" type="text" name="amount-time-2" id="amount-time-2" value="" readonly/>
+                                                <div id="slider-time-2" data-filter="leavingArrival"></div>
+                                            </div>
+                                            <div class="wording" data-filter-group="slider-time-3">
+                                                <label for="amount-time-3">{{'duration'|trans}}</label>
+                                                <input class="slider-range" type="text" name="amount-time-3" id="amount-time-3" value="" readonly/>
+                                                <div id="slider-time-3" data-min-duration="{{ minimum_duration|raw }}" data-max-duration="{{ maximum_duration|raw }}" data-filter="leavingDuration"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if not one_way %}
+                                    <div class="accordion-section">
+                                        <div class="block_r returnning-f">
+                                            <div class="title_with_icon">
+                                                <div class="bg fl"></div>
+                                                <h2 class="txt fl accordion-section-title">{{'returning flight'|trans}}</h2>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class=" accordion-section-content">
+                                                <div class="wording" data-filter-group="slider-time-4">
+                                                    <label for="amount-time-4">{{'depart'|trans}}</label>
+                                                    <input class="slider-range" type="text" name="amount-time-4" id="amount-time-4" value="" readonly/>
+                                                    <div id="slider-time-4" data-filter="returningDeparture"></div>
+                                                </div>
+                                                <div class="wording" data-filter-group="slider-time-5">
+                                                    <label for="amount-time-5">{{'arrive'|trans}}</label>
+                                                    <input class="slider-range" type="text" name="amount-time-5" id="amount-time-5" value="" readonly/>
+                                                    <div id="slider-time-5" data-filter="returningArrival"></div>
+                                                </div>
+                                                <div class="wording" data-filter-group="slider-time-6">
+                                                    <label for="amount-time-6">{{'duration'|trans}}</label>
+                                                    <input class="slider-range" type="text" name="amount-time-6" id="amount-time-6" value="" readonly/>
+                                                    <div id="slider-time-6" data-min-duration="{{ minimum_duration|raw }}" data-max-duration="{{ maximum_duration|raw }}" data-filter="returningDuration"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            <div class="accordion-section">
+                                <div class="block_r price-f">
+                                    <div class="title_with_icon">
+                                        <div class="bg fl"></div>
+                                        <h2 class="txt fl accordion-section-title"> <label for="amount">{{'Price'|trans}}</label></h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class=" accordion-section-content">
+                                        <div class="wording" data-filter-group="price-group">
+                                            <p>
+                                                <input class="slider-range withstyle" type="text" id="amount" readonly>
+                                            </p>
+                                            <div id="price-range" data-min-price="{{ minimum_price|raw }}" data-max-price="{{ maximum_price|raw }}" data-filter="priceFilter"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-section">
+                                <div class="block_r stops-f">
+                                    <div class="title_with_icon">
+                                        <div class="bg fl"></div>
+                                        <div class="txt fl accordion-section-title">{{'stops'|trans}}</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class=" accordion-section-content">
+                                        <div class="wording" data-filter-group="stops-group">
+                                            <p>
+                                                <input class="slider-range" type="text" id="amount-1" readonly>
+                                            </p>
+                                            <div id="slider-range-2" data-filter="stopsFilter"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters">
+                                <div class="block_r refundable-wrapper">
+                                    <div id="bestCombination" class="input-group checkbox" data-filter-group="bestCombination">
+                                        <label for="bestCombinationFilter"><input id="bestCombinationFilter" type="checkbox" value="" data-filter=".bestcombination"/>{{'best combination'|trans}}</label>
+                                    </div>
+                                    {% if enableRefundable %}
+                                        <div id="refundableGroup" class="input-group checkbox" data-filter-group="refundable">
+                                            <label for="refundableFilter"><input id="refundableFilter" type="checkbox" value="" data-filter=".refundable"/>{{'refundable only'|trans}}</label>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="accordion-section">
+                                    <div class="block_r airline-f ">
+                                        <div class="title_with_icon">
+                                            <div class="bg fl"></div>
+                                            <div class="txt fl accordion-section-title">{{'airlines'|trans}}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class=" accordion-section-content nopad">
+                                            <div id="airlinesGroup" class="checkbox input-group" data-filter-group="airlines-group">
+                                                {% for key, airline in airlines %}
+                                                    <label for="{{ key|raw }}">
+                                                        <input id="{{ key|raw }}" type="checkbox" value="{{ key|raw }}" data-filter=".{{ key|raw }}">{{ airline.name|raw }} <span class="a_price price-convert" data-price="{{ airline.amount_attr|raw }}"><span class="currency-convert-text">{{currency_code|raw}}</span> <span class="price-convert-text">{{ airline.amount|raw }}</span></span>
+                                                    </label>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#search section:
+                ==============#}
+
+                <div class="search-block col-xs-12">
+                    <h2 class="block-title col-xs-12">&raquo; {{'Search flights'|trans}}</h2>
+                    <div class="block-info col-xs-12">
+                        <div class="col-xs-12 nopad">
+                            <ul class="typeflighttabs">
+                                <li class="flight_buts roundtripclass active">{{'Roundtrip'|trans}}</li>
+                                <li class="flight_buts onewayclass">{{'One way'|trans}}</li>
+                                <li class="flight_buts multipledestclass">{{'Multiple destinations'|trans}}</li>
+                            </ul>
+                        </div>
+                        <form id="airplaneform" name="airplaneform" method="post" action="flight-booking-result" autocomplete="off">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                <div id="departurecontainer" class="col-xs-12 nopad">
+                                    <label class="col-xs-12 padding0">{{'Departure airport'|trans}}</label>
+                                    <input type="text" class="col-xs-12" id="departureairport" name="departureairport" value="{{departureAirportN|raw}}">
+                                    <input type="hidden" id="departureairportC" name="departureairportC" value="{{departureAirport|raw}}">
+                                </div>
+                                <div id="arrivalcontainer" class="col-xs-12 nopad">
+                                    <label class="col-xs-12 padding0">{{'Arrival airport'|trans}}</label>
+                                    <input type="text" class="col-xs-12" id="arrivalairport" name="arrivalairport" value="{{arrivalairportN|raw}}">
+                                    <input type="hidden" id="arrivalairportC" name="arrivalairportC" value="{{arrivalairport|raw}}">
+                                </div>
+                                <span id="datesContainer" class="col-xs-12 nopad">
+                                    <div id="fromContainer" class="col-xs-12 nopad">
+                                        <label class="col-xs-12 padding0">{{'Departure date'|trans}}</label>
+                                        <input type="text" class="col-xs-12" id="fromDate" name="fromDateC" value="{{fromDate|raw}}">
+                                    </div>
+                                    <div id="toContainer" class="col-xs-12 nopad">
+                                        <label class="col-xs-12 padding0">{{'Return date'|trans}}</label>
+                                        <input type="text" class="col-xs-12" id="toDate" name="toDateC" value="{{toDate|raw}}">
+                                    </div>
+                                </span>
+                                <div id="flexibleDateContainer" class="checkbox rightcheckbox col-xs-12 padding0">
+                                    <label><input class="flexibledate" {% if flexibleDate == 1 %} checked="checked" {% endif %} type="checkbox" name="flexibledate" value="1" data-checked="{{flexibleDate|raw}}"> {{'My dates are flexible (lowest prices on + / - 3 days)'|trans}}</label><br>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12  ">
+                                <label class="col-xs-12 padding0">{{'class'|trans}}</label>
+                                <select class="economy col-xs-12" name="cabinselect">
+                                    <option value="">{{'Select class'|trans}}</option>
+                                    <option value="Y"{% if cabinSelect=='Y' %} selected="selected"{% endif %}>{{'Economy class'|trans}}</option>
+                                    <option value="S"{% if cabinSelect=='S' %} selected="selected"{% endif %}>{{'Premium Economy'|trans}}</option>
+                                    {#<option value="J"{% if cabinSelect=='J' %} selected="selected"{% endif %}>{{'Premium Business'|trans}}</option>#}
+                                    <option value="C"{% if cabinSelect=='C' %} selected="selected"{% endif %}>{{'Business class'|trans}}</option>
+                                    {#<option value="P"{% if cabinSelect=='P' %} selected="selected"{% endif %}>{{'Premium First'|trans}}</option>#}
+                                    <option value="F"{% if cabinSelect=='F' %} selected="selected"{% endif %}>{{'First class'|trans}}</option>
+                                </select>
+
+                                {#<div class="checkbox col-xs-12 padding0">
+                                    <label><input class="oneway" {% if one_way == 1 %} checked="checked" {% endif %} type="checkbox" name="oneway" value="1" data-checked="{{one_way|raw}}"> {{'one way'|trans}}</label><br>
+                                </div>#}
+
+                                <label class="col-xs-12 padding0">{{'Adults'|trans}}</label>
+                                <select class="economy col-xs-12 padding0" name="adultsselect">
+                                    <option value="1"{% if adultsSelect==1 %} selected="selected"{% endif %}>{{'1 adult (12+ year)'|trans}}</option>
+                                    <option value="2"{% if adultsSelect==2 %} selected="selected"{% endif %}>{{'2 Adults'|trans}}</option>
+                                    <option value="3"{% if adultsSelect==3 %} selected="selected"{% endif %}>{{'3 Adults'|trans}}</option>
+                                    <option value="4"{% if adultsSelect==4 %} selected="selected"{% endif %}>{{'4 Adults'|trans}}</option>
+                                    <option value="5"{% if adultsSelect==5 %} selected="selected"{% endif %}>{{'5 Adults'|trans}}</option>
+                                    <option value="6"{% if adultsSelect==6 %} selected="selected"{% endif %}>{{'6 Adults'|trans}}</option>
+                                    <option value="7"{% if adultsSelect==7 %} selected="selected"{% endif %}>{{'7 Adults'|trans}}</option>
+                                    <option value="8"{% if adultsSelect==8 %} selected="selected"{% endif %}>{{'8 Adults'|trans}}</option>
+                                </select>
+
+                                <label class="col-xs-12 padding0">{{'Children'|trans}}</label>
+                                <select class="economy col-xs-12 padding0" name="childsselect">
+                                    <option value="0"{% if childrenSelect==0 %} selected="selected"{% endif %}>{{'children (2-12 year)'|trans}}</option>
+                                    <option value="1"{% if childrenSelect==1 %} selected="selected"{% endif %}>{{'1 child'|trans}}</option>
+                                    <option value="2"{% if childrenSelect==2 %} selected="selected"{% endif %}>{{'2 children'|trans}}</option>
+                                    <option value="3"{% if childrenSelect==3 %} selected="selected"{% endif %}>{{'3 children'|trans}}</option>
+                                    <option value="4"{% if childrenSelect==4 %} selected="selected"{% endif %}>{{'4 children'|trans}}</option>
+                                    <option value="5"{% if childrenSelect==5 %} selected="selected"{% endif %}>{{'5 children'|trans}}</option>
+                                    <option value="6"{% if childrenSelect==6 %} selected="selected"{% endif %}>{{'6 children'|trans}}</option>
+                                    <option value="7"{% if childrenSelect==7 %} selected="selected"{% endif %}>{{'7 children'|trans}}</option>
+                                    <option value="8"{% if childrenSelect==8 %} selected="selected"{% endif %}>{{'8 children'|trans}}</option>
+                                </select>
+
+                                <label class="col-xs-12 padding0">{{'Infants'|trans}}</label>
+                                <select class="economy col-xs-12 padding0" name="infantsselect">
+                                    <option value="0"{% if infantsSelect==0 %} selected="selected"{% endif %}>{{'infants (0-2 year)'|trans}}</option>
+                                    <option value="1"{% if infantsSelect==1 %} selected="selected"{% endif %}>{{'1 infant'|trans}}</option>
+                                    <option value="2"{% if infantsSelect==2 %} selected="selected"{% endif %}>{{'2 infants'|trans}}</option>
+                                    <option value="3"{% if infantsSelect==3 %} selected="selected"{% endif %}>{{'3 infants'|trans}}</option>
+                                    <option value="4"{% if infantsSelect==4 %} selected="selected"{% endif %}>{{'4 infants'|trans}}</option>
+                                    <option value="5"{% if infantsSelect==5 %} selected="selected"{% endif %}>{{'5 infants'|trans}}</option>
+                                    <option value="6"{% if infantsSelect==6 %} selected="selected"{% endif %}>{{'6 infants'|trans}}</option>
+                                    <option value="7"{% if infantsSelect==7 %} selected="selected"{% endif %}>{{'7 infants'|trans}}</option>
+                                    <option value="8"{% if infantsSelect==8 %} selected="selected"{% endif %}>{{'8 infants'|trans}}</option>
+                                </select>
+
+                                {#<div class="addchild col-xs-12 padding0">
+                                    {{'Add child / infant'|trans}} <span class="addchild_interg">?</span>
+                                </div>#}
+
+                            </div>
+                            <div id="multiDestinationContainer" class="multi-destination-container">
+                                <div class="col-xs-12 nopad">
+                                    <div class="col-xs-12 nopad snd3dflightstyle">{{'flight 2'|trans}}</div>
+                                    <div id="departurecontainer-0" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="departureairport-0" name="departureairport-0" placeholder="{{'Departure airport / city'|trans}}" value="">
+                                        <input type="hidden" id="departureairport-0C" name="departureairportC-0" value="">
+                                    </div>
+                                    <div id="arrivalcontainer-0" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="arrivalairport-0" name="arrivalairport-0" placeholder="{{'Arrival airport / city'|trans}}" value="">
+                                        <input type="hidden" id="arrivalairport-0C" name="arrivalairportC-0" value="">
+                                    </div>
+                                    <div id="fromContainer-0" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="fromDate-0" name="fromDateC-0" placeholder="Departure date" value="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <div class="col-xs-12 nopad snd3dflightstyle">{{'flight 3'|trans}}</div>
+                                    <div id="departurecontainer-1" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="departureairport-1" name="departureairport-1" placeholder="{{'Departure airport / city'|trans}}" value="">
+                                        <input type="hidden" id="departureairport-1C" name="departureairportC-1" value="">
+                                    </div>
+                                    <div id="arrivalcontainer-1" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="arrivalairport-1" name="arrivalairport-1" placeholder="{{'Arrival airport / city'|trans}}" value="">
+                                        <input type="hidden" id="arrivalairport-1C" name="arrivalairportC-1" value="">
+                                    </div>
+                                    <div id="fromContainer-1" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="fromDate-1" name="fromDateC-1" placeholder="{{'Departure date'|trans}}" value="">
+                                    </div>
+                                </div>
+                                {#<div class="col-xs-12 nopad">
+                                    <div class="col-xs-12 nopad snd3dflightstyle">flight 4</div>
+                                    <div id="departurecontainer-2" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="departureairport-2" name="departureairport-2" placeholder="Departure airport / city" value="">
+                                        <input type="hidden" id="departureairport-2C" name="departureairportC-2" value="">
+                                    </div>
+                                    <div id="arrivalcontainer-2" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="arrivalairport-2" name="arrivalairport-2" placeholder="Arrival airport / city" value="">
+                                        <input type="hidden" id="arrivalairport-2C" name="arrivalairportC-2" value="">
+                                    </div>
+                                    <div id="fromContainer-2" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="fromDate-2" name="fromDate-2" placeholder="Departure date" value="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <div class="col-xs-12 nopad snd3dflightstyle">flight 5</div>
+                                    <div id="departurecontainer-3" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="departureairport-3" name="departureairport-3" placeholder="Departure airport / city" value="">
+                                        <input type="hidden" id="departureairport-3C" name="departureairportC-3" value="">
+                                    </div>
+                                    <div id="arrivalcontainer-3" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="arrivalairport-3" name="arrivalairport-3" placeholder="Arrival airport / city" value="">
+                                        <input type="hidden" id="arrivalairport-3C" name="arrivalairportC-3" value="">
+                                    </div>
+                                    <div id="fromContainer-3" class="col-lg-12 col-md-12 col-sm-4 col-xs-12 padleftrz">
+                                        <input type="text" id="fromDate-3" name="fromDate-3" placeholder="Departure date" value="">
+                                    </div>
+                                </div>#}
+                            </div>
+                            <div class="search-block col-xs-12">
+                                <h2 class="block-title col-xs-12">&raquo; {{'Refined search'|trans}}</h2>
+                                <label class="col-xs-12 padding0">{{'Priority'|trans}}</label>
+                                <select class="economy col-xs-12 padding0" name="priority">
+                                    <option value="0">{{'Direct Flights'|trans}}</option>
+                                    <option value="1">{{'Price'|trans}}</option>
+                                    <option value="2">{{'Time'|trans}}</option>
+                                </select>
+                                <div class="col-xs-12 nopad">
+                                    <label class="col-xs-12 padding0">{{'Specific Airline'|trans}}</label>
+                                    <div class="col-xs-12 nopad">
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <select id="cabinselect" class="selectpicker chosen-select" data-live-search="true" ta bindex="1" width="100%" name="chosenAirline">
+                                                <option data-tokens="" value="">{{'Select Airline'|trans}}</option>
+                                                {% for airline in ChosenAirlinesList %} 
+                                                    <option data-tokens="{{airline.nameCode}}" value="{{airline.code}}">{{airline.nameCode}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h2 class="col-lg-12 col-md-12 col-sm-4 col-xs-12">
+                                <input id="oneway" class="oneway" name="oneway" value="" type="hidden">
+                                <input id="multiDestination" class="multi-destination" name="multidestination" value="" type="hidden">
+                                <button type="submit" class="find_flights">&raquo; {{'search'|trans}}</button>
+                            </h2>
+                        </form>
+                    </div>
+                </div>
+                {# new search:
+                 ===========#}
+
+                <a class="newsearch col-xs-12 padding0" title="{{'for a new search, click here'|trans}}" target="_blank" href="{{ generateLangRoute(LanguageGet,'_flight_booking')}}"><h2>{{'for a new search, click here'|trans}}</h2></a>  
+
+            </div>
+
+            {#content col9 container:
+            =======================#}
+
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fly-content smalxsnopad">
+                <div class="col-xs-12 topadj palz">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 nopadtenblue">
+                        <div class="bluebacksearchdiv">
+                            <p class="textsearchblue">{{'order by'|trans}}</p>
+
+                        </div>
+                    </div>
+                    <div class="floatinginput inputbox col-lg-2 col-md-2 col-sm-2 col-xs-3 xsnolp">
+                        <select id="sortDuration" class="sortingSelect">
+                            <option data-sort-value="" value="" selected>{{'Duration'|trans}}</option>
+                            <option data-sort-value="shortestDuration" value="shortestDuration">{{'Shortest Duration'|trans}}</option>
+                            <option data-sort-value="longestDuration" value="longestDuration">{{'Longest Duration'|trans}}</option>
+                        </select> 
+                    </div>
+                    <div class="floatinginput inputbox col-lg-2 col-md-2 col-sm-2 col-xs-3 ">
+                        <select id="sortStops" class="sortingSelect">
+                            <option data-sort-value="" value="" selected>{{'Stops'|trans}}</option>
+                            <option data-sort-value="minimumStops" value="minimumStops">{{'Minimum Stops'|trans}}</option>
+                            <option data-sort-value="maximumStops" value="maximumStops">{{'Maximum Stops'|trans}}</option>
+                        </select>
+                    </div>
+                    <div class="floatinginput inputbox col-lg-2 col-md-2 col-sm-2 col-xs-3 xsnorp">
+                        <select id="sortPrice" class="sortingSelect">
+                            <option data-sort-value="" value="" selected>{{'Price'|trans}}</option>
+                            <option data-sort-value="cheapestPrice" value="cheapestPrice">{{'Cheapest Price'|trans}}</option>
+                            <option data-sort-value="highestPrice" value="highestPrice">{{'Highest Price'|trans}}</option>
+                        </select>
+                    </div>
+                    <div class="floatinginput inputbox col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                        <select id="sortEarliestTime" class="sortingSelect">
+                            <option data-sort-value="" value="" selected>{{'Time'|trans}}</option>
+                            <option data-sort-value="earliestDeparture" value="earliestDeparture">{{'Earliest Departure'|trans}}</option>
+                            <option data-sort-value="earliestArrival" value="earliestArrival">{{'Earliest Arrival'|trans}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 visible-xs nopad">
+                    <p class="ressmal">{{'RESULTS'|trans}}</p>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 nopad">
+                    <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs nopad">
+                        <div class="blackheader">
+                            <ul class=" col-xs-12 ulheadstyle">
+                                <li class="airlinestyle">{{'Airline'|trans}}</li>
+                                <li class="departuredate">{{'Departure'|trans}}</li>
+                                <li class="stpsstyle">{{'Stops'|trans}}</li>
+                                <li class="othercommonstyle">{{'Arrival'|trans}}</li>
+                                <li class="durationst">{{'Duration'|trans}}</li>
+                                <li class="othercommonstyleprice">{{'Price'|trans}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid-wrapper">
+                        <div class="grid col-xs-12 nopad">
+                            {% if error is defined %}
+                                <div class="alert-danger">{{error|trans}}</div>
+                            {% else %}
+                                {%if errors is defined %}
+                                    <div class="alert-danger">
+                                        <ul>
+                                            {% for message in errors %}
+                                                <li>
+                                                    {{message|raw}}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% else %}
+                                    {%if segmentsArray is not empty %}
+                                        {% for segmentsItem in segmentsArray %}
+                                            {% set segmentsItemIndex = loop.index %}
+                                            <div class="fly {{ segmentsItem.non_refundable_css_class|raw }} {{ segmentsItem.marketing_airline|raw }} {{ segmentsItem.segmentsGlob.classExactDate|raw }}">
+                                                <form id="book-{{loop.index}}" action="book-flight" method="POST" autocomplete="off">
+                                                    <input type="hidden" name="number_in_party" value="{{ num_in_party|raw }}" />
+                                                    <input type="hidden" name="original_price" value="{{segmentsItem.segmentsGlob.original_price|raw}}" />
+                                                    <div class="price-convert" data-price="{{segmentsItem.segmentsGlob.price_attr|raw}}"><input class="price-convert-val" type="hidden" name="price_attr" value="{{segmentsItem.segmentsGlob.price_attr|raw}}" /></div>
+                                                    <div class="price-convert" data-price="{{segmentsItem.segmentsGlob.price|raw}}"><input class="price-convert-val" type="hidden" name="price" value="{{segmentsItem.segmentsGlob.price|raw}}" /></div>
+                                                    <input type="hidden" name="currency" value="{{ currency|raw }}" />
+                                                    <div class="price-convert"><input class="currency-convert-val" type="hidden" name="currency_code" value="{{ currency_code|raw }}" /></div>
+                                                    <input type="hidden" name="multi_destination" value="{{ multi_destination|raw }}" />
+                                                    <input type="hidden" name="one_way" value="{{ one_way|raw }}" />
+
+                                                    <div class="col-xs-12 nopad hidden-xs" {% if segmentsItem.segmentsGlob.flight_number_highlight is defined %} style="border:2px solid red; padding-left:10px; padding-right:10px" {% endif %}>
+                                                        <div class="leaving-stops col-lg-12 col-md-12 col-sm-12 nopad" 
+                                                             data-datedeparttureobj="{{segmentsItem.segmentsGlob.departure_lowest_date_time_obj.format('M d, Y G:i:s')}}"
+                                                             data-datearrivaltureobj="{{segmentsItem.segmentsGlob.arrival_lowest_date_time_obj.format('M d, Y G:i:s')}}" 
+                                                             data-stops="{{segmentsItem.segmentsGlob.stops|raw}}" 
+                                                             data-earliestdeparture="{{segmentsItem.segmentsGlob.departure_lowest_timestamp}}" 
+                                                             data-earliestarrival="{{segmentsItem.segmentsGlob.arrival_lowest_timestamp}}">
+
+                                                            <ul class=" col-xs-12 ulheadstyle2 displayli flyminHeight">
+                                                                <li class="airlinestyle2 newstyleairline">
+                                                                    <ul>
+                                                                        <li> <img class="chtimg" alt="{{segmentsItem.segmentsGlob.airline_name|raw}}" src="{{segmentsItem.segmentsGlob.airline_logo|raw}}"/></li>
+                                                                        <li>{{segmentsItem.segmentsGlob.airline_name|raw}}<br>{{segmentsItem.segmentsGlob.airline|raw}}{{segmentsItem.segmentsGlob.flight_number|raw}}</li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li class="departuredate newdep leaving-departure-time-minutes" data-time-minutes="{{segmentsItem.segmentsGlob.departure_time_minutes|raw}}">{{segmentsItem.segmentsGlob.departure_date_time|raw}}{#<span class="datenumbclass"> 30 Dec</span> 23:10#}</li>
+                                                                <li class="stpsstyle newstops"><img alt="{{'stops'|trans}}" class="" src="{{ generateMediaURL('/media/images/stpsimg.png') }}" /><br> <span class="destpadr">{{segmentsItem.segmentsGlob.departure_airport_code|raw}}</span> <span>{{segmentsItem.segmentsGlob.arrival_airport_code|raw}}</span></li>
+                                                                <li class="othercommonstyle newarrives leaving-arrival-time-minutes" data-time-minutes="{{segmentsItem.segmentsGlob.arrival_time_minutes|raw}}">{{segmentsItem.segmentsGlob.arrival_date_time|raw}}{#<span class="hourstyle"> 16:00</span><br><span class="plustime">+1 day</span>#}</li>
+                                                                <li class="durationst newduration leaving-duration" data-flight-duration="{{ segmentsItem.segmentsGlob.flight_duration_attr|raw }}"><span class="sizespan">{{segmentsItem.segmentsGlob.flight_duration|raw}}</span> <span class="morestyle" >{{'more'|trans}}</span><span class="lessstyle" >{{'less'|trans}}</span></li>
+                                                                <li class="flight-price othercommonstyleprice newprice price-convert" data-price="{{segmentsItem.segmentsGlob.price_attr|raw}}"><span class="currency-convert-text">{{currency_code|raw}}</span> <span class="price-convert-text">{{segmentsItem.segmentsGlob.price|raw}}</span><br/><span class="seats_left">{{segmentsItem.seats_remaining|raw}} {{'left'|trans}}</span>{#<span class="priceclass">AED</span><span class="numbprice">4.346</span>#}</li>
+                                                                    {% if is_corporate_account_with_self_approval %}
+                                                                    <li class="bookingstyle"><button class="submit-booking" type="submit" name="submit-booking" >{{'BOOK'|trans}}</button></li>
+                                                                    {% else %}
+                                                                    <li class="bookingstyle"><div class="submit-dis">{{'BOOK'|trans}}</div></li>
+                                                                    {% endif %}
+                                                            </ul>
+                                                        </div>
+
+                                                        {% if (one_way == 1 and multi_destination == 1) or (one_way == 0 and multi_destination == 0) %}
+                                                            {% for segmentsItemMulti in segmentsItem.segmentsGlob.segmentsGlobMulti %}
+                                                                <div class="returning-stops col-lg-12 col-md-12 col-sm-12 nopad" data-stops="{{segmentsItemMulti.stops1|raw}}">
+                                                                    <ul class=" col-xs-12 ulheadstyle2 displayli">
+                                                                        <li class="airlinestyle2 newstyleairline">
+                                                                            <ul>
+                                                                                <li> <img class="chtimg" alt="{{segmentsItemMulti.airline_name1|raw}}" src="{{segmentsItemMulti.airline_logo1|raw}}"/></li>
+                                                                                <li>{{segmentsItemMulti.airline_name1|raw}}<br>{{segmentsItemMulti.airline1|raw}}{{segmentsItemMulti.flight_number1|raw}}</li>
+                                                                            </ul>
+                                                                        </li>
+                                                                        <li class="departuredate newdep returning-departure-time-minutes" data-time-minutes="{{segmentsItemMulti.departure_time_minutes1|raw}}">{{segmentsItemMulti.departure_date_time1|raw}}</li>
+                                                                        <li class="stpsstyle newstops"><img class="" src="{{ generateMediaURL('/media/images/stpsimg.png') }}" alt="{{'stops'|trans}}"/><br> <span class="destpadr">{{segmentsItemMulti.departure_airport_code1|raw}}</span> <span>{{segmentsItemMulti.arrival_airport_code1|raw}}</span></li>
+                                                                        <li class="othercommonstyle newarrives returning-arrival-time-minutes" data-time-minutes="{{segmentsItemMulti.arrival_time_minutes1|raw}}">{{segmentsItemMulti.arrival_date_time1|raw}}</li>
+                                                                        <li class="durationst newduration returning-duration" data-flight-duration="{{ segmentsItemMulti.flight_duration_attr1|raw }}">{{segmentsItemMulti.flight_duration1|raw}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        
+                                                        <div class="closedborder col-lg-12 col-md-12 col-sm-12 nopad borderunopen"></div>
+                                                        <div class="collapsablediv col-lg-12 col-md-12 col-sm-12 nopad borderopen">
+                                                            <div class="ulheadmorestyle nopad">
+                                                                {% for segItem in segmentsItem.segments %}
+                                                                    {% if loop.index>1 %}
+                                                                        <div class="width100 blackline"></div>
+                                                                    {% endif %}
+                                                                    {% for segItemIn in segItem %}
+                                                                        {% set segItemInIndex1 = loop.index %}
+                                                                        {% if segItemInIndex1>1 %}
+                                                                            <div class="wrap"><div class="text">{{segItemIn.stop_city|raw}}</div></div>
+                                                                            {% endif %}                                                             
+                                                                            {% if segItemIn.operating_airline != segItemIn.airline %}
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xm-12 textoperated"><span>{{'operated by'|trans}} {{segItemIn.operating_airline_name|raw}}</span></div>
+                                                                        {% endif %} 
+                                                                        <ul class="ulheadstyle2 width100">
+                                                                            <li class="airlinestyle2 newstyleairline">
+                                                                                <ul>
+                                                                                    <li> <img class="chtimg" alt="{{segItemIn.airline_name|raw}}" src="{{segItemIn.airline_logo|raw}}"/></li>
+                                                                                    <li>{{segItemIn.airline_name|raw}}<br>{{segItemIn.airline|raw}}{{segItemIn.flight_number|raw}}</li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="departuredate newdep">{{segItemIn.departure_date_time|raw}}</li>
+                                                                            <li class="stpsstyle newstops"><img class="stpsimg" src="{{ generateMediaURL('/media/images/stpsimg.png') }}" alt="{{'stops'|trans}}"/><br> <span class="destpadr">{{segItemIn.departure_airport_code|raw}}</span> <span>{{segItemIn.arrival_airport_code|raw}}</span></li>
+                                                                            <li class="othercommonstyle newarrives">{{segItemIn.arrival_date_time|raw}}{#<span class="hourstyle"> 01:00</span><br><span class="plustime">+1 day</span>#}</li>
+                                                                        </ul>
+                                                                        <input type="hidden" name="flight_number-{{ segItemIn.segment_count }}" value="{{ segItemIn.flight_number|raw }}" />
+                                                                        <input type="hidden" name="airline_code-{{ segItemIn.segment_count }}" value="{{ segItemIn.airline|raw }}" />
+                                                                        <input type="hidden" name="operating_airline_code-{{ segItemIn.segment_count }}" value="{{ segItemIn.operating_airline|raw }}" />
+                                                                        <input type="hidden" name="airline_name-{{ segItemIn.segment_count }}" value="{{ segItemIn.airline_name|raw }}" />
+                                                                        <input type="hidden" name="operating_airline_name-{{ segItemIn.segment_count }}" value="{{ segItemIn.operating_airline_name|raw }}" />
+                                                                        <input type="hidden" name="origin_location-{{ segItemIn.segment_count }}" value="{{ segItemIn.departure_airport_code|raw }}" />
+                                                                        <input type="hidden" name="origin_location_city-{{ segItemIn.segment_count }}" value="{{ segItemIn.departure_airport_city|raw }}" />
+                                                                        <input type="hidden" name="origin_location_airport-{{ segItemIn.segment_count }}" value="{{ segItemIn.departure_airport_name|raw }}" />
+                                                                        <input type="hidden" name="destination_location-{{ segItemIn.segment_count }}" value="{{ segItemIn.arrival_airport_code|raw }}" />          
+                                                                        <input type="hidden" name="destination_location_city-{{ segItemIn.segment_count }}" value="{{ segItemIn.arrival_airport_city|raw }}" />          
+                                                                        <input type="hidden" name="destination_location_airport-{{ segItemIn.segment_count }}" value="{{ segItemIn.arrival_airport_name|raw }}" />  
+                                                                        <input type="hidden" name="total_flight_segments-{{ segItemIn.segment_count }}" value="{{ segItemIn.total_flight_segments|raw }}" />
+                                                                        <input type="hidden" name="departure_date_time-{{ segItemIn.segment_count }}" value="{{ segItemIn.original_departure_date_time|raw }}" />
+                                                                        <input type="hidden" name="arrival_date_time-{{ segItemIn.segment_count }}" value="{{ segItemIn.original_arrival_date_time|raw }}" />
+                                                                        <input type="hidden" name="res_book_desig_code-{{ segItemIn.segment_count }}" value="{{ segItemIn.res_book_desig_code|raw }}" />
+                                                                        <input type="hidden" name="fare_basis_code-{{ segItemIn.segment_count }}" value="{{ segItemIn.fare_basis_code|raw }}" />
+                                                                        <input type="hidden" name="flight_type-{{ segItemIn.segment_count }}" value="{{ segItemIn.flight_type|raw }}" />
+                                                                        <input type="hidden" name="cabin-{{ segItemIn.segment_count }}" value="{{ segItemIn.cabin|raw }}" />
+                                                                        <input type="hidden" name="cabin_code-{{ segItemIn.segment_count }}" value="{{ segItemIn.cabin_code|raw }}" />
+                                                                        <input type="hidden" name="flight_duration-{{ segItemIn.segment_count }}" value="{{ segItemIn.flight_duration|raw }}" />
+                                                                        <input type="hidden" name="stop_duration-{{ segItemIn.segment_count }}" value="{{ segItemIn.stop_duration|raw }}" />
+                                                                        <input type="hidden" name="stop_indicator-{{ segItemIn.segment_count }}" value="{{ segItemIn.stop_indicator|raw }}" />
+                                                                    {% endfor %}
+                                                                {% endfor %}
+                                                            </div>
+                                                            <div class="nopad ulheadmorestyle2">
+                                                                <ul class="ulheadstyle2 width100 leftpad4 mabytline">
+                                                                    <li class="new">{{'Fare details'|trans}}</li>
+                                                                    <li class="new"></li>
+                                                                </ul> 
+                                                                <ul class="ulheadstyle2 width100 leftpad4">
+                                                                    <li class="new width39">{{'Base fare'|trans}}</li>
+                                                                    <li class="new width61 price-convert" data-price="{{ segmentsItem.base_fare_attr|raw }}"><span class="currency-convert-text">{{currency_code|raw}}</span> <span class="price-convert-text">{{ segmentsItem.base_fare|raw }}</span></li>
+                                                                </ul> 
+
+                                                                <ul class="ulheadstyle2 width100 leftpad4 mabytline">
+                                                                    <li class="new width39">{{'Surcharges / taxes'|trans}}</li>
+                                                                    <li class="new width61 price-convert" data-price="{{ segmentsItem.taxes_attr|raw }}"><span class="currency-convert-text">{{currency_code|raw}}</span> <span class="price-convert-text"> {{ segmentsItem.taxes|raw }}</span></li>
+                                                                </ul>
+                                                                {% if enableRefundable %}
+                                                                    <ul class="ulheadstyle2 width100 leftpad4">
+                                                                        <li class="new">{{segmentsItem.non_refundable|raw}}</li>
+                                                                        <li class="new"></li>
+                                                                    </ul> 
+                                                                {% endif %}
+                                                            </div>
+                                                        </div> 
+                                                    </div>                                        
+                                                    <div class="col-xs-12 visible-xs nopad xscont">
+                                                        <div class="col-xs-12 visible-xs nopad">
+                                                            <div class="col-xs-12 nopad">
+                                                                <div class="bluecontainerdiv">
+                                                                    <div class="col-xs-4 nopad">
+                                                                        <p class="numresultsmal txtall">{{segmentsItemIndex}}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-8 nopad txtalr">
+                                                                        <p class="pricenumsmall"><span class="fistspan">{{'Price'|trans}}</span> <span class="curspan">{{segmentsItem.segmentsGlob.price|raw}}</span></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% for segItem in segmentsItem.segments %}
+                                                            {% set segItemIndex = loop.index %}
+                                                            {% if segItemIndex>1 %}
+                                                                <div class="width100 grayline"></div>
+                                                            {% endif %}
+                                                            {% for segItemIn in segItem %} 
+                                                                {% set segItemInIndex = loop.index %}
+                                                                <div class="col-xs-12 visible-xs nopad">
+                                                                    {% if segItemInIndex>1 %}
+                                                                        <div class="wrap2"><div class="text">{{segItemIn.stop_city|raw}}</div></div>
+                                                                        {% endif %} 
+                                                                        {% if segItemIn.operating_airline != segItemIn.airline %}
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xm-12 textoperated"><span>{{'operated by'|trans}} {{segItemIn.operating_airline_name|raw}}</span></div>
+                                                                    {% endif %} 
+                                                                    <div class="col-xs-12 nopad">
+                                                                        <div class="col-xs-2 nopad">
+                                                                            <p class="leftairline"><br>{{'Airline'|trans}}</p>
+                                                                        </div>
+                                                                        <div class="col-xs-10 nopad padl5p">
+                                                                            <img alt="{{segItemIn.airline_name|raw}}" class="" src="{{segItemIn.airline_logo|raw}}" />
+                                                                            <p class="rjclass">{{segItemIn.airline_name|raw}}</p>
+                                                                            <p class="rjclass">{{segItemIn.airline|raw}}{{segItemIn.flight_number|raw}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-12 nopad padt4px">
+                                                                        <div class="col-xs-2 nopad">
+                                                                            <p class="leftairline">{{'Departure Date'|trans}}</p>
+                                                                            <p class="leftairline">{{'Stops'|trans}}</p>
+                                                                        </div>
+                                                                        <div class="col-xs-10 nopad padl5p">
+                                                                            <p class="rjclass">{{segItemIn.departure_date_time|raw}}</p>
+                                                                            <img class="matop6px" alt="{{'stops'|trans}}" src="{{ generateMediaURL('/media/images/stpsimg.png') }}" />
+                                                                            <p class="rjclass"><span class="destpadr">{{segItemIn.departure_airport_code|raw}}</span> <span>{{segItemIn.arrival_airport_code|raw}}</span></p>  
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-12 nopad padt4px">
+                                                                        <div class="col-xs-2 nopad">
+                                                                            <p class="leftairline">{{'Arrives'|trans}}</p>
+                                                                        </div>
+                                                                        <div class="col-xs-10 nopad padl5p">
+                                                                            <p class="">{{segItemIn.arrival_date_time|raw}}{#<span class="trlasleft"> 01:00</span> <span class="pldys">+1 day</span>#}</p>  
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            {% endfor %}
+                                                        {% endfor %}
+
+                                                        <div class="ulheadmorestyle2small col-xs-7  nopad">
+                                                            <ul class="ulheadstyle2 width100 leftpad4 mabytline">
+                                                                <li class="new">{{'Fare details'|trans}}</li>
+                                                                <li class="new"></li>
+                                                            </ul> 
+                                                            <ul class="ulheadstyle2 width100 leftpad4">
+                                                                <li class="new width39">{{'Base fare'|trans}}</li>
+                                                                <li class="new width61">{{currency_code}} {{ segmentsItem.base_fare|raw }}</li>
+                                                            </ul> 
+
+                                                            <ul class="ulheadstyle2 width100 leftpad4 mabytline">
+                                                                <li class="new width39">{{'Surcharges / taxes'|trans}}</li>
+                                                                <li class="new width61">{{currency_code}} {{ segmentsItem.taxes|raw }}</li>
+                                                            </ul> 
+                                                            {% if enableRefundable %}
+                                                                <ul class="ulheadstyle2 width100 leftpad4">
+                                                                    <li class="new">{{segmentsItem.non_refundable|raw}}</li>
+                                                                    <li class="new"></li>
+                                                                </ul> 
+                                                            {% endif %}
+                                                        </div>
+                                                        <ul>
+                                                            {% if is_corporate_account_with_self_approval %}
+                                                                <li><button class="booksmall submit-booking" type="submit" name="submit-booking" >{{'BOOK'|trans}}</button></li>{% else %}
+                                                                <li><div class="submit-dis">{{'BOOK'|trans}}</div></li>
+                                                                {% endif %}
+                                                        </ul>
+                                                    </div>
+                                                    {% if enableRefundable %}
+                                                        <input type="hidden" name="refundable" value="{{segmentsItem.refundable|raw}}" />
+                                                    {% endif %}
+
+                                                    <input type="hidden" name="original_base_fare" value="{{ segmentsItem.original_base_fare|raw }}" />
+                                                    <div class="price-convert" data-price="{{segmentsItem.base_fare|raw}}"><input class="price-convert-val" type="hidden" name="base_fare" value="{{ segmentsItem.base_fare|raw }}" /></div>
+                                                    <div class="price-convert" data-price="{{segmentsItem.base_fare_attr|raw}}"><input class="price-convert-val" type="hidden" name="base_fare_attr" value="{{ segmentsItem.base_fare_attr|raw }}" /></div>
+                                                    <input type="hidden" name="original_taxes" value="{{ segmentsItem.original_taxes|raw }}" />
+                                                    <div class="price-convert" data-price="{{segmentsItem.taxes|raw}}"><input class="price-convert-val" type="hidden" name="taxes" value="{{ segmentsItem.taxes|raw }}" /></div>
+                                                    <div class="price-convert" data-price="{{segmentsItem.taxes_attr|raw}}"><input class="price-convert-val" type="hidden" name="taxes_attr" value="{{ segmentsItem.taxes_attr|raw }}" /></div>
+                                                        {% for passenger in segmentsItem.passenger_info %}
+                                                        <input type="hidden" name="{{ passenger.type_code }}" value="{{ passenger.quantity|raw }}" />
+                                                        <input type="hidden" name="leaving_baggage_info_{{ passenger.type_code }}" value="{{ passenger.leaving_baggage_info|raw }}" />
+                                                        {% if passenger.returning_baggage_info is defined %}
+                                                            <input type="hidden" name="returning_baggage_info_{{ passenger.type_code }}" value="{{ passenger.returning_baggage_info|raw }}" />
+                                                        {% endif %}
+                                                        <input type="hidden" name="fare_calc_line_{{ passenger.type_code }}" value="{{ passenger.fare_calculation_line|raw }}" />
+                                                    {% endfor %}
+                                                    <input type="hidden" name="sec_token" value="{{ segmentsItem.sec_token|raw }}" />
+                                                </form>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="alert-danger search-result">{{'There are no flights that match your search criteria.'|trans}}</div>
+                                    {% endif %}
+                                {% endif %}
+                                <div class="no-filter-result alert-danger search-result">{{'No flights match your filters.'|trans}}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

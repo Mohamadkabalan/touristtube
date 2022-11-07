@@ -1,0 +1,363 @@
+# SEO Routes
+_hotels_search_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels-search"
+    defaults: { _controller: HotelBundle:HRS:hotelBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotel booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site  for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_thotels_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/thotels"
+    defaults: { _controller: HotelBundle:HRS:hotelBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotel booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site  for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+# HRS Routes
+_hotel_booking_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-booking"
+    defaults: { _controller: HotelBundle:HRS:hotelBooking, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotel booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site  for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_avail_lang:
+    path:      "/{_locale}/hotel-avail"
+    defaults: { _controller: HotelBundle:HRS:hotelAvail, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_booking_results_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-booking-results"
+    defaults: { _controller: HotelBundle:HRS:hotelBookingResults, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Hotel Booking Results Tourist Tube", seodescription: "%1$s hotel booking results on tourist tube, choose your hotel and book your room now on tourist tube. Check all %1$s hotels.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_offers_lang:
+    path:      "/{_locale}/hotel-offers-{name}-{id}"
+    defaults: { _controller: HotelBundle:HRS:hotelOffers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "" }
+    requirements:
+        name: ".*"
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_details_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-details-{name}-{id}"
+    defaults: { _controller: HotelBundle:HRS:hotelDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "", seotitle: "hotel %s %s Tourist Tube", seodescription: "Hotel %1$s is located in %2$s. Tourist tube provides you with the info about %1$s hotel", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        
+_hotel_360_tour_lang:
+    path:      "/{_locale}/360-photos-vr/hotel-details-{name}-{id}"
+    defaults: { _controller: HotelBundle:HRS:view360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        
+_hotel_book_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-book"
+    defaults: { _controller: HotelBundle:HRS:hotelBook, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotel booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site  for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_reservation_lang:
+    path:      "/{_locale}/hotel-reservation"
+    defaults: { _controller: HotelBundle:HRS:hotelReservation, _locale: "%locale%", domain: "%domain%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        
+_hotel_cancellation_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-cancellation-{reference}"
+    defaults: { _controller: HotelBundle:HRS:hotelCancellation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+        
+_hotel_reservation_cancellation_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-reservation-cancellation-{reference}"
+    defaults: { _controller: HotelBundle:HRS:hotelReservationCancellation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+        
+_hotel_modification_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-modification-{reference}"
+    defaults: { _controller: HotelBundle:HRS:hotelModification, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+
+_hotel_reservation_modification_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-reservation-modification-{reference}"
+    defaults: { _controller: HotelBundle:HRS:hotelReservationModification, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+
+_hotel_change_confirmation_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-change-confirmation-{reference}"
+    defaults: { _controller: HotelBundle:HRS:hotelChangeConfirmation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_booking_details_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/booking-details-{reference}"
+    defaults: { _controller: HotelBundle:HRS:bookingDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+        
+_hotel_reviews_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-reviews-{name}-{id}"
+    defaults: { _controller: HotelBundle:HRS:hotelReviews, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotel booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site  for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+# Amadeus Routes
+_hotel_booking_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-bookingTT"
+    defaults: { _controller: HotelBundle:Hotels:hotelSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotel booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site  for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_avail_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-availTT"
+    defaults: { _controller: HotelBundle:Hotels:hotelAvail, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotel_booking_results_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-booking-resultsTT"
+    defaults: { _controller: HotelBundle:Hotels:hotelBookingResults, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Hotel Booking Results Tourist Tube", seodescription: "%1$s hotel booking results on tourist tube, choose your hotel and book your room now on tourist tube. Check all %1$s hotels.", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_offers_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-offersTT-{name}-{id}"
+    defaults: { _controller: HotelBundle:Hotels:hotelOffers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        name: ".*"
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotel_details_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-detailsTT-{name}-{id}"
+    defaults: { _controller: HotelBundle:Hotels:hotelDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "", seotitle: "hotel %s %s Tourist Tube", seodescription: "Hotel %1$s is located in %2$s. Tourist tube provides you with the info about %1$s hotel", seokeywords: "" }
+    requirements:
+        name: ".*"
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotel_360_full_tour_lang:
+    path:      "/{_locale}/360-photos-vr/hotel-detailsTT-{name}-{id}"
+    defaults: { _controller: HotelBundle:Hotels:view360FullTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "", seotitle: "hotel %s %s Tourist Tube", seodescription: "Hotel %1$s is located in %2$s. Tourist tube provides you with the info about %1$s hotel", seokeywords: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_hotel_book_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-bookTT"
+    defaults: { _controller: HotelBundle:Hotels:hotelBook, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotel_reservation_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-reservationTT"
+    defaults: { _controller: HotelBundle:Hotels:hotelReservation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_reservation_cancellation_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-reservation-cancellationTT-{reference}"
+    defaults: { _controller: HotelBundle:Hotels:hotelReservationCancellation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+
+_booking_details_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/booking-detailsTT-{reference}"
+    defaults: { _controller: HotelBundle:Hotels:bookingDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotel Booking Tourist Tube", seodescription: "searching the web for cheap hotels? Want to know more about hotel booking? tourist tube is the perfect site for the best hotels and hotel deals on the web", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+
+_hotel_reviews_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotel-reviewsTT-{name}-{id}"
+    defaults: { _controller: HotelBundle:Hotels:hotelReviews, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "searching for cheap hotels, Want to know about %s hotel tourist tube the perfect site for best hotels", seokeywords: "" }
+    requirements:
+        name: ".*"
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+       
+_hotel_rest_api_availability_callback_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels/searchRestApiCallback"
+    defaults: { _controller: HotelBundle:Hotels:hotelSearchRestApiCallback, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+        
+# Common Routes
+_best_hotels_in_the_world_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-hotels-in-360-virtual-tour"
+    defaults: { _controller: HotelBundle:HRS:bestHotelsInTheWorld, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Best hotels in 360 virtual tour | Tourist Tube", seodescription: "Take a real feel and look of the best hotels in a 360 virtual tour view and make your online reservation today.", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotels_in_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels-in{dest}"
+    defaults: { _controller: HotelBundle:HRS:hotelsInAll, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "hotels in %s Tourist Tube", seodescription: "searching the web for hotels in %s? tourist tube gives you the best hotels, deals", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotels_in1_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels-in{dest}/{srch}"
+    defaults: { _controller: HotelBundle:HRS:hotelsInAll, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", srch: "", seotitle: "hotels in %s Tourist Tube", seodescription: "searching the web for hotels in %s? tourist tube gives you the best hotels, deals", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_hotels_show_on_map_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels-show-on-map"
+    defaults: { _controller: HotelBundle:Hotels:showOnMap, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_reviews_popup_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/review-popup"
+    defaults: { _controller: HotelBundle:Hotels:hotelReviewsPopup, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotel_reviews_popup_images_tt_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/review-popup-images"
+    defaults: { _controller: HotelBundle:Hotels:hotelReviewsPopupImages, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_hotel_reviews_popup_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/review-HT-popup"
+    defaults: { _controller: HotelBundle:HRS:hotelReviewsPopup, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", page: 1, seotitle: "TouristTube Travel – Attractions – Destinations – Landmarks", seodescription: "Plan A Trip; Discover Landmarks, Attractions, Hotels and Restaurants Reviews; What To Do, Points of Interest. Visit us now!", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotel_HT_reviews_popup_images_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/review-HT-popup-images"
+    defaults: { _controller: HotelBundle:HRS:hotelReviewsPopupImages, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+# Payment Routes
+_hotels_payment_success_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels/payment/success"
+    defaults: { _controller: HotelBundle:Hotels:paymentSuccess, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_hotels_payment_failure_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/hotels/payment/failure"
+    defaults: { _controller: HotelBundle:Hotels:paymentFailed, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

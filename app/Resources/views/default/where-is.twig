@@ -1,0 +1,24 @@
+{% extends 'baseFinal.html.twig' %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/where-is.css")|raw }}" >
+{% endblock %}
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad"> 
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Where is'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row margin_top_10">
+                    <ul class="whereis_nearby_list">
+			{% for whereis in whereisAll%}
+			    <li class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="{{ whereis.link|raw }}" title="{{ whereis.name|raw }}">{{ whereis.name|raw }}</a></li>
+			{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

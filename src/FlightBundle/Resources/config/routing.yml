@@ -1,0 +1,227 @@
+_flight_booking:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight-booking"
+    defaults: { _controller: FlightBundle:DefaultFlight:flightBookingNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets and discount flights to destinations around the world.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_fly_to_airport:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/fly-to-{city}/{airportName}-{airportCode}"
+    defaults: { _controller: FlightBundle:DefaultFlight:flyToAirport, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "fly to %s | Tourist Tube", seodescription: "fly to %s %s best cheap tickets online only on Tourist Tube book now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_flight_booking_result:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight-booking-result"
+    defaults: { _controller: FlightBundle:DefaultFlight:flightsNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets and discount flights to destinations around the world.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_flight_review_trip:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight-review-trip"
+    defaults: { _controller: FlightBundle:DefaultFlight:flightReviewTrip, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets and discount flights to destinations around the world.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_departure_detailed_popup:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/departure_detailed_popup"
+    defaults: { _controller: FlightBundle:DefaultFlight:departurePopup, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking | Tourist Tube", seodescription: "Cheap flights and flight booking on tourist tube - Get the best selection of flight tickets and discount flights to destinations around the world.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+# not being used
+#_flight_booking_result_new:
+#    host: "www{subdomain_suffix}.{domain}"
+#    path: "/flight-booking-result_new"
+#    defaults: { _controller: FlightBundle:DefaultFlight:flightBookingResultNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight booking result | Tourist Tube", seodescription: "", seokeywords: ""}
+#    requirements:
+#        domain: "[^/]+"
+#        subdomain_suffix: ".*"
+
+_book_flight:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/book-flight"
+    defaults: { _controller: FlightBundle:DefaultFlight:bookAvailableFlightNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "book flight | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_flight_cancelation:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flight-cancelation"
+    defaults: { _controller: FlightBundle:DefaultFlight:flightCancelation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight cancelation | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_flight_cancellation_payment:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flight-cancellation-payment"
+    defaults: { _controller: FlightBundle:Flight:flightCancellationPayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight cancellation payment | Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_refresh_session:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/refresh-session"
+    defaults: { _controller: FlightBundle:Flight:refreshSession, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    methods:  [POST,GET]
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_refresh_session_corpo:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/refresh-session"
+    defaults: { _controller: FlightBundle:Flight:refreshSession, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    methods:  [POST,GET]
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_close_session:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/close-session"
+    defaults: { _controller: FlightBundle:Flight:closeSession, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    methods:  [POST,GET]
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_close_session_corpo:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/close-session"
+    defaults: { _controller: FlightBundle:Flight:closeSession, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    methods:  [POST,GET]
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_end_transaction:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/end-transaction"
+    defaults: { _controller: FlightBundle:Flight:endTransaction, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    methods:  [POST]
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_create_pnr_api:
+    path:      "/api/create-pnr"
+    defaults: { _controller: FlightBundle:Flight:createPnrApi, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    methods:  [POST]
+    requirements:
+        domain: "[^/]+"
+
+_issue_ticket:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/issue-ticket"
+    defaults: { _controller: FlightBundle:DefaultFlight:issueAirTicketNew, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+        
+_payment_flights_proceed:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flights/proceed/payment/{module_id}/{reservation_id}/{user_id}"
+    defaults: { _controller: FlightBundle:DefaultFlight:proceedPayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", accountId: "", userId: "",transactionUserId: "",requestServicesDetailsId: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_get_queue:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/get-queue-info"
+    defaults: { _controller: FlightBundle:Flight:getQueueInfo, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_retrieve_pnr:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/retrieve-pnr"
+    defaults: { _controller: FlightBundle:Flight:retrievePnr, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_flight_controller_service:
+    path:      "/flight-controller-service"
+    defaults: { _controller: FlightBundle:DefaultFlight:pnrFormSubmit, _locale: "%locale%", page: 1}
+
+_flight_controller_service_new:
+    path:      "/flight-controller-service-new"
+    defaults: { _controller: FlightBundle:DefaultFlight:pnrFormSubmitNew, _locale: "%locale%", page: 1}
+    
+_flight_availbilty_search_check:
+    path:      "/flight-search-checker"
+    defaults: { _controller: FlightBundle:Flight:flightBookingResult, _locale: "%locale%", page: 1}
+
+
+_flight_details:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flight-details"
+    defaults: { _controller: FlightBundle:DefaultFlight:FlightDetailsNew, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_waiting_approval:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/waiting-approval"
+    defaults: { _controller: FlightBundle:DefaultFlight:accountWaitingApproval, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_multiple_destination_view:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/next-flight"
+    defaults: { _controller: FlightBundle:DefaultFlight:multipleDestinationView, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_book_flight_json_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flight/book"
+    defaults: { _controller: FlightBundle:DefaultFlight:bookFlightNew, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    methods:  [POST]
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_process-passport:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight-booking/process-passport"
+    defaults: { _controller: FlightBundle:Passport:processPassport, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_process-passport-submission:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight-booking/process-passport-submission"
+    defaults: { _controller: FlightBundle:Passport:processPassportSubmission, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_flight_details_new1:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flight-details_new1"
+    defaults: { _controller: FlightBundle:DefaultFlight:FlightDetailsNew1, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

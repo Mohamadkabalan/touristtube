@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap-env:Header>
+		<eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1">
+			<eb:From>
+				<eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId>
+			</eb:From>
+			<eb:To>
+				<eb:PartyId eb:type="URI">touristtube.com</eb:PartyId>
+			</eb:To>
+			<eb:CPAId>02DH</eb:CPAId>
+			<eb:ConversationId>B354FC5A-C7DF-469F-86CB-BC8ED2F53DBC@touristtube.com</eb:ConversationId>
+			<eb:Service eb:type="Sabre">PassengerDetailsRQ</eb:Service>
+			<eb:Action>PassengerDetailsRS</eb:Action>
+			<eb:MessageData>
+				<eb:MessageId>euihq9q9p</eb:MessageId>
+				<eb:Timestamp>2017-05-18T17:55:04</eb:Timestamp>
+				<eb:RefToMessageId>mid:B354FC5A-C7DF-469F-86CB-BC8ED2F53DBC@touristtube.com</eb:RefToMessageId>
+			</eb:MessageData>
+		</eb:MessageHeader>
+		<wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext">
+			<wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3274673093794831310!1359883!0</wsse:BinarySecurityToken>
+		</wsse:Security>
+	</soap-env:Header>
+	<soap-env:Body>
+		<PassengerDetailsRS xmlns="http://services.sabre.com/sp/pd/v3_3">
+			<ApplicationResults xmlns="http://services.sabre.com/STL_Payload/v02_01" status="Complete">
+				<Success timeStamp="2017-05-18T12:55:04.819-05:00"/>
+				<Warning type="BusinessLogic" timeStamp="2017-05-18T12:55:04.363-05:00">
+					<SystemSpecificResults>
+						<Message code="WARN.SWS.HOST.WARNING_RESPONSE">TTY REQ PEND</Message>
+					</SystemSpecificResults>
+				</Warning>
+			</ApplicationResults>
+			<ItineraryRef ID="QKQFKH"/>
+			<TravelItineraryReadRS>
+				<TravelItinerary>
+					<CustomerInfo>
+						<ContactNumbers>
+							<ContactNumber LocationCode="PAR" Phone="9611234567-H" RPH="001"/>
+						</ContactNumbers>
+						<PersonName NameNumber="01.01" PassengerType="ADT" RPH="1" WithInfant="false">
+							<Email Comment="CC/">MAZEN@TOURISTTUBE.COM</Email>
+							<GivenName>MAZEN</GivenName>
+							<Surname>KHOWISE</Surname>
+						</PersonName>
+					</CustomerInfo>
+					<ItineraryInfo>
+						<ItineraryPricing>
+							<PriceQuote RPH="1">
+								<MiscInformation>
+									<SignatureLine ExpirationDateTime="00:00" Source="SYS" Status="ACTIVE">
+										<Text>02DH 02DH*AWS 1955/18MAY17</Text>
+									</SignatureLine>
+								</MiscInformation>
+								<PricedItinerary DisplayOnly="false" InputMessage="WPMAEDÂ‡P1ADTÂ‡RQ" RPH="1" StatusCode="A" TaxExempt="false" ValidatingCarrier="ME">
+									<AirItineraryPricingInfo>
+										<ItinTotalFare>
+											<BaseFare Amount="250.00" CurrencyCode="USD"/>
+											<EquivFare Amount="920" CurrencyCode="AED"/>
+											<Taxes>
+												<Tax Amount="570" TaxCode="XT"/>
+												<TaxBreakdownCode TaxPaid="false">300YQ</TaxBreakdownCode>
+												<TaxBreakdownCode TaxPaid="false">130LB</TaxBreakdownCode>
+												<TaxBreakdownCode TaxPaid="false">20H4</TaxBreakdownCode>
+												<TaxBreakdownCode TaxPaid="false">75AE</TaxBreakdownCode>
+												<TaxBreakdownCode TaxPaid="false">5TP</TaxBreakdownCode>
+												<TaxBreakdownCode TaxPaid="false">5ZR</TaxBreakdownCode>
+												<TaxBreakdownCode TaxPaid="false">35F6</TaxBreakdownCode>
+											</Taxes>
+											<TotalFare Amount="1490" CurrencyCode="AED"/>
+											<Totals>
+												<BaseFare Amount="250.00"/>
+												<EquivFare Amount="920"/>
+												<Taxes>
+													<Tax Amount="570"/>
+												</Taxes>
+												<TotalFare Amount="1490"/>
+											</Totals>
+										</ItinTotalFare>
+										<PassengerTypeQuantity Code="ADT" Quantity="01"/>
+										<PTC_FareBreakdown>
+											<Endorsements>
+												<Endorsement type="WARNING">
+													<Text>VALIDATING CARRIER - ME</Text>
+												</Endorsement>
+												<Endorsement type="PRICING_PARAMETER">
+													<Text>WPMAED$P1ADT$RQ</Text>
+												</Endorsement>
+												<Endorsement type="SYSTEM_ENDORSEMENT">
+													<Text>VALID ME ONLY</Text>
+												</Endorsement>
+											</Endorsements>
+											<FareBasis Code="QPROLB1/QPROLB1"/>
+											<FareCalculation>
+												<Text>BEY ME AUH125.00ME BEY125.00NUC250.00END ROE1.00</Text>
+											</FareCalculation>
+											<FareSource>ATPC</FareSource>
+											<FlightSegment ConnectionInd="O" DepartureDateTime="05-20T15:35" FlightNumber="418" ResBookDesigCode="Q" SegmentNumber="1" Status="OK">
+												<BaggageAllowance Number="30K"/>
+												<FareBasis Code="QPROLB1"/>
+												<MarketingAirline Code="ME" FlightNumber="418"/>
+												<OriginLocation LocationCode="BEY"/>
+												<ValidityDates>
+													<NotValidAfter>2017-05-20</NotValidAfter>
+													<NotValidBefore>2017-05-20</NotValidBefore>
+												</ValidityDates>
+											</FlightSegment>
+											<FlightSegment ConnectionInd="O" DepartureDateTime="05-27T20:45" FlightNumber="419" ResBookDesigCode="Q" SegmentNumber="2" Status="OK">
+												<BaggageAllowance Number="30K"/>
+												<FareBasis Code="QPROLB1"/>
+												<MarketingAirline Code="ME" FlightNumber="419"/>
+												<OriginLocation LocationCode="AUH"/>
+												<ValidityDates>
+													<NotValidAfter>2017-05-27</NotValidAfter>
+													<NotValidBefore>2017-05-27</NotValidBefore>
+												</ValidityDates>
+											</FlightSegment>
+											<FlightSegment>
+												<OriginLocation LocationCode="BEY"/>
+											</FlightSegment>
+											<ResTicketingRestrictions>LAST DAY TO PURCHASE 18MAY/2359</ResTicketingRestrictions>
+											<ResTicketingRestrictions>GUARANTEED FARE APPL IF PURCHASED BEFORE 18MAY</ResTicketingRestrictions>
+										</PTC_FareBreakdown>
+									</AirItineraryPricingInfo>
+								</PricedItinerary>
+								<ResponseHeader>
+									<Text>FARE - PRICE RETAINED</Text>
+									<Text>FARE USED TO CALCULATE DISCOUNT</Text>
+									<Text>FARE NOT GUARANTEED UNTIL TICKETED</Text>
+								</ResponseHeader>
+								<PriceQuotePlus DiscountAmount="0" DisplayOnly="false" DomesticIntlInd="I" IT_BT_Fare="BT" ItineraryChanged="false" ManualFare="false" NUCSuppresion="false" NegotiatedFare="false" PricingStatus="S" SubjToGovtApproval="false" SystemIndicator="S" VerifyFareCalc="false">
+									<PassengerInfo>
+										<PassengerData NameNumber="01.01">KHOWISE/MAZEN</PassengerData>
+									</PassengerInfo>
+									<TicketingInstructionsInfo/>
+								</PriceQuotePlus>
+							</PriceQuote>
+							<PriceQuoteTotals>
+								<BaseFare Amount="250.00"/>
+								<EquivFare Amount="920.00"/>
+								<Taxes>
+									<Tax Amount="570.00"/>
+								</Taxes>
+								<TotalFare Amount="1490.00"/>
+							</PriceQuoteTotals>
+						</ItineraryPricing>
+						<ReservationItems>
+							<Item RPH="1">
+								<FlightSegment AirMilesFlown="1309" ArrivalDateTime="05-20T19:45" DayOfWeekInd="6" DepartureDateTime="2017-05-20T15:35" ElapsedTime="03.10" FlightNumber="0418" IsPast="false" NumberInParty="01" ResBookDesigCode="Q" SegmentNumber="0001" SmokingAllowed="false" SpecialMeal="false" Status="HK" StopQuantity="00" eTicket="false">
+									<DestinationLocation LocationCode="AUH" Terminal="TERMINAL 1" TerminalCode="1"/>
+									<Equipment AirEquipType="320"/>
+									<MarketingAirline Code="ME" FlightNumber="0418"/>
+									<Meal Code="H"/>
+									<OriginLocation LocationCode="BEY"/>
+									<SupplierRef ID="DCME"/>
+									<UpdatedArrivalTime>05-20T19:45</UpdatedArrivalTime>
+									<UpdatedDepartureTime>05-20T15:35</UpdatedDepartureTime>
+								</FlightSegment>
+							</Item>
+							<Item RPH="2">
+								<FlightSegment AirMilesFlown="1309" ArrivalDateTime="05-27T23:00" DayOfWeekInd="6" DepartureDateTime="2017-05-27T20:45" ElapsedTime="03.15" FlightNumber="0419" IsPast="false" NumberInParty="01" ResBookDesigCode="Q" SegmentNumber="0002" SmokingAllowed="false" SpecialMeal="false" Status="HK" StopQuantity="00" eTicket="false">
+									<DestinationLocation LocationCode="BEY"/>
+									<Equipment AirEquipType="320"/>
+									<MarketingAirline Code="ME" FlightNumber="0419"/>
+									<Meal Code="H"/>
+									<OriginLocation LocationCode="AUH" Terminal="TERMINAL 1" TerminalCode="1"/>
+									<SupplierRef ID="DCME"/>
+									<UpdatedArrivalTime>05-27T23:00</UpdatedArrivalTime>
+									<UpdatedDepartureTime>05-27T20:45</UpdatedDepartureTime>
+								</FlightSegment>
+							</Item>
+						</ReservationItems>
+						<Ticketing RPH="01" TicketTimeLimit="T-"/>
+					</ItineraryInfo>
+					<ItineraryRef AirExtras="false" ID="QKQFKH" InhibitCode="U" PartitionID="AA" PrimeHostID="1S">
+						<Header>PRICE QUOTE RECORD EXISTS - SYSTEM</Header>
+						<Source AAA_PseudoCityCode="02DH" CreateDateTime="2017-05-18T12:55" CreationAgent="AWS" HomePseudoCityCode="02DH" LastUpdateDateTime="2017-05-18T12:55" PseudoCityCode="02DH" ReceivedFrom="TOURIST TUBE SWS" SequenceNumber="1"/>
+					</ItineraryRef>
+					<RemarkInfo>
+						<Remark RPH="001" Type="General">
+							<Text>SPECIAL REQUIREMENTS</Text>
+						</Remark>
+					</RemarkInfo>
+					<SpecialServiceInfo RPH="001" Type="GFX">
+						<Service SSR_Code="SSR" SSR_Type="DOCS">
+							<Airline Code="ME"/>
+							<PersonName NameNumber="01.01">KHOWISE/MAZEN</PersonName>
+							<Text>HK1/DB/04MAR2012/M/KHOWISE/MAZEN</Text>
+						</Service>
+					</SpecialServiceInfo>
+				</TravelItinerary>
+			</TravelItineraryReadRS>
+		</PassengerDetailsRS>
+	</soap-env:Body>
+</soap-env:Envelope>

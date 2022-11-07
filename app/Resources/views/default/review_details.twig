@@ -1,0 +1,492 @@
+{% extends 'baseFinal.html.twig' %}
+{% block googlemaps %}
+    <script async src="https://maps.googleapis.com/maps/api/js?v=3.exp{{MAP_KEY|raw}}&libraries=places&amp;language={{languageISO2Code|raw}}"></script>
+{% endblock %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css")|raw }}">
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js")|raw }}" ></script>
+    <script type="text/javascript">
+	userGlobalDISName('{{ discover_nam|raw }}');
+        var regWidth;
+        var regHeight = 430;
+        var map;
+        var marker_array=[];
+        var markersArrayData=[];
+		var zoomvalue=11; 
+		
+        $(document).ready(function() {
+            window.addEventListener('load', initialize);
+			
+			$('[data-fancybox="gallery"]').fancybox({
+				animationEffect: false,
+				transitionEffect: 'slide',
+				thumbs: {
+					autoStart: true,
+				},
+			});
+			
+        });
+		
+        function initialize() {            
+            setTimeout(function() {
+                var mapOptions = {
+                    center: new google.maps.LatLng( {{latitude|raw}} , {{longitude|raw}} ),
+                    zoom:zoomvalue,
+                    disableDefaultUI: true,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("googlemap_places"),mapOptions);
+		var marker = new google.maps.Marker({
+		    position: new google.maps.LatLng({{latitude|raw}} , {{longitude|raw}}),
+		    map: map,
+		    title: '{{discover_titlealt|raw}}',
+		    icon: new google.maps.MarkerImage("{{ generateMediaURL('/media/images/pin_empty.png')}}")
+		});
+            }, 5000);
+        }
+    </script>
+{% endblock %}
+{% block structureddatablock %}
+    <script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        {% if dataType==28 %}
+            "@type": "Hotel",
+        {% elseif dataType==29 %}
+            "@type": "Restaurant",
+        {% elseif dataType==30 %}
+            "@type": "TouristAttraction",
+        {% else %}
+            "@type": "Airport",
+        {% endif %}
+        "name" : "{{discover_title|raw|e('html')}}",
+        {% if description!='' %}
+            "description" : "{{description|e('html')}}",
+        {% endif %}
+        {% if iataCode!='' %}
+            "iataCode" : "{{iataCode|raw}}",
+        {% endif %}
+        {% if address!='' %}
+            "address" : "{{address|raw}}",
+        {% endif %}
+        {% if telephone!='' %}
+            "telephone": "{{telephone|raw}}",
+        {% endif %}
+        {% if discover_imgbig!='' %}
+            "image" : "{{ discover_imgbig|raw }}",
+        {% endif %}
+	{% if irating_average>0  %}
+	    "aggregateRating" : {
+	    "@type" : "AggregateRating",
+	    "ratingValue" : "{{ irating_average|raw }}"
+	    {% if nb_votes>0  %}
+		,"reviewCount" : "{{ nb_votes|raw }}"
+	    {% endif %}
+	    },
+        {% endif %}
+        "geo": { 
+        "@type": "GeoCoordinates",
+        "latitude": "{{ latitude|raw }}",
+        "longitude": "{{ longitude|raw }}"
+        }
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <div id="sharedata_popupid" class="sharedata_popup onlyleft">
+        <div class="share_title">{{'share this page'|trans}}</div>
+        <div class="left onlyleft">
+            <div class="share_link">
+                <label>{{'link'|trans}}</label>
+                <div type="text" class="sharelink-desc">{{uricurpage|raw}}</div>
+            </div>
+            <div class="share_social">
+                <label>{{'social'|trans}}</label>
+                <a class="fb-share" title="{{ 'facebook'|trans }}" rel="nofollow" target="_blank" href="{{('http://www.facebook.com/sharer.php?s=100&amp;p[url]='~uricurpage)|raw}}"></a>
+                {#<a class="g-share" title="{{ 'google+'|trans }}" rel="nofollow" target="_blank" href="{{('https://plus.google.com/share?url='~uricurpage)|raw}}"></a>#}
+                <a class="twt-share" title="{{ 'twitter'|trans }}" rel="nofollow" target="_blank" href="{{('http://www.twitter.com/intent/tweet?url='~uricurpage)|raw}}"></a>
+                <a class="print-share" title="{{ 'pinterest'|trans }}" rel="nofollow" target="_blank" href="{{('https://pinterest.com/pin/create/bookmarklet/?media='~fbimg~'&url='~uricurpage)|raw}}"></a>
+            </div>
+        </div>
+    </div>
+    <section class="container review_main_container" data-id="{{item_id|raw}}" data-type="{{ dataType|raw }}" data-logged="{{isUserLoggedIn|raw}}">
+	{% if published!=1 %}
+	    <div class="row">
+		<div class="col-xs-12">
+		    <div class="row no-margin margin_top_20">
+			<div class="col-xs-12 reviewclosed nopad"><p>{{closedText|raw}}</p></div>
+		    </div>
+		</div>
+	    </div>
+	{% endif %}
+        <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+            <div class="container-fluid nopad filters-group">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">{{'Evaluation summary'|trans}}</button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad">
+                                    <p class="blue font-24 line-height-26">{{'Evaluation summary'|trans}}</p>
+                                </div>
+				{% if irating_average>=1 %}
+				    <div class="col-xs-6 nopad">
+					<div class="heartratecontainer">
+					    <div class="heart-rating-review">
+						<img alt="{{ 'Evaluation summary'|trans }}" src="{{ generateMediaURL('/media/images/review_new/heart_pink.png') }}">
+						<p class="ratetext">{{irating_average|raw}}</p>
+					    </div>
+					</div>
+				    </div>
+				{% endif %}
+                            </div>
+			    {% if published==1 %}
+				<div class="row no-margin margin_top_20">
+				    <div class="col-xs-12 nopad">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{evalText|raw}}</p>
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad specificRate" data-type="{{dataType|raw}}">
+						<div class="eval_options_glob {% if irating >= 1 %} {{'active'}} {% endif %}" data-value="1" data-text="{{ 'Terrible'|trans }}"></div>
+						<div class="eval_options_glob {% if irating >= 2 %} {{'active'}} {% endif %}" data-value="2" data-text="{{ 'poor'|trans }}"></div>
+						<div class="eval_options_glob {% if irating >= 3 %} {{'active'}} {% endif %}" data-value="3" data-text="{{ 'Average'|trans }}"></div>
+						<div class="eval_options_glob {% if irating >= 4 %} {{'active'}} {% endif %}" data-value="4" data-text="{{ 'Very good'|trans }}"></div>
+						<div class="eval_options_glob {% if irating >= 5 %} {{'active'}} {% endif %}" data-value="5" data-text="{{ 'Excellent'|trans }}"></div>
+						<div class="eval_options_over"><div class="eval_options_overtxt"></div><div class="eval_options_tooltip"><img alt="{{evalText|raw}}" src="{{ generateMediaURL('/media/images/review_new/buble_pink_tooltip_handler.png') }}"></div></div>
+					    </div>
+					</div>
+				    </div>
+				</div>
+				<div class="row no-margin margin_top_20">
+				    <div class="col-xs-12 nopad">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Anything you could say about it?'|trans}}</p>
+					    </div>
+					</div>
+					{% for toRate in toRateArr %}
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad specificRate" data-type="{{toRate.id|raw}}">
+						    <div class="eval_options_glob {% if toRate.val >= 1 %} active {% endif %}" data-value="1" data-text="{{ 'Terrible'|trans }}"></div>
+						    <div class="eval_options_glob {% if toRate.val >= 2 %} active {% endif %}" data-value="2" data-text="{{ 'poor'|trans }}"></div>
+						    <div class="eval_options_glob {% if toRate.val >= 3 %} active {% endif %}" data-value="3" data-text="{{ 'Average'|trans }}"></div>
+						    <div class="eval_options_glob {% if toRate.val >= 4 %} active {% endif %}" data-value="4" data-text="{{ 'Very good'|trans }}"></div>
+						    <div class="eval_options_glob {% if toRate.val >= 5 %} active {% endif %}" data-value="5" data-text="{{ 'Excellent'|trans }}"></div>
+						    <div class="eval_options_over"><div class="eval_options_overtxt"></div><div class="eval_options_tooltip"><img alt="{{'Anything you could say about it?'|trans}}" src="{{ generateMediaURL('/media/images/review_new/buble_pink_tooltip_handler.png') }}"></div></div>
+						    <div class="specificRateDesc">{{toRate.name|raw}}</div>
+						</div>
+					    </div>
+					{% endfor %}
+				    </div>
+				</div>
+				<div class="row no-margin margin_top_20">
+				    <div class="col-xs-12 review_form_container nopad">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Your review'|trans}}</p>
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<textarea class="review_textarea rev_description"></textarea>
+					    </div>
+					</div>
+					<div class="row no-margin margin_top_20">
+					    <div class="col-xs-12 nopad">
+						<div class="form-check checkboxcontainer">
+						    <label class="form-check-label" for="hide_photo">
+							<input id="hide_photo" data-toggle="tooltip" data-original-title="" type="checkbox" name="" class="form-check-input" data-value="" value="">{{ 'Hide your name'|trans}}</label>
+						</div>
+					    </div>
+					    <div class="col-xs-12 nopad">
+						<div class="form-check checkboxcontainer">
+						    <label class="form-check-label" for="certify">
+							<input id="certify" name="certifyBox" data-toggle="tooltip" type="checkbox" class="form-check-input">{{ 'I certify that this review is based on my personal experience and is my genuine opinion of this institution'|trans}}</label>
+						</div>
+					    </div>
+					</div>
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<button class="btn common_yellow_but full_width_button margin_top_15 submitReview">{{'Submit your review'|trans}}</button>
+					    </div>
+					</div> 
+					<div class="row no-margin margin_top_20">
+					    <div class="col-xs-12 nopad">
+						{% if todoLinkName!='' %}
+						    <a class="font-22 black underline" href="{{ todoLink|raw }}" title="{{ todoLinkName|raw }}">{{ todoLinkName|raw }}</a>
+						{% endif %}
+					    </div>
+					</div> 
+				    </div>
+				</div>
+			    {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20">
+                    <a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'Review & Rate'|trans}}" class="col-xs-12 nopad review_rate_a">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Review and rate'|trans}}</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_10">
+                    <div class="col-xs-12 nopad">
+			<div id="googlemap_places" class="section_googlemap"><span class="section_googlemap_loading"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 row_double_border margin_bottom_5"></div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row margin_top_20">
+                    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-6 nopad">
+                                        <p class="blue font-24 line-height-26">{{ 'Evaluation summary'|trans }}</p>
+                                    </div>
+				    {% if irating_average>=1 %}
+					<div class="col-xs-6 nopad">
+					    <div class="heartratecontainer">
+						<div class="heart-rating-review">
+						    <img alt="{{ 'Evaluation summary'|trans }}" src="{{ generateMediaURL('/media/images/review_new/heart_pink.png') }}">
+						    <p class="ratetext">{{irating_average|raw}}</p>
+						</div>
+					    </div>
+					</div>
+				    {% endif %}
+                                </div>
+				{% if published==1 %}
+				    <div class="row no-margin margin_top_20">
+					<div class="col-xs-12 nopad">
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad">
+						    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{evalText|raw}}</p>
+						</div>
+					    </div>
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad specificRate" data-type="{{dataType|raw}}">
+						    <div class="eval_options_glob {% if irating >= 1 %} {{'active'}} {% endif %}" data-value="1" data-text="{{ 'Terrible'|trans }}"></div>
+						    <div class="eval_options_glob {% if irating >= 2 %} {{'active'}} {% endif %}" data-value="2" data-text="{{ 'poor'|trans }}"></div>
+						    <div class="eval_options_glob {% if irating >= 3 %} {{'active'}} {% endif %}" data-value="3" data-text="{{ 'Average'|trans }}"></div>
+						    <div class="eval_options_glob {% if irating >= 4 %} {{'active'}} {% endif %}" data-value="4" data-text="{{ 'Very good'|trans }}"></div>
+						    <div class="eval_options_glob {% if irating >= 5 %} {{'active'}} {% endif %}" data-value="5" data-text="{{ 'Excellent'|trans }}"></div>
+						    <div class="eval_options_over"><div class="eval_options_overtxt"></div><div class="eval_options_tooltip"><img alt="{{evalText|raw}}" src="{{ generateMediaURL('/media/images/review_new/buble_pink_tooltip_handler.png') }}"></div></div>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				    <div class="row no-margin margin_top_20">
+					<div class="col-xs-12 nopad">
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad">
+						    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Anything you could say about it?'|trans}}</p>
+						</div>
+					    </div>					    
+					    {% for toRate in toRateArr %}
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad specificRate" data-type="{{toRate.id|raw}}">
+							<div class="eval_options_glob {% if toRate.val >= 1 %} active {% endif %}" data-value="1" data-text="{{ 'Terrible'|trans }}"></div>
+							<div class="eval_options_glob {% if toRate.val >= 2 %} active {% endif %}" data-value="2" data-text="{{ 'poor'|trans }}"></div>
+							<div class="eval_options_glob {% if toRate.val >= 3 %} active {% endif %}" data-value="3" data-text="{{ 'Average'|trans }}"></div>
+							<div class="eval_options_glob {% if toRate.val >= 4 %} active {% endif %}" data-value="4" data-text="{{ 'Very good'|trans }}"></div>
+							<div class="eval_options_glob {% if toRate.val >= 5 %} active {% endif %}" data-value="5" data-text="{{ 'Excellent'|trans }}"></div>
+							<div class="eval_options_over"><div class="eval_options_overtxt"></div><div class="eval_options_tooltip"><img alt="{{'Anything you could say about it?'|trans}}" src="{{ generateMediaURL('/media/images/review_new/buble_pink_tooltip_handler.png') }}"></div></div>
+							<div class="specificRateDesc">{{toRate.name|raw}}</div>
+						    </div>
+						</div>
+					    {% endfor %}
+					</div>
+				    </div>
+				    <div class="row no-margin margin_top_20">
+					<div class="col-xs-12 review_form_container nopad">
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad">
+						    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Your review'|trans}}</p>
+						</div>
+					    </div>
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad">
+						    <textarea class="review_textarea rev_description"></textarea>
+						</div>
+					    </div>
+					    <div class="row no-margin margin_top_20">
+						<div class="col-xs-12 nopad">
+						    <div class="form-check checkboxcontainer">
+							<label class="form-check-label" for="hide_photo1">
+							    <input id="hide_photo1" data-toggle="tooltip" data-original-title="" type="checkbox" name="hide_user" class="form-check-input">{{ 'Hide your name'|trans}}</label>
+						    </div>
+						</div>
+						<div class="col-xs-12 nopad">
+						    <div class="form-check checkboxcontainer">
+							<label class="form-check-label" for="certify1">
+							    <input id="certify1" name="certifyBox" data-toggle="tooltip" type="checkbox" class="form-check-input">{{ 'I certify that this review is based on my personal experience and is my genuine opinion of this institution'|trans}}</label>
+						    </div>
+						</div>
+					    </div>
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad">
+						    <button class="btn common_yellow_but full_width_button margin_top_15 submitReview">{{'Submit your review'|trans}}</button>
+						</div>
+					    </div> 
+					    <div class="row no-margin margin_top_20">
+						<div class="col-xs-12 nopad">
+						    {% if todoLinkName!='' %}
+							<a class="font-22 black underline" href="{{ todoLink|raw }}" title="{{ todoLinkName|raw }}">{{ todoLinkName|raw }}</a>
+						    {% endif %}
+						</div>
+					    </div> 
+					</div>
+				    </div>
+				{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row newrowmargin5">
+                                    <div class="col-sm-3 col-xs-12 newcolpadding5 hidden-xs">
+					{% if discover_imgbig != '' %} <a rel="nofollow" href="{{ discover_imgbig|raw }}" class="hotel_infos_imgbig" title="{{ discover_titlealt|raw }}"> {% endif %}
+                                            <img class="width100" src="{{discover_img|raw}}" alt="{{ discover_titlealt|raw }}">
+                                        {% if discover_imgbig != '' %} </a> {% endif %}
+                                    </div>
+                                    <div class="col-sm-9 col-xs-12 newcolpadding5">
+                                        <h2 class="hotel_title">{{discover_title|raw}}</h2>
+                                        <p class="location_div location_txt"><i class="fas fa-map-marker-alt"></i>{{discover_location|raw}}</p>
+                                        
+					{% if dataType == 28 %}
+					    {% if data_stars>0 %}
+						<span class="stars_block star_rating" data-rating="{{ data_stars|raw }}" data-font="11" data-color="#eac31a"></span><br/>
+					    {% endif %}
+					    {% if irating_average>0  %} 
+						<span class="font-15 black" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">{{'Rating:'|trans}} <span itemprop="ratingValue" content="{{ irating_average|raw }}" alt='{{ irating_average|raw }} {{'out of 5'|trans}}'>{{ irating_average|raw }}</span>
+						    {% if nb_votes>0  %} 
+							{{'out of'|trans}} <span itemprop="bestRating" />5</span> (<span itemprop="ratingCount">{{ nb_votes|raw }}</span> {{'Votes'|trans}})
+						    {% endif %}
+						</span>
+						<br/>
+					    {% endif %}
+					{% endif %}
+                                    </div>
+                                </div>
+                                <div class="row no-margin margin_top_10">
+                                    <div class="col-xs-12 nopad">
+                                        <ul class="review_list_ul">
+					    {% if dataType !=28 %}
+						<li><a rel="nofollow" data-id="{{ item_id|raw }}" title="{{ 'add to tour bag'|trans }}" data-type="{{ dataType|raw }}" href="#popup_creatid" class="add-bag addtobagNew addtobaginactive{{isUserLoggedIn|raw}}">{{'add to tour bag'|trans}}</a></li>
+						<li class="seperator">|</li>
+					    {% endif %}					    
+					    {% if published ==1 %}
+						<li><a rel="nofollow" data-id="{{item_id|raw}}" href="#sharedata_popupid" class="shares" title="{{'share page'|trans}}">{{'Share page'|trans}}</a></li>
+					    {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+				{% if reviews_images|length>0 %}
+				    <div class="row no-margin margin_top_30">
+					<div class="col-xs-12 nopad">
+					    <div class="row no-margin">
+						<div class="col-xs-12 nopad">
+						    <p class="margin_bottom_0 light_black font-24">{{'Photos uploaded by travelers'|trans}} | <span class="font-16">{{'the experience you share is highly appreciated by other travelers'|trans}}</span></p>
+						</div>
+					    </div>
+					    <div class="row newrowmargin5">
+						<div class="col-xs-12 newcolpadding5">
+						    <div data-unique="main" class="slider-for slider-for-main col-xs-12 lazy large_image_container">
+							{% for media in reviews_images %}
+							<div class="inside-slick">
+								<div class="table-wrapper">
+									<a rel="nofollow" href="{{ media.discover_imgbig|raw }}" title="{{discover_titlealt|raw}}" class="table-cell" data-fancybox="gallery">						
+									<img alt="{{'title'}}: {{discover_titlealt|raw}}" data-lazy="{{ media.discover_imgbig|raw }}">
+									</a>
+								</div>
+							</div>
+							{% endfor %}							
+						    </div>
+						</div>
+					    </div>
+					    <div class="row newrowmargin5 img_parent_holder image-thumb-section small_image_container">
+						<div class="slider-nav-main slider-nav hidden-xs">
+						    {% if reviews_images|length > 1 %}
+							{% for media in reviews_images %}
+							    <div class="mediathumb col-sm-2 col-xs-4 newcolpadding5 xs-new_width img_holder" data-id="{{media.id|raw}}">
+								{% if media.disp_remove==true %}
+								    <div class="photoremove">{{'remove'|trans}}</div>
+								{% endif %}
+								<img alt="{{'title'}}: {{discover_titlealt|raw}}" src="{{ media.img|raw }}">
+							    </div>
+							{% endfor %}
+						    {% endif %}						    
+						</div>
+					    </div>
+					</div>
+				    </div>
+				    <p class="copyrightreview">{{'Images may be subject to copyright - send feedback to'|trans|raw}} <a href="mailto:copyright@touristtube.com" rel="nofollow" title="{{'copyright'|trans}}">copyright@touristtube.com</a></p>
+				{% endif %}
+				{% if published ==1 %}
+				    <div class="row no-margin">
+					<div id="uploadPhotoContainer" class="col-xs-12 nopad">
+					    <button id="uploadReview_Img" class="btn common_yellow_but custom_width_height_button margin_top_5">{{'Upload your photos'|trans}}</button>
+					</div>
+				    </div>
+				{% endif %}
+				{% if page_reviews_list|length>0 %}
+				    <div class="row no-margin margin_top_10">
+					<div class="col-xs-12 nopad">
+					    <h3 class="font-25 black margin_bottom_0 margin_top_38">{{'Reviews'|trans}}</h3>
+					</div>
+					{% for objects in page_reviews_list %}
+					    <div class="col-xs-12 nopad margin_top_20 social_data_all" data-type="{{objects.SOCIAL_ENTITY_TYPE|raw}}" data-id="{{objects.rev_id|raw}}">
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad">
+							<div class="greycontainer_reviews">
+							    {% if objects.disp_remove==true %}
+								<div class="remove_button_rev">{{'remove'|trans}}</div>
+							    {% endif %}
+							    <div class="col-xs-12 nopad">
+								{% if isUserLoggedIn==1 %}<a rel="nofollow" class="col-xs-12 nopad" href="{{objects.user_link|raw}}" title="{{objects.tuber_name_actionalt|raw}}">{% endif %}
+								<p class="nextcircletext_reviews">{{objects.tuber_name_action|raw}}</p>
+								{% if isUserLoggedIn==1 %}</a>{% endif %}
+								<div class="col-xs-12 nopad">
+								    <p class="ingreytext_reviews">{{objects.description_db|raw}}</p>
+								</div>
+							    </div>
+							</div>
+						    </div>
+						</div>
+						<div class="row no-margin margin_top_20 row_double_border_3"></div>
+					    </div>
+					{% endfor %}
+					{#<div class="more_container">
+					    <p class="pink font-17"><span class="more_txt">more</span><span class="less_txt">less</span><i class="fas fa-angle-down"></i></p>
+					</div>#}
+				    </div>
+				{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

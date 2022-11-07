@@ -1,0 +1,58 @@
+services:
+    
+    payment_gateway_factory:
+        class: PaymentBundle\Model\PaymentGatewayFactory
+        arguments: ['@payfort_gateway_service']
+  
+    payment_repository:
+        class: PaymentBundle\Repository\PaymentRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - PaymentBundle:Payment
+
+    payment_service:
+        class: PaymentBundle\Model\PaymentGatewayInterface
+        factory: ['@payment_gateway_factory', build]
+            
+            
+    PayfortIntegration:
+        class: PaymentBundle\vendors\payfort\v2\PayfortIntegration
+        arguments: ['@PaymentModel']
+        
+    PaymentModel:
+        class: PaymentBundle\Model\Payment
+        
+    PaymentServiceImpl:
+        class: PaymentBundle\Services\impl\PaymentServiceImpl
+        arguments: ['@app.utils', '@PaymentModel', '@doctrine.orm.entity_manager', '@CurrencyService', '@CorpoAccountServices', '@CorpoAdminServices', '@service_container','@UserServices']
+        
+    ResponseStatusIdentifier:
+        class: PaymentBundle\Services\impl\ResponseStatusIdentifier
+        
+    PayfortHandler:
+        class: PaymentBundle\vendors\payfort\v2\PayfortHandler
+        
+    CorpoOnAccountHandler:
+        class: PaymentBundle\vendors\corpoOnaccount\v1\CorpoOnAccountHandler
+        calls:
+          - [setCorpoAccountTransactionsServices, ['@PayfortHandler']]
+        properties:
+            corpoAccountTransactionsServices: '@PayfortHandler'
+       
+    PaymentInitiliser:
+       class: PaymentBundle\Model\PaymentInitiliser
+       
+    payfort_service_api:
+        class: PaymentBundle\Provider\Payfort
+       
+    payfort_gateway_service:
+       class: PaymentBundle\Model\PayfortGatewayService
+       arguments: ['@payment_repository','@payfort_service_api']
+       
+    PayTabsHandler:
+       class: PaymentBundle\vendors\paytabs\v3\PaytabsHandler
+       arguments: ['@service_container']
+       
+    AreebaHandler:
+       class: PaymentBundle\vendors\areeba\v48\AreebaHandler
+       arguments: ['@service_container']

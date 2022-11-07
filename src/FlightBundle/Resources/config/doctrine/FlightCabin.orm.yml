@@ -1,0 +1,18 @@
+FlightBundle\Entity\FlightCabin:
+    type: entity
+    table: flight_cabin
+    id:
+        code:
+            type: string
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 30
+    lifecycleCallbacks: {  }

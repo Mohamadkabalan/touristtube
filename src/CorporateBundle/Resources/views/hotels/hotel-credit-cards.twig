@@ -1,0 +1,21 @@
+{% if hotelDetails.creditCardDetails is defined and hotelDetails.creditCardDetails is not empty %}
+    <div class="row no-margin">
+	<div class="col-lg-2 col-sm-3 col-xs-5 nopad new_pad_right">
+	    <p class="left_text_blue">{{'Cards accepted at this property'|trans}}</p>
+	</div>
+	<div class="col-lg-10 col-sm-9 col-xs-7 nopad new_pad_left">
+	    <div class="row no-margin">
+		{% for card in hotelDetails.creditCardDetails %}
+		    {% if card.image is defined and card.image|length %}
+			<a href="#">
+			    <img alt="card" class="hotel_payment_pictures" src="{{card.image}}" title="{{input.city.name}} {{'accepts'|trans}} {{card.name}} {{'cards and reserves the right to temporarily hold an amount prior to arrival.'|trans}}">
+			</a>
+		    {% endif %}
+		{% endfor %}
+	    </div>
+	    <div class="row no-margin hidden-xs">
+		<p class="right_text_grey">{{'Hover over the cards for more info.'|trans}}</p>
+	    </div>
+	</div>
+    </div>
+{% endif %}

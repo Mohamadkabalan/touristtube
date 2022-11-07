@@ -1,0 +1,15 @@
+INSERT INTO `cms_videos` 
+						( 	`id`, `name` ,`fullpath`, `code`,
+							`relativepath` ,`type` ,`country`, 
+							`pdate`, `userid`, `published`,
+							`dimension`, `duration`,
+							`title`, `description`, `category`,
+							`placetakenat`, `keywords` , `is_public`, `lattitude`,`longitude`,`cityid`,`cityname`
+							 ) 
+						VALUES 
+						(	NULL, '1347367150iOS.mov', 'media/videos/uploads/2012/37/', '3910da61148f24da9a438d030963d98b', 
+							'2012/37/', 'video/quicktime', 'Lebanon', 
+							NOW(), '10', '0',
+							'480 X 360','00:00:07',
+							'test ios thread', 'test', 'w',
+							'w', 'w', 1, 0 ,35.353535353535, 50, '' )

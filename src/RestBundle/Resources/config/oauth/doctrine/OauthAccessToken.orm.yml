@@ -1,0 +1,26 @@
+RestBundle\Entity\OauthAccessToken:
+    type: entity
+    table: oauth2_access_token
+    repositoryClass: TTBundle\Repository\UserRepository
+    id:
+        id:
+            id: true
+            type: integer
+            generator: { strategy: AUTO }
+    manyToOne:
+        user:
+            targetEntity: TTBundle\Entity\CmsUsers
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+        client:
+            targetEntity: OauthClient
+            joinColumn:
+                name: client_id
+                referencedColumnName: id
+    fields:
+        deviceInformation:
+            type: text
+            nullable: true
+            column: device_information
+    lifecycleCallbacks: {  }

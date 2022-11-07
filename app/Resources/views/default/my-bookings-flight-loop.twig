@@ -1,0 +1,63 @@
+{% if no_flight_bookings is defined %}
+
+{% else %}
+    {% if flightBookings is not empty %}
+        {% for flight in flightBookings %}
+            <div class="col-xs-12 min-heightdiv bordereddiv">
+                {% if flight.status == "CANCELLED" or flight.status == "VOIDED" %}
+                    <div class="absolutebackground"></div>
+                {% endif %}
+                <div class="col-xs-12 nopad">
+                    <img class="airline-logo" src="{{ flight.airline_logo|raw}}" alt="{{ flight.airline_name|raw}}">
+                    <h2 class="companynamelarge">{{ flight.airline_name|raw}}</h2>
+                </div>
+                {% for flight_info in flight['flight_details'] %}
+                    <div class="col-xs-12 nopad padingleft_50 margin-top-15 flight-details">
+                        <div class="departurefirst">
+                            <ul class="departurefirst-ul">
+                                <li class="absolutedeparture">{{ flight_info.flight_type|raw }}</li>
+                                <li class="firstli_allbook">{{ flight_info.departure_date|raw }}</li>
+                                <li class="borderedli_allbooking"></li>
+                                <li class="sndli_allbook"><span class="sndli_allbook_span"> {{ flight_info.departure_time|raw }}</span> {{ flight_info.departure_airport|raw}}</li>
+                                <li class="borderedli_allbooking"></li>
+                                <li class="thirdli_allbook">{{ flight_info.stop_number|raw }}</li>
+                                <li class="borderedli_allbooking"></li>
+                                <li class="firstli_allbook">{{ flight_info.arrival_date|raw }}</li>
+                                <li class="borderedli_allbooking"></li>
+                                <li class="forthli_allbook">{{ flight_info.arrival_time|raw }}</li>
+                                <li class="borderedli_allbooking"></li>
+                            </ul>
+                        </div>
+                        <div class="departuresnd">
+                            <ul class="departuresnd-ul">
+                                <li class="sndli_allbook-snd">{{ flight_info.arrival_airport|raw }}</li>
+                                <li class="borderedli_allbooking"></li>
+                                <li class="thirdli_allbook-snd">{{ flight_info.flight_duration|raw }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-xs-12 nopad">
+                    <div class="absolute_price">
+                        <span class="currency">{{ flight.currency_symbol|raw }}</span> <span class="price">{{ flight.price|raw }}</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad stylebooknf">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 flightul_mybookings col-lg-push-3 col-md-push-3 col-sm-push-2 col-xs-push-0">
+                        <a class="viewdetails_allbook" href="{{ generateLangRoute(LanguageGet,'_flight_details', {'transaction_id': flight.transaction_id|raw}) }}">{{ 'View details'|trans }}</a>
+                        <p class="bar_allbook">|</p>
+                        <a class="clicktobookagain" href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}"><center>{{ 'Book a new flight'|trans }}</a>
+                        {% if flight.status == "CANCELLED" OR flight.status == "VOIDED" %}<p class="cancelled_allbook">{{ 'Cancelled'|trans }}</p>{% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% if showmore==1 %}
+            <div id="flightShowMoreBtn" class="col-xs-12 smalxspadlfz" data-page="1">
+                <div class="showmore_expand_allbook_flight">
+                    {{'show more'|trans}} &gt;&gt;
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}

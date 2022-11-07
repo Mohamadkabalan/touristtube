@@ -1,0 +1,27 @@
+CorporateBundle\Entity\CorpoAccountPermission:
+    type: entity
+    table: corpo_account_permission
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAccountPermissionRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id    
+        menuId:
+            type: integer
+            nullable: false
+            column: menu_id            
+    lifecycleCallbacks: {  }

@@ -1,0 +1,30 @@
+TTBundle\Entity\CmsQueries:
+    type: entity
+    table: cms_queries
+    id:
+        queryString:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+            id: true
+            column: query_string
+            generator:
+                strategy: IDENTITY
+    fields:
+        nOccurrence:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+            column: n_occurrence
+        trendCandidate:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: trend_candidate
+    lifecycleCallbacks: {  }

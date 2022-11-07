@@ -1,0 +1,26 @@
+TTBundle\Entity\DiscoverHotelsFacilities:
+    type: entity
+    table: discover_hotels_facilities
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        facilityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: facility_id
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,33 @@
+parameters:
+    deals:
+        vendors:
+            citydiscovery:
+                id: 1
+                name: citydiscovery
+                className: DealBundle\vendors\citydiscovery\v1\CityDiscoveryHandler
+                http_test_static_url: http://cd.api.dev.city-discovery.com/api/cd/init/
+                http_test_transfer_url: https://api.city-discovery.com/api.transfer.1.1.4/test/api.transfer.php
+                http_test_username: 4866TOURI
+                http_test_password: tu63tourist38409184
+                http_prod_static_url: https://www.city-discovery.com/api/cd/init/1.4/beta/
+                http_prod_transfer_url: https://api.city-discovery.com/api.transfer.1.1.4/api.transfer.php
+                http_prod_username: 4866TOURI
+                http_prod_password: tu63tourist38409184
+                test_mode: false
+
+            ati:
+                id: 2
+                name: ati
+                className: DealBundle\vendors\ati\v1\AtiHandler
+                test_mode: true
+    AVERAGE_QUERY_LIMIT: 12,
+    PAYMENT_NEEDED: 1,
+    TOP_ATTRACTIONS_LIMIT: 8,
+    INITIAL_WEBGEOCITY_ID: 0,
+    HAS_SEARCH_INITIAL: 0,
+    HAS_SEARCH: 1,
+    LOWEST_PRICE_SEARCH: 0,
+    HIGHEST_PRICE_SEARCH: 5100,
+    DEAL_BLOCK_SEARCH_INDEX_INITIAL: 1,
+    PAGE_BANNER_DEFAULT_IMAGE: '/media/images/dealsjumbotrone.png'
+    PAGE_BANNER_IMAGE: 'paris,barcelona,beirut,dubai,istanbul,lisbon,milan,new-york,rome,singapore'

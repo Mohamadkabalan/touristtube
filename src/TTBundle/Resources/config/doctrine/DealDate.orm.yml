@@ -1,0 +1,36 @@
+TTBundle\Entity\DealDate:
+    type: entity
+    table: deal_date
+    indexes:
+        deal_id:
+            columns:
+                - deal_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_id
+        fromDate:
+            type: date
+            nullable: false
+            options:
+                fixed: false
+            column: from_date
+        toDate:
+            type: date
+            nullable: false
+            options:
+                fixed: false
+            column: to_date
+    lifecycleCallbacks: {  }

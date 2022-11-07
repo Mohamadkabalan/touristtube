@@ -1,0 +1,87 @@
+TTBundle\Entity\CmsFriends:
+    type: entity
+    table: cms_friends
+    indexes:
+        requester_id:
+            columns:
+                - requester_id
+        receipient_id:
+            columns:
+                - receipient_id
+    uniqueConstraints:
+        unq_frnd_rel_key:
+            columns:
+                - requester_id
+                - receipient_id
+    id:
+        requesterId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'the requester''s user_id'
+            id: true
+            column: requester_id
+        receipientId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'the receipients user_id'
+            id: true
+            column: receipient_id
+    fields:
+        requestTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: request_ts
+        status:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: '0 => new request, 1 => accepted, -1 => rejected, -2 => 1 way blocked, -3 => 2 way blocked'
+                default: '0'
+        notify:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        blocked:
+            type: boolean
+            nullable: false
+        profileBlocked:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: profile_blocked
+        requestMsg:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'small message to send'
+            column: request_msg
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

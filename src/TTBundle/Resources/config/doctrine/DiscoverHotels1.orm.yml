@@ -1,0 +1,259 @@
+TTBundle\Entity\DiscoverHotels1:
+    type: entity
+    table: discover_hotels1
+    indexes:
+        cityName:
+            columns:
+                - cityName
+        stateName:
+            columns:
+                - stateName
+        countryCode:
+            columns:
+                - countryCode
+        countryName:
+            columns:
+                - countryName
+        cityName_2:
+            columns:
+                - cityName
+                - countryCode
+        stateName_2:
+            columns:
+                - stateName
+                - countryCode
+        countryCode_2:
+            columns:
+                - countryCode
+                - countryName
+        latitude:
+            columns:
+                - latitude
+                - longitude
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelname:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: hotelName
+        stars:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        price:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        cityname:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: cityName
+        statename:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: stateName
+        countrycode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: countryCode
+        countryname:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: countryName
+        address:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        location:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        url:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        tripadvisorurl:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: tripadvisorUrl
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        latlong:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        propertytype:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: propertyType
+        chainid:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: chainId
+        rooms:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        facilities:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        checkin:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: checkIn
+        checkout:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: checkOut
+        rating:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        about:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        generalFacilities:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: general_facilities
+        services:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        zoomOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: zoom_order
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        lastModified:
+            type: datetime
+            nullable: false
+            column: last_modified
+        zipcode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        phone:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        website:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        hId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: h_id
+    lifecycleCallbacks: {  }

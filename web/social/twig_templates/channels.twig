@@ -1,0 +1,172 @@
+{# Template for Channels Page#}
+{% include "headChannel.html" %}
+<script type="text/javascript">
+    var globchannelid = '';
+    channelGlobalID(globchannelid);
+    $(document).ready(function() {
+        reintialiseslider();
+    });
+</script>
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleBody">    
+    <div class="evContainer2Over">
+        <div class="ProfileHeaderOverin"></div>
+        <div class="icons-overtik"></div>
+    </div>
+    <div id="sliderContent" class="sliderContent_channel">
+        		   <!-- mobile - -->
+		    <div class="swiper-container">
+                <div class="swiper-wrapper">
+					 {% for t in thumbVArrAll %}
+                        <div style="float: left;" class="imageitem swiper-slide">
+                            <a class="iconinslider" target="_blank" href="{{ t.iconinslider|raw }}" style="opacity: 0; display: block; overflow: hidden;">
+                                <div class="VideoViewPane">{{ t.Description|raw }}</div>
+                                <div class="VideoViewIconLarge"></div>
+                            </a>
+                            <a href="{{ t.iconinslider|raw }}" class="IndexRecentLink" title="{{ t.Description|raw }}">
+                                <img src="{{ t.imgThum|raw }}" class="IndexRecentThumb right-middle" alt="{{ t.Description|raw }}" width="237" height="134" />
+                            </a>
+                        </div>
+                     {% endfor %}
+         		</div>
+			</div>
+			 <!-- mobile - -->
+        <div class="sliderGallery">
+            <div class="items" style="left:0px; width:{{ itemWidth|raw }}px">
+                {% for v1 in vArr %}
+                <div style="float:left" class="imageitem">
+                    <a class="iconinslider" href="{{ v1.link|raw }}" style="opacity: 0; display: block; overflow: hidden;">
+                        <div class="VideoViewPane">{{ v1.description|raw }}</div>
+                        <div class="VideoViewIconLarge"></div>
+                    </a>
+                    <a href="{{ v1.link|raw }}" class="IndexRecentLink" title="{{ v1.description|raw }}">
+                        <img src="{{ v1.thumb|raw }}" class="IndexRecentThumb right-middle" alt="{{ v1.description|raw }}" />
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div id="slidercontainer">
+                <div class="sliderBar_text">{{ 'recent videos'|lang }}</div>
+                <div class="sliderWrap">
+                    <div class="sliderBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if defaultchannelarray == true %}
+    <div id="other_channels_slider">{% include "parts/otherChannelsSlider.twig" %}</div>
+    {% endif %}
+    <div id="ChannelContainer" class="margintop79">
+        <div id="LeftMainChannel">
+            <h1 class="channelyellowttl marginleft10"><a href="{{ "channels"|link}}">{{ 'Categories'|lang }}</a></h1>
+            <div id="Categories">
+                <div id="CategoryMarker" style="display:none; position: absolute;"></div>
+                <div id="CategoryVerticalLine"></div>
+                <div class="marginleft20 cat_content">
+                    {% include "parts/channelCategoryListInside.twig" %}
+                </div>
+            </div>
+        </div>
+
+        <div id="MiddelMainChannel">{# {{ justtest }} #}
+            <div id="scrollableChannel">
+
+                {% for catAll in catAllArr %}
+
+                    {% if catAll.oneChannel == true %}
+
+                <div class="MediaCont" id="{{ catAll.catId|raw }}" data-count="{{ catAll.channelcount|raw }}">
+                    <div class="Line"></div>
+                    <div class="Expand"></div>
+                    <h2 class="TTL h2bottom0"><a href="{{ ('channels-category/'~catAll.catlink)|link }}" title="{{ catAll.catName|raw }}">{{ catAll.catName|raw }} <span class="YellowTTL">({{ catAll.channelcount|raw }})</span></a></h2>
+                    <div class="MediaList">
+                        <a href="{{ ('channels-category/'~catAll.catlink)|link }}" title="{{ catAll.catName|raw }}" class="MediaListImage{{ catAll.fileExist?' image_category'~catAll.catId:'' }}">
+                        </a>
+                        <div class="ListAll" id="MediaChannel_{{ catAll.catId|raw }}" data-catId="{{ catAll.catId|raw }}" data-number="{{ catAll.oneChannelCount|raw }}">
+                            <ul>
+                                        {% for oneChan in catAll.channel %}
+
+                                <li tt:vid="{{ oneChan.channelId|raw }}">
+
+                                    <div class="plusSign all" data-display="4"></div>
+
+                                    <div class="image">
+                                                    {% if oneChan.channelHeade == true %}
+                                        <img width="136" height="76" src="{{ oneChan.channelThumb|raw }}" alt="{{ oneChan.channelName|raw }}"/>
+                                                    {% else %}
+                                        <img width="136" height="76" src="{{ '/images/channel/preview_coverphoto.jpg'|link }}" alt="{{ oneChan.channelName|raw }}"/>
+                                                    {% endif %}
+                                        <div class="insideBorder play"></div>
+                                        <a class="stanClick" href="{{ oneChan.channelMainLink|raw }}" title="{{ oneChan.channelName|raw }}"></a>
+                                        <div class="closeSign hide" data-flag="MediaChannel_{{ oneChan.catId|raw }}" data-number="{{ oneChan.channelCount|raw }}"></div>
+                                    </div>
+
+                                    <div class="ttl{{ oneChan.classNew|raw }} linkpointer" onclick="GoLink('{{ oneChan.channelMainLink|raw }}')">{{ oneChan.channelName|raw }}<br /><span class="font10 linkdefault">({{ oneChan.channelConnections|raw }} {{ 'connections'|lang }})</span></div>
+                                    <div class="popUp" data-display="4">
+                                        <div class="main">
+                                            <div class="ttl capitalfirst">{{ oneChan.channelLocation|raw }}</div>
+                                            <div>{{"created on"|lang}} {{ oneChan.channelCreatedDate|raw }}</div>
+                                            <div>
+                                                <table class="poptableclass">
+                                                    <tr>
+                                                        <td class="yellowsmall poptableclassTD33P">{{ oneChan.channelImageCount|raw }}</td>
+                                                        <td class="yellowsmall poptableclassTD33P">{{ oneChan.channelVideoCount|raw }}</td>
+                                                        <td class="yellowsmall poptableclassTD33P">{{ oneChan.channelAlbumInfoCount|raw }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="poptableclassTD33P">{{ oneChan.photostr|raw }}</td>
+                                                        <td class="poptableclassTD33P">{{ oneChan.videostr|raw }}</td>
+                                                        <td class="poptableclassTD33P">{{ oneChan.albumstr|raw }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                                        {% if oneChan.notOwner == true %}
+                                                            {{ oneChan.connectButton|raw }}
+                                                        {% endif %}
+                                            <div class="catImage">
+                                                            {% if oneChan.catImageExist == true %}
+                                                <a href="{{ ('channels-category/'~catAll.catlink)|link }}">
+                                                    <img src="{{ ('images/channel/category/'~catAll.catImage)|link }}" alt="{{ catAll.catName|raw }}" title="{{ catAll.catName|raw }}" width="28" height="28" class="imgborder0" />
+                                                </a>
+                                                            {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="minus"></div>
+                                    </div>
+
+                                </li>
+                                        {% endfor %}{# end for ( Each Channel In Category ) #}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                        {% endif %} {# end if oneChannel #}
+                    {% endfor %} {# end for catAllArr #}
+            </div>
+            <div class="buttonmorecontainer" style="float:none; width:584px;">
+                {% if nxtCon == true %}
+                <a id="load_more_next" class="load_more_channels load_more_previous_new" href="{{ nxtLink|raw }}">{{ 'Load More...'|lang }}</a>
+                {% endif %}
+                {% if prevCon == true %}
+                <a id="load_more_previous" class="load_more_previous_new" href="{{ prevLink|raw }}">{{ 'Load Previous...'|lang }}</a>
+                {% endif %}
+                <script>
+                    $(document).ready(function(e) {
+                        var load_more_next_diff = 4;
+                        if ($('#load_more_next').length > 0) {
+                            load_more_next_diff += 29;
+                        }
+                        if ($('#load_more_previous').length > 0) {
+                            load_more_next_diff += 29;
+                        }
+                        $('.buttonmorecontainer').css('width', ($('#load_more_next').width() + $('#load_more_previous').width() + load_more_next_diff) + "px");
+                    });
+                </script>
+            </div>
+        </div>
+        <div id="ChannelRight" class="paddingtop57">
+            {% include "parts/recently_added_channels.twig" %}
+            {% include "parts/channelsBestOf.twig" %}
+        </div>
+    </div>
+</div>

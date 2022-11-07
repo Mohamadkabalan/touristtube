@@ -1,0 +1,104 @@
+{% if SlotMachine_visited == true %}
+<script type="text/javascript">
+	flagme = 1;
+</script>
+{% endif %}
+<div id="slot-machine-tabs">
+    <ul id="tabsmainarr">
+        <li id="image1"></li>
+        <li id="image2"></li>
+        <li id="image3"></li>
+        <li id="image4"></li>
+        <li id="image5"></li> 
+    </ul>
+    <ul id="tabsmain" {% if SlotMachine_visited == true %}class="visited"{% endif %} >        
+        <li class="{{ SlotMachine_cond11 }}">
+            <a class="tabsofive requestinvite" href="{{ SlotMachine_ThingstodoLink|raw }}" title="{{ SlotMachine_ThingstodoTxt|raw }}">
+                <span class="mntxt">{{ SlotMachine_ThingstodoTxt|raw }}</span>
+                <span class="sepright {{ SlotMachine_cond10 }} "></span>
+            </a>
+        </li>
+        <li class="largecell3"><a class="tabsofive requestinvite" href="{{ SlotMachine_channelsLink|raw }}" title="{{ SlotMachine_channelsTxt|raw }}"><span class="mntxt">{{ SlotMachine_channelsTxt|raw }}</span><span class="sepright {{ SlotMachine_cond5 }} "></span></a></li>
+        <li class="{{ SlotMachine_cond6 }}"><a class="tabsofour requestinvite" href="{{ SlotMachine_liveLink|raw }}" title="{{ SlotMachine_liveTxt|raw }}"><span class="mntxt">{{ SlotMachine_liveTxt|raw }}</span><span class="sepright {{ SlotMachine_cond7 }} "></span></a></li>
+	
+	<li class="{{ SlotMachine_cond8 }}"><a class="tabsofour requestinvite" href="{{ SlotMachine_reviewLink|raw }}" title="{{ SlotMachine_reviewTxt|raw }}"><span class="mntxt">{{ SlotMachine_reviewTxt|raw }}&nbsp;</span><span class="sepright {{ SlotMachine_cond9 }}"></span></a></li>
+<!--    <li class="{{ SlotMachine_cond9 }}"><a class="tabsofour requestinvite" href="{{ SlotMachine_rinviteLink|raw }}" title="{{ SlotMachine_rinviteTxt|raw }}"><span style="margin-right:10px;" class="mntxt"><u>{{ SlotMachine_rinviteTxt|raw }}</u>&nbsp;</span></a></li>-->
+    </ul>
+    <ul class="tabs onclose {% if SlotMachine_visited == true %}visited{% endif %}" id="tabs">
+        <li><a class="tabsone" href="javascript:;">1</a></li>
+        <li><a class="tabstwo" href="javascript:;">2</a></li>
+        <li><a class="tabsthree" href="javascript:;">3</a></li>
+        <li><a class="tabsfour" href="javascript:;">4</a></li>
+        <li><a class="tabsfive" href="javascript:;">5</a></li>
+        <li><a class="tabssix" href="javascript:;">6</a></li>
+    </ul>
+    <div class="box-wrapper onclose {% if SlotMachine_visited == true %}visited{% endif %}">
+{#	<div id="one" class="content-box">
+            <div class="col-one col">
+                <img src="{{ SlotMachine_top1Img|raw }}" alt="Top1"/>
+            </div>
+            <div class="col-two col customtwo">
+                {{ SlotMachine_joinDesc|raw }}
+            </div>
+            <div class="col-three col customthree">
+                <a href="{{ SlotMachine_registerLink|raw }}" class="requestinvite"><img src="{{ SlotMachine_btnTop1Img|raw }}" style="border: none" alt="{{ SlotMachine_registerTxt|raw }}"/></a>
+            </div>
+        </div>
+        <div id="two" class="content-box">
+            <div class="col-one col">
+                <img src="{{ SlotMachine_top2Img|raw }}"  alt="Top2"/>
+            </div>
+            <div class="col-two col customtwo">
+                 {{ SlotMachine_uploadDesc|raw }}
+            </div>
+            <div class="col-three col customthree">
+                <a href="{{ SlotMachine_uploadLink|raw }}" class="requestinvite"><img src="{{ SlotMachine_btnTop2Img|raw }}" style="border: none" alt="{{ SlotMachine_uploadTxt|raw }}"/></a>
+            </div>
+        </div>
+        <div id="three" class="content-box">
+            <div class="col-one col">
+                <img src="{{ SlotMachine_top3Img|raw }}" alt="Top3"/>
+            </div>
+            <div class="col-two col customtwo">
+               {{ SlotMachine_plannerDesc|raw }}
+            </div>
+            <div class="col-three col customthree">
+                <a href="{{ SlotMachine_uploadLink|raw }}" class="requestinvite"><img src="{{ SlotMachine_btnTop2Img|raw }}" style="border: none" alt="{{ SlotMachine_uploadTxt|raw }}"/></a>
+            </div>
+        </div>
+        <div id="four" class="content-box">
+            <div class="col-one col">
+                <img src="{{ SlotMachine_top6Img|raw }}" alt="Top6"/>
+            </div>
+            <div class="col-two col customsix">
+                {{ SlotMachine_dateDesc|raw }}
+            </div>
+            <div class="col-three col customthree">
+                <a href="{{ SlotMachine_registerLink|raw }}" class="requestinvite"><img src="{{ SlotMachine_btnTop1Img|raw }}" style="border: none" alt="{{ SlotMachine_registerTxt|raw }}"/></a>
+            </div>
+        </div>
+        <div id="five" class="content-box">
+            <div class="col-one col">
+                <img src="{{ SlotMachine_top4Img|raw }}" alt="Top4"/>
+            </div>
+            <div class="col-two col customtwo">
+                {{ SlotMachine_commentDesc|raw }}
+            </div>
+            <div class="col-three col customthree">
+                <a href="{{ SlotMachine_registerLink|raw }}" class="requestinvite"><img src="{{ SlotMachine_btnTop1Img|raw }}" style="border: none" alt="{{ SlotMachine_registerTxt|raw }}"/></a>
+            </div>
+        </div>
+        <div id="six" class="content-box">
+            <div class="col-one col">
+                <img src="{{ SlotMachine_top5Img|raw }}" alt="Top5"/>
+            </div>
+            <div class="col-two col customtwo">
+                {{ SlotMachine_mobileDesc|raw }}
+            </div>
+            <div class="col-three col customthree">
+                <a href="{{ SlotMachine_registerLink|raw }}" class="requestinvite"><img src="{{ SlotMachine_btnTop1Img|raw }}" style="border: none" alt="{{ SlotMachine_registerTxt|raw }}"/></a>
+            </div>
+        </div>
+#}
+    </div>
+</div>

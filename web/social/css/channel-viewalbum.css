@@ -1,0 +1,142 @@
+body{
+	min-width:200px;	
+}
+.all_container{
+	display: block;
+    float: left;
+    height: 605px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 885px;
+}
+
+.header{
+	position:relative;
+	float:left;
+	width:589px;
+	height:25px;
+	background:#252525;
+}
+
+.header_txt{
+	position:relative;
+	float:left;
+	width:auto;
+	height:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;	
+	color:#e7ba20;	
+	margin-left:20px;
+	margin-top:7px;
+}
+
+.image_cont{
+	position:relative;
+	float:left;
+	width:560px;
+	height:480px;
+	padding-left:25px;
+	margin-top:54px;
+}
+
+.image_cont ul{
+	position:relative;
+	width:auto;
+	margin:0;
+	padding:0;
+	display:block;
+	list-style:none;
+}
+.image_cont ul li{
+	position:relative;
+	width:136px;
+	height:76px;
+	display:block;
+	float:left;	
+	margin:0;
+	margin-left:4px;
+	margin-bottom:4px;
+	list-style:none;
+	cursor:pointer;
+}
+.image_cont ul li:hover > .mediabuttons{
+	display:block;
+}
+.vidimg{
+	background:url(/media/images/channel/play_item.png) no-repeat center center;
+}
+.photoimg{
+	background:url(/media/images/channel/view_item.png) no-repeat center center;
+}
+.mediabuttons{
+	height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+	display:none;
+}
+.next_prev{
+	position:absolute;
+	float:left;
+	width:auto;
+	height:auto;
+	right:300px;
+	bottom:0px;	
+	
+}
+.prev_div{
+	position:relative;
+	float:left;
+	width:25px;
+	height:25px;
+	margin-right:1px;
+	cursor:pointer;
+	display:block;
+	background: url("/media/images/sprite_social.png")  no-repeat -350px 0;
+}
+.prev_div.inactive{
+	cursor:default;
+	background: url("/media/images/sprite_social.png")  no-repeat -376px 0;
+}
+
+.next_div{
+	position:relative;
+	float:left;
+	width:25px;
+	height:25px;
+	cursor:pointer;	
+	display:block;
+	background: url("/media/images/sprite_social.png")  no-repeat -281px 0;
+}
+.next_div.inactive{
+	cursor:default;
+	background: url("/media/images/sprite_social.png")  no-repeat -307px 0;
+}
+#commentDiv.commentDiv_pop {
+    right: 0px;   
+    position: absolute;
+    top: 0px;
+    width: 296px;
+	display:block;
+	float:none;
+	left:auto;
+	height:615px;
+}
+.commentDiv_pop .socialInitDiv, .commentDiv_pop #comment_reportDiv, .commentDiv_pop #album_reportDiv {
+	height:100%;
+}
+.commentDiv_pop .buttons {
+    padding: 0;
+}
+.commentDiv_pop .closeDiv {
+	display:none;
+}
+.commentDiv_pop .containerDiv {
+    margin-bottom: 20px;
+	margin-top:12px;
+}

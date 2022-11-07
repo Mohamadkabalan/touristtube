@@ -1,0 +1,59 @@
+.whereis_nearby_list{list-style: none;padding-left: 0;}
+.whereis_nearby_list li{padding-top: 5px;padding-bottom: 5px;line-height: 9px;}
+.whereis_nearby_list li:before{position: absolute;content:" ";left:4px;top:11px;height: 3px;width: 3px;background:#eac41e;}
+.whereis_nearby_list li a{line-height: 15px;font-size: 13px; color: #6a6969;}
+.margin_top_10{margin-top: 10px;}
+.margin-top-40{margin-top: 40px;}
+.hotel_main_conatainer .right_panel{padding-right: 0;}
+.hotel_main_conatainer .right_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;left:0px;top:0px;}
+.hotel_main_conatainer .right_panel.right_panel_noborder:after{background:none;}
+.hotel_main_conatainer .left_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;right:-5px;top:0px;}
+.hotel_main_conatainer .refine_title{color: #00b7d9;font-size: 24px;margin-bottom: 40px;margin-top: 16px;}
+.margin-bottom-38{margin-bottom: 38px;}
+.hotel_main_conatainer .checkboxcontainer label{color: #606060;font-size: 15px;font-weight: normal;margin-bottom: 0; max-width:90%;}
+.hotel_main_conatainer .checkboxcontainer label span.dash_sep{padding-left: 15px;padding-right: 15px;}
+.hotel_main_conatainer .checkboxcontainer input[type="checkbox"]{margin-right: 7px;}
+.hotel_main_conatainer .refine_subtitles{color: #606060;font-size: 13px;font-weight: bold;text-transform: uppercase;margin-left: -15px;}
+.hotel_main_conatainer .refine_subtitles span{font-weight: normal;text-transform: none;}
+.hotel_main_conatainer .refine_subtitles i{padding-right: 8px;color: #00b7d9;}
+/*Right Panel:*/
+.hotel_main_conatainer .image_container img{width: 100%;}
+.float_left{float: left;}
+.hotel_main_conatainer .right_panel .first_row .hotel_title{font-size: 17px;font-weight: bold;color: black;margin-top: 5px;padding-left: 10px;margin-bottom: 5px; text-transform: uppercase;}
+.hotel_main_conatainer .right_panel .first_row .rating_container p{margin-top: 3px;margin-bottom: 5px;}
+.hotel_main_conatainer .right_panel .snd_row .location_txt{font-size: 14px;color: #606060;padding-left: 10px; display:block;}
+.hotel_main_conatainer .right_panel .snd_row .location_txt img{padding-right: 6px;}
+.hotel_main_conatainer .right_panel .book_room_button {font-size: 14px; color: white; height: 42px; line-height: 42px; background-color: #db3a69;border: none; text-transform: uppercase;padding: 0;font-weight: bold; position: absolute; right: 0; bottom: 0;}
+.margin-top-60{margin-top: 60px}
+/*Loader: */
+.hotel-overlay-loading-fix {background: none;  background-color: #ffffff; top: 50px; display: block; height: 100%; overflow: hidden; position: relative; right: 0; width: 100%; z-index: 50;}
+.hotel-overlay-loading-fix div {min-height: 300px; width: 100%;}
+
+/*Pagination:*/
+.pagerWrapper{padding-top: 40px; padding-bottom:5px; padding-right: 4px; cursor: pointer;}
+.pagerWrapper ul li {color: #6c6c6c; display: inline-block; padding: 0 2px; font-size: 15px; font-weight: normal; float: left; width: auto; min-width: 14px; margin: 0px 0px 0px 5px; background: none; cursor: pointer; text-align: center; list-style: outside none none;}
+.pagerWrapper ul li.active {color: #00304c; font-weight: bold; cursor: default;}
+.pagerWrapper ul li span.separator {padding-left: 2px;}
+.pagerWrapper ul li.first_pg {width: 0px; height: 21px;}
+.pagerWrapper ul li.prev_pg {width: 0px; height: 21px;}
+.pagerWrapper ul li.next_pg {width: 0px; height: 21px;}
+.pagerWrapper ul li.last_pg {width: 0px; height: 21px;}
+.pageNumbers {float: left; padding: 0px 5px;}
+.pagination-controls {float:right;}
+.filter-count{color:#FFF;}
+@media (min-width:992px) and (max-width:1199px){
+    .hotel_main_conatainer .right_panel .book_room_button{font-weight: bold;font-size: 11px;}
+}
+@media (max-width:991px){
+    .hotel_main_conatainer .right_panel:after,.left_panel:after{display: none;}
+}
+@media (min-width:768px) and (max-width:991px){
+    .hotel_main_conatainer .right_panel{padding-left: 0px;}
+    .hotel-overlay-loading-fix {top: 25px;}
+    .hotel_main_conatainer .right_panel .book_room_button{margin-top: 10px; position:relative; float: right;}
+}
+@media (max-width:767px){
+    .hotel_main_conatainer .right_panel{padding-left: 15px;padding-right: 15px;}
+    .hotel_main_conatainer .right_panel .book_room_button{margin-top: 10px; position:relative;}
+    .hotel-overlay-loading-fix {top: 25px;}
+}

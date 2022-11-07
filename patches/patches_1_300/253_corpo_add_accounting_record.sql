@@ -1,0 +1,1 @@
+INSERT INTO `tt_modules` (`id`, `name`) VALUES ('4', 'Accounting');

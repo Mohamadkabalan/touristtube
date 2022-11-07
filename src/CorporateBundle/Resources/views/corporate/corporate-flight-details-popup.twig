@@ -1,0 +1,498 @@
+
+    <link rel="stylesheet" type="text/css" href="/assets/corporate/css/corporate-flight-details.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-detailed.css" > 
+
+    <script type="text/javascript" src="/assets/corporate/js/corporate-flight-details.js"></script>
+
+    <section class="container corporateloginwhitecontainer corporate_container1">
+
+        <div class="col-xs-12 nopad padding-lr-10">
+            <div class="greyborderdiv_hoteldetailed"></div>
+        </div>
+
+
+        <div class="col-xs-12 padlefresume">
+       
+
+            <div class="col-xs-12 greyresume">
+
+        {% if isUserLoggedIn == 1 %}
+            <div class="col-xs-12 nopad padding-lr-10">
+{#                <a class="backtobooklist" href="{{ generateLangRoute(LanguageGet,'_my_bookings') }}"><< {{ 'back to booking list'|trans }}</a>#}
+            </div>
+            <div class="col-xs-12 nopad padding-lr-10">
+                <div class="greyborderdiv_hoteldetailed"></div>
+            </div>
+        {% endif %}
+{% if flight is not empty %}
+
+            {% if flight.leaving is defined %}
+
+                {% if flight.leaving.multiDestination == 1 %}
+
+                    <div class="multi-destination-container">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad mar-top-40">
+                                <div id="left">
+                                    {% for flight_info in flight.leaving.flight_info %}
+                                        <a href="#target{{loop.index}}" rel="nofollow" class="tabslide">{{'trip'|trans}} {{loop.index}}</a>
+                                        <div class="borderrdiv"></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div id="right">
+                                    {% for key, flight_info in flight.leaving.flight_info %}                    
+                                        <div class="tabslide slider" id="target{{loop.index}}">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="col-xs-12 blueresume">
+                                                    <div class="col-xs-12 nopad">
+                                                        <div class="textdiv floatlefttext">
+                                                            <div class="departresume">{{'departing from:'|trans}}</div>
+                                                            <div class="cityresume">{{flight_info.origin_city |raw}}</div>
+                                                        </div>
+                                                        <div class="newimgdiv">
+                                                            <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                                        </div>
+                                                        <div class="textdiv floatrighttext">
+                                                            <div class="destinationresume">{{'destination:'|trans}}</div>
+                                                            <div class="destinationcityresume">
+                                                                {% if flight_info.stop_info is defined %}
+                                                                    {% set city = "" %}
+                                                                    {% for index, stop_segment in flight_info.stop_info %}
+                                                                        {% set city = stop_segment.destination_city |raw %}
+                                                                    {% endfor %}
+                                                                    {{city}}
+                                                                {% else %}
+                                                                    {{flight_info.destination_city |raw}}
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 greyresume">
+                                                    <div class="textdivresume">
+                                                        <div class="flight-fields">
+                                                            <div class="flight-field locdepartresume flight-bullet">{{flight_info.origin_airport|raw}}</div>
+                                                            <div class="flight-field firstnumbresume">{{flight_info.airline_name|raw}} - {{flight_info.airline_code|raw}}{{flight_info.flight_number|raw}}</div>
+                                                            <div class="flight-field firstnumbresume">{{flight_info.raw_departure_date|date('D d M')}} - {{flight_info.departure_time|raw}}</div>
+                                                            <div class="flights-border-link"></div>
+                                                            <div class="flight-field destresume flight-bullet {% if flight_info.stop_info is defined %} small-flight-bullet {% endif %}">
+                                                                <div class="compflimg">
+                                                                    <img class="chtimg" alt="{{flight_info.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{flight_info.airline_code|raw}}.jpg"/>
+                                                                </div>
+                                                                <div>{{flight_info.destination_airport|raw}}</div>
+                                                                <div class="firstnumbresume">{{flight_info.raw_arrival_date|date('D d M') }} - {{flight_info.arrival_time|raw}}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stop-flight-fields">
+                                                            {% if flight_info.stop_info is defined %}
+                                                                {% for stop_segment in flight_info.stop_info %}
+                                                                    <div class="stop-wrap">
+                                                                        <div class="stopsresume">{{'Stop:'|trans}}<span class="spanfirstresume">{{stop_segment.stop_duration|raw}}</span></div>
+                                                                        <div class="stop-border-link"></div>
+                                                                    </div>
+                                                                    <div class="flight-fields">
+                                                                        <div class="flight-field locdepartresume flight-bullet small-flight-bullet">{{stop_segment.origin_airport|raw}}</div>
+                                                                        <div class="flight-field firstnumbresume">{{stop_segment.airline_name|raw}} - {{stop_segment.airline_code|raw}}{{stop_segment.flight_number|raw}}</div>
+                                                                        <div class="flight-field firstnumbresume">{{ stop_segment.raw_departure_date|date('D d M') }} - {{stop_segment.departure_time|raw}}</div>
+                                                                        <div class="flights-border-link"></div>
+                                                                        <div class="flight-field destresume flight-bullet small-flight-bullet">
+                                                                            <div class="compflimg">
+                                                                                <img class="chtimg" alt="{{stop_segment.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{stop_segment.airline_code|raw}}.jpg"/>
+                                                                            </div>
+                                                                            <div>{{stop_segment.destination_airport|raw}}</div>
+                                                                            <div class="firstnumbresume">{{stop_segment.raw_arrival_date|date('D d M')}} - {{stop_segment.arrival_time|raw}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    {% if flight.returning is defined %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padlefresume">
+                        {% else %}
+                            <div class="col-xs-12 padlefresume">
+                            {% endif %}
+                            <div class="col-xs-12 blueresume">
+                                <div class="textdiv floatlefttext">
+                                    <div class="departresume">{{ 'departing from'|trans }}:</div>
+                                    <div class="cityresume">{{ flight.leaving.origin_city }}</div>
+                                </div>
+                                <div class="newimgdiv">
+                                    <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                </div>
+                                <div class="textdiv floatrighttext">
+                                    <div class="destinationresume">{{ 'destination'|trans }}:</div>
+                                    <div class="destinationcityresume">{{ flight.leaving.destination_city }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 greyresume">
+
+                                {% for info in flight.leaving.flight_info %}
+
+                                    <div class="textdivresume">
+                                        <div class="dateresume">{{ flight.leaving.raw_departure_main_date|date('D d M') }}</div>
+                                        <div class="flight-fields">
+                                            <div class="flight-field locdepartresume flight-bullet">{{ info.origin_airport|raw }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.airline_name|raw }} - {{info.airline_code|raw}}{{ info.flight_number|raw }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.raw_departure_date|date('D d M') }} - {{ info.departure_time|raw }}</div>
+                                            <div class="flights-border-link"></div>
+                                            <div class="flight-field destresume flight-bullet">
+                                                <div class="compflimg">
+                                                    <img class="chtimg" alt="{{ info.airline_code|raw }}" src="{{ flight.leaving.airline_logo|raw }}">
+                                                </div>
+                                                <div>{{ info.destination_airport }}</div>
+                                                <div class="firstnumbresume">{{ info.raw_arrival_date|date('D d M') }} - {{ info.arrival_time|raw }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if info.stop_info is defined %}
+
+                                        {% for stop_info in info.stop_info %}
+                                            <div class="textdivresume">
+                                                <div class="stopsresume">{{'Stop:'|trans}}<span class="spanfirstresume">{{ stop_info.stop_duration }}</span></div>
+                                                <div class="stop-border-link"></div>
+                                                <div class="flight-fields">
+                                                    <div class="flight-field locdepartresume flight-bullet">{{ stop_info.origin_airport }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.airline_name }} - {{stop_info.airline_code|raw}}{{ stop_info.flight_number }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.raw_departure_date|date('D d M') }} - {{ stop_info.departure_time }}</div>
+                                                    <div class="flights-border-link"></div>
+                                                    <div class="flight-field destresume flight-bullet">
+                                                        <div class="compflimg">
+                                                            <img class="chtimg" alt="{{ stop_info.airline_code }}" src="{{ flight.leaving.airline_logo }}">
+                                                        </div>
+                                                        <div>{{ stop_info.destination_airport }}</div>
+                                                        <div class="firstnumbresume">{{ stop_info.raw_arrival_date|date('D d M') }} - {{ stop_info.arrival_time }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                    {% if flight.returning is defined %}
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padlefresume">
+                            <div class="col-xs-12 blueresume">
+                                <div class="textdiv floatlefttext">
+                                    <div class="departresume">{{ 'departing from'|trans }}:</div>
+                                    <div class="cityresume">{{ flight.returning.origin_city }}</div>
+                                </div>
+                                <div class="newimgdiv">
+                                    <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                </div>
+                                <div class="textdiv floatrighttext">
+                                    <div class="destinationresume">{{ 'destination'|trans }}:</div>
+                                    <div class="destinationcityresume">{{ flight.returning.destination_city }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 greyresume">
+
+                                {% for info in flight.returning.flight_info %}
+
+                                    <div class="textdivresume">
+                                        <div class="dateresume">{{ flight.returning.raw_departure_main_date|date('d D M') }}</div>
+                                        <div class="flight-fields">
+                                            <div class="flight-field locdepartresume flight-bullet">{{ info.origin_airport }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.airline_name }} - {{info.airline_code|raw}}{{ info.flight_number|raw }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.raw_departure_date|date('D d M') }} - {{ info.departure_time }}</div>
+                                            <div class="flights-border-link"></div>
+                                            <div class="flight-field destresume flight-bullet">
+                                                <div class="compflimg">
+                                                    <img class="chtimg" alt="{{ info.airline_code }}" src="{{ flight.returning.airline_logo }}">
+                                                </div>
+                                                <div>{{ info.destination_airport }}</div>
+                                                <div class="firstnumbresume">{{ info.raw_arrival_date|date('D d M') }} - {{ info.arrival_time }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if info.stop_info is defined %}
+                                        {% for stop_info in info.stop_info %}
+                                            <div class="textdivresume">
+                                                <div class="stopsresume">{{'Stop:'|trans}}<span class="spanfirstresume">{{ stop_info.stop_duration }}</span></div>
+                                                <div class="stop-border-link"></div>
+                                                <div class="flight-fields">
+                                                    <div class="flight-field locdepartresume flight-bullet">{{ stop_info.origin_airport|raw }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.airline_name|raw }} - {{stop_info.airline_code|raw}}{{ stop_info.flight_number|raw }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.raw_departure_date|date('D d M') }} - {{ stop_info.departure_time|raw }}</div>
+                                                    <div class="flights-border-link"></div>
+                                                    <div class="flight-field destresume flight-bullet">
+                                                        <div class="compflimg">
+                                                            <img class="chtimg" alt="{{ stop_info.airline_code|raw }}" src="{{ flight.leaving.airline_logo|raw }}">
+                                                        </div>
+                                                        <div>{{ stop_info.destination_airport|raw }}</div>
+                                                        <div class="firstnumbresume">{{ stop_info.raw_arrival_date|date('D d M') }} - {{ stop_info.arrival_time|raw }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+
+                <div class="col-xs-12 nopad padding-lr-10">
+                    <div class="col-xs-12 nopad non-travelers">
+
+                        {% if (flight.upcoming == 1 and isUserLoggedIn == 1 and checkOwnerShip == 1 and pnr_status != 'CANCELLED') %} 
+                            {% if enableCancelation %} 
+                                <div class="col-xs-12 nopad padlr-30">
+                                    <p class="blackboldtext">{{ 'Manage reservation'|trans }}</p>
+                                    <ul class="manageoptions">
+                                        {#<li><a href="#">{{ 'Change flight'|trans }}</a></li>
+                                        <li class="liborder"> | </li>#}
+                                        <li><a href="{{ generateLangRoute(LanguageGet,'_corporate_flight_details', {'uuid': flight.leaving.transaction_id|raw}) }}#cancel" id="cancel">{{ 'Cancel'|trans }}</a></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if flight.upcoming is defined %}
+
+                            <div class="col-xs-12 nopad padding-lr-10">
+                                <div class="greyborderdiv_hoteldetailed"></div>
+                            </div>
+                            <div class="col-xs-12 nopad padlr-30">
+                                <p class="blackboldtext padbut10">{{ 'Leaving Total Duration'|trans }}</p>
+                                {% for info in flight.leaving.flight_info %}
+                                    <p class="blacknormaltext smallineh">{{ info.flight_duration }} duration</p>
+                                {% endfor %}
+                            </div>
+
+                            {% if flight.returning is defined %}
+                                <div class="col-xs-12 nopad padding-lr-10">
+                                    <div class="greyborderdiv_hoteldetailed"></div>
+                                </div>
+                                <div class="col-xs-12 nopad padlr-30">
+                                    <p class="blackboldtext padbut10">{{ 'Return Total Duration'|trans }}</p>
+                                    {% for info in flight.returning.flight_info %}
+                                        <p class="blacknormaltext smallineh">{{ info.flight_duration|raw }} duration</p>
+                                    {% endfor %} 
+                                </div>
+                            {% endif %}
+
+                            <div class="col-xs-12 nopad padding-lr-10">
+                                <div class="greyborderdiv_hoteldetailed"></div>
+                            </div>
+                            <div class="col-xs-12 nopad padlr-30">
+                                <p class="blackboldtext padbut10">{{ 'Traveler(s)'|trans }}</p>
+                                {% if passengers is defined %}
+                                    {% for passenger in passengers %}
+                                        <p class="blacknormaltext smallineh"><strong>{{passenger.first_name}} {{passenger.surname}}</strong></p>
+					{% if passenger.passport_number is defined %}
+					<p class="blacknormaltext smallineh">Passport No.: <strong>{{passenger.passport_number}}</strong></p>
+					<p class="blacknormaltext smallineh">Passport expiry: <strong>{{passenger.passport_expiry}}</strong></p>
+					<p class="blacknormaltext smallineh">Passport issued country: <strong>{{passenger.passport_issued_country}}</strong></p>
+					<p class="blacknormaltext smallineh">Passport nationality country: <strong>{{passenger.passport_nationality_country}}</strong></p>
+					{% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                <p class="blacknormaltext padtop15">{{ 'Frequent flyer and special assistance requests should be confirmed directly with the airline'|trans }}.</p>
+                            </div>
+                            <div class="col-xs-12 nopad padding-lr-10">
+                                <div class="greyborderdiv_hoteldetailed"></div>
+                            </div>
+                            {#<div class="col-xs-12 nopad padlr-30">
+                                <p class="blackboldtext">{{ 'Travel Protection'|trans }}</p>
+                                <p class="blacknormaltext">{{ 'You have not purchased the travel protection plan'|trans }}.</p>
+                            </div>#}
+                            <div class="col-xs-12 nopad padlr-30">
+                                <p class="blacknormaltext"><span class="fontwb">{{'The booking ID:'|trans }} </span></p>
+                                <p class="blacknormaltext">{{flight.pnr_id}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad padding-lr-10">
+                                <div class="greyborderdiv_hoteldetailed"></div>
+                            </div>
+                            <div class="col-xs-12 nopad padlr-30">
+                                <p class="blackboldtext padbut10">{{ 'Price Summary'|trans }}</p>
+
+                                {#<p class="blacknormaltext smallineh">Reservation partially canceled</p>
+                                <p class="blacknormaltext smallineh">Traveler 1: Adult $300.60</p>
+                                <p class="blacknormaltext smallineh padleft37">Flight:$216.00</p>
+                                <p class="blacknormaltext smallineh padleft37">Taxes and fees: $84.60</p>#}
+
+                                <p class="blackboldtext padbut30">{{ 'Flight Total'|trans }}: {{flight.currency}} {{ flight.price }}</p> {#<span><a href="#" class="viewreceipt">View receipt</a></span></p>
+                                    <p class="blacknormaltext smallineh">Traveler1: Adult $197.98</p>#}
+                                {% if flight.discounted_price is defined %}
+                                    <p class="blackboldtext padbut30">{{'Total Discounted'|trans}}: {{flight.currency}} {{flight.discounted_price|raw}}</p>
+                                {% endif %}
+                                <p class="blacknormaltext smallineh padleft37">{{ 'Base Price'|trans }}: {{flight.currency}} {{ flight.base_fare }}</p>
+                                <p class="blacknormaltext smallineh padleft37">{{ 'Taxes and fees'|trans }}: {{flight.currency}} {{ flight.taxes }}</p>
+                                {#<p class="blacknormaltext smallineh">TouristTube Booking fee: $4.00</p>
+                                <p class="blackboldtext padbut30 padtop20">Flight 2 Total: $201.98 - Canceled</p>
+                                <p class="blackboldtext">Airline credit: $197.98</p>#}
+
+                                <p class="blacknormaltext"><span class="fontwb"> {{ 'Note'|trans }}:</span> {{ 'The airline often charges a penalty and/or a reissue fee at time of redemption'|trans }}.</p>
+                                <p class="blacknormaltext padtop15">{{ 'All prices are quoted in'|trans }} {{flight.currency_code}}</p>
+                            </div>
+
+                        {% endif %}
+
+                        {% if flight.upcoming == 1 and pnr_status != 'CANCELLED'%}
+                            <div class="col-xs-12 nopad padding-lr-10">
+                                <div class="greyborderdiv_hoteldetailed"></div>
+                            </div>
+                            <div class="col-xs-12 nopad padlr-30">
+                                {% set counter = 0 %}
+                                <p class="blackboldtext">{{ 'Additional Information'|trans }}</p>
+                                {% for k, info in flight.leaving.flight_info %}
+                                    {% set counter = counter + 1 %}
+                                    <p class="textwithbluebullet">{{'Flight'|trans}} {{ counter }}: {{ info.origin_airport_code }} {{'to'|trans}}
+
+
+                                        {% if info.stop_info is defined %}
+                                            {% set destination_airport_code = "" %}
+                                            {% for stop_info in info.stop_info %}
+                                                {% set destination_airport_code = stop_info.destination_airport_code|raw%}
+                                            {% endfor %}
+                                            {{ destination_airport_code }}
+                                        {% else %}
+                                            {{ info.destination_airport_code }}
+                                        {% endif %}
+                                        {#                                        {% if flight_info.stop_info is defined %}
+                                                                                    {% set airportDestinationCode = "" %}
+                                                                                    {% for index, stop_segment in flight_info.stop_info %}
+                                                                                        {% set airportDestinationCode = stop_segment.destination_airport_code |raw %}
+                                                                                    {% endfor %}
+                                                                                    {{airportDestinationCode}}
+                                                                                {% else %}
+                                                                                    {{flight_info.destination_airport_code |raw}}
+                                                                                {% endif %}#}
+
+                                    </p>
+                                {% endfor %}
+
+                                {% if flight.returning is defined %}
+                                    {% for info in flight.returning.flight_info %}
+                                        {% set counter = counter + 1 %}
+                                        <p class="textwithbluebullet">{{'Flight'|trans}} {{ counter }}: {{ info.origin_airport_code }} {{'to'|trans}}
+
+                                            {% if info.stop_info is defined %}
+                                                {% set destination_airport_code = "" %}
+                                                {% for stop_info in info.stop_info %}
+                                                    {% set destination_airport_code = stop_info.destination_airport_code|raw%}
+                                                {% endfor %}
+                                                {{ destination_airport_code }}
+                                            {% else %}
+                                                {{ info.destination_airport_code }}
+                                            {% endif %}
+                                            {#        {% if flight_info.stop_info is defined %}
+                                                        {% set airportDestinationCode = "" %}
+                                                        {% for index, stop_segment in flight_info.stop_info %}
+                                                            {% set airportDestinationCode = stop_segment.destination_airport_code |raw %}
+                                                        {% endfor %}
+                                                        {{airportDestinationCode}}
+                                                    {% else %}
+                                                        {{flight_info.destination_airport_code |raw}}
+                                                    {% endif %}#}
+                                        </p>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {#{% if flight.refundable == 0 %}
+                                    {% if enableCancelation %}
+                                        <p class="blacknormaltext bigpadtextclass">{{ 'This price includes a nonrefundable booking fee'|trans }}.</p>
+                                    {% endif %}
+                                {% endif %}#}
+                                <p class="blackboldtext">{{ 'Additional Fees'|trans }}</p>
+                                <p class="blacknormaltext">{{ 'The airline may charge'|trans }} <span>{{ 'additional fees'|trans }}</span> {{ 'for checked baggage or other optional services'|trans }}.</p>
+                                {% if enableCancelation %}
+                                    <p class="blackboldtext">{{ 'Airline rules'|trans }} + {{ 'restrictions'|trans }}</p>
+                                    <p class="blacknormaltext lineh20">{{ 'We understand that sometimes plans change. We do not charge a cancel or change fee. When the airline charges such fees in accordance with its own policies, the cost will be passed on to you.'|trans }}</p>
+
+                                    {#{% if flight.refundable == 0 %}
+                                        <p class="blackboldtext">{{ 'Tickets are non-refundable, nontransferable and name changes are not allowed.'|trans }}</p>
+                                    {% else %}
+                                        <p class="blackboldtext">{{ 'Your flight will be non-refundable 24 hours after booking.'|trans }}</p>
+                                    {% endif %}#}
+                                    <p class="blackboldtext">
+                                        {{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br/>
+                                        {{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br/>
+                                        {{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - {{'Expected reply within 24 hours.'|trans}} 
+                                    </p>
+                                {% endif %}
+                                <p>&nbsp;</p>
+                                    <!--<p class="blacknormaltext padtop10">{{ 'Please read the'|trans }} <span><a href="#" class="addfees">{{ 'complete penalty rules for changes and cancellations'|trans }}</a></span> {{ 'applicable to this fare.'|trans }}</p>
+                                    <p class="blacknormaltext">{{ 'Please read important information regarding'|trans }} <span><a href="#" class="addfees">{{ 'airline liability limitaions.'|trans }}</a></span></p>-->
+
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    {% if flight.upcoming == 1 and pnr_status != 'CANCELLED'%}
+                        <div class="non-travelers">
+                            <div class="col-xs-12 nopad padding-lr-10">
+                                <div class="greyborderdiv_hoteldetailed"></div>
+                            </div>
+                            {#<div class="col-xs-12 nopad padlr-30">
+                                <p class="blackboldtext padbut10">{{'More Help'|trans}}</p>
+                                <p class="blacknormaltext padbut0">{{ 'Visit our'|trans }} <span><a href="#" class="addfees">{{ 'Customer Support'|trans }}</a></span> {{ 'page.'|trans }}</p>
+                                <p class="blacknormaltext padbut0"><a class="addfees" href="mailto:support@touristtube.com">{{'Email Customer Service.'|trans}}</a></p>
+                                    
+                                <p class="blacknormaltext padbut30">{{ 'For faster service mention'|trans }} <span class="blackboldtext">{{ 'booking'|trans }} #{{flight.pnr_id}}</span></p>
+                            </div>#}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-xs-12 nopad padding-lr-10 firstsection travelers">
+                    {% if (enableCancelation and isUserLoggedIn == 1) %}
+                        <div class="col-xs-12 nopad">
+                            <p class="travelersclasstext">{{ 'Travelers'|trans }}</p>
+                            <p class="cancellalltext">{{ 'Cancel all'|trans }}</p>
+                            <input type="hidden" id="cancel_url" value="{{ generateLangRoute(LanguageGet,"_corporate_flight_cancelation") }}?transaction_id={{flight.leaving.transaction_id|raw}}">
+                        </div>
+                    {% endif %}
+                    {% if isUserLoggedIn == 1 %}
+                        {% if passengers is defined %}
+                            {% for passenger in passengers %}
+                                <div class="col-xs-12 nopad">
+                                    <div class="divwithbordergrey">
+                                        <p class="nametravtext">{{ passenger.first_name }} {{ passenger.surname }}</p>
+                                        <p class="adutrav">{{ passenger.type }}</p>
+                                        {#<p class="cancelreserv">{{ 'Cancel Reservation'|trans }}</p>#}
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                    {% if isUserLoggedIn == 1 %}
+                        <div class="col-xs-12 nopad padding-lr-10">
+                            <a class="backtobooklist" href="{{ generateLangRoute(LanguageGet,'_flight_details', {'transaction_id': flight.leaving.transaction_id|raw}) }}"><< {{ 'back to booking detail'|trans }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        {% endif %}
+</section>

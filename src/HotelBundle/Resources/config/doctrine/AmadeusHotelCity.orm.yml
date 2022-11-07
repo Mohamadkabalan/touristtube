@@ -1,0 +1,75 @@
+HotelBundle\Entity\AmadeusHotelCity:
+    type: entity
+    table: amadeus_hotel_city
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    oneToMany:
+        hotels:
+            targetEntity: AmadeusHotel
+            mappedBy: city
+            cascade: [persist]
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+            column: city_code
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: city_name
+        stateCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: state_code
+        countryCode:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: true
+            column: country_code
+        countryName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: country_name
+        cityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        popularity:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        vendorId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: vendor_id
+    lifecycleCallbacks: {  }

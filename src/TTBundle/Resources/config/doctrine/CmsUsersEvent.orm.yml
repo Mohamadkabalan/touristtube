@@ -1,0 +1,170 @@
+TTBundle\Entity\CmsUsersEvent:
+    type: entity
+    table: cms_users_event
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        name:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        photo:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        location:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+        locationDetailed:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: location_detailed
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        lattitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        fromdate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+        fromtime:
+            type: time
+            nullable: false
+        todate:
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+        totime:
+            type: time
+            nullable: false
+        themeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: theme_id
+        limitnumber:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        caninvite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        showguests:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        enableShareComment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: enable_share_comment
+        relativepath:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_shares
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_comments
+        nbJoining:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_joining
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+    lifecycleCallbacks: {  }

@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>{{ pageTitle }}</title>
+
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<link rel="Shortcut Icon" href="{{generateMediaURL('/media/images/360-photos/favicon.ico')}}" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:light" rel="stylesheet"/>
+
+	<link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/tt/css/vtour/vtour-theme.min.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/mobile/css/jquery.mobile.icons.min.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/mobile/css/jquery.mobile.structure-1.4.5.min.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("/assets/360-photos/css/main.css")|raw }}" >
+
+	<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/mobile/js/jquery.mobile-1.4.5.min.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/vendor/cordova/4.1.0/cordova.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/panzoom/js/jquery.panzoom.min.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/vendor/modernizr/3.3.1/modernizr.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("/assets/360-photos/js/main.js")|raw }}"></script>
+
+    </head>
+    <body onload="onLoad()" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+	{#<div class="col-xs-12 bodyDataContent">	    
+            <img class="item_img" src="{{ generateMediaURL('/media/images/offers/img_discount') }}{% if LanguageGet=='fr' %}_{{LanguageGet|raw}}{% endif %}.jpg" alt="{{'travel differently'|trans}}"/>
+        </div>#}
+	<div id="loader-wrapper">
+	    <div  class="loadingTitle">{{ 'LOADING'|trans}}</div>
+	    <div id="loader"></div>
+	</div>
+
+	<div data-role="page" id="page1" >
+
+	    <div id="main" > 
+
+    		<div data-role="panel" id="myPanel" data-display="overlay" data-theme="a" data-inset="true">
+    		    <div id="listWrapper" data-role="collapsible-set">
+        			<div class="hotel-logo-wrapper">{% if logo !='' %}<img id="panelLogo" src="/{{logo|raw}}" onerror="$(this).remove()"/>{% endif %}</div>
+
+    				{% set ulDataRole = "listview" %}
+    				{% set ulCss = "listview ui-listview" %}
+        			{% if menu360[0].groupId is defined and menu360[0].groupId != "" %}
+        				{% set ulDataRole = "collapsible-set" %}
+        				{% set ulCss = "ui-listview-outer" %}
+        			{% endif %}
+
+        			<ul id="menu_list_view" data-role="{{ ulDataRole|raw }}" class="{{ ulCss|raw }}" > 
+        			    {% set previousGroupId = -1 %}
+        			    {% set previousGroupOpened = false %}
+        			    {% set collapsed = "false" %}
+        			    {% for item in menu360 %}
+        			    	{% if previousGroupId > -1 %}
+        			    		{% set collapsed = "true" %}
+        			    	{% endif %}
+        			        {% if item.groupId is defined and item.groupId != "" and item.groupId != previousGroupId %}
+        			        	{% set previousGroupId = item.groupId %}
+        			            {% if previousGroupOpened %}
+        			            	    </ul>
+          							</li>
+            			            {% set previousGroupOpened = false %}
+        			            {% endif %}
+        			            {% set previousGroupOpened = true %}
+        		            	<li data-role="collapsible" data-iconpos="right" data-shadow="false" data-corners="false" data-collapsed="{{ collapsed|raw }}">
+        							<h2>{{ item.groupName|raw }}</h2>
+                                	<ul data-role="listview" data-shadow="false" data-inset="true" data-corners="false">
+    
+        		            {% endif %}
+        					<li data-icon="{{item.data_icon|raw}}" id="li{{loop.index}}" data-name="{{ item.name|raw }}" data-type="{{ item.type|raw }}" data-country="{{ item.country|raw }}" data-entityname="{{ item.entityName|raw }}" data-id="{{ item.entityId|raw }}" data-cat_id="{{ item.catgId|raw }}" data-division_id="{{ item.divisionId|raw }}" data-sub_division_id="{{ item.subDivisionId|raw }}"><a href="#page1" rel="nofollow">{{ item.name|raw }}</a></li>
+        				{% endfor %}
+    
+        				{% if previousGroupOpened %}
+        	            	    </ul>
+        					</li>
+        				{% endif %}
+    
+        			</ul>
+    		    </div> <!-- end listwrapper-->
+    
+    		    <div id="ttPanel" > 
+    			{% for item in homeTT %}
+    			    <a href="{{ item.link|raw }}" title="{{item.title|raw}}" target="_blank"><img id="ttLogo" alt="{{item.title|raw}}" src="{{item.img|raw}}"/></a>
+    			    {% endfor %}
+    			<div id="btns">
+    			    {% for item in menuTT %}
+    				<a href="{{ item.link|raw }}" title="{{item.title|raw}}" target="_blank" class="ui-btn ttButton">{{item.name|raw}}</a>
+    			    {% endfor %}
+    			</div>
+    		    </div><!-- end TT panel-->
+    		</div> <!-- END PANEL -->
+    
+    		<div id="menu-button" style="z-index:100"> 
+    		    <a href="#myPanel"> 
+    			<div id="menu-icon">
+    			    <div></div>
+    			    <div></div>
+    			    <div></div>
+    			</div><!-- END menu-icon -->
+    		    </a>
+    		</div> <!-- END MENU BUTTON -->
+    
+    		<div id="controlsPanel"><!-- bottom controls Panel-->
+    		    <img id="help-button"  src="{{ generateMediaURL('/media/images/360-photos/help_btn.png') }}" onclick="showHelp()" >
+    		    <div id="fullscreen-button"  class="fullscreen-enter"  onclick="toggleFullScreen()" ></div>
+    		</div><!-- end bottom controls Panel-->		
+    		<iframe id="external" name="external" src="about:blank" style="background:#FFF; z-index:1; border: 0;">
+    
+    		</iframe>		
+    
+    		<div id="help" class="hidden">
+    
+    		    <div class="close" onClick="closeHelp()"></div>
+    
+    		    <div class="page-displayer">
+    			<div class="pages pages-0">
+    
+    			    <div id="page-1" class="scrollable" >	
+    				<div id="page-1-touch" style="visibility: hidden">
+    				    <div class="title noIbar">WELCOME</div>
+    				    <div class="text noIbar"><p>TouristTube 360, is a way for you to visit many areas of the hotel, through 360 images.To navigate,select your target in the left menu.</p><p>Rotate and zoom the image using the controls on the bottom, or touch screen as below:</p></div>
+    				    <div class="illustration-wrapper">
+    					<img class="illustration" src="{{ generateMediaURL('/media/images/360-photos/rotate.png') }}">
+    					<div class="label rotate noIbar" >Rotate</div>
+    				    </div>
+    				    <div class="illustration-wrapper">
+    					<img class="illustration"  src="{{ generateMediaURL('/media/images/360-photos/zoom.png') }}">
+    					<div class="label zoom noIbar" >Zoom</div>
+    				    </div>
+    				</div>
+    
+    				<div id="page-1-desktop" class="scrollable" >
+    				    <div class="title noIbar">WELCOME</div>
+    				    <div class="text noIbar"><p>TouristTube 360, is a way for you to visit many areas of the hotel, through 360 images.To navigate,select your target in the left menu.</p><p>Rotate and zoom the image using the controls on the bottom, or touch screen as below:</p></div>
+    				    <div class="illustration-mouse">
+    					<img class="illustration" src="{{ generateMediaURL('/media/images/360-photos/mouse.png') }}">
+    				    </div>
+    				</div>
+    			    </div>
+    
+    			    <div id="page-2" class="scrollable hidden">
+    				<div class="title noIbar">CONTROLS</div>
+    				<div class="table">
+    				    <div class="row" >
+    					<div class="wrapper">
+    					    <img class="icon" src="{{ generateMediaURL('/media/images/360-photos/hotspot.png') }}">
+    					    <div class="text noIbar" >Use the hotspots on the image to navigate between photos</div>
+    					</div>
+    				    </div>
+    
+    				    <div class="row">
+    					<div class="wrapper">
+    					    <img class="icon" src="{{ generateMediaURL('/media/images/360-photos/map_hotspot.png') }}">
+    					    <div class="text noIbar " >Click the hotspots on the map to navigate to a specific photo</div>
+    					</div>
+    				    </div>
+    
+    				    <div class="row" >
+    					<div class="wrapper">
+    					    <img class="icon" src="{{ generateMediaURL('/media/images/360-photos/info.png') }}">
+    					    <div class="text noIbar" >Show a description of the current project</div>
+    					</div>
+    				    </div>
+    
+    				    <div class="row" >
+    					<div class="wrapper">
+    					    <img class="icon" src="{{ generateMediaURL('/media/images/360-photos/thumbnails.png') }}">
+    					    <div class="text noIbar" >Open the thumbnails gallery of the current project</div>
+    					</div>
+    				    </div>
+    
+    				    <div class="row"  >
+    					<div class="wrapper">
+    					    <img class="icon"  src="{{ generateMediaURL('/media/images/360-photos/prevNext.png') }}">
+    					    <div class="text noIbar" >Navigate to the previous/next photo</div>
+    					</div>
+    				    </div>
+    
+    				    <div class="row" >
+    					<div class="wrapper">
+    					    <img class="icon"  src="{{ generateMediaURL('/media/images/360-photos/fullscreen.png') }}">
+    					    <div class="text noIbar" >Turn fullscreen mode on/off</div>
+    					</div>
+    				    </div>
+    
+    				    <div class="row" > <!--style="display: none;"-->
+    					<div class="wrapper">
+    					    <img class="icon" src="{{ generateMediaURL('/media/images/360-photos/showHide.png') }}">
+    					    <div class="text noIbar" >Show/hide the control menu</div>
+    					</div>
+    				    </div>
+    				</div>
+    			    </div>
+    			</div>
+    		    </div>
+    
+    		    <div class="pagination">
+    			<div id="num-1" class="paginationNumber active" onClick="activateHelpPage(1)">1</div>
+    			<div id="num-2" class="paginationNumber" onClick="activateHelpPage(2)">2</div>
+    		    </div>
+    		</div><!-- END HELP -->
+	    </div>	 <!--END MAIN-->
+	</div> <!-- END PAGE 1 -->
+
+    </body>
+</html>

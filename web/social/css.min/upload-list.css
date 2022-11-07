@@ -1,0 +1,654 @@
+@charset "utf-8";
+/* CSS Document */
+
+#uploadlistmenucontainer{
+	position:relative;
+	width:938px;
+	height:23px;
+	margin:0;
+	padding:0;
+	float:left;
+	display:block;
+}
+#noresult{
+	position:relative;
+	height:17px;
+	width:auto;
+	display:block;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#e7ba20;
+	font-weight:bold;
+	font-size:12px;
+	text-align:left;
+	margin:0;
+	padding:0;
+	cursor:default;
+}
+.error_valid{
+	clear: both;
+    color: #E7BA20;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 10px;
+    line-height: 10px;
+    margin: 9px 0 0;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    text-transform: lowercase;
+    width: auto;
+}
+#uploadlistpopuppublish, #uploadlistpopuppublishalbum{	
+	position:relative;
+	width:870px;
+	height:373px;
+	background-color:#f9f9f9;
+	padding:15px;
+}
+#uploadlistpopuppublishalbumpic{	
+	position:relative;
+	width:870px;
+	height:340px;
+	background-color:#f9f9f9;
+	padding:15px;
+}
+#uploadlistmenuicon{
+	position:absolute;
+	width:7px;
+	height:3px;
+	top:0px;
+	left:439px;
+	display:block;
+	background:url(../images/upload_list_baricon.png) no-repeat;
+	z-index:1;
+}
+#uploadlistmenubk{
+	position:relative;
+	width:909px;
+	height:20px;
+	margin:0;
+	padding:0;
+	margin-top:3px;
+	display:block;
+	background-color:#838383;
+}
+#uploadlistmenuimg{
+	position:absolute;
+	width:29px;
+	height:20px;
+	bottom:0;
+	right:0;
+	display:block;
+	background:url(../images/upload_list_barcorner.png) no-repeat;
+	z-index:1;
+}
+#uploadlistmenucontent{
+	position:absolute;
+	width:872px;
+	height:20px;
+	margin:0;
+	padding:0;
+	display:block;
+	bottom:0;
+	left:34px;
+}
+.uploadlistmenu{
+	position:relative;
+	width:auto;
+	height:20px;
+	margin:0;
+	padding:0;
+	display:block;
+	float:left;
+	margin-right:16px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:left;
+	font-weight:bold;
+	color:#f3f3f3;
+	line-height:20px;
+	cursor:pointer;
+}
+.uploadlistmenu:hover{
+	color:#000000;	
+}
+.uploadlistmenu.active{
+	color:#000000;	
+}
+.uploadlistmenuseperator{	
+	position:relative;
+	width:2px;
+	height:10px;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	background:url(../images/upload_list_seperator.jpg) no-repeat;
+	margin-right:16px;
+	margin-top:6px;
+}
+#uploadlistcontainer{	
+	position:relative;
+	width:998px;
+	height:auto;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	margin-top:51px;
+	margin-bottom:20px;
+	overflow:hidden;
+}
+#uploadlistcontainertitle{
+	position:relative;
+	width:auto;
+	height:15px;
+	margin:0;
+	padding:0;
+	display:block;
+	float:left;
+	margin-left:11px;
+	margin-top:8px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:left;
+	font-weight:bold;
+	color:#686868;
+	line-height:15px;
+	text-transform:uppercase;
+	cursor:pointer;
+}
+#uploadlistcontainerpics{	
+	position:relative;
+	width:1009px;
+	height:auto;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	margin-top:42px;
+	margin-left:7px;
+}
+#uploadlistcontainerpics ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#uploadlistcontainerpics ul li {
+    border: 1px solid #dfdfdf;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 48px;
+    margin:0;
+    padding: 4px;
+    position: relative;
+    width: 86px;
+	margin-right:15px;
+	margin-bottom:15px;
+}
+
+#uploadlistcontainerpics ul li.active {
+    border: 1px solid #E7BA20;
+}
+#uploadlistcontainerpics ul li:hover {
+    border: 1px solid #E7BA20;
+}
+#uploadlistcontainerpics ul li:hover > #hide_button {
+	display:block;
+}
+#uploadlistpicsleft ul li:hover > #hide_button {
+	display:block;
+}
+#uploadlistpagecountalbum {
+    display: block;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 22px;
+    top: -76px;
+    width: 59px;
+}
+#uploadlistpagecount {
+    display: block;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 12px;
+    top: 0;
+    width: 59px;
+}
+#uploadlistpagecountnext, #uploadlistpagecountalbumnext {
+    background: url("../images/profile-friends-nxt.jpg") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    width: 29px;
+}
+#uploadlistpagecountnext.inactive, #uploadlistpagecountalbumnext.inactive {
+    background: url("../images/profile-friends-nxt1.jpg") no-repeat scroll 0 0 transparent;
+    cursor: default;
+}
+#uploadlistpagecountprev, #uploadlistpagecountalbumprev {
+    background: url("../images/profile-friends-prev.jpg") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 30px;
+    width: 29px;
+}
+#uploadlistpagecountprev.inactive, #uploadlistpagecountalbumprev.inactive {
+    background: url("../images/profile-friends-prev1.jpg") no-repeat scroll 0 0 transparent;
+    cursor: default;
+}
+#uploadlistalbumContent{
+	position:relative;
+	width:100%;
+	height:auto;
+	margin:0;
+	padding:0;
+	margin-top:43px;
+	float:left;
+	display:block;
+}
+#uploadlistalbumContentpics{	
+	position:relative;
+	width:1030px;
+	height:auto;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	margin-top:29px;
+	margin-bottom:20px;
+	margin-left:7px;
+}
+.uploadlistcontainerrighttitle{	
+	position:relative;
+	width:100%;
+	height:15px;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:left;
+	color:#686868;
+	font-size:12px;
+	line-height:15px;
+	cursor:default;
+	margin-left:4px;
+}
+.uploadlistpics{
+	position:relative;
+	width:100%;
+	height:auto;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+}
+.uploadlistpicalbum{
+    border: 1px solid #dfdfdf;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 48px;
+    margin:0;
+    padding: 4px;
+    position: relative;
+    width: 86px;
+	margin-top:3px;
+}
+#uploadlistpicsleft{
+	position:relative;
+	width:876px;
+	height:auto;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	margin-top:8px;
+	margin-left:30px;
+}
+#uploadlistpicsleft ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#uploadlistpicsleft ul li {
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 48px;
+    margin:0;
+    position: relative;
+    width: 86px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
+
+.privacyclass {
+    margin: 7px 0 0;
+    width: 110px;
+}
+.margintop19{
+	margin-top:19px;	
+}
+.margintop88{
+	margin-top:88px;	
+}
+.inputuploaddescriptionTF{
+	border: 1px solid #abadb3;
+	height: 78px;	
+}
+.inputuploadformTF {
+    border: 1px solid #ABADB3;
+}
+select.inputuploadformTF {
+    height: 19px !important;
+    line-height: 19px !important;
+}
+.margintop15{
+	margin-top:15px;
+}
+
+/*  privacy   */
+.peoplecontainer {
+    background-color: #FFFFFF;
+    height: auto;
+    min-height: 60px;
+    position: relative;
+    width: 405px;
+}
+.peoplecontainer_custom{
+	 min-height: 0;
+	 height:60px;
+}
+.peoplecontainer_boxed{
+    min-height: 0;
+    width: 253px;
+}
+
+.emailcontainer {
+    border: 1px solid #bcbcbc;
+    display: block;
+    float: left;
+    height: auto;
+    margin: 0;
+    min-height: 41px;
+    padding: 2px;
+    position: relative;
+    width: 401px;
+    z-index: 2;
+}
+.emailcontainer_privacy_custom {
+    border: 1px solid #bcbcbc;
+    display: block;
+    float: left;
+    margin: 0;
+    height: 41px;
+    padding: 2px;
+    position: relative;
+    width: 276px;
+    z-index: 1;
+	overflow:auto;
+}
+.emailcontainer_boxed {
+    border: 1px solid #bcbcbc;
+    display: block;
+    float: left;
+    height: auto;
+    margin: 0;
+    min-height: 41px;
+    padding: 2px;
+    position: relative;
+    width: 401px;
+    z-index: 1;
+}
+.emailcontainer_boxed_share{
+    width: 248px;
+	background-color:#ebebeb;
+}
+
+.addmore {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 152px;
+    height: 16px;
+}
+#addmoretext, .addmoretext_css {
+    background-color: #B8B8B8;
+    border: none;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    height: 14px;
+    line-height: 14px;
+    margin: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    position: absolute;
+    width: 138px;
+    top: 0;
+    left: 0;
+}
+.friendscontainer {
+    border: 1px solid #dbdfe6;
+    display: block;
+    float: left;
+    height: 60px;
+    margin: -1px 0 0;
+    padding: 0;
+    position: relative;
+    width: 405px;
+    z-index: 1;
+}
+.uploadinfocheckbox, .uploadinfocheckbox_upload {
+    clear: both;
+    float: left;
+    line-height: 13px;
+    width: auto;
+}
+.peoplesdata {
+    background-color: #E7BA20;
+    display: block;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 3px 3px 0;
+    padding: 0 17px 0 5px;
+    position: relative;
+}
+.peoplesdatainside {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 16px;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: auto;
+}
+.peoplesdataclose {
+    background-image: url("../images/modal_profile_close.jpg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 10px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 10px;
+}
+.peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#000000;
+	margin:0;
+	padding:0;
+}
+.peoplesearchtext{
+	position:absolute;
+	/*width:340px; */
+	width:auto; 
+	height:32px;
+	line-height:32px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#959595;
+	left:42px;
+	top:0;
+}
+.emailcontainer .ui-autocomplete {
+    border: 2px solid #555557 !important;
+    max-height: 130px !important;
+	height: auto !important;
+    overflow: auto !important;
+    width: 403px !important;
+	left:-1px !important;
+}
+.emailcontainer .ui-menu .ui-menu-item a{
+	background-color:#555557 !important;
+	padding:0 !important;
+	padding:2px !important;
+	/*padding-left:4px !important;
+	padding-right:4px !important;*/
+	border:none !important;
+}
+.emailcontainer .ui-menu .ui-menu-item a.ui-state-focus {
+	background-color:#ffffff !important;
+	height: 0px !important;
+}
+.emailcontainer .ui-menu .ui-menu-item {
+	background-color:#000000 !important;	
+}
+.emailcontainer_boxed .ui-autocomplete{
+    border: 2px solid #e2e3ea !important;
+    max-height: 130px !important;
+	height: auto !important;
+    overflow: auto !important;
+    width: 247px !important;
+	left:-1px !important;
+}
+.peoplecontainer_custom .ui-autocomplete{
+    border: 2px solid #e2e3ea !important;
+    max-height: 144px !important;
+	height: auto !important;
+    overflow: auto;
+    width: 218px !important;
+	left:-1px !important;
+	margin-left:135px !important;
+}
+.peoplecontainer_custom #ui-id-1{
+    width: 218px !important;
+}
+.peoplecontainer_custom .ui-menu .ui-menu-item{
+    width: 100% !important;
+	margin: 0 !important;
+    padding: 0 !important;
+	height:36px !important;
+}
+.emailcontainer_boxed .ui-menu .ui-menu-item a, .peoplecontainer_custom .ui-menu .ui-menu-item a{
+	background-color:#e2e3ea !important;
+	padding:0 !important;
+	padding:2px !important;
+	/*padding-left:4px !important;
+	padding-right:4px !important;*/
+	border:none !important;
+}
+.emailcontainer_boxed .ui-menu .ui-menu-item a.ui-state-focus, .peoplecontainer_custom .ui-menu .ui-menu-item a.ui-state-focus{
+	background-color:#ffffff !important;
+}
+.emailcontainer_boxed .ui-menu .ui-menu-item, .peoplecontainer_custom .ui-menu .ui-menu-item{
+	background-color:#ebebeb !important;	
+}
+.emailcontainer_boxed .peoplesearch, .peoplecontainer_custom .peoplesearch{
+	position:relative !important;
+	width:100% !important; 
+	height:32px !important; 
+	background-color:#ebebeb !important;
+	margin:0 !important;
+	padding:0 !important;
+}
+
+.margintop2{
+	margin-top:2px;	
+}
+
+.emailcontainer_boxed .peoplesearch, .peoplecontainer_custom .peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#ebebeb;
+	margin:0;
+	padding:0;
+}
+.peoplesdataemail_icon{
+	position:relative;
+	width:15px;
+	display:block;
+	float:left;
+	height:10px;
+	margin:0;
+	padding:0;
+    background-image: url("../images/email_icon.jpg");
+	background-repeat:no-repeat;
+	margin-right:3px;
+	margin-top:3px;	
+}
+/*  end privacy   */
+
+.closeSign.hide {
+    display: none;
+}
+.closeSign {
+    background: url("../images/channel/close_x.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 11px;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    width: 11px;
+    z-index: 120;
+}
+.closeSignHint {
+    background: url("../images/channel/close_x.gif") no-repeat scroll left center rgba(0, 0, 0, 0);
+    color: #838383;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    height: 11px;
+    line-height: 11px;
+    margin: 10px 0 0 22px;
+    padding-left: 14px;
+    position: relative;
+    width: auto;
+}
+.formcontainer{
+    -webkit-overflow-scrolling: touch;
+}

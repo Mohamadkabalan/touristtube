@@ -1,0 +1,182 @@
+# This file is auto-generated during the composer install
+parameters:
+    ENVIRONMENT: development
+    domain: touristtube.com
+    subdomain_suffix: '-mohamadkabalane'
+    database_host: mdbdev01
+    database_port: 3306
+    database_name: touristtube
+    database_user: mysql_root
+    database_password: 'Mr4+%FINDZm,:AGL'
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 1ae4553a11ce08750181d9295ea837864e699fc2
+    elastic_host: esdev02
+    elastic_port: 9200
+    elastic_index: tt_v2.2
+    CONFIG_SERVER_ROOT: /home/mohamad.kabalane/www/web/
+    CONFIG_SERVER_NAME: touristtube.com
+    CONFIG_COOKIE_PATH: touristtube.com
+    CONFIG_VIDEO_UPLOADPATH: media/videos/uploads/
+    CONFIG_VIDEO_VIDEOCONVERTER: /home/mohamad.kabalane/www/web/social/ffmpeg/ffmpeg
+    CONFIG_VIDEO_VIDEOCONVERTERFOLDER: /home/mohamad.kabalane/www/web/social/ffmpeg/
+    USER_AVATAR_ABSOLUTE_PATH: /home/mohamad.kabalane/www/web/social/media/tubers/
+    USER_AVATAR_RELATIVE_PATH: /media/tubers/
+    facebook_app_secret: 87378d17c481361e8f8d526da84b3e50
+    facebook_client_secret: 87378d17c481361e8f8d526da84b3e50
+    facebook_app_id: 1045138925510219
+    facebook_default_graph_version: v2.12
+    MACHINE_NAME: tt
+    elastic:
+        prod:
+            host: esdev01
+            port: 9200
+            compression: true
+            indexes:
+                hrshotels:
+                    host: null
+                    port: null
+                    index: tt_hrshotels
+                    docType: hrshotels
+                hrshotelscities:
+                    host: null
+                    port: null
+                    index: tt_hrshotelscities
+                    docType: hrshotelscities
+                hotels:
+                    host: null
+                    port: null
+                    index: tt_hotels
+                    docType: hotels
+                dictionary:
+                    host: null
+                    port: null
+                    index: tt_dictionary
+                    docType: dictionary
+                cities:
+                    host: null
+                    port: null
+                    index: tt_cities
+                    docType: cities
+                hotelsCities:
+                    host: null
+                    port: null
+                    index: tt_hotelscities
+                    docType: hotelsCities
+                airports:
+                    host: null
+                    port: null
+                    index: tt_airports
+                    docType: airports
+                deals:
+                    host: null
+                    port: null
+                    index: tt_deals
+                    docType: deals
+                poi:
+                    host: null
+                    port: null
+                    index: tt_poi
+                    docType: poi
+                media:
+                    host: null
+                    port: null
+                    index: tt_media
+                    docType: media
+                channels:
+                    host: null
+                    port: null
+                    index: tt_channels
+                    docType: channels
+                location:
+                    host: null
+                    port: null
+                    index: tt_location
+                    docType: location
+                thingstodo:
+                    host: null
+                    port: null
+                    index: tt_thingstodo
+                    docType: thingstodo
+                dischotels:
+                    host: null
+                    port: null
+                    index: tt_dischotels
+                    docType: dischotels
+        dev:
+            host: esdev01
+            port: 9200
+            compression: true
+            indexes:
+                hrshotels:
+                    host: null
+                    port: null
+                    index: tt_hrshotels
+                    docType: hrshotels
+                hrshotelscities:
+                    host: null
+                    port: null
+                    index: tt_hrshotelscities
+                    docType: hrshotelscities
+                hotels:
+                    host: null
+                    port: null
+                    index: tt_hotels
+                    docType: hotels
+                dictionary:
+                    host: null
+                    port: null
+                    index: tt_dictionary
+                    docType: dictionary
+                cities:
+                    host: null
+                    port: null
+                    index: tt_cities
+                    docType: cities
+                hotelsCities:
+                    host: null
+                    port: null
+                    index: tt_hotelscities
+                    docType: hotelsCities
+                airports:
+                    host: null
+                    port: null
+                    index: tt_airports
+                    docType: airports
+                deals:
+                    host: null
+                    port: null
+                    index: tt_deals
+                    docType: deals
+                poi:
+                    host: null
+                    port: null
+                    index: tt_poi
+                    docType: poi
+                media:
+                    host: null
+                    port: null
+                    index: tt_media
+                    docType: media
+                channels:
+                    host: null
+                    port: null
+                    index: tt_channels
+                    docType: channels
+                location:
+                    host: null
+                    port: null
+                    index: tt_location
+                    docType: location
+                thingstodo:
+                    host: null
+                    port: null
+                    index: tt_thingstodo
+                    docType: thingstodo
+                dischotels:
+                    host: null
+                    port: null
+                    index: tt_dischotels
+                    docType: dischotels

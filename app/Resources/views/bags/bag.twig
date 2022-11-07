@@ -1,0 +1,314 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/pages/css/bags.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/pages/css/popup.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/bags.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <div id="popup_edit_itemid" class="popup_edit_item bag_popup"></div>
+    <section class="container bag_container">
+        <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+            <div class="container-fluid nopad filters-group">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                        {{'Filters'|trans}}
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            <div class="row no-margin">
+                                <a href="{{ generateLangURL(LanguageGet,'/ajax/show-on-map?type=b&id='~bagId) }}" class="showOnMap col-xs-12 nopad">
+                                    <img class="width100" alt="{{'map'|trans}}" src="{{ generateMediaURL('/media/images/bag_new/bagmap.jpg') }}">
+                                </a>
+                                <div class="col-xs-12 nopad">
+                                    <a href="{{ generateLangURL(LanguageGet,'/ajax/show-on-map?type=b&id='~bagId) }}" class="show_on_map showOnMap">{{'Show on map'|trans}}</a>
+                                </div>
+                            </div>
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <p class="blue font-24 line-height-26">{{'Filters'|trans}}</p>
+                                </div>
+                            </div>
+                            <div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By type'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="all" class="form-check-input optChek optChekAll" data-value="all">
+                                                <label for="all" class="form-check-label">{{'All'|trans}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="thingstodo" class="form-check-input optChek" data-value="poi">
+                                                <label for="thingstodo" class="form-check-label">{{'Things to do'|trans}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="attractions" class="form-check-input optChek" data-value="attractions">
+                                                <label for="attractions" class="form-check-label">{{'Attractions'|trans}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="hotels" class="form-check-input optChek" data-value="hotel">
+                                                <label for="hotels" class="form-check-label">{{'Hotels'|trans}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="hotelsreserved" class="form-check-input optChek" data-value="hotels-reserved">
+                                                <label for="hotelsreserved" class="form-check-label">{{'Reserved hotels'|trans}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {#<div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By destination'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="country" class="form-check-input optChek">
+                                                <label for="country" class="form-check-label">
+                                                    Country
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 nopad">
+                                            <div class="form-check">
+                                                <input type="checkbox" value="1" id="city" class="form-check-input optChek">
+                                                <label for="city" class="form-check-label">
+                                                    City
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>#}
+                            {#<div class="row no-margin margin_top_20">
+                                <div class="col-xs-12 nopad">
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by date'|trans}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="row no-margin">
+                                                <div id="fromContainer" class="col-xs-12 nopad mybookinginput pad17">
+                                                    <input type="text" class="col-xs-12" id="fromDate" name="fromDateC" value="" placeholder="from">
+                                                </div>
+                                            </div>
+                                            <div class="row no-margin">  
+                                                <div id="toContainer" class="col-xs-12 nopad mybookinginput pad17">
+                                                    <input type="text" class="col-xs-12" id="toDate" name="toDateC" value="" placeholder="to">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 nopad pad17">
+                                            <button id="" class="btn yellow_search_common_button">Search</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>#}
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Bag'|trans}} | <span>{{bagName|trans}}</span></h1>
+                        <input id="getBagItemPath" type="hidden" name="getBagItemPath" value="{{ generateLangRoute(LanguageGet,'_get_bag_item_info')}}">
+                        <input id="updateBagItemPath" type="hidden" name="updateBagItemPath" value="{{ generateLangRoute(LanguageGet,'_update_bag_item')}}">
+                        <input id="deleteBagItemPath" type="hidden" name="deleteBagItemPath" value="{{ generateLangRoute(LanguageGet,'_delete_bag_item')}}">
+                    </div>
+                </div>
+                <div class="row no-margin margin_top_20">
+                    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+                        <div class="row no-margin">
+                            <a href="{{ generateLangURL(LanguageGet,'/ajax/show-on-map?type=b&id='~bagId) }}" class="showOnMap col-xs-12 nopad">
+                                <img class="width100" alt="{{'map'|trans}}" src="{{ generateMediaURL('/media/images/bag_new/bagmap.jpg') }}"/>
+                            </a>
+                            <div class="col-xs-12 nopad">
+                                <a href="{{ generateLangURL(LanguageGet,'/ajax/show-on-map?type=b&id='~bagId) }}" class="show_on_map showOnMap">{{'Show on map'|trans}}</a>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <p class="blue font-24 line-height-26">{{'Filters'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By type'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" value="1" id="all1" class="form-check-input optChek optChekAll" data-value="all">
+                                            <label for="all1" class="form-check-label">{{'All'|trans}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" value="1" id="thingstodo1" class="form-check-input optChek" data-value="poi">
+                                            <label for="thingstodo1" class="form-check-label">{{'Things to do'|trans}}</label>
+                                        </div>
+                                    </div>
+				    {% if SHOW_DEALS_BLOCK==1 %}
+					<div class="col-xs-12 nopad">
+					    <div class="form-check">
+						<input type="checkbox" value="1" id="attractions1" class="form-check-input optChek" data-value="attractions">
+						<label for="attractions1" class="form-check-label">{{'Attractions'|trans}}</label>
+					    </div>
+					</div>
+				    {% endif %}
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" value="1" id="hotels1" class="form-check-input optChek" data-value="hotel">
+                                            <label for="hotels1" class="form-check-label">{{'Hotels'|trans}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" value="1" id="hotelsreserved1" class="form-check-input optChek" data-value="hotels-reserved">
+                                            <label for="hotelsreserved1" class="form-check-label">{{'Reserved hotels'|trans}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        {#<div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By destination'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" value="1" id="country1" class="form-check-input optChek">
+                                            <label for="country1" class="form-check-label">
+                                                Country
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="form-check">
+                                            <input type="checkbox" value="1" id="city1" class="form-check-input optChek">
+                                            <label for="city1" class="form-check-label">
+                                                City
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>#}
+                        {#<div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by date'|trans}}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div id="fromContainer" class="col-xs-12 nopad mybookinginput pad17">
+                                                <input type="text" class="col-xs-12" id="fromDate" name="fromDateC" value="" placeholder="from">
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">  
+                                            <div id="toContainer" class="col-xs-12 nopad mybookinginput pad17">
+                                                <input type="text" class="col-xs-12" id="toDate" name="toDateC" value="" placeholder="to">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad pad17">
+                                        <button id="" class="btn yellow_search_common_button">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>#}
+                    </div>
+                    <div class=" col-md-9 col-xs-12 right_panel">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad ">
+                                <div class="row margin-5">
+                                    {% for items in bagItems %}
+                                        <div class="col-sm-4 col-xs-6 small-xs-width padding-5 existing_bag_item" data-type="{{ items.type|raw }}">
+                                            <div class="row no-margin">
+                                                <div class="col-xs-12 nopad ">
+						    <a href="{{items.link|raw}}" title="{{items.namealt|raw}}">
+							<img class="width-100" alt="{{items.namealt|trans}}" src="{{items.img}}">
+						    </a>
+                                                    <a href="#popup_edit_itemid" class="edit_bag_item" data-id="{{ items.id|raw }}" title="{{items.namealt|raw}}">
+							<img class="edit_class_blue" alt="edit" src="{{ generateMediaURL('/media/images/bag_new/blue_edit_logo.png') }}">
+						    </a>
+                                                        {% if (items.entity_type == 28 and items.linkReservation !='') or items.entity_type == 75 %}
+                                                        <a href="{{items.link|raw}}" title="{{items.namealt|raw}}" class="book_now_button">{{'Click here to book again'|trans}}</a>
+                                                    {% elseif items.entity_type == 28 %}
+                                                        <a href="{{items.link|raw}}" title="{{items.namealt|raw}}" class="book_now_button">{{'Book now'|trans}}</a>
+                                                    {% elseif items.type == 'restaurant' %}
+                                                        <div class="book_now_button">{{'Book now'|trans}}</div>
+                                                    {% endif %}
+                                                </div>
+                                                <a href="{{items.link|raw}}" title="{{items.namealt|raw}}" class="col-xs-12 items_txt nopad">
+                                                    <p class="grey_img_subtitle">{{items.name|raw}}<span>| {{items.address|raw}}</span></p>
+                                                    <p class="stars_block starsection_text">{% if items.stars > 0 %}<span class="star_rating" data-rating="{{ items.stars|raw}}" data-font="11" data-color="#eac31a">{% endif %}</span>1,164 {{'reviews'|trans}}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+					{% if (loop.index%3)==0 %}
+					    <div class="clearfix visible-lg visible-md visible-sm"></div>
+					{% endif %}				
+					{% if (loop.index%2)==0 %}
+					    <div class="clearfix visible-xs"></div>
+					{% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

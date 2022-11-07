@@ -1,0 +1,22 @@
+{% if containerDiv is defined and containerDiv %}
+    <div id="{{ (containerDivId is defined and containerDivId != '')  ? containerDivId : '' }}" class="{{ (containerDivClass is defined and containerDivClass != '')  ? containerDivClass : '' }}">
+    {% endif %}
+
+    {% if label is defined and label != '' %}
+	<div class="col-xs-12 line-height-36 nopad">
+	    <p class="font-16 black margin_bottom_0">{{label|trans}}</p>
+	</div>
+    {% endif %}
+
+    {% set counter = 1 %}
+    {% for oKey,oVal in options %}
+	<div class="col-xs-12 line-height-36 nopad">
+	    <input type="checkbox" id="{{ (fieldId is defined and fieldId != '')  ? fieldId : '' }}_{{counter}}" name="{{ fieldName }}" value="{{ oVal }}"  class="{{ (fieldClass is defined and fieldClass != '')  ? fieldClass : '' }}" {{ (counter == 1)  ? 'checked' : '' }}>
+	    <label class="font-16 grey font-normal margin_bottom_0" for="{{ (fieldId is defined and fieldId != '')  ? fieldId : '' }}_{{counter}}">{{oVal|trans}}</label>
+	</div>
+	{% set counter = counter + 1 %}
+    {% endfor %}
+
+    {% if containerDiv is defined and containerDiv %}
+    </div>
+{% endif %}

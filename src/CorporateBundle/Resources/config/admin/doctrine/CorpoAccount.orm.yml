@@ -1,0 +1,140 @@
+CorporateBundle\Entity\corpoAccount:
+    type: entity
+    table: corpo_account
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAccountRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            column: name
+        cityId:
+            type: integer
+            nullable: false
+            column: city_id   
+        address:
+            type: string
+            nullable: true
+            length: 500
+            column: address 
+        mobile:
+            type: string
+            nullable: true
+            length: 20
+            column: mobile     
+        phone1:
+            type: string
+            nullable: false
+            length: 20
+            column: phone1    
+        phone2:
+            type: string
+            nullable: false
+            length: 20
+            column: phone2       
+        creditLimit:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: credit_limit 
+        numberOfUsers:
+            type: integer
+            nullable: false
+            column: number_of_users   
+        currencyCode:
+            type: string
+            nullable: false
+            length: 3
+            column: currency_code
+        paymentPeriod:
+            type: integer
+            nullable: false
+            column: payment_period  
+        preferredCurrency:
+            type: string
+            nullable: false
+            length: 3
+            column: preferred_currency
+        paymentTypeId:
+            type: integer
+            nullable: false
+            column: payment_type_id  
+        website:
+            type: string
+            nullable: false
+            length: 100
+            column: website  
+        email:
+            type: string
+            nullable: false
+            length: 100
+            column: email 
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        parentAccountId:
+            type: integer
+            nullable: false
+            column: parent_account_id 
+        agencyId:
+            type: integer
+            nullable: false
+            column: agency_id 
+        updatedAt:
+            type: datetime
+            nullable: true
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: false
+            column: created_by 
+        updatedBy:
+            type: integer
+            nullable: true
+            column: updated_by 
+        isActive:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_active
+        showAccountCurrencyAmount:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: show_account_currency_amount
+        account_type_id:
+            type: integer
+            nullable: false
+            column: account_type_id
+        path:
+            type: string
+            nullable: true
+            length: 100
+            column: path 
+        accountingEmail:
+            type: string
+            nullable: false
+            length: 100
+            column: accounting_email 
+    lifecycleCallbacks: {  }

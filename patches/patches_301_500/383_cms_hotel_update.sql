@@ -1,0 +1,1 @@
+UPDATE cms_hotel SET street = 'THE MEYDAN ROAD NAD AL SHEBA' WHERE id = 201940;

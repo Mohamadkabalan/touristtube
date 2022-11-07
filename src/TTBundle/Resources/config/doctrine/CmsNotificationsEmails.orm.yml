@@ -1,0 +1,26 @@
+TTBundle\Entity\CmsNotificationsEmails:
+    type: entity
+    table: cms_notifications_emails
+    repositoryClass: TTBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 250
+            options:
+                fixed: false
+        notify:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

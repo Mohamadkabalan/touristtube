@@ -1,0 +1,16 @@
+UPDATE `main_entity_type` SET `display_order` = '990' WHERE `main_entity_type`.`id` = 1; UPDATE `main_entity_type` SET `display_order` = '1000' WHERE `main_entity_type`.`id` = 2; UPDATE `main_entity_type` SET `display_order` = '960' WHERE `main_entity_type`.`id` = 38; UPDATE `main_entity_type` SET `display_order` = '985' WHERE `main_entity_type`.`id` = 4;
+
+UPDATE `cms_thingstodo_details` SET `title` = 'Lodi Tomb' WHERE `cms_thingstodo_details`.`id` = 5406;
+
+UPDATE `main_entity_type_list` SET `display_order` = '970' WHERE `main_entity_type_list`.`id` = 6; UPDATE `main_entity_type_list` SET `display_order` = '980' WHERE `main_entity_type_list`.`id` = 2; UPDATE `main_entity_type_list` SET `display_order` = '930' WHERE `main_entity_type_list`.`id` = 7; UPDATE `main_entity_type_list` SET `display_order` = '960' WHERE `main_entity_type_list`.`id` = 4;
+
+INSERT INTO `main_entity_type_list` (`id`, `name`, `entity_type_id`, `main_entity_type_id`, `entity_id`, `display_order`, `show_on_home`, `city_id`, `published`) VALUES (NULL, 'Four Seasons Hotel Beirut', '28', '2', '132722', '1000', '1', '0', '1'), (NULL, 'Hilton Dubai Al Habtoor City', '28', '2', '417401', '990', '1', '0', '1'), (NULL, 'Roda Al Murooj Hotel Downtown Dubai', '28', '2', '67011', '950', '1', '0', '1'), (NULL, 'Royal Central Hotel - The Palm', '28', '2', '417419', '940', '1', '0', '1');
+
+UPDATE `main_entity_type_list` SET `display_order` = '970' WHERE `main_entity_type_list`.`id` = 19; UPDATE `main_entity_type_list` SET `display_order` = '940' WHERE `main_entity_type_list`.`id` = 20; UPDATE `main_entity_type_list` SET `entity_id` = '45', `display_order` = '930' WHERE `main_entity_type_list`.`id` = 21;
+UPDATE `main_entity_type_list` SET `name` = 'Things to do in Bali' WHERE `main_entity_type_list`.`id` = 21;
+
+INSERT INTO `main_entity_type_list` (`id`, `name`, `entity_type_id`, `main_entity_type_id`, `entity_id`, `display_order`, `show_on_home`, `city_id`, `published`) VALUES (NULL, 'Things to do in Venice', '79', '1', '465', '990', '1', '0', '1'), (NULL, 'Things to do in Vienna', '79', '1', '9', '980', '1', '0', '1'), (NULL, 'Things to do in Athens', '79', '1', '558', '960', '1', '0', '1'), (NULL, 'Things to do in Berlin', '79', '1', '39', '950', '1', '0', '1');
+
+UPDATE `main_entity_type_list` SET `display_order` = '1000' WHERE `main_entity_type_list`.`id` = 15; UPDATE `main_entity_type_list` SET `display_order` = '990' WHERE `main_entity_type_list`.`id` = 16; UPDATE `main_entity_type_list` SET `name` = '360 Colosseum', `entity_id` = '316', `display_order` = '980', `city_id` = '2211494' WHERE `main_entity_type_list`.`id` = 17; UPDATE `main_entity_type_list` SET `name` = '360 Westminster Abbey', `entity_id` = '70', `display_order` = '970', `city_id` = '1829266' WHERE `main_entity_type_list`.`id` = 18;
+
+INSERT INTO `main_entity_type_list` (`id`, `name`, `entity_type_id`, `main_entity_type_id`, `entity_id`, `display_order`, `show_on_home`, `city_id`, `published`) VALUES (NULL, '360 Brandenburg Gate', '80', '4', '685', '960', '1', '1668543', '1'), (NULL, '360 Grand Bazaar', '80', '4', '652', '950', '1', '774729', '1'), (NULL, '360 Garuda Wishu Kencana', '80', '4', '798', '940', '1', '2063977', '1'), (NULL, '360 Lodi Tomb', '80', '4', '5406', '995', '1', '2102463', '1');

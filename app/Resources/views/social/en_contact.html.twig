@@ -1,0 +1,62 @@
+{# app/Resources/views/social/en_about_us.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+{% endblock %}	
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>Contact us</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Security Issues</h2>
+                        <p class="sub_header_title">To report security / hacking issues on the site, please contact us at <a href="mailto:security@touristtube.com" title="security@touristtube.com">security@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Inappropriate content</h2>
+                        <p class="sub_header_title">To report any inappropriate content on the site, please contact us at <a href="mailto:abuse@touristtube.com" title="abuse@touristtube.com">abuse@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Copyright Issues</h2>
+                        <p class="sub_header_title">To report copyright infringements on the site, please contact us at <a href="mailto:copyright@touristtube.com" title="copyright@touristtube.com">copyright@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Advertising</h2>
+                        <p class="sub_header_title">For placing your ads with us, please contact us at <a href="mailto:advertising@touristtube.com" title="advertising@touristtube.com">advertising@touristtube.com</a></p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Our Address</h2>
+                        <p class="sub_header_title">You can contact Tourist Tube at the address below.</p>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">TouristTube™</h2>
+                        <p class="sub_header_title">
+                            Tourist Tube FZ-LLC;<br>
+                            Floor 1; DIC Building 12;<br>
+                            35, DIC Street; city Dubai; UAE<br>
+                            <a href="mailto:info@touristtube.com" title="info@touristtube.com">info@touristtube.com</a><br><br>
+                            <span>{{'now'|date('Y')}} &copy; TouristTube. All rights reserved.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

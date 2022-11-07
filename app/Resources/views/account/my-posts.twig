@@ -1,0 +1,35 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/tuber/css/tuber_commun.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/tuber/js/account_common.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/photos_videos/js/add_album_media.js") }}"></script>
+{% endblock %}
+{% block title %}{{page_title|raw}}{% endblock %}
+{% block body %}
+    <section class="container tuuber-container">
+        <div class="row">
+            <div class="col-xs-12">
+                {% set account_header_name = account_header_name|raw %}
+                {% include "account/account-header.twig" %}
+                <div class="row current_profile_media" data-pages="{{page_count|raw}}" data-type="{{type|raw}}" data-usertype="{{username|raw}}">
+                    <div class="col-md-3 col-xs-12 left_panel">
+                        <div class="row no-margin">
+                            {% include "account/account-menu.twig" %}
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel media_container">
+			{% if user_is_owner == 1 %}
+			    <div class="row no-margin">
+				<a href="{{ generateLangRoute(LanguageGet,'_account_upload') }}" title="{{'Upload'|trans}}" class="upload_title">{{upload_title|raw}}<span><img src="{{ generateMediaURL('/media/images/tuber/upload_logo.png') }}" alt="" /></span></a>
+			    </div>
+			{% endif %}
+			{% include "account/my-posts_in.twig" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

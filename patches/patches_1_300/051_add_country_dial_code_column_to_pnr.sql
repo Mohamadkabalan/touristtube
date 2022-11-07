@@ -1,0 +1,1 @@
+ALTER TABLE  `passenger_name_record` ADD  `country_dial_code` VARCHAR( 24 ) NULL AFTER  `country_of_residence` ;

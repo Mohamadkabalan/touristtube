@@ -1,0 +1,185 @@
+{% if filterSuffix is not defined %}
+	{% set filterSuffix = "" %}
+{% endif %}
+{% if searchAccountId is not defined %}
+	{% set searchAccountId = "" %}
+{% endif %}
+{% if searchUserId is not defined %}
+	{% set searchUserId = "" %}
+{% endif %}
+{% if disableUserFilter is not defined %}
+	{% set disableUserFilter = "" %}
+{% endif %}
+
+<script>
+window.suffix = '{{ filterSuffix }}';
+</script>
+
+<div class="row no-margin">
+    <div class="col-xs-12 nopad">
+	<p class="blue font-24 line-height-26 padding_left_17"><span class="toggledtitle">{{'Filters'|trans}}</span><i class="fas fa-angle-double-left angleleft_style"></i><i class="fas fa-angle-double-right angleright_style"></i></p>
+    </div>
+</div>
+<div class="row no-margin toggledmenu">
+    <div class="col-xs-12 nopad">
+	    <div class="row no-margin margin_top_20">
+		<div class="col-xs-12 nopad">
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By date Interval'|trans}}</p>
+			</div>
+		    </div>
+		    <div class="row no-margin">
+			<div class="col-xs-12 dateRangeContainer nopad">
+			    <div class="row no-margin">
+				<div id="fromContainer" class="col-xs-12 nopad mybookinginput">
+				    <input type="text" class="col-xs-12 account_range_picker fromDate" id="fromDateC{{ filterSuffix }}" name="fromDate" readonly="readonly" {% if fromDate is defined %} value="{{ fromDate }}" {% endif %} placeholder="{{'from'|trans}}" autocomplete="off">
+				</div>
+			    </div>
+			    <div class="row no-margin">
+				<div id="toContainer" class="col-xs-12 nopad mybookinginput">
+				    <input type="text" class="col-xs-12 account_range_picker toDate" id="toDateC{{ filterSuffix }}" name="toDate" readonly="readonly" {% if toDate is defined %} value="{{ toDate }}" {% endif %} placeholder="{{'to'|trans}}" autocomplete="off">
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+
+	    <div class="row no-margin margin_top_20">
+    		<div class="col-xs-12 nopad">
+        	    <div class="row no-margin">
+            		<div class="col-xs-12 nopad">
+            		    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by name of account'|trans}}</p>
+            		</div>
+        	    </div>
+        	    <div class="row no-margin">
+            		<div id="" class="col-xs-12 nopad mybookinginput">
+            		    <input {{(disableAccFilter is defined ? 'disabled' : '')}} type="text" class="col-xs-12" id="account{{ filterSuffix }}" name="accountId" {% if accountName is defined %}value="{{accountName|raw}}"{% else %}value=""{% endif %} data-value-id="{{searchAccountId|raw}}" onDropDownSelect="onAccountFilterSelected" data-toggle="ttautocompleteAccount" placeholder="{{'Search name of account'|trans}}"/>
+            		</div>
+        	    </div>
+    	   </div>
+		</div>
+
+	    <div class="row no-margin margin_top_20">
+    		<div class="col-xs-12 nopad">
+        	    <div class="row no-margin">
+            		<div class="col-xs-12 nopad">
+            		    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by user'|trans}}</p>
+            		</div>
+        	    </div>
+        	    <div class="row no-margin">
+            		<div id="" class="col-xs-12 nopad mybookinginput">
+            		    <input {{(disableUserFilter is defined and disableUserFilter ? 'disabled' : '')}} type="text" class="col-xs-12" id="user{{ filterSuffix }}" name="userId" {% if searchUserName is defined %}value="{{searchUserName|raw}}"{% else %}value=""{% endif %} data-value-id="{{searchUserId|raw}}" onDropDownSelect="onUserFilterSelected" data-toggle="ttautocompleteUser" placeholder="{{'Search for User'|trans}}"/>
+            		</div>
+        	    </div>
+			</div>
+		</div>
+
+	    <div class="row no-margin margin_top_20">
+    		<div class="col-xs-12 nopad">
+    		    <div class="row no-margin">
+        			<div class="col-xs-12 nopad">
+        			    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by Type of booking'|trans}}</p>
+        			</div>
+    		    </div>
+    		    <div class="row no-margin bookingType">
+        			<div class="col-xs-12 nopad">
+        			    <div class="form-check">
+        				<input type="checkbox" checked name="types[]" value="" suffix="{{ filterSuffix }}" id="types{{ filterSuffix }}_all" class="form-check-input">
+        				<label for="types{{ filterSuffix }}_all" class="form-check-label">
+        				    {{'All'|trans}}
+        				</label>
+        			    </div>
+        			</div>
+        			<div class="col-xs-12 nopad">
+        			    <div class="form-check">
+        				<input type="checkbox" {% if 1 in types %} checked {% endif %} name="types[]" value="1" suffix="{{ filterSuffix }}" id="types{{ filterSuffix }}_flights" class="form-check-input">
+        				<label for="types{{ filterSuffix }}_flights" class="form-check-label">
+        				    {{'Flights'|trans}}
+        				</label>
+        			    </div>
+        			</div>
+        			<div class="col-xs-12 nopad">
+        			    <div class="form-check">
+        				<input type="checkbox" {% if 2 in types %} checked {% endif %} name="types[]" value="2" suffix="{{ filterSuffix }}" id="types{{ filterSuffix }}_hotels" class="form-check-input">
+        				<label for="types{{ filterSuffix }}_hotels" class="form-check-label">
+        				    {{'Hotels'|trans}}
+        				</label>
+        			    </div>
+        			</div>
+    		    </div>
+    		</div>
+	    </div>
+
+	    <div class="row no-margin margin_top_20">
+    		<div class="col-xs-12 nopad">
+    		    <div class="row no-margin">
+    			<div class="col-xs-12 nopad">
+    			    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by booking status'|trans}}</p>
+    			</div>
+    		    </div>
+    
+    		    <div class="row no-margin">
+    			<div class="col-xs-12 nopad">
+    			    <div class="form-check">
+    				<input type="radio" {% if status == 0 %} checked {% endif %} name="status" value="" id="all_status{{ filterSuffix }}" class="">
+    				<label for="all_status{{ filterSuffix }}" class="form-check-label">
+    				    {{'All'|trans}}
+    				</label>
+    			    </div>
+    			</div>
+    			<div class="col-xs-12 nopad">
+    			    <div class="form-check">
+    				<input type="radio" {% if status == 1 %} checked {% endif %} name="status" value="1" id="pending_status{{ filterSuffix }}" class="">
+    				<label for="pending_status{{ filterSuffix }}" class="form-check-label">
+    				    {{'Pending'|trans}}
+    				</label>
+    			    </div>
+    			</div>
+    			<div class="col-xs-12 nopad">
+    			    <div class="form-check">
+    				<input type="radio" {% if status == 2 %} checked {% endif %} name="status" value="2" id="approved_status{{ filterSuffix }}" class="">
+    				<label for="approved_status{{ filterSuffix }}" class="form-check-label">
+    				    {{'Approved'|trans}}
+    				</label>
+    			    </div>
+    			</div>
+    			<div class="col-xs-12 nopad">
+    			    <div class="form-check">
+    				<input type="radio" {% if status == 3 %} checked {% endif %} name="status" value="3" id="cancelled_status{{ filterSuffix }}" class="">
+    				<label for="cancelled_status{{ filterSuffix }}" class="form-check-label">
+    				    {{'Cancelled'|trans}}
+    				</label>
+    			    </div>
+    			</div>
+    			<div class="col-xs-12 nopad">
+    			    <div class="form-check">
+    				<input type="radio" {% if status == 4 %} checked {% endif %} name="status" value="4" id="expired_status{{ filterSuffix }}" class="">
+    				<label for="expired_status{{ filterSuffix }}" class="form-check-label">
+    				    {{'Expired'|trans}}
+    				</label>
+    			    </div>
+    			</div>
+    			<div class="col-xs-12 nopad">
+    			    <div class="form-check">
+    				<input type="radio" {% if status == 5 %} checked {% endif %} name="status" value="5" id="rejected_status{{ filterSuffix }}" class="">
+    				<label for="rejected_status{{ filterSuffix }}" class="form-check-label">
+    				    {{'Rejected'|trans}}
+    				</label>
+    			    </div>
+    			</div>
+    		    </div>
+    		</div>
+	    </div>
+	    <div class="row no-margin margin_top_20">
+		<div class="col-xs-12 nopad">
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <button type="button" id="searchBooking{{ filterSuffix }}" class="btn yellow_search_common_button">{{'Search'|trans}}</button>
+			</div>
+		    </div>
+		</div>
+	    </div>
+    </div>
+</div>

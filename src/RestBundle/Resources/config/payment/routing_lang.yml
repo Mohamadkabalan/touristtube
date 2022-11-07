@@ -1,0 +1,17 @@
+_rest_corpo_on_account_payment_process_lang:
+    path:      "/{_locale}/api/corporate/payment-on-account"
+    defaults: { _controller: RestBundle:payment\Payment:corpoOnAccount, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+
+_rest_payment_processRequest_lang:
+    path:      "/{_locale}/api/payment-processRequest"
+    defaults: { _controller: RestBundle:payment\Payment:paymentProcessRequest, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+
+_rest_payment_callback_lang:
+    path:      "/{_locale}/api/payment/callback"
+    defaults: { _controller: RestBundle:payment\Payment:result, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"

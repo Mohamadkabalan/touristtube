@@ -1,0 +1,14 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    
+    OTPService:
+          class: OTPBundle\Services\OTPService
+          arguments: ['@app.utils','@service_container','@OTPRequestRepository','@EmailServices','@translator']
+          
+    OTPRequestRepository:
+          class: OTPBundle\Repositories\OTPRequestRepository
+          arguments: ['@service_container','@doctrine.orm.entity_manager']

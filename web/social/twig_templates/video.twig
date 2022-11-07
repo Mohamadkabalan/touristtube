@@ -1,0 +1,21 @@
+{# Template for Video Page#}
+
+{#to debug#}
+{#<pre class="debug">
+    {{ dump(irating) }}
+</pre>#}
+
+
+{% if channelid != 0 %}
+    {% include "headChannel.html" %}
+{% else %}
+    {% if userIsLogged == true and userIsChannel == true %}
+        {% include "headChannel.html" %}
+    {% else %}
+        {% include "head.html" %}
+    {% endif %}
+{% endif %}
+<div class="upload-overlay-loading-fix"><div></div></div>
+{% include "parts/modalPhotoInclude.twig" %}
+{% include "parts/mediaPage.twig" %}
+{% include "foot.html" %}

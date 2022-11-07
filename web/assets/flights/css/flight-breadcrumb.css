@@ -1,0 +1,53 @@
+.flight-breadcrumb {
+    margin: 10px auto;
+    float: none;
+}
+.firststep, .sndstep {
+    background: rgba(255, 255, 255, 0) url("/media/images/stepsborder_hoteldetailed.png") no-repeat scroll right 12px;
+}
+.sndstep .bullet, .thirdstep .bullet {
+    margin-left: 7px;
+}
+.thirdstep .number-step-text {
+    background-image: none;
+    padding-right: 0;
+}
+.bullet {
+    background: rgba(255, 255, 255, 0) url("/media/images/grey_bullet.png") no-repeat scroll center center;
+    color: white;
+    display: inline-block;
+    float: left;
+    font-size: 25px;
+    font-weight: bold;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+    width: 58px;
+}
+.number-step-text {
+    background: rgba(255, 255, 255, 0) url("/media/images/greyff_hoteldetail.png") no-repeat scroll right center;
+    color: #777879;
+    float: left;
+    font-size: 20px;
+    line-height: 58px;
+    min-height: 58px;
+    padding-left: 6px;
+    padding-right: 20px;
+}
+.thirdstep.blue_bullet .number-step-text {
+    background-image: none;
+}
+.green_bullet .bullet {
+    background: rgba(255, 255, 255, 0) url("/media/images/green_bullet.png") no-repeat scroll center center;
+}
+.blue_bullet .bullet {
+    background: rgba(255, 255, 255, 0) url("/media/images/blue_bullet.png") no-repeat scroll center center;
+}
+.green_bullet .number-step-text {
+    background: rgba(255, 255, 255, 0) url("/media/images/greenff_hoteldetailed.png") no-repeat scroll right center;
+    color: #82c04b;
+}
+.blue_bullet .number-step-text {
+    background: rgba(255, 255, 255, 0) url("/media/images/blueff_hoteldetail.png") no-repeat scroll right center;
+    color: #00304c;
+}

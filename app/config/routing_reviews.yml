@@ -1,0 +1,111 @@
+_hotelsReview:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{name}-review-H{srch}"
+    defaults: { _controller: TTBundle:Reviews:hotelsReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "searching for cheap hotels, Want to know more about %s hotel tourist tube perfect site for best hotels", seokeywords: "", name: "", srch: 0  }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+
+_ThingstodoReview:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{name}-review-T{srch}"
+    defaults: { _controller: TTBundle:Reviews:thingstodoReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "%s Best attractions to visit in %s are %s attractions, many other touristic places, tourist tube", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+
+_AirportReview:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{name}-review-A{srch}"
+    defaults: { _controller: TTBundle:Reviews:airportReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "searching for international airport %s, click on tourist tube for information about best airports in world", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+
+_review:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/review"
+    defaults: { _controller: TTBundle:Reviews:review, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "review and rate | Tourist Tube", seodescription: "Find best vacation ideas and inspiration from Tourist tube, your source for the world's best hotels restaurant reviews.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_add_review:
+    path:      "/ajax/add_review"
+    defaults: { _controller: TTBundle:Reviews:addReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_remove_review:
+    path:      "/ajax/remove_review"
+    defaults: { _controller: TTBundle:Reviews:removeReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_add_review_page_image:
+    path:      "/ajax/add_review_page_image"
+    defaults: { _controller: TTBundle:Reviews:addReviewPageImage, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_remove_review_page_image:
+    path:      "/ajax/remove_review_page_image"
+    defaults: { _controller: TTBundle:Reviews:removeReviewPageImage, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_add_rate:
+    path:      "/ajax/add_rate"
+    defaults: { _controller: TTBundle:Reviews:addRate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_old_hotel_review:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/thotel/id/{srch}"
+    defaults: { _controller: TTBundle:Reviews:oldHotelReview, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_old_hotelsReview:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/hotel-review/id/{srch}/{name}"
+    defaults: { _controller: TTBundle:Reviews:oldhotelsReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "searching for cheap hotels, Want to know more about %s hotel tourist tube perfect site for best hotels", seokeywords: "", name: "", srch: 0  }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+        
+_old_ThingstodoReview:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/things2do-review/id/{srch}/{name}"
+    defaults: { _controller: TTBundle:Reviews:oldthingstodoReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "%s Best attractions to visit in %s are %s attractions, many other touristic places, tourist tube", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"
+        
+_old_AirportReview:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/airport-review/id/{srch}/{name}"
+    defaults: { _controller: TTBundle:Reviews:oldairportReview, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s %s review-tourist tube", seodescription: "searching for international airport %s, click on tourist tube for information about best airports in world", seokeywords: "", name: "", srch: 0 }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        name: ".*"
+        srch: "\d*"

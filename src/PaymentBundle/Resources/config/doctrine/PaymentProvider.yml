@@ -1,0 +1,18 @@
+PaymentBundle\Entity\PaymentProvider:
+    type: entity
+    table: payment_provider
+    indexes:
+        id:
+            columns:
+                - id  
+    fields:
+        id:
+            type: integer
+            length: 11
+            nullable: false
+            column: id
+        providerName:
+            type: string
+            length: 255
+            column: provider_name
+    lifecycleCallbacks: {  }

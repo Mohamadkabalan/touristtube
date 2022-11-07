@@ -1,0 +1,42 @@
+TTBundle\Entity\CmsChannelRelations:
+    type: entity
+    table: cms_channel_relations
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: parent_id
+        relationType:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: relation_type
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '0'
+    lifecycleCallbacks: {  }

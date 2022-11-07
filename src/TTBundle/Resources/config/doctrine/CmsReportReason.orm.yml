@@ -1,0 +1,28 @@
+TTBundle\Entity\CmsReportReason:
+    type: entity
+    table: cms_report_reason
+    repositoryClass: TTBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        reason:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        entityType:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: entity_type
+    lifecycleCallbacks: {  }

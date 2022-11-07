@@ -1,0 +1,152 @@
+{# empty Twig template #}
+<body>
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+{% if Arr|length > 0 %}
+<tr>
+<td>
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="46"></td>
+<td>
+<table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+{% for item in 0..count %}
+<tr>
+<td height="20"  width="552"></td>
+</tr>
+<tr>
+<td  width="552">{{Arr[item]['partTitle']}}
+</td>
+</tr>
+{% if Arr[item]['case'] == '1' %}
+<tr  height="33" >
+<td height="33"  width="552"></td>
+</tr>
+<tr height="51">
+<td height="51"  width="552">
+<table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td rowspan="2" width="51" height="51">
+<img src="{{Arr[p].friendImg}}" alt="{{Arr[p].friendName}}" border="0" width="51" height="51"/>
+</td>
+<td width="6" rowspan="2"></td>
+<td valign="top" width="438" height="13">
+<font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+{{Arr[item]['friendName']}}
+</font>
+</td>
+<td width="56" rowspan="2"></td>
+</tr>
+<tr>
+<td valign="bottom" width="438" height="37">
+<font face="Arial, Helvetica, sans-serif" size="2" color="#000000">{{Arr[item]['friendComment']}}
+</font>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr height="21">
+<td height="21"  width="552"></td>
+</tr>
+{% elseif Arr[item]['case'] == '2' %}
+<tr  height="33" >
+<td height="33"  width="552"></td>
+</tr>
+<tr >
+<td   width="552">
+<table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+{% if Arr[item]['friendImg'] != ''%}
+<td width="51" valign="top">
+{% endif %}
+<td valign="top" width="438">
+<font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+{{Arr[item]['partDec']}}<br />
+</font>
+</td>
+<td width="56"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr height="21">
+<td height="21"  width="552"></td>
+</tr>
+{% elseif Arr[item]['case'] == '3' %}
+<tr height="30">
+<td height="30"  width="552"></td>
+</tr>
+{% endif %}
+<tr height="76" width="552">
+<td height="76" width="552">
+<table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr><td width="136" height="76"><a href="{{Arr[item]['eventImg'][2]}}" target="_blank">
+            <img src="{{Arr[item]['eventImg'][0]}}" alt="{{Arr[item]['eventImg'][1]}}" width="136" height="76" /></a></td>
+<td width="10" height="76"><img src="{{link_path}}email-desc-symb.jpg" alt="" width="10" height="77"/></td>
+<td width="330" height="76" bgcolor="#000000">
+<table width="330" height="76" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000">
+<tr height="76">
+<td width="6" height="76"></td>
+<td width="324" height="76">
+<strong>
+    <font face="Arial, Helvetica, sans-serif" size="2" color="#eac31a">{{Arr[item]['eventDetails'][0]}}</font>
+    <img src="{{link_path}}email-time-symb.png" alt="" /> <font face="Arial, Helvetica, sans-serif" size="2" color="#afafaf">
+    {{ Arr[item]['eventDetails'][1] }}<br />
+</strong>
+<strong><font face="Arial, Helvetica, sans-serif" size="2" color="#afafaf">location: {{Arr[item]['eventDetails'][2]}}</font><br /></strong>
+<strong><font face="Arial, Helvetica, sans-serif" size="2" color="#ffffff">{{Arr[item]['eventDetails'][3]}}</font><br /></strong>
+<strong><font face="Arial, Helvetica, sans-serif" size="2" color="#eac31a">joining: {{Arr[item]['eventDetails'][4]}} {{"guests"|lang}}</font></strong>
+</td>
+</tr>
+</table>
+</td>
+<td width="76" height="76"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr height="18">
+<td height="18"  width="552"></td>
+</tr>
+<tr height="11">
+<td height="11"  width="552"><a href="{{Arr[item]['eventLink']}}" target="_blank" title="View event" />
+    <strong><font face="Arial, Helvetica, sans-serif" size="2" color="#e9c21b">view event</font> </strong></a></td>
+</tr>
+<tr height="24">
+<td height="24"  width="552"></td>
+</tr>
+{% if item < (count|length-1) %}
+<tr height="1">
+<td height="1"  width="552" background="{{link_path}}separator.jpg"></td>
+</tr>
+{% endif %}
+{% endfor %}
+{% if Arr[item]['case'] %}
+{% if Arr[item]['case'] == 3 %}
+{{displayFriends}}
+{% endif %}
+{% endif %}
+</table>
+</td>
+<td width="37"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="3" bgcolor="#FFFFFF" width="633">
+<table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="3">
+<tr>
+<td width="595" bgcolor="#E0E0E0" height="3"></td>
+<td></td>
+</tr>
+</table>
+</td>
+</tr>
+
+{% endif %}
+{{displayfoot}}
+</table>
+</body>

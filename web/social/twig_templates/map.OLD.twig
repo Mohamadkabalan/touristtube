@@ -1,0 +1,494 @@
+{% if userIsLogged == true and userIsChannel == true %}
+    {% include "headChannel.html" %}
+{% else %}
+    {% include "head.html" %}
+{% endif %}
+
+<script type="text/javascript" src="//google-maps-utility-library-v3.googlecode.com/svn-history/r290/trunk/infobox/src/infobox_packed.js"></script>
+<script type="text/javascript">
+    var GEO_COUNTRY = '{{ CountryCode|raw }}';
+    {% if userIsLogged != false %}
+        var USER_ID = {{ user_id|raw }}
+    {% else %}
+        var USER_ID = false;
+    {% endif %}
+</script>
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div class="MapMid_discover">
+    <div class="MapLocation">
+        <div id="collapsemenu">
+            <div id="filtercmb">
+                <div class="collapse_thumb"><img src="{{ 'images/discover/mapcollapsemenu.png'|link }}" alt=""/></div>
+                <select name="filterby" id="filterby" class="select3" style="width:130px;" onchange="changeFilter(this);">
+                    <option value="1"  selected="selected">{{ 'SMALL MAP'|lang }}</option>
+                    <option value="2" >{{ 'HALF SCREEN'|lang }}</option>
+                    <option value="3" >{{ 'FULLSCREEN'|lang }}</option>
+                </select>
+            </div>
+        </div>
+        <div id="mapsearch">
+            <input type="text" name="mapsearchfield" id="mapsearchfield"  onKeyPress="return checkSubmitcatadd(event)" data-code="" data-id="" data-state-code="" data-iscountry=""/>
+            <div id="mapsearchbutton"></div>
+        </div>
+    </div>
+</div>
+<div id="BigMap_up" style="height:175px; position:relative; display:block; overflow:hidden;width:100%;" data-angle="{{ diff_angle|raw }}" data-lat="{{ latitude|raw }}" data-log="{{ longitude|raw }}">
+    <div id="BigMap" style="height:100%;width:100% !important;"></div>
+    <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+    <script type="text/javascript">
+        var map;
+        var mapOptions;
+        var currentmapzoom = 10;
+        var markersArrayData = [];
+        var marker_global_array = new Array();
+        var marker_global_array1 = new Array();
+        var ib;
+        $(document).ready(function() {
+            var image;
+            var image_s;
+            var init_image = '';
+            var myStyles = [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [
+                        {visibility: "off"}
+                    ]
+                }
+            ];
+
+            var image0 = new google.maps.MarkerImage( '{{"/images/pin_empty.png"|link }}' );
+            var image1 = new google.maps.MarkerImage( '{{"/images/pin_rest.png"|link }}' );
+            var image2 = new google.maps.MarkerImage( '{{"/images/pin_hot.png"|link }}' );
+            var image3 = new google.maps.MarkerImage( '{{"/images/pin_lmk.png"|link}}' );
+            var image4 = new google.maps.MarkerImage( '{{"/images/pin_tuber.png"|link}}' );
+            var image5 = new google.maps.MarkerImage( '{{"/images/pin_event.png"|link}}' );
+            var image6 = new google.maps.MarkerImage( '{{"/images/pin_airport.png"|link}}' );
+            var image00 = new google.maps.MarkerImage( '{{"/images/pin_small.png"|link}}' );
+            var image10 = new google.maps.MarkerImage( '{{"/images/pin_rest_s.png"|link}}' );
+            var image20 = new google.maps.MarkerImage( '{{"/images/pin_hot_s.png"|link}}' );
+            var image30 = new google.maps.MarkerImage( '{{"/images/pin_lmk_s.png"|link}}' );
+            var image40 = new google.maps.MarkerImage( '{{"/images/pin_tuber_s.png"|link}}' );
+            var image50 = new google.maps.MarkerImage( '{{"/images/pin_event_s.png"|link}}' );
+            var image60 = new google.maps.MarkerImage( '{{"/images/pin_airport_s.png"|link}}' );
+
+            mapOptions = {
+                center: new google.maps.LatLng({{latitude|raw}}, {{longitude|raw}}),
+                //center : new google.maps.LatLng( google.loader.ClientLocation.latitude , google.loader.ClientLocation.longitude ),
+                zoom: 10,
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles: myStyles
+            };
+                        map = new google.maps.Map(document.getElementById("BigMap"), mapOptions);
+
+            var boxText = document.createElement("div");
+
+            var myOptions = {
+                content: boxText
+                , disableAutoPan: false
+                , maxWidth: 0
+                , pixelOffset: new google.maps.Size(-140, 0)
+                , zIndex: null
+                , boxStyle: {
+                    opacity: 0.9
+                    , width: "120px"
+                    , height: "140px"
+                }
+                , closeBoxURL: ""
+                , infoBoxClearance: new google.maps.Size(1, 1)
+                , isHidden: false
+                , pane: "floatPane"
+                , enableEventPropagation: false
+            };
+
+            ib = new InfoBox(myOptions);
+
+            {% for media_pin in media_pinArray %}
+                {% if media_pin.entity_type == SOCIAL_ENTITY_RESTAURANT %}
+                    image = image1;
+                    image_s = image10;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_HOTEL %}
+                    image = image2;
+                    image_s = image20;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_LANDMARK %}
+                    image = image3;
+                    image_s = image30;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_USER %}
+                    image = image4;
+                    image_s = image40;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_EVENTS %}
+                    image = image5;
+                    image_s = image50;
+                {% elseif media_pin.entity_type == SOCIAL_ENTITY_AIRPORT %}
+                    image = image6;
+                    image_s = image60;
+                {% else %}
+                    image = image0;
+                    image_s = image00;
+                {% endif %}
+
+                {% if media_pin.level != 0 %}
+                    init_image = image;
+                    image = image_s;
+                {% endif %}
+                markersArrayData.push(Array(map, image, init_image, '{{media_pin.name|raw}}', '{{media_pin.page_link|raw}}', '{{media_pin.image_pic|raw}}', {{media_pin.lat|raw}}, {{media_pin.log|raw}}, {{media_pin.stars|raw}}, {{media_pin.reviews|raw}}, {{media_pin.is_big|raw}}, {{media_pin.level|raw}}, {{media_pin.entity_type|raw}}));
+
+            {% endfor %}
+
+
+            setTimeout(function() {
+                for (var k = 0; k < markersArrayData.length; k++) {
+                    var data_arr = markersArrayData[k];
+                    drawmarkers(data_arr[0], data_arr[1], data_arr[2], data_arr[3], data_arr[4], data_arr[5], data_arr[6], data_arr[7], data_arr[8], data_arr[9], data_arr[10], data_arr[11], data_arr[12], k);
+                }
+            }, 3000);
+            google.maps.event.addListener(map, 'zoom_changed', function() {
+                currentmapzoom = map.getZoom();
+                setMapMarkers(currentmapzoom);
+            });
+            function drawmarkers(map, image, init_image, title, link_uri, img_uri, la, lo, anchor_star, reviews, is_big, level, entity_type, $i) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(la, lo),
+                    map: map,
+                    icon: image,
+                    title: title
+                });
+                if (!(marker_global_array[level] instanceof Array)) {
+                    marker_global_array[level] = new Array();
+                    marker_global_array1[level] = new Array();
+                }
+
+                marker_global_array[level].push(Array(marker, entity_type));
+
+                var marker_new = marker;
+                if (level != 0) {
+                    marker_new = new google.maps.Marker({
+                        position: new google.maps.LatLng(la, lo),
+                        map: null,
+                        icon: init_image,
+                        title: title
+                    });
+                }
+                current_marker = marker_new;
+                marker_global_array1[level].push(Array(marker_new, entity_type))
+
+                //Setting the onclick marker function
+                var base_url = '';
+                var onMarkerClick = function() {
+                    ib.close();
+                    var marker = this;
+                    //map.setCenter(new google.maps.LatLng(la, lo));
+                    //var latLng = marker.getPosition();
+                    var content = '<div class="mtooltip"><div class="mtooltipin"><div class="clsgoo" onClick="ib.close();">X</div>';
+                    if (img_uri != '') {
+                        if (entity_type == SOCIAL_ENTITY_USER) {
+                            content += '<img class="mtooltipbig_user" src="' + img_uri + '" alt="" width="72" height="72" />';
+                        } else if (entity_type == SOCIAL_ENTITY_EVENTS) {
+                            content += '<img class="mtooltipbig_event" src="' + img_uri + '" alt="" width="72" height="47" />';
+                        } else {
+                            content += '<img class="mtooltipbig" src="' + img_uri + '" alt="" width="72" height="39" />';
+                        }
+                        content += '<br /><a href="' + link_uri + '" target="_blank">';
+                    }
+                    //content += '<div class="mtooltip_title">'+title+'</div><br />'+la+'<br />'+lo+'<br />';
+                    content += '<div class="mtooltip_title">' + title + '</div>';
+                    if (img_uri != '') {
+                        content += '</a>';
+                    }
+                    if (parseInt(anchor_star) > 0 && parseInt(anchor_star) <= 5) {
+                        content += '<div class="anchor_star anchor_star' + anchor_star + '"></div>';
+                    }
+                    if (parseInt(reviews) != 0) {
+                        if (parseInt(reviews) == 1) {
+                            content += '<div class="textreviews"><u>' + reviews + ' REVIEW</u></div>';
+                        }else{
+                            content += '<div class="textreviews"><u>' + reviews + ' REVIEWS</u></div>';
+                        }
+                    }
+                    content += '</div><div class="anchor_bk"></div></div>';
+                    //ib.setContent(content);
+                    boxText.innerHTML = content;
+                    ib.open(map, marker);
+                };
+                google.maps.event.addListener(current_marker, 'click', onMarkerClick);
+            }
+            google.maps.event.addListener(map, 'click', function() {
+                ib.close();
+            });
+        });
+    </script>
+</div>
+<div class="search_data_container">
+    <div class="middle_map_menu"></div>
+    <div class="chatonoff_back"></div>
+    <div class="middle_map_menu_cont">
+        <div class="middle_map_menu_cont_inside">
+            <div class="middle_search_container">
+                <div data-value="0" class="search_checkbox search_checkbox_all margintop19 marginright35 active">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'All'|lang}}</div>
+                </div>
+                <div data-value="{{SOCIAL_ENTITY_HOTEL|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Hotels'|lang}}</div>
+                </div>
+                <div data-value="{{SOCIAL_ENTITY_RESTAURANT|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Restaurants'|lang}}</div>
+                </div>
+                <div data-value="{{SOCIAL_ENTITY_USER|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Tubers'|lang}}</div>
+                </div>
+                <div data-value="{{SOCIAL_ENTITY_LANDMARK|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Landmarks'|lang}}</div>
+                </div>
+                {#<div data-value="{{SOCIAL_ENTITY_LANDMARK|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Night life'|lang}}</div>
+                </div>
+                <div data-value="{{SOCIAL_ENTITY_LANDMARK|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Attractions'|lang}}</div>
+                </div>#}
+                <div data-value="{{SOCIAL_ENTITY_AIRPORT|raw}}" class="search_checkbox margintop19 marginright35">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Airports'|lang}}</div>
+                </div>
+                <div data-value="{{SOCIAL_ENTITY_EVENTS|raw}}" class="search_checkbox margintop19">
+                    <div class="uploadinfocheckboxpic"></div>
+                    <div class="check_text"> {{'Channel events'|lang}}</div>
+                </div>
+            </div>
+            <div class="chatonoff_img">
+                <div class="chatOnTxt chatActive">{{'ON'|lang}}</div>
+                <div class="chatOffTxt">{{'OFF'|lang}}</div>
+            </div>
+            <div id="newsticker">
+                <ul id="vertical-ticker">
+                    {% for flashArray in flashes %}
+
+                    <li>{{flashArray.flash_text|raw}}</li>
+
+                    {% endfor%}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="MapMid_discover">
+    <div class="closedmapcalendarTop">       
+        <div class="tt_advisor">{{ 'TT ADVISOR'|lang }}</div>
+        <a href="{{'bags'|link}}" title="{{ 'bag'|lang }}" target="_blank">
+            <div class="bagcontainer">
+                <div class="bag_count">
+                    {{userBagItemsCount|raw}}
+                </div>
+            </div>
+        </a>        
+        <div class="calendarcontainer displaynone">
+            <div id="searchCalendarbut"></div>
+            <div class="marginleft10" id="tobutcontainer">
+                <div class="calbut" id="tobut">{{ 'To'|lang }}</div>
+                <div data-cal="" class="caltxt" id="totxt"></div>
+            </div>
+            <div id="frombutcontainer">
+                <div class="calbut" id="frombut">{{ 'From'|lang }}</div>
+                <div data-cal="" class="caltxt" id="fromtxt"></div>
+            </div>
+            <div class="calendartext marginright10">{{ 'Check calendar'|lang }}</div>
+        </div>
+    </div>
+</div>
+<div id="MapMid_discover">
+    <div id="MapLocation" class="noBg">
+        <div id="mapcalendarcontent">
+            <div class="outcont">
+                <div class="incont">
+                    <div class="incont_inside">
+                        {{toecho|raw}}
+                    </div>
+                </div>
+                <div class="moveleft"></div><div class="moveright"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function EscapeBig(e) {
+            if (e.keyCode == 27) {
+                $leave_fullscreen.click();
+            }
+        }
+        var $leave_fullscreen;
+        var $fullscreen;
+    </script>
+</div>
+<div id="discoverData" data-bag="{{string_search_value|raw}}" data-state="{{state_code|raw}}" data-city="{{city_id|raw}}" data-country="{{txt_code|raw}}">
+    <div class="menu_header_bck"></div>
+    <div class="btns_div">
+        <div class="prev_btn"></div>
+        <div class="next_btn"></div>
+        <div class="alert_bulb" style="display:none;">x<br />{{'Discover'|lang}}<br />{{'more'|raw}}</div>
+    </div>
+    <div class="all_container">
+        <div class="parts_container_up">
+            <div class="parts_container">
+                <!--  Things to do  -->
+                {% if count_media_landmarks >0 or count_upcoming_events > 0  %}
+                    <div class="dotedline"></div>
+                    <div class="part">
+                        <div class="menu_header menu_header_active" data-type="{{SOCIAL_ENTITY_LANDMARK|raw}}">
+                            <div class="menu_header_num">0
+                                {{titleNum|raw}}
+                                {% set titleNum = titleNum + 1 %}
+                            </div>
+                            <div class="menu_header_tit">{{'Things To do'|lang|raw}}</div>
+                        </div>
+                        {#<div class="things_header" id="things_header">{{firstname|raw}}</div>
+                        <div class="things_imgs">
+                            <ul id="splash">
+                                {{todo_str|raw}}
+                            </ul>
+                        </div>#}
+                        <div class="search01">
+                            <select id="search01_landmarks" name="" class="inputuploadformTF" onchange="filterToDoData(this);">
+                                <option value="0">{{'All'|lang}}</option>
+                                <option value="{{SOCIAL_ENTITY_EVENTS|raw}}">{{'Channel events'|lang}}</option>
+                                <option value="2">{{'Cultural events'|lang}}</option>
+                                <option value="3">{{'Touristic events'|lang}}</option>
+                                <option value="{{SOCIAL_ENTITY_LANDMARK|raw}}">{{'Landmarks'|lang}}</option>
+                            </select>
+                        </div>
+                        <div class="things_cont" id="todo_container">
+                            {{media_landmark_str|raw}}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if channel_created_array >0 %}
+                    <div class="dotedline"></div>
+                    <!--  Channels  -->
+                    <div class="part">
+                        <div class="menu_header menu_header_active" data-type="{{SOCIAL_ENTITY_CHANNEL|raw}}">
+                            <div class="menu_header_num">0
+                                {{titleNum|raw}}
+                                {% set titleNum = titleNum + 1 %}
+                            </div>
+                            <div class="menu_header_tit">{{'Channels'|lang}}</div>
+                        </div>
+                        <div class="things_cont">
+                            {{things_str|raw}}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="dotedline"></div>
+                <!--  Highlights  -->
+                <div class="part">
+                    <div class="menu_header">
+                        <div class="menu_header_num">0
+                            {{titleNum|raw}}
+                            {% set titleNum = titleNum + 1 %}
+                        </div>
+                        <div class="menu_header_tit">{{'Highlights'|lang}}</div>
+                    </div>
+                    <div class="things_cont">
+                        <div class="highlights_tit">{{highlights_arr.1|raw}}</div>
+                        <div class="weatherback">
+                            <img src="{{(highlights_arr.0)|link}}" width="261" height="170" alt=""/>
+                            {% if file !='' %}
+                                <div class="contweekweather">
+                                    {{forecast|raw}}
+                                </div>
+                                <div class="containertodayweather"><img class="dayimg" src="http://l.yimg.com/a/i/us/we/52/' . $code . '.gif"  alt=""/>
+                                    <div class="daytemp">{{today|raw}}&deg;</div>
+                                    <div class="daydesc">{{ 'TODAY'|lang }},  {{string_search_value|raw}}</div>
+                                </div>                            
+                            {% endif %}
+                        </div>
+                        {% if count_tubers >0 %}
+                            <div class="highlights_tit">{{'MOST ACTIVE TUBERS IN'|lang}} {{highlights_arr.1|raw}}</div>
+                            <div id="activetubers" class="activetubers">
+                                <ul>
+                                    {% for tubers in tubersArray %}
+                                        <li>
+                                            <a class="requestinvite_index" href="{{tubers.userProfileLink|raw}}">
+                                                <img class="preloader IndexTuberThumb left-middle" src="{{tubers.getLinkSrc|raw}}" data-src="{{tubers.getLinkData|raw}}" title="" alt="{{tubers.userDisplayName|raw}}" style="visibility: visible; opacity: 1;">
+                                            </a>
+                                            <span style="display:none" class="TuberDesc">{{tubers.userDisplayName|raw}}<br/><span class="yellowinside">{{tubers.location|raw}}</span></span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        {% endif %}
+                        {% if count_flashes > 0 %}
+                            <div class="highlights_tit">{{ 'TUBERS ECHOES'|lang }}</div>
+                            {{tubersechoes_str|raw}}
+                        {% endif %}
+                                
+                    </div>
+                </div>
+                {% if count_media_hotels > 0 %}
+                    <div class="dotedline"></div>
+                    <!--  Hotels  -->
+                    <div class="part">
+                        <div class="menu_header" data-type="{{SOCIAL_ENTITY_HOTEL|raw}}">
+                            <div class="menu_header_num">
+                                0{{titleNum|raw}}
+                                {% set titleNum = titleNum + 1 %}
+                            </div>
+                            <div class="menu_header_tit">{{'Hotels'|lang}}</div>
+                        </div>
+                        <div class="things_cont">
+                            {{media_hotels_str|raw}}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if count_media_restaurants >0 %}
+                    <div class="dotedline"></div>
+                    <!--  Restaurants  -->
+                    <div class="part">
+                        <div class="menu_header" data-type="{{ SOCIAL_ENTITY_RESTAURANT|raw}}">
+                            <div class="menu_header_num">
+                                0{{titleNum|raw}}
+                                {% set titleNum = titleNum + 1 %}
+                            </div>
+                            <div class="menu_header_tit">{{'Restaurants'|lang}}</div>
+                        </div>
+                        <div class="things_cont">
+                            {{media_restaurants_str|raw}}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="dotedline"></div>                
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        var count = 0;
+        {% set titleNum = titleNum - 1 %}
+        var total = '{{ titleNum|raw }}';
+        $(function() {
+            $(".next_btn").click(function() {
+                if (count < Number(total - 3)) {
+                    $(".parts_container").animate({
+                        marginLeft: "-=307px"
+                    }, 500);
+                    count++;
+                }
+            });
+            $(".prev_btn").click(function() {
+                if (count > 0) {
+                    $(".parts_container").animate({
+                        marginLeft: "+=307px"
+                    }, 500);
+                    count--;
+                }
+            });
+        });
+    </script>
+
+{% include "foot.html" %}

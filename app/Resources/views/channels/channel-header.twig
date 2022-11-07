@@ -1,0 +1,35 @@
+<a href="{{channel_url|raw}}" title="{{namealt|raw}}" class="col-xs-12 nopad">
+    <h2 class="title-h2">{{name|raw}}</h2>
+</a>
+<div class="col-xs-12 nopad">
+    <p class="sub_title-p">{{slogan|raw}}</p>
+</div>
+<div class="col-xs-12 nopad">
+    <div class="row no-margin margin_bottom_15">
+        <div class="col-lg-6 col-md-7 col-sm-8 col-xs-12 nopad">
+            <div class="row no-margin">
+                {% if count_photos>0 %}
+                    <div class="col-xs-4 xs_full_width nopad border_right_column text-allign">
+                        <ul class="channel_options_list">
+                            <li><a href="{{channel_photos|raw}}" title="{{'channel photos'|trans}} {{namealt|raw}}">{{'Photos'|trans}}<span>{{count_photos|raw}}</span></a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if count_videos>0 %}
+                    <div class="col-xs-4 xs_full_width nopad border_right_column text-allign">
+                        <ul class="channel_options_list">
+                            <li><a href="{{channel_videos|raw}}" title="{{'channel videos'|trans}} {{namealt|raw}}">{{'Videos'|trans}}<span>{{count_videos|raw}}</span></a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if count_albums>0 %}
+                    <div class="col-xs-4 xs_full_width nopad border_right_column text-allign">
+                        <ul class="channel_options_list">
+                            <li><a href="{{channel_albums|raw}}" title="{{'channel albums'|trans}} {{namealt|raw}}">{{'Albums'|trans}}<span>{{count_albums|raw}}</span></a></li>
+                        </ul>
+                    </div>
+                {% endif %}                                                                                      
+            </div>
+        </div>
+    </div>
+</div>

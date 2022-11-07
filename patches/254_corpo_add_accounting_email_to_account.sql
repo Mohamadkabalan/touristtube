@@ -1,0 +1,1 @@
+ALTER TABLE `corpo_account` ADD `accounting_email` VARCHAR(100) NOT NULL AFTER `email`;

@@ -1,0 +1,2 @@
+UPDATE `corpo_admin_menu` SET `published` = '0' WHERE `corpo_admin_menu`.`menu_key` = 'KEY_ACCOUNTS';
+UPDATE `corpo_admin_menu` SET `published` = '0' WHERE `corpo_admin_menu`.`menu_key` = 'KEY_ACCOUNT_TYPES';

@@ -1,0 +1,42 @@
+<project name="Test" default="all" >
+	<target name="setProps" unless="setProps"
+	description="setup the properties.">
+		<property name="outdir" value="c:\tmp\app" />
+	</target>
+	<target name="init" depends="setProps"
+	description="initialize the properties.">
+		<tstamp/> 
+		<property name="local_outdir" value="${outdir}/java_app" />
+		<property name="build" value="${local_outdir}/classes" />
+		<property name="app_jar" value="${outdir}/SabreConnectionManager.jar" />
+		<property name="deploy" value="${basedir}" />
+	</target>
+	<target name="clean" depends="init"
+	description="clean up the output directories.">
+		<delete dir="${build}" />
+		<delete file="${app_jar}" />
+		<delete file="${deploy}/SabreConnectionManager.jar" />
+	</target>
+	<target name="prepare" depends="init"
+	description="prepare the output directory.">
+		<mkdir dir="${build}" />
+		</target>
+	<target name="compile" depends="prepare"
+	description="compile the Java source.">
+		<javac srcdir="." destdir="${build}">
+		</javac>
+	</target>
+	
+	<target name="package" depends="compile"
+	description="package the Java classes into a jar.">
+		<jar jarfile="${app_jar}"  
+		manifest="./META-INF/MANIFEST.MF"
+		basedir="${build}" />
+	</target>
+	<target name="deploy" depends="clean,package"
+	description ="deploy SabreConnectionManager.jar.">
+		<copy file="${outdir}/SabreConnectionManager.jar" todir="${deploy}" />
+	</target>
+	<target name="all" depends="clean,package,deploy"
+	description="perform all targets."/>
+</project>

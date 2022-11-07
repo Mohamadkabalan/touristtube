@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="{{ lang_local }}">
+    <head itemscope itemtype="http://schema.org/WebSite">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ 'images/favicon.ico'|link }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title itemprop='name'>{{ seoPageTitle|raw }}</title>
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" contant="IE=edge" /><![endif]-->
+        <meta name="description" content="{{ seoPageDescription|raw }}"/>
+        <meta name="keywords" content="{{ seoPageKeywords|raw }}"/>
+        <meta property="og:title" content="{{ seoPageTitle|raw }}" />
+        {{ ur_arraydata|raw }}
+        <link rel="stylesheet" type="text/css" href="{{ ("css/MainStyle.css")|link }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ ("css/MainStyle-Media.css")|link }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ ("css/bagStyle-Media.css")|link }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ ("css/header-footer-Media.css")|link }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ ("css/jquery-ui-1.10.0.custom-new.css")|link }}" />
+        {{ includePartCss|raw }}
+        <link rel="stylesheet" type="text/css" href="{{ ("css/jquery.fancybox-new.css")|link }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ ("css/header-footer.css")|link }}"/>
+        
+	<script type="text/javascript" src="/assets/vendor/jquery/plugins/jquery/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js"></script>
+        <script type="text/javascript" src="{{ ("js/jquery-migrate-1.1.1.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/jquery.mscroll.min.js")|link }}"></script> 
+        <script type="text/javascript" src="{{ ("assets/common/js/utils.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/login.js")|link }}"></script>
+        {{ includePartJs|raw }}
+        <script type="text/javascript" src="{{ ("js/jquery.fancybox.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/jcarousellite_1.0.1c5.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js")|link }}"></script>
+        
+        {% if userIsLogged == 1%}
+            <!-- chat css and scripts header begin  -->
+            <link rel="stylesheet" type="text/css" href="{{("video_chat/css/css_002.css?v="~CSS_002_CSS_V)|link}}">
+<!--        <link rel="stylesheet" type="text/css" href="{{"video_chat/css/css.css"|link}}">-->
+            <link rel="stylesheet" type="text/css" href="{{"video_chat/css/jquery_003.css"|link}}">
+            <link rel="stylesheet" type="text/css" href="{{("video_chat/css/chat.css?v="~CHAT_CSS_V)|link}}">
+
+            <!--<script src="//code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>-->
+            <!-- file sharing js starts here-->
+            <script src= "{{chat_server|raw}}siofu/client.js"></script>
+            <!-- file sharing js ends here -->
+            <!-- Application Specific javascripts starts here -->
+            <script src= "{{chat_server|raw}}socket.io/socket.io.js"></script>
+            <!-- Application Specific javascripts ends here -->
+
+            <script type="text/javascript" src="{{"video_chat/js/jscroll-pane.js"|link}}"></script>
+            <script type="text/javascript" src="{{"video_chat/js/ddslick.js"|link}}"></script>
+            <script type="text/javascript" src="{{"video_chat/js/emoticon.js"|link}}"></script>
+            <script type="text/javascript" src="{{ 'video_chat/js/adapter.js'|link }}"></script>
+            <!-- add for distinguish between firefox and chrome ends here-->
+            <!-- chat css and scripts header end  -->
+        {% endif %}
+        <script type="text/javascript" src="{{ ("js/topHeader.js")|link }}"></script>
+    </head>
+
+<body>
+<header>
+    <div class="top-header">
+        <div class="container">
+            <div class="logo"> <a href="{{ logo_link|raw }}"> <img src="{{ 'images/Logo.png'|link }}" alt="touristtube logo"></a> </div>
+            <div class="top_links">
+                <div class="left">
+                    <div class="div">
+                        <select name="languageSelect" id="languageSelect">{{lang_arraydata|raw}}</select>
+                    </div>
+                    <div class="div paddingright8">
+                        <ul class="link">
+                            {% if userIsLogged == 0 %}
+                            <li><a href="{{ register_link|raw }}" title="{{ 'Register'|lang }}">{{ 'Register'|lang }} </a></li>
+                            <li>
+                                <div id="SignInBtn">{{ 'Login'|lang }}</div>
+                            </li>
+                            {% else %}
+                            <li><a id="uploadLink" class="requestinvite" href="{{ upload_link|raw }}">{{ 'Upload'|lang }}</a></li>
+                            <li><a href="{{ userProfile|raw }}" class="bordernone paddingright3">{{ userNameWelcome|raw }}</a></li>
+                            <li class="flech_out">
+                                <a class="opensubout"><img width="13" height="13" src="{{ 'images/flech-out.png'|link }}" alt="touristtube"/></a>
+                                <div id="TopProfileDiv">
+                                    {% if channelListAllcnt > 0 %}
+                                    <div style="display:none;" id="OtherChannelsPop" class="OtherChannelsPopIndex">
+                                        <div class="main">
+                                            <div class="top">
+                                                MY CHANNELS <span class="yellowbold11">({{ channelListAll|raw }})</span>
+                                                <div class="next {{ channelDisabled|raw }}">{{"next"|lang}}</div>
+                                                <div class="prev disabled">{{"previous"|lang}}</div>
+                                                <div class="close showChannels"></div>
+                                            </div>
+                                            <div class="containertop caouselother">
+                                                <ul>
+                                                    <li>
+                                                        {% for c in channelAll %}
+                                                        {{ c.li|raw }}
+                                                        <div class="insideli" data-id="{{ c.top_channel_id|raw }}">
+                                                            <a href="{{ c.top_channel_url|raw }}" title="{{ c.top_channel_name_stan|raw }}"><div class="TopProfileDivIcon">{{ c.top_channel_logo|raw }}</div><div class="TopProfileDivText {{ c.classnew|raw }}">{{ c.top_channel_name|raw }}</div></a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    <ul>
+                                        {% if userIsChannel == false %}
+                                            <li><a href="{{ 'account/info'|link }}"><div class="TopProfileDivIcon TopProfileDivAccountIcon"></div><div class="TopProfileDivText">{{ 'Account Info'|lang }}</div></a></li>
+                                        {% endif %}
+                                        <li><a href="{{ 'myprofile/TTpage'|link }}"><div class="TopProfileDivIcon TopProfileDivTTpageIcon"></div><div class="TopProfileDivText">{{ 'Tourist tube page'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/network/friends'|link }}"><div class="TopProfileDivIcon TopProfileDivFriendsIcon"></div><div class="TopProfileDivText">{{ 'Friends'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/newsfeed'|link }}"><div class="TopProfileDivIcon TopProfileDivFeedIcon"></div><div class="TopProfileDivText">{{ 'News feed'|lang }}</div></a></li>
+                                    {% if channelListAllcnt > 0 %}
+                                        <li><a href="javascript:;" class="showChannels"><div class="TopProfileDivIcon TopProfileDivChannelsIcon"></div><div class="TopProfileDivText">{{ 'Channels'|lang }}</div></a></li>
+                                    {% endif %}
+                                        <li><a href="{{ 'myprofile/photos'|link }}"><div class="TopProfileDivIcon TopProfileDivPhotosIcon"></div><div class="TopProfileDivText">{{ 'Photos'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/videos'|link }}"><div class="TopProfileDivIcon TopProfileDivVideosIcon"></div><div class="TopProfileDivText">{{ 'Videos'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/albums'|link }}"><div class="TopProfileDivIcon TopProfileDivAlbumsIcon"></div><div class="TopProfileDivText">{{ 'Albums'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/events'|link }}"><div class="TopProfileDivIcon TopProfileDivEventIcon"></div><div class="TopProfileDivText">{{ 'Events'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/journal'|link }}"><div class="TopProfileDivIcon TopProfileDivJournalIcon"></div><div class="TopProfileDivText">{{ 'Journals'|lang }}</div></a></li>
+                                        <li><a href="{{ 'myprofile/echoes'|link }}"><div class="TopProfileDivIcon TopProfileDivEchoesIcon"></div><div class="TopProfileDivText">{{ 'Echoes'|lang }}</div></a></li>
+                                        <li><a href="{{ 'favorites'|link }}"><div class="TopProfileDivIcon TopProfileDivFavoritesIcon"></div><div class="TopProfileDivText">{{ 'Add to favorites'|lang }}</div></a></li>
+                                        <li><a href="{{ 'account/privacy'|link }}"><div class="TopProfileDivIcon TopProfileDivPrivacyIcon"></div><div class="TopProfileDivText">{{ 'My privacy'|lang }}</div></a></li>
+                                        <li><a href="{{ 'logout'|link }}"><div class="TopProfileDivIcon"></div><div class="TopProfileDivText">{{ 'sign out'|lang }}</div></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="div">
+                        <ul class="social">
+                            <li><a href="https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts" rel="nofollow" target="_blank" class="top_social fb_icon" title="facebook">facebook</a></li>
+                            <li><a  href="https://twitter.com/TouristTube" rel="nofollow" target="_blank" title="twitter"  class="top_social tw_icon">twitter </a></li>
+                            <li><a href="https://plus.google.com/u/0/+touristtubepage/posts" rel="nofollow"  target="_blank" title="google+"  class="top_social gp_icon">gplush</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <a href="{{ bag_link|raw }}" class="tt-bag" >
+                        <img src="{{ 'images/bag-img.jpg'|link }}" alt=""/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <div class="container">
+            <a href="#" class="menu-toggle" > 
+                <span class="text">Menu</span> 
+                <span class="i_bar_btn"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span> 
+            </a>
+             <ul id="mobile_tabsmain">
+                <li><a href="{{ things_to_do_link|raw }}" title="{{ 'Things To Do'|lang }}">{{ 'Things To Do'|lang }}</a></li>
+                <li><a href="{{ discover_link|raw }}" title="{{ 'Discover'|lang }}">{{ 'Discover'|lang }}</a></li>
+                <li><a href="{{ logo_link|raw }}" title="{{ 'Plan your trip'|lang }}">{{ 'Plan your trip'|lang }}</a></li>
+                <li><a href="{{ channels_link|raw }}" title="{{ 'Tourist Channels'|lang }}">{{ 'Tourist Channels'|lang }}</a></li>
+                <li><a href="{{ echoes_link|raw }}" title="{{ 'Tourist Echoes'|lang }}">{{ 'Tourist Echoes'|lang }}</a></li>
+                <li><a href="{{ review_link|raw }}" title="{{ 'Review & Rate'|lang }}"> <span class="review-rate-icon"><img src="{{ 'images/rate-review-nav-icon.png'|link }}" alt="rate-review-nav-icon"></span>{{ 'Review & Rate'|lang }}</a> </li>
+             </ul>
+        </div>
+    </div>
+</header>
+{% if insideSearch == 1 %}
+    <section>
+        <div class="bag_search_bar">
+            <div class="container">
+                <div class="bag-search"> <span class="tt-sprites i-search-map">map</span> <span class=" tt-sprites i-search-crose">clean</span>
+                    <input class="input-search" type="text" placeholder="Where are you going?">
+                </div>
+                <!-- input going for -->
+
+                <div class="bag-search"> <span class="tt-sprites i-search-mgf">search</span> <span class=" tt-sprites i-search-crose">clean</span>
+                    <input class="input-search" type="text" placeholder="What are you looking for?">
+                </div>
+                <!-- input looking for -->
+                <div class="bag-search">
+                    <input class="search-btn" type="button" value="Find">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}

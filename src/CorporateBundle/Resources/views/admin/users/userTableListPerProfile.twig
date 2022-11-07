@@ -1,0 +1,22 @@
+<!-- Main content -->
+<section class="content">
+    <table id="usersTbl" align="center" class="dataTable table table-striped table-bordered" cellspacing="0"
+        ajax_url 					= "{{ path('_corpo_users_profile_list_datatable') }}" 
+        default_order_column_id  	= "id_ID"
+        default_order_direction  	= "asc"
+        parameters = "parentId,slug"
+        width="100%"
+    >
+        <thead>
+            <tr>
+                <th id="id_ID" dbname="cu__id" width="70px">{{'Id'|trans }}</th>
+                <th id="FullName_ID" dbname="FullName" width="200px">{{'User'|trans }}</th>
+                <th id="gender_ID" dbname="gender" classname="dt-body-center" width="50px">{{'Gender'|trans }}</th>
+                <th id="YourEmail_ID" dbname="YourEmail" width="200px">{{'Email'|trans }}</th>
+                <th id="YourCountry_ID" dbname="YourCountry" classname="dt-body-center" width="70px">{{'Country'|trans }}</th>
+                <th id="accountId_Name" dbname="ca__name" classname="dt-body-center">{{'Account Name'|trans }}</th>
+            </tr>
+        </thead>
+    </table>
+    <br><br>
+</section>

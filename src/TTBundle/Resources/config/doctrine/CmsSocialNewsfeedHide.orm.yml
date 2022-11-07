@@ -1,0 +1,26 @@
+TTBundle\Entity\CmsSocialNewsfeedHide:
+    type: entity
+    table: cms_social_newsfeed_hide
+    indexes:
+        feed_id:
+            columns:
+                - feed_id
+        user_id:
+            columns:
+                - user_id
+    id:
+        feedId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: feed_id
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: user_id
+    lifecycleCallbacks: {  }

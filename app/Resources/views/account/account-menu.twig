@@ -1,0 +1,92 @@
+<div class="col-xs-12 nopad">
+    <div class="row no-margin margin_bottom_20">
+	{% if user_is_owner == 1 %}
+	    <div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<a href="{{ generateLangRoute(LanguageGet,'_account_info') }}" title="{{'Personal Info'|trans}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Account Info'|trans}}</a>
+		    </div>
+		</div>
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<ul class="list_left_menue_ainfo">
+			    <li><a href="{{ generateLangRoute(LanguageGet,'_account_info') }}" title="{{'Personal Info'|trans}}">{{'Personal Info'|trans}}</a></li>
+			    <li><a href="{{ generateLangRoute(LanguageGet,'_account_settings') }}" title="{{'Personal settings'|trans}}">{{'Personal settings'|trans}}</a></li>
+			</ul>
+		    </div>
+		</div>
+	    </div>
+	{% endif %}
+	<div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+	    {% if username is not defined %}
+		{% set username = "" %}
+	    {% endif %}
+	    {% if user_is_owner == 1 %}
+		{% set postsTitle = 'My Posts'|trans %}
+		{% set postsRoute = '_account_myprofile_tuber' %}
+	    {% else %}
+		{% set postsTitle = 'Posts'|trans %}
+		{% set postsRoute = '_account_profile_tuber' %}
+	    {% endif %}
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    {% set params_photos = {'params':'photos'} %}
+		    {% set params_videos = {'params':'videos'} %}
+		    {% set params_albums = {'params':'albums'} %}
+		    {% if username != '' %}
+			{% set params_photos = {'params':'photos', 'username':username} %}
+			{% set params_videos = {'params':'videos', 'username':username} %}
+			{% set params_albums = {'params':'albums', 'username':username} %}
+		    {% endif %}
+		    <a href="{{ generateLangRoute(LanguageGet, postsRoute, params_photos) }}" title="{{postsTitle|raw}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{postsTitle|raw}}</a>
+		</div>
+	    </div>
+	    <div class="row no-margin">
+		<div class="col-xs-12 nopad">
+		    <ul class="list_left_menue_ainfo">
+			<li><a href="{{ generateLangRoute(LanguageGet, postsRoute, params_photos) }}" title="{{'Photos'|trans}}">{{'Photos'|trans}}</a></li>
+			<li><a href="{{ generateLangRoute(LanguageGet, postsRoute, params_videos) }}" title="{{'Videos'|trans}}">{{'Videos'|trans}}</a></li>
+			<li><a href="{{ generateLangRoute(LanguageGet, postsRoute, params_albums) }}" title="{{'Albums'|trans}}">{{'Albums'|trans}}</a></li>
+		    </ul>
+		</div>
+	    </div>
+	</div>
+	{% if user_is_owner == 1 %}
+	    <div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<a href="{{ generateLangRoute(LanguageGet,'_my_bookings') }}" title="{{'My Bookings'|trans}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'My Bookings'|trans}}</a>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<a href="{{ generateLangRoute(LanguageGet,'_bags') }}" title="{{'My tour bag'|trans}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'My tour bag'|trans}}</a>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<a href="{{ generateLangRoute(LanguageGet,'_account_upload') }}" title="{{'Upload'|trans}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Upload'|trans}}</a>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<a href="{{ generateLangRoute(LanguageGet,'_my_channels') }}" title="{{'My Channels'|trans}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'My Channels'|trans}}</a>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_20 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<a href="{{ generateLangRoute(LanguageGet,'_channel_add') }}" title="{{'Create My Channel'|trans}}" class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Create My Channel'|trans}}</a>
+		    </div>
+		</div>
+	    </div>
+	{% endif %}
+    </div> 
+</div>

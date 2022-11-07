@@ -1,0 +1,161 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-payment.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}   
+    <script type="text/javascript" src="{{ asset("assets/payment/vendors/jquery.min.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("assets/payment/js/jquery.creditCardValidator.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Payment'|trans}}{% endblock %}
+{% block body %} 
+    {% set page_menu_name = 'flights' %}
+    <section class="container containerwhite paddingBottom10">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+            <div class="row rowspecialstyle">		
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad contentbackcolor_corp">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+			    <h2 class="headerstyle_corp">{{'Payment method'|trans}} <span class="error_cnt_corporate"></span></h2>
+			    <form  method='POST' action="{{ path('_paymentview', {'r':'paymentTokeniser','transaction_id' : transactionId}) }}"  novalidate="novalidate">
+				<div class="box-container paymentcontainer col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+				    {# newsection:
+==========================================================================================#}
+				    {#    <div class="botborder paddingbut30">
+					    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <div class="form-group">
+							<input type="text" maxlength="" name="" value="" id="" class="form-control_corppayment corporateinput_corppayment" autocomplete="off" placeholder="Enter your corporate code">
+							<p class="downinputtext_corppayment">Enter your corporate code in order to proceed directly</p>
+						    </div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-align-center-xs">
+						    <button name="" type="submit" class="submitbut_corporatepayment"></button>
+						</div>
+					    </div>
+					</div>#}
+				    {#========================================================================================#}
+				    <div class="botborder paddongtopbut40">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+					    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<img alt="payment" src="{{ generateMediaURL('/media/images/paymentpics.png') }}">
+					    </div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+					    					    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <div class="form-group">
+							{#<label for="cardNumber" class="labelstyle smalfont">Card number</label>#}
+							<input type="text" maxlength="50" name="card_holder_name" value="" id="payfort_fort_mp2_card_holder_name" class="form-control selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback" autocomplete="off"  placeholder="Name on Card">
+							{#<p class="downinputtext">No spaces or special characters</p>#}
+						    </div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <p class="downinputtext">No spaces or special characters</p>
+						</div>
+					    </div>
+					    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <div class="form-group">
+							{#<label for="cardNumber" class="labelstyle smalfont">Card number</label>#}
+							<input type="text" maxlength="16" name="card)number" value="" id="payfort_fort_mp2_card_number" class="form-control selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback" autocomplete="off"  placeholder="Debit/Credit Card Number">
+							{#<p class="downinputtext">No spaces or special characters</p>#}
+						    </div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						    <p class="downinputtext">No spaces or special characters</p>
+						</div>
+					    </div>
+					    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+						    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<p class="expiredatetextwizborder_corppayment">Expiry date</p>
+						    </div>
+						    <div class="form-group">
+							{#<label for="expiryDateMonth" class="labelstyle smalfont">Expiry date</label>#}
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 expiry-date-wrap newpadcorpinput_corpayment">
+							    <select class="expire-month select-expiry-date selectcomm_copayment" name="expiry_month" id="payfort_fort_mp2_expiry_month">
+								<option value=''>{{ 'Month' | trans }}</option>
+								<option value="01">Jan (01)</option>
+								<option value="02">Feb (02)</option>
+								<option value="03">Mar (03)</option>
+								<option value="04">Apr (04)</option>
+								<option value="05">May (05)</option>
+								<option value="06">June (06)</option>
+								<option value="07">July (07)</option>
+								<option value="08">Aug (08)</option>
+								<option value="09">Sep (09)</option>
+								<option value="10">Oct (10)</option>
+								<option value="11">Nov (11)</option>
+								<option value="12">Dec (12)</option>
+							    </select> 
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 expiry-date-wrap newpadcorpinput_corpayment">
+							    <select class="expire-year select-expiry-date selectcomm_copayment" name="expiry_year" id="payfort_fort_mp2_expiry_year">
+								<option value=''>{{ 'Year' | trans }}</option>
+					    {% for exp_year in range(card_expiration_year_start, card_expiration_year_start + 12) %}
+						<option value="{{ exp_year|slice(2, 2) }}">{{exp_year}}</option>
+					    {% endfor %}
+							    </select> 
+							</div>
+							{#<div class="clear"></div>#}
+							<input type="hidden" value="" maxlength="4" id="expiry_date" name="expiry_date">
+						    </div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+						    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<div class="form-group">
+							    {#<label for="cvv" class="labelstyle smalfont">CVV</label>#}
+							    <input type="text" maxlength="4" name="cvv" class="form-control smaldivmargin padsm cvv_corppayment" value="" id="payfort_fort_mp2_cvv" autocomplete="off" placeholder="Security Code">
+							</div>
+						    </div>
+						    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+							<img alt="CVV" src="{{ generateMediaURL('/media/images/corporate-payment/cvvimg_corppayment.png') }}" class="img-responsive">
+						    </div>
+						    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 widthcvv100xs">
+							<p class="cvvtext_corppayment">3 digit CVV Number</p>
+						    </div>
+						</div>
+					    </div>
+					</div>
+				    </div>
+
+				    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+					    <img alt="secure" src="{{ generateMediaURL('/media/images/secureres.png') }}" class="img-responsive">
+					</div>
+					<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+					    <p class="warningtextstyle">The data transmitted are coded using SSL (Secure Socket Layer) technology. <br>
+						The session in progress on this site is secure and protected by maximum privacy.</p>
+					</div>
+				    </div>
+				    <div class="clear"></div>
+				    <div class="terms-wrap">
+					<div class="checkbox checkbox-terms form-group-wrap">
+					    <div>
+						Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.<br>
+						For flight tickets modifications and other cancellations airlines ticketing policies apply.<br>
+						Kindly Contact:  <a href="mailto:support@touristtube.com">support@touristtube.com</a> - Expected reply within 24 hours.
+						<br>
+						<br>
+						By submitting this form, you confirm that you have read, agreed and accepted the <a target="_blank" title="terms &amp; conditions" href="/terms-and-conditions">terms and conditions</a> and the <a target="_blank" title="privacy policy" href="/privacy-policy">privacy policy</a>.
+					    </div>
+					</div>
+				    </div>
+				    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+					    <input type="submit" class="bluesbmit" value="submit">
+					</div>
+				    </div>
+				</div>
+				<div class="clear"></div>
+			    </form>
+			</div>
+		    </div>
+		</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

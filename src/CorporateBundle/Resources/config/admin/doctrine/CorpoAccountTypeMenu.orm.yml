@@ -1,0 +1,31 @@
+CorporateBundle\Entity\corpoAccountTypeMenu:
+    type: entity
+    table: corpo_account_type_menu
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAccountTypeMenuRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        account_type_id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: account_type_id
+        menu_id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: menu_id
+    lifecycleCallbacks: {  }

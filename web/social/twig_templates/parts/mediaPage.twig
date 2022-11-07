@@ -1,0 +1,641 @@
+{% if global_get_arra[2] == "testing" %}
+<div class="global_get_arra">
+    this is where the new responsive html goes
+</div>
+{% else %}
+{# Twig template for media_page #}
+<a href="" id="picfancyboxbutton" rel="nofollow" class="displaynone"></a>
+{#<img style="display:none;" alt="{{ fbimg|raw }}" src="{{ fbimg|raw }}" width="237" height="134">#}
+{% if photopage == true %}
+    <div class="glob_container swiper-photo gallery-top" data-album="{{ dataalbum|raw }}" data-id="{{ vindeoInfoId|raw }}">
+    <!--<div class="glob_container" data-album="{{ dataalbum|raw }}" data-id="{{ vindeoInfoId|raw }}">-->
+        <div id="bg_full" class="swiper-ptwrapper">
+            <div id="bg_full_buttons">
+                <div class="mediabuttonsOver">
+                    <div class="ProfileHeaderOverin"></div>
+                    <div class="icons-overtik"></div>
+                </div>
+                {% if privacyiconval==2 %}
+                <div class="share_link_holder fullmode">
+                    <div class="share_link_arrow"></div>
+                    <input type="text" readonly="readonly" value="{{ uricurpage|raw }}" class="share_link_text" name="share_link_text"/>
+                    <div class="share_link_buttons">
+                        <a class="sh_lk1" target="_blank" 
+                           href="{{('http://www.facebook.com/sharer.php?s=100&amp;p[url]='~uricurpage1)|raw}}" rel="nofollow">
+                            <div class="share_link_butts share_link_butts_fck"></div>
+                        </a>
+                        <a class="sh_lk2" target="_blank" 
+                           href="{{('https://plus.google.com/share?url='~uricurpage)|raw}}" rel="nofollow">
+                            <div class="share_link_butts share_link_butts_gol"></div></a>
+                        <a class="sh_lk3" target="_blank" 
+                           href="{{('http://www.twitter.com/intent/tweet?url='~uricurpage)|raw}}" rel="nofollow">
+                            <div class="share_link_butts share_link_butts_twit"></div>
+                        </a>
+                        <a class="sh_lk4" target="_blank" 
+                           href="{{('https://pinterest.com/pin/create/bookmarklet/?media='~fbimg~'&url='~uricurpage)|raw}}" rel="nofollow">
+                            <div class="share_link_butts share_link_butts_pint"></div>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+                <a href="#" class="nextImageBtn bg_full_buts" title="next"></a>
+                <a href="#" class="prevImageBtn bg_full_buts inactive" title="previous"></a>
+                <div id="fsbutton" class="fulls_div" data-title="{{ 'exit full screen'|lang }}"></div>
+                {% if user_is_logged==1 %}
+                    <div id="favbutton" class="MediaButton_data fav_div" data-title="" data-id="{{ vindeoInfoId|raw }}" data-statu=""></div>
+                {% endif %}
+                {% if privacyiconval==2 %}
+                <div id="shlkbutton" class="MediaButton_data" data-title="{{ 'share link'|lang }}"></div>
+                {% endif %}
+            </div>
+            <div id="swiper_pic"> <!--  30 April -->
+		    <img class="swiper-ptslide" src="" width="1680" height="1050" alt="" title="" id="bg_full_img" />
+            </div>
+        </div>
+        <div id="preloader"></div>
+
+        <div class="header">
+            <div class="header_txt"></div>
+        </div>
+    </div>
+{% endif %}
+<div id="ProfileHeader" style="clear:both">
+    <div id="ProfileHeaderwhiteline"></div>
+    <div id="ProfileHeaderInternal">
+        <h1 class="h1Style"><a id="profiletitle" href="{{ avLink|raw }}" class="{{ linkClass|raw }}">{{ avName|raw }}</a></h1>
+        <h2 id="since" class="h2Style">{{ touristSinceDt|raw }}</h2>
+        <div class="userAvatar"  id="userAvatar_id">
+            {% if profile_empty_pic == 0 and originalPP!='' %}
+            <a class="userAvatarLink" href="{{ originalPP|raw }}" data-channelid="0" data-id="{{ md5_userid|raw }}" data-type="{{ social_type|raw }}">
+            {% endif %}
+                <img id="AccountProfileImage" src="{{ creatorImg|raw }}" alt="{{ avName|raw }}" width="130" height="130"/>
+           {% if profile_empty_pic == 0 and originalPP!='' %} 
+           </a>
+           {% endif %}
+           {% if viewAllPILink!='' %} 
+            <a id="viewAllPI" href="{{ viewAllPILink|raw }}" title="{{ 'view profile images'|lang }}" data-title="{{ 'view profile images'|lang }}"></a>
+           {% endif %}            
+        {% if isowner == 1 and (channelid == 0 or channelid == '') and profile_empty_pic == 0 %}
+        <a id="changePP" href="">{{ 'Update profile image'|lang }} </a>
+        {% endif %}
+        </div>
+        {% if channelid == 0 and isowner == 0 and user_is_logged==1 %}
+            <div class="buttonTuber">
+                
+                    <div data-status="{{ req_status|raw }}" class="add_friend_profile buttonTuber_but {% if usisfriend == false and requestSent == false %} displayMe {% endif %}" 
+                         data-title="{{ req_text|raw }}" 
+                         alt="" data-rel="{{ userInfId|raw }}" 
+                         data-user="{{ userInfName|raw }}">
+                        {{ req_text|raw }}
+                    </div>
+                    <div class="remove_friend_profile buttonTuber_but {% if usisfriend == true  and requestSent == false %} displayMe {% endif %}" 
+                         data-title="{{ 'unfriend'|lang }}" 
+                         alt="" data-rel="{{ userInfId|raw }}" 
+                         data-user="{{ userInfName|raw }}">
+                        {{ 'unfriend'|lang }}
+                    </div>
+                
+                {% if requestSent == false %}
+                    <div class="buttonTuber_seperator" ><span></span></div>
+                {% endif %} 
+                    
+                    <div class="follow_friend buttonTuber_but {% if usfollow == false %} displayMe {% endif %}"
+                         data-title="follow"
+                         alt=""
+                         data-rel="{{ userInfId|raw }}"
+                         data-user="{{ userInfName|raw }}">
+                        {{ followTxt|raw }}
+                    </div>
+                    
+                    <div class="unfollow_friend buttonTuber_but {% if usfollow == true %} displayMe {% endif %}"
+                         data-title="unfollow"
+                         alt=""
+                         data-rel="{{ userInfId|raw }}"
+                         data-user="{{ userInfName|raw }}">
+                        {{ 'unfollow'|lang }}
+                    </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div id="MiddleInside" style="background:none;">
+
+    <div id="InsideContainer" style="width:990px;" class="mrgintop20">
+        <div class="privacybuttonsOver">
+            <div class="ProfileHeaderOverin"></div>
+            <div class="icons-overtik"></div>
+        </div>
+        <div id="VideoBreadCrumb">{{ breadcrumbs|raw }}</div>
+        <div id="RightInsideContainer" class="{{RightInsideContainerClass}}">
+            {% include "parts/socialMediaButtons.twig" %}
+
+            <div id="BottomProfile">
+                <div id="BottomProfileLinks">
+                    {% if albumpage == true or mediaalbumpage == true %}
+
+                        {% if albumcounter > 0 %}
+                            <div id="albumBtn" class="ImageButton"></div>
+                        {% endif %}
+                    {% elseif  photopage == true %}
+                        {% if videosTotal > 0 %}
+                            <div id="VideoBtn" class="ImageButton"></div>
+                        {% endif %}
+                        {% if photosTotal > 0 %}
+                            <div id="PhotoBtn" class="ImageButton active"></div>
+                        {% endif %}
+                    {% else %}
+                        {% if videosTotal > 0 %}
+                            <div id="VideoBtn" class="ImageButton active"></div>
+                        {% endif %}
+                        {% if photosTotal > 0 %}
+                            <div id="PhotoBtn" class="ImageButton"></div>
+                        {% endif %}
+                    {% endif %}
+
+                    <script type="text/javascript">
+                            var PhotoVideoPage = '{% if photopage == true %} I {% else %} V {% endif %}';
+                                    $(document).ready(function() {
+
+                            $('#VideoBtn').click(function() {
+                            $('.ImageButton').removeClass('active');
+                                    $('#VideoBtn').addClass('active');
+                                    $('#MoreVideosInside').attr('data-rel', '{{ moreVid|raw }}').click();
+                                    $('#morephotolist2').css('opacity', 0);
+                                    $('#morevideolist2').css('opacity', 1);
+                                    PhotoVideoPage = 'V';
+                                    $('#morevideolist2').show();
+                                    $('#morephotolist2').hide();
+                            });
+                                    $('#PhotoBtn').click(function() {
+                            $('.ImageButton').removeClass('active');
+                                    $('#PhotoBtn').addClass('active');
+                                    $('#MorePhotosInside').attr('data-rel', '{{ morePhoto|raw }}').click();
+                                    $('#morephotolist2').css('opacity', 1);
+                                    $('#morevideolist2').css('opacity', 0);
+                                    PhotoVideoPage = 'I';
+                                    $('#morevideolist2').hide();
+                                    $('#morephotolist2').show();
+                            });
+                                    MediaPageFix();
+                            });
+                       </script>
+                </div>
+                <div id="BottomProfileList">
+                    {% include "parts/moreinside.twig" %}
+                </div>
+                {% if (albumpage == false and mediaalbumpage == false and (videosTotal > 0 or photosTotal > 0) ) %}
+                    <div id="morevideolist2" {{ 'style="display:none;"'|cond(photopage) }}><a rel="{{ moreVidLink|raw }}" id="MoreVideosInside" href="javascript:;">{{ 'more >'|lang }}</a></div>
+                    <div id="morephotolist2" {{ 'style="display:none;"'|cond(photopage == false) }}><a rel="{{ morePhLink|raw }}" id="MorePhotosInside" href="javascript:;">{{ 'more >'|lang }}</a></div>
+                    {% elseif (albumpage == true or mediaalbumpage == true) and albumcounter > 0 %}
+                    <div id="morealbumlist"><a rel="{{ moreAlLink|raw }}" id="MoreAlbumsInside" href="javascript:;">{{ 'more >'|lang }}</a></div>
+                    {% endif %}
+            </div>
+
+        </div>
+        <div id="VideoInsideAlbum">
+            {% if albumname == true %}
+                {{ albumstr|raw }} <a href="{{ albumuri|raw }}">{{ albumname|raw }}</a>
+                <span class="yellow11"> ({{ albumdataval|raw }})</span>
+            {% endif %}
+        </div>
+
+        <h1 id="VideoInsideTTL">{{ vtitle|raw }}</h1>
+        <div class="linestyle_container" style="width:1006px; margin-top: 0px; margin-bottom: 9px;">
+            <div class="linestyle1"></div>
+            <div class="linestyle2"></div>
+            {% if categorytitle != '' %}
+                <a class="mediacategory_data" href="{{ categorylink|raw }}">{{ categorytitle|raw }}</a>
+            {% endif %}
+            <div class="mediainfo_data">
+                <ul>
+                    <li style="background:none; padding:0; width:auto; margin-right:32px;"><span class="mediaInfoYellow sortviews">{{ nbviews|raw }}</span><br>{{ nbviews_str|raw }}</li>
+                    <li style="background:none; padding:0; width:auto; margin-right:32px;"><span class="mediaInfoYellow sortlikes">{{ likevalue|raw }}</span><br>{{ likevalue_str|raw }}</li>
+                    <li style="background:none; padding:0; width:auto; margin-right:32px;"><span class="mediaInfoYellow sortcomments">{{ nbcomments|raw }}</span><br>{{ nbcomments_str|raw }}</li>
+                    <li style="background:none; padding:0; width:auto; margin-right:32px;"><span class="mediaInfoYellow sortshares">{{ nbshares|raw }}</span><br>{{ nbshares_str|raw }}</li>
+                    <li style="background:none; padding:0; width:auto;">
+                        <span class="mediaInfoYellow sortrating">{{ nbrating|raw }}</span><br>{{ nbrating_str|raw }}
+                        <span class="listVideoRating insidevideolistrating{{ ratingdata|raw }}3"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% if albumpage == true %}
+
+            <div id="BigImageHolder" data-id="{{ vid|raw }}">
+                <div class="gal_album_viewer"><span></span></div>
+                        {{ theImg1|raw }}
+            </div>
+            <script type="text/javascript">
+                        $(document).ready(function() {
+                $('img', $('#BigImageHolder')).load(function() {
+                if ($(this).attr('data-rel') == {{ vid|raw }})
+                        $(this).show();
+                        $(this).data('loaded', true);
+                });
+                });
+                        $(window).load(function() {
+                $('img', $('#BigImageHolder')).each(function() {
+                if ($(this).attr('data-rel') == {{ vid|raw }})
+                        $(this).show();
+                        $(this).data('loaded', true);
+                });
+                });</script>
+            
+            {% if privacyiconval==2 %}
+            <div class="share_link_holder simplemode">
+                <div class="share_link_arrow"></div>
+                <input type="text" readonly="readonly" value="{{ uricurpage|raw }}" class="share_link_text" name="share_link_text"/>
+                <div class="share_link_buttons">
+                    <a target="_blank" 
+                       href="{{('http://www.facebook.com/sharer.php?s=100&amp;p[url]='~uricurpage1)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_fck"></div></a>
+                    <a target="_blank" 
+                       href="{{('https://plus.google.com/share?url='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_gol"></div></a>
+                    <a target="_blank" 
+                       href="{{('http://www.twitter.com/intent/tweet?url='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_twit"></div></a>
+                    <a target="_blank" 
+                       href="{{('https://pinterest.com/pin/create/bookmarklet/?media='~fbimg~'&url='~uricurpage)|raw}}" rel="nofollow"><div class="share_link_butts share_link_butts_pint"></div></a>
+                </div>
+            </div>
+            <div id="media_buttons" style="position: absolute; top: 554px; z-index: 2; left:0;">
+                <div class="mediabuttonsOver">
+                    <div class="ProfileHeaderOverin"></div>
+                    <div class="icons-overtik"></div>
+                </div>
+                <div class="LiveFeedButtons">
+                    <div id="share_link" class="MediaButton_data MediaButton_data_share" data-title="{{ 'share link'|lang }}" data-statu="{{ datastatusfavorite|raw }}"></div>
+                </div>
+            </div>
+            {% endif %}
+            <div id="ThumbViewerContainer" class="ImageThumbViewerPos_album" style="overflow:visible;" data-id="{{ dataactionid|raw }}" data-pageI="{{ pageI|raw }}" data-pageV="{{ pageV|raw }}">
+                {% if displayImageClass == true %}
+                    <div class="album_subcontainer1 album_subcontainer">
+                        <div class="Thumbheader_album">
+                            <div class="header_album_pic header_album_pic1"></div>
+                            <div class="header_album_title">{{ 'photos'|lang }}</div>
+                            <div id="ThumbNext_albumI" class="next_media_page_album{{ ' inactive'|cond( displayNextImage != true ) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                            <div id="ThumbPrev_albumI" class="prev_media_page_album{{ ' inactive'|cond( displayPrevImage != true ) }}"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                        </div>
+                        <div class="album_content">
+                            {% for p1 in photo1Arr %}
+                                <a class="ThumbViewer_a album_item" href="{{ p1.mediauri|raw }}" data-id="{{ p1.id|raw }}">
+                                    <div class="enlarge {{ p1.class|raw }}"></div>                                    
+                                    <img width="136" height="76" src="{{ p1.xsmall|raw }}" alt="{{ p1.title|raw }}" class="ThumbViewerImage"/>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if displayVideoClass == true %}
+                    <div class="album_subcontainer2 album_subcontainer">
+                        <div class="Thumbheader_album">
+                            <div class="header_album_pic header_album_pic2"></div>
+                            <div class="header_album_title">{{ 'videos'|lang }}</div>
+                            <div id="ThumbNext_albumV" class="next_media_page_album{{ ' inactive'|cond( displayNextVideo != true ) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                            <div id="ThumbPrev_albumV" class="prev_media_page_album{{ ' inactive'|cond( displayPrevVideo != true ) }}"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                        </div>
+                        <div class="album_content">
+                            {% for p2 in photo2Arr %}
+                                <a class="ThumbViewer_a album_item" href="{{ p2.mediauri|raw }}" data-id="{{ p2.id|raw }}">
+                                    <div class="enlarge {{ p2.class|raw }}"></div>
+                                    <img width="136" height="76" src="{{ p2.xsmall|raw }}" alt="{{ p2.title|raw }}" class="ThumbViewerImage"/>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div style="clear:both"></div>
+            <br/>
+        {% elseif photopage == true %}
+            <div id="BigImageHolder" data-id="{{ oid|raw }}">
+
+                <div class="gal_hover_container">
+                    {% if arrayprev != '' %}
+                        <a href="{{ mediauri0|raw }}">
+                            <div class="photo_prev_big" data-id="{{ arrayprevId|raw }}" data-org="{{ arrayprevorg|raw }}" data-title="{{ prevtitleorg|raw }}">
+                            </div>
+                        </a>
+                    {% endif %}
+                    {% if arraynext != '' %}
+                        <a href="{{ mediauri1|raw }}">
+                            <div class="photo_next_big" data-id="{{ arraynextId|raw }}" data-org="{{ arraynextorg|raw }}" data-title="{{ nexttitleorg|raw }}"> 
+                            </div>
+                        </a>
+                    {% endif %}
+                </div>
+                {{ imgInPhotoPage|raw }}
+            </div>
+
+            <script type="text/javascript">
+                        function LoadAnother() {
+                        $('img', $('#BigImageHolder')).each(function() {
+                        if ($(this).attr('data-src')) {
+                        $(this).attr('src', $(this).attr('data-src'));
+                                $(this).removeAttr('data-src');
+                                return false;
+                        }
+                        });
+                        }
+                $(document).ready(function() {
+                $('img', $('#BigImageHolder')).load(function() {
+                if ($(this).attr('data-rel') == {{ defaultid|raw }})
+                        $(this).show();
+                        LoadAnother();
+                        $(this).data('loaded', true);
+                });
+                });
+                        $(window).load(function() {
+                $('img', $('#BigImageHolder')).each(function() {
+                if ($(this).attr('data-rel') == {{ defaultid|raw }})
+                        $(this).show();
+                        LoadAnother();
+                        $(this).data('loaded', true);
+                });
+                });</script>
+            {% if privacyiconval==2 %}
+            <div class="share_link_holder simplemode">
+                <div class="share_link_arrow"></div>
+                <input type="text" readonly="readonly" value="{{ uricurpage|raw }}" class="share_link_text" name="share_link_text"/>
+                <div class="share_link_buttons">
+                    <a target="_blank" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]={{ uricurpage1|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_fck"></div></a>
+                    <a target="_blank" href="https://plus.google.com/share?url={{ uricurpage|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_gol"></div></a>
+                    <a target="_blank" href="http://www.twitter.com/intent/tweet?url={{ uricurpage|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_twit"></div></a>
+                    <a target="_blank" href="https://pinterest.com/pin/create/bookmarklet/?media={{fbimg|raw}}&url={{ uricurpage|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_pint"></div></a>
+                </div>
+            </div>
+            {% endif %}
+            <div id="media_buttons" style="position: absolute; top: 554px; left:0;">
+                <div class="mediabuttonsOver">
+                    <div class="ProfileHeaderOverin"></div>
+                    <div class="icons-overtik"></div>
+                </div>
+                <div class="LiveFeedButtons">
+                    <div id="fullscreen_pic" data-title="{{ 'full screen'|lang }}"></div>
+                    <div id="favorite" class="MediaButton_data MediaButton_data_favorite{{ favorite|raw }}" data-title="{{ dataisfavorite|lang }}" data-statu="{{ datastatusfavorite2|raw }}"></div>
+                {% if privacyiconval==2 %}
+                    <div id="share_link" class="MediaButton_data MediaButton_data_share" data-title="{{ 'share link'|lang }}" data-statu="{{ datastatusfavorite2|raw }}"></div>
+                {% endif %}
+                    <script type="text/javascript" src="{{ ("js/photo-buttons.js")|link }}"></script>
+                </div>
+            </div>
+            {% if mediaalbumpage == false %}
+
+                <div id="ThumbViewerContainer" class="ImageThumbViewerPos{{singleMediaTypeClass|raw}}" style="overflow:visible;" data-pageI="{{ pageI|raw }}" data-pageV="{{ pageV|raw }}">
+                    <div id="ThumbViewer">
+                        <ul style="position: relative; margin: 0px; padding: 0px;">
+                            {% for phMediaAlbum in photoMediaAlbumArr %}
+
+                                <li class="ThumbViewerListItem" data-id="{{ phMediaAlbum.id|raw }}">
+                                    <a class="ThumbViewer_a" href="{{ phMediaAlbum.mediauri|raw }}">
+                                        <div class="enlarge {{ phMediaAlbum.enlargeclass|raw }}"></div>
+                                        <img src="{{ phMediaAlbum.xsmall|raw }}" alt="{{ phMediaAlbum.title|raw }}" class="ThumbViewerImage" width="136" height="76"/>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div id="ThumbNext" class="next_media_page {{ ' inactive'|cond(photoMediaAlbumTotal <= 5) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                    <div id="ThumbPrev" class="prev_media_page inactive"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                </div>
+
+            {% else %}
+                <div id="ThumbViewerContainer" class="ImageThumbViewerPos_album" style="overflow:visible;" data-id="{{ catid|raw }}" data-pageI="{{ pageI|raw }}" data-pageV="{{ pageV|raw }}">
+                    {% if displayImageClass == true %}
+                        <div class="album_subcontainer1 album_subcontainer">
+                            <div class="Thumbheader_album">
+                                <div class="header_album_pic header_album_pic1"></div>
+                                <div class="header_album_title">{{ 'photos'|lang }}</div>
+                                <div id="ThumbNext_albumI" class="next_media_page_album{{ ' inactive'|cond( displayNextImage != true ) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                                <div id="ThumbPrev_albumI" class="prev_media_page_album{{ ' inactive'|cond( displayPrevImage != true ) }}"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                            </div>
+                            <div class="album_content">
+                                {% for p1hMediaAlbum in photo1MediaAlbumArr %}
+                                    <a class="ThumbViewer_a album_item" href="{{ p1hMediaAlbum.mediauri|raw }}" data-id="{{ p1hMediaAlbum.id|raw }}">
+                                        <div class="enlarge {{ p1hMediaAlbum.enlargeclass|raw }}"></div>
+                                        <img width="136" height="76" src="{{ p1hMediaAlbum.xsmall|raw }}" alt="{{ p1hMediaAlbum.title|raw }}" class="ThumbViewerImage"/>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if displayVideoClass == true %}
+                        <div class="album_subcontainer2 album_subcontainer">
+                            <div class="Thumbheader_album">
+                                <div class="header_album_pic header_album_pic2"></div>
+                                <div class="header_album_title">{{ 'videos'|lang }}</div>
+                                <div id="ThumbNext_albumV" class="next_media_page_album{{ ' inactive'|cond( displayNextVideo != true ) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                                <div id="ThumbPrev_albumV" class="prev_media_page_album{{ ' inactive'|cond( displayPrevVideo != true ) }}"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                            </div>
+                            <div class="album_content">
+                                {% for ph2MediaAlbum in photo2MediaAlbumArr %}
+                                    <a class="ThumbViewer_a album_item" href="{{ ph2MediaAlbum.mediauri|raw }}" data-id="{{ ph2MediaAlbum.id|raw }}">
+                                        <div class="enlarge {{ ph2MediaAlbum.enlargeclass|raw }}"></div>
+                                        <img width="136" height="76" src="{{ ph2MediaAlbum.xsmall|raw }}" alt="{{ ph2MediaAlbum.title|raw }}" class="ThumbViewerImage"/>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>                    
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="embed_link"><div class="embed_bk"></div>{{ 'embed'|lang }}</div>
+            <textarea class="embed_content" readonly="readonly" style="display:none;"><iframe src="{{ iframeSrc1|raw }}" style="width: 696px; height: 534px; border:none;"></iframe></textarea>
+            <div style="clear:both"></div>
+            <br/>
+        {% else %}
+            <script type="text/javascript" src="{{ 'jwplayer/jwplayer.js?v=7.8.2'|link }}"></script>
+            <script type="text/javascript">jwplayer.key="5BF7jaLushMRXxwL4oDpC1ldCscI8upqkfv5Uu68J44=";</script>
+            <script type="text/javascript">
+                ThumbPath = '';
+                VideoLinksNumber({{ countcall2|raw }});
+                VideoFavorite('{{ favorite2|raw }}');
+                VideoLike('{{ like2|raw }}');
+                VideoRating('{{ rating2|raw }}');
+                VideoLinks('{{ call2|raw }}');
+                VideoTitle('{{ title2|raw }}');
+                VideoDescription('{{ descriptiondb2|raw }}');
+                VideoImage('https://www.touristtube.com' + decodeURL('{{ thumbSrc2|raw }}'));
+                VideoDetail('false');
+                VideoSmallest('{{ firstCall2|raw }}');
+                VideoArray(['{{ jscallreversed2|raw }}']);
+                            
+                $(document).ready(function() {                    
+                    var regWidth = 690;
+                    var regHeight = 438;         
+                    EmbedFlashJW('flashcontent', '{{ res_list|raw }}', regWidth, regHeight,'' , {{ vindeoInfoId|raw }},1,0,true);
+                    if (!jQuery.browser.flash) {
+
+                    } else {
+                        $(window).load(function() {
+                            PlayMedia();
+                        });
+                    }
+                });
+                </script>
+            <script type="text/javascript" src="{{ ("js/smallvideo-behavior.js")|link }}"></script>
+            
+            <div id="endofplay">
+                <div class="videoend_conatiner">
+                </div>
+            </div>
+            <div id="video_next_prev_container">
+
+                <div class="gal_hover_container">
+                    {% if arrayprev != '' %}
+                        <a href="{{ mediauri10|raw }}"><div class="photo_prev_big" data-id="{{ arrayprevId1|raw }}" data-org="{{ arrayprevorg1|raw }}" data-title="{{ prevtitleorg1|raw }}" ></div></a>
+                        {% endif %}
+                        {% if arraynext != '' %}
+                        <a href="{{ mediauri11|raw }}"><div class="photo_next_big" data-id="{{ arraynextId1|raw }}" data-org="{{ arraynextorg1|raw }}" data-title="{{ nexttitleorg1|raw }}"></div></a>';
+                        {% endif %}
+                </div>
+
+                <div id="flashcontent"></div>
+                {% if privacyiconval==2 %}
+                <div class="share_link_holder simplemode share_link_holdervid">
+                    <div class="share_link_arrow"></div>
+                    <input type="text" readonly="readonly" value="{{ uricurpage|raw }}" class="share_link_text" name="share_link_text"/>
+                    <div class="share_link_buttons">
+                        <a target="_blank" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]={{ uricurpage1|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_fck"></div></a>
+                        <a target="_blank" href="https://plus.google.com/share?url={{ uricurpage|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_gol"></div></a>
+                        <a target="_blank" href="http://www.twitter.com/intent/tweet?url={{ uricurpage|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_twit"></div></a>
+                        <a target="_blank" href="https://pinterest.com/pin/create/bookmarklet/?media={{fbimg|raw}}&url={{ uricurpage|raw }}" rel="nofollow"><div class="share_link_butts share_link_butts_pint"></div></a>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+            <br/>
+            <div id="media_buttonsVid">
+                <div class="mediabuttonsOver">
+                    <div class="ProfileHeaderOverin"></div>
+                    <div class="icons-overtik"></div>
+                </div>
+                <div class="LiveFeedButtons">
+                    <div id="favorite" class="MediaButton_data MediaButton_data_favorite{{ favorite|raw }}" data-title="{{ dataisfavorite|lang }}" data-statu="{{ datastatusfavorite2|raw }}"></div>
+                    {% if privacyiconval==2 %}
+                        <div id="share_link" class="MediaButton_data MediaButton_data_share" data-title="{{ 'share link'|lang }}" data-statu="{{ datastatusfavorite2|raw }}"></div>
+                    {% endif %}
+                    <script type="text/javascript" src="{{ ("js/photo-buttons.js")|link }}"></script>
+                </div>
+            </div>
+            <br/>
+            {% if mediaalbumpage == false %}
+                <div id="ThumbViewerContainer" style="overflow:visible;" class="{{singleMediaTypeClass|raw}}" data-pageI="{{ pageI|raw }}" data-pageV="{{ pageV|raw }}">
+                    <div id="ThumbViewer">
+                        <ul style="position: relative">
+                            {% for medVid in medalbvideoesArr %}
+                                <li data-id="{{ medVid.id|raw }}">
+                                    <a class="ThumbViewer_a" href="{{ medVid.mediauri|raw }}">
+                                        <div class="enlarge {{ medVid.enlargeclass|raw }}"></div>
+                                        <img src="{{ medVid.xsmall|raw }}" width="136" height="76" alt="{{ medVid.title|raw }}" class="ThumbViewerImage"/>
+                                        <span></span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div id="ThumbNext" class="next_media_page{{ ' inactive'|cond(videostotal<=5) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                    <div id="ThumbPrev" class="prev_media_page inactive"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                </div>
+            {% else %}
+                <div id="ThumbViewerContainer" class="ImageThumbViewerPos_album" style="overflow:visible;" data-id="{{ catid|raw }}" data-pageI="{{ pageI|raw }}" data-pageV="{{ pageV|raw }}">
+                    {% if displayImageClass == true %}
+                        <div class="album_subcontainer1 album_subcontainer">
+                            <div class="Thumbheader_album">
+                                <div class="header_album_pic header_album_pic1"></div>
+                                <div class="header_album_title">{{ 'photos'|lang }}</div>
+                                <div id="ThumbNext_albumI" class="next_media_page_album{{ ' inactive'|cond( displayNextImage != true ) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                                <div id="ThumbPrev_albumI" class="prev_media_page_album{{ ' inactive'|cond( displayPrevImage != true ) }}"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                            </div>
+                            <div class="album_content">
+                                {% for medPh in medalbphotosArr %}
+                                    <a class="ThumbViewer_a album_item" href="{{ medPh.mediauri|raw }}" data-id="{{ medPh.id|raw }}">
+                                        <div class="enlarge {{ medPh.enlargeclass|raw }}"></div>
+                                        <img width="136" height="76" src="{{ medPh.xsmall|raw }}" alt="{{ medPh.title|raw }}" class="ThumbViewerImage"/>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if displayVideoClass == true %}
+                        <div class="album_subcontainer2 album_subcontainer">
+                            <div class="Thumbheader_album">
+                                <div class="header_album_pic header_album_pic2"></div>
+                                <div class="header_album_title">{{ 'videos'|lang }}</div>
+                                <div id="ThumbNext_albumV" class="next_media_page_album{{ ' inactive'|cond( displayNextVideo != true ) }}"><div class="next_media_page_bk"></div><span>{{ 'next'|lang }}</span></div>
+                                <div id="ThumbPrev_albumV" class="prev_media_page_album{{ ' inactive'|cond( displayPrevVideo != true ) }}"><div class="prev_media_page_bk"></div><span>{{ 'previous'|lang }}</span></div>
+                            </div>
+                            <div class="album_content">
+                                {% for medPh2 in medalbphotosArr2 %}
+                                    <a class="ThumbViewer_a album_item" 
+                                       href="{{ medPh2.mediauri|raw }}" 
+                                       data-id="{{ medPh2.id|raw }}">
+                                        <div class="enlarge {{ medPh2.enlargeclass|raw }}"></div>
+                                        <img width="136" height="76" src="{{ medPh2.xsmall|raw }}" alt="{{ medPh2.title|raw }}" class="ThumbViewerImage"/>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="embed_link"><div class="embed_bk"></div>{{"embed"|lang}}</div>
+            <textarea class="embed_content" readonly="readonly" style="display:none;">
+<iframe src="{{ iframeSrcLast|raw }}" style="width: 696px; height: 515px; border:none;"></iframe>
+            </textarea>
+            <!-- </div> PhotoImageViewer-->
+            <div style="clear:both"></div>
+
+            <script type="text/javascript">
+                        var min_left = 0;
+                        var single_thumb_width;
+                        var slideInterval = 0;
+                        var GettingNext = false;
+                        var GettingPrev = false;
+                        var NoMorePrev = false;
+                        var NoMoreNext = false;
+                        var NextPage = 0;
+                        var PrevPage = 0;
+                        var SkipNext = '{{ skipNextLast|raw }}';
+                        var SkipPrev = '{{ skipPrevLast|raw }}';
+                        var ORIGINAL_PHOTO_ID = '{{ oidLast|raw }}';
+                        var DEFAULT_VIDEO_NUMBER = '{{ defaultLast|raw }}';
+
+            </script>
+        {% endif %}
+
+        <!-- comment section -->
+        {% include "parts/commentVideoSection.twig" %}
+        <!-- end of comment section -->
+    </div>
+</div>
+
+  <script>
+ /*   var prependNumber = 1;
+    var galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween:0,
+    });
+ */
+
+  $(function() {
+      if ($.isFunction('swipe')) {
+            $("#swiper_pic").swipe( {
+                        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+              if( direction =='left' )
+                      $nextImageBtn.trigger( "click" );
+              else 
+                      $prevImageBtn.trigger( "click" );
+        phase:'move';
+                         },
+                         threshold:0,
+                         fingers:'all'
+                               });
+                                        
+    }
+	
+});
+</script>
+{% endif %}

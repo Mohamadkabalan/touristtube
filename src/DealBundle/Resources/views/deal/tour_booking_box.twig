@@ -1,0 +1,86 @@
+{% if errorMessage is defined %}
+    <div class="col-xs-12 nopad padtop25">
+	<div class="col-xs-12 bookingBoxError">
+	    {{errorMessage|trans}}
+	</div>
+	<div class="col-xs-12 bookingBoxError">
+	    {{'Please select another date.'|trans}}
+	</div>
+    </div>
+{% else %}
+    {% set bookingPrice = 0 %}
+    {% set bookingPriceId = 0 %}
+    {% set bookingTime = '' %}
+    {% set firstItemClass = 'showOption' %}
+    <p class="seadatetextbold_datt"><span class="formYellowNumbers">2</span>{{'Enter number of travelers'|trans}}</p>
+    <input type="hidden" id="prevMaxPax" name="prevMaxPax" value="0" />
+    {% for activityPriceIdKey,activityPriceIdVal in ActivityPriceId %}
+	{% set activityPriceId = activityPriceIdVal['activityPriceId'] %}
+	{% set priceId = activityPriceIdVal['priceId'] %}
+
+	<div id="{{activityPriceId}}_{{priceId}}_numOfTravelerContainer" class="{{firstItemClass}} numOfTravelerContainer">
+	    {% for unitKey,unitVal in activityPriceIdVal['Units'] %}
+		{% set unitLabel = unitVal['unitLabel']|capitalize %}
+		{% set unitId = unitVal['unitId'] %}
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 seadatetextoptions marginTop5 nopad">
+		    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><div class="seadatetextoptions_BCK">{{unitLabel|trans}} ({{unitVal['ageText']|trans}})</div></div>
+		    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+			<input type="hidden" name="{{activityPriceId}}_{{priceId}}_unitId[]" value="{{unitVal['unitId']}}" />
+			<input type="hidden" name="{{activityPriceId}}_{{priceId}}_requiredOtherUnits[]" value="{{unitVal['requiredOtherUnits']}}" />
+			<input type="hidden" name="{{activityPriceId}}_{{priceId}}_unitLabel[]" value="{{unitLabel}} ({{unitVal['ageText']|trans}})" />
+			<select id="{{unitId}}" class="seadatetextoptions_Select {{activityPriceId}}_{{priceId}}_bbNumOfTraveler" name="{{activityPriceId}}_{{priceId}}_unit[]" required="required" onchange="updateBookingChoices('{{activityPriceId}}', '{{priceId}}');">
+			    {% for i in 0..99 %}
+				<option value="{{i}}">{{i}}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		</div>
+		{% set firstItemClass = 'hideOption' %}
+	    {% endfor %}
+	</div>
+    {% endfor %}
+    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+	<p class="seadatetextbold_datt"><span class="formYellowNumbers">3</span>{{'Choose your options'|trans}}</p>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 seadatetextoptions">
+	    {% for activityPriceIdKey,activityPriceIdVal in ActivityPriceId %}
+		{% set activityPriceId = activityPriceIdVal['activityPriceId'] %}
+		{% set priceId = activityPriceIdVal['priceId'] %}
+
+		<div id="{{activityPriceId}}_{{priceId}}_priceIdRadio" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 seadatetextbold_datt2 priceIdRadioBox">
+		    <input id="{{activityPriceId}}_{{priceId}}_radio" type="radio" name="activityPriceId" class="bbFields bbActivityPriceId" value="{{activityPriceId}}" onclick="updateBookingChoices('{{activityPriceId}}', '{{priceId}}');" />
+		    {{activityPriceIdVal['optionLabel']}}
+		</div>
+	    {% endfor %}
+	</div>
+    </div>
+    <div id="bookingErrorMsgBox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	    <span id="bookingErrorMsg">&nbsp;</span>
+	</div>
+    </div>
+    <div class="col-xs-12 nopad paddhorborder_dealsatt hidden-sm">
+	<div class="col-xs-12 nopad inhorborderstyle_datt"></div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+	<p class="start_datt_smalltext">{{'Starting at'|trans}} </p>
+	<p class="start_datt_largetext">
+	    <span id="bookingTotalConverted" class="a_price price-convert" data-price="{{convertedDealPrice}}"><span class="currency-convert-text">{{dealCurrency}}</span> <span id="bookingPrice" class="price-convert-text">{{formattedDealPrice}}</span></span></p>
+	<p class="pricegarlogo_datt">{{'Best Price Guaranteed'|trans}} </p>
+	<p class="destdate_datt">{{'Please select your desired tour date'|trans}} </p>
+    </div>
+    <div class="col-xs-12 nopad paddhorborder_dealsatt visible-sm">
+	<div class="col-xs-12 nopad inhorborderstyle_datt"></div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+	<div id="bbSavedFields" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad textalligncenter">
+	    <input type="hidden" id="priceId" name="priceId" value="" />
+	    <input type="hidden" id="quoteKey" name="quoteKey" value="" />
+	    <input type="hidden" id="totalPrice" name="totalPrice" value="{{dealPrice}}" />
+	    <input type="hidden" id="numOfPassenger" name="numOfPassenger" value="" />
+	    <input type="hidden" id="currency" name="currency" value="USD" />
+	    <button id="bbBuyNowButton" name="bbBuyNowButton" type="submit" class="buynowbut_datt">{{'buy now'|trans}}</button>
+	    <button id="bbVerifyPriceButton" name="bbVerifyPriceButton" type="button" class="buynowbut_datt" onclick="getQuotation(this);">{{'verify price'|trans}}</button>
+	</div>
+    </div>
+</form>
+{% endif %}

@@ -1,0 +1,32 @@
+{% extends 'baseFinal.html.twig' %}
+{% block body %}
+    <section class="container message_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="circlimg_arrow"><i class="fas fa-angle-down"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activateMsg col-xs-12 nopad">
+                        <p>
+                            {% if types=='channel' %}
+                                {{'An email is sent to you to activate your channel account.'|trans}}
+                            {% elseif types=='flight' %}
+                                {{'An email is sent to you to confirm your flight payment.'|trans}}
+                            {% elseif types=='hotels' %}
+                                {{'An email is sent to you to confirm your hotel payments.'|trans}}
+                            {% else %}
+                                {{'An email is sent to you to activate your account.'|trans}}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

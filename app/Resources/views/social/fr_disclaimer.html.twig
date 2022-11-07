@@ -1,0 +1,51 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block body %}
+    <section class="container disclaimer_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>Clause de non-responsabilité</h1>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Clause de non-responsabilité</h2>
+                        <p class="sub_header_title text-justify">Nous fournissons nos services en utilisant un niveau de soin et de compétence commercialement raisonnable et nous espérons que vous en tirerez profit.</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Garanties</h2>
+                        <p class="sub_header_title text-justify">Sauf indication contraire expresse dans les présentes conditions ou dans des conditions supplémentaires, ni Tourist Tube, ni ses fournisseurs ou distributeurs ne font de promesses spécifiques concernant les Services. De plus, nous ne prenons aucun engagement concernant le contenu des Services, la fonction spécifique des Services, leur fiabilité, leur disponibilité ou leur capacité à répondre à vos besoins. Nous fournissons les services "en l'état". En d'autres termes, et dans la mesure permise par la loi, nous excluons toutes les garanties.</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="header_title">Responsabilités</h2>
+                        <p class="sub_header_title text-justify">Tourist Tube, ses fournisseurs et ses distributeurs ne sauraient être tenus pour responsables des pertes de bénéfices, de revenus ou de données, des pertes financières ou des dommages indirects, spéciaux, exemplaires, consécutifs ou punitifs lorsque la loi le permet. La responsabilité totale de Tourist Tube, ainsi que de ses fournisseurs et distributeurs, pour toute réclamation en vertu des présentes conditions, y compris pour toute garantie implicite, est limitée au montant que vous avez payé pour utiliser les Services (ou, si nous le souhaitons, pour vous fournir les Services à nouveau). </p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="bottom_border_grey_1"></div>
+                    </div>
+                </div>
+                <div class="row no-margin margin_bottom_29">
+                    <div class="col-xs-12 nopad">
+                        <p class="sub_header_title text-justify">{{'now'|date('Y')}} &copy; Tourist Tube FZ-LLC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

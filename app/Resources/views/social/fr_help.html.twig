@@ -1,0 +1,357 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>Bienvenue dans le centre d´aide de Tourist Tube</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Pour commencer<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Vous pouvez voir du contenu dans les sections publiques sans avoir à vous inscrire. Cependant, vous devez vous inscrire pour utiliser toutes les fonctionnalités de Tourist Tube.</p>
+                        <h3 class="help_h3">Inscription</h3>
+                        <p class="faq_sub_header_title">Remplissez et envoyez le formulaire d´inscription en renseignant tous les champs obligatoires. Nous allons vous créer un compte et vous envoyer un e-mail de confirmation.</p>
+                        <h3 class="help_h3">Se connecter</h3>
+                        <p class="faq_sub_header_title">Utilisez votre nom d'utilisateur et votre mot de passe pour vous connecter. Si vous souhaitez vous connecter automatiquement, cochez la case. Si vous oubliez votre mot de passe, envoyez votre adresse e-mail ou votre nom d'utilisateur. Nous vous enverrons un lien de réinitialisation du mot de passe à votre adresse e-mail.</p>
+                        <h3 class="help_h3">Mobile</h3>
+                        <p class="faq_sub_header_title">Vous pouvez télécharger et installer gratuitement l´application mobile Tourist Tube sur Android via le Play Store.</p>
+                        <h3 class="help_h3">Recherche</h3>
+                        <p class="faq_sub_header_title">Vous pouvez utiliser la barre de recherche pour rechercher du contenu dans Tourist Tube en utilisant des mots-clés ou une combinaison de ceux-ci. Vous pouvez affiner votre recherche en sélectionnant uniquement les photos, les vidéos, les hôtels, les restaurants ou les « Tubers ».</p>
+                        <h3 class="help_h3">Télécharger</h3>
+                        <p class="faq_sub_header_title">Une fois que vous êtes inscrit, vous pouvez télécharger jusqu'à 1 téraoctet de photos et de vidéos sur votre compte. Pour chaque téléchargement, vous pouvez ajouter des descriptions telles que titre, mots-clés, lieu, thème ou catégorie, ainsi que des commentaires. De plus, vous pouvez contrôler les paramètres de confidentialité des vues, des likes et des commentaires pour chaque téléchargement.</p>
+                        <h3 class="help_h3">Tchat</h3>
+                        <p class="faq_sub_header_title">Une fois inscrit, vous pouvez utiliser la fenêtre de conversation pour tchater avec d´autres “Tubers” et pour rechercher/ajouter/ supprimer des “Tubers”. Vous pouvez également activer/désactiver cette fenêtre.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Gestion de compte<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Page Tourist Tube</h3>
+                        <p class="faq_sub_header_title">Cette page affiche toutes vos activités sur Tourist Tube ainsi que les actions d’autres Tubers sur vos activités. Il peut être rendu entièrement ou partiellement accessible à des utilisateurs sélectionnés en fonction des paramètres de confidentialité que vous avez préalablement définis. Cette page affiche les éléments suivants:</p>
+                        <ul class="main_ul_list_help">
+                            <li>Un curseur pour sélectionner la période (mois et année) pour laquelle mes activités sont affichées<li>
+                            <li>Pour la période sélectionnée, toutes les publications que j'ai effectuées (photos, vidéos, texte, liens, commentaires, likes, partages, notes) partout ou de manière sélective sur :<li>
+                            <li> 
+                                <ul class="sndul_list_help">
+                                    <li>ma page Tourist Tube</li>
+                                    <li>Tchannels</li>
+                                    <li>hôtels</li>
+                                    <li>others’ entries</li>
+                                    <li>restaurants</li>
+                                </ul>
+                            </li>
+                            <li>Une liste de mes amis<li>
+                            <li>Une liste des personnes qui me suivent<li>
+                            <li>Une liste des personnes que je suis<li>
+                            <li>Une liste de mes évènements (ceux que je crée et ceux que je rejoins)<li>
+                            <li>Une liste de mes Tchannels<li>
+                            <li>Une liste des Tchannels que je suis<li>
+                            <li>Une liste de mes évènements Tchannels<li>
+                            <li>Tchannels suggérés<li>
+                            <li>Photos et vidéos suggérés à ajouter à mes Favoris<li>
+                            <li>otifications Tourist Tuber – affichable que pour vous et en fonctions des paramètres que vous avez choisis.<li>
+                        </ul>
+                        <h3 class="help_h3">Information du compte</h3>
+                        <p class="faq_sub_header_title"><span class="underline">Informations personnelles:</span> Vous pouvez modifier vos informations personnelles, telles que le nom et prénom, le sexe, la date de naissance, l'adresse, la photo, l'adresse Web, les commentaires, la formation, la profession, les intérêts, etc…</p>
+                        <p class="faq_sub_header_title"><span class="underline">Paramètres :</span> Vous pouvez modifier les paramètres de votre compte Tourist Tube, y compris votre nom d'utilisateur et votre mot de passe. Vous pouvez également désactiver votre compte temporairement ou le supprimer définitivement. Vous pouvez également choisir de ne plus recevoir d’emails de Tourist Tube.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Activités :</span> Vous pouvez voir un résumé et l'historique des activités de votre compte, tels que la date d'adhésion, le nombre d'amis, le nombre de photos, vidéos, albums, journaux et événements téléchargés, ainsi que le nombre de mentions et commentaires reçus, et les statistiques sur votre réseau.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Notifications :</span> Ajoutez votre adresse e-mail pour recevoir des notifications par e-mail des activités de votre compte Tourist Tube. Vous pouvez choisir de recevoir des notifications par courrier électronique et / ou sur votre page Tourist Tube. À titre d'exemple, Tourist Tube vous enverra automatiquement des notifications pour chacun des événements cochés ci-dessous :</p>
+                        <ul class="main_ul_list_help">
+                            <li>L´un de mes téléchargements reçoit un commentaire ou un Like<li> 
+                            <li>Je reçois une invitation d´un ami ou d´un autre Tuber<li> 
+                            <li>Quelqu´un m´a ajouté comme ami<li> 
+                            <li>Quelqu´un me suit<li> 
+                            <li>Quelqu´un répond à mon commentaire<li> 
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Invitations :</span> Vous pouvez envoyer jusqu'à 50 invitations à rejoindre Tourist Tube simplement en remplissant les noms et les adresses e-mail de vos amis et connaissances.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Partage :</span> Si vous souhaitez partager vos publications Tourist Tube sur vos autres réseaux sociaux, vous pouvez facilement établir une connexion entre Tourist Tube et vos plateformes sélectionnées, notamment Facebook, Twitter et Yahoo. </p>
+                        <p class="faq_sub_header_title"><span class="underline">Paramètres de confidentialité :</span> Tourist Tube attribue des autorisations aux personnes qui vous contactent et aux personnes agissant dans le cadre de vos activités.  </p>
+                        <p class="faq_sub_header_title"><span class="underline">Confidentialité:</span> Qui peut me trouver ?</p>
+                        <ul class="main_ul_list_help">
+                            <li>Public<li>  
+                            <li>Amis<li>  
+                            <li>Liste personnalisée<li>  
+                            <li>Privé<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Mon profil apparaît dans les moteurs de recherche</p>
+                        <ul class="main_ul_list_help">
+                            <li>Activer/Désactiver<li>  
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Bloquer des utilisateurs :</span> Lorsque que vous bloquez quelqu'un, il ne peut plus interagir avec vous ni être votre ami sur Tourist Tube </p>
+                        <ul class="main_ul_list_help">
+                            <li>Ajouter des utilisateurs dans la liste des personnes bloquées<li>  
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Confidentialité du contenu</span></p> 
+                        <p class="faq_sub_header_title">Autoriser sur ma page TT</p> 
+                        <ul class="main_ul_list_help">
+                            <li>Likes et notes<li>  
+                            <li>Partages et commentaires<li>  
+                            <li> Posts<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Afficher sur ma page TT</p> 
+                        <ul class="main_ul_list_help">
+                            <li>Les Channels que j´ai créé<li>   
+                            <li>Mes évènements sur les Channels<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Confidentialité des évènements </p> 
+                        <ul class="main_ul_list_help">
+                            <li>Autoriser les partages et commentaires<li>   
+                            <li>Autoriser les amis à inviter<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Qui peut voir ? </p> 
+                        <ul class="main_ul_list_help">
+                            <li>Ma liste d´amis <li>   
+                            <li>Une liste de mes amis <li>  
+                            <li>Une liste des personnes qui me suivent<li>  
+                            <li>Une liste de personnes que je suis<li>  
+                            <li>Mes endroits visités<li>  
+                        </ul>
+                        <p class="faq_sub_header_title">Suiveurs: </p> 
+                        <ul class="main_ul_list_help">
+                            <li>Public<li>  
+                            <li>Amis<li>  
+                            <li>Liste personnalisée<li>  
+                            <li>Privé<li> 
+                        </ul>
+                        <h3 class="help_h3">Amis</h3>
+                        <p class="faq_sub_header_title">Vous pouvez rechercher, voir tous vos amis sur Tourist Tube et entrer en contact avec eux. Des Tubers ayant des intérêts similaires sont également suggérés pour vous contacter.</p>
+                        <h3 class="help_h3">Fils d´actualité</h3>
+                        <p class="faq_sub_header_title">Cette page ne présente que les activités des utilisateurs de Tourist Tube qui vous intéressent, en fonction des paramètres de confidentialité définis. Ces utilisateurs peuvent être :  </p>
+                        <ul class="main_ul_list_help">
+                            <li>Vos amis<li>  
+                            <li>Les personnes que vous suivez<li>  
+                            <li>Les Channels que vous suivez<li>  
+                            <li>Tout ce qui précède<li> 
+                        </ul>
+                        <p class="faq_sub_header_title">Ces activités peuvent être filtrées en fonction de l'endroit où elles se sont déroulées, par exemple : </p>
+                        <ul class="main_ul_list_help">
+                            <li>Pages TT<li>  
+                            <li>TChannels <li>  
+                            <li>Pages Hôtels<li>  
+                            <li>Pages Restaurants<li> 
+                            <li>Planner TT<li> 
+                        </ul>
+                        <h3 class="help_h3">Photos</h3>
+                        <p class="faq_sub_header_title">Ceci est un organisateur pour trouver et / ou télécharger vos photos </p>
+                        <h3 class="help_h3">Vidéos</h3>
+                        <p class="faq_sub_header_title">Ceci est un organisateur pour trouver et / ou télécharger vos vidéos </p>
+                        <h3 class="help_h3">Albums</h3>
+                        <p class="faq_sub_header_title">Ceci est un organisateur pour créer, éditer et publier vos albums. Les albums peuvent contenir autant de photos que de vidéos. Vous pouvez ajouter des mots-clés et des lieux à vos albums lors de la publication pour améliorer la visibilité des moteurs de recherche. </p>
+                        <h3 class="help_h3">Evènements</h3>
+                        <p class="faq_sub_header_title">Ceci est un organisateur pour créer, éditer et publier vos événements. Vous pouvez définir la confidentialité de l'affichage de votre événement. Vous pouvez également afficher la liste des invités, autoriser vos invités à inviter d'autres personnes et activer des partages et des commentaires sur cet évènement. </p>
+                        <h3 class="help_h3">Journaux</h3>
+                        <p class="faq_sub_header_title">Ceci est un organisateur pour créer, éditer et publier vos journaux. Ces derniers peuvent contenir des photos et des commentaires ou des textes. Les journaux peuvent être publiés en ligne au format pdf. Vous pouvez ajouter des mots-clés et des lieux lors de la publication pour améliorer la visibilité des moteurs de recherche.  </p>
+                        <h3 class="help_h3">Favoris</h3>
+                        <p class="faq_sub_header_title">Cette fonction permet de trouver et de sauvegarder dans vos Favoris des photos, vidéos, albums, etc…</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Fonctionnalités<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Channels</h3>
+                        <p class="faq_sub_header_title">Les Channels sont configurés par les utilisateurs et en sont propriétaires.  Vous pouvez créer un Channel qui vous soyez un particulier ou un professionnel. L´objectif est de diffuser une page et un contenu à usage promotionnel ou commercial, qui reflète un statut plus officiel. Les fonctionnalités disponibles pour les channels sont plus complètes.</p>
+                        <p class="faq_sub_header_title"><span class="underline">Paramétrage d´un Channel:</span> e statut d´un Channel est nécessairement Public. Vous pouvez configurer un channel en tant que nouvel utilisateur ou en tant qu'utilisateur enregistré. Les utilisateurs enregistrés peuvent configurer autant de channels qu'ils le souhaitent. Si vous souhaitez utiliser un email déjà associé à un compte existant pour votre channel, vous avez la possibilité de demander à ce que cet email y soit rattaché.</p>
+                        <p class="faq_sub_header_title">Une fois que vous avez rempli les champs requis pour la configuration de votre channel, un email d'activation vous sera envoyé. Lors de l'activation, vous serez dirigé vers la page du propriétaire du channel où les personnalisations suivantes peuvent être effectuées : </p>
+                        <p class="faq_sub_header_title"><span class="underline">Personnalisation rapide</span></p>
+                        <ul class="main_ul_list_help">
+                            <li>Choisissez une photo de couverture<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Sélectionnez une photo d´un fichier de votre ordinateur ou faites un glisser-déposer ici</p>
+                        <p class="faq_sub_header_title">Ajustez le recadrage | Insérez le lien sur la photo de couverture</p>
+                        <p class="faq_sub_header_title">Définir comme photo de couverture | annuler (la conception de la couverture TT est affichée par défaut)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Choisissez une photo de profil<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Sélectionnez une photo d'un fichier sur votre ordinateur ou faites un glisser-déposer ici</p>
+                        <p class="faq_sub_header_title">Ajustez le recadrage</p>
+                        <p class="faq_sub_header_title">Définir comme photo de couverture | annuler (la conception du profil TT est affichée par défaut)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Ajouter un slogan ou un texte de bienvenue<li>   
+                            <li>Ajouter un texte sur votre channel <li>   
+                            <li>Modifier | Afficher le nom du channel<li>   
+                            <li>Ajouter des liens personnalisés (+) pour ajouter plusieurs liens<li>   
+                            <li>Ajouter des liens de réseaux sociaux (à partir de la liste: Facebook, Twitter) | (+) pour ajouter plusieurs réseaux sociaux<li>   
+                            <li>Modifier | Afficher créé le<li>   
+                            <li>Modifier | Afficher créé par<li>   
+                            <li>Modifier la catégorie du channel<li>   
+                            <li>Modifier | Afficher l'emplacement: Pays; Ville; Rue; Code postal; Tél.  <li>   
+                            <li>Modifier l´URL: Créer une URL TT unique pour que les personnes puissant vous trouver<li>   
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Personnalisation complète:</span> En tant que propriétaire d’un channel, un clic sur le bouton de configuration de la page du channel vous dirigera vers un menu de personnalisation complet comportant les champs suivants :</p>
+                        <p class="faq_sub_header_title"><span class="underline">Informations du compte:</span> Modifier le nom du propriétaire; mot de passe; e-mail</p>
+                        <p class="faq_sub_header_title"><span class="underline">Informations du channel</span></p>
+                        <ul class="main_ul_list_help">
+                            <li>Modifier | Afficher le nom du channel <li> 
+                            <li>Modifier | Afficher créé le<li> 
+                            <li>Modifier | Afficher créé par<li> 
+                            <li>Modifier la catégorie du channel<li> 
+                            <li>Modifier | Afficher l'emplacement: Pays; Ville; Rue; Code postal; Tél.<li> 
+                            <li>Modifier l´URL: Créer une URL TT unique pour que les personnes puissant vous trouver<li> 
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Page Tchannel</span></p>
+                        <ul class="main_ul_list_help">
+                            <li> Choisissez une photo de couverture<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Sélectionnez une photo d'un fichier sur votre ordinateur ou faites un glisser-déposer ici</p>
+                        <p class="faq_sub_header_title">Ajustez le recadrage | Insérez le lien sur la photo de couverture</p>
+                        <p class="faq_sub_header_title">Définir comme photo de couverture | annuler (la conception de la couverture TT est affichée par défaut)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Choisissez une photo de profil<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Sélectionnez une photo d'un fichier sur votre ordinateur ou faites un glisser-déposer ici</p>
+                        <p class="faq_sub_header_title">Ajustez le recadrage</p>
+                        <p class="faq_sub_header_title">Définir comme photo de couverture | annuler (la conception du profil TT est affichée par défaut)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Choisissez un fond<li>   
+                        </ul>
+                        <p class="faq_sub_header_title">Sélectionnez une photo d'un fichier sur votre ordinateur ou faites un glisser-déposer ici</p>
+                        <p class="faq_sub_header_title">Taille recommandée (1920*1080) </p>
+                        <p class="faq_sub_header_title">Ajuster le recadrage | palette de couleurs </p>
+                        <p class="faq_sub_header_title">Définir comme fond | annuler (le fond est blanc par défaut)</p>
+                        <ul class="main_ul_list_help">
+                            <li>Ajouter un slogan ou un texte de bienvenue<li>
+                            <li>Ajouter un texte à propos de votre Tchannel<li>
+                            <li>Gérer des liens personnalisés (ajouter | modifier | supprimer)<li>
+                            <li>Gérer des réseaux sociaux (ajouter | modifier | supprimer) (Facebook, Twitter) <li>
+                            <li>Ajouter des mots-clés<li>
+                            <li>Gérer ses autres Tchannels (ajouter | modifier | supprimer <li>
+                            <li>Ajouter d´autres Tchannels (Nom | URL (message d´erreur : ce Tchannel n'existe pas, assurez-vous d'insérer un nom et une URL corrects) <li>
+                            <li>Ajouter un évènement : Un formulaire s'ouvrira ici pour insérer: Le nom de l'événement | Photo de couverture | description | emplacement | date (de - à) et heure | qui peut se joindre: seulement les amis ou tout le monde Invitations: les invités peuvent inviter | Masquer ma liste d'invités (+) pour ajouter d'autres événements <li>
+                            <li>Ajouter des nouvelles (+) pour ajouter plus de nouvelles<li>
+                            <li>Gérez vos nouvelles (ajouter | modifier | supprimer)<li>
+                            <li>Inviter des personnes à se connecter avec votre Tchannel <li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Flux Tchannel:</span> Vous pouvez également choisir d’afficher pour votre Tchannel les flux de vos activités chaque fois que vous :  </p>
+                        <ul class="main_ul_list_help">
+                            <li>téléchargez (photos, vidéos, albums, brochures)<li>
+                            <li>ajoutez des posts<li>
+                            <li>ajoutez des news<li>
+                            <li>vous connectez à d´autres Tchannels<li>
+                            <li>suivez des Tourist Tubers<li>
+                            <li>mettez à jour votre profil, couverture, image de fond<li>
+                            <li>likez, commentez, notez, et partagez <li>
+                            <li>créez un nouveau Tchannel <li>
+                            <li>créez un évènement<li>
+                            <li>rejoignez un évènement<li>
+                        </ul>
+                        <p class="faq_sub_header_title">Vous pouvez également choisir d'afficher pour votre flux Tchannel les activités des utilisateurs connectés à votre Tchannel à chaque fois que quelqu'un : </p>
+                        <ul class="main_ul_list_help">
+                            <li>se connecte à votre Tchannel<li>
+                            <li>like, note, commente, partage, et répond à des commentaires sur votre Tchannel <li>
+                            <li>rejoint des évènements de votre Tchannel <li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline">Notification par e-mail:</span> Les notifications seront envoyées à l'adresse e-mail de votre choix. Vous pouvez modifier l'adresse e-mail associée à votre Tchannel. Toutes les notifications et tous les messages que vous avez choisi de recevoir par e-mail seront envoyés à cette adresse e-mail après que celle-ci ai été vérifiée. </p>
+                        <p class="faq_sub_header_title">Les notifications par courrier électronique peuvent être définies lorsqu'un autre Tchannel: </p>
+                        <ul class="main_ul_list_help">
+                            <li>parraine votre Tchannel<li>
+                            <li>parraine votre évènement<li>
+                            <li>annule un évènement que vous parrainez <li>
+                        </ul>
+                        <p class="faq_sub_header_title">Et aussi quand quelqu'un a: </p>
+                        <ul class="main_ul_list_help">
+                            <li>se connecte à votre Tchannel<li>
+                            <li>accepté votre invitation à se connecter à votre Tchannel<li>
+                            <li>invité des personnes sur votre Tchannel<li>
+                            <li>commenté du contenu de votre Tchannel<li>
+                            <li>liké un contenu de votre Tchannel<li>
+                            <li>partagé du contenu de votre Tchannel<li>
+                            <li>note vos photos (vidéos, ou albums)<li>
+                            <li>replied to your comments<li>
+                            <li>répondu à vos commentaires<li>
+                            <li>partagé votre page Tchannel<li>
+                            <li>signalé un Tuber de vos relations<li>
+                            <li>rejoint votre évènement<li>
+                            <li>commenté votre évènement<li>
+                            <li>liké votre évènement<li>
+                            <li>partagé votre évènement<li>
+                            <li>accepté votre invitation à se joindre à votre évènement<li>
+                        </ul>
+                        <p class="faq_sub_header_title">Et aussi à propos de:</p>
+                        <ul class="main_ul_list_help">
+                            <li>ce qui est nouveau sur Tourist Tube Channels<li>
+                            <li>photo and vidéo du jour (posté par des Tubers ou des  Tchannel)<li>
+                            <li>mises à jour des Tchannels auxquels vous êtes connecté<li>
+                        </ul>
+                        <p class="faq_sub_header_title">OU</p>
+                        <ul class="main_ul_list_help">
+                            <li>Ne m'envoyez pas de notifications par e-mail<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline"><b>Confidentialité:</b></span> les Tchannels sont public, tout le monde peut les consulter. Cependant, vous pouvez autoriser sir  votre Tchannel </p>
+                        <ul class="main_ul_list_help">
+                            <li>le parrainage de votre Tchannel<li>
+                            <li>le partage de votre page Tchannel<li>
+                            <li>les invitations à votre Tchannel<li>
+                            <li>les likes; les commentaires; partages; notes sur tout le contenu ou une sélection (photos; vidéos; albums; news; posts; brochures)<li>
+                        </ul>
+                        <p class="faq_sub_header_title">Vous pouvez également contrôler les éléments à afficher sur votre Tchannel :</p>
+                        <ul class="main_ul_list_help">
+                            {#<li>Mon journal Tchannel<li>#}
+                            <li>Tchannels que je parraine <li>
+                            <li>Autres Tchannels que j´ai créé<li>
+                            <li>Evènements que je parraine <li>
+                            <li>Tchannel les plus actifs<li>
+                            <li>Tubers les plus actifs<li>
+                        </ul>
+                        <p class="faq_sub_header_title">Vous pouvez configurer qui peut voir vos relations et / ou le journal de votre Tchannel :</p>
+                        <ul class="main_ul_list_help">
+                            <li>Public<li>
+                            <li>Personnalisé<li>
+                            <li>Relations<li>
+                            <li>Privé<li>
+                            <li>Parrains<li>
+                        </ul>
+                        <p class="faq_sub_header_title">Vous pouvez également définir la confidentialité des événements de votre Tchannel :</p>
+                        <ul class="main_ul_list_help">
+                            <li>Qui peut rejoindre ? (Tout le monde; Relations; Personnalisé)<li>
+                            <li>Afficher les parrains de mes événements<li>
+                            <li>Autoriser le parrainage de mon évènement<li>
+                            <li>Autoriser les partages et les commentaires<li>
+                            <li>Autoriser les invités à inviter<li>
+                        </ul>
+                        <p class="faq_sub_header_title"><span class="underline"><b>Suppression Tchannel:</b></span> Avant de supprimer votre Tchannel, il est important de savoir que : </p>
+                        <ul class="main_ul_list_help">
+                            <li>La suppression de votre Tchannel est définitive.<li>
+                            <li>En supprimant votre Tchannel, vous supprimerez définitivement tout votre profil, votre contenu et vos téléchargements et vous ne pourrez plus les récupérer.<li>
+                            <li>Les liens vers d'autres réseaux sociaux ou sites Web seront également supprimés.<li>
+                            <li>Personne ne vous retrouvera sur Tourist Tube channels.<li>
+                            <li>Votre Tchannel sera supprimé de Tourist Tube, mais certaines informations peuvent toujours être visibles dans la liste des autres relations..<li>
+                        </ul>
+                        <p class="faq_sub_header_title">Vous avez également la possibilité de nous dire pourquoi vous avez supprimé votre Tchannel :</p>
+                        <ul class="main_ul_list_help">
+                            <li>Les Tchannels sont compliqués à utiliser (cliquez ici pour obtenir de l'aide); ira à l'aide <li>
+                            <li>J´ai un autre Tchannel<li>
+                            <li>Trop d´e-mail de TT (cliquez ici pour gérer les emails que vous recevez de TT); ira aux notifications par e-mail<li>
+                            <li>Je souhaite me connecter avec un autre compte (cliquez ici pour modifier les informations de votre compte); ira à l'information de compte<li>
+                            <li>Je ne trouve pas les Tchannels intéressants (cliquez ici pour en savoir plus sur l’utilité des Tchannels ou pour essayer de vous connecter à d’autres Tchannels actifs ou à des Tourist Tubers); ira à l'aide<li>
+                            <li>Signaler un problème (sujet • zone de description) Bas du formulaire<li>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">Comment nous contacter<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <h3 class="help_h3">Problèmes de sécurité</h3>
+                        <p class="faq_sub_header_title">Pour signaler des problèmes de sécurité / piratage sur le site, veuillez nous contacter à l'adresse <span class="afaqMainStyle"><a href="mailto:security@touristtube.com" class="afaqMainStyle" title="{{ 'security@touristtube.com' }}">security@touristtube.com</a></span></p>
+                        <h3 class="help_h3">Contenu inapproprié</h3>
+                        <p class="faq_sub_header_title">Pour signaler tout contenu inapproprié sur le site, veuillez nous contacter à l'adresse <span class="afaqMainStyle"><a href="mailto:abuse@touristtube.com" class="afaqMainStyle" title="{{ 'abuse@touristtube.com' }}">abuse@touristtube.com</a></span></p>
+                        <h3 class="help_h3">Violation de copyright</h3>
+                        <p class="faq_sub_header_title">Pour signaler des violations du droit d'auteur sur le site, veuillez nous contacter à l'adresse <span class="afaqMainStyle"><a href="mailto:copyright@touristtube.com" class="afaqMainStyle" title="{{ 'copyright@touristtube.com' }}">copyright@touristtube.com</a></span></p>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

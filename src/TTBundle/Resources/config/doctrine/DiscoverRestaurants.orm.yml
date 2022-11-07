@@ -1,0 +1,152 @@
+TTBundle\Entity\DiscoverRestaurants:
+    type: entity
+    table: discover_restaurants
+    indexes:
+        long:
+            columns:
+                - longitude
+                - latitude
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        stars:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        address:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        about:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        facilities:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        zoomOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: zoom_order
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        zipcode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        phone:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        website:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        openingDays:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: opening_days
+        openingHours:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: opening_hours
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+    lifecycleCallbacks: {  }

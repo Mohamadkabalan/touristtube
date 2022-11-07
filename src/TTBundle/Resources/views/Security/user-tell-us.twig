@@ -1,0 +1,24 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block body %}
+    <section class="container message_container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-xs-12 nopad">
+                                <div class="circlimg_arrow"><i class="fas fa-angle-down"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activateMsg col-xs-12 nopad">
+                        <p>{{'Thanks for telling us that you did not ask to reset your password.'|trans}}</p>
+                        <p>{{'You can access your Tourist Tube account with your current password.'|trans}}</p>
+                    </div>
+                </div>
+                <div class="row no-margin bordered_row"></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

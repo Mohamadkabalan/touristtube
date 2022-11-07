@@ -1,0 +1,220 @@
+TTBundle\Entity\PraguePoi:
+    type: entity
+    table: prague_poi
+    indexes:
+        country:
+            columns:
+                - country
+        longitude:
+            columns:
+                - longitude
+        latitude:
+            columns:
+                - latitude
+        name:
+            columns:
+                - name
+        country_2:
+            columns:
+                - country
+        city:
+            columns:
+                - city
+        zoom_order:
+            columns:
+                - zoom_order
+        city_id:
+            columns:
+                - city_id
+        published:
+            columns:
+                - published
+        last_modified:
+            columns:
+                - last_modified
+        country_3:
+            columns:
+                - country
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        stars:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        zoomOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: zoom_order
+        showOnMap:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: show_on_map
+        cat:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        subCat:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: sub_cat
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        zipcode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        phone:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        website:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        price:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        address:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fromSource:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+                default: old
+            column: from_source
+        status:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        state:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: State
+        stateCode:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: state_code
+        nCityLocal:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: n_city_local
+        nCityAdmin:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: n_city_admin
+    lifecycleCallbacks: {  }

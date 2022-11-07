@@ -1,0 +1,84 @@
+
+{% if filterSuffix is not defined %}
+	{% set filterSuffix = "" %}
+{% endif %}
+{% if searchAccountId is not defined %}
+	{% set searchAccountId = "" %}
+{% endif %}
+{% if searchAccountTypeId is not defined %}
+	{% set searchAccountTypeId = "" %}
+{% endif %}
+
+<div class="row no-margin margin_bottom_20">
+    <div class="col-xs-12 nopad">
+	<p class="blue font-24 line-height-26 padding_left_17"><span class="toggledtitle">{{'Filters'|trans}}</span><i class="fas fa-angle-double-left angleleft_style"></i><i class="fas fa-angle-double-right angleright_style"></i></p>
+    </div>
+</div>
+<div class="row no-margin toggledmenu">
+    <div class="col-xs-12 nopad">
+    {% if hideDateFilter is not defined %} 
+	<div class="row no-margin">
+	    <div class="col-xs-12 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By date Interval'|trans}}</p>
+		    </div>
+		</div>
+		<div class="row no-margin">
+		    <div id="dateRange" class="col-xs-12 dateRangeContainer nopad">
+			<div class="row no-margin">
+			    <div id="fromContainer" class="col-xs-12 nopad mybookinginput">
+				<input type="text" class="col-xs-12 account_range_picker fromDate" id="fromDate" readonly="readonly" name="fromDateC" value="{{monthAgoDate is defined ? monthAgoDate : ''}}" placeholder="{{'from'|trans}}">
+			    </div>
+			</div>
+			<div class="row no-margin">
+			    <div id="toContainer" class="col-xs-12 nopad mybookinginput">
+				<input type="text" class="col-xs-12 account_range_picker toDate" id="toDate" readonly="readonly" name="toDateC" value="" placeholder="{{'to'|trans}}">
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	{% endif %}
+	<div class="row no-margin margin_top_20">
+	    <div class="col-xs-12 nopad">
+			<div class="row no-margin">
+			    <div class="col-xs-12 nopad">
+				<p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By User Profile'|trans}}</p>
+			    </div>
+			</div>
+			<div class="row no-margin">
+        		<div id="" class="col-xs-12 nopad mybookinginput">
+        		    <input type="text" class="col-xs-12" id="accountType{{ filterSuffix }}" name="accountTypeId" {% if accountType is defined %}value="{{accountType|raw}}"{% else %}value=""{% endif %} data-value-id="{{searchAccountTypeId|raw}}" onDropDownSelect="onAccountTypeFilterSelected" data-toggle="ttautocompleteAccountType" placeholder="{{'Search User Profile'|trans}}"/>
+        		</div>
+    	    </div>
+	    </div>
+	</div>
+
+    <div class="row no-margin margin_top_20">
+		<div class="col-xs-12 nopad">
+    	    <div class="row no-margin">
+        		<div class="col-xs-12 nopad">
+        		    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By name of account'|trans}}</p>
+        		</div>
+    	    </div>
+    	    <div class="row no-margin">
+        		<div id="" class="col-xs-12 nopad mybookinginput">
+        		    <input type="text" class="col-xs-12" id="account{{ filterSuffix }}" name="accountId" {% if accountName is defined %}value="{{accountName|raw}}"{% else %}value=""{% endif %} data-value-id="{{searchAccountId|raw}}" onDropDownSelect="onAccountFilterSelected" data-toggle="ttautocompleteAccount" placeholder="{{'Search name of account'|trans}}"/>
+        		</div>
+    	    </div>
+	   </div>
+	</div>
+
+	<div class="row no-margin margin_top_20">
+	    <div class="col-xs-12 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+				<button id="searchFilter" type="button" class="btn yellow_search_common_button">{{'Search'|trans}}</button>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>

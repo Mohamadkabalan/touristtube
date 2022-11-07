@@ -1,0 +1,187 @@
+default_flight:
+   resource: "@DefaultFlightBundle/Resources/config/routing.yml"
+   prefix:   /
+
+_welcome:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /
+    defaults: { _controller: TTBundle:Default:index, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Tube | Hotels and Flight Booking | 360 View", seodescription: "View the world attractions through a new 360 degree perspective, plan your next travel escape while booking your flight and hotel with Tourist Tube, today.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+homepage:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /
+    defaults: { _controller: TTBundle:Default:index, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Tube | Hotels and Flight Booking | 360 View", seodescription: "View the world attractions through a new 360 degree perspective, plan your next travel escape while booking your flight and hotel with Tourist Tube, today.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+user_route:
+    resource: "@CorporateBundle/Controller"
+    type:     annotation
+
+_routing_lang:
+    resource: "routing_lang.yml"
+
+_routing_corporate:
+    resource: "@CorporateBundle/Resources/config/routing.yml"
+
+_routing_hotels:
+    resource: "@HotelBundle/Resources/config/routing.yml"
+
+_routing_restaurant:
+    resource: "@RestaurantBundle/Resources/config/routing.yml"
+
+_routing_property_360:
+    resource: "@Property360Bundle/Resources/config/routing.yml"
+
+_routing_ajax:
+    resource: "routing_ajax.yml"
+
+_routing_api:
+    resource: "routing_api.yml"
+
+_routing_reviews:
+    resource: "routing_reviews.yml"
+
+_routing_channels:
+    resource: "routing_channels.yml"
+
+_routing_default:
+    resource: "routing_default.yml"
+
+_routing_users:
+    resource: "routing_users.yml"
+
+_routing_photos_videos:
+    resource: "routing_photos_videos.yml"
+
+_routing_uploads:
+    resource: "routing_uploads.yml"
+    
+routing_bags:
+    resource: "routing_bags.yml"
+
+_routing_elastic:
+    resource: "routing_elastic.yml"
+
+_routing_misc:
+    resource: "routing_misc.yml"
+
+_routing_discover:
+    resource: "routing_discover.yml"
+
+_routing_payment:
+    resource: "routing_payment.yml"
+
+_routing_flights:
+    resource: "@FlightBundle/Resources/config/routing.yml"
+
+_routing_new_flights:
+    resource: "@NewFlightBundle/Resources/config/routing.yml"
+    prefix:   /flights
+
+_routing_social:
+    resource: "routing_social.yml"
+
+_routing_rest_oauth:
+    resource: "@RestBundle/Resources/config/oauth/routing.yml"
+
+_routing_rest_hotels:
+    resource: "@RestBundle/Resources/config/hotels/routing.yml"
+
+_routing_rest_flights:
+    resource: "@RestBundle/Resources/config/flights/routing.yml"
+
+_routing_rest_thingstodo:
+    resource: "@RestBundle/Resources/config/thingstodo/routing.yml"
+
+_routing_rest_restaurant:
+    resource: "@RestBundle/Resources/config/restaurant/routing.yml"
+
+_routing_rest_users:
+    resource: "@RestBundle/Resources/config/users/routing.yml"
+
+_routing_rest_payment:
+    resource: "@RestBundle/Resources/config/payment/routing.yml"
+
+_routing_rest_corpo_admin:
+    resource: "@RestBundle/Resources/config/corporate/admin/routing.yml"
+
+_routing_rest_currencies:
+    resource: "@RestBundle/Resources/config/currencies/routing.yml"
+
+_routing_rest_countries:
+    resource: "@RestBundle/Resources/config/countries/routing.yml"
+
+_routing_rest_cities:
+    resource: "@RestBundle/Resources/config/cities/routing.yml"
+
+_routing_rest_autocomplete:
+    resource: "@RestBundle/Resources/config/autocomplete/routing.yml"
+
+_routing_rest_otp:
+    resource: "@RestBundle/Resources/config/otp/routing.yml"
+
+_routing_payment_bundle:
+    resource: "@PaymentBundle/Resources/config/routing.yml"
+
+_routing_otp_bundle:
+    resource: "@OTPBundle/Resources/config/routing.yml"
+    
+_routing_aws_s3:
+    resource: "@TTBundle/Resources/config/routing_aws_s3.yml"
+
+_routing_rest_deals:
+    resource: "@RestBundle/Resources/config/deals/routing.yml"
+
+_routing_deals:
+    resource: "@DealBundle/Resources/config/routing_deals.yml"
+
+_routing_media_mobile:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /360-photos-vr/mobile/{module}/{hotel_name}/{country_iso3}/{hotel_id}/{grp}/{div}/{sdiv}/{physical_file}/{fake_file_name}
+    defaults: { _controller: TTBundle:Media:get360MediaMobile, fake_file_name: file.jpg }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_routing_media_main_division_mobile:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /360-photos-vr/mobile/{module}/{hotel_name}/{country_iso3}/{hotel_id}/{grp}/{div}/{physical_file}/{fake_file_name}
+    defaults: { _controller: TTBundle:Media:get360MediaMainDivMobile, fake_file_name: file.jpg }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_routing_media:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /360-photos-vr/{module}/{hotel_name}/{country_iso3}/{hotel_id}/{grp}/{div}/{sdiv}/{physical_file}/{fake_file_name}
+    defaults: { _controller: TTBundle:Media:get360Media, fake_file_name: file.jpg }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_routing_media_query_params:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /360-photos-vr/{module}/{fake_file_name}
+    defaults: { _controller: TTBundle:Media:get360MediaParams, fake_file_name: filename }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_routing_media_main_division:
+    host: "www{subdomain_suffix}.{domain}"
+    path: /360-photos-vr/{module}/{hotel_name}/{country_iso3}/{hotel_id}/{grp}/{div}/{physical_file}/{fake_file_name}
+    defaults: { _controller: TTBundle:Media:get360MediaMainDiv, fake_file_name: file.jpg }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+pageNotFound:
+  path:  /{path}
+  defaults: { _controller: TTBundle:Default:pageNotFound, path: '' }
+  requirements:
+      path: .*

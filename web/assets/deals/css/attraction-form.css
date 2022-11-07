@@ -1,0 +1,231 @@
+.attoff_atf{
+    color: black;
+    line-height: 28px;
+    font-size: 28px;
+    padding: 0;
+    padding-top: 50px;
+    padding-bottom: 35px;
+}
+.pinktextwizarrow_atf{
+    color: #d10c3b;
+    font-size: 19px;
+    line-height: 21px;
+    padding: 0;
+}
+.pinktextwizarrow_atf span.arrowblueimg_atf{
+    padding-right: 17px;
+}
+.grey1border_atf{
+    border-top: 1px solid #f6f6f6;
+    float: left;
+    width: 100%;
+    margin-top: 18px;
+    padding: 0;
+}
+.grey3border_atf{
+    border-top: 1px solid #f6f6f6;
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 21px;
+}
+.pink2border_atf{
+    border-top: 2px solid #d10c3b;
+    float: left;
+    width: 100%;
+    padding: 0;
+}
+.greysepborder_atf{
+    border-top: 1px solid #bababa;
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.greyradioseperator_atf{
+    border-top: 1px solid #d6d6d6 ;
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 5px;
+}
+.afn_atf{
+    color: #5662bc;
+    font-size: 16px;
+    line-height: 21px;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.arrivalcompdate_atf input, .arrivalcompdate_atf select{
+    width: 379px;
+    height: 38px;
+    border: 1px solid #d6d6d6;
+    background-color: white;
+    box-shadow: none;
+    font-size: 16px;
+    color: black;
+    padding-left: 34px;
+    line-height: 38px;
+}
+.asiselectboxcont_atf{
+    width: 138px;
+    height: 38px;
+    border: 1px solid #d6d6d6;
+    background-color: white;
+    box-shadow: none;
+    font-size: 16px;
+    color: black;
+    padding-left: 14px;
+    line-height: 38px;
+    background: rgba(0,0,0,0) url("/media/images/flech-out.png") no-repeat scroll right 14px center;
+}
+.pinktextwizarrow_atf span.greysmalnxtpink_atf{
+
+    font-size: 15px;
+    color: #838383;
+}
+.labelliketext_atf{
+    line-height: 34px;
+    color: black;
+    font-size: 16px;
+}
+.closedtxt_atf{
+    color: #d6d6d6;
+}
+.abt_atf{
+    background: rgba(0,0,0,0) url("/media/images/attraction-form/interbulet_atf.png") no-repeat scroll left center;
+    padding-left: 32px;
+    text-decoration: underline;
+    color: #5662bc;
+    font-size: 16px;
+    line-height: 28px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 4px;
+}
+.abt_atf:hover{
+    color: #5662bc;
+}
+.marbutfift_atf{
+    margin-bottom: 15px;
+}
+.pinfspbulletmargin_atf{
+    margin-left: -6px;
+    margin-bottom: 10px;
+}
+.radio-item label.bluelabeltxt_atf {
+    color: #5662bc;
+}
+.specialstyletextariaheader{
+    line-height: 20px;
+    margin-top: 10px;
+    padding: 0;
+    margin-bottom: 5px;
+}
+.spreqtxteracont textArea{
+    width: 379px;
+    height: 119px;
+    border: 1px solid #d6d6d6;
+    background-color: white;
+    box-shadow: none;
+    font-size: 16px;
+    padding: 10px;
+}
+.twobutcont_atf input.combutstyle_atf{
+    height: 54px;
+    border: none;
+    color: white;
+    font-size: 19px;
+    background-color: #5662bc;
+    border-radius: 5px;
+    margin-top: 9px;
+}
+.twobutcont_atf input.cancelstyle_atf{
+    width: 142px;
+    margin-right: 6px;
+}
+.twobutcont_atf input.nxtpage_atf{
+    width: 227px;
+}
+/*Radio button css:
+=========================================*/
+
+.radio-item {
+    display: inline-block;
+    position: relative;
+    padding: 0 6px;
+    margin: 0px 0 0;
+    padding-bottom: 10px;
+}
+
+.radio-item input[type='radio'] {
+    display: none;
+}
+
+.radio-item label {
+    color: black;
+    font-weight: normal;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+.radio-item.closed_atf label {
+    color: #d6d6d6;
+}
+.radio-item label:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin: 0 5px 0 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid #acacac;
+    background-color: transparent;
+}
+.radio-item.closed_atf label:before {
+    border: 2px solid #eeeeee;
+}
+
+.radio-item input[type=radio]:checked + label:after {
+    border-radius: 11px;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    content: " ";
+    display: block;
+    background: #acacac;
+}
+.radio-item.closed_atf input[type=radio]:checked + label:after {
+    background: #eeeeee;
+}
+@media (max-width:400px){
+
+    .arrivalcompdate_atf input{
+        width: 95%;
+    }
+    .spreqtxteracont textArea{
+        width: 95%;
+    }
+    .twobutcont_atf input.cancelstyle_atf{
+        width: 95%;
+        margin-right: 0px;
+    }
+    .twobutcont_atf input.nxtpage_atf{
+        width: 95%;
+    }
+}
+
+.wrong_credentialsmsg {
+    color: red;
+    display: none;
+    margin-top: 29px;
+    font-size: 16px;
+    line-height: 17px;
+}
+.wrong_credentialsmsg.margintop2 {
+    margin-top: 2px;
+}

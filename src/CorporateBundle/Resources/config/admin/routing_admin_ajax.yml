@@ -1,0 +1,39 @@
+_corpo_search_city:
+    path:      "/corporate/SearchCity/{countryCode}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:cityCombo, "countryCode": "" ,_locale: "%locale%"}
+
+_corpo_search_country:
+    path:      "/corporate/SearchCountry"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:countryCombo, _locale: "%locale%"}
+
+_corpo_search_currency:
+    path:      "/corporate/SearchCurrency"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:currencyCombo, _locale: "%locale%"}
+
+_corpo_get_city_info:
+    path:      "/corporate/getCityInfo"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:getCityInfo, _locale: "%locale%"}
+
+_corpo_filterBy_account_transactions:
+    path:      "/corporate/admin/filterAccountTransaction"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:filterAccountTransaction, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+
+_corpo_show_account_transaction_detail:
+    path:      "/corporate/admin/showAccountTransactionDetail"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:showAccountTransactionDetail, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+
+_corpo_filter_user_payment:
+    path:      "/corporate/admin/filterUser"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:filterUser, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+
+_corpo_reset_password:
+    path:      "/corporate/users/resetPassword"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:resetPassword, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+
+_corpo_manage_bookings_reject:
+    path:      "/corporate/booking/manage-bookings/reject"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:reject, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+
+_corpo_manage_bookings_cancel:
+    path:      "/corporate/booking/manage-bookings/cancel"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:cancel, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}

@@ -1,0 +1,163 @@
+# Common Routes
+_rest_hotels_search_lang:
+    path:      "/{_locale}/api/hotels/search"
+    defaults: { _controller: RestBundle:hotels\Hotels:search, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_hotels_prebook_lang:
+    path:      "/{_locale}/api/hotels/prebook/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:completePricingInfo, _locale: "%locale%", domain: "%domain%", hotelId: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        methods: POST
+
+_rest_hotels_booking_cancellation_lang:
+    path:      "/{_locale}/api/hotels/cancel"
+    defaults: { _controller: RestBundle:hotels\Hotels:cancel, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_hotels_divisions_lang:
+    path:      "/{_locale}/api/hotels/divisions/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:divisions, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET
+
+# Web Routes
+_rest_hotels_list_lang:
+    path:      "/{_locale}/api/hotels"
+    defaults: { _controller: RestBundle:hotels\Hotels:list, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_hotels_offers_lang:
+    path:      "/{_locale}/api/hotels/offers/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:offers, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_hotels_book_lang:
+    path:      "/{_locale}/api/hotels/book/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\Hotels:book, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_hotels_reservation_lang:
+    path:      "/{_locale}/api/hotels/reservation"
+    defaults: { _controller: RestBundle:hotels\Hotels:reservation, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_hotels_booking_details_lang:
+    path:      "/{_locale}/api/hotels/booking/{reference}"
+    defaults: { _controller: RestBundle:hotels\Hotels:bookingDetails, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", reference: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        reference: ".*"
+        methods: GET
+
+# Corporate Routes
+_rest_hotels_corpo_list_lang:
+    path:      "/{_locale}/api/corporate/hotels"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:list, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_hotels_corpo_offers_lang:
+    path:      "/{_locale}/api/corporate/hotels/offers/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:offers, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_hotels_corpo_book_lang:
+    path:      "/{_locale}/api/corporate/hotels/book/{hotelId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:book, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_hotels_corpo_book_finalize_lang:
+    path:      "/{_locale}/api/corporate/hotels/book-finalize/{reservationId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:hotelProceedPayment, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", reservationId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_hotels_corpo_reservation_lang:
+    path:      "/{_locale}/api/corporate/hotels/reservation"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:reservation, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", hotelId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+        
+_rest_hotels_corpo_reservation_details_lang:
+    path:      "/{_locale}/api/corporate/hotels/reservation-details/{reservationId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:viewReservationDetails, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", reservationId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+_rest_hotels_reservation_approve_lang:
+    path:      "/{_locale}/api/corporate/hotels/reservation/approve/{reservationId}"
+    defaults: { _controller: RestBundle:hotels\HotelsCorpo:checkReservationAvailability, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%", reservationId: "" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: POST
+
+# Payment Routes
+_rest_hotels_payment_success_lang:
+    path:      "/{_locale}/api/hotels/payment-success"
+    defaults: { _controller: RestBundle:hotels\Hotels:paymentSuccess, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET
+
+_rest_hotels_payment_failure_lang:
+    path:      "/{_locale}/api/hotels/payment-failure"
+    defaults: { _controller: RestBundle:hotels\Hotels:paymentFailed, subdomain_suffix: "%subdomain_suffix%", domain: "%domain%", _locale: "%locale%" }
+    requirements:
+        subdomain_suffix: ".*"
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        methods: GET

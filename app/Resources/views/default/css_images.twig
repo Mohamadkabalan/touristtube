@@ -1,0 +1,331 @@
+<style type="text/css">
+    {#BASE FINAL FIRST CSS SECTION:
+    ==============================#}
+    .ui-progressbar .ui-progressbar-overlay {background: url("{{ generateMediaURL('/media/images/animated-overlay.gif') }}");}
+    .ui-tooltip.search-tooltip-class-tl{background-image: url("{{ generateMediaURL('/media/images/popup_arrow_left.png') }}");}
+    .ui-tooltip.search-tooltip-class-bl{background-image: url("{{ generateMediaURL('/media/images/popup_arrow_left.png') }}");}
+    .ui-tooltip.search-tooltip-class-tr{background-image: url("{{ generateMediaURL('/media/images/popup_arrow_right.png') }}");}
+    .ui-tooltip.search-tooltip-class-br{background-image: url("{{ generateMediaURL('/media/images/popup_arrow_right.png') }}");}
+    .ui-tooltip.search-tooltip-class-t{background-image: url("{{ generateMediaURL('/media/images/popup_arrow_top.png') }}");}
+    .ui-tooltip.search-tooltip-class-b{background-image: url("{{ generateMediaURL('/media/images/popup_arrow_bottom.png') }}");}
+    .tt_vtour_popup_modal .fancybox-close {background-image: url("{{ generateMediaURL('/media/images/close.jpg') }}");}
+    .TTCookie_close{background: url("{{ generateMediaURL('/media/images/cat-popup-close.png') }}") no-repeat;}
+    .TTAlert_back_fix {background: url("{{ generateMediaURL('/media/images/fancybox_overlay.png') }}") repeat;}
+    #TTAlert_shadow {background: url("{{ generateMediaURL('/media/images/alert_shadow.png') }}") repeat scroll 0 0;}
+    #TTAlert_close {background: url("{{ generateMediaURL('/media/images/cat-popup-close.png') }}") no-repeat;}
+    .TTAlert_seperator {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/alert_seperator.jpg') }}") no-repeat scroll 0 0;}
+    .fromDate,.toDate{background: url("{{ generateMediaURL('/media/images/search/calendar_icon.gif') }}") no-repeat 5px center;}
+    .departureairport,.arrivalairport,.searchdiscover{background: url("{{ generateMediaURL('/media/images/search/airport_icon.gif') }}") no-repeat 5px center;}
+    .dropdown-menu > li > a.flag_lang { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/index/enflag.png') }}") no-repeat scroll 10px 0;}
+    .dropdown-menu > li > a.flag_lang.flag_lang_en {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/index/enflag.png') }}") no-repeat scroll 10px 0;}
+    .dropdown-menu > li > a.flag_lang.flag_lang_fr {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/index/frflag.png') }}") no-repeat scroll 10px 0;}
+    .dropdown-menu > li > a.flag_lang.flag_lang_cn, .dropdown-menu > li > a.flag_lang.flag_lang_zh {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/index/cnflag.png') }}") no-repeat scroll 10px 0;}
+    .dropdown-menu > li > a.flag_lang.flag_lang_hi { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/index/inflag.png') }}") no-repeat scroll 10px 0;}
+    .flagbacklangbar.flagbacklangbar_en{background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/enflag.png') }}") no-repeat scroll 0px 16px;}
+    .flagbacklangbar.flagbacklangbar_fr{background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/frflag.png') }}") no-repeat scroll 0px 16px;}
+    .flagbacklangbar.flagbacklangbar_cn{background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/cnflag.png') }}") no-repeat scroll 0px 16px;}
+    .flagbacklangbar.flagbacklangbar_in{background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/inflag.png') }}") no-repeat scroll 0px 16px;}
+    .pagerWrapper .first_pg { background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll 0 3px;}
+    .pagerWrapper .prev_pg { background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -12px 3px;}
+    .pagerWrapper .next_pg { background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -27px 3px;}
+    .pagerWrapper .last_pg { background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -38px 3px;}
+    .mainpage_backimg{ {#background-image: url("{{ generateMediaURL('/media/images/index/homepage_backimg.jpg') }}");#} background-position: center center;}
+    .image_searchbox.active{background: url("{{ generateMediaURL('/media/images/index/yellow_circle.png') }}") no-repeat top center;}
+    .image_searchbox {background: url("{{ generateMediaURL('/media/images/index/grey_circle.png') }}") no-repeat top center;}
+    .styled-select select.selectclassstyle{background: transparent; background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 5px center;}
+    .moreoptionsclass .mropclass{background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/arrowdown_hp.png') }}") no-repeat scroll right 7px;}
+    .moreoptionsclass .lessclass{background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/less_uparrow.png') }}") no-repeat scroll right 7px;}
+    .decbut {background: url("{{ generateMediaURL('/media/images/index/minus_search_hp.png') }}") no-repeat left center;}
+    .inputsearch.inputsearchplus {background: url("{{ generateMediaURL('/media/images/butrightborder.png') }}") no-repeat right center;}
+    .incbut {background: url("{{ generateMediaURL('/media/images/index/plus_search_hp.png') }}") no-repeat right center;}
+    .moreoptionnewselect_hp select{background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 3px center;}
+    .changebagname{background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 10px center;}
+    .currencyselectbox_top .currency_top_but{background: url("{{ generateMediaURL('/media/images/index/custom_black_arrow.png') }}") no-repeat scroll right center;}
+    .sprite {background: url("{{ generateMediaURL('/media/images/index/sprite.png') }}") no-repeat top left;}
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .moreoptionnewselect_hp select { background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 3px center;}
+    }
+    @media (max-width: 767px) {
+        .langxs .dropxslang {background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/enflag.png') }}") no-repeat scroll 0px 0px;}
+        .langxs .dropxslang.dropxslang_en {background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/enflag.png') }}") no-repeat scroll 0px 0px;}
+        .langxs .dropxslang.dropxslang_fr {background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/frflag.png') }}") no-repeat scroll 0px 0px;}
+        .langxs .dropxslang.dropxslang_cn {background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/cnflag.png') }}") no-repeat scroll 0px 0px; }
+        .langxs .dropxslang.dropxslang_in { background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/inflag.png') }}") no-repeat scroll 0px 0px;}
+        .image_searchbox {background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/index/grey_circle_xs.png') }}") no-repeat center top;}
+        .image_searchbox.active{background: url("{{ generateMediaURL('/media/images/index/yellow_circle-xs.png') }}") no-repeat top center;}
+    }
+    {# END FIRST CSS SECTION:
+    ==============================#}
+
+    {#BASE CORPORATE FINAL FIRST CSS SECTION:
+   ==============================#}
+    .cg-navTable td select.recordXP{background: #838383 url("{{ generateMediaURL('/media/images/corporate_new/white_dropdown_corp_arrow.png') }}") no-repeat scroll right 5px center;}
+    div.dataTables_wrapper div.dataTables_length select{background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 18px center;}
+    {# END FIRST CSS SECTION:
+   ==============================#}  
+    .navbar-default .navbar-nav > li.itemspecialstyleli{background: #636363 url("{{ generateMediaURL('/media/images/360_logo.png') }}") no-repeat scroll center bottom 5px;}
+    .pagerWrapper ul li.first_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll 0 3px;}
+    .pagerWrapper ul li.prev_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -12px 3px;}
+    .pagerWrapper ul li.next_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -27px 3px;}
+    .pagerWrapper ul li.last_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -38px 3px;}
+    .hotel-overlay-loading-fix div {background: url("{{ generateMediaURL('/media/images/preloader_hotels.gif') }}") no-repeat center center;}
+    .addtobag {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/addtobag_icon.png') }}") no-repeat scroll 0 0;}
+    .sort_submenu>ul{background: url("{{ generateMediaURL('/media/images/hotel_search_new/arrow_gray.png') }}") no-repeat scroll 29px 0px;}
+    .missedtxtcomm span.missed_pink{background: url("{{ generateMediaURL('/media/images/hotel_search_new/missed_pinkarrow.png') }}") no-repeat left center;}
+    .room-gallery {background: url("{{ generateMediaURL('/media/images/fancybox_overlay.png') }}") repeat;}
+    .room-gallery-container .rommgalleryul li.borderedliroom{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/bordered_roomgallery.png') }}") no-repeat scroll 0px 0px;}
+    .room-gallery-container .closebut-room{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/closebut-room.png') }}") no-repeat scroll 0px 0px;}
+    .addtobagImage {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/addtobag_icon.png') }}") no-repeat scroll 0 0;}
+    .hotel_booking_details_container .hotel_detailed_room_select select{background: white url("{{ generateMediaURL('/media/images/flech-out.png') }}") no-repeat scroll right 5px center;}
+    .room-gallery {background: url("{{ generateMediaURL('/media/images/fancybox_overlay.png') }}") repeat;}
+    .fancybox-overlay {background: url("{{ generateMediaURL('/media/images/fancybox_overlay.png') }}") repeat;}
+    .backimginfo {background: url("{{ generateMediaURL('/media/images/exlamgreysmal.png') }}") no-repeat scroll left center;}
+    .green-button { background: #17a988 url("{{ generateMediaURL('/media/images/whiteff.png') }}") no-repeat scroll 10px 41px;}
+    .hotel_payment_container .select_commun{background: url("{{ generateMediaURL('/media/images/hotel-book_new/black_select_arrow.png') }}") no-repeat scroll right 40px center;}
+    .hotel_payment_container .select_grey{background: #959595 url("{{ generateMediaURL('/media/images/hotel_payment_new/white_select_arrow.png') }}") no-repeat scroll right 20px center;}
+    .leftpanel_selectbox .select_leftpanel{background: url("{{ generateMediaURL('/media/images/hotel-book_new/black_select_arrow.png') }}") no-repeat scroll right 20px center;}
+    .hotel_book_container .right_panel .dropdown{background: url("{{ generateMediaURL('/media/images/hotel-book_new/black_select_arrow.png') }}") no-repeat scroll right 20px center;}
+    .addchild{background-image: url("{{ generateMediaURL('/media/images/addchild.png') }}");}
+    li.stops{background-image: url("{{ generateMediaURL('/media/images/fly-stops.png') }}");}
+    .title_with_icon .bg {background-image: url("{{ generateMediaURL('/media/images/search-restaurant-list.png') }}");}
+    .first_pg { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll 0 3px;}
+    .prev_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -12px 3px;}
+    .next_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -27px 3px;}
+    .last_pg { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -38px 3px;}
+    .inputbox select {background: rgb(233, 233, 233) url("{{ generateMediaURL('/media/images/flech-out.png') }}") no-repeat scroll right 5px center;}
+    .bluebacksearchdiv{background: rgb(45, 165, 187) url("{{ generateMediaURL('/media/images/threearr.png') }}") no-repeat scroll 45% 53%;}
+    .ulheadstyle li{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/border.png') }}") no-repeat scroll right center;}
+    .text{ background: white url("{{ generateMediaURL('/media/images/timelogo.png') }}") no-repeat scroll left center;}
+    .firsttextspan{background-image: url("{{ generateMediaURL('/media/images/excmarqblue.png') }}"), url("{{ generateMediaURL('/media/images/orangeaddbut.png') }}");}
+    .overlay-loading-flights div{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/preloader_flight.gif') }}") no-repeat scroll center center;}
+    .title_with_icon_chs .txt_chs{background: url("{{ generateMediaURL('/media/images/corporate-flight-search/filter-back-img-yellow.png') }}") no-repeat 0 0;}
+    .checkboxes_chs .bg_chs {background: url("{{ generateMediaURL('/media/images/corporate-flight-search/greystars_chs.png') }}") no-repeat 0 0;}
+    @media (max-width:1199px){
+        .bluebacksearchdiv{ background: rgb(45, 165, 187) url("{{ generateMediaURL('/media/images/threearr.png') }}") no-repeat scroll 56% 53%;}
+    }
+    @media (max-width:767px){
+        .bluebacksearchdiv {background: rgb(45, 165, 187) url("{{ generateMediaURL('/media/images/threearr.png') }}") no-repeat scroll 80px 57%;}
+    }
+    .channels_container ul.list_left_menue_ainfo li{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/tuber/pink_list_dot.png') }}") no-repeat scroll left center;}
+    .dropdown_txt {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/hotel-book_new/black_select_arrow.png') }}") no-repeat scroll right 20px center;}
+    .channel-container .channel_input_commun select{background: url("{{ generateMediaURL('/media/images/channel_new/black_darrow.png') }}") no-repeat scroll right 15px center;}
+    .channel_input_commun select{background: url("{{ generateMediaURL('/media/images/channel_new/black_darrow.png') }}") no-repeat scroll right 15px center;}
+    .channels_container ul.list_left_menue_ainfo li{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/tuber/pink_list_dot.png') }}") no-repeat scroll left center;}
+    .media-container .swiper-button-ss-prev { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/photos_videos/prev_grey.png') }}") no-repeat scroll center center;}
+    .media-container .swiper-button-ss-next { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/photos_videos/next_black.png') }}") no-repeat scroll center center;}
+    .review_main_container .eval_options_glob { background: url("{{ generateMediaURL('/media/images/review_new/grey_img_rating_star.png') }}") no-repeat;}
+    .review_main_container .eval_options_glob:hover, .eval_options_glob.active {background: url("{{ generateMediaURL('/media/images/review_new/yellow_img_rating_star.png') }}") no-repeat;}
+    .discover_detailed_container .slectcateg_select {background: #db3a69 url("{{ generateMediaURL('/media/images/discover_detailed_new/searchlogo.png') }}") no-repeat scroll center right 10px;}
+    .discover_detailed_container .anchor_bk{ background: url("{{ generateMediaURL('/media/images/discover/anchor_bk.png') }}") no-repeat scroll;}
+    .tuuber-container ul.list_left_menue_ainfo li{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/tuber/pink_list_dot.png') }}") no-repeat scroll left center;}
+    .bag_container .containeraddicon.containeraddicon1 { background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/defaultbag.png') }}") no-repeat scroll center top;}
+    .peoplesdataemail_icon {background-image: url("{{ generateMediaURL('/media/images/email_icon.jpg') }}");}
+    .peoplesdataclose {background-image: url("{{ generateMediaURL('/media/images/modal_profile_close.jpg') }}");}
+    .fb-share{background-image: url("{{ generateMediaURL('/media/images/sharepopup-social.png') }}");}
+    .g-share{background-image: url("{{ generateMediaURL('/media/images/sharepopup-social.png') }}");}
+    .twt-share{background-image: url("{{ generateMediaURL('/media/images/sharepopup-social.png') }}");}
+    .print-share{background-image: url("{{ generateMediaURL('/media/images/sharepopup-social.png') }}");}
+    .hotel-overlay-loading-fix div {background: url("{{ generateMediaURL('/media/images/preloader_hotels.gif') }}") no-repeat center center;}
+    .pagerWrapper ul li.first_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll 0 3px;}
+    .pagerWrapper ul li.prev_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -12px 3px;}
+    .pagerWrapper ul li.next_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -27px 3px;}
+    .pagerWrapper ul li.last_pg {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -38px 3px;}
+    .selectback2 {background: rgb(234, 234, 234) url("{{ generateMediaURL('/media/images/secureresume.png') }}") no-repeat scroll 94% 50%;}
+    .select-expiry-date {background: rgb(234, 234, 234) url("{{ generateMediaURL('/media/images/flech-out.png') }}") no-repeat scroll right 5px center;}
+    .firststep, .sndstep {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/stepsborder_hoteldetailed.png') }}") no-repeat scroll right 12px;}
+    .bullet {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/grey_bullet.png') }}") no-repeat scroll center center;}
+    .number-step-text {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/greyff_hoteldetail.png') }}") no-repeat scroll right center;}
+    .green_bullet .bullet {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/green_bullet.png') }}") no-repeat scroll center center;}
+    .blue_bullet .bullet {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/blue_bullet.png') }}") no-repeat scroll center center;}
+    .green_bullet .number-step-text {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/greenff_hoteldetailed.png') }}") no-repeat scroll right center;}
+    .blue_bullet .number-step-text {background: rgba(255, 255, 255, 0) url("{{ generateMediaURL('/media/images/blueff_hoteldetail.png') }}") no-repeat scroll right center;}
+    .ui-icon-loading {background: url("{{ generateMediaURL('/media/images/360-photos/themes/images/ajax-loader.gif') }}");}
+    .ui-nosvg .ui-icon-action:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/action-white.png') }}")}
+    .ui-nosvg .ui-icon-alert:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/alert-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-d-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-d-l-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-d-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-d-r-white.png') }}")}
+    .ui-nosvg .ui-icon-search:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/search-white.png') }}")}
+    .ui-nosvg .ui-icon-shop:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/shop-white.png') }}")}
+    .ui-nosvg .ui-icon-star:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/star-white.png') }}")}
+    .ui-nosvg .ui-icon-tag:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/tag-white.png') }}")}
+    .ui-nosvg .ui-icon-user:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/user-white.png') }}")}
+    .ui-nosvg .ui-icon-video:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/video-white.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-action:after,.ui-nosvg .ui-alt-icon .ui-icon-action:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/action-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-alert:after,.ui-nosvg .ui-alt-icon .ui-icon-alert:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/alert-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-d:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-d:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-d-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-d-l:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-d-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-d-l-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-d-r:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-d-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-d-r-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-l:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-l-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-r:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-r-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-u:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-u:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-u-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-u-l:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-u-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-u-l-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-arrow-u-r:after,.ui-nosvg .ui-alt-icon .ui-icon-arrow-u-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-u-r-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-audio:after,.ui-nosvg .ui-alt-icon .ui-icon-audio:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/audio-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-back:after,.ui-nosvg .ui-alt-icon .ui-icon-back:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/back-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-bars:after,.ui-nosvg .ui-alt-icon .ui-icon-bars:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/bars-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-bullets:after,.ui-nosvg .ui-alt-icon .ui-icon-bullets:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/bullets-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-calendar:after,.ui-nosvg .ui-alt-icon .ui-icon-calendar:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/calendar-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-camera:after,.ui-nosvg .ui-alt-icon .ui-icon-camera:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/camera-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-carat-d:after,.ui-nosvg .ui-alt-icon .ui-icon-carat-d:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-d-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-carat-l:after,.ui-nosvg .ui-alt-icon .ui-icon-carat-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-l-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-carat-r:after,.ui-nosvg .ui-alt-icon .ui-icon-carat-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-r-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-carat-u:after,.ui-nosvg .ui-alt-icon .ui-icon-carat-u:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-u-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-check:after,.ui-nosvg .ui-alt-icon .ui-icon-check:after,.ui-nosvg .ui-alt-icon.ui-btn.ui-checkbox-on:after,.ui-nosvg .ui-alt-icon .ui-btn.ui-checkbox-on:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/check-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-clock:after,.ui-nosvg .ui-alt-icon .ui-icon-clock:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/clock-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-cloud:after,.ui-nosvg .ui-alt-icon .ui-icon-cloud:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/cloud-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-comment:after,.ui-nosvg .ui-alt-icon .ui-icon-comment:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/comment-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-delete:after,.ui-nosvg .ui-alt-icon .ui-icon-delete:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/delete-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-edit:after,.ui-nosvg .ui-alt-icon .ui-icon-edit:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/edit-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-eye:after,.ui-nosvg .ui-alt-icon .ui-icon-eye:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/eye-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-forbidden:after,.ui-nosvg .ui-alt-icon .ui-icon-forbidden:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/forbidden-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-forward:after,.ui-nosvg .ui-alt-icon .ui-icon-forward:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/forward-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-gear:after,.ui-nosvg .ui-alt-icon .ui-icon-gear:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/gear-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-grid:after,.ui-nosvg .ui-alt-icon .ui-icon-grid:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/grid-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-heart:after,.ui-nosvg .ui-alt-icon .ui-icon-heart:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/heart-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-home:after,.ui-nosvg .ui-alt-icon .ui-icon-home:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/home-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-info:after,.ui-nosvg .ui-alt-icon .ui-icon-info:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/info-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-location:after,.ui-nosvg .ui-alt-icon .ui-icon-location:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/location-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-lock:after,.ui-nosvg .ui-alt-icon .ui-icon-lock:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/lock-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-mail:after,.ui-nosvg .ui-alt-icon .ui-icon-mail:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/mail-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-minus:after,.ui-nosvg .ui-alt-icon .ui-icon-minus:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/minus-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-navigation:after,.ui-nosvg .ui-alt-icon .ui-icon-navigation:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/navigation-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-phone:after,.ui-nosvg .ui-alt-icon .ui-icon-phone:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/phone-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-plus:after,.ui-nosvg .ui-alt-icon .ui-icon-plus:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/plus-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-power:after,.ui-nosvg .ui-alt-icon .ui-icon-power:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/power-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-recycle:after,.ui-nosvg .ui-alt-icon .ui-icon-recycle:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/recycle-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-refresh:after,.ui-nosvg .ui-alt-icon .ui-icon-refresh:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/refresh-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-search:after,.ui-nosvg .ui-alt-icon .ui-icon-search:after,.ui-nosvg .ui-input-search:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/search-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-shop:after,.ui-nosvg .ui-alt-icon .ui-icon-shop:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/shop-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-star:after,.ui-nosvg .ui-alt-icon .ui-icon-star:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/star-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-tag:after,.ui-nosvg .ui-alt-icon .ui-icon-tag:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/tag-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-user:after,.ui-nosvg .ui-alt-icon .ui-icon-user:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/user-black.png') }}")}
+    .ui-nosvg .ui-alt-icon.ui-icon-video:after,.ui-nosvg .ui-alt-icon .ui-icon-video:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/video-black.png') }}")}   
+    .ui-nosvg .ui-icon-arrow-d:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-d-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-l-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-r-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-u-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-u-l-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-u-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-u-r-white.png') }}")}
+    .ui-nosvg .ui-icon-arrow-u:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/arrow-u-white.png') }}")}
+    .ui-nosvg .ui-icon-audio:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/audio-white.png') }}")}
+    .ui-nosvg .ui-icon-back:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/back-white.png') }}")}
+    .ui-nosvg .ui-icon-bars:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/bars-white.png') }}")}
+    .ui-nosvg .ui-icon-bullets:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/bullets-white.png') }}")}
+    .ui-nosvg .ui-icon-calendar:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/calendar-white.png') }}")}
+    .ui-nosvg .ui-icon-camera:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/camera-white.png') }}")}
+    .ui-nosvg .ui-icon-carat-d:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-d-white.png') }}")}
+    .ui-nosvg .ui-icon-carat-l:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-l-white.png') }}")}
+    .ui-nosvg .ui-icon-carat-r:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-r-white.png') }}")}
+    .ui-nosvg .ui-icon-carat-u:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/carat-u-white.png') }}")}
+    .ui-nosvg .ui-icon-check:after,html.ui-nosvg .ui-btn.ui-checkbox-on:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/check-white.png') }}")}
+    .ui-nosvg .ui-icon-clock:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/clock-white.png') }}")}
+    .ui-nosvg .ui-icon-cloud:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/cloud-white.png') }}")}
+    .ui-nosvg .ui-icon-comment:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/comment-white.png') }}")}
+    .ui-nosvg .ui-icon-delete:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/delete-white.png') }}")}
+    .ui-nosvg .ui-icon-edit:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/edit-white.png') }}")}
+    .ui-nosvg .ui-icon-eye:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/eye-white.png') }}")}
+    .ui-nosvg .ui-icon-forbidden:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/forbidden-white.png') }}")}
+    .ui-nosvg .ui-icon-forward:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/forward-white.png') }}")}
+    .ui-nosvg .ui-icon-gear:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/gear-white.png') }}")}
+    .ui-nosvg .ui-icon-grid:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/grid-white.png') }}")}
+    .ui-nosvg .ui-icon-heart:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/heart-white.png') }}")}
+    .ui-nosvg .ui-icon-home:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/home-white.png') }}")}
+    .ui-nosvg .ui-icon-info:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/info-white.png') }}")}
+    .ui-nosvg .ui-icon-location:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/location-white.png') }}")}
+    .ui-nosvg .ui-icon-lock:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/lock-white.png') }}")}
+    .ui-nosvg .ui-icon-mail:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/mail-white.png') }}")}
+    .ui-nosvg .ui-icon-minus:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/minus-white.png') }}")}
+    .ui-nosvg .ui-icon-navigation:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/navigation-white.png') }}")}
+    .ui-nosvg .ui-icon-phone:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/phone-white.png') }}")}
+    .ui-nosvg .ui-icon-plus:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/plus-white.png') }}")}
+    .ui-nosvg .ui-icon-power:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/power-white.png') }}")}
+    .ui-nosvg .ui-icon-recycle:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/recycle-white.png') }}")}
+    .ui-nosvg .ui-icon-refresh:after{background-image:url("{{ generateMediaURL('/media/images/360-photos/themes/images/icons-png/refresh-white.png') }}")}
+    .fullscreen-enter {background: url("{{ generateMediaURL('/media/images/360-photos/enter-fullscreen.png') }}");}
+    .fullscreen-exit {background: url("{{ generateMediaURL('/media/images/360-photos/exit-fullscreen.png') }}");}
+    .close {background-image: url("{{ generateMediaURL('/media/images/360-photos/close.png') }}");}
+    .popuplogo{background: url("{{ generateMediaURL('/media/images/popuplogo.png') }}") no-repeat;}
+    .review_main_container .eval_options_glob { background: url("{{ generateMediaURL('/media/images/review_new/grey_img_rating_star.png') }}") no-repeat;}
+    .review_main_container .eval_options_glob:hover, .eval_options_glob.active {background: url("{{ generateMediaURL('/media/images/review_new/yellow_img_rating_star.png') }}") no-repeat;}
+    .downloadapptext{background: url("{{ generateMediaURL('/media/images/textpinkarrowhb.png') }}") no-repeat 42px 27px;}
+    .ttd_grid .ttd_box .video-icon-play{background: url("{{ generateMediaURL('/media/images/video-icon-play.png') }}") no-repeat;}
+    .rblk ul.rb li {background: url("{{ generateMediaURL('/media/images/li.jpg') }}") no-repeat 0 11px;}
+    .first_pg{background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat 0 3px ;}
+    .prev_pg{background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat -12px 3px ;}
+    .next_pg{background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat -27px 3px ;}
+    .last_pg{background: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat -38px 3px ;}
+    .ttd_details .header{background: url("{{ generateMediaURL('/media/images/bg-desc-ttd.png') }}") repeat-x bottom;}
+    .headerseperater{background: url("{{ generateMediaURL('/media/images/bg-desc-ttd.png') }}") repeat-x bottom;}
+    .plus{background: url("{{ generateMediaURL('/media/images/add_icon.png') }}") no-repeat;}
+    @media  (max-width: 1205px){
+        .categoriesWrapper .btitle .bg{background: url("{{ generateMediaURL('/media/images/arrow_categ.png') }}") no-repeat center -136px;}
+        .rblk .btitle .padd.categories{background: url("{{ generateMediaURL('/media/images/category.png') }}") no-repeat center 0;}
+    }
+    @media (min-width:388px) and (max-width:585px){
+        .downloadapptext{background: url("{{ generateMediaURL('/media/images/textpinkarrowhb.png') }}") no-repeat 16px 12px;}
+    }
+    @media (max-width:387px){    
+        .downloadapptext{background: url("{{ generateMediaURL('/media/images/textpinkarrowhb.png') }}") no-repeat 6px 12px;}
+    }
+    .anchor_bk{background: url("{{ generateMediaURL('/media/images/discover/anchor_bk.png') }}") no-repeat scroll;}
+    .anchor_star1{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star1.png') }}") no-repeat;}
+    .anchor_star2{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star2.png') }}") no-repeat;}
+    .anchor_star3{background: url("{{ generateMediaURL('/media/images/discover/anchor_star3.png') }}") no-repeat;}
+    .anchor_star4{background: url("{{ generateMediaURL('/media/images/discover/anchor_star4.png') }}") no-repeat;}
+    .anchor_star5{background: url("{{ generateMediaURL('/media/images/discover/anchor_star5.png') }}") no-repeat;}
+    .my_bookings_container .inputs_row .form-group select{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/corporate/customselectarrow.png') }}") no-repeat scroll right 17px center;}
+    .my_bookings_container .inputs_row .submit_button button{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/corporate/rightdirectionarrowcorp.png') }}") no-repeat scroll center center;}
+    .my_bookings_container .custom_form .form-group select{background: #343434 url("{{ generateMediaURL('/media/images/corporate/white_select_arrow.png') }}") no-repeat scroll right 5px center;}
+    .my_bookings_container .prev_pg {background-image: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -12px 3px;}
+    .my_bookings_container .first_pg {background-image: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll 0 3px;}
+    .my_bookings_container .next_pg {background-image: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -27px 3px;}
+    .my_bookings_container .last_pg {background-image: url("{{ generateMediaURL('/media/images/pager_btns.jpg') }}") no-repeat scroll -38px 3px;}
+    .main_ul_list_help li{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/tick.png') }}") no-repeat scroll 0 5px;}
+    .marquee-window, .marquee-preview {background: url("{{ generateMediaURL('/media/images/spacer.gif') }}") no-repeat center;}
+    .accountbutseperator {background: url("{{ generateMediaURL('/media/images/alert_seperator.jpg') }}") no-repeat scroll 0 0 transparent;}
+    .deals_container .addtobagtextstyle, .attractions_list_new_container .addtobagtextstyle:hover {background: rgba(0,0,0,0) url("{{ generateMediaURL('/media/images/deals-list_new/add_to_bag_logo.png') }}") no-repeat scroll 0 0px;}
+    .deals_container .deals_select_country select{background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 10px center;}
+    .deals_container .common_selectbox_deals select{background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 10px center;}
+    .deals_container .centeredtext_selectbox select{background: url("{{ generateMediaURL('/media/images/index/flech-out.png') }}") no-repeat scroll right 10px center;}
+    .deals_container .select_grey select {background: #959595 url("{{ generateMediaURL('/media/images/hotel_payment_new/white_select_arrow.png') }}") no-repeat scroll right 10px center;}
+    .deals_container .bullet_left:before{background-image: url("{{ generateMediaURL('/media/images/deals-details_new/pink_bullet.png') }}"); }
+    .anchor_star1{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star1.png') }}") no-repeat;}
+    .anchor_star2{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star2.png') }}") no-repeat;}
+    .anchor_star3{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star3.png') }}") no-repeat;}
+    .anchor_star4{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star4.png') }}") no-repeat;}
+    .anchor_star5{ background: url("{{ generateMediaURL('/media/images/discover/anchor_star5.png') }}") no-repeat;}
+    .corporate_common_new_container .mybookinginput select{background: url("{{ generateMediaURL('/media/images/index/greyfleche_prefooterselect.png') }}") no-repeat scroll right 15px center; }
+    .fancybox-close {background-image: url("{{ generateMediaURL('/media/images/cat-popup-close.png') }}");}
+    .corprate_newdesign_container .signin_corporate_list li{background: url("{{ generateMediaURL('/media/images/corporate_new/rightblue_arrow.png') }}") no-repeat scroll left center;}
+    .searchlogo_msa {background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/corporate/searchlogo_msa.png') }}") no-repeat scroll center center;}
+    .jstree-default .pinkarrowroot .jstree-icon {background-image: url("{{ generateMediaURL('/media/images/corporate/treerootlogo.png') }}");}
+    .jstree-default .shildlogo .jstree-icon {background-image: url("{{ generateMediaURL('/media/images/corporate/shildlogo.png') }}");}
+    .selectboxes_msapopup select{background-image: url("{{ generateMediaURL('/media/images/corporate-flight/fldwn_corpfl.png') }}");}
+    .flight-bullet{background: transparent url("{{ generateMediaURL('/media/images/flight-stop-bullet.png') }}") no-repeat scroll 4px 6px;}
+    .stopsresume{ background: transparent url("{{ generateMediaURL('/media/images/flight-stop-clock.png') }}") no-repeat scroll 0 23px;}
+    .greyresume .textdivresume:first-child .flight-bullet:first-child, .greyresume .textdivresume:last-child .flight-bullet:last-child{background: transparent url("{{ generateMediaURL('/media/images/flight-bullet.png') }}") no-repeat scroll 0 2px;}
+    .multi-destination-container .greyresume .textdivresume .small-flight-bullet.flight-bullet{background: transparent url("{{ generateMediaURL('/media/images/flight-stop-bullet.png') }}") no-repeat scroll 4px 6px;}
+    .stop-flight-fields .flight-fields:last-child .small-flight-bullet.flight-bullet:last-child{background: transparent url("{{ generateMediaURL('/media/images/flight-bullet.png') }}") no-repeat scroll 0 2px;}
+    .flight-info{background: transparent url("{{ generateMediaURL('/media/images/planeresume.png') }}") no-repeat scroll 0 -3px;}
+    .baggage-info{background: transparent url("{{ generateMediaURL('/media/images/bagresume.png') }}") no-repeat scroll 0 2px;}
+    .selectback{background: rgb(234, 234, 234) url("{{ generateMediaURL('/media/images/flech-out.png') }}") no-repeat scroll right 5px center;}
+    .selectback2{background: rgb(234, 234, 234) url("{{ generateMediaURL('/media/images/secureresume.png') }}") no-repeat scroll right 5px center;}
+    .dob select{ background: rgb(234, 234, 234) url("{{ generateMediaURL('/media/images/flech-out.png') }}") no-repeat scroll right 5px center;}
+    .textwithbluebullet{background: transparent url("{{ generateMediaURL('/media/images/bluebullet.png') }}") no-repeat scroll left center;}
+    .deparrival_corpflight .deparrival_input_corpfl{background-image: url("{{ generateMediaURL('/media/images/corporate-flight/locationiconyellow_corpfl.png') }}");}
+    .selectboxes_corpfl select{background-image: url("{{ generateMediaURL('/media/images/corporate-flight/fldwn_corpfl.png') }}");}
+    .slick-prev{background-image: url("{{ generateMediaURL('/media/images/galprev1.png') }}") !important;}
+    .slick-next{background-image: url("{{ generateMediaURL('/media/images/galnxt1.png') }}") !important;}
+    .rommgalleryul li.borderedliroom{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/bordered_roomgallery.png') }}") no-repeat scroll 0px 0px;}
+    .closebut-room{background: rgba(0, 0, 0, 0) url("{{ generateMediaURL('/media/images/closebut-room.png') }}") no-repeat scroll 0px 0px;}
+    .review_options_glob{background: url("{{ generateMediaURL('/media/images/review-HT/emptyheart.png') }}") no-repeat;}
+    .review_options_glob:hover, .review_options_glob.active{background: url("{{ generateMediaURL('/media/images/review-HT/fullheart.png') }}") no-repeat;}
+    .review_options_over {background: url("{{ generateMediaURL('/media/images/channel_bubble_icon1.png') }}") no-repeat left center;}
+    .request_form_eval_options {background: url("{{ generateMediaURL('/media/images/request_form_grey_star.png') }}") no-repeat;}
+    .request_form_container .request_form_eval_options:hover, .request_form_container .request_form_eval_options.active {background: url("{{ generateMediaURL('/media/images/request_form_pink_star.png') }}") no-repeat;}
+    .flight_input_pr select ,.flight_input_commun{background: url("/media/images/index/flech-out.png") no-repeat scroll right 2px center;}
+    .commun_container_360 .commun_select_style{width: 100%; height: 76px; border: 1px solid #d5d6d8; text-align: center;color: black; background: url("/media/images/index/flech-out.png") no-repeat scroll right 5px center;}
+    .commun_container_360 .eval_options {background: url("{{ generateMediaURL('/media/images/request_form_grey_star.png') }}") no-repeat;}
+    .commun_container_360 .eval_options:hover, .commun_container_360 .eval_options.active {background: url("{{ generateMediaURL('/media/images/request_form_pink_star.png') }}") no-repeat;}
+    .new_flight_container div.from_to_logo:after{background: url("{{ generateMediaURL('/media/images/flights_new/from_to_logo.png') }}") no-repeat right top;}
+</style>

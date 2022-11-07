@@ -1,0 +1,24 @@
+services:
+  SabreConfig:
+    class: NewFlightBundle\vendors\sabre\Config
+    arguments: [ '@service_container' ]
+
+  FlightRepository:
+    class: NewFlightBundle\Repository\FlightRepository
+    arguments: [ '@doctrine.orm.entity_manager' ]
+
+  FlightService:
+    class: NewFlightBundle\Services\FlightService
+    arguments: [ '@FlightRepository','@SabreService','@payment_repository', '@translator','@UserServices', '@app.utils', '@CurrencyService']
+
+  SabreService:
+    class: NewFlightBundle\vendors\sabre\Services\SabreService
+    arguments: [ '@SoapApiCaller','@translator', '@SabreConfig']
+
+  SoapApiCaller:
+    class: NewFlightBundle\vendors\sabre\Services\SoapApiCaller
+    arguments: [ '@XmlResponseParser','@app.utils','@SabreConfig']
+
+  XmlResponseParser:
+    class: NewFlightBundle\vendors\sabre\Services\XmlResponseParser
+    arguments: [ '@app.utils']

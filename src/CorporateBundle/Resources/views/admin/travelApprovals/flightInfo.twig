@@ -1,0 +1,92 @@
+{% set data = decodeJSON(travel.details) %}
+
+<div class="col-xs-12 nopad" id="{{travel.requestServicesDetailsId|raw}}">
+    <div class="moduleLogo book-flight-icon"></div>
+    <div class="moduleInfo">
+	<div class="col-xs-12 nopad margintop24_paydue">
+	    <p class="flightcomptext_paydue">
+		<img src="/images/airline-logos/{{data.logo|raw}}" class="flightLogo"/> {{travel.name|raw}}<span class="flightcomptext_smal_paydue">{{data.airline|raw}}{{data.flightNumber|raw}}</span>
+	    </p>
+	    <p class="rightpricesmal_paydue">{{travel.currency|raw}} {{travel.amount|raw|number_format(2, '.', ',')}}</p>
+	</div>
+	<div class="col-xs-12 nopad">
+	    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+		    <div class="col-xs-12 nopad hiddenpmargin">
+			<p class="deparrbluetext_paydue">{{'Departure'|trans}}<p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p class="datetextcom_paydue">{{travel.fromdate}}</p> <p><b>{{data.departureAirport|raw}}</b></p>
+		    </div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+		    <div class="col-xs-12 nopad hiddenpmargin">
+			<p class="deparrbluetext_paydue">{{'Arrival'|trans}}<p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p class="datetextcom_paydue">{{travel.todate}}</p> <p><b>{{data.arrivalAirport|raw}}</b></p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+		    <div class="col-xs-12 nopad hiddenpmargin">
+			<p class="deparrbluetext_paydue">{{'number of stops'|trans}}<p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p><b>{{data.nStops|raw}}</b></p>
+		    </div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+		    <div class="col-xs-12 nopad hiddenpmargin">
+			<p class="deparrbluetext_paydue">{{'number of passengers'|trans}}<p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p><b>{{data.nPassengers|raw}}</b></p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 nopad">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+		    <div class="col-xs-12 nopad hiddenpmargin">
+			<p class="deparrbluetext_paydue">{{'Flight Type'|trans}}<p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p><b>{{data.flightType|raw}}</b></p>
+		    </div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad">
+		    <div class="col-xs-12 nopad">
+			<p><b>{{data.refundable|raw}}</b></p>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div>{{'Requested By:'|trans}} {{travel.userName|raw}}</div>
+	<div>{{'Requested At:'|trans}} {{travel.transactionDate|raw}}</div>
+	<div class="col-xs-12 nopad approve_travelapp">
+	    {% if travel.status == expiredStatus %}
+		<span class="approvetext_travelapp">{{'Expired'|trans}}</span>
+	    {% elseif travel.status == approvedStatus %}
+		<span class="approvetext_travelapp">{{'Approved'|trans}}</span>
+                {% if date().timestamp >=  travel.fromdate|date('l, F d, Y') %}
+                    {% if (travel.transactionDate <= date().timestamp) and ( date("H", "GMT") < FLIGHT_LAST_HOUR_TO_CANCEL )  %}
+                        <div class="barseptrapp">|</div>
+                        <a class="approvetext_travelapp" onclick="cancelRequest({{travel.reservationId|raw}},{{travel.requestServicesDetailsId|raw}},{{travel.moduleId|raw}})">{{'Cancel'|trans}}</a>
+                    {% endif %}
+                {% endif %}
+	    {% elseif travel.status == canceledStatus %}
+		<span class="approvetext_travelapp">{{'Canceled'|trans}}</span>
+	    {% elseif travel.status == rejectedStatus %}
+		<span class="approvetext_travelapp">{{'Rejected'|trans}}</span>
+	    {% else %}
+		<a class="approvetext_travelapp" onclick="approveRequest({{travel.reservationId|raw}},{{travel.moduleId|raw}},{{travel.accountId|raw}},{{travel.transactionUserId|raw}},{{travel.requestServicesDetailsId|raw}})">{{'Approve'|trans}}</a>
+	    <div class="">|</div>
+	    <a class="approvetext_travelapp" onclick="rejectRequest({{travel.requestServicesDetailsId|raw}},{{travel.transactionUserId|raw}})">{{'Reject'|trans}}</a>
+	    {% endif %}
+	    <div class="barseptrapp">|</div>
+	    <button type="button" class="btn btn-primary" data-toggle="modal1" data-target="#myModal1" onclick="detailPopup('{{ generateLangRoute(LanguageGet, '_corporate_flight_reservation_details', {'reservationId':travel.reservationId})}}')">{{'View details'|trans}}</button>
+	</div>
+    </div>
+    <div class="col-xs-12 nopad borderedsectiontwolines_travelapp margin_top_15"></div>
+</div>

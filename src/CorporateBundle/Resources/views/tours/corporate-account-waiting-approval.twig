@@ -1,0 +1,21 @@
+{# empty Twig template #}
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-login.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-book-now.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-book-now.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad">
+            {% include '@Corporate/corporate/corporate-deals-common-header.twig' %}
+        </div>
+        <div class="col-xs-12 nopad margintop100">
+	    {{'Thank You! your transaction request is waiting approval'|trans}}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,2305 @@
+{% if loggedUser==1674 or loggedUser==42 %}
+    <script type="text/javascript">
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    //var server_url = 'https://chat.touristtube.com:3000/'; //initialize server very first here
+    var server_url = '{{chat_server|raw}}';
+    var download_url = 'https://www.touristtube.com/';
+    var callreceiverId = 0; // initialize call receiver
+    var callsocketId = 0;
+    var tone_path   =   'video_chat/tone/'
+    var socket;
+    var notPicked = true;
+    var callAlreadyAccepted = null;
+    var senderTone = null;
+    var receiverTone = null;
+    var siofu = null;
+    var keyCount =0;
+    var lastTypingTime=0;
+    var isFilePending =   false;
+    var callCancelled   =   false;
+    var user_id_chat  =   "{{user_ID|raw}}";
+    var activeUsers = [];
+    var removeActiveUser = false;
+
+    $(document).ready(function(){
+	//socket = io.connect(server_url, { query: 'userid=' + {{user_ID|raw}} });
+	socket = io.connect(server_url);
+	attemptLogin(); // login to the server
+
+	siofu = new SocketIOFileUpload(socket);
+	initSocketEvents();
+
+	setTimeout(function(){
+	    try{
+		initNotification();
+	    }catch(Ex){}  
+	},5000);
+
+	receiverTone    =   document.getElementById('receiverTone');
+	senderTone    =   document.getElementById('senderTone');
+
+	//createConnection(); // initialize a connection when page is loaded
+	$("#camcloser").click(function(){ // event on click Camera
+	    $("#localVideo").toggle(0,doCam());
+	});
+
+	$("#audiocloser").click(function(){  // event Click on mike
+	    doAudio();
+	});
+
+	$("#hangupcall").click(function(){ // hang up the Call
+	    hangUp(true);
+	});
+
+	addChatbox ();
+
+	$("#chatContainer, #mainCentered").on('click', '.load_more', function (event) {
+	    var self = this;
+	    var $this = $(this);
+	    var receiver = $this.attr('data-receiver');
+	    var sender = $this.attr('data-sender');
+	    var chatLog = $this.closest('.ChatLog');
+	    var total = $this.attr('data-total');
+	    event.stopImmediatePropagation();
+	    //var total_pages = $("#total_pages").val(); // total pages
+	    $this.hide(); //hide load more button on click
+	    var animImgCont = $this.parent().find('.animation_image');
+	    animImgCont.show(); //show loading image
+	    //post page number and load returned data into result element
+
+	    $.ajax({
+		url:  ReturnLink('pullvideochatlogs/t/'+new Date().getTime()),
+		cache:false,
+		type: "POST",
+		data:{'receiver':receiver,'sender':sender,'page': total},
+		dataType: 'json',
+		success:function(result) {
+		    if(result.logs.length > 0){
+			var data = '';
+			for(var i = 0; i < result.logs.length; i++){
+			    var item = result.logs[i];
+			    var date = new Date(item.utc_time);
+			    var utc_time = date.toLocaleTimeString();
+
+			    var logData     = getChatHtml(item.userName,utc_time,item.msg_txt,'','');
+			    data += logData;
+			}
+			ChatLogPrepend(chatLog,data); //append data received from server
+			var container = $this.parent();
+			container.parent().prepend(container);
+			$this.show(); //bring back load more button
+			//scroll page to button element
+			//$("html, body").animate({scrollTop: $this.offset().top}, 500);
+
+			//hide loading image
+			animImgCont.hide(); //hide loading image once data is received
+			$this.attr('data-total', parseInt(total) + result.logs.length);
+		    }
+		    else{
+			$this.remove();
+			$('.animation_image'+receiver).html('<h5>No previous conversation..</h5>'); // added to fix when there is no more conversation to load
+		    }
+		},
+		fail: function(xhr, ajaxOptions) {
+		    $this.show(); //bring back load more button
+		    animImgCont.hide(); //hide loading image once data is received
+		}
+	    });
+	});
+
+
+	$("#AcceptCall").click(function(){
+	    stopSound();
+	    doAnswer({{user_ID|raw}}); // call answer from here now
+	    $("#hangupcall").show();
+	    $varmorebutton = '<div align="center" class="moreButton"><a href="javascript:" class="load_more" data-sender="{{user_ID|raw}}" data-receiver="'+callreceiverId+'" data-total="5">More...<a/><div class="animation_image" style="display:none;"><img src="/video_chat/images/ajax-loader.gif"></div></div>';
+	    ChatLogAppend($("#dataTuberVideo"),$varmorebutton);
+	    showVideoChat();
+	    pullChatLogs ({{user_ID|raw}},callreceiverId,$("#dataTuberVideo"));
+	    $("#ChatWindow"+callreceiverId).find(".close").trigger('click');
+	    $("#receiver_box").hide();
+	    var msgob = {
+		'senderid':'{{user_ID|raw}}',
+		'receiverid':callreceiverId,
+		'status':'AcceptCall',
+		'type':'user_call_status_accept',
+		'targetSocketId':callsocketId
+	    };
+	    console.log(msgob);
+	    socket.emit('message', msgob);
+	});
+
+	$("#RefuseCall").click(function(){
+	    refuseCall();
+	});
+
+	$("#senderclose").click(function(){
+	    cancelCall();
+	});
+
+	$("#CancelCall").click(function(){
+	    cancelCall();
+	});
+
+	$("#receiverclose").click(function(){
+	    refuseCall();
+	});
+
+	{#  $("#receiverclose").click(function(){
+	   $("#receiver_box").hide();
+	   var msgob = {
+	   'type':'call_close_receiver',
+	   'senderid':'<?php echo $user_ID;?>',
+	   'receiverid':$("#receiverId").val()
+	   };
+	   socket.emit('chat', msgob);
+	   handleRemoteHangup();
+	  });#}
+
+
+	$(".videoBigMinus-btn").click(function(){
+	    $("#mainCentered").hide();
+	    $("#localVideosmall").show();
+	    $("#small_video_box").show();
+	});
+
+	$("#minimize_videoClose").click(function(){
+	    $("#mainCentered").show();
+	    $("#small_video_box").hide();
+	});
+
+	$("#video_minimize_call_hangup").click(function(){
+	    $("#mainCentered").hide();
+	    $("#small_video_box").hide();
+	    hangUp(true);
+	});
+
+	$("#mainCentered").draggable({
+	    containment: 'body',scroll:false
+	});
+	$("#small_video_box").draggable({
+	    containment: 'body',scroll:false
+	});
+    }); // Dom Ready closed
+
+
+
+
+    /*
+     Method : pullChatLogs
+     purpose : Pull chat data from the database
+     @params : data: (receiver_id)
+     Author: pradeep
+     Modified : 18 Nov 2014
+     */
+
+    function pullChatLogs(receiver,sender,$chatLog,log){
+	$.ajax({
+	    url:ReturnLink('pullvideochatlogs/t/'+new Date().getTime()),
+	    cache:false,
+	    type: "POST",
+	    data:{'receiver':receiver,'sender':sender, 'page':0 },
+	    dataType: 'json',
+	    success:function(result){
+		if(result){
+		    var data = '';
+		    if(result.total_pages > 1)
+			$('.moreButton'+sender).show();
+		    for(var i = 0; i < result.logs.length; i++){
+			var item = result.logs[i];
+			var date = new Date(item.utc_time);
+
+			var utc_time = date.toLocaleTimeString();
+			var logData     = getChatHtml(item.userName, utc_time, item.msg_txt ,'','');
+			data += logData;
+		    }
+		    ChatLogAppend($chatLog,data);
+		    if(log){
+			ChatLogAppend($chatLog,log);
+		    }
+		}
+	    }
+	});
+    }
+
+    /*
+     Method : getMorerecords
+     purpose : to get more records while click on more button
+     @params : sender,receiver,chatLog
+     Author: pradeep
+     Modified : 02 Dec 2014
+     */
+
+
+    function getMorerecords(sender,receiver,chatLog) {
+
+	var track_click = 1; //track user click on "load more" button, righ now it is 0 click
+	$(".load_more").click(function (event) {
+	    var self = this;
+	    var receiver = $(this).attr('data-receiver');
+	    var sender = $(this).attr('data-sender');
+	    event.stopImmediatePropagation();
+	    var total_pages = $("#total_pages").val(); // total pages
+	    $(".load_more").hide(); //hide load more button on click
+	    $('.animation_image').show(); //show loading image
+	    if(track_click <= total_pages) { //make sure user clicks are still less than total pages
+		//post page number and load returned data into result element
+		$.post(ReturnLink('pullvideochatlogs/t/'+new Date().getTime()),{'receiver':receiver,'sender':sender,'page': track_click}, function(data) {
+		    $(".load_more").show(); //bring back load more button
+		    ChatLogAppend(chatLog,data); //append data received from server
+		    //scroll page to button element
+		    $("html, body").animate({scrollTop: $(self).offset().top}, 500);
+
+		    //hide loading image
+		    $('.animation_image').hide(); //hide loading image once data is received
+
+		    track_click++; //user click increment on load button
+
+		}).fail(function(xhr, ajaxOptions) {
+		    $(".load_more").show(); //bring back load more button
+		    $('.animation_image').hide(); //hide loading image once data is received
+		});
+
+		if(track_click >= total_pages-2){
+		    //reached end of the page yet? disable load button
+		    $(".load_more").hide();
+
+		}
+	    }
+
+	});
+
+    }
+
+    function initScrollPane($obj){
+	var element = $obj.jScrollPane();
+	var totalHeight = $obj.find('.jspPane').height();
+
+	$obj.find(".jspDrag").css('background-color','#5f5f5f');
+	$obj.find(".jspVerticalBar").css('width','5px');
+
+	var jscrollpane_api = element.data('jsp');
+	jscrollpane_api.scrollToY(totalHeight + 1000,true);
+	//jscrollpane_api.reinitialise();
+    }
+
+    function initScrollPaneReverse($obj,beforeHeight){
+	var element = $obj.jScrollPane();
+	var scrollSize = $obj.find('.jspPane').height() - beforeHeight;
+
+	$obj.find(".jspDrag").css('background-color','#5f5f5f');
+	$obj.find(".jspVerticalBar").css('width','5px');
+
+	var jscrollpane_api = element.data('jsp');
+	jscrollpane_api.scrollToY(scrollSize,true);
+    }
+
+
+    /*Method : addChatbox
+     purpose : To Draw a Chat-box when click for the Call a person
+     @params : caller and reciver id's
+     Author: pradeep
+     Modified : 20 Nov 2014
+     */
+
+    function addChatbox () {
+
+	var newHTML =[];
+	newHTML.push('<div id="ChatWindowMaximized" class="ChatWindow" style="z-index: 10000;display:block;"><div class="header"><div class="header_inner"><ul class="controls_btns" style="margin-left: 4px;"><li class="status_icon available fl"><a href=""></a></li><li class="tuber fl"><a href="" style="width: 150px;"><span id="videoTuberName"></span></a></li></ul><div class="clearfix"></div></div></div><div class="one-chat-settings"><div class="one-chat-settings-row">view chat history</div></div>');
+	var $newdiv = $( newHTML.join(' ') );
+	$("#Videochatbox").append($newdiv);
+
+
+	var $chatLog = $('<div id="dataTuberVideo" class="ChatLog"></div>');
+	$chatLog.appendTo($newdiv);
+
+
+	var $outer =$('<div class="input_box"><div class="input_box_inner"><div id="video_upload_icon" style="position:absolute;z-index:999;width:17px;height:21px;background-color: #4a4a4a;cursor:pointer;" class="upload_thum sprite hm"></div><input type="file" class="sprite fl hm" id="upload_input_video"><div class="input_wrapper_div fl"><textarea class="chatInput" id="chatInputVideo" style="position: absolute; width: 240px; z-index: 10000; border: 1px solid rgb(192, 192, 194); height: 46px;">type something...</textarea></div><a class="sprite fr tt" title="send" href=""></a><div class="clearfix"></div></div></div></div>');
+	$outer.appendTo($newdiv);
+
+	var $icon = $('#video_upload_icon');
+	$icon.click(function(e){
+	    e.stopImmediatePropagation();
+	    $("#upload_input_video").trigger('click');
+	});
+
+	$("#upload_input_video").click(function (event) {
+	    event.stopImmediatePropagation();
+	    if(isFilePending)
+		return false;
+	    if(siofu){
+		siofu.removeEventListener("start", uploadStart);
+		siofu.removeEventListener("error", uploadError);
+		siofu.removeEventListener("complete", uploadComplete);
+		siofu.destroy();
+		siofu = null;
+	    }
+	    siofu   = new SocketIOFileUpload(socket);
+	    siofu.listenOnInput(document.getElementById("upload_input_video"));
+	    siofu.addEventListener("start", uploadStart);
+	    siofu.addEventListener("error", uploadError);
+	    siofu.addEventListener("complete", uploadComplete);
+
+	    function uploadStart(event){
+		isFilePending=true;
+		event.file.meta.userid = callreceiverId;
+	    }
+	    function uploadError(event){
+		console.log(event);
+	    }
+	    function uploadComplete(event){
+		var filemsgob = {
+		    'msg': 'File '+event.file.name+' has been sent.',
+		    'type':'file',
+		    'senderid':{{user_ID|raw}},
+		    'receiverid':callreceiverId,
+		    'client_ts':'{{chat_date|raw}}'
+		};
+		var logData     = getChatHtml('Me',getTS(),filemsgob.msg,'','');
+		ChatLogAppend($chatLog,logData);
+		isFilePending=false;
+	    }
+	});
+
+
+	initScrollPane($chatLog);
+
+	$("#chatInputVideo").click(function(){
+	    if($(this).val() == "type something..."){
+		$(this).val('');
+	    }
+	});
+
+	$("#chatInputVideo").keyup(function(event){
+	    if(callreceiverId == 0)
+		return;
+	    if(event.keyCode == 13){
+		if(event.shiftKey)
+		    return false;
+		else{
+		    var msg = replaceURL($(this).val());
+		    if(msg.length <1) return ;
+		    var msgob = {
+			'msg': msg,
+			'type':'text',
+			'senderid':{{user_ID|raw}},
+			'receiverid':callreceiverId,
+			'client_ts':'{{chat_date|raw}}',
+			'viewed':0,
+			'profilePic':'{{profile_pic|raw}}'
+		    };
+
+		    /*socket.emit('chat', msgob,function(response){
+			console.log('message sent : '+ response);
+		    });*/
+		    socket.emit('chat', msgob);
+
+		    var logData     = getChatHtml('Me',getTS(),msgob.msg,'','');
+		    ChatLogAppend($chatLog,logData);
+
+		    $(this).val('');
+		}
+	    }
+    {#        if(event.keyCode != 13){
+		if(lastTypingTime==0){
+		    socket.emit('type',{'msg': 'typing...','senderid':{{user_ID|raw}},'receiverid':callreceiverId});
+		}
+		lastTypingTime = (new Date()).getTime();
+
+		setTimeout(
+			function(){
+			    keyCount--;
+			    if(keyCount<1)
+				lastTypingTime=0;
+			    var time_diff = (new Date().getTime())-  lastTypingTime;
+			    if(time_diff>=2000)
+				socket.emit('stop type',{'msg': '','senderid':{{user_ID|raw}},'receiverid':callreceiverId});
+			},2000
+		);
+
+		keyCount++;
+
+	    }#}
+
+	});
+
+	//pullChatLogs(caller,receiver,$newdiv);
+    }
+
+    /*
+     Method : AddTuberChat
+     purpose : To Draw a Chat-box when click on the name of user list
+     @params : uid and active user
+     Author: pradeep
+     Modified : 17 Oct 2014
+     */
+
+    function AddTuberChat(uid,active,userstatus,log){
+	createConnection({{user_ID|raw}},uid); // initialize the connection
+
+	if(typeof active == 'undefined') active = true;
+	if( uid.length ==0 ) return ;
+	if( !checkIfExist(uid) ){
+	    var statusClass 	=	$('#ChatListItem'+uid).attr('data-chat-status');
+	    var tuberName 		=	$('#ChatListItem'+uid).find(".one-chat-name span").text();
+	    var tuberUserName   	=	$('#ChatListItem'+uid).find(".one-chat-name").attr('data-uname');
+	    if(!tuberName){
+		tuberName = 'Tuber';
+		statusClass = 'green';
+	    }
+
+	    var theHTML=[];
+	    theHTML.push('<div class="one-chatLeftList lower_part_main mywidths lower_part" data-tuber="'+uid+'" title="'+tuberName+'">',
+		    '<div class="LeftChatContainer">',
+
+		    '</div>',
+		    '</div>');
+
+	    var $newdiv = $( theHTML.join(' ') );
+
+	    var docWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+	    var chatListWidth = 230;
+	    var chatWindowsSize = $(".lower_part_main").size();
+	    var chatMaxWindows = Math.floor( ( docWidth - chatListWidth - 220 ) / 278 );
+	    if(chatWindowsSize > chatMaxWindows){
+		var differenceBetween = chatWindowsSize - chatMaxWindows;
+		$("#extraWindows").show();
+		$("#extraWindows").unbind('click');
+		$("#extraWindows").css('cursor','pointer').click(function(){
+		    if($("#extraList").is(":visible"))
+			$("#extraList").hide();
+		    else
+			$("#extraList").show();
+		});
+
+		var differenceBetwweenStr = "+ " + differenceBetween + " tubers";
+		if(differenceBetween == 1) differenceBetwweenStr = "+ " + differenceBetween + " tuber";
+		$("#extraWindwosNB").show().html(differenceBetwweenStr);
+		var lastName        =    $(".lower_part_main:last").attr('title');
+		var lastID          =    $(".lower_part_main:last").attr('data-tuber');
+		var $newExtraItem   =    $("<div class='oneExtraItem oneExtraItem"+lastID+"' data-tuber='"+lastID+"'>"+lastName+"</div>");
+		$("#extraList").append($newExtraItem);
+		$(document).on('click','.oneExtraItem',function(e){
+		    var oneExtraItemId = $(this).attr('data-tuber');
+		    var replaceName = $(".lower_part_main:visible:last").attr('title');
+		    var replaceID   = $(".lower_part_main:visible:last").attr('data-tuber');
+		    $(".lower_part_main:visible:last").hide();
+		    $(".maximize_me"+oneExtraItemId).hide();
+		    $("#ChatWindow"+oneExtraItemId).show();
+		    $("#chatInput"+oneExtraItemId).show();
+
+		    $(".lower_part_main[data-tuber='"+oneExtraItemId+"']").removeClass('minimized').css('width',USUAL_CHAT_WIDTH+'px').show();
+
+		    $newExtraItem   =    $("<div class='oneExtraItem oneExtraItem"+replaceID+"' data-tuber='"+replaceID+"'>"+replaceName+"</div>");
+		    $("#extraList").append($newExtraItem);
+		    $('.oneExtraItem'+oneExtraItemId).each(function(){
+			$(this).remove();
+		    });
+		});
+		$(".lower_part_main:visible:last").hide();
+		$("#extraList").html('');
+		$('.one-chatLeftList').each(function(){
+		    if(!($(this).is(':visible'))){
+			var TuberId=$(this).attr('data-tuber');
+			var TuberTitle=$(this).attr('title');
+			$newExtraItem   =    $("<div class='oneExtraItem oneExtraItem"+TuberId+"' data-tuber='"+TuberId+"'>"+TuberTitle+"</div>");
+			$("#extraList").append($newExtraItem);
+		    }
+		});
+	    }
+
+	    $("#chat-leftList").append($newdiv);
+
+	    var headerHTML = [];
+	    headerHTML.push('<div class="header">',
+		    '<div class="header_inner">',
+		    '<ul class="controls_btns controls_btns'+uid+'">',
+		    '</ul>',
+		    '<div class="clearfix"></div>',
+		    '</div>',
+		    '</div>');
+	    var $headerDiv = headerHTML.join('');
+
+	    var $chatDiv = $('<div class="ChatWindow" id="ChatWindow'+uid+'"></div>').css({'z-index': varChatZIndex});
+
+
+	    $('.LeftChatContainer' , $newdiv).append($chatDiv).click(function(event){
+		event.preventDefault();
+	    });
+
+
+	    $chatDiv.append($headerDiv);
+
+	    //var $chatSettings = $("<div class='one-chat-settings'>" +
+	    //"<div class='one-chat-settings-row' id='viewChatHistory"+uid+"'>view chat history</div>"+
+	    //"</div>");
+	    //$chatSettings.appendTo($chatDiv);
+
+	    var $chatTitle = $('<li class="status_icon '+statusClass+' fl"><a href=""></a></li><li class="tuber fl" data-link="/profile/'+tuberUserName+'"><a class="profileLink" target="_blank" href="/profile/'+tuberUserName+'"><span>'+tuberName+'</span></a><span class="typngText" id="typngText'+uid+'"></span></li>');
+	    var $chatClose = $('<li class="close fr"><a href="" title="close"></a></li>');
+	    var $chatMinimize = $('<li class="minimize fr"><a href="" title="minimize"></a></li>');
+	    var $chatSet = $('<li class="setings fr" style="display:none;"><a href="" title="settings"></a></li>');
+	    var $chatCam;
+	    if(userstatus=='offline'){
+		$chatCam = $('<li class="cam fr" style="display:none;"><a href="" title="cam"></a></li>');
+	    }else {
+		$chatCam = $('<li class="cam fr" rel='+uid+'><a href="" title="cam" ></a></li>');
+	    }
+
+	    $(".controls_btns"+uid).append($chatTitle).append($chatClose).append($chatMinimize).append($chatSet).append($chatCam);
+
+	    var chtold = ChatLogGet(tuberName);
+	    if(chtold==null){
+		chtold="";
+	    }
+	    var $chatLog = $("<div class='ChatLog'  id='dataTuber"+uid+"'></div>");
+	    $chatLog.appendTo($chatDiv);
+	    $chatLog.html(chtold);
+	    ChatWindows++;
+
+
+	    var $outer =$('<div class="input_box"><div class="input_box_inner"><div class="input_wrapper_div fl"></div><a href="" title="send" class="sprite fr tt"></a><div class="clearfix"></div></div></div>');
+	    $outer.appendTo($chatDiv);
+
+
+	    var $upload = $('<input type="file" id="upload_input'+uid+'" class="sprite fl hm" >').prependTo( $('.LeftChatContainer .input_box_inner', $newdiv) );
+
+	    // BEGIN added by Claude 27-10-2014
+	    var $icon = $('<div class="upload_thum sprite hm" style="position:absolute;z-index:999;width:17px;height:21px;background-color: #4a4a4a;cursor:pointer;" rel="'+uid+'"></div>' ).prependTo($('.LeftChatContainer .input_box_inner', $newdiv) );
+	    $icon.click(function(e){
+		e.stopImmediatePropagation();
+		$("#upload_input"+uid).trigger('click');
+	    });
+	    // END added by Claude 27-10-2014
+
+	    $("#upload_input"+uid).click(function (event) {
+		event.stopImmediatePropagation();
+		if(isFilePending)
+		    return false;
+		if(siofu){
+		    console.log('stoping object siofu1...');
+		    siofu.removeEventListener("start", uploadStart);
+		    siofu.removeEventListener("error", uploadError);
+		    siofu.removeEventListener("complete", uploadComplete);
+		    siofu.destroy();
+		    siofu = null;
+		}
+		siofu = new SocketIOFileUpload(socket);
+
+		siofu.listenOnInput(document.getElementById("upload_input"+uid));
+		siofu.addEventListener("start", uploadStart);
+		siofu.addEventListener("error", uploadError);
+		siofu.addEventListener("complete", uploadComplete);
+
+		function uploadStart(event){
+		    isFilePending=true;
+		    event.file.meta.userid = uid;
+		}
+		function uploadError(event){
+		    console.log(event);
+		}
+		function uploadComplete(event){
+		    console.log(event);
+
+		    var filemsgob = {
+			'msg': 'File '+event.file.name+' has been sent.',
+			'type':'file',
+			'senderid':{{user_ID|raw}},
+			'receiverid':uid,
+			'client_ts':'{{chat_date|raw}}'
+		    };
+
+		    var logData     = getChatHtml('Me',getTS(),filemsgob.msg,'','');
+		    ChatLogAppend($chatLog,logData);
+		    isFilePending=false;
+		}
+
+	    });
+	    // end of  file sharing completion
+	    var $chatInput = $('<textarea id="chatInput'+uid+'" class="chatInput">type something...</textarea>').css({
+		'position':'absolute' ,
+		'width' : '240px',
+		'z-index' : varChatZIndex,
+		//'display' : 'none',
+		border : '1px solid #c0c0c2'}).outerHeight($newdiv.outerHeight()).appendTo( $('.LeftChatContainer .input_wrapper_div',$newdiv) ).keyup(function(event){
+		if(event.keyCode == 13){
+		    if(event.shiftKey)
+			return false;
+		    else{
+			var msg = replaceURL($(this).val());
+			if(msg.length <1) return ;
+			var msgob = {
+			    'msg': msg,
+			    'type':'text',
+			    'senderid':{{user_ID|raw}},
+			    'receiverid':uid,
+			    'client_ts':'{{chat_date|raw}}',
+			    'viewed':0,
+			    'profilePic':'{{profile_pic|raw}}'
+			};
+			/*socket.emit('chat', msgob,function(response){
+			    console.log('message sent : '+ response);
+			});*/
+			socket.emit('chat', msgob);
+
+			var logData     = getChatHtml('Me',getTS(),msgob.msg,'','');
+			ChatLogAppend($chatLog,logData);
+
+			$(this).val('');
+		    }
+		}
+		if(event.keyCode != 13){
+		    if(lastTypingTime==0){
+			socket.emit('type',{'msg': 'typing...','senderid':{{user_ID|raw}},'receiverid':uid});
+		    }
+		    lastTypingTime = (new Date()).getTime();
+
+		    setTimeout(
+			    function(){
+				keyCount--;
+				if(keyCount<1)
+				    lastTypingTime=0;
+				var time_diff = (new Date().getTime())-  lastTypingTime;
+				if(time_diff>=2000)
+				    socket.emit('stop type',{'msg': '','senderid':{{user_ID|raw}},'receiverid':uid});
+			    },2000
+		    );
+		    keyCount++;
+		}
+
+
+	    }).click(function(event){
+		event.stopImmediatePropagation();
+		return false;
+	    }).focus(function () {
+		if($(this).val() == "type something...")
+		{
+		    $(this).val('');
+		}
+	    });
+
+
+	    $chatCam.click(function(e){
+		if(isStarted)
+		    return;
+		callreceiverId = uid;
+		$("#localVideo").hide();
+		maybeStart(true);
+
+		$("#localVideo").show();
+	    });
+
+	    $chatClose.click(function(e){
+		e.preventDefault();
+		ChatWindows--;
+		$newdiv.remove();
+		$chatDiv.remove();
+		$chatInput.remove();
+		SizeAllTabs();
+		manageExtraLists();
+		$("#ChatListItem"+uid).attr('data-blocked',0);
+		//removing activeusers from activeUsers array
+		var ind   =   activeUsers.indexOf(uid);
+		activeUsers.splice(ind,1);
+		addUsersToActiveList(uid,true);
+		//$.cookie('activeUsers',activeUsers);
+	    });
+	    $chatMinimize.click(function(e){
+		e.preventDefault();
+		$chatDiv.hide();
+
+		var $maximize_me = $('div.maximize_me'+uid);
+		if($maximize_me.length == 0){
+		    var $maximize = $('<div class="maximize_me maximize_me'+uid+'"><span>'+tuberName+'</span></div>').css({
+			'position':'absolute',
+			'width' : '100%',
+			'height' : '21px',
+			'right' : '0',
+			'top' : '0',
+			'z-index' : '999'
+		    }).click(function(){
+			$maximize.hide();
+			$newdiv.removeClass('minimized');
+			$chatDiv.show();
+			initScrollPane($chatLog);
+			$chatInput.show();
+			SizeAllTabs();
+		    })
+
+		    $newdiv.append($maximize);
+		}
+		else{
+		    $maximize_me.show();
+		}
+		$newdiv.addClass('minimized');
+		$chatInput.hide();
+		SizeAllTabs();
+	    });
+
+
+	    if(active){
+		$newdiv.click();
+	    }
+
+	    $chatSet.click(function () {
+		var $one_chat_settings = $(this).parent().parent().find(".one-chat-settings");
+		if(!($one_chat_settings.is(":visible"))){
+		    $(this).css('background','url('+AbsolutePath+'media/images/chatSetBtn-hover.jpg) center center no-repeat');
+		    $one_chat_settings.show();
+		    $("#viewChatHistory"+uid).click(function(){
+			viewChatHistory(uid);
+			$(this).parent().parent().find('.ChatSet').trigger('click');
+		    });
+		}else{
+		    $(this).css('background','url('+AbsolutePath+'media/images/chatSetBtn.jpg) center center no-repeat');
+		    $one_chat_settings.hide();
+		}
+		if($(this).parent().parent().find(".emoticonslist").is(":visible")) $(this).parent().find(".emoticonsIcon").trigger('click');
+	    });
+
+	    initScrollPane($chatLog);
+	}
+	$varmorebutton = '<div align="center" class="moreButton moreButton'+uid+'"><a href="javascript:" class="load_more" data-sender="{{user_ID|raw}}" data-receiver="'+uid+'" data-total="5">More...<a/><div class="animation_image animation_image'+uid+'" style="display:none;"><img src="/video_chat/images/ajax-loader.gif"></div></div>';
+	ChatLogAppend($chatLog,$varmorebutton);
+	pullChatLogs ({{user_ID|raw}},uid,$chatLog,log); //
+	$('#chatInput'+uid).focus(); 
+	//add for Show more logs on click starts here
+
+	//getMorerecords({{user_ID|raw}}, uid, $chatLog, log);
+
+	// receiver id saves here, when ever we need id
+	//$("#receiverId").val(uid);
+	{#       $("#ChatWindow"+uid).draggable();#}
+	//add for show more logs on click ends here
+    }
+
+    function statusString(statusId){
+	switch(statusId){
+	    case 0:
+		return 'offline';
+	    case 1:
+		return 'available';
+	    case 2:
+		return 'away';
+	    case 3:
+		return 'busy';
+	    case 100:
+		return 'offline';
+	}
+	return 'offline';
+    }
+
+    /*
+     Method : updateUserStatus
+     purpose : to update a status of user
+     @params : none
+     Author: pradeep
+     Modified : 17 Oct 2014
+     */
+
+    function updateUserStatus(userstatus,userid){
+	var msgob = {
+	    'senderid':{{user_ID|raw}},
+	    'receiverid':userid,
+	    'msg': 'Status update',
+	    'userstatus':userstatus,
+	    'type':'user_status_update'
+	};
+	socket.emit('chat', msgob);
+    }
+    //ends
+
+
+    function loadKeyEvents(){
+	$("#ttsearch").keypress(function () {
+	    instantSearch($(this));
+	});
+	$("#ttsearch").keydown(function () {
+	    instantSearch($(this));
+	});
+	$("#ttsearch").keyup(function () {
+	    instantSearch($(this));
+	});
+    }
+
+    function instantSearch(object){
+	var tempSearch = object.val();
+	if(tempSearch == "") $(".one-chat-rec").show();
+	else{
+	    var chatRecs = $(".one-chat-rec").size();
+
+	    if(chatRecs == 0){
+		$("#chatList").show();
+
+		if($("#chatList").css("display") == "block"){
+		    loadChatList();
+		}
+	    }
+	    $("#chatList").show();
+	    $(".one-chat-rec").each(function () {
+
+		var currentChatName = $(this).find(".one-chat-name").html();
+		currentChatName = (currentChatName).toLowerCase();
+		if(currentChatName.indexOf(tempSearch) != -1) {$(this).show();}
+		else {$(this).hide();}
+	    });
+	}
+    }
+
+    function refuseCall(){
+	$("#receiver_box").hide();
+	$("#remoteVideo").prop('muted', true); //mute
+	$("#localVideo").prop('muted', true); //mute
+	var msgob = {
+	    'senderid':'{{user_ID|raw}}',
+	    'receiverid':callreceiverId,
+	    'status':'RefuseCall',
+	    'type':'user_call_status_refuse'
+	};
+	socket.emit('message', msgob);
+	socket.emit('refuseCall',{'senderId':{{user_ID|raw}},'receiverId':callreceiverId});
+	handleRemoteHangup();
+    }
+
+    function cancelCall(){
+	stopSound();
+	$("#sender_box").hide();
+	$('#allow_popup').hide();
+
+	notify  =   true;
+	{#var msgob = {
+	'type':'call_close_sender',
+	'senderid':'{{user_ID|raw}}',
+	'receiverid':callreceiverId
+	};
+	socket.emit('chat', msgob);#}
+	var msgob = {
+	    'type':'bye',
+	    'senderid':'{{user_ID|raw}}',
+	    'receiverid':callreceiverId
+	};
+	socket.emit('message', msgob);
+	handleRemoteHangup();
+    }
+
+    function showVideoChat(){
+	$("#mainCentered").show();
+	$("#mainCentered").css('left', 0);
+	$("#mainCentered").css('top', 0);
+    }
+    </script>
+    <!-- Minimized Video box starts here -->
+    <div class="sender" id="small_video_box">
+	<header>
+	    <h2 class="logo"> <img src="{{ "video_chat/images/Logo.png"|link}}" alt="logo" ></h2>
+	    <a class="close" id="minimize_videoClose"> x </a></header>
+	<section>
+	    <p class="msg"><video id="localVideosmall" autoplay  muted class="caller_img"></video></p>
+	    <a style="width:32px; height:30px; display:inline-block; margin-top:30px" href="javascript:" id="video_minimize_call_hangup"><img src="{{ "/video_chat/images/close_video.png"|link}}" alt="close video" ></a>
+	</section>
+    </div>
+    <!-- elements add for chat works room and user starts here-->
+
+    <input type="hidden" name="userId" id="userId" value="{{user_ID|raw}}">
+
+
+    <!-- elements add for chat works room and user ends here-->
+
+    <div id="mainCentered" class="fl" style="display:none;">
+	<div class="fl mainGroup" id="boxLeft">
+	    <div class="show_box_white">
+		<img src="{{profile_pic|raw}}" border="0" style="display:none;height:200px;width:260px;" id="profilePic"/>
+		<video id="localVideo" autoplay  muted ="muted" width="100%" height="100%" class="localVideo" ></video>
+	    </div>
+
+	    <!--chat box in video box starts here-->
+
+	    <div class="lower_part_main" id ="Videochatbox">
+
+	    </div>
+
+	    <!--chat box in video box ends here-->
+
+	</div>
+	<div class="fl mainGroup" id="boxRight">
+	    <div class="header">
+		<div class="header_center">
+		    <div class="header_center_inner">
+
+			<div class="">
+			    <ul class="controls">
+				<li class="cam"><a href="javascript:" title="Camera" id="camcloser" rel="cemaraon"></a></li>
+				<li class="mic"><a href="javascript:" title="Mute" id="audiocloser"></a></li>
+				<li class="headset"><a href="javascript:" title="Hang Up" id="hangupcall" style="display:none;"></a></li>
+			    </ul>
+			    <div class="clearfix"></div>
+			</div>
+			<div class="time_duration" id="callduration"></div>
+			<a class="videoBigMinus-btn" href="javascript:void(0);" ></a>
+		    </div>
+		</div>
+	    </div>
+
+	    <div class="big_vid">
+		<video id="remoteVideo" autoplay width="100%" height="100%" class="remoteVideo" ></video>
+		<img class="bigImage" id="bigImage" src=""/>
+	    </div>
+	</div>
+	<div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- Sender box -->
+    <div class="sender" id="sender_box">
+	<header>
+	    <h2 class="logo"> <img src="{{ "video_chat/images/Logo.png"|link}}" alt="logo" ></h2>
+	    <a class="close" id="senderclose"> x </a></header>
+	<section>
+	    <p class="msg" id="calling">
+		<img id="receiverProfilePic" src="{{profile_pic|raw}}" alt="{{full_name|raw}}"  class="caller_img"   />
+		Calling <span id="receiverFullName">{{full_name|raw}}</span> <span class="progressDot">.</span><span class="progressDot">.</span><span class="progressDot">.</span></p>
+	    <p>
+		<input style="margin-left:52px" type="button" value="Cancel" class="btn refuse" id="CancelCall" />
+	    </p>
+
+	</section>
+    </div>
+    <!--End  sender box -->
+
+    <!-- Share media box -->
+
+    <!-- End Share media box -->
+
+    <!--Receiver box -->
+    <div class="sender"  id="receiver_box">
+	<header>
+	    <h2 class="logo"> <img src="{{ "video_chat/images/Logo.png"|link}}" alt="logo" ></h2>
+	    <a class="close" id="receiverclose"> x </a></header>
+	<section>
+	    <p class="msg" id="calling">
+		<img id="senderProfilePic" src="{{profile_pic|raw}}" alt="{{full_name|raw}}"  class="caller_img"   />
+		<span id="senderFullName">{{full_name|raw}}</span> is calling <span class="progressDot">.</span><span class="progressDot">.</span><span class="progressDot">.</span>
+
+	    </p>
+	    <p>
+		<input type="button" value="Accept" class="btn accept" id="AcceptCall" />
+		<input type="button" value="Refuse" class="btn refuse" id="RefuseCall" />
+		<input type="hidden" name="receiverId" id="receiverId" value="">
+	    </p>
+
+	</section>
+    </div>
+    <!--End receiver box -->
+
+    {#Allow popup
+    It will be shown to both the peers to allow the media from the browser
+    Added By rishav
+    #}
+    <div id="allow_popup" class="sender allow_popup">
+	<header>
+	    <h2 class="logo"> <img src="{{ "video_chat/images/Logo.png"|link}}" alt="logo" ></h2>
+	    <a class="close" id="allow_popupclose"> x </a></header>
+	</header>
+	<h4>Please allow camera access from the browser to continue a video call.</h4>
+    </div>
+
+    {#
+    tone div to play dailtone and receiving tone
+     @added by Rishav
+     @20th feb 2015
+    #}
+    <div id="tone" style="display: none;">
+	<audio id="senderTone" controls loop>
+	    <source src="video_chat/tone/sender.mp3" type="audio/mpeg" />
+	    <source src="video_chat/tone/sender.ogg" type="audio/ogg" />
+	    <embed hidden="true" loop="true" src="video_chat/tone/sender.mp3" />
+	</audio>
+	<audio id="receiverTone" controls loop>
+	    <source src="video_chat/tone/receiver.mp3" type="audio/mpeg" />
+	    <source src="video_chat/tone/receiver.ogg" type="audio/ogg" />
+	    <embed hidden="true" loop="true" src="video_chat/tone/receiver.mp3" />
+	</audio>
+    </div>
+
+
+    {#<div class="footer_container_all">#}
+    <div id="chatContainer">
+	<div id="inside-chat">
+	    <div id="chatIcon"></div>
+	    <div id="blackTransparentDiv"></div>
+	    <div id="chathistorydiv"></div>
+	    <div id="chattubers"></div>
+	    <div id="privacyDiv"></div>
+
+	    <!--user list starts here-->
+	    <div id="chatList"></div>
+	    <!--user list ends here-->
+	    <div id="switchatOn">switch chat on </div>
+	    <div id="onlineTubersNb">online tubers (1 tuber)</div>
+	    <div id="chat-search">
+		<input name="ttsearch" id="ttsearch" value="Search for a friend to chat with..." type="text">
+		<div id="openChatList" class="openChatList"></div>
+	    </div>
+	    <div id="chat-leftList">
+	    </div>
+	    <div id="extraWindows">
+		<div id="extraChatIcon"></div>
+		<div id="extraWindwosNB">5</div>
+		<div id="extraListContainer">
+		    <div id="extraList">
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+    {#</div>#}
+    <script type="text/javascript">
+
+    // Don't update any code below this line, its a mess of javascript ha ha : A video Chat Plugin
+    // restrictedly avoid it otherwise u will stuck
+
+    'use strict';
+
+    var localuser;
+    var remoteuser;
+
+    var isChannelReady;
+    var isStarted = false;
+
+    var localVideoStream;
+    var remoteVideoStream;
+    var pc;
+
+    var dataChannel;
+    var turnReady;
+    var isSender = false;
+    var currentVideoReceiver;
+    var timerId;
+
+    // configuration for stun servers here
+    var pc_config = webrtcDetectedBrowser === 'firefox' ?
+    {'iceServers':[{'url': 'stun:stun.services.mozilla.com'}]} : // number IP
+    {'iceServers': [{'url': 'stun:stun1.l.google.com:19302'}]}; // stun:stun.l.google.com:19302
+
+    // configuration for audio and video
+    var pc_constraints = {
+	'optional': [
+	    {'DtlsSrtpKeyAgreement': true},
+	    {'RtpDataChannels': true}
+	]};
+
+    // Set up audio and video regardless of what devices are present.
+    var sdpConstraints = {
+	'mandatory': {
+	    'OfferToReceiveAudio': true,
+	    'OfferToReceiveVideo': true
+	}
+    };
+
+    var user = document.getElementById("userId").value;
+
+    var constraints = {
+	audio: true,
+	video: true
+    };
+
+
+    function createRoom(caller,receiver){
+	var roomname = caller > receiver ?  receiver +'-'+caller : caller+'-'+receiver;
+	return roomname;
+    }
+
+    /*
+     method : createConnection
+     purpose: Creating a connection for video chat plug-in, here room is static and user will be dynamic here (by session)
+     params: none;
+     Author: Pradeep
+     Modified: 21 oct 2014
+     */
+
+    function createConnection(caller,receiver) {addUsersToActiveList
+
+	if (user === '') {
+	    user = document.getElementById("userId").value;
+	}
+
+
+	var room = createRoom(caller,receiver); // document.getElementById("roomId").value;
+
+
+	if (user === '' || room === '') {
+	    //alert('Both Username and Room Name are Required.');
+	    return false;
+	}
+
+	localuser = document.getElementById("userId").value; // value is saved in hidden right now
+
+	if (room !== '') {
+	    socket.emit('create or join', room);
+	}
+	addUsersToActiveList(receiver,false);
+    }
+
+    function sendMessage(message) {
+	socket.emit('message', message);
+    }
+
+    // socket function starts here
+    function initSocketEvents(){
+
+	socket.on("reconnect",function(){
+	    console.log("successfully reconnected");
+	    attemptLogin();
+	});
+
+	socket.on('type',function(message){
+	    var typngText = document.getElementById('typngText'+message.senderid);
+	    if(typngText!=null){
+		typngText.innerHTML=message.msg;
+	    }
+	});
+
+	socket.on('stop type',function(message){
+	    var typngText = document.getElementById('typngText'+message.senderid);
+	    if(typngText!=null){
+		typngText.innerHTML='';
+	    }
+	});
+
+	socket.on('refuseCall',function(message){
+	    console.log('call refused or cancelled');
+	    callCancelled   =   true;
+	    $("#sender_box").hide();
+	    $("#receiver_box").hide();
+	    $("#remoteVideo").prop('muted', true); //mute
+	    handleRemoteHangup();
+	});
+
+	socket.on('created', function(room) {
+	    console.log('Created room ' + room);
+	});
+
+
+	socket.on('full', function(room) {
+	    console.log('Room' + room + " is full.");
+	});
+
+
+	socket.on('join', function(room) {
+	    console.log('Another peer made a request to join room ' + room);
+	    console.log('This peer is the initiator of room ' + room + '!');
+	    isChannelReady = true;
+	});
+
+	socket.on('joined', function(room) {
+	    console.log('Room ' + room + ' Successsfully joined.');
+	    isChannelReady = true;
+	});
+	socket.on('messageSeen', function(message){
+	    console.log(message);
+	});
+	socket.on('messageDelivered', function(message){
+	    console.log(message);
+	});
+	socket.on('messageSent', function(message){
+	    console.log(message);
+	});
+	// its for user status update transmit
+	socket.on('chat', function(message) {
+	    if(message.type ==='busy'){
+		console.log('user is busy');
+		$('#sender_box').hide();
+
+		var $chatLog    =   $('#dataTuber'+message.senderid);
+		tuberName       =   message.senderFullName;
+		duration_str    =   '';
+
+		var logData     = getChatHtml(tuberName,getTS(),message.msg,'',duration_str);
+		ChatLogAppend($chatLog,logData);
+
+		stop();
+		return;
+	    }
+
+
+	    //console.log('Client received a message: ' + message.type);
+	    var cuid = {{user_ID|raw}};
+	    var uid = message.senderid;
+	    var $chatLog = $('#dataTuber'+uid);
+	    var statusClass = $('#ChatListItem'+uid).attr('data-chat-status');
+	    var tuberName = $('#ChatListItem'+uid).find(".one-chat-name span").text();
+	    if(!tuberName){
+		tuberName = 'Tuber';
+		statusClass = 'green';
+	    }
+	    var duration_str = '';
+	    if(cuid && (cuid==message.receiverid) && !checkIfExist(uid) && (!isStarted || callreceiverId != uid)) {
+		if(message.msg1 === 'Call disconnected'){
+		    stopSound();
+		    var disconnectLog = getChatHtml(tuberName,getTS(),message.msg,'',message.duration);
+		    AddTuberChat(message.senderid,'','available', disconnectLog);
+		}
+		else{
+		    AddTuberChat(message.senderid,'','available','');
+		}
+		return;
+	    }
+
+
+	    // Elie
+	    console.log('Client received a message: ' + message.type);
+	    if(message.type=='text'){
+		if((uid == message.senderid) && (message.receiverid == {{user_ID|raw}})){
+		    var typngText = document.getElementById('typngText'+message.senderid);
+		    if(typngText!=null)
+			typngText.innerHTML='';
+
+		    if(message.msg1=='Call disconnected' && message.showduration){
+			stopSound();
+			duration_str = ' duration, ' + (message.duration);
+		    }
+		    var logData = getChatHtml(tuberName,getTS(),message.msg,'',duration_str);
+		    if(!isStarted)
+			ChatLogAppend($chatLog,logData);
+		    else if(callreceiverId == uid)
+			ChatLogAppend($("#dataTuberVideo"),logData);
+
+
+		    //rishav {call notify for desktop notification}
+		    desktopNotification(tuberName,message.msg,message.profilePic);
+
+
+		}
+	    }else if(message.type=='file'){
+		var downloadLink    =   message.downloadLink;
+
+		if((uid == message.senderid) && (message.receiverid == {{user_ID|raw}})){
+
+		    var logData = getChatHtml(tuberName,getTS(),message.msg,downloadLink,'');
+		    if(!isStarted)
+			ChatLogAppend($chatLog,logData);
+		    else if(callreceiverId == uid)
+			ChatLogAppend($("#dataTuberVideo"),logData);
+		}
+
+	    }else if(message.type =='cameraclose') {
+		if(message.camerastatus == true){
+		    $("#remoteVideo").hide(500);
+		    document.getElementById('bigImage').src=message.profilePic;
+		    $("#bigImage").show();
+		}else {
+		    $("#bigImage").hide();
+		    $("#remoteVideo").show(500);
+		}
+	    }
+
+	    $("#chatInput"+message.uid).val('');
+	    //End Elie
+	});
+
+	socket.on('statusChange', function(message){
+	    var uid = message.uid;
+	    var statusId = message.status;
+	    var status = statusString(statusId);
+	    $("div.one-chat-rec[data-tuber="+uid+"] div.one-chat-img").attr('class', 'one-chat-img');
+	    $("div.one-chat-rec[data-tuber="+uid+"] div.one-chat-img").addClass(status);
+	    $('#ChatListItem'+uid).attr('data-chat-status',status);
+	    var status_icon = $('#ChatWindow'+uid).find('.status_icon');
+	    status_icon.removeClass('busy');
+	    status_icon.removeClass('offline');
+	    status_icon.removeClass('away');
+	    status_icon.removeClass('available');
+	    status_icon.addClass(status);
+	    if(status=='offline')
+		$('#ChatWindow'+uid).find('.cam').hide();
+	    else
+		$('#ChatWindow'+uid).find('.cam').show();
+
+	});
+
+	socket.on('message', function(message) {
+	    if (message === 'Got user media') {
+		maybeStart(false);
+	    } else {
+		{#if(typeof pc === 'undefined' || !pc)
+		    return;#}
+		if (message.type === 'offer') {
+		    callCancelled=false;
+		    callAlreadyAccepted=false;
+		    callsocketId = message.socketId;
+		    notPicked  = true;
+		    if (!isStarted) {
+			maybeStart(false);
+		    }else{
+			var msgob = {
+			    'type':'busy',
+			    'senderFullName':'{{full_name|raw}}',
+			    'senderid':message.receiverid,
+			    'msg': 'I am busy right now ,I\'ll call you in a while.',
+			    'receiverid':message.senderid
+			};
+			socket.emit('chat', msgob);
+			stopSound();
+			return;
+			/*alert('user already on call'); return;*/
+		    }
+    {#                playSound(tone_path+'receiver');#}
+		    receiverTone.play();
+		    callreceiverId = message.senderid;
+		    $("#videoTuberName").html(message.senderFullName);
+
+		    navigator.getUserMedia(
+			    constraints,
+			    function(data){
+				if(callAlreadyAccepted || callCancelled){
+				    callAlreadyAccepted=!callAlreadyAccepted;
+				    callCancelled   =  false;
+				    data.stop();
+				    return false;
+				}
+				notPicked   =false;
+				console.log(data);
+				handleUserMedia(data);
+				$("#receiver_box").show();
+				pc.setRemoteDescription(new RTCSessionDescription(message));
+				$("#senderProfilePic").attr("src", message.senderProfilePic);
+				$("#senderFullName").html(message.senderFullName);
+			    },
+			    function(error){
+				handleUserMediaError(error);
+				hangUp(false, true);
+				$("#allow_popup").hide();
+				$("#receiver_box").hide();
+			    }
+		    );
+
+		    var timeOut =   setTimeout(function(){
+			if(notPicked){
+			    console.log('stopping');
+			    cancelCall();
+			}
+		    },30000);
+		}
+		else if(message.type=='call_already_accepted'){
+		    callAlreadyAccepted = true;
+		    isStarted = true;
+		    console.log('call_already_accepted');
+		    $("#receiver_box").hide();
+		    $("#remoteVideo").prop('muted', true); //mute
+		    $("#localVideo").prop('muted', true); //mute
+		    handleRemoteHangup();
+		}
+		else if (message.type === 'answer' && isStarted) {
+		    pc.setRemoteDescription(new RTCSessionDescription(message));
+		    var start_ts = new Date().getTime();
+		    document.cookie="callstarttimefromc="+start_ts;
+		    // display ongoing time duration
+		    myTimer();
+		} else if (message.type === 'candidate' && isStarted) {
+		    var candidate = new RTCIceCandidate({
+			sdpMLineIndex: message.label,
+			candidate: message.candidate
+		    });
+		    if(pc)
+			pc.addIceCandidate(candidate);
+		} else if (message.type === 'bye') {
+		    handleRemoteHangup();
+		}else if (message.type === 'fail' && message.userid === {{user_ID|raw}}){
+		    cancelCall();
+		    alert('Receiver cannot answer your call.');
+		}
+		else if(message.type === 'friendsList'){
+		    var friendListHTML  =   getFriendList(message);
+		    $("#chatList").html(friendListHTML);
+		    initDDSlick(message.ownerStatus);
+		    refreshChatWindow();
+
+
+		    /*
+		    * @author : Rishav chhajer
+		    * @dateTime :23rd june 2015, 11:31 AM
+		    * @Function : functionality to reponen the chatbox opened in other tabs, user id will be retrieved from cookie
+		    * */
+		    // code to repoen all the chatbox if opened in anothertab
+		    //opening all the active chatbox
+		    var activeUsersString   =   getActiveUsersList();
+		    if(!activeUsersString)
+			return;
+
+			activeUsers =   JSON.parse("["+activeUsersString+"]");
+		    if(activeUsers.length > 0){
+			for(var i=0;i<activeUsers.length;i++){
+			    var activeid=parseInt(activeUsers[i]);
+			    AddTuberChat(activeid,'','available','');
+			    $("#ChatListItem"+activeid).trigger("click");
+			}
+		    }
+		    // code till here
+
+		    //socket.emit('statusChange',{'status':,'uid':message.ownerId});
+		}
+		else if(message.type =='user_call_status_accept') {
+		    $("#hangupcall").show();
+		    var $varmorebutton = '<div align="center" class="moreButton"><a href="javascript:" class="load_more" data-sender="{{user_ID|raw}}" data-receiver="'+callreceiverId+'" data-total="5">More...<a/><div class="animation_image" style="display:none;"><img src="/video_chat/images/ajax-loader.gif"></div></div>';
+		    ChatLogAppend($("#dataTuberVideo"),$varmorebutton);
+		    showVideoChat();
+		    pullChatLogs ({{user_ID|raw}},callreceiverId,$("#dataTuberVideo"));
+		    var callerFullName = $('.one-chat-rec[data-tuber="'+callreceiverId+'"]').find(".one-chat-name span").html();
+		    $("#videoTuberName").html(callerFullName);
+		    $("#ChatWindow"+callreceiverId).find(".close").trigger('click');
+		    $("#sender_box").hide();
+		    stopSound();
+		} else if(message.type =='user_call_status_refuse') {
+		    $("#sender_box").hide();
+		    $("#receiver_box").hide();
+		    $("#remoteVideo").prop('muted', true); //mute
+		    $("#localVideo").prop('muted', true); //mute
+		    handleRemoteHangup();
+		} else if(message.type =='call_close_sender') {
+		    $("#receiver_box").hide();
+		    handleRemoteHangup();
+		} else if(message.type =='call_close_receiver') {
+		    $("#sender_box").hide();
+		    handleRemoteHangup();
+		}
+	    }
+	});
+    }
+    ////////////////////////////////////////////////////
+    // This next section is where we deal with setting
+    // up the actual components of the communication
+    // we are interested in using. Starting with the
+    // Video streams
+    ////////////////////////////////////////////////////
+
+    function trace(text) {
+	console.log((performance.now() / 1000).toFixed(3) + ": " + text);
+    }
+
+    function handleUserMediaError(error) {
+	stopSound();
+	notPicked = false;
+	isStarted = false;
+	console.log('navigator.getUserMedia error: ', error);
+
+	// for chrome browser
+	if(error.name=='PermissionDeniedError'){
+	    $("#allow_popup").show();
+	    alert('You have not allowed your camera');
+	    //cancelCall();
+	}
+	if(error === 'NO_DEVICES_FOUND'){
+	    $('#sender_box').hide();
+	    alert('No media devices found.');
+	    cancelCall();
+	}
+	if(error === 'PERMISSION_DENIED'){
+	    alert('No media devices found.');
+	    //cancelCall();
+	}
+	if(error=='Starting video failed'){
+	    alert('Starting video failed');
+	    //cancelCall();
+	}
+    }
+
+    function handleUserMedia(stream){
+	createPeerConnection();
+	notPicked = false;
+
+	$("#allow_popup").hide();
+	console.log('Adding local stream.');
+	localVideo.src      =   window.URL.createObjectURL(stream);
+	localVideo.muted    =   true;
+	localVideosmall.src =   window.URL.createObjectURL(stream);
+	localVideoStream    =   stream;
+	pc.addStream(localVideoStream);
+	if(isSender)
+	    pc.createOffer(setLocalAndSendMessage, handleCreateOfferError, sdpConstraints);
+    }
+
+    function maybeStart(is_sender) {
+	$("#allow_popup").show();
+
+	isSender = is_sender;
+	if(!isStarted){
+	    isStarted = true;
+	    if (isSender) {
+		navigator.getUserMedia(
+			constraints,
+			function(data){
+			    handleUserMedia(data);
+			    senderTone.play();
+			    $("#sender_box").show();
+			},
+			function(error){
+			    handleUserMediaError(error);
+			    $("#sender_box").hide();
+			    $("#allow_popup").hide();
+			}
+		);
+		var tuberName = $('#ChatListItem'+callreceiverId).find(".one-chat-name span").text();
+		var profilePicCroped = $('#ChatListItem'+callreceiverId).find(".one-chat-img img").attr('src');
+		var profilePic = profilePicCroped.replace('crop_','');
+		profilePic = profilePic.replace('.png', '.jpg');
+		$("#receiverProfilePic").attr("src", profilePic);
+		$("#receiverFullName").html(tuberName);
+		doCall();
+	    }
+	}
+    }
+
+    window.onbeforeunload = function(e){
+	if(isStarted)
+	    return "This action will end your video call.";
+    }
+
+    window.onunload = function(e){
+	var message = {};
+	message.type = 'bye';
+	message.senderid = {{user_ID|raw}};
+	message.receiverid = callreceiverId;
+	sendMessage(message);
+    }
+
+
+
+    /////////////////////////////////////////////////////////
+    // Next we set-up the data channel between us and the far
+    // peer. This is bi-directional, so we use the same
+    // connection to send/receive data. However its modal in that
+    // one end of the connection needs to kick things off,
+    // so there is logic that varies based on if the JS
+    // script is acting as the initiator or the far end.
+    /////////////////////////////////////////////////////////
+
+    function createPeerConnection() {
+	try {
+	    var servers = null;
+	    pc = new RTCPeerConnection(pc_config, pc_constraints);
+	    pc.onicecandidate = handleIceCandidate;
+	    pc.onaddstream = handleRemoteStreamAdded;
+	    pc.onremovestream = handleRemoteStreamRemoved;
+
+	} catch (e) {
+	    console.log('Failed to create PeerConnection, exception: ' + e.message);
+	    //alert('Cannot create RTCPeerConnection object.');
+	    return;
+	}
+    }
+
+
+
+    function handleIceCandidate(event) {
+	if (event.candidate) {
+	    sendMessage({
+		type: 'candidate',
+		label: event.candidate.sdpMLineIndex,
+		id: event.candidate.sdpMid,
+		candidate: event.candidate.candidate,
+		senderid: {{user_ID|raw}},
+		receiverid: callreceiverId
+	    });
+	} else {
+	    console.log('End of candidates.');
+	    $('#remoteVideo').show();
+	}
+    }
+
+    function handleRemoteStreamAdded(event) {
+	console.log('Remote stream added.');
+	remoteVideo.src = window.URL.createObjectURL(event.stream);
+	remoteVideo.muted=false;
+	remoteVideoStream = event.stream;
+    }
+
+    function handleCreateOfferError(event) {
+	console.log('createOffer() error: ', event);
+    }
+
+
+    /*
+     method : doCall
+     purpose: starts a call from here
+     params: none;
+     Author: Pradeep
+     Modified: 21 oct 2014
+     */
+
+    function doCall() {
+	console.log('Sending offer to peer');
+	// get time stamp at the client side (Peer who has starts a Call)
+	//var start_ts = new Date().getTime();
+	//document.cookie="callstarttimefromc="+start_ts;
+	// display ongoing time duration
+	//myTimer();
+	// ends display timing
+	//addChatbox(callreceiverId);
+    }
+
+    /*
+     method : doAnswer
+     purpose: Answering a call to other peer
+     params: none;
+     Author: Pradeep
+     Modified: 21 oct 2014
+     */
+
+    function doAnswer(receiver) {
+	console.log('Sending answer to peer.');
+	var user = {{user_ID|raw}};
+	if(receiver==user){
+	    //navigator.getUserMedia(constraints, handleUserMedia, handleUserMediaError);
+
+	    pc.createAnswer(setLocalAndSendMessage, handleCreateOfferError, sdpConstraints);
+	    // small chat box to show starts here
+	    //addChatbox(receiver);
+	    // ends
+	    // get time stamp at the server side (Peer who received a Call)
+	    var start_ts = new Date().getTime();
+	    document.cookie="callstarttimefroms="+start_ts;
+
+	    // display ongoing time duration
+	    myTimer();
+	    // ends display timing
+	}
+
+    }
+
+    function setLocalAndSendMessage(sessionDescription) {
+	// Set Opus as the preferred codec in SDP if Opus is present.
+	sessionDescription.sdp = preferOpus(sessionDescription.sdp);
+	var message = {};
+	message.sdp = preferOpus(sessionDescription.sdp);
+	message.type = sessionDescription.type;
+
+	message.senderid = {{user_ID|raw}};
+	message.receiverid = callreceiverId;
+	message.senderFullName = "{{full_name|raw}}";
+	message.senderProfilePic = "{{profile_pic|raw}}";
+	/*if(callreceiverId){
+	 sessionDescription.callreceiverId = callreceiverId;
+	 }else {
+	 sessionDescription.callreceiverId = {{user_ID|raw}};
+	 }*/
+	pc.setLocalDescription(sessionDescription);
+	{#        sendMessage(sessionDescription);#}
+	sendMessage(message);
+    }
+
+    function requestTurn(turn_url) {
+	var turnExists = false;
+	for (var i in pc_config.iceServers) {
+	    if (pc_config.iceServers[i].url.substr(0, 5) === 'turn:') {
+		turnExists = true;
+		turnReady = true;
+		break;
+	    }
+	}
+	if (!turnExists) {
+	    console.log('Getting TURN server from ', turn_url);
+	    // No TURN server. Get one from computeengineondemand.appspot.com:
+	    var xhr = new XMLHttpRequest();
+	    xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+		    var turnServer = JSON.parse(xhr.responseText);
+		    console.log('Got TURN server: ', turnServer);
+		    pc_config.iceServers.push({
+			'url': 'turn:' + turnServer.username + '@' + turnServer.turn,
+			'credential': turnServer.password
+		    });
+		    turnReady = true;
+		}
+	    };
+	    xhr.open('GET', turn_url, true);
+	    xhr.send();
+	}
+    }
+
+
+    function handleRemoteStreamRemoved(event) {
+	console.log(event);
+	return event;
+    }
+
+    function stop() {
+	stopSound();
+	isStarted = false;
+	callreceiverId = 0;
+	callsocketId = 0;
+	if(typeof pc !== 'undefined' && pc)
+	    pc.close();
+	pc = null;
+	if(typeof localVideoStream != 'undefined' && localVideoStream){
+	    localVideoStream.stop();
+	    localVideoStream = null;
+	}
+	$('.jspPane', $("#dataTuberVideo")).empty();
+	$("#senderProfilePic").attr("src", '');
+	$("#senderFullName").html('');
+	$("#receiverProfilePic").attr("src", '');
+	$("#receiverFullName").html('');
+    }
+
+
+    /*
+     method : hangUp
+     purpose: Hang up a call
+     params: none;
+     Author: Pradeep
+     Modified: 21 oct 2014
+     */
+
+
+    function hangUp(notify, hideDuration) {
+	console.log('Hanging up.');
+	$("#allow_popup").hide();
+
+	var recid = callreceiverId;
+
+	var message = {};
+	message.type = 'bye';
+	message.senderid = {{user_ID|raw}};
+	message.receiverid = callreceiverId;
+	stop();
+	socket.emit('message', message);
+	// ongoing call duration stops here
+	clearInterval(timerId)
+	$("#callduration").hide();
+	$("#mainCentered").hide();
+	$(".time_duration").attr("id","");
+	$(".time_duration").html("0");
+
+
+	// ongoing call duration ends here
+
+	// call durations start here for caller
+	var end_ts = new Date().getTime();
+	var start_tsforcaller = ReadCookie('callstarttimefromc');
+	var caller_diff = (end_ts - start_tsforcaller) / 1000; /* convert milisec to sec */
+
+	var callduraionforcaller = toHHMMSS(caller_diff);
+
+	// call duration start here for callee
+
+	var start_tsforcallee = ReadCookie('callstarttimefroms');
+	var calleedif = (end_ts - start_tsforcallee) / 1000; /* convert milisec to sec */
+
+	var callduraionforcallee = toHHMMSS(calleedif);
+
+	delete_cookie('callstarttimefromc'); // delete cookie for caller
+	delete_cookie('callstarttimefroms'); // delete cookie for callee
+
+
+
+	var callduration ;
+	if(start_tsforcallee ==''){
+	    callduration = callduraionforcaller;
+	}else {
+	    callduration = callduraionforcallee;
+	}
+
+	// ends
+	//var recid = $('.one-chatLeftList').attr('data-tuber');
+
+
+	var msgob = {
+	    'senderid':{{user_ID|raw}},
+	    'msg1': 'Call disconnected',
+	    'msg':'You was on a call, duration '+callduration,
+	    'type':'text',
+	    'receiverid':recid,
+	    'duration':callduration,
+	    'showduration':start_tsforcaller=='' ? false : true
+	};
+	socket.emit('chat', msgob);
+
+	var $chatLog = $('#dataTuber'+recid);
+
+	if(notify){
+	    var disconnectd_str = getChatHtml('Me',getTS(),msgob.msg,'',callduration);
+	    AddTuberChat(recid,'','available', disconnectd_str);
+	}
+
+	if($chatLog.length > 0 && msgob.receiverid==recid){
+	    var disconnectd_str = getChatHtml('Me',getTS(),msgob.msg,'',callduration);
+	    ChatLogAppend($chatLog,disconnectd_str);
+	}
+
+	//$("#chat-leftList").show();  // show small chat box here
+	//$('.jspPane').append(disconnectd_str);
+
+    }
+
+
+    /*
+     method : doCam
+     purpose: show and hide cam to other peer
+     params: none;
+     Author: Pradeep
+     Modified: 21 oct 2014
+     */
+
+
+    function doCam(){
+	if(localVideoStream.getVideoTracks()[0]){
+	    localVideoStream.getVideoTracks()[0].enabled=!(localVideoStream.getVideoTracks()[0].enabled);
+	}
+	 var camerastatus = false;
+	 var camstatus = $("#camcloser").attr("rel");
+	 if(camstatus == 'cemaraon') {
+	     var camerastatus = true;
+	     console.log('Camera Close request');
+	     $("#camcloser").attr("rel",'');
+	     $(".cam").addClass("dis");
+	     $("#profilePic").show(1000);
+	 }else {
+	     var camerastatus = false;
+	     console.log('Camera Open request');
+	     $("#camcloser").attr("rel",'cemaraon');
+	     $(".cam").removeClass("dis");
+	     $("#profilePic").hide(1000);
+	 }
+	 var msgob = {
+	 'senderid':'{{user_ID|raw}}',
+	 'receiverid':callreceiverId,
+	 'msg': ' Cameara Hide',
+	 'type':'cameraclose',
+	 'profilePic':'{{profile_pic|raw}}',
+	 'camerastatus':camerastatus
+	 };
+	 socket.emit('chat', msgob);
+    }
+
+    /*
+     method : doAudio
+     purpose: mute and un-mute an audio
+     params: none;
+     Author: Pradeep
+     Modified: 21 Oct 2014
+     */
+
+    function doAudio(){
+
+	if(localVideoStream.getAudioTracks()[0]){
+	    localVideoStream.getAudioTracks()[0].enabled=!(localVideoStream.getAudioTracks()[0].enabled);
+	}
+
+	if ($("#remoteVideo").hasClass("remoteVideo")) {
+	    console.log('Audio mute request');
+	    $("#remoteVideo" ).removeClass( "remoteVideo" );
+	    $(".mic").addClass("dis");
+	    $("#audiocloser").attr('title','Unmute');
+	}else {
+	    console.log('Audio On request');
+	    $("#remoteVideo" ).addClass( "remoteVideo" );
+	    $(".mic").removeClass("dis");
+	    $("#audiocloser").attr('title','Mute');
+	}
+    }
+
+    function handleRemoteHangup() {
+	callCancelled = true;
+	console.log('Session terminated.');
+	$('#sender_box').hide();
+	$('#allow_popup').hide();
+	stop();
+
+	// ongoing call duration stops here
+	clearInterval(timerId);
+	$("#callduration").hide();
+	$("#mainCentered").hide();
+	$(".time_duration").attr("id","");
+	$(".time_duration").html("0");
+	$("#receiver_box").hide();
+
+	// ongoing call duration ends here
+    }
+
+
+
+
+    // Set Opus as the default audio codec if it's present.
+    function preferOpus(sdp) {
+	var sdpLines = sdp.split('\r\n');
+	var mLineIndex;
+	// Search for m line.
+	for (var i = 0; i < sdpLines.length; i++) {
+	    if (sdpLines[i].search('m=audio') !== -1) {
+		mLineIndex = i;
+		break;
+	    }
+	}
+	if (typeof mLineIndex === 'undefined' || mLineIndex === null) {
+	    return sdp;
+	}
+
+	// If Opus is available, set it as the default in m line.
+	for (i = 0; i < sdpLines.length; i++) {
+	    if (sdpLines[i].search('opus/48000') !== -1) {
+		var opusPayload = extractSdp(sdpLines[i], /:(\d+) opus\/48000/i);
+		if (opusPayload) {
+		    sdpLines[mLineIndex] = setDefaultCodec(sdpLines[mLineIndex], opusPayload);
+		}
+		break;
+	    }
+	}
+
+	// Remove CN in m line and sdp.
+	sdpLines = removeCN(sdpLines, mLineIndex);
+
+	sdp = sdpLines.join('\r\n');
+	return sdp;
+    }
+
+    function extractSdp(sdpLine, pattern) {
+	var result = sdpLine.match(pattern);
+	return result && result.length === 2 ? result[1] : null;
+    }
+
+    // Set the selected codec to the first in m line.
+    function setDefaultCodec(mLine, payload) {
+	var elements = mLine.split(' ');
+	var newLine = [];
+	var index = 0;
+	for (var i = 0; i < elements.length; i++) {
+	    if (index === 3) { // Format of media starts from the fourth.
+		newLine[index++] = payload; // Put target payload to the first.
+	    }
+	    if (elements[i] !== payload) {
+		newLine[index++] = elements[i];
+	    }
+	}
+	return newLine.join(' ');
+    }
+
+    // Strip CN from sdp before CN constraints is ready.
+    function removeCN(sdpLines, mLineIndex) {
+	var mLineElements = sdpLines[mLineIndex].split(' ');
+	// Scan from end for the convenience of removing an item.
+	for (var i = sdpLines.length - 1; i >= 0; i--) {
+	    var payload = extractSdp(sdpLines[i], /a=rtpmap:(\d+) CN\/\d+/i);
+	    if (payload) {
+		var cnPos = mLineElements.indexOf(payload);
+		if (cnPos !== -1) {
+		    // Remove CN payload from m line.
+		    mLineElements.splice(cnPos, 1);
+		}
+		// Remove CN line in sdp
+		sdpLines.splice(i, 1);
+	    }
+	}
+
+	sdpLines[mLineIndex] = mLineElements.join(' ');
+	return sdpLines;
+    }
+
+
+    function saveFile(file) {
+	window.open(download_url+file);
+    }
+
+
+    function upload_it(uid){
+	document.getElementById('upload_input'+uid).click();
+	return false;
+    }
+
+    /** cookies related method starts from here */
+
+    var delete_cookie = function(name) {
+	document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    };
+
+    function ReadCookie(cookieName) {
+	var theCookie=" "+document.cookie;
+	var ind=theCookie.indexOf(" "+cookieName+"=");
+	if (ind==-1) ind=theCookie.indexOf(";"+cookieName+"=");
+	if (ind==-1 || cookieName=="") return "";
+	var ind1=theCookie.indexOf(";",ind+1);
+	if (ind1==-1) ind1=theCookie.length;
+	return unescape(theCookie.substring(ind+cookieName.length+2,ind1));
+    }
+
+    var toHHMMSS = function (duration) {
+	var sec_num = parseInt(duration, 10); // don't forget the second param
+	var hours   = Math.floor(sec_num / 3600);
+	var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+	var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+	if (hours   < 10) {hours   = "0"+hours;}
+	if (minutes < 10) {minutes = "0"+minutes;}
+	if (seconds < 10) {seconds = "0"+seconds;}
+	var time    = hours+':'+minutes+':'+seconds;
+	return time;
+    };
+
+    function myTimer() {
+	$(".time_duration").attr("id","callduration");
+	var timer = 0;
+	timerId = setInterval(function(){$('#callduration').html(toHHMMSS(timer));timer++;},1000);
+	$("#callduration").show();
+    }
+    function playSound(filename){
+	document.getElementById("tone").innerHTML='<audio autoplay="autoplay" controls loop><source src="' + filename + '.mp3" type="audio/mpeg" /><source src="' + filename + '.ogg" type="audio/ogg" /><embed hidden="true" autostart="true" loop="true" src="' + filename +'.mp3" /></audio>';
+    }
+    function stopSound(){
+	receiverTone.pause();
+	senderTone.pause();
+    {#    document.getElementById("tone").innerHTML='';#}
+    }
+
+    $(document).on('click','#allow_popupclose',function(){
+	$('#allow_popup').hide();
+    });
+
+    /** cookies related method ends from here */
+
+    function getStatus(userId){
+	return $.cookie("status"+userId);
+    }
+    function setStatus(status , userId){
+	$.cookie("status"+userId, status, { expires : 10 });
+	console.log($.cookie("status"+userId));
+    }
+    $(document).on('click','.profileLink , .chatLink',function(){
+	var profileLink    =   $(this).attr('href');
+	window.open(profileLink,'_blank');
+    });
+
+    function getChatHtml(tubeName,timeStamp,message,downloadLink,duration){
+	var msg_txt = hex2a(message.replace(/%/g, ""));
+	if(downloadLink!='')
+	    return '<div class="row_outer"><div class="row"><div><div class="user fl"><div class="user_inner">'+tubeName+'</div></div><div class="time fr"><span class="bg fl"></span><div class="time_txt fl"> '+timeStamp+' </div><div class="clearfix"></div></div><div class="clearfix"></div></div><div class="text"><div class="text_inner">' + msg_txt + '<span style=padding-left:20px;> <a href="javascript:" onclick=saveFile("'+downloadLink+'");>Download </a> </span></div></div></div><div class="row_splitter"></div></div>';
+	else if(duration!='')
+	    return '<div class="row_outer"> <div class="row"><div><div class="user fl"><div class="user_inner">'+tubeName+'</div></div><div class="time fr"><span class="bg fl"></span><div class="time_txt fl"> '+timeStamp+' </div><div class="clearfix"></div></div><div class="clearfix"></div></div><div class="text"><div class="text_inner">' + message+ '</div></div></div><div class="row_splitter"></div></div>';
+	else
+	    return '<div class="row_outer"> <div class="row"><div><div class="user fl"><div class="user_inner">'+tubeName+'</div></div><div class="time fr"><span class="bg fl"></span><div class="time_txt fl"> '+timeStamp+' </div><div class="clearfix"></div></div><div class="clearfix"></div></div><div class="text"><div class="text_inner">' + msg_txt + duration +'</div></div></div><div class="row_splitter"></div></div>';
+
+    }
+
+    function initDDSlick(status){
+	var myselectedarray = Array(false, false, false, false);
+	if (status === 1) {
+	    myselectedarray[0] = true;
+	}
+	if (status === 2) {
+	    myselectedarray[1] = true;
+	}
+	if (status === 3) {
+	    myselectedarray[2] = true;
+	}
+	if (status === 100) {
+	    myselectedarray[3] = true;
+	}
+	//myselectedarray[0] = true;
+	var ddData = [
+	    {
+		text: "&nbsp;Available",
+		value: 1,
+		selected: myselectedarray[0],
+		imageSrc: "images/chat-online.png"
+	    },
+	    {
+		text: "&nbsp;Away",
+		value: 2,
+		selected: myselectedarray[1],
+		imageSrc: "images/chat-away.png"
+	    },
+	    {
+		text: "&nbsp;Busy",
+		value: 3,
+		selected: myselectedarray[2],
+		imageSrc: "images/chat-busy.png"
+	    },
+	    {
+		text: "&nbsp;invisible",
+		value: 100,
+		selected: myselectedarray[3],
+		imageSrc: "images/chat-offline.png"
+	    }
+	];
+
+	$('#demoBasic').ddslick({
+	    data: ddData,
+	    width: 88,
+	    imagePosition: "left",
+	    selectText: "",
+	    onSelected: function(e){
+		var chosenStatus = e.selectedData.value;
+		var statusStr    =   statusString(chosenStatus);
+		socket.emit('statusChange', {status: chosenStatus});
+		$('#myimage').attr('class','');
+		$('#myimage').addClass('one-chat-myimg '+statusStr);
+	    }
+	});
+    }
+	/*
+	* @function login , to login with the chat server
+	* @author : rishav chhajer
+	* @datetime: 9 june 2015 7:53
+	* */
+	function attemptLogin(){
+	    var accessToken    = $.cookie("lt");
+	    socket.emit("login",{userid:user_id_chat,accessToken:accessToken});
+	}
+    /*
+     * @function login , to login with the chat server
+     * @author : rishav chhajer
+     * @datetime: 9 june 2015 7:53
+     * */
+    function getCropImage(profile_Pic){
+	var pos     =   profile_Pic.lastIndexOf('.');
+	var pp  =    profile_Pic.substring(0,pos);
+	return "crop_"+pp+".png";
+
+
+    }
+    /*
+    * @function : getFriendList, a function that creates user's friend list HTML and returns it to event
+    * @author :rishav chhajer
+    * @DateTime : Fri,12th june 2015
+    *
+    * */
+    function getFriendList(message){
+	var friendsList = message.result;
+
+	var fl  =   '<div id="chatSettingsList">';
+	fl  +=   '<div id="chatSettingsPointer"></div>';
+	fl  +=   '<div class="onelistChatSettings" id="turnOffChat">Switch off chat</div></div>';
+	fl  +=   '<div class="chat-overlay-loading-fix">';
+	fl  +=   '<div></div>';
+	fl  +=   '</div>';
+	fl  +=   '<div class="one-chat-myimg" id="myimage"><img src="'+ReturnLink("media/tubers/{{crop_profile_pic|raw}}")+'" border="0"></div>';
+	fl  +=   '<div class="one-chat-username" userid="{{user_ID|raw}}">{{userName}}</div>';
+	fl  +=   '<div id="my_bottom_border"></div>';
+	fl  +=   '<div class="one-chat-checkbox">';
+	fl  +=   '<div class="dd-container" id="demoBasic">';
+	fl  +=   '<div class="dd-select"><input value="'+message.ownerStatus+'" class="dd-selected-value" type="hidden"><a class="dd-selected">';
+	fl  +=   '<img class="dd-selected-image">';
+	fl  +=   '<label class="dd-selected-text">&nbsp; '+ statusString(message.ownerStatus)+'</label></a>';
+	fl  +=   '<span class="dd-pointer dd-pointer-down"></span>';
+	fl  +=   '</div>';
+	fl  +=   '<ul class="dd-options dd-click-off-close">';
+	fl  +=   '<li><a class="dd-option dd-option-selected"> <input class="dd-option-value" value="1" type="hidden"> <img class="dd-option-image" src="/media/images/chat-online.png"> <label class="dd-option-text">&nbsp;Available</label></a></li>';
+	fl  +=   '<li><a class="dd-option"> <input class="dd-option-value" value="2" type="hidden"> <img class="dd-option-image" src="/media/images/chat-away.png"> <label class="dd-option-text">&nbsp;Away</label></a></li>';
+	fl  +=   '<li><a class="dd-option"> <input class="dd-option-value" value="3" type="hidden"> <img class="dd-option-image" src="/media/images/chat-busy.png"> <label class="dd-option-text">&nbsp;Busy</label></a></li>';
+	fl  +=   '<li><a class="dd-option"> <input class="dd-option-value" value="100" type="hidden"> <img class="dd-option-image" src="/media/images/chat-offline.png"> <label class="dd-option-text">&nbsp;invisible</label></a></li>';
+	fl  +=   '</ul>';
+	fl  +=   '</div>';
+	fl  +=   '</div>';
+	fl  +=   '<div id="onlineFav">';
+	fl  +=   '<div class="oneTabFav selectedFav" id="ALL">{{"ALL"|lang}}</div>';
+	fl  +=   '<div class="oneTabFav" id="ONLINE">{{"ONLINE"|lang}}</div>';
+    {#    fl  +=   '<div class="oneTabFav" id="FAVORITES">{{"FAVORITES"}}</div>';#}
+	fl  +=   '</div>';
+	fl  +=   '<div id="chat-container">';
+	fl  +=   '<div id="chat-container-inside" class="scroll-panenew">';
+	for(var i=0;i<friendsList.length;i++){
+	    var fullName = ""
+	    if(friendsList[i].FullName == ''){
+		fullName = friendsList[i].username;
+	    }
+	    fl  +=    '<div class="one-chat-rec" data-tuber="'+friendsList[i].id+'" id="ChatListItem'+friendsList[i].id+'" data-blocked="'+friendsList[i].blocked+'" data-chat-status="'+statusString(friendsList[i].status)+'" data-chat-favorites="0">';
+	    fl  +=   '<div class="one-chat-overlay-grey"></div>';
+	    fl  +=   '<div class="one-chat-img '+statusString(friendsList[i].status)+'"><img border="0" src="'+ReturnLink("media/tubers/"+getCropImage(friendsList[i].profile_Pic)) +'"alt="'+friendsList[i].FullName+'" border="0"></div>';
+	    fl  +=   '<div class="one-chat-name" data-uname="'+friendsList[i].username+'"><span>'+friendsList[i].FullName+'</span> </div>';
+	    fl  +=   '<div class="one-chat-remove-fav" title="remove"></div>';
+	    fl  +=   '<div class="one-chat-block"></div>';
+	    fl  +=   '<div class="one-chat-video"></div>';
+	    fl  +=   '<div class="one-chat-msg"><span></span></div>';
+	    fl  +=   '</div>';
+	}
+	fl +='</div>';
+	fl +='</div>';
+	return fl;
+    }
+
+    var addEvent = (function () {
+	if (document.addEventListener) {
+	    return function (el, type, fn) {
+		if (el && el.nodeName || el === window) {
+		    el.addEventListener(type, fn, false);
+		} else if (el && el.length) {
+		    for (var i = 0; i < el.length; i++) {
+			addEvent(el[i], type, fn);
+		    }
+		}
+	    };
+	} else {
+	    return function (el, type, fn) {
+		if (el && el.nodeName || el === window) {
+		    el.attachEvent('on' + type, function () { return fn.call(el, window.event); });
+		} else if (el && el.length) {
+		    for (var i = 0; i < el.length; i++) {
+			addEvent(el[i], type, fn);
+		    }
+		}
+	    };
+	}
+    })();
+
+    addEvent(window, 'storage', function (event) {
+	if (event.key == 'activeUsers') {
+	    var activeUsersString   =   getActiveUsersList();
+	    activeUsers = JSON.parse("["+activeUsersString+"]");
+	    reopenChatBox();
+	}
+	if (event.key == 'removeUsers' && event.newValue !== "") {
+	    var id = event.newValue;
+	    localStorage.setItem('removeUsers', "");
+	    //$("#ChatWindow"+id).parent().parent().remove();
+	    $(".one-chatLeftList[data-tuber = "+id+"]").remove();
+	    ChatWindows--;
+	    SizeAllTabs();
+	    manageExtraLists();
+	    $("#ChatListItem"+id).attr('data-blocked',0);
+	}
+    });
+
+    function reopenChatBox(){
+	var activeUsersString   =   getActiveUsersList();
+	if(!activeUsersString)
+	    return;
+
+	activeUsers =   JSON.parse("["+activeUsersString+"]");
+	if(activeUsers.length > 0){
+	    for(var i=0;i<activeUsers.length;i++){
+		var activeid=parseInt(activeUsers[i]);
+		AddTuberChat(activeid,'','available','');
+		$("#ChatListItem"+activeid).trigger("click");
+	    }
+	}
+    }
+
+    /**
+     * @function  addUsersToActiveList , to add active open chat box to local storage
+     * @author: Rishav Chhajer
+     */
+    function addUsersToActiveList(receiver,del){
+	if(activeUsers.indexOf(receiver)===-1) {
+	    if(!del)
+		activeUsers.push(receiver);
+	    if (typeof(Storage) !== "undefined")
+		localStorage.setItem('activeUsers',activeUsers);
+	    else
+		$.cookie("activeUsers",activeUsers);
+	    if(del)
+		localStorage.setItem('removeUsers',receiver);
+	}
+    }
+    /**
+     * @function  getActiveUsersList , to get active chat box to local storage
+     * @author: Rishav Chhajer
+     */
+    function getActiveUsersList(){
+	if (typeof(Storage) !== "undefined") {
+	    return localStorage.getItem('activeUsers');
+	}else{
+	    return $.cookie("activeUsers"); 
+	}
+    }
+
+    </script>
+    <script type="text/javascript" src="{{("video_chat/js/chat-behavior.js?v="~CHAT_JS_V)|link}}"></script>
+{% endif %}

@@ -1,0 +1,121 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate_theme"~corporate_theme~".css")|raw }}"/>
+    {#<link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate_theme2.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate_theme3.css")|raw }}"/>#}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate.css")|raw }}"/>
+{% endblock %}
+{% block title %}{{'Tourist Tube'|trans}}{% endblock %}
+{% block body %} 
+    <section class="container corporate_container1 nopad">
+	<div class="col-xs-12 nopad">
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/corp1stimg_corp.png') }}" alt="{{'title'}}"/>
+		</div>
+	    </div>
+	    {% if SHOW_FLIGHTS_CORPORATE_BLOCK==1 %}
+		<a href="{{ generateLangRoute(LanguageGet,'_corporate_flight') }}" title="{{'flights'|trans}}" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		    <div class="corimgsclass_corp">
+			<img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'flights'|trans}}"/>
+			<div class ="absoluteindiv plane_corp">
+			    <p class="textunimg_corp">{{'flights'|trans}}</p>
+			</div>
+		    </div>
+		</a>
+	    {% else %}
+		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		    <div class="corimgsclass_corp">
+			<img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'flights'|trans}}"/>
+			<div class ="absoluteindiv locationicon_corp">
+			    <p class="textunimg_corp">{{'flights'|trans}}</p>
+			</div>
+		    </div>
+		</div>
+	    {% endif %}
+	    <a href="{{ generateLangRoute(LanguageGet,'_corporate_hotel_search') }}" title="{{'hotels'|trans}}" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol2_corp">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'hotels'|trans}}"/>
+		    <div class ="absoluteindiv hotelicon_corp">
+			<p class="textunimg_corp">{{'hotels'|trans}}</p>
+		    </div>
+		</div>
+	    </a>
+	    {% if SHOW_DEALS_BLOCK==1 %}
+		<a href="{{ generateLangRoute(LanguageGet,'_corporate_attractions') }}" title="{{'attractions'|trans}}" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		    <div class="corimgsclass_corp">
+			<img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'attractions'|trans}}"/>
+			<div class ="absoluteindiv locationicon_corp">
+			    <p class="textunimg_corp">{{'attractions'|trans}}</p>
+			</div>
+		    </div>
+		</a>
+	    {% else %}
+		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		    <div class="corimgsclass_corp">
+			<img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'attractions'|trans}}"/>
+			<div class ="absoluteindiv locationicon_corp">
+			    <p class="textunimg_corp">{{'attractions'|trans}}</p>
+			</div>
+		    </div>
+		</div>
+	    {% endif %}
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/parach_corp.png') }}" alt="{{'parach'}}"/>
+		</div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol2_corp">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'flights + hotels'|trans}}"/>
+		    <div class ="absoluteindiv hotelndflight_corp">
+			<p class="textunimg_corp">{{'flights'|trans}}<br>+<br> {{'hotels'|trans}}</p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'flights + attractions'|trans}}"/>
+		    <div class ="absoluteindiv flightndatt_corp">
+			<p class="textunimg_corp">{{'flights'|trans}}<br>+<br> {{'attractions'|trans}}</p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/toureffel_corp.png') }}" alt="{{'title'}}"/>
+		</div>
+	    </div>
+	    <a href="{{ generateLangRoute(LanguageGet,'_corporate_my_bookings') }}" title="{{'my bookings'|trans}}" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol2_corp">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'my bookings'|trans}}"/>
+		    <div class ="absoluteindiv mytourbag_corp">
+			<p class="textunimg_corp">{{'my bookings'|trans}}</p>
+		    </div>
+		</div>
+	    </a>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'hotels + attractions'|trans}}"/>
+		    <div class ="absoluteindiv hotelndattra_corp">
+			<p class="textunimg_corp">{{'hotels'|trans}}<br>+<br> {{'attractions'|trans}}</p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/bridge_corp.png') }}" alt="{{'bridge'}}"/>
+		</div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 menuCopr nopad backgroundcol1_corp">
+		<div class="corimgsclass_corp">
+		    <img class="width100" src="{{ generateMediaURL('/media/images/corporate/empty.png') }}" alt="{{'flights + hotels + attractions'|trans}}"/>
+		    <div class ="absoluteindiv flightndhotndatt_corp">
+			<p class="textunimg_corp">{{'flights'|trans}} + {{'hotels'|trans}}<br>+<br> {{'attractions'|trans}}</p>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-travel-approvals.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/css/jquery.auto-complete.css')|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/js/jquery.autocomplete.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/autocomplete/TTAutocomplete.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-travelApprovals.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Travel Approvals'|trans}}{% endblock %}
+{% block body %}
+
+
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad">
+            <h2 class="pageheadertitle_travelapp">{{'Travel approvals'|trans}}</h2>
+        </div>
+        <div class="col-xs-12 nopad margin_top_25">
+            <p class="corporatetitle_travelapp">{{'corporate name:'|trans}}</p>
+            <p class="corporatetitlename_travelapp">{{accountName|raw}}</p>
+        </div>
+
+        <div class="row margin_top_10">
+            <div class="col-xs-12 inputs_row">
+                <p class="row_items filter_label">{{'filter by'|trans}}</p>
+
+                <div class="form-group row_items">
+                    <input type="text" class="popupInputs" name="created_by" data-toggle="ttautocompleteUser" id="userName" placeholder="{{'Search for user'|trans}}"/>
+                </div>
+                <div class="form-group row_items">
+                    <input type="text" class="form-control createdDate" name="created_date" id="createdDate" placeholder="{{'Created Date'|trans}}" value="" />
+                </div>
+                <div class="form-group row_items">
+                    <select class="form-control" id="types">
+                        {% for module in modules %}
+                            <option value="{{module.id|raw}}">{{module.name|raw}}</option>
+                        {% endfor %}
+                    </select>
+                </div> 
+               
+                <div class="submit_button row_items">
+                    <button data-role="button" data-type="default" onclick="filterInfo()"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 nopad pricenumrightstyle_travelapp">
+            <p class="pricenumbtxt_travelapp"><span class="pricespanunit_travelapp" id="prefferedCurrency">{{preferredAccountCurrency|raw}} </span> <span id="accountPreferrredCurencyAmount">{{sumPreferredAccountAmout|raw|number_format(2, '.', ',')}}</span></p>
+        </div>
+        <div class="col-xs-12 nopad approvalall_travelapp">
+            <a href="{{ path('_corpo_travel_approve_all') }}" class="approvalalltext_travelapp" style="display:none;">{{'approve all'|trans}}</a>
+        </div>
+        <div class="col-xs-12 nopad borderedsectiontwolines_travelapp"></div>
+        <div class="col-xs-12 nopad borderedsectiontwolines_travelapp"></div>
+	
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	    {% for status in statuses %} 
+		<li  id="myTabs" {% if (status.ap_id) == 1 %}class="active"{% endif %} data-value="{{status.ap_id}}"><a href="#" aria-controls="{{status.ap_name}}" role="tab" data-toggle="tab" data-value="{{status.ap_id}}">{{status.ap_name}}</a></li>
+	    {% endfor %}
+	</ul>
+	    
+	<div id="travelApprovalInfo">
+	    {% include '@Corporate/admin/travelApprovals/travelApprovalsInfo.twig' %}
+	</div>
+	    
+	<div class="pagination pagerWrapper" id="paginationPages">
+	    {% include '@Corporate/admin/travelApprovals/travelApprovalsPagination.twig' %}
+	</div>
+    </section>
+{% endblock %}

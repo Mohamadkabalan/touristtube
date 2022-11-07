@@ -1,0 +1,141 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+        var isCorporate = false;
+    </script>
+{% endblock %}
+{% block title %}
+    {{ 'Flight Booking Result'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block refine_your_search %}
+    <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+        <div class="container-fluid nopad filters-group">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                    {{'Refine your search'|trans}}
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                {% set refine_search='first' %}
+                {% include "@NewFlight/flight/results_refine_your_search.twig" %}
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="overlay-loading-flights"><div></div></div>
+
+    <section class="container main_flight_container">
+
+        <div class="flight-update-search-container">
+            <div class="row margin_top_10">
+                <div class="col-xs-12">
+                    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{ 'Your Search'|trans }}</h1>
+                </div>
+            </div>
+            <div class="row update_search_container div_wiz_border">
+              {% include "@NewFlight/flight/your-search.twig" %}
+            </div>
+            <div class="row flight_search_input_container flight_container_style">
+                <div class="col-xs-12 searchcontainer_homep searchcontainer_content">
+                  {% include "default/searchinput3.twig" %}
+                    <div class="close_container">
+                        <i class="fas fa-times fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row border_top_but_row"></div>
+        </div>
+
+        {# breadcrumps#}
+        {% include "@NewFlight/flight/results_breadcrump.twig" %}
+
+        <div class="row margin-top-20 main_conatainer filters-group">
+            <div class="col-md-3 left_panel filter-options hidden-sm hidden-xs" id="filterleft">
+                {% set refine_search='second' %}
+                {% include "@NewFlight/flight/results_refine_your_search.twig" %}
+            </div>
+
+            <div class="col-md-9 col-xs-12 right_panel">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad change_currency_container">
+                        <div class="row">
+                            <div class="col-sm-8 col-xs-12 airlines_refine">
+                                <p class="header_text_left">{{'You are viewing prices in'|trans}} <span class="currency-convert-text">{{ bargainRequest.currencyCode|raw }}</span> . {{'You can change currency from here'|trans}}</p>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <button class="btn btn-info change_currency_button">{{'Change currency'|trans}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row tootltip_row">
+                            <div class="col-sm-4 col-xs-12 airlines_refine" data-price="50.786684490377">
+                                <p class="greyback_tooltip_text">{{'Lowest price for all passengers'|trans}}<br><span class="currency-convert-text">{{ bargainRequest.currencyCode|raw}}</span> <span class="price-convert-text">50.79</span></p>
+                                <img class="tooltipimg" src="{{ generateMediaURL('/media/images/flights_new/tooltip_arrow_grey.png') }}" alt="tooltip">
+                                <input type="hidden" id="minimum_price" name="minimum_price" value="50" class="airlines_refine" data-price="50.786684490377">
+                                <input type="hidden" id="maximum_price" name="maximum_price" value="51" class="airlines_refine" data-price="50.79">
+                            </div>
+                            <div class="col-sm-8 col-xs-12">
+                                <p class="right_tooltip_text">{{'This price is the lowest available price combination for your selected dates.
+                                    Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and
+                                    carrier-imposed charges for 1 passenger (1 adult).'|trans}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#<div class="row">
+                    <div class="col-xs-12">
+                        <p class="communtext_grey">{{'All times displayed are local for each city.'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="communtext_grey">{{'Please ensure you read the fare conditions at the bottom before selecting your flights.'|trans}}</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad grey_back_container_destination margin-top-10">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="col-xs-1">
+                                    <p>CEB</p>
+                                </div>
+                                <div class="col-xs-1">
+                                    <div class="dest_img_container">
+                                        <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-1">
+                                    <p>TAC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="flightrequestMain" value="{&quot;departureairport&quot;:[&quot;Cebu City (CEB)&quot;],&quot;departureairportC&quot;:[&quot;CEB&quot;],&quot;arrivalairport&quot;:[&quot;Tacloban (TAC)&quot;],&quot;arrivalairportC&quot;:[&quot;TAC&quot;],&quot;fromDate&quot;:[&quot;2018-12-14&quot;],&quot;toDate&quot;:[&quot;2018-12-14&quot;],&quot;multidestination&quot;:&quot;&quot;,&quot;multidestinationC&quot;:&quot;&quot;,&quot;oneway&quot;:&quot;1&quot;,&quot;cabinselect&quot;:&quot;&quot;,&quot;adultsselect&quot;:&quot;1&quot;,&quot;childsselect&quot;:&quot;0&quot;,&quot;infantsselect&quot;:&quot;0&quot;,&quot;flexibledate&quot;:&quot;1&quot;}">
+                <input type="hidden" id="flightrequestMainStep" value="0">
+
+                {# carousel #}
+                {% include "@NewFlight/flight/results_carousel_nav.twig" %}
+                {# sortBy #}
+                {% include "@NewFlight/flight/results_sortby_nav.twig" %}
+                {# segments #}
+                {% include "@NewFlight/flight/results_segments.twig" %}
+
+            </div>
+        </div>
+    </section>
+
+    {# popup|segment details #}
+    {% include "@NewFlight/flight/results_segment_popup.twig" %}
+
+{% endblock %}

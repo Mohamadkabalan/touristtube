@@ -1,0 +1,13 @@
+{% if allApprovalFlowList %}
+    {% for travel in allApprovalFlowList %}
+        {% if travel.moduleId == hotelModuleId %}
+            {% include '@Corporate/admin/manageBookings/corporate-manage-bookings_hotels.twig' %}
+        {% elseif travel.moduleId == flightModuleId %}
+            {% include '@Corporate/admin/manageBookings/corporate-manage-bookings_flights.twig' %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <div class="alert alert-light" role="alert">
+        <p>{{'No Bookings Found!'|trans}}</p>
+    </div>
+{% endif %}

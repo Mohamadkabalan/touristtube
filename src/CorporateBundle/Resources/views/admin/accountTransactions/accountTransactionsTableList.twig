@@ -1,0 +1,42 @@
+<section class="content">
+    <table id="transactionsTbl" align="center" class="dataTable table table-striped table-bordered" cellspacing="0" width="80%"
+	   ajax_url 					= "{{ path('_corpo_account_transactions_datatable') }}"
+	   default_order_column_id  	= "id_ID"
+	   default_order_direction  	= "asc"
+	   parameters = "userId,accountId,fromDate,toDate,currencyCode,serviceType,accounTypetId"
+       row_handler					= "soaRowHandler"
+	   footerCallBack="accountTransactionsFooterCallBack"
+	   >
+        <thead>
+            <tr>
+                <th id="id_ID" dbname="cat__id" cell_handler="actionCellHandler" >{{'Id'|trans}}</th>
+                <th id="createdAt_ID" dbname="cat__created_at" width="80px">{{'Date'|trans}}</th>
+                <th id="user_ID" dbname="cu__FullName" width="150px">{{'User'|trans}}</th>
+                <th id="moduleName_ID" dbname="tt__name" width="150px">{{'Service'|trans}}</th>
+                <th id="amount_ID" dbname="cat__amount" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="100px">{{'Amount'|trans}}</th>
+                <th id="moduleId_ID" dbname="cat__currency_code" width="80px">{{'Currency'|trans}}</th>
+                <th id="amountFBC_ID" dbname="cat__amount_fbc" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="100px">{{amountFBC|raw}}</th>
+                <th id="amountSBC_ID" dbname="cat__amount_sbc" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="100px">{{amountSBC|raw}}</th>
+                <th id="acctAmt_ID" dbname="cat__account_currency_amount" cell_handler="preferredAmountCellHandler" type="num-fmt" formatter="number" number-thousands="," number-decimals="." number-precision="2" prefix="" suffix="" width="150px">{{'Account Currency'|raw}}</th>
+                <th id="desc_ID" dbname="description" width="250px">{{'Description'|trans}}</th>
+                <th id="status_ID" dbname="cafs__name" width="150px">{{'Status'|trans}}</th>
+                <th id="preferredCurrency_ID" dbname="ca__preferred_currency" visible="false" >{{'Preferred Currency'|trans}}</th>
+                <th id="statusId_ID" dbname="cafs__id" visible="false">{{'Status ID'|trans}}</th>
+                <th id="account_ID" dbname="ca__name" visible="false">{{'Account'|trans}}</th>
+                <th id="moduleId_ID" dbname="cat__module_id" visible="false">{{'Module Id'|trans}}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th colspan="6" style="text-align:right; font-weight: bold;">{{ 'Total'|trans }}:</th>
+                <th id="totalFbc" style="text-align:right;font-weight: bold;"></th>
+                <th id="totalSbc" style="text-align:right;font-weight: bold;"></th>
+                <th></th>
+                <th id="totalPreferred" style="text-align:right;font-weight: bold;"></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <br><br>
+</section>

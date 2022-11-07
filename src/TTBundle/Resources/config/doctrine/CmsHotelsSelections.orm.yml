@@ -1,0 +1,42 @@
+TTBundle\Entity\CmsHotelsSelections:
+    type: entity
+    table: cms_hotels_selections
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        img:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: city_id
+        count:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        selectionType:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+            column: selection_type
+    lifecycleCallbacks: {  }

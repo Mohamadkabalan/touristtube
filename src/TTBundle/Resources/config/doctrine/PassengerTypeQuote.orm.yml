@@ -1,0 +1,42 @@
+TTBundle\Entity\PassengerTypeQuote:
+    type: entity
+    table: passenger_type_quote
+    repositoryClass: TTBundle\Repository\TTRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        moduleId:
+            type: integer
+            nullable: false
+            column: module_id
+            options:
+                default: '1'
+        moduleTransactionId:
+            type: integer
+            nullable: false
+            column: module_transaction_id
+        passengerType:
+            type: string
+            nullable: false
+            length: 3
+            column: passenger_type
+            options:
+                default: 'ADT'
+        priceQuote:
+            type: string
+            nullable: false
+            options:
+                unsigned: false
+            column: price_quote
+    lifecycleCallbacks: {  }

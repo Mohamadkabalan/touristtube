@@ -1,0 +1,221 @@
+body{
+	min-width:200px;	
+}
+
+.all_container{
+	display: block;
+    height: 605px;
+    margin: 0;
+    padding: 0;
+	margin:0 auto;
+    position: relative;
+    width: 885px;
+}
+
+.images_Cont{
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+img{
+	max-height: 580px;
+    max-width: 615px;
+}
+
+.img_span{
+	position:relative;
+	display:block;
+	margin:0 auto;
+	width:auto;
+	text-align:center;
+}
+
+.header, .headervid{
+	position:relative;
+	float:left;
+	width:100%;/*589px;*/
+	height:25px;
+	background:#252525;
+}
+
+.headervid{
+	margin-bottom:110px;
+}
+
+.header_txt{
+	position:relative;
+	float:left;
+	width:auto;
+	height:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;	
+	color:#e7ba20;	
+	margin-left:20px;
+	margin-top:7px;
+}
+
+.image_cont_pic{
+	position:relative;
+	float:left;
+	width:100%;/*615px;*/
+	height:92%;/*580px;*/
+	text-align:center;
+}
+
+.fullscr_tip{
+	position:absolute;
+	width:67px;
+	height:22px;
+	background: url("/media/images/channel/fullscreen_tip.png") no-repeat;
+	left: -48px;
+    top: -18px;
+	display:none;
+}
+
+
+.next_prev{
+	position:absolute;
+	float:left;
+	width:auto;
+	height:auto;
+	right:0px;
+	bottom:0px;
+	z-index:10;
+}
+
+.img_table{
+	border: none;
+	width: 100%;
+	height:100%;
+}
+
+.prev_div,.prev_alb_div{
+	position:relative;
+	float:left;
+	width:25px;
+	height:25px;
+	margin-right:1px;
+	cursor:pointer;
+	display:block;
+	background: url("/media/images/sprite_social.png")  no-repeat -350px 0;
+}
+.prev_div.inactive,.prev_alb_div.inactive{
+	cursor:default;
+	background: url("/media/images/sprite_social.png")  no-repeat -376px 0;
+}
+
+.next_div.inactive,.next_alb_div.inactive{
+	cursor:default;
+	background: url("/media/images/sprite_social.png")  no-repeat -307px 0;
+}
+
+.next_div,.next_alb_div{
+	position:relative;
+	float:left;
+	width:25px;
+	height:25px;
+	cursor:pointer;	
+	display:block;
+	background: url("/media/images/sprite_social.png")  no-repeat -281px 0;
+	background-position:center center; 
+}
+.prev_alb_div a,.next_alb_div a{
+	width:100%;
+	height:100%;
+	position:relative;
+	float:left;	
+}
+.fulls_div{
+	position:relative;
+	float:left;
+	width:20px;
+	height:20px;
+	margin-right:4px;
+	margin-top:3px;
+	cursor:pointer;	
+        background: url("/media/images/sprite_social.png")  no-repeat -156px 0;
+}
+
+.video_cont{
+	position:relative;
+	float:left;	
+	width:711px;
+	height:462px;
+	margin-left: 38px;
+	display:block;
+}
+
+.video_cont #flashcontent {
+	position: relative;
+	width:711px;
+	height:462px;
+	background-color: black;
+}
+
+.video_cont #flashcontent *{
+	color: white;
+	text-decoration: none;
+}
+
+.video_cont #flashcontent a{
+	color: #dcaf1a;
+}
+
+#commentDiv.commentDiv_pop {
+    right: 0px;   
+    position: absolute;
+    top: 0px;
+    width: 296px;
+	display:block;
+	float:none;
+	left:auto;
+	height:615px;
+}
+.commentDiv_pop .socialInitDiv, .commentDiv_pop #comment_reportDiv, .commentDiv_pop #album_reportDiv {
+	height:100%;
+}
+.commentDiv_pop .buttons {
+    padding: 0;
+}
+.commentDiv_pop .closeDiv {
+	display:none;
+}
+.commentDiv_pop .containerDiv {
+    margin-bottom: 20px;
+	margin-top:12px;
+}
+
+.image_prev{
+	margin-left:0px;		
+}
+
+#ttPopup{
+	position:relative;
+	margin:0 auto;
+	width:615px;
+	height:100%;
+	color:#000000;
+	overflow:hidden !important;
+}
+#ttPopup .swipe-wrap{
+	position:relative;
+	float:left;
+	width:615px;
+	height:100%;	
+}
+.swipe-wrap{
+	overflow:hidden !important;	
+}
+
+#sharepopup_error{
+    clear: both;
+    position:relative;
+    width:100%;
+    height:auto;
+    margin-top:10px;
+    cursor:default;
+    display:block;
+    float:left;
+}

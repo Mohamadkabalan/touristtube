@@ -1,0 +1,152 @@
+FlightBundle\Entity\FlightDetail:
+    type: entity
+    table: flight_detail
+    indexes:
+        pnrId:
+            columns:
+                - pnr_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        pnrId:
+            type: string
+            nullable: false
+            length: 11
+            column: pnr_id
+        segmentNumber:
+            type: integer
+            nullable: false
+            column: segment_number
+        departureAirport:
+            type: string
+            nullable: false
+            length: 3
+            column: departure_airport
+        arrivalAirport:
+            type: string
+            nullable: false
+            length: 3
+            column: arrival_airport
+        departureDateTime:
+            type: datetime
+            nullable: false
+            column: departure_datetime
+        arrivalDateTime:
+            type: datetime
+            nullable: false
+            column: arrival_datetime
+        airline:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+        operatingAirline:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+            column: operating_airline
+        flightNumber:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+            column: flight_number
+        cabin:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: false
+        flightDuration:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: flight_duration
+        stopIndicator:
+            type: boolean
+            column: stop_indicator
+        stopDuration:
+            type: string
+            length: 30
+            options:
+                fixed: false
+            column: stop_duration
+        resBookDesignCode:
+            type: string
+            length: 3
+            nullable: true
+            options:
+                fixed: false
+            column: res_book_design_code
+        type:
+            type: string
+            length: 11
+            options:
+                fixed: false
+        fareCalcLine:
+            type: string
+            length: 1000
+            options:
+                fixed: false
+            column: fare_calc_line
+        leavingBaggageInfo:
+            type: string
+            length: 100
+            options:
+                fixed: false
+            column: leaving_baggage_info
+        returningBaggageInfo:
+            type: string
+            length: 100
+            options:
+                fixed: false
+            column: returning_baggage_info
+        departureTerminalId:
+            type: string
+            nullable: true
+            length: 24
+            column: departure_terminal_id
+        arrivalTerminalId:
+            type: string
+            nullable: true
+            length: 24
+            column: arrival_terminal_id
+        fareBasisCode:
+            type: string
+            nullable: true
+            length: 30
+            column: fare_basis_code
+        airlinePnr:
+            type: string
+            nullable: true
+            length: 20
+            column: airline_pnr
+        elapsedTime:
+            type: string
+            nullable: true
+            length: 20
+            column: elapsed_time
+    manyToOne:
+        passengerNameRecord:
+            targetEntity: PassengerNameRecord
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: flightDetails
+            joinColumns:
+                pnr_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,20 @@
+UPDATE cms_hotel_source SET is_active = 1 WHERE hotel_id = 20964;
+
+UPDATE cms_hotel SET iso3_country_code = 'NLD', country_code = 'NL' WHERE id = 20964;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 203854;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 203844;
+UPDATE cms_hotel SET iso3_country_code = 'TUR', country_code = 'TR' WHERE id = 191531;
+UPDATE cms_hotel SET iso3_country_code = 'DEU', country_code = 'DE' WHERE id = 191528;
+UPDATE cms_hotel SET iso3_country_code = 'NLD', country_code = 'NL' WHERE id = 187540;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 159167;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 159163;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 159161;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 159155;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 159149;
+UPDATE cms_hotel SET iso3_country_code = 'CHN', country_code = 'CN' WHERE id = 159142;
+UPDATE cms_hotel SET iso3_country_code = 'GBR', country_code = 'GB' WHERE id = 152882;
+UPDATE cms_hotel SET iso3_country_code = 'ITA', country_code = 'IT' WHERE id = 128114;
+UPDATE cms_hotel SET iso3_country_code = 'BRA', country_code = 'BR' WHERE id = 117459;
+UPDATE cms_hotel SET iso3_country_code = 'TUR', country_code = 'TR' WHERE id = 106720;
+UPDATE cms_hotel SET iso3_country_code = 'IND', country_code = 'IN' WHERE id = 106635;
+UPDATE cms_hotel SET iso3_country_code = 'ESP', country_code = 'ES' WHERE id = 103761;

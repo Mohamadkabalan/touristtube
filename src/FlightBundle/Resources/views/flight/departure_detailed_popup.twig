@@ -1,0 +1,169 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/departure_detailed_popup.css" >
+
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="departure_popup_container">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            <h2 class="popup_title"><img class="" src="{{ generateMediaURL('/media/images/flights_new/plane_logo.png') }}" alt="plane_logo"><span>Departure</span>  <span class="sndspan">|  Beirut (BEY) to Madrid (MAD)</span></h2> 
+                        </div>
+                    </div>
+                        <div class="row no-margin" style="display:none;">
+				<div class="col-xs-12 nopad">
+				    {% set refundable = 'Non-refundable'|trans %}
+					<p class="font-15 pink line-height-20 float_right margin_buttom_0">{{ refundable }} {{'*charges may apply'|trans}}</p>
+				</div>
+			</div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            <p class="subtitle_total_duration">Total duration: 18h 45m</p> 
+                        </div>
+                    </div>
+                    <div class="row mar_top_20 mar_but_20">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad firstrow_firstdiv">
+                                    <p>Sat. Jun 9</p>
+                                </div>
+                                <div class="col-xs-6 nopad firstrow_snddiv">
+                                    <p>From<br>To</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad firstrow_thirddiv">
+                                    <p>Rafic Hariri Int. (BEY)<br>Dubai Intl. (DXB)</p>
+                                </div>
+                                <div class="col-xs-6 nopad firstrow_fourthdiv">
+                                    <p>terminal 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mar_top_20 mar_but_20">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad sndrowrow_firstdiv">
+                                    <p>BEY<br><span>19:40</span></p>
+                                </div>
+                                <div class="col-xs-6 nopad sndrowrow_snddiv">
+                                    <div class="dest_img_container">
+                                        <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad sndrowrow_thirddiv">
+                                    <p>DXB<br><span class="time">00:35</span><span class="bonus">+1 day</span></p>
+                                </div>
+                                <div class="col-xs-6 nopad sndrowrow_fourthdiv">
+                                    <p>3h 55m</p>
+                                    <p>Non-stop</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-12 nopad sndrowrow_fifthdiv">
+                                    <p class="flight_num_txt">Flight number</p>
+                                    <p class="flight_num"><img src="{{ generateMediaURL('/media/images/flights_new/plane_tail.png') }}" alt="plane_tail">EK954</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-12 nopad sndrowrow_sixdiv">
+                                    <p>Aircraft type</p>
+                                    <p>Boeing 777 -  300ER -  Lunch</p>
+                                    <p>Economy / Coach (W)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mar_top_20 mar_but_20 no-margin">
+                        <div class="col-lg-10 col-md-11 col-xs-12 col-md-offset-1 col-lg-offset-2 bordered_row nopad">
+                            <img class="clock_logo" src="{{ generateMediaURL('/media/images/flights_new/clock_vector.png') }}" alt="clock_vector">
+                            <p><span class="separator_border">|</span>7h 0m stop<span class="sndspan">in Dubai (DXB)</span><span class="thirdspan">Passengers on connecting flights will need to change aircrafts. </span></p>
+                        </div>
+                    </div>
+                    <div class="row mar_top_20 mar_but_20">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad firstrow_firstdiv">
+                                    <p>Sat. Jun 9</p>
+                                </div>
+                                <div class="col-xs-6 nopad firstrow_snddiv">
+                                    <p>From<br>To</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad firstrow_thirddiv">
+                                    <p>Rafic Hariri Int. (BEY)<br>Dubai Intl. (DXB)</p>
+                                </div>
+                                <div class="col-xs-6 nopad firstrow_fourthdiv">
+                                    <p>terminal 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mar_top_20 mar_but_20">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad sndrowrow_firstdiv">
+                                    <p>BEY<br><span>19:40</span></p>
+                                </div>
+                                <div class="col-xs-6 nopad sndrowrow_snddiv">
+                                    <div class="dest_img_container">
+                                        <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-6 nopad sndrowrow_thirddiv">
+                                    <p>DXB<br><span class="time">00:35</span><span class="bonus">+1 day</span></p>
+                                </div>
+                                <div class="col-xs-6 nopad sndrowrow_fourthdiv">
+                                    <p>3h 55m</p>
+                                    <p>Non-stop</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-12 nopad sndrowrow_fifthdiv">
+                                    <p class="flight_num_txt">Flight number</p>
+                                    <p class="flight_num"><img src="{{ generateMediaURL('/media/images/flights_new/plane_tail.png') }}" alt="plane_tail">EK954</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <div class="row no-margin">
+                                <div class="col-xs-12 nopad sndrowrow_sixdiv">
+                                    <p>Aircraft type</p>
+                                    <p>Boeing 777 -  300ER -  Lunch</p>
+                                    <p>Economy / Coach (W)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

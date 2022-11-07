@@ -1,0 +1,311 @@
+{# Twig template for channel-connections and channel-sponsors #}
+{% include "headChannel.html" %}
+
+<script type = "text/javascript">
+    var indexArray = new Array();
+    var pagetab = '{{ pagetab|raw }}';
+    var globchannelid = '{{ channelId|raw }}';
+    channelGlobalID(globchannelid);
+    var is_owner = '{{ isOwner|raw }}';
+    var user_Is_channel = '{{ userIschannel|raw }}';
+    var user_is_logged = '{{ userIsLogged|raw }}';
+    var is_channel = '{{ ischannel|raw }}';
+    reactivateAccount(false);
+</script>
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleChannel" style="background:bg_{{ src|raw }};">
+
+    <div id="ChannelContainer">
+        {% include "parts/channelHeader.twig" %}
+        <div id="MainChannelContainer">
+            <div class="privacybuttonsOver">
+                <div class="ProfileHeaderOverin"></div>
+                <div class="icons-overtik"></div>
+            </div>
+            {% include "parts/myChannelRight.twig" %}
+            <div class="objectContainerOver">
+                <div class="objectContainerOverin"></div>
+                <div class="icons-overtik"></div>
+            </div>
+            <div id="ChannelLeft">
+                <div class="searchcontainer">
+                    <div id="searchinput">
+                        <input type="text" 
+                               name="name" 
+                               id="srchtxt" 
+                               style="width:138px; margin:0; padding:0; border:0; margin-left:4px;" 
+                               value="{{ searchString|raw }}" 
+                               onfocus="removeValue1(this)" 
+                               onblur="addValue1(this)" 
+                               data-val="{{ searchString|raw }}" 
+                               onKeyPress="return checkSubmitSearch(event)" />
+
+                    </div>
+                    <div id="searchbut"></div>
+                    <div id="searchbutalphabetcontainer">
+                        <div id="searchbutalphabet"></div>
+                        <div id="alphabetcnt">
+                            <ul>
+                                {% for alpha in alphArr %}
+                                    <li id="{{ alpha.id|raw }}"
+                                        data-value="{{ alpha.value|raw }}"
+                                        class="{{ alpha.class|raw }}">
+                                            {{ alpha.value|raw }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% if isOwner == 1 %}
+                    <div id="privacy_button" class="privacy_button privacy_icon{{ privacy_icon_val|raw }}"
+                         data-title="{{ privacy_icon_str|raw }}"></div>
+                    <div id="privacy_box" class="privacy_box">
+                        <div class="privacy_selector_text formtt11new">{{ 'Who can see my connections?'|lang }}</div>
+                        <select id="privacy_select" class="privacy_select">
+                            {% if privacy_icon_val == PRIVACY_EXTAND_KIND_PUBLIC %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_PUBLIC|raw }}" selected="selected">{{ 'public'|lang }}</option>
+                            {% else %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_PUBLIC|raw }}">{{ 'public'|lang }}</option>
+                            {% endif %}
+                            {% if privacy_icon_val == PRIVACY_EXTAND_KIND_CONNECTIONS %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_CONNECTIONS|raw }}" selected="selected">{{ 'connections'|lang }}</option>
+                            {% else %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_CONNECTIONS|raw }}">{{ 'connections'|lang }}</option>
+                            {% endif %}
+                            {% if privacy_icon_val == PRIVACY_EXTAND_KIND_SPONSORS %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_SPONSORS|raw }}" selected="selected">{{ 'sponsors'|lang }}</option>
+                            {% else %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_SPONSORS|raw }}">{{ 'sponsors'|lang }}</option>
+                            {% endif %}
+                            {% if privacy_icon_val == PRIVACY_EXTAND_KIND_PRIVATE %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_PRIVATE|raw }}" selected="selected">{{ 'private'|lang }}</option>
+                            {% else %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_PRIVATE|raw }}">{{ 'private'|lang }}</option>
+                            {% endif %}
+                            {% if privacy_icon_val == PRIVACY_EXTAND_KIND_CUSTOM %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_CUSTOM|raw }}" selected="selected">{{ 'custom'|lang }}</option>
+                            {% else %}
+                                <option value="{{ PRIVACY_EXTAND_KIND_CUSTOM|raw }}">{{ 'custom'|lang }}</option>
+                            {% endif %}
+                        </select>
+                        <div id="privacy_icon" class="privacy_icon privacy_icon1"></div>
+
+
+                        <div id="privacy_picker" class="privacy_picker displaynone">
+                            <div class="peoplecontainer formContainer100 margintop2" style="width:220px;margin-left:1px;margin-top:25px;">
+                                <div class="emailcontainer emailcontainer_privacy" style="width:216px">
+                                    <div class="addmore">
+                                        <input name="addmoretext" id="addmoretext_privacy" type="text" 
+                                               class="addmoretext_css" value="{{ 'add more'|lang }}" data-value="{{ 'add more'|lang }}" 
+                                               onfocus="removeValue2(this)" onblur="addValue2(this)" data-id=""/>
+                                    </div>
+                                </div>
+                                <div class="friendscontainer" style="width:100%">
+                                    <div class="uploadinfocheckbox uploadinfocheckbox5 formttl13 margintop8 marginleft5" data-value="">
+                                        <div class="uploadinfocheckboxpic"></div>
+                                        <div class="uploadinfocheckboxtxt" style="font-weight:normal; color:#000000;">
+                                            {{ 'connections'|lang }} 
+                                            <span id="privacy_connections_count" style="color:#b8b8b8;">
+                                                ({{ TubersNumConnected0|raw }})
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="uploadinfocheckbox uploadinfocheckbox6 formttl13 margintop8 marginleft5" data-value="">
+                                        <div class="uploadinfocheckboxpic"></div>
+                                        <div class="uploadinfocheckboxtxt" style="font-weight:normal; color:#000000;">
+                                            {{ 'sponsors'|lang }}
+                                            <span id="privacy_sponsors_count" style="color:#b8b8b8;">
+                                                ({{ TubersNumConnected1|raw }})
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearboot"></div>
+                        <div class="sharepopup_buts private_save_buts" style="right:15px;">{{ 'save'|lang }}</div>
+
+                        <div id="privacy_close_button" class="privacy_close_button"></div>
+                    </div>
+                {% endif %}
+
+
+                </div> <!-- End searchcontainer -->
+
+{% if TubersConnectedNotFalse == true %}
+                <div class="MediaCont">
+                    <div class="Line"></div>
+
+
+
+                    {% if isOwner == 1 %}
+                    <div id="privacy_open" class="privacy_open">
+                        <div id="privacy_open_button" class="privacy_open_button"></div>
+                        <div id="privacy_open_text" class="privacy_open_text">{{ 'edit privacy'|lang }}</div>
+                    </div>
+                    {% endif %}
+
+                    <div class="mediaConnections margintop13">
+                        <h2 class="mediaConnectionsData h2bottom0 h2top0">{{ 'CONNECTIONS'|lang }}</h2>
+                        <div class="mediaConnectionsDataCount" data-number="{{ TubersNumConnected|raw }}">{{ TubersNumConnected|raw }}</div>
+                    </div>
+                    <div class="MediaList" id="MediaImage" 
+                         data-channelid="{{ channelId|raw }}"  
+                         data-number="{{ TubersConnectedCount|raw }}">
+                        <ul>
+                            <?php
+                            $i = 0;
+                            foreach ($TubersConnected as $tuberInfo) {
+                            $i++;
+                            $connection_id = $tuberInfo['id'];
+                            $create_ts = $tuberInfo['create_ts'];
+                            $tuber_id = $tuberInfo['userid'];
+                            //$one_user_info =getUserInfo($tuber_id);
+                            $popclass = 'popUpLeft';
+
+                            $is_visibleclass = " displaynone";
+                            $is_visibleclassli = "";
+                            if (intval($tuberInfo['is_visible']) == 0) {
+                            $is_visibleclass = "";
+                            $is_visibleclassli = " noaction";
+                            }
+
+                            $title = returnUserDisplayName($tuberInfo);
+                            $prfpic = ReturnLink('media/tubers/' . $tuberInfo['profile_Pic']);
+                            $uslnk = userProfileLink($tuberInfo);
+                            $locationval = countryGetName($tuberInfo['YourCountry']);
+                            if ($tuberInfo['city_id'] != '' && $tuberInfo['city_id'] != 0) {
+                            $city = cityGetInfo($tuberInfo['city_id']);
+                            $locationval = $city['name'] . ', ' . $locationval;
+                            }
+
+                            $usfollow = userSubscribed($userid, $tuber_id);
+                            $usisfriend = userIsFriend($userid, $tuber_id);
+                            if (!$usisfriend) {
+                            $usisfriend = userFreindRequestMade($userid, $tuber_id);
+                            }
+
+                            $usisfriendstr = "add as a friend";
+                            $usisfriendclass = "addFriend";
+                            if ($usisfriend) {
+                            $usisfriendstr = "unfriend";
+                            $usisfriendclass = "removeFriend";
+                            }
+
+                            $usfollowstr = "follow";
+                            $usfollowclass = "followFriend";
+                            if ($usfollow) {
+                            $usfollowstr = "unfollow";
+                            $usfollowclass = "unfollowFriend";
+                            }
+                            ?>
+                            <li data-connectionid="<?php echo $connection_id; ?>" data-userid="<?php echo $tuber_id; ?>" class="">
+                                <div class="image">
+
+                                    <div class="hide_img"></div>
+                                    <div class="channel-connection-pic">
+                                        <div class="plusSign"></div>
+                                        <img class="Profile" src="<?php echo $prfpic; ?>" width="80" height="80" title="" alt="<?php echo $title; ?>"/>
+                                    </div>
+                                    <div class="channel-connection-content">
+                                        <?php
+                                        $str = '<a class="uslnk" href="' . $uslnk . '" title="' . $title . '"><div>' . $title . '</div></a> <div class="userlocation">' . $locationval . '</div>';
+                                        printf('%s', $str);
+
+                                        $ts_date = strtotime($tuberInfo['create_ts']);
+                                        $print_date = date('M,d, Y', $ts_date);
+                                        $str = _('<div>connected since %when%</div>', array('%when%' => $print_date));
+                                        printf('%s', $str);
+                                        ?>
+                                        <div class="closeSign hide"></div>
+                                        <div class="hide_connection_content">
+                                            <div class="unhide_connection_content"><?php echo _('click to unhide'); ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="popUp">
+                                    <div class="main">
+                                        <div class="maininside margintop5">
+                                            <div class="yellows11bold"><?php echo $tuberInfo['n_friends'] ?></div>
+                                            <div class="gray11">{{"friends"|lang}}</div>
+                                        </div>
+                                        <div class="maininside margintop5">
+                                            <div class="yellows11bold"><?php echo $tuberInfo['n_followers'] ?></div>
+                                            <div class="gray11">{{"followers"|lang}}</div>
+                                        </div>
+
+                                        <div class="overdatabutcontainer" data-name="<?php echo $title; ?>">
+                                            <?php if ($is_owner == 1): ?>
+                                            <div id="removeConnection" class="removeConnection overdatabut"><?php echo _('remove'); ?></div>
+                                            <div class="overdatabutseperator"></div>
+                                            <div id="reportConnection" class="overdatabut"><a href="#sharepopup" rel="nofollow" id="reportConnectionOwner" class="reportConnectionOwner_reason"><?php echo _('report'); ?></a></div>
+
+                                            <?php
+                                            else:
+                                            if ($userIschannel == 0 && $userid != $tuber_id) {
+                                            ?>
+                                            <div class="overdatabut<?php echo ' ' . $usisfriendclass; ?>" data-id="<?php echo $tuber_id; ?>" data-status="1"><?php echo $usisfriendstr; ?></div>
+                                            <div class="overdatabutseperator"></div>
+                                            <div class="overdatabut<?php echo ' ' . $usfollowclass; ?>" data-id="<?php echo $tuber_id; ?>" data-status="1"><?php echo $usfollowstr; ?></div>
+                                            <?php
+                                            if ($user_is_logged == 1) {
+                                            ?>
+                                            <div class="overdatabutseperator"></div>
+                                            <div id="reportConnection" class="overdatabut"><a href="#sharepopup" rel="nofollow" id="reportConnectionTuber" class="reportConnectionTuber_reason"><?php echo _('report'); ?></a></div>
+                                            <?php
+                                            }
+                                            }
+                                            endif
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="minus"></div>
+                                </div>
+
+                            </li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
+                        <div style="clear:both;"></div>
+                        <div class="buttonmorecontainer" style="float:none; width:584px;">
+                            <?php
+                            $pagcount = floor($TubersConnectedCount / $limit);
+                            if (($TubersConnectedCount % $limit) != 0) {
+                            $pagcount++;
+                            }
+                            if ($pagcount > ($currentpage + 1)) {
+                            ?>
+                            <a id="load_more_next" class="loadmoremedia load_more_previous_new" href="<?php GetLink('channel-connections/' . $currentchannelname . '/page/' . ($currentpage + 1)); ?>"><?php echo _('Load More...'); ?></a>
+                            <?php
+                            }
+                            ?>
+                            <?php if (UriArgIsset('page') && ($currentpage != 0)): ?>
+                            <a id="load_more_previous" class="load_more_previous_new" href="<?php GetLink('channel-connections/' . $currentchannelname . '/page/' . ($currentpage - 1)); ?>"><?php echo _('Load Previous...'); ?></a>
+                            <?php endif; ?>
+                            <script>
+                                $(document).ready(function(e) {
+                                    var load_more_next_diff = 4;
+                                    if ($('#load_more_next').length > 0) {
+                                        load_more_next_diff += 29;
+                                    }
+                                    if ($('#load_more_previous').length > 0) {
+                                        load_more_next_diff += 29;
+                                    }
+                                    $('.buttonmorecontainer').css('width', ($('#load_more_next').width() + $('#load_more_previous').width() + load_more_next_diff) + "px");
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+{% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

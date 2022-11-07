@@ -1,0 +1,184 @@
+div.examples {
+    background-color: #454545;
+    height: auto;
+    position: relative;
+    width: 194px;
+    display: block;
+}
+
+.examples .mentions-input-box {
+   /*margin-bottom: 10px;*/
+    font-size: 11px;
+    height: auto;
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.examples .mentions-input-box textarea {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    /*color:#8B8B8B;*/
+    color:#8B8B8B;
+}
+
+span.alias {
+    font-size: 11px;
+    font-style: italic;
+    margin-left: 20px;
+}
+
+.button {
+    display: inline-block;
+    line-height: 24px;
+    margin-bottom: 4px;
+    font-weight: normal;
+    text-shadow: none;
+    padding: 1px 10px 1px 10px;
+    white-space: nowrap;
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    background: #eaeaea;
+    background: -moz-linear-gradient(top, hsl(0, 0%, 96%), #eaeaea);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eaeaea));
+    border: 1px solid #E5E5E5;
+    color: #525252;
+}
+@font-face {
+  font-weight: 400;
+  src: local('PT Sans'), local('PTSans-Regular'), url(https://themes.googleusercontent.com/static/fonts/ptsans/v5/LKf8nhXsWg5ybwEGXk8UBQ.woff) format('woff');
+}
+.mentions-input-box {
+  position: relative;
+  background: #FFFFFF;
+}
+.mentions-input-box textarea {
+  width: 194px;
+  display: block;
+  height: 18px;
+  padding: 4px;
+  overflow: hidden;
+  position: relative;
+  outline:none;
+  resize: none;
+  line-height: 13px;
+	background:none;
+  outline-width:0;
+  outline:none;
+  border-radius: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #E5E5E5;
+  /*-webkit-padding-start: 1px;*/
+-webkit-margin-start: 0px;
+  -webkit-appearance: none;
+}
+
+.mentions-input-box .mentions-autocomplete-list {
+  display: none;
+  background: #fff;
+  border: 2px solid #e2e3ea;
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  z-index: 10000;
+  margin-top: -2px;
+
+  border-radius:5px;
+  border-top-right-radius:0;
+  border-top-left-radius:0;
+
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+}
+
+.mentions-input-box .mentions-autocomplete-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.mentions-input-box .mentions-autocomplete-list li {
+  background-color: #ebebeb;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  border: 2px solid #e2e3ea;
+  height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:12px;
+  color:#959595;
+}
+
+.mentions-input-box .mentions-autocomplete-list li:last-child {
+  border-radius:5px;
+}
+
+.mentions-input-box .mentions-autocomplete-list li > img,
+.mentions-input-box .mentions-autocomplete-list li > div.icon {
+ -moz-background-origin:3px;
+  float: left;
+  height: 32px;
+  margin-right: 5px;
+  width: 32px;
+}
+
+.mentions-input-box .mentions-autocomplete-list li em {
+  font-weight: bold;
+  font-style: none;
+}
+
+.mentions-input-box .mentions-autocomplete-list li:hover,
+.mentions-input-box .mentions-autocomplete-list li.active {
+  background-color: #f2f2f2;
+}
+
+.mentions-input-box .mentions-autocomplete-list li b {
+  /*background: #ffff99;*/
+  font-weight: normal;
+}
+
+.mentions-input-box .mentions {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0;
+  padding: 4px;
+  color: #000000;
+  overflow: hidden;
+  border: 1px solid #E5E5E5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  width:184px;
+  line-height: 13px;
+}
+
+.mentions-input-box .mentions > div {
+  color: #454545;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.mentions-input-box .mentions > div > strong {
+  font-weight:normal;
+  color: #000000;
+  background: none repeat scroll 0 0 #000000;
+}
+
+.mentions-input-box .mentions > div > strong > span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+.mentions-input-box .mentions > div > span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  font-weight:normal;
+  color: #b3b3b3;
+  background: none repeat scroll 0 0 #000000;
+}

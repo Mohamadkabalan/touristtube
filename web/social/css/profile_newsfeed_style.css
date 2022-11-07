@@ -1,0 +1,794 @@
+.element {
+	display:block;
+	float:left;
+	/*overflow: hidden;*/ /*to allow draggable items over the droppable area*/
+	width: 672px;
+	margin-bottom: 10px;
+}
+.element  div{
+	float: none;
+}
+.element > div{
+	float: left;
+}
+.imgGrid{
+	width: auto;
+	height: 197px;
+	position: relative;
+	/*overflow: hidden;*/ /*to allow draggable items over the droppable area*/
+}
+.hiddenimgGrid{
+	display: none;
+}
+.mediaInfo {
+	margin-left: 1px;
+	background-color: #3f3f3f;
+	height: 189px; /*197 -10px padding*/
+	width: 267px;
+	position: relative;
+}
+.mediainfottl {
+	font-size: 12px;
+	color: white;
+	text-transform: none;
+}
+.mediainfodesc{
+	position: relative;
+	color: #b4b4b4;
+	width: 270px;
+	height: 170px;
+	font-size: 11px;
+	margin-top: 1px;
+	overflow: hidden;
+}
+.mediaMinimizeBox{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+}
+.mediaMinimizeBoxDash{
+	background-color: #b4b4b4;
+	width: 10px;
+	height: 2px;
+	position: absolute;
+	top: 9px;
+	left: 5px;
+}
+.mediaMinimizeBoxVDash{
+	background-color: #b4b4b4;
+	height: 10px;
+	width: 2px;
+	position: absolute;
+	left: 9px;
+	top: 5px;
+	display: none;
+}
+
+.profileViewIconLarge{
+	width: 33px;
+	height: 33px;
+	position: absolute;
+	top: 86px;
+	left: 140px;
+	z-index: 10;
+	display: none;
+}
+.profilePhotoViewIconLarge{
+	background-image: url('/media/images/big_photo_view.png');	
+}
+.profileVideoViewIconLarge{
+	background-image: url('/media/images/big_video_view.png');	
+}
+.profilePhotoViewText{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 10;
+	width: 80px;
+	/*height: 100%;*/
+	height: 197px;
+	display: none;
+}
+.profilePhotoViewTextBG{
+	background-color: black;
+	opacity: 0.5;
+	width:100%;
+	height: 100%;
+	position: absolute;
+}
+.profilePhotoViewTextStats{
+	width:100%;
+	height: 100%;
+	position: absolute;
+	font-size: 11px;
+	color: white;
+}
+.profilePhotoViewTextStatsTop{
+	height: 30px;
+}
+.profilePhotoViewTextStatsLine{
+	padding-left: 3px;
+	margin-bottom: 5px;
+	text-transform: lowercase;
+	clear: both;
+}
+div.profilePhotoViewTextStatsLineLeft{
+	float: left;
+	width: 20px;
+	text-align: right;
+	margin-right: 3px;
+}
+.ProfileFeedRtaing{
+	margin-top: 1px;
+	width: 35px;
+	height: 7px;
+}
+.ProfileFeedRtaing0{
+	background-image: url('/media/images/feed_rating0.png');
+}
+.ProfileFeedRtaing1{
+	background-image: url('/media/images/feed_rating1.png');
+}
+.ProfileFeedRtaing2{
+	background-image: url('/media/images/feed_rating2.png');
+}
+.ProfileFeedRtaing3{
+	background-image: url('/media/images/feed_rating3.png');
+}
+.ProfileFeedRtaing4{
+	background-image: url('/media/images/feed_rating4.png');
+}
+.ProfileFeedRtaing5{
+	background-image: url('/media/images/feed_rating5.png');
+}
+div.profilePhotoViewTextStatsLineRight{
+	float: left;
+}
+
+.imgGrid a{
+	height: 197px;
+}
+.imgGrid a:hover .profileViewIconLarge{
+	display: block;
+}
+.imgGrid a:hover .profilePhotoViewText{
+	display: block;
+}
+.profileMediaSocialButtons{
+	width: 31px;
+	height: 130px;
+}
+.profileMediaSocialButton{
+	background-color: #CEA113;
+	width: 31px;
+	height: 31px;
+	margin-bottom: 1px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.profileMediaSocialButton:hover{
+	background-color: black;
+}
+.profileMediaSocialButton.active{
+	background-color: black;
+}
+.profileMediaSocialButtonShare{
+	background-image: url('/media/images/profile_feed_share.png');	
+}
+.profileMediaSocialButtonComment{
+	background-image: url('/media/images/profile_feed_comment.png');	
+}
+.profileMediaSocialButtonLike{
+	background-image: url('/media/images/profile_feed_like.png');	
+}
+.profileMediaSocialButtonRating{
+	background-image: url('/media/images/profile_feed_favorite.png');	
+}
+.newsfeedContentList{
+	position: fixed;
+	min-height: 420px;
+	border: 2px solid black;
+	margin-left: 1px;
+	background-color: #2a2a2a;
+	height: 180px;
+	padding: 5px;
+	width: 268px;/* 267 width + 5 padding-right + 15 padding-left - 2 border*/
+}
+div.NewsFeedButtonsContainer{
+	border-top: 1px solid #eaeaea;
+	float: none;
+	width: 100%;
+	height: 20px;
+	/*margin-bottom: 5px;*/
+	text-align: right;
+	text-transform: lowercase;
+	font-size: 11px;
+	color: #838383;
+	padding-top: 5px;
+}
+.NewsFeedTopButton{
+	cursor: pointer;
+}
+.ProfileButtonsSep{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.NewsFeedTop{
+	clear: both;
+}
+.NewsFeedProfilePicLink{
+	float: left;	
+}
+.NewsFeedProfilePic{
+	width: 43px;
+	height: 43px;
+	border: none;
+}
+div.NewsFeedProfileUserDiv{
+	float: left;
+	margin-left: 5px;
+	position: relative;
+	top: 17px;
+}
+.NewsFeedProfileUserAction1{
+	font-size: 12px;
+	color: black;
+}
+.NewsFeedProfileUserAction2{
+	font-size: 11px;
+	color: #686868;
+}
+.NewsFeedProfileUserDate{
+	font-size: 10px;
+	color: #e3b721;
+}
+
+#contentcontainer{
+	position:relative;
+	background:#fff;
+	height:100%;
+	width:100%;
+	display:block;
+}
+#contentcontainer.selected{
+	background:#1f1f1f;
+}
+#contentholder{
+	position:relative;
+	height:100%;
+	margin:0 auto;
+	display:block;
+	margin-bottom: 50px;
+}
+#content {
+	position:relative;
+	margin:0 auto;
+	height: 100%;
+	width: 990px;
+	padding-top:22px;
+	padding-left: 30px;
+	display:block;
+}
+#container{
+	position:relative;
+	width:100%;
+	height:100%;
+	display:block;
+	padding-bottom: 5px;
+}
+
+.NewsFeedPopupTitle{
+	color: #e7ba20;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+/******************* the newsfeed comment section **************/
+.NewsFeedLikeDislikeContainer{
+	position:relative;
+	color: #e7ba20;
+	font-size: 12px;
+	cursor: pointer;
+	margin-left:6px;
+	margin-bottom:2px;
+}
+.NewsFeedCommentInput{
+	background-color: #5f5f5f;
+	width: 262px;
+	height: 53px;
+	padding: 3px;
+	border: none;
+	color: #b4b4b4;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.like_text{
+	margin-right:5px;	
+}
+.dislike_text{
+	margin-left:5px;	
+}
+.NewsFeedLikeCommentContainer{
+	padding-left: 13px;
+}
+.NewsFeedCommentContainer{
+	
+}
+.NewsFeedLikeThisText{
+	color: #757575;
+	font-size: 11px;
+	position: relative;
+	top: -4px;
+}
+#NewsFeedCommentHolder{
+	height: 308px;
+	margin-top: 5px;
+	overflow: hidden;
+}
+.NewsFeedCommentHolder{
+	height: 48px;
+	padding-top: 10px;
+	margin-bottom: 5px;
+	background: url("/media/images/one-chat-border.jpg") repeat-x scroll center top transparent;
+}
+.NewsFeedCommentProfilePic{
+	width: 43px;
+	height: 43px;
+	float: left;
+	border: 0px;
+}
+.NewsFeedModalCommentText {
+    float: left;
+    font-size: 12px;
+    height: 44px;
+    position: relative;
+    width: 203px;
+}
+.NewsFeedCommentTextFont{
+	color: white; /*#e7ba20*/
+	position: absolute;
+	left:9px;
+	width: 90%;
+	max-height: 30px;
+	font-size: 12px;
+	font-weight:bold;
+	overflow: hidden;
+}
+.NewsFeedCommentTextFont span{
+	color: #959595;
+	height: 14px;
+	font-size: 12px;
+	font-weight:normal;
+	overflow: hidden;
+}
+
+.NewsFeedCommentDateFont{
+	color: #757575;
+	position: absolute;
+	bottom: 1px;
+	left:9px;
+	width: 90%;
+	height: 14px;
+	font-size: 11px;
+}
+.NewsFeedLikeDateFont{
+	color: #757575;
+	position: absolute;
+	top: 15px;
+	left:9px;
+	width: 90%;
+	height: 14px;
+	font-size: 11px;
+}
+.NewsFeedLikeDislikeSummary{
+	color: #757575;
+	font-size: 11px;
+	margin-bottom: 15px;
+}
+.NewFeedModalLike{
+	background-image: url('/media/images/like_button.png');
+	height: 20px;
+	width: 20px;
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	margin-right: 5px;
+}
+.NewFeedModalDisLike{
+	background-image: url('/media/images/dislike_button.png');
+	height: 20px;
+	width: 20px;
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	margin-right: 5px;
+}
+.NewsFeedLikeDislikeButtons {
+    color: #E7BA20;
+    cursor: pointer;
+    font-size: 12px;
+}
+.NewsFeedCommentInputText{
+	height: 22px;
+	width: 261px;
+	padding: 4px;
+	padding-top:0;
+	padding-bottom:0;
+	color: #959595;
+	border: 0px;
+	margin-top:3px;
+	margin-left:3px;
+	font-size:12px;
+}
+
+.NewsfeedCommnetShowMore{
+	color: #CEA113;
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.NewsFeedCommentClose{
+	background-image: url('/media/images/modal_profile_close.jpg');
+	width: 10px;
+	height: 10px;
+	float: right;
+	position: relative;
+	top: -5px;
+	left: 5px;
+	cursor: pointer;
+}
+
+.NewsFeedRateMsg{
+	font-size: 12px;
+	color: white;
+	margin-bottom: 2px;
+}
+
+.NewsFeedRatingDiv{
+	bottom: 1px;
+    left: 9px;
+    position: absolute;
+}
+
+.NewsFeedMyRateContainer{
+	border: 1px solid #eaeaea;
+	background-color: black;
+	height: 43px;
+	padding: 2px;
+	margin-bottom: 5px;
+}
+
+.NewsFeedModalRating{
+	cursor: pointer;
+}
+
+#NewsFeedSharestHolder{
+	height: 292px;
+	margin-top: 5px;
+	overflow: hidden;
+}
+
+/******************* end of the newsfeed comment section **************/
+
+/*************** profile right bar *****************/
+
+.ui-draggable-dragging{
+	
+}
+
+.ProfileRightBar{
+	width: 278px;
+	float: right;
+	margin-top: 20px;
+}
+
+.ProfileRightBarFavoriteContainer{
+	height: 207px;
+	border: 1px solid transparent; /**#eaeaea**/
+	margin-bottom: 20px;
+}
+
+.ProfileRightBarFavoriteContainer.active{
+	border: 1px solid #CEA113;
+}
+
+.ProfileRightBarSuggestedContainer{
+	height: 206px;
+	border: 1px solid transparent; /***#eaeaea***/
+}
+
+.ProfileRightBarTTL{
+	color: #CEA113;
+	font-weight: bold;
+	font-size: 14px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*from index*/
+.ProfileRightBarSuggestedContainer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 213px;
+}
+
+/*from index*/
+.ProfileRightBarSuggestedContainer li {
+    float: left;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    width: 29px;
+}
+
+.FeedFavoriteThumb{
+	width: 90px;
+	height: 50px;
+	float : left;
+	margin: 1px;
+	cursor: pointer;
+}
+
+.FeedAlbumThumb{
+	width: 118px;
+	height: 64px;
+	float : left;
+	margin-top: 1px;
+	margin-right: 1px;
+	cursor: pointer;
+}
+.NewsFeedMainPic{
+	width: 356px;
+	height: 197px;
+}
+/**** Infinite Scroll ****/
+
+#infscr-loading {
+  position: fixed;
+  text-align: center;
+  bottom: 30px;
+  left: 42%;
+  z-index: 100;
+  background: white;
+  background: hsla( 0, 0%, 100%, 0.9 );
+  padding: 20px;
+  color: #222;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+}
+
+
+
+/* The Magnificent Clearfix: nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+/********************copy from custom scrollbar***************************************/
+
+/* basic scrollbar styling */
+/* vertical scrollbar */
+.mCSB_container{
+	width:auto;
+	margin-right:17px;
+	overflow:hidden;
+}
+.mCSB_container.mCS_no_scrollbar{
+	margin-right:0px;
+}
+.mCS_disabled .mCSB_container.mCS_no_scrollbar,
+.mCS_destroyed .mCSB_container.mCS_no_scrollbar{
+	margin-right: 0px;
+}
+.mCustomScrollBox .mCSB_scrollTools{
+	width:16px;
+	height:100%;
+	top:0;
+	right: -6px;;
+}
+.mCSB_scrollTools .mCSB_draggerContainer{
+	height:100%;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.mCSB_scrollTools .mCSB_buttonUp+.mCSB_draggerContainer{
+	padding-bottom:40px;
+}
+.mCSB_scrollTools .mCSB_draggerRail{
+	width: 4px;
+	height:100%;
+	margin:0 auto;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+.mCSB_scrollTools .mCSB_dragger{
+	cursor:pointer;
+	width:100%;
+	height:30px;
+	left: 0px;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	width:4px;
+	height:100%;
+	margin:0 auto;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-align:center;
+}
+.mCSB_scrollTools .mCSB_buttonUp,
+.mCSB_scrollTools .mCSB_buttonDown{
+	height:20px;
+	overflow:hidden;
+	margin:0 auto;
+	cursor:pointer;
+}
+.mCSB_scrollTools .mCSB_buttonDown{
+	bottom:0;
+	margin-top:-40px;
+}
+
+
+/* horizontal scrollbar */
+.mCSB_horizontal .mCSB_container{
+	height:auto;
+	margin-right:0;
+	margin-bottom:30px;
+	overflow:hidden;
+}
+.mCSB_horizontal .mCSB_container.mCS_no_scrollbar{
+	margin-bottom:0;
+}
+.mCS_disabled .mCSB_horizontal .mCSB_container.mCS_no_scrollbar,
+.mCS_destroyed .mCSB_horizontal .mCSB_container.mCS_no_scrollbar{
+	margin-right:0;
+	margin-bottom:30px;
+}
+.mCSB_horizontal.mCustomScrollBox .mCSB_scrollTools{
+	width:100%;
+	height:16px;
+	top:auto;
+	/*right:auto;*/
+	bottom:0;
+	right :0;
+	overflow:hidden;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_draggerContainer{
+	height:100%;
+	width:auto;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	overflow:hidden;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_buttonLeft+.mCSB_draggerContainer{
+	padding-bottom:0;
+	padding-right:20px;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_draggerRail{
+	width:100%;
+	height:2px;
+	margin:7px 0;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_dragger{
+	width:30px;
+	height:100%;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	width:100%;
+	height:4px;
+	margin:6px auto;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_buttonLeft,
+.mCSB_horizontal .mCSB_scrollTools .mCSB_buttonRight{
+	width:20px;
+	height:100%;
+	overflow:hidden;
+	margin:0 auto;
+	cursor:pointer;
+	float:left;
+}
+.mCSB_horizontal .mCSB_scrollTools .mCSB_buttonRight{
+	right:0;
+	bottom:auto;
+	margin-left:-40px;
+	margin-top:-16px;
+	float:right;
+}
+
+/* default scrollbar colors and backgrounds */
+.mCustomScrollBox .mCSB_scrollTools{
+	opacity:0.75;
+}
+.mCustomScrollBox:hover .mCSB_scrollTools{
+	opacity:1;
+}
+.mCSB_scrollTools .mCSB_draggerRail{
+	background: #3b3b3b; /* rgba fallback */
+	background: rgba(59,59,59,0.4);
+	filter:"alpha(opacity=40)"; -ms-filter:"alpha(opacity=40)"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	background:#fff; /* rgba fallback */
+	/*background:rgba(255,255,255,0.75);*/
+	background:rgba(108,108,108,1);
+	filter:"alpha(opacity=75)"; -ms-filter:"alpha(opacity=75)"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
+	background:rgba(108,108,108,1);
+	filter:"alpha(opacity=85)"; -ms-filter:"alpha(opacity=85)"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+	/*background:rgba(255,255,255,0.9);*/
+	background:rgba(108,108,108,1);
+	filter:"alpha(opacity=90)"; -ms-filter:"alpha(opacity=90)"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_buttonUp,
+.mCSB_scrollTools .mCSB_buttonDown,
+.mCSB_scrollTools .mCSB_buttonLeft,
+.mCSB_scrollTools .mCSB_buttonRight{
+	background-image:url(mCSB_buttons.png);
+	background-repeat:no-repeat;
+	opacity:0.4;
+	filter:"alpha(opacity=40)"; -ms-filter:"alpha(opacity=40)"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_buttonUp{
+	background-position:0 0;
+	/* 
+	sprites locations are 0 0/-16px 0/-32px 0/-48px 0 (light) and -80px 0/-96px 0/-112px 0/-128px 0 (dark) 
+	*/
+}
+.mCSB_scrollTools .mCSB_buttonDown{
+	background-position:0 -20px;
+	/* 
+	sprites locations are 0 -20px/-16px -20px/-32px -20px/-48px -20px (light) and -80px -20px/-96px -20px/-112px -20px/-128px -20px (dark) 
+	*/
+}
+.mCSB_scrollTools .mCSB_buttonLeft{
+	background-position:0 -40px;
+	/* 
+	sprites locations are 0 -40px/-20px -40px/-40px -40px/-60px -40px (light) and -80px -40px/-100px -40px/-120px -40px/-140px -40px (dark) 
+	*/
+}
+.mCSB_scrollTools .mCSB_buttonRight{
+	background-position:0 -56px;
+	/* 
+	sprites locations are 0 -56px/-20px -56px/-40px -56px/-60px -56px (light) and -80px -56px/-100px -56px/-120px -56px/-140px -56px (dark) 
+	*/
+}
+.mCSB_scrollTools .mCSB_buttonUp:hover,
+.mCSB_scrollTools .mCSB_buttonDown:hover,
+.mCSB_scrollTools .mCSB_buttonLeft:hover,
+.mCSB_scrollTools .mCSB_buttonRight:hover{
+	opacity:0.75;
+	filter:"alpha(opacity=75)"; -ms-filter:"alpha(opacity=75)"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_buttonUp:active,
+.mCSB_scrollTools .mCSB_buttonDown:active,
+.mCSB_scrollTools .mCSB_buttonLeft:active,
+.mCSB_scrollTools .mCSB_buttonRight:active{
+	opacity:0.9;
+	filter:"alpha(opacity=90)"; -ms-filter:"alpha(opacity=90)"; /* old ie */
+}
+
+/********************************************************/

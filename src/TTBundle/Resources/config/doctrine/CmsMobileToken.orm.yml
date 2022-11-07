@@ -1,0 +1,46 @@
+TTBundle\Entity\CmsMobileToken:
+    type: entity
+    table: cms_mobile_token
+    repositoryClass: TTBundle\Repository\UserRepository
+    indexes:
+        userid:
+            columns:
+                - tokenid
+        platform:
+            columns:
+                - platform
+    id:
+        ssid:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            id: true
+        tokenid:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            id: true
+    fields:
+        platform:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        apType:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: ap_type
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

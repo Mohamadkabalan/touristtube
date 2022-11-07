@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with WSDLGenerator 1.0.0 by Amadeus SAS -->
+<!-- "Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved." -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wsdl.amadeus.com/HotelAvailability_v2_v4" xmlns:int="http://wsdl.amadeus.com/HotelAvailability_v2" xmlns:awsse="http://xml.amadeus.com/2010/06/Session_v3" xmlns:awsl="http://wsdl.amadeus.com/2010/06/ws/Link_v1" xmlns:amasec="http://xml.amadeus.com/2010/06/Security_v1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" targetNamespace="http://wsdl.amadeus.com/HotelAvailability_v2_v4" name="OUTTOT_HotelAvailability_2.0_4.0">
+  <wsdl:documentation>Versions: [interface: 2.0 ; technical: 4.0]</wsdl:documentation>
+  <wsp:Policy wsu:Id="MessagingPolicy">
+    <wsam:Addressing wsp:Optional="true">
+      <wsp:Policy>
+        <wsam:AnonymousResponses />
+      </wsp:Policy>
+    </wsam:Addressing>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="AmadeusPolicy">
+    <wsp:PolicyReference URI="#MessagingPolicy" />
+  </wsp:Policy>
+  <wsdl:import location="HotelAvailability_2.0.wsdl" namespace="http://wsdl.amadeus.com/HotelAvailability_v2" />
+  <wsdl:types>
+    <xs:schema>
+      <xs:import schemaLocation="AMA/2012B/AMA_WS_Session.xsd" namespace="http://xml.amadeus.com/2010/06/Session_v3" />
+      <xs:import schemaLocation="AMA_WSLink.xsd" namespace="http://wsdl.amadeus.com/2010/06/ws/Link_v1" />
+      <xs:import schemaLocation="AMA/2012B/AMA_SecurityHostedUser.xsd" namespace="http://xml.amadeus.com/2010/06/Security_v1" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Session_3.000">
+    <wsdl:part element="awsse:Session" name="session" />
+  </wsdl:message>
+  <wsdl:message name="TransactionFlowLink_1.0">
+    <wsdl:part element="awsl:TransactionFlowLink" name="link" />
+  </wsdl:message>
+  <wsdl:message name="AMA_SecurityHostedUser_1.000">
+    <wsdl:part element="amasec:AMA_SecurityHostedUser" name="security" />
+  </wsdl:message>
+  <wsdl:binding type="int:HotelAvailability_PT" name="HotelAvailability_Binding">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Hotel_CalendarView">
+      <wsdl:documentation>The operation is not available on the targeted system due to restrictions. Please contact your account manager for further details.</wsdl:documentation>
+      <soap:operation soapAction="http://webservices.amadeus.com/Hotel_CalendarView_1.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+        <soap:header message="tns:AMA_SecurityHostedUser_1.000" use="literal" part="security" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_EnhancedPricing">
+      <soap:operation soapAction="http://webservices.amadeus.com/Hotel_EnhancedPricing_2.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+        <soap:header message="tns:AMA_SecurityHostedUser_1.000" use="literal" part="security" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_EnhancedSingleAvail">
+      <soap:operation soapAction="http://webservices.amadeus.com/Hotel_EnhancedSingleAvail_2.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+        <soap:header message="tns:AMA_SecurityHostedUser_1.000" use="literal" part="security" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_MultiAvailability">
+      <soap:operation soapAction="http://webservices.amadeus.com/Hotel_MultiAvailability_10.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+        <soap:header message="tns:AMA_SecurityHostedUser_1.000" use="literal" part="security" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hotel_MultiSingleAvailability">
+      <soap:operation soapAction="http://webservices.amadeus.com/Hotel_MultiSingleAvailability_10.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+        <soap:header message="tns:AMA_SecurityHostedUser_1.000" use="literal" part="security" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:Session_3.000" use="literal" part="session" />
+        <soap:header message="tns:TransactionFlowLink_1.0" use="literal" part="link" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HotelAvailability_Service">
+    <wsdl:port binding="tns:HotelAvailability_Binding" name="HotelAvailability_Port">
+      <wsp:PolicyReference URI="#AmadeusPolicy" />
+      <soap:address location="https://nodeD1.test.webservices.amadeus.com/1ASIWTOTOUTU" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+
+
+<!-- Build Key: 1F8B080000000000000025CCC10A82401080E1BB4F31C72294510C6B6F52604262E08AE7AD26185877655D05DFBEA5AE3FFC5F45869CF26C0D781E69F66A9C04649816319E622CA0B1E6AD36C0A3C8CF0273A81A79401488D1D05DEF50FD7FEB6025370746409A6082D145331950D3A4F9F5F30548BB389EBD5C9E043BD9CA7D20CA07183552B8CAAE1E426C7BD947B5F1E43EEA15FACD7AD2E5AA58AB276BF61B64097E0101F94585B6000000 -->

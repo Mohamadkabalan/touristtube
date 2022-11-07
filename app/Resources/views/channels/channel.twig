@@ -1,0 +1,165 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+		channelGlobalID({{channel_id|raw}});
+    </script>
+    <script type="text/javascript" src="{{ asset("/assets/photos_videos/js/add_album_media.js") }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container channel-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Channels'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9 col-xs-12 right_panel col-md-push-3">
+                        <div class="row no-margin">
+                            {% include "channels/channel-header.twig" %}
+                        </div>
+                        <div class="row no-margin">			    
+                            <div class="col-xs-12 nopad">
+                                <img class="img-responsive" src="{{cover_photo|raw}}" alt="{{namealt|raw}}"/>
+                            </div>
+			    {% if about!='' %}
+				<div class="col-xs-12 nopad margin_top_15">
+				    <h3 class="about_title">{{'about'|trans}}</h3>
+				    <p class="about_text txt_more_container1" data-h="150" style="height: 150px;">{{about|raw}}</p>
+				    <a href="" class="txt_more_a more" for="txt_more_container1" rel="nofollow">{{'more'|trans}}</a>
+				</div>
+			    {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 left_panel col-md-pull-9">
+                        {% include "channels/channel-left.twig" %}
+                    </div>
+                </div>
+		{% if media_array|length>0 %}
+		    <div class="row no-margin margin_top_50">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad ">
+				    <a href="{{channel_photos|raw}}" title="{{'channel photos'|trans}} {{namealt|raw}}"><h2 class="font-27 black float_left line-height-38"><i class="fas fa-angle-right left_title_arrow"></i>{{'Photos'|trans}}</h2></a>
+				</div>
+				<div class="col-xs-12 nopad ">
+				    <div class="row channel_newmargin">
+					{% for photo in media_array %}
+					    <div class="col-md-3 col-sm-4 col-xs-12 channel_newpadding data_media_remove_container" data-type="{{photo.type|raw}}" data-id="{{photo.id|raw}}">
+						<a href="{{photo.link|raw}}" title="{% if photo.titlealt=='' %}{{'title'}}{% endif %}{{ photo.titlealt|raw }}">
+						    {% if photo.type=='v' %}
+							<div class="sprite video_icon"></div>
+						    {% endif %}
+						    <img class="width-100" src="{{photo.img|raw}}" alt="{% if photo.titlealt=='' %}{{'title'}}{% endif %}{{ photo.titlealt|raw }}">
+						</a>
+						{% if is_owner==1 %}
+						    <div class="row no-margin">
+							<div class="col-xs-12 nopad margin_top_10">
+							    <div class="right_floatet_container">
+								<a href="javascript:" rel="nofollow" title="{{'edit'|trans}}" class="edit_bar_pic"><img class="" alt="edit" src="{{ generateMediaURL('/media/images/bag_new/blue_edit_logo.png') }}"></a>
+								<a class="close_class data_media_remove" href="javascript:" rel="nofollow" title="{{'remove'|trans}}">X</a>
+							    </div>
+							</div>
+						    </div>
+						{% endif %}
+					    </div>
+					    {% if (loop.index%4)==0 %}
+						<div class="clearfix visible-lg visible-md"></div>
+					    {% endif %}				
+					    {% if (loop.index%3)==0 %}
+						<div class="clearfix visible-sm"></div>
+					    {% endif %}
+					{% endfor %}
+				    </div>
+				</div>
+			    </div> 
+			</div>
+		    </div> 
+		{% endif %}
+		{% if video_array|length>0 %}
+		    <div class="row no-margin margin_top_50">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad ">
+				    <a href="{{channel_videos|raw}}" title="{{'channel photos'|trans}} {{namealt|raw}}"><h2 class="font-27 black float_left line-height-38"><i class="fas fa-angle-right left_title_arrow"></i>{{'Videos'|trans}}</h2></a>				    
+				</div>
+				<div class="col-xs-12 nopad ">
+				    <div class="row channel_newmargin">
+					{% for photo in video_array %}
+					    <div class="col-md-3 col-sm-4 col-xs-12 channel_newpadding data_media_remove_container" data-type="{{photo.type|raw}}" data-id="{{photo.id|raw}}">
+						<a href="{{photo.link|raw}}" title="{% if photo.titlealt=='' %}{{'title'}}{% endif %}{{ photo.titlealt|raw }}">
+						    {% if photo.type=='v' %}
+							<div class="sprite video_icon"></div>
+						    {% endif %}
+						    <img class="width-100" src="{{photo.img|raw}}" alt="{% if photo.titlealt=='' %}{{'title'}}{% endif %}{{ photo.titlealt|raw }}">
+						</a>
+						{% if is_owner==1 %}
+						    <div class="row no-margin">
+							<div class="col-xs-12 nopad">
+							    <div class="right_floatet_container">
+								{#<a href="javascript:" rel="nofollow" title="{{'edit'|trans}}" class="edit_bar_pic"><img class="" alt="edit" src="{{ generateMediaURL('/media/images/bag_new/blue_edit_logo.png') }}"></a>#}
+								<a class="close_class data_media_remove" href="javascript:" rel="nofollow" title="{{'remove'|trans}}">X</a>
+							    </div>
+							</div>
+						    </div>
+						{% endif %}
+					    </div>
+					    {% if (loop.index%4)==0 %}
+						<div class="clearfix visible-lg visible-md"></div>
+					    {% endif %}				
+					    {% if (loop.index%3)==0 %}
+						<div class="clearfix visible-sm"></div>
+					    {% endif %}
+					{% endfor %}
+				    </div>
+				</div>
+			    </div> 
+			</div>
+		    </div> 
+		{% endif %}
+		{% if discover_to_channel_list|length>0 %}
+		    <div class="row no-margin margin_top_50">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad ">
+				    <h4 class="font-27 black float_left line-height-38"><i class="fas fa-angle-right left_title_arrow"></i>{{'Links'|trans}}</h4>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <div class="mainwrappercontainer-wrapper">
+					<div class="swiper-container-ss s1 swiper-container-horizontal">
+					    <div class="swiper-wrapper nav nav-tabs">
+						{% for item in discover_to_channel_list %}
+						    <div data-target="" class="swiper-slide" data-id="">
+							<div class="row no-margin">
+							    <div class="col-xs-12 nopad">
+								<h2 class="swiper-title">{{item.type|raw}}</h2>
+							    </div>
+							    <div class="col-xs-12 nopad">
+								<a class="hotel_name_link" href="{{item.link|raw}}" title="{{item.titlealt|raw}}">{{item.title|raw}}</a>
+							    </div>
+							    <div class="col-xs-12 nopad">
+								<p class="location_div font-11 grey float_left"><i class="fas fa-map-marker-alt"></i>{{item.address|raw}}</p>
+							    </div>
+							    <div class="col-xs-12 nopad">
+								<p class="rate_txt">{{item.rating|raw}}</p>
+							    </div>
+							</div>
+						    </div>
+						{% endfor %}
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div> 
+			</div>
+		    </div>
+		{% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

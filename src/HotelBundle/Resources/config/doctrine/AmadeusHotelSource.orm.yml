@@ -1,0 +1,85 @@
+HotelBundle\Entity\AmadeusHotelSource:
+    type: entity
+    table: amadeus_hotel_source
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    oneToMany:
+        reservations:
+            targetEntity: HotelReservation
+            mappedBy: source
+            cascade: [persist]
+    manyToOne:
+        hotel:
+            targetEntity: AmadeusHotel
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: sources
+            joinColumns:
+                hotel_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_id
+        hotelCode:
+            type: string
+            nullable: false
+            length: 8
+            options:
+                fixed: true
+            column: hotel_code
+        chain:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+        chainName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: chain_name
+        propertyIdentifier:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+            column: property_identifier
+        source:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                default: ''
+        providerValue:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: provider_value
+        published:
+            type: smallint
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

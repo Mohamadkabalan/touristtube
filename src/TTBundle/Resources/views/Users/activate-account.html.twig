@@ -1,0 +1,17 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/sign-in.css")|raw }}" >
+{% endblock %}
+{% block body %}
+    <section>
+	<div class="cotent container">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h1 class="page_title paddingleft23">
+                    {{displayMessage|trans}}
+                </h1>
+            </div>
+        </div>
+    </section>
+{% endblock %}

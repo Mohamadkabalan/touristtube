@@ -1,0 +1,84 @@
+CorporateBundle\Entity\CorpoAccountTransactions:
+    type: entity
+    table: corpo_account_transactions
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAccountTransactionsRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id   
+        userId:
+            type: integer
+            nullable: false
+            column: user_id  
+        requestDetailId:
+            type: integer
+            nullable: false
+            column: request_detail_id 
+        moduleId:
+            type: integer
+            nullable: false
+            column: module_id 
+        reservationId:
+            type: integer
+            nullable: false
+            column: reservation_id 
+        currencyCode:
+            type: string
+            nullable: false
+            length: 3
+            column: currency_code
+        amount:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount  
+        amountFBC:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_FBC
+        amountSBC:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_SBC
+        amountAccountCurrency:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: account_currency_amount
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false   
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: false
+            column: created_by 
+    lifecycleCallbacks: {  }

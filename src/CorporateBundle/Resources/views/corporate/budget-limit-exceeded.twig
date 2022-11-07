@@ -1,0 +1,14 @@
+{% extends 'basecorporate.html.twig' %}
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme"~corporate_theme~".css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Budget Limit'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer">
+        <div class="col-xs-12 notificationMsg">{{'Kindly, note that you have reached your budget limit.'|trans}}<br>{{'Thank You'|trans}}</div>
+    </section>
+{% endblock %}

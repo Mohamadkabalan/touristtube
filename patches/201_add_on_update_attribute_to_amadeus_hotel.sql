@@ -1,0 +1,1 @@
+ALTER TABLE `amadeus_hotel` CHANGE `last_updated` `last_updated` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;

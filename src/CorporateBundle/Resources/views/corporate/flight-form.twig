@@ -1,0 +1,148 @@
+<form id="airplaneform" name="airplaneform" method="post" action="{{ path('_corporate_flight_search') }}" autocomplete="off"><!-- corporate/flight/search" -->
+    <div class="col-xs-12 nopad">
+	<ul class="col-xs-12 nopad threebutlist_corpfl">
+	    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad flight_buts roundtripclass {% if roundTrip %} active {% endif %}">
+		<div class="licolback_corpfl">{{'Roundtrip'|trans}}</div>
+	    </li>
+	    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad flight_buts onewayclass {% if isOneWay and isMultiDestination == "" %} active {% endif %}">
+		<div class="licolback_corpfl">{{'One way'|trans}}</div>
+	    </li>
+	    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad flight_buts multipledestclass {% if isMultiDestination %} active {% endif %}">
+		<div class="licolback_corpfl">{{'Multiple destinations'|trans}}</div>
+	    </li>
+	</ul>
+    </div>
+    <div class="col-xs-12 martop10_corfl newpad">
+	<div class="checkbox">
+	    <input id="flexibledate" class="checkboxlabelinput" value="1" name="flexibledate" type="checkbox"><label for="flexibledate" class="checkboxlabel">{{'My dates are flexible (lowest prices on + / - 3 days)'|trans}}</label>
+	</div>
+    </div>
+    <div class="col-xs-12 nopad">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 marginbut10_corfl newpad">
+	    <div id="departurecontainer" class="deparrival_corpflight">					
+		<input id="departureairport" placeholder="{{'Departure'|trans}}" class="input_corpfl_style deparrival_input_corpfl" name="departureairport" type="text" value="{{ departure_airport }}">
+		<input type="hidden" id="departureairportC" name="departureairportC" value="{{ departure_airport_code }}">
+	    </div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 newpad">
+	    <div id="arrivalcontainer" class="deparrival_corpflight">
+		<input id="arrivalairport" placeholder="{{'Arrival'|trans}}" class="input_corpfl_style deparrival_input_corpfl" type="text" name="arrivalairport" value="{{ arrival_airport }}">
+		<input type="hidden" id="arrivalairportC" name="arrivalairportC" value="{{ arrival_airport_code }}">
+	    </div>
+	</div>
+    </div>
+    <div id="datesContainer" class="col-xs-12 nopad">
+	    <div id="fromContainer" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+		<div class="deparrival_corpflight">
+		    <input id="fromDate" placeholder="{{'Departure date'|trans}}" class="input_corpfl_style" type="text" name="fromDateC">
+		</div>
+	    </div>
+	    <div id="toContainer" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad" {% if roundTrip %}style="display:inline;"{% endif %}>
+		<div class="deparrival_corpflight">				    
+		    <input id="toDate" placeholder="{{'Return date'|trans}}" class="input_corpfl_style" type="text" name="toDateC">
+		</div>
+	    </div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+	    <div id="" class="selectboxes_corpfl">
+		<select id="cabinselect" name="cabinselect" class="">
+		    <option value="">{{'Select class'|trans}}</option>
+		    <option value="Y" {% if cabin == "Economy class" %}selected{% endif %}>{{'Economy class'|trans}}</option>
+		    <option value="S" {% if cabin == "Premium Economy" %}selected{% endif %}>{{'Premium Economy'|trans}}</option>
+		    <option value="C" {% if cabin == "Business class" %}selected{% endif %}>{{'Business class'|trans}}</option>
+		    <option value="F" {% if cabin == "First class" %}selected{% endif %}>{{'First class'|trans}}</option>
+		</select>
+	    </div>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+	    <div id="" class="selectboxes_corpfl">
+		<select id="adultsselect" name="adultsselect" class="">
+		    <option value="1" {% if adt == 1 %}selected{% endif %}>{{'1 adult (12+ year)'|trans}}</option>
+		    <option value="2" {% if adt == 2 %}selected{% endif %}>{{'2 Adults'|trans}}</option>
+		    <option value="3" {% if adt == 3 %}selected{% endif %}>{{'3 Adults'|trans}}</option>
+		    <option value="4" {% if adt == 4 %}selected{% endif %}>{{'4 Adults'|trans}}</option>
+		    <option value="5" {% if adt == 5 %}selected{% endif %}>{{'5 Adults'|trans}}</option>
+		    <option value="6" {% if adt == 6 %}selected{% endif %}>{{'6 Adults'|trans}}</option>
+		    <option value="7" {% if adt == 7 %}selected{% endif %}>{{'7 Adults'|trans}}</option>
+		    <option value="8" {% if adt == 8 %}selected{% endif %}>{{'8 Adults'|trans}}</option>
+		</select>
+	    </div>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+	    <div class="selectboxes_corpfl">
+		<select id="childsselect" name="childsselect" class="">
+		    <option value="0">{{'children (2-12 year)'|trans}}</option>
+		    <option value="1" {% if cnn == 1 %}selected{% endif %}>{{'1 child'|trans}}</option>
+		    <option value="2" {% if cnn == 2 %}selected{% endif %}>{{'2 children'|trans}}</option>
+		    <option value="3" {% if cnn == 3 %}selected{% endif %}>{{'3 children'|trans}}</option>
+		    <option value="4" {% if cnn == 4 %}selected{% endif %}>{{'4 children'|trans}}</option>
+		    <option value="5" {% if cnn == 5 %}selected{% endif %}>{{'5 children'|trans}}</option>
+		    <option value="6" {% if cnn == 6 %}selected{% endif %}>{{'6 children'|trans}}</option>
+		    <option value="7" {% if cnn == 7 %}selected{% endif %}>{{'7 children'|trans}}</option>
+		    <option value="8" {% if cnn == 8 %}selected{% endif %}>{{'8 children'|trans}}</option>
+		</select>
+	    </div>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+	    <div class="selectboxes_corpfl">
+		<select id="infantsselect" name="infantsselect" class="">
+		    <option value="0">{{'infants (0-2 year)'|trans}}</option>
+		    <option value="1" {% if inf == 1 %}selected{% endif %}>{{'1 infant'|trans}}</option>
+		    <option value="2" {% if inf == 2 %}selected{% endif %}>{{'2 infants'|trans}}</option>
+		    <option value="3" {% if inf == 3 %}selected{% endif %}>{{'3 infants'|trans}}</option>
+		    <option value="4" {% if inf == 4 %}selected{% endif %}>{{'4 infants'|trans}}</option>
+		    <option value="5" {% if inf == 5 %}selected{% endif %}>{{'5 infants'|trans}}</option>
+		    <option value="6" {% if inf == 6 %}selected{% endif %}>{{'6 infants'|trans}}</option>
+		    <option value="7" {% if inf == 7 %}selected{% endif %}>{{'7 infants'|trans}}</option>
+		    <option value="8" {% if inf == 8 %}selected{% endif %}>{{'8 infants'|trans}}</option>
+		</select>
+	    </div>
+	</div>
+    </div>
+    <div id="multiDestinationContainer" class="multi-destination-container" {% if isMultiDestination == 1 %}style="display: inline;"{% endif %}>
+	<div class="col-xs-12 nopad">
+	    <div class="col-xs-12 nopad moreflightstyle">{{'flight 2'|trans}}</div>
+	    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 marginbut10_corfl newpad">
+		<div id="departurecontainer-0" class="deparrival_corpflight">
+		    <input id="departureairport-0" placeholder="{{'Departure'|trans}}" class="input_corpfl_style deparrival_input_corpfl" name="departureairport-0" type="text">
+		    <input type="hidden" id="departureairport-0C" name="departureairportC-0" value="">
+		</div>
+	    </div>
+	    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+		<div id="arrivalcontainer-0" class="deparrival_corpflight">
+		    <input id="arrivalairport-0" placeholder="{{'Arrival'|trans}}" class="input_corpfl_style deparrival_input_corpfl" type="text" name="arrivalairport-0">
+		    <input type="hidden" id="arrivalairport-0C" name="arrivalairportC-0" value="">
+		</div>
+	    </div>
+	    <div id="fromContainer-0" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+		<div class="deparrival_corpflight">
+		    <input id="fromDate-0" placeholder="{{'Departure date'|trans}}" class="input_corpfl_style" type="text" name="fromDateC-0">
+		</div>
+	    </div>
+	</div>
+	<div class="col-xs-12 nopad">
+	    <div class="col-xs-12 nopad moreflightstyle">{{'flight 3'|trans}}</div>
+	    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 marginbut10_corfl newpad">
+		<div id="departurecontainer-1" class="deparrival_corpflight">
+		    <input id="departureairport-1" placeholder="{{'Departure'|trans}}" class="input_corpfl_style deparrival_input_corpfl" name="departureairport-1" type="text">
+		    <input type="hidden" id="departureairport-1C" name="departureairportC-1" value="">
+		</div>
+	    </div>
+	    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+		<div id="arrivalcontainer-1" class="deparrival_corpflight">
+		    <input id="arrivalairport-1" placeholder="{{'Arrival'|trans}}" class="input_corpfl_style deparrival_input_corpfl" type="text" name="arrivalairport-1">
+		    <input type="hidden" id="arrivalairport-1C" name="arrivalairportC-1" value="">
+		</div>
+	    </div>
+	    <div id="fromContainer-1" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 newpad">
+		<div class="deparrival_corpflight">
+		    <input id="fromDate-1" placeholder="{{'Departure date'|trans}}" class="input_corpfl_style" type="text" name="fromDateC-1">
+		</div>
+	    </div>
+	</div>
+    </div>
+    <div class="col-xs-12 nopad text-allign-center">
+	<input id="oneway" class="oneway" name="oneway" value="{{ isOneWay }}" type="hidden">
+	<input id="multiDestination" class="multi-destination" name="multidestination" value="{{ isMultiDestination }}" type="hidden">
+	<button name="" type="submit" class="submitcororateflight"> </button>
+    </div>
+</form>

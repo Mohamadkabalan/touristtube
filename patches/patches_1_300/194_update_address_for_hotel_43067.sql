@@ -1,0 +1,1 @@
+UPDATE `amadeus_hotel` SET `address_line_1` = 'LEISURE HILLS COMPLEX, DBAYEH, P.O. BOX 70-1010 ANTELIAS', `address_line_2` = NULL WHERE `amadeus_hotel`.`id` = 43067;

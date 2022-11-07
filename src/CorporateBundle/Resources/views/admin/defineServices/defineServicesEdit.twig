@@ -1,0 +1,33 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/form/TTFormValidator.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/form_validator/validator.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-defineServicesEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Define Services Add/Edit'|trans}}{% endblock %}
+{% block body %}
+    {% set defaultValues = {'ds_id': 0, 'ds_name': '', 'ds_active': 0 } %}
+
+    {% set defineService = defaultValues|merge(defineService) %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Define Services Add/Edit'|trans}}</h1>
+	    </div></br>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_define_services_addSubmit') }}">
+		<input type="hidden" class="id" name="id" value="{{defineService.ds_id|raw}}">
+		<div class="inputFields"><label id="nameLabel">{{'Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="name" value="{{defineService.ds_name|raw}}" required label="#nameLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label for="activeCheckbox">{{'Active'|trans}} </label></div>
+		<input id="activeCheckbox" type="checkbox" name="active" {% if defineService.ds_active == 1 %} checked {% endif %}>
+		<div class="clear"></div>
+		<div class="inputFields tt_buttons_bar"><button data-role="button" data-type="validate" type="submit">{{'Submit'|trans}}</button></div>
+	    </form>
+	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,101 @@
+_welcome_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:     "/{_locale}/"
+    defaults: { _controller: TTBundle:Default:index, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Tube | Hotels and Flight Booking | 360 View", seodescription: "View the world attractions through a new 360 degree perspective, plan your next travel escape while booking your flight and hotel with Tourist Tube, today.", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+homepage_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:     "/{_locale}/"
+    defaults: { _controller: TTBundle:Default:index, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Tube | Hotels and Flight Booking | 360 View", seodescription: "View the world attractions through a new 360 degree perspective, plan your next travel escape while booking your flight and hotel with Tourist Tube, today.", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_routing_corporate_lang:
+    resource: "@CorporateBundle/Resources/config/routing_lang.yml"
+
+_routing_flights_lang:
+    resource: "@FlightBundle/Resources/config/routing_sabre_lang.yml"
+
+_routing_hotels_lang:
+    resource: "@HotelBundle/Resources/config/routing_lang.yml"
+
+_routing_restaurant_lang:
+    resource: "@RestaurantBundle/Resources/config/routing_lang.yml"
+
+_routing_property_360_lang:
+    resource: "@Property360Bundle/Resources/config/routing_lang.yml"
+
+_routing_ajax_lang:
+    resource: "routing_ajax_lang.yml"
+
+_routing_api_lang:
+    resource: "routing_api_lang.yml"
+    
+_routing_reviews_lang:
+    resource: "routing_reviews_lang.yml"
+
+_routing_channels_lang:
+    resource: "routing_channels_lang.yml"
+
+_routing_default_lang:
+    resource: "routing_default_lang.yml"
+
+_routing_users_lang:
+    resource: "routing_users_lang.yml"
+
+_routing_photos_videos_lang:
+    resource: "routing_photos_videos_lang.yml"
+
+_routing_uploads_lang:
+    resource: "routing_uploads_lang.yml"
+
+_routing_bags_lang:
+    resource: "routing_bags_lang.yml"
+
+_routing_elastic_lang:
+    resource: "routing_elastic_lang.yml"
+
+_routing_discover_lang:
+    resource: "routing_discover_lang.yml"
+
+_routing_payment_lang:
+    resource: "routing_payment_lang.yml"
+
+_routing_social_lang:
+    resource: "routing_social_lang.yml"
+
+_routing_misc_lang:
+    resource: "routing_misc_lang.yml"
+
+_routing_rest_hotels_lang:
+    resource: "@RestBundle/Resources/config/hotels/routing_lang.yml"
+
+_routing_rest_flights_lang:
+    resource: "@RestBundle/Resources/config/flights/routing_lang.yml"
+
+_routing_rest_thingstodo_lang:
+    resource: "@RestBundle/Resources/config/thingstodo/routing_lang.yml"
+
+_routing_rest_restaurant_lang:
+    resource: "@RestBundle/Resources/config/restaurant/routing_lang.yml"
+
+_routing_rest_currencies_lang:
+    resource: "@RestBundle/Resources/config/currencies/routing_lang.yml"
+
+_routing_rest_countries_lang:
+    resource: "@RestBundle/Resources/config/countries/routing_lang.yml"
+
+_routing_rest_cities_lang:
+    resource: "@RestBundle/Resources/config/cities/routing_lang.yml"
+
+_routing_rest_autocomplete_lang:
+    resource: "@RestBundle/Resources/config/autocomplete/routing_lang.yml"
+    
+_routing_deals_lang:
+    resource: "@DealBundle/Resources/config/routing_deals_lang.yml"

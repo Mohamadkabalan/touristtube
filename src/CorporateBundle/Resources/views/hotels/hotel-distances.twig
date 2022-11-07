@@ -1,0 +1,56 @@
+{#{% if hotelDetails.trustyou.good_to_know_list is defined and hotelDetails.trustyou.good_to_know_list is not empty %}
+    <div class="{% if hotelDetails.distances is defined and hotelDetails.distances is not empty  %}col-lg-7 col-md-7 col-sm-7 col-xs-12{% else  %}col-xs-12{% endif  %}">
+	<div class="col-xs-12 lightblue">
+	    <div class="col-xs-12 nopad lightinside">
+		<div class="col-xs-12">
+		    <h2 class="headerstyle">{{'Review Highlights'|trans}}</h2>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <ul class="nostyleul listslider1">
+			{% for good_to_know in hotelDetails.trustyou.good_to_know_list %}
+			    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6 nopad otherstyle">{{good_to_know.text}}</li>
+			    {% endfor %}
+		    </ul>
+		</div>
+	    </div>
+	</div>
+    </div>
+{% endif %}
+{% if hotelDetails.distances is defined and hotelDetails.distances is not empty  %}	
+    <div class="{% if hotelDetails.trustyou.good_to_know_list is defined and hotelDetails.trustyou.good_to_know_list is not empty  %}col-lg-5 col-md-5 col-sm-5 col-xs-12{% else  %}col-xs-12{% endif  %}">
+	<div class="col-xs-12 darckblue minheight103">
+	    <div class="col-xs-12 nopad lightinside">
+		<div class="col-xs-12">
+		    <h2 class="headerstyle">{{'Points Of Interest'|trans}}</h2>
+		</div>
+		<div class="col-xs-12 nopad">
+		    <ul class="nostyleul listslider1">
+			{% for distanceCat in hotelDetails.distances %}
+			    {% for distance in distanceCat %}
+				<li class="col-lg-6 col-md-6 col-sm-6 col-xs-6 nopad otherstyle">{{distance.distance ~ ' km to '|trans ~ distance.name }}</li>
+				{%endfor %}
+			    {% endfor %}
+		    </ul>
+		</div>
+	    </div>
+	</div>
+    </div>
+{% endif %}
+#}
+
+{% if hotelDetails.distances is defined and hotelDetails.distances is not empty  and hotelDetails.distances|length > 1%}
+    <div class="col-xs-12 accordion">
+	<p class="black_wzarrow_subtitles margin_top_10"><i class="fas fa-angle-right fa-lg"></i>{{'Closest landmarks'|trans}}</p>
+    </div>
+    <div class="col-xs-12 panel open">
+	<ul class="landmarks_list hotel-distances">
+	    {% for locationType, distanceCat in hotelDetails.distances %}
+		{% for distance in distanceCat %}
+		    {% if distance.name is not empty %}
+			<li>{{ distance.name }} <span class="pink_text">{{distance.distance ~ ' km'|trans}}</span></li>
+			{% endif %}
+		    {% endfor %}
+		{% endfor %}
+	</ul>
+    </div>
+{% endif %}

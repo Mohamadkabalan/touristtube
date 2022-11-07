@@ -1,0 +1,35 @@
+TTBundle\Entity\DatastellarCountrySubToHotel:
+    type: entity
+    table: datastellar_country_sub_to_hotel
+    indexes:
+        country_sub_id:
+            columns:
+                - country_sub_id
+    uniqueConstraints:
+        hotel_id:
+            columns:
+                - hotel_id
+                - country_sub_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+        countrySubId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: country_sub_id
+    lifecycleCallbacks: {  }

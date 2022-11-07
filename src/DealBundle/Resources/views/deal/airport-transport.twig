@@ -1,0 +1,458 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/airport-transport.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/loading-overlay/gasparesganga/2.1.5/loadingoverlay.min.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/airport-transport.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/secure-booking.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class ="container">
+	{% if app.request.query.get("errorMessage") is defined and app.request.query.get("errorMessage") is not null  %}
+	    <div class="col-xs-12 nopad padtop25">
+		<div class="col-xs-12 bookingBoxError">
+		    {{app.request.query.get("errorMessage")|trans}}. {{'Please select another option.'|trans}}
+		</div>
+	    </div>
+	{% endif %}
+	<form name="bookingTransport" action="{{ generateLangRoute(LanguageGet,'_deals_book_now') }}" method="POST" autocomplete="off">
+	    <input type="hidden" id="airportCitiesListingPath" name="airportCitiesListingPath" value="{{ generateLangRoute(LanguageGet,'_airport_cities_listing') }}" />
+	    <input type="hidden" id="airportListingPath" name="airportListingPath" value="{{ generateLangRoute(LanguageGet,'_airport_listing') }}" />
+	    <input type="hidden" id="airportVehiclesPath" name="airportVehiclesPath" value="{{ generateLangRoute(LanguageGet,'_airport_vehicles_listing') }}" />
+	    <input type="hidden" id="serviceType" name="serviceType" value="" />
+	    <div id="airportTransport" class="col-xs-12 nopad margintop100">
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad rightfourcontainer_sts">
+		    <div id="infoBox" class="col-xs-12 nopad rightcontainerbordergrey_sts hideField">
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+			    <div id="infoContainer1" class="col-xs-12 nopad">
+				<p id="location_text" class="location_sts commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer2" class="col-xs-12 nopad hideField">
+				<p id="type_of_transfer_text" class="fromto_sts commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer3" class="col-xs-12 nopad hideField">
+				<p id="airport_text" class="commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer4" class="col-xs-12 nopad hideField">
+				<p id="address_text" class="homelogo_sts commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+			    <div id="infoContainer5" class="col-xs-12 nopad hideField">
+				<p id="arrival_text" class="commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer6" class="col-xs-12 nopad hideField">
+				<p id="arrivalDate_text" class="commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer7" class="col-xs-12 nopad hideField">
+				<p id="departure_text" class="commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer8" class="col-xs-12 nopad hideField">
+				<p id="departureDate_text" class="commontextblack_sts">&nbsp;</p>
+				<div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+			    </div>
+			    <div id="infoContainer9" class="col-xs-12 nopad hideField">
+				<p id="passengers_text" class="personlogo_sts commontextblack_sts">&nbsp;</p>
+			    </div>
+			</div>
+		    </div>
+		    <div id="vPriceContainer" class="col-xs-12 nopad">
+			<a class="bookbut_sts" href="#">{{'Book now starting at'|trans}}
+			    <span id="vDataPrice" class="a_price newprice_dat price-convert" data-price="11.92"><span id="vCurrency" class="currency-convert-text">USD</span> <span id="vPrice"  class="price-convert-text">11.92</span></span></a>
+		    </div>
+		    <div class="col-xs-12 nopad rightcontainerbordergrey_wtt_sts martop10">
+			<div class="col-xs-12 nopad">
+			    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+				<p class="resontt_sts">{{'Why TouristTube?'|trans}}</p>
+				<ul class="whyttlist_sts">
+				    <li class="">{{'Easy booking'|trans}}</li>
+				    <li class="">{{'Instant confirmation'|trans}}</li>
+				    <li class="">{{'Reschedule anytime'|trans}}</li>
+				    <li class="">{{'Best price guaranteed'|trans}}</li>
+				    <li class="">{{'24/5 Customer support'|trans}}</li>
+				</ul>
+			    </div>
+			    <div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+				<div class="col-xs-12 nopad inhorborderstyle_sts"></div>
+			    </div>
+			    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+				<p class="needhelp_sts">{{'Need Help?'|trans}}<span class="contus_sts"> <a href="#" class=""> {{'Contact Us'|trans}}</a></span></p>
+				<div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+				    <div class="col-xs-12 nopad inhorborderstyle_sts extrabordmarbut_sts"></div>
+				</div>
+				<p class="secpay_sts">{{'Secure & simple payments'|trans}}</p>
+				<p class="protectpay_sts">{{'All our card payments are protected
+				by thawte to give you peace of mind'|trans}}</p>
+				<div class="col-xs-12 nopad textalligncenter">
+				    <div class="paymimgs_sts_cont">
+					<a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/visa_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/mastercard_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/americnexpress_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/discover_dat_img.png') }}" alt="{{'title'}}"/> </a>
+					<a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/jcb_dat_img.png') }}" alt="{{'title'}}"/> </a>
+				    </div>
+				</div>
+			    </div>
+
+			</div>
+		    </div>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 nopad">
+		    <!-- Start of Step 0 -->
+		    <div id="step-0_sts" class="col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <p class="titlest0black_sts">{{'Choose your destination country'|trans}}</p>
+			    <input type="hidden" id="apiId" name="apiId" value="{{apiId}}" />
+			    <input type="hidden" id="dealTypeId" name="dealTypeId" value="{{dealTypeId}}" />
+			    <select id="destinationCountry" name="destinationCountry" class="selectboxlargestandard_sts">
+				<option value="" selected="selected" >{{'Select your destination Country'|trans}}</option>
+				{% for key,val in countries %}
+				    {% if val['code'] != '' %}
+					<option value="{{val['code']}}">{{val['name']}}</option>
+				    {% endif %}
+				{% endfor %}
+			    </select>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a id="step0next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+
+		    <!-- Start of Step 1 -->
+		    <div id="step-1_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div id="step-1_sts_box" class="col-xs-12 nopad">
+			    &nbsp;
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a id="step1previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			    <a id="step1next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+
+		    <!-- Start of Step 2 -->
+		    <div id="step-2_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <input type="hidden" id="typeOfTransfer" name="typeOfTransfer" value="roundtrip" />
+			    <p class="titlest0black_sts">{{'Choose your type of transfer'|trans}}</p>
+			    <div class="step1typetransfer active" onclick="changeTypeOfTransfer(this, 'roundtrip');">
+				<p class="bluesmtitle_sts">{{'Roundtrip'|trans}}</p>
+				<p class="textunblack_sts">{{'From Airport / Station / Port to Dropoff point and back'|trans}}</p>
+			    </div>
+			    <div class="step1typetransfer" onclick="changeTypeOfTransfer(this, 'oneWayFromAirport');">
+				<p class="bluesmtitle_sts">{{'One way from Airport'|trans}}</p>
+				<p class="textunblack_sts">{{'From Airport / Station / Port to Dropoff point'|trans}}</p>
+			    </div>
+			    <div class="step1typetransfer" onclick="changeTypeOfTransfer(this, 'oneWayToAirport');">
+				<p class="bluesmtitle_sts">{{'One way to Airport'|trans}}</p>
+				<p class="textunblack_sts">{{'From Pickup point to Airport / Station / Port'|trans}}</p>
+			    </div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a id="step2previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			    <a id="step2next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+
+		    <!-- Start of Step 3 -->
+		    <div id="step-3_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <input type="hidden" id="transferAirportName" name="transferAirportName" value="" />
+			    <input type="hidden" id="transferAirportCode" name="transferAirportCode" value="" />
+			    <p class="titlest0black_sts">{{'Select your Airport / Port / Train Station'|trans}}</p>
+			</div>
+			<div id="step-3_sts_box" class="col-xs-12 nopad">
+			    &nbsp;
+			</div>
+			<div class="col-xs-12 nopad steptwostyle_sts">
+			    <a id="step3previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			    <a id="step3next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+		    <!-- Start of Step 4 -->
+		    <div id="step-4_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <p class="titlest0black_sts">{{'Enter your destination hotel or address'|trans}}</p>
+			    <!-- Commeting out for now until we get the autocomplete from elastic team<div  id="searchhrscontainer" class="bag-search col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<p class="detbluetxt_sts">{{'Search your destination hotel'|trans}}</p>
+				<input id="searchdiscover" name="city" data-link="" placeholder="" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad marginbottom10">
+				<p class="detbluetxt_sts">{{'OR'|trans}}</p>
+			    </div>-->
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+				<p class="detbluetxt_sts">{{'Type in destination address'|trans}}</p>
+				<input id="destinationAddress" name="destinationAddress" data-link="" placeholder="" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+			    </div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a id="step4previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			    <a id="step4next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+		    <!-- Start of Step 5 -->
+		    <div id="step-5_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<input type="hidden" id="step5Cleared" name="step5Cleared" value="No" />
+			<div class="col-xs-12 nopad">
+			    <p class="titlest0black_sts">{{'Select your schedule'|trans}}</p>
+			</div>
+			<div id="arrivalStep" class="col-xs-12 nopad hideField arrivalSection">
+			    <p class="pinkarrdeptext_att">{{'Your arrival schedule'|trans}}</p>
+			    <p class="bluetextlabel_att">{{'Enter your arrival date'|trans}}</p>
+			    <span id="arrivalInputContainer">
+				<input id="arrivalInput" name="arrivalInput" onchange="updateArrivalAndDeparture();" placeholder="{{'Enter your arrival date'|trans}}" class="inputlargestandard_sts" type="text" autocomplete="off" value="">
+			    </span>
+			    <p class="bluetextlabel_att">{{'Enter your arrival time'|trans}}</p>
+			    <select id="arrivalHour" name="arrivalHour" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+				<option value="00" selected="selected" >{{'hours'|trans}}</option>
+				<option value="00">12am</option>
+				{% for i in 1..23 %}
+				    {% set hv = (i > 12) ? (i - 12) : i %}
+				    {% set hx = (i > 11) ? 'pm' : 'am' %}
+				    <option value="{{ '%02d'|format(i) }}">{{hv}}{{hx}}</option>
+				{% endfor %}
+			    </select>
+			    <select id="arrivalMinute" name="arrivalMinute" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+				<option value="00" selected="selected" >{{'minutes'|trans}}</option>
+				{% for i in 0..11 %}
+				    {% set m  = i * 5 %}
+				    <option value="{{ '%02d'|format(m) }}">{{ '%02d'|format(m) }}</option>
+				{% endfor %}
+			    </select>
+			</div>
+			<div class="seperatedborderdiv arrivalSection"></div>
+			<div id="departureStep" class="col-xs-12 nopad hideField departureSection">
+			    <p class="pinkarrdeptext_att">{{'Your departure schedule'|trans}}</p>
+			    <p class="bluetextlabel_att">{{'Enter your departure date'|trans}}</p>
+			    <span id="departureInputContainer">
+				<input id="departureInput" name="departureInput" onchange="updateArrivalAndDeparture();" placeholder="{{'Enter your departure date'|trans}}" class="inputlargestandard_sts" type="text" autocomplete="off" value="">
+			    </span>
+			    <p class="bluetextlabel_att">{{'Enter your departure time'|trans}}</p>
+			    <select id="departureHour" name="departureHour" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+				<option value="00" selected="selected" >{{'hours'|trans}}</option>
+				<option value="00">12am</option>
+				{% for i in 1..23 %}
+				    {% set hv = (i > 12) ? (i - 12) : i %}
+				    {% set hx = (i > 11) ? 'pm' : 'am' %}
+				    <option value="{{ '%02d'|format(i) }}">{{hv}}{{hx}}</option>
+				{% endfor %}
+			    </select>
+			    <select id="departureMinute" name="departureMinute" onchange="updateArrivalAndDeparture();" class="selectboxsmalstandard_sts">
+				<option value="00" selected="selected" >{{'minutes'|trans}}</option>
+				{% for i in 0..11 %}
+				    {% set m  = i * 5 %}
+				    <option value="{{ '%02d'|format(m) }}">{{ '%02d'|format(m) }}</option>
+				{% endfor %}
+			    </select>
+			</div>
+			<div class="seperatedborderdiv departureSection"></div>
+			<div class="col-xs-12 nopad">
+			    <a id="step5previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			    <a id="step5next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+		    <!-- Start of Step 6 -->
+		    <div id="step-6_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <p class="titlest0black_sts">{{'Choose the number of passengers'|trans}}</p>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <select id="numOfpassengers" name="numOfpassengers" class="selectboxsmalstandard_sts">
+				<option value="0" selected="selected" >{{'Choose the #'|trans}}</option>
+				{% for i in 1..99 %}
+				    <option value="{{i}}">{{i}}</option>
+				{% endfor %}
+			    </select>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a id="step6previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			    <a id="step6next_sts" class="nextsteps_sts">{{'next step'|trans}}</a>
+			</div>
+		    </div>
+
+		    <!-- Start of Step 7 -->
+		    <div id="step-7_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <p class="titlest0black_sts">{{'Select your type of transfer'|trans}}</p>
+			</div>
+			<div id="step-7_sts_box" class="imageandtextcontainer">
+			    &nbsp;
+			</div>
+			<div class="col-xs-12 nopad">
+			    <a id="step7previous_sts" class="nextsteps_sts prevStep">{{'previous step'|trans}}</a>
+			</div>
+		    </div>
+
+		    <!-- Start of Step 8 -->
+		    <div id="step-8_sts" class="hiddensteps_sts col-xs-12 nopad">
+			<div class="col-xs-12 nopad">
+			    <h1 class="seccon_sts">{{'Secure booking. Only takes 2 minutes!'|trans}}</h1>
+			</div>
+			<div class="col-xs-12 nopad">
+			    {% if isUserLoggedIn == 0 %}
+				<div class="col-xs-12 nopad borderedautowdsiv_sts">
+				    <p class="alrhaccpink_sts">{{'Already have an account?'|trans}}</p>
+				    <a class="signinbut_sts" href="#">{{'Sign in'|trans}}</a>
+				</div>
+			    {% endif %}
+			    <div class="col-xs-12 nopad">
+				<div id="bookingArrivalBox" class="col-xs-12 nopad">
+				    <div class="col-xs-12 nopad">
+					<p class="arrdepboldtext_sts">{{'Arrival Transfer'|trans}}</p>
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Arrival company or flight number'|trans}}</p>
+					<input id="arrivalCompany" name="arrivalCompany" data-link="" placeholder="{{'Arrival company or flight number'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Arriving form'|trans}}</p>
+					<input id="arrivingFrom" name="arrivingFrom" data-link="" placeholder="{{'Arriving form'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Complete Destination address in'|trans}} <span class="transportCity">&nbsp;</span></p>
+					<input id="arrivalCompleteAddress" name="arrivalCompleteAddress" data-link="" placeholder="{{'3 rue de castiglione, Paris'|trans}}" class="completeAddress arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				</div>
+				<div id="bookingDepartureBox" class="col-xs-12 nopad">
+				    <div class="col-xs-12 nopad">
+					<p class="arrdepboldtext_sts">{{'Departure Transfer'|trans}}</p>
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Departure company or flight number'|trans}}</p>
+					<input id="departureCompany" name="departureCompany" data-link="" placeholder="{{'Departure company or flight number'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Going to'|trans}}</p>
+					<input id="goingTo" name="goingTo" data-link="" placeholder="{{'Going to'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Complete pickup address in'|trans}} <span class="transportCity">&nbsp;</span></p>
+					<input id="departureCompleteAddress" name="departureCompleteAddress" data-link="" placeholder="{{'3 rue de castiglione, Paris'|trans}}" class="completeAddress arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+				<p class="alrhaccpink_sts">{{'Lead Traveler’s Information'|trans}}</p>
+			    </div>
+			    <div class="col-xs-12 nopad">
+				<div class="col-xs-12 nopad margintop30">
+				    <p class="detbluetxt_sts">{{'Contact name'|trans}}</p>
+				    <input id="firstName" name="firstName" data-link="" placeholder="{{'First name'|trans}}" class="firstnameinput_sts" value="" autocomplete="off" type="text">
+				    <input id="lastName" name="lastName" data-link="" placeholder="{{'Last name'|trans}}" class="firstnameinput_sts marginleft20" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'Email address'|trans}}</p>
+				    <input id="email" name="email" data-link="" placeholder="{{'We’ll send you voucher there'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'Credit card billing address'|trans}}</p>
+				    <input id="ccBillingAddress" name="ccBillingAddress" data-link="" placeholder="{{'your billing address'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'City'|trans}}</p>
+				    <input id="billingCity" name="billingCity" class="arrdepstandardinput_sts" placeholder="{{'your billing city'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'Country code'|trans}}</p>
+				    <select id="country" name="country" class="selectboxlargestandard_sts">
+					<option value="" selected="selected" >{{'Country'|trans}}</option>
+					{% for country in countryList %}
+					    <option value="{{country.iso3}}">{{country.name}}</option>
+					{% endfor %}
+				    </select>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'Mobile phone number'|trans}}</p>
+				    <select id="mobile_country_code_select" name="mobile_country_code" class="selectdialingcodestandard_sts">
+					<option value="" selected="selected" >{{'Area Code'|trans}}</option>
+					{% set countryDialingCodeMap = {} %}
+					{% for mobileCountryCode in mobileCountryCodeList %}
+					    {% set countryDialingCodeMap = countryDialingCodeMap|merge({(mobileCountryCode.iso3): (mobileCountryCode.dialingCode)}) %}
+					    <option value="{{mobileCountryCode.iso3}}">{{mobileCountryCode.dialingCodeToString}}</option>
+					{% endfor %}
+				    </select>
+				    <input type="hidden" name="dialingCode" value="">
+				    <script type="text/javascript">
+					var countryDialingCodeMap = '{{countryDialingCodeMap|json_encode()|raw()}}';
+				    </script>
+				    <input id="mobile" name="mobile" data-link="" placeholder="{{'In case we need to reach you'|trans}}" class="mobilestandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'Postal Code'|trans}}</p>
+				    <input id="postalCode" name="postalCode" data-link="" placeholder="{{'your zip/postal code'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				</div>
+				<div class="col-xs-12 nopad">
+				    <p class="detbluetxt_sts">{{'Do you have special requests for your booking?'|trans}}<br>
+					{{'Tell us and we will gladly accomodate!'|trans}}</p>
+				    <textarea class="textarea_sts" name="bookingNotes"></textarea>
+				</div>
+			    </div>
+			</div>
+			<div class="col-xs-12 nopad">
+			    <div class="col-xs-12 nopad margintop20 {{ (isUserLoggedIn == 0)  ? 'borderedautowdsiv_sts' }}">
+				{% if isUserLoggedIn == 0 %}
+				    <p class="alrhaccpink_sts">{{'Create your account'|trans}}</p>
+				{% else %}
+				    &nbsp;
+				{% endif %}
+			    </div>
+			    <div class="col-xs-12 nopad">
+				{% if isUserLoggedIn == 0 %}
+				    <div class="col-xs-12 nopad margintop30">
+					<p class="detbluetxt_sts">{{'Create password'|trans}}</p>
+					<input id="password" name="password" data-link="" placeholder="{{'Min, 8 chars'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				    <div class="col-xs-12 nopad">
+					<p class="detbluetxt_sts">{{'Confirm password'|trans}}</p>
+					<input id="confirmPassword" name="confirmPassword" data-link="" placeholder="{{'Enter it again!'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+				    </div>
+				{% endif %}
+				<div class="col-xs-12 nopad">
+				    <p class="termsandcondtext_sts">{{'By selecting to complete this booking,'|trans}} <br />
+					{{'I acknowledge that I have read and accept the'|trans}} <span><a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}"  title="{{ 'terms and conditions'|trans }}" class="temcondurl_sts"> {{'Terms and Conditions'|trans}}</a><br /> {{'and consent to our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{ 'privacy policy'|trans }}" class="temcondurl_sts">{{'privacy policy'|trans}}</a></span></p>
+				</div>
+				<div class="col-xs-12 nopad">
+				    <!-- savedCity is added in order for validation to work in city. As it $("[name='"+val.fieldname+"']").val() wont return any value -->
+				    <input type="hidden" id="totalPrice" name="totalPrice" value="" />
+				    <input type="hidden" id="currency" name="currency" value="" />
+				    <input type="hidden" id="carModel" name="carModel" value="" />
+				    <input type="hidden" id="savedCity" name="savedCity" value="" />
+				    <input type="hidden" id="arrivalPriceId" name="arrivalPriceId" value="" />
+				    <input type="hidden" id="departurePriceId" name="departurePriceId" value="" />
+				    <input type="hidden" id="pageName" name="pageName" value="transfers" />
+				    <button id="bookNow" name="bookNow" type="button" class="compbookbluebut_sts">{{'Complete Booking'|trans}}</button>
+				</div>
+				<div class="lastfloatleftsponimg_sts">
+				    <img class="" src="{{ generateMediaURL('/media/images/stepseven/trustwavelogo_sts.png') }}" alt="{{'title'}}"/>
+				    <img class="" src="{{ generateMediaURL('/media/images/stepseven/secby_sts.png') }}" alt="{{'title'}}"/>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+
+	    </div>
+	</form>
+    </section>
+
+{% endblock %}

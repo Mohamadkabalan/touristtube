@@ -1,0 +1,229 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+{% endblock %}
+{% block pagenewjs %}
+{% endblock %}
+{% block title %}
+    {{ 'Attractions Book New'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container deals_container">
+	<form method="POST" action="{{ generateLangRoute(LanguageGet,'_deals_book_now') }}" autocomplete="off">
+	    <div id="bookContainer" class="row margin_top_30 book_now_new_container">
+		<div class="col-xs-12">
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Attractions: review and book'|trans}}</h1>
+			</div>
+		    </div>
+		    <div class="row margin_top_30">
+			<div class="col-md-3 col-xs-12 right_panel col-md-push-9 sm_right_panel">&nbsp;
+			    <!-- Onhold task related to transfers - per Firas -->
+			    <!--<div class="row">
+				<div class="col-xs-12 margin_bottom_10">
+				    <p class="font-22 pink"><i class="fas fa-angle-right yellow_right_arrow_font-awsome_logo"></i>{{'Roissy Charles de Gaulle Airport Shuffle'|trans}}</p>
+				</div>
+				<div class="col-xs-12">
+				    <img src="{{ generateMediaURL('/media/images/booking_steps_new/car_img_van.jpg') }}" alt="cost_spread">
+				</div>
+				<div class="col-xs-12">
+				    <div class="row no-margin">
+					<div class="col-md-12 col-xs-4 nopad">
+					    <p class="font-16 blue margin_bottom_0 line-height-20">{{'Arrival travelers: 1'|trans}}</p>
+					    <p class="font-16 black line-height-20">{{'Date of Transfer: 18/07/2018'|trans}}</p>
+					</div>
+					<div class="col-md-12 col-xs-4 nopad">
+					    <p class="font-16 blue margin_bottom_0 line-height-20">{{'Departure travelers:1'|trans}}</p>
+					    <p class="font-16 black line-height-20">{{'Date of Transfer: 15/08/2018'|trans}}</p>
+					</div>
+					<div class="col-md-12 col-xs-4 nopad">
+					    <p class="font-22 black margin_bottom_0">{{'US$ 43.07'|trans}}</p>
+					    <p class="font-16 black font-bold margin_bottom_20">{{'You got the best price'|trans}}</p>
+					</div>
+					<div class="col-md-12 col-xs-4 nopad">
+					    <p class="font-16 pink margin_bottom_0">{{'1 Item for a total of'|trans}}</p>
+					    <p class="font-30 pink margin_bottom_0">US$ 43.07</p>
+					    <p class="font-13 font-bold black font-uppercase">best price guaranteed</p>
+					</div>
+				    </div>
+				</div>
+			    </div>-->
+			    <!-- Onhold task related to transfers - per Firas -->
+			</div>
+			<div class="col-xs-12 hidden-md hidden-lg">
+			    <div class="xs_sm-border_buttom_4"></div>
+			</div>
+			<div class="col-md-9 col-xs-12 left_panel col-md-pull-3">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad">
+				    <div class="row no-margin">
+					<form data-toggle="validator" role="form">
+					    <div class="col-xs-12 nopad">
+						{% if isUserLoggedIn == 0 %}
+						    <div class="row no-margin">
+							<div class="col-xs-12 nopad">
+							    <div class="row no-margin">
+								<div class="col-sm-6 col-xs-12 nopad margin_top_10">
+								    <p class="black font-24">{{'Already have an account?'|trans}}</p>
+								</div>
+								<div class="col-sm-6 col-xs-12 nopad margin_bottom_20">
+								    <button class="btn pink_buttoon">{{'Sign in'|trans}}</button>
+								</div>
+							    </div>
+							    <div class="row no-margin">
+								<div class="col-xs-12 nopad margin_bottom_30">
+								    <div class="border_bottom_2_grey"></div>
+								</div>
+							    </div>
+							</div>
+						    </div>
+						{% endif %}
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad">
+							<div class="row">
+							    <div class="col-xs-12">
+								<p class="font-27 black">{{"Lead Traveler's Information"|trans}}</p>
+							    </div>
+							</div>
+							<!--<div class="row no-margin">
+							    <div class="col-xs-12 nopad">
+								<div class="row no-margin">
+								    <div class="col-sm-6 col-xs-12 nopad margin_top_10">
+									<p class="black font-24">{{"Have a gift certificate or promocode?"|trans}}</p>
+								    </div>
+								    <div class="col-sm-6 col-xs-12 nopad margin_bottom_20">
+									<button class="btn pink_buttoon">{{"Redeem your discount"|trans}}</button>
+								    </div>
+								</div>
+							    </div>
+							</div>-->
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+								<span class="genderTitle">{{"Title*"|trans}} </span>
+								<label class="radio-inline"><input type="radio" name="title" value="Mr" required>{{'Mr'|trans}} </label>
+								<label class="radio-inline"><input type="radio" name="title" value="Ms / Mrs / Miss" required>{{'Ms'|trans}} / {{'Mrs'|trans}} / {{'Miss'|trans}}</label>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+								<div class="form-group new_input_deals_common">
+								    <input id="firstName" name="firstName" type="text" class="form-control" placeholder="{{'first name'|trans}}">
+								    <div class="help-block with-errors"></div>
+								</div>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+								<div class="form-group new_input_deals_common">
+								    <input id="lastName" name="lastName" type="text" class="form-control" placeholder="{{'last name'|trans}}">
+								    <div class="help-block with-errors"></div>
+								</div>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+								<div class="form-group new_input_deals_common">
+								    <input id="email" name="email" type="text" class="form-control" placeholder="{{'email address'|trans}}">
+								    <div class="help-block with-errors"></div>
+								</div>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+								<div class="form-group new_input_deals_common">
+								    <input id="ccBillingAddress" name="ccBillingAddress" type="text" class="form-control" placeholder="{{'credit card billing address'|trans}}">
+								    <div class="help-block with-errors"></div>
+								</div>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding common_selectbox_deals select_big_bold paymentselect_newstyle">
+								<select id="country" name="country" class="selectboxlargestandard_sts">
+								    <option value="" selected="selected" >{{'Country'|trans}}</option>
+								    {% for country in countryList %}
+									<option value="{{country.iso3}}">{{country.name}}</option>
+								    {% endfor %}
+								</select>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-sm-6 col-xs-12 deals_new_padding common_selectbox_deals select_big_bold paymentselect_newstyle">
+								<div class="row deals_new_margin">
+								    <div class="col-sm-6 col-xs-12 deals_new_padding common_selectbox_deals select_big_bold paymentselect_newstyle">
+									<select id="mobile_country_code_select" name="mobile_country_code" class="selectdialingcodestandard_sts">
+									    <option value="" selected="selected" >{{'Area Code'|trans}}</option>
+									    {% set countryDialingCodeMap = {} %}
+									    {% for mobileCountryCode in mobileCountryCodeList %}
+										{% set countryDialingCodeMap = countryDialingCodeMap|merge({(mobileCountryCode.iso3): (mobileCountryCode.dialingCode)}) %}
+										<option value="{{mobileCountryCode.iso3}}">{{mobileCountryCode.dialingCodeToString}}</option>
+									    {% endfor %}
+									</select>
+									<input type="hidden" name="dialingCode" value="">
+									<script type="text/javascript">
+									    var countryDialingCodeMap = '{{countryDialingCodeMap|json_encode()|raw()}}';
+									</script>
+								    </div>
+								    <div class="row deals_new_margin">
+									<div class="col-sm-6 col-xs-12 deals_new_padding">
+									    <div class="form-group new_input_deals_common paymentselect_newstyle">
+										<input id="mobile" name="mobile" type="text" class="form-control" placeholder="mobile">
+									    </div>
+									</div>
+								    </div>
+								</div>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-xs-12 deals_new_padding">
+								<p class="font-27 black margin_bottom_0">{{"Special requirements"|trans}}</p>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-xs-12 deals_new_padding">
+								<textarea id="" name="" class="deals_textarea" placeholder="Do you have special requests for your booking? Tell us and we will glasgly accomodate"></textarea>
+							    </div>
+							</div>
+							<div class="row deals_new_margin">
+							    <div class="col-xs-12 deals_new_padding label_terms_cond_agree">
+								<label for="agree_terms">
+								    <input id="agreeTermsId" name="agree_terms" id="terms" value="1" type="checkbox">
+								    {{"By selecting to cmplete this booking, I acknowledge that"|trans}}<br>{{"I have read and accept the"|trans}}  <span><a target="_blank" href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}"  title="{{ 'terms and conditions'|trans }}" class="">{{'Terms and Conditions'|trans}} </a></span>{{"and the"|trans}}  <span><a target="_blank" href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{ 'privacy policy'|trans }}" class="termsncond">{{'privacy policy'|trans}}</a></span>
+								</label>
+							    </div>
+							</div>
+						    </div>
+						</div>
+						<div class="row no-margin margin_top_20">
+						    <!--<div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+							<button id="secure_booking_step_prev_button" class="btn prev_grey_button">{{'Prev Step'|trans}}</button>
+						    </div>-->
+						    <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+							<input type="hidden" name="packageId"     value="{{details['packageId']}}" />
+							<input type="hidden" name="tourCode"      value="{{details['tourCode']}}" />
+							<input type="hidden" name="bookingQuoteId"      value="{{details['bookingQuoteId']}}" />
+							<input type="hidden" name="dealTypeId"      value="{{details['dealTypeId']}}" />
+							<input type="hidden" name="bookingDate"   value="{{details['bookingDate']}}" />
+							<input type="hidden" name="totalPrice"    value="{{details['totalPrice']}}" />
+							<input type="hidden" name="numOfAdults"    value="{{details['numOfPassenger']}}" />
+							<input type="hidden" name="dealHighlights" value="{{details['dealHighlights']}}" />
+							<input type="hidden" name="startingPlace"  value="{{details['startingPlace']}}" />
+							<input type="hidden" name="cancellationPolicy" value="{{details['cancellationPolicy']}}">
+							<button  id="bookNow" name="bookNow" class="btn next_yellow_button" type="submit" disabled >{{'submit'|trans}}</button>
+						    </div>
+						</div>
+					    </div>
+					</form>
+					<div class="col-xs-12 nopad images_payment_sponser margin_top_15">
+					    <img src="{{ generateMediaURL('/media/images/booking_steps_new/payment_sponsers.png') }}" alt="thawte_logo">
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</form>
+    </section>
+{% endblock %}

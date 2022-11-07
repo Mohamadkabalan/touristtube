@@ -1,0 +1,76 @@
+<body>
+    <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        {{displayTopHead}}
+        
+        
+        
+        {% for k,Arr in array4loop %}
+            {% set count = Arr|length %}
+            {% if count > 0 %}
+
+            
+            {{displayPartHeadProfileMentioned[k]}}
+            <tr>
+                <td>
+                    <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                        <tr>
+                            <td width="46"></td>
+                            <td>
+                                <table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        {% for p in 0..count %}
+        {% if Arr[p]['friends'][0][0] is not empty %}
+
+            <tr  height="23" >
+                <td height="23"  width="552"></td>
+            </tr>
+            <tr height="51">
+                <td height="51"  width="552">
+                    <table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                        <tr>
+                            <td rowspan="2" width="51" height="51">
+                                <a href="{{Arr[p]['friends'][0][5]}}" target="_blank"><img src="{{Arr[p]['friends'][0][0]}}"
+                                     alt="{{Arr[p]['friends'][0][1]}}" border="0" width="51" height="51"/></a>
+                            </td>
+                            <td width="6" rowspan="2"></td>
+                            <td valign="top" width="438" height="13">
+                                <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                    <a href="{{Arr[p]['friends'][0][5]}}" target="_blank">{{Arr[p]['friends'][0][1]}}</a>
+                                </font>
+                            </td>
+                            <td width="56" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td valign="bottom" width="438" height="37">
+                                <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                {{Arr[p]['partTitle']}}
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr height="21">
+                <td height="21"  width="552"></td>
+            </tr>
+                           
+        {% if p < (count-1) %}
+           <tr height="1">
+                <td height="1"  width="552" background="{{link_path}}separator.jpg"></td>
+           </tr>
+        {% endif %}
+        {% endif %}
+        
+        
+        {% endfor %}
+            </table>
+                    </td>
+                    <td width="37"></td>
+                </tr>
+            </table>
+            </td>
+            </tr>            
+        {% endif %}
+        {% endfor %}
+            {{displayfoot}}
+    </table>
+</body>

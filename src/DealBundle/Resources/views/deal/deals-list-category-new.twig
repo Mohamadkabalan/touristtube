@@ -1,0 +1,22 @@
+<div class="row checkboxcontainer">
+    <div class="col-xs-12">
+	<div class="row">
+	    <div class="col-xs-12">
+		<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'category'|trans}}</p>
+	    </div>
+	</div>
+	{% for catId, catVal in result['categoryList'] %}
+	    <div class="row">
+		<div class="col-xs-12">
+		    <div class="form-check">
+			<input data-toggle="tooltip" data-original-title="{{catVal}}" type="checkbox" name="category[]" checked="checked" class="form-check-input filter-hotel-cancelable" data-value="other" value="{{catId}}">
+			<label class="form-check-label" for="">
+			    {{ catVal|length > 30 ? catVal|trans|raw|slice(0, 30) ~ '...' : catVal|trans}}
+			</label>
+		    </div>
+		</div>
+	    </div>
+	{% endfor %}
+    </div>
+</div>
+

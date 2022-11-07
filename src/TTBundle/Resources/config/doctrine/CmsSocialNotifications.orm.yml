@@ -1,0 +1,62 @@
+TTBundle\Entity\CmsSocialNotifications:
+    type: entity
+    table: cms_social_notifications
+    indexes:
+        poster_id:
+            columns:
+                - poster_id
+                - receiver_id
+    id:
+        posterId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'the user making a post'
+            id: true
+            column: poster_id
+        receiverId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'the user/channel owning the entity'
+            id: true
+            column: receiver_id
+        isChannel:
+            type: boolean
+            nullable: false
+            options:
+                comment: 'specifies if receiver_id is a user or channel'
+            id: true
+            column: is_channel
+        posterIsChannel:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            id: true
+            column: poster_is_channel
+    fields:
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        published:
+            type: integer
+            nullable: false
+        notify:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+        showFromTuber:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+            column: show_from_tuber
+    lifecycleCallbacks: {  }

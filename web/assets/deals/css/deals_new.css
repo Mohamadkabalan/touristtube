@@ -1,0 +1,36 @@
+.attractions_container{display: block; padding-top: 18px;}
+.searchcontainer_content{margin-top: 50px;}
+.filters-group a{font-weight: normal;padding:17px 9px;cursor: pointer;margin-bottom: 0px;float: left;color: #00b7d9;text-decoration: none; text-align: center;}
+.filters-group a.active{color: #FFFFFF;background-color: #00b7d9;}
+.sort_by_tabs{min-height: 52px;border: 2px solid #eceff1;}
+.attractions_new_container .row_title_deals{font-size: 27px;color: black;}
+.attractions_new_container .row_title_deals span{font-size: 17px;color: #db3a69;}
+.attractions_new_container .deals_new_margin{margin-left: -5px;margin-right: -5px;}
+.attractions_new_container .deals_new_padding{padding: 5px;}
+.attractions_new_container .container_min_height{min-height: 240px;}
+.attractions_new_container .full_width{width: 100%;}
+.attractions_new_container .image_title{position:absolute;top:50%;left:50%;text-align:center;transform: translateX(-50%) translateY(-50%);font-size: 22px;font-weight: bold;color: white;margin: 0;text-transform: uppercase; line-height:19px;background:rgba(0, 0, 0, 0.54);padding: 5px;}
+.attractions_new_container .under_image_title{font-size: 16px;color: #db3a69;margin-top: 7px;}
+.attractions_new_container .under_image_title span{font-size: 16px;color: #585858;}
+.attractions_new_container .border_grey_1{border-bottom: 1px solid #d8d8d8;}
+.attractions_new_container .pad_but_z{padding-bottom: 0;}
+.attractions_new_container .image_style_container{padding-left: 35px; padding-right: 35px;margin: 0 auto;}
+.attractions_new_container .text_style_container{padding-left: 20px; padding-right: 20px;text-align: center;}
+.attractions_new_container .discount_img{position: absolute;right: 25px;top: 20px;width: 45px;height: 45px;border-radius: 50%;background-color: #d10b3a;}
+.attractions_new_container .discount_img p{color: white;font-size: 16px;position: absolute;top: 50%;left: 50%;text-align: center;transform: translateX(-50%) translateY(-50%);}
+.attractions_new_container .grey_img_and_txt_container {min-height: 290px;padding-top: 20px;background-color:#f7f7f7; }
+.attractions_new_container .image_txt_subtitle {color: #606060;font-size: 16px;line-height: 20px;margin-top: 5px; }
+.attractions_new_container .travelers_recommendation {color: black;font-size: 13px; }
+.attractions_new_container .price_pink {color: #db3a69;font-size: 22px; }
+
+.margin_top_10{margin-top: 10px;}
+
+@media (max-width:1199px){
+    .sort_by_tabs{padding-left: 0;}
+}
+@media (max-width:767px){
+    .mainpage_backimg{background-image: none !important;}
+}
+@media (max-width:400px){
+    .filters-group a{font-size: 13px;}
+}

@@ -1,0 +1,16 @@
+{% for key,val in Quotes %}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+	{% set serviceType = val['serviceType']|lower %}
+	{% set img = (ttTransferType[serviceType]['image'] is defined) ? ttTransferType[serviceType]['image'] : 'media/images/stepseven/stepsiximg2.png' %}
+	{% set description = (ttTransferType[serviceType]['description'] is defined) ? ttTransferType[serviceType]['description'] : '' %}
+
+	<img class="imgleftstyle_airtrans" src="{{ generateMediaURL(img) }}" alt="{{'title'}}"/>
+	<div class="textcontainerright">
+	    <p class="pinktext_airtrans">{{serviceType|capitalize}}</p>
+	    <p class="bluetext_airtrans">{{val['priceCarModel']|capitalize}}</p>
+	    <p class="blacktext_airtrans">{{description}}</p>
+	    <a class="pinkbutacontainer_airtrans" href="#" onclick="selectVehicleType('{{val['arrivalPriceId']}}', '{{val['departurePriceId']}}', '{{val['priceTotal']}}', '{{val['priceCurrency']}}', '{{val['priceCarModel']}}', '{{val['serviceType']}}'); showBookNowStartingPrice(this); return false;"><span class="a_price newprice_dat price-convert" data-price="{{val['convertedPriceTotal']}}"><span class="currency-convert-text">{{val['selectedCurrency']}}</span> <span class="price-convert-text">{{val['formattedPriceTotal']}}</span></span> - {{'add to cart'|trans}}</a>
+	</div>
+    </div>
+    <div class="seperatedborderdivlarge"></div>
+{% endfor %}

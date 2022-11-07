@@ -1,0 +1,258 @@
+TTBundle\Entity\GlobalRestaurants:
+    type: entity
+    table: global_restaurants
+    indexes:
+        locality:
+            columns:
+                - locality
+        country:
+            columns:
+                - country
+        region:
+            columns:
+                - region
+        admin_region:
+            columns:
+                - admin_region
+        latitude:
+            columns:
+                - latitude
+        longitude:
+            columns:
+                - longitude
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        factualId:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: factual_id
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        address:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        addressExtended:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: address_extended
+        poBox:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: po_box
+        locality:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        region:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        postTown:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: post_town
+        adminRegion:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: admin_region
+        postcode:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        country:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        tel:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        latitude:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        longitude:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        neighborhood:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        website:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        categoryIds:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: category_ids
+        categoryLabels:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: category_labels
+        chainName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: chain_name
+        chainId:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: chain_id
+        hours:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        hoursDisplay:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: hours_display
+        existence:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        zoomOrder:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: zoom_order
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        fromSource:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: factual
+            column: from_source
+        avgRating:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+            column: avg_rating
+        nbVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_votes
+        avgPrice:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: avg_price
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        updated:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

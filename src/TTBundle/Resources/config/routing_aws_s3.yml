@@ -1,0 +1,41 @@
+# Bucket related routes
+_aws_s3_buckets_list:
+  path:  /aws/s3/buckets/list
+  defaults: { _controller: TTBundle:AwsS3:listBuckets }
+
+_aws_s3_bucket_create:
+  path:  /aws/s3/bucket/create
+  defaults: { _controller: TTBundle:AwsS3:createBucket }
+  
+_aws_s3_bucket_delete:
+  path:  /aws/s3/bucket/delete
+  defaults: { _controller: TTBundle:AwsS3:deleteBucket }
+ 
+# File related routes
+_aws_s3_file_upload:
+  path:  /aws/s3/file/upload
+  defaults: { _controller: TTBundle:AwsS3:uploadFile }
+  
+_aws_s3_file_exists:
+  path:  /aws/s3/file-exists
+  defaults: { _controller: TTBundle:AwsS3:fileExists }
+  
+_aws_s3_file_rename:
+  path:  /aws/s3/file/rename
+  defaults: { _controller: TTBundle:AwsS3:renameFile }
+  
+_aws_s3_file_get:
+  path:  /aws/s3/file/get
+  defaults: { _controller: TTBundle:AwsS3:getFile }
+  
+_aws_s3_file_delete:
+  path:  /aws/s3/file/delete
+  defaults: { _controller: TTBundle:AwsS3:deleteFile }
+  
+_aws_s3_file_copy:
+  path:  /aws/s3/file/copy
+  defaults: { _controller: TTBundle:AwsS3:copyFile }
+  
+_aws_s3_files_list:
+  path:  /aws/s3/files/list
+  defaults: { _controller: TTBundle:AwsS3:listFiles }

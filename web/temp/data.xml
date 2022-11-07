@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">touristtube.com</eb:PartyId></eb:To><eb:CPAId>02DH</eb:CPAId><eb:ConversationId>abc123</eb:ConversationId><eb:Service eb:type="Sabre">EnhancedAirBookRQ</eb:Service><eb:Action>EnhancedAirBookRS</eb:Action><eb:MessageData><eb:MessageId>2ibwkiy6a</eb:MessageId><eb:Timestamp>2019-06-25T06:17:38</eb:Timestamp><eb:RefToMessageId>mid:abc123</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3003053635888445562!536331!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><EnhancedAirBookRS xmlns="http://services.sabre.com/sp/eab/v3_10"><ApplicationResults xmlns="http://services.sabre.com/STL_Payload/v02_01" status="Complete"><Success timeStamp="2019-06-25T01:17:38.027-05:00"/><Warning type="BusinessLogic" timeStamp="2019-06-25T01:17:27.839-05:00"><SystemSpecificResults><Message code="WARN.SP.BUSINESS_WARNING">Price comparison AmountReturned "340.30" is under the specified limit for .../OTA_AirPriceRQ[1]/PriceComparison</Message></SystemSpecificResults></Warning></ApplicationResults><OTA_AirBookRS><OriginDestinationOption>
+  <FlightSegment ArrivalDateTime="07-04T20:15" DepartureDateTime="07-04T18:00" FlightNumber="6402" NumberInParty="001" ResBookDesigCode="Z" Status="NN" eTicket="true">
+   <DestinationLocation LocationCode="KWI"/>
+   <MarketingAirline Code="KU" FlightNumber="6402"/>
+   <OriginLocation LocationCode="BEY"/>
+  </FlightSegment>
+  <FlightSegment ArrivalDateTime="07-05T04:45" DepartureDateTime="07-05T01:50" FlightNumber="0677" NumberInParty="001" ResBookDesigCode="Z" Status="NN" eTicket="true">
+   <DestinationLocation LocationCode="DXB"/>
+   <MarketingAirline Code="KU" FlightNumber="0677"/>
+   <OriginLocation LocationCode="KWI"/>
+  </FlightSegment>
+  <FlightSegment ArrivalDateTime="07-08T14:00" DepartureDateTime="07-08T13:10" FlightNumber="0672" NumberInParty="001" ResBookDesigCode="V" Status="NN" eTicket="true">
+   <DestinationLocation LocationCode="KWI"/>
+   <MarketingAirline Code="KU" FlightNumber="0672"/>
+   <OriginLocation LocationCode="DXB"/>
+  </FlightSegment>
+  <FlightSegment ArrivalDateTime="07-08T23:35" DepartureDateTime="07-08T21:15" FlightNumber="6403" NumberInParty="001" ResBookDesigCode="V" Status="NN" eTicket="true">
+   <DestinationLocation LocationCode="BEY"/>
+   <MarketingAirline Code="KU" FlightNumber="6403"/>
+   <OriginLocation LocationCode="KWI"/>
+  </FlightSegment>
+ </OriginDestinationOption></OTA_AirBookRS><OTA_AirPriceRS><PriceComparison AmountReturned="340.30" AmountSpecified="1675"/><PriceQuote>
+  <MiscInformation>
+   <BaggageInfo>
+    <SubCodeProperties RPH="1" SolutionSequenceNmbr="1">
+     <AncillaryFeeGroupCode>BG</AncillaryFeeGroupCode>
+     <AncillaryService SubGroupCode="CY">
+      <Text>CARRY ON HAND BAGGAGE</Text>
+     </AncillaryService>
+     <CommercialNameofBaggageItemType>CARRYON HAND BAGGAGE ALLOWANCE</CommercialNameofBaggageItemType>
+     <EMD_Type>4</EMD_Type>
+     <ExtendedSubCodeKey>0LNABME</ExtendedSubCodeKey>
+    </SubCodeProperties>
+    <SubCodeProperties RPH="2" SolutionSequenceNmbr="1">
+     <AncillaryFeeGroupCode>BG</AncillaryFeeGroupCode>
+     <CommercialNameofBaggageItemType>FREE BAGGAGE ALLOWANCE</CommercialNameofBaggageItemType>
+     <EMD_Type>4</EMD_Type>
+     <ExtendedSubCodeKey>0DFAAKU</ExtendedSubCodeKey>
+    </SubCodeProperties>
+    <SubCodeProperties RPH="3" SolutionSequenceNmbr="1">
+     <AncillaryFeeGroupCode>BG</AncillaryFeeGroupCode>
+     <CommercialNameofBaggageItemType>UPTO50LB 23KG AND62LI 158LCM</CommercialNameofBaggageItemType>
+     <DescriptionOne Code="23">
+      <Text>UP TO 50 POUNDS/23 KILOGRAMS</Text>
+     </DescriptionOne>
+     <DescriptionTwo Code="6U">
+      <Text>UP TO 62 LINEAR INCHES/158 LINEAR CENTIMETERS</Text>
+     </DescriptionTwo>
+     <EMD_Type>4</EMD_Type>
+     <ExtendedSubCodeKey>0GOACKU</ExtendedSubCodeKey>
+     <SizeWeightInfo>
+      <MaximumSizeInAlternate Units="C">158</MaximumSizeInAlternate>
+      <MaximumSize Units="I">62</MaximumSize>
+      <MaximumWeightInAlternate Units="K">23</MaximumWeightInAlternate>
+      <MaximumWeight Units="L">50</MaximumWeight>
+     </SizeWeightInfo>
+    </SubCodeProperties>
+    <SubCodeProperties RPH="4" SolutionSequenceNmbr="1">
+     <AncillaryFeeGroupCode>BG</AncillaryFeeGroupCode>
+     <AncillaryService SubGroupCode="CY">
+      <Text>CARRY ON HAND BAGGAGE</Text>
+     </AncillaryService>
+     <CommercialNameofBaggageItemType>CARRY ON HAND BAGGAGE</CommercialNameofBaggageItemType>
+     <EMD_Type>4</EMD_Type>
+     <ExtendedSubCodeKey>0L5ACKU</ExtendedSubCodeKey>
+    </SubCodeProperties>
+    <SubCodeProperties RPH="5" SolutionSequenceNmbr="1">
+     <AncillaryFeeGroupCode>BG</AncillaryFeeGroupCode>
+     <AncillaryService SubGroupCode="CY">
+      <Text>CARRY ON HAND BAGGAGE</Text>
+     </AncillaryService>
+     <CommercialNameofBaggageItemType>CARRYON HAND BAGGAGE ALLOWANCE</CommercialNameofBaggageItemType>
+     <EMD_Type>4</EMD_Type>
+     <ExtendedSubCodeKey>0LNABKU</ExtendedSubCodeKey>
+     <RFIC>C</RFIC>
+    </SubCodeProperties>
+   </BaggageInfo>
+   <HeaderInformation SolutionSequenceNmbr="1">
+    <DepartureDate>2019-07-04</DepartureDate>
+    <Text>VALIDATING CARRIER - KU</Text>
+    <Text>CAT 15 SALES RESTRICTIONS FREE TEXT FOUND - VERIFY RULES</Text>
+    <Text>BAG ALLOWANCE     -BEYDXB-02P/KU/EACH PIECE UP TO 50 POUNDS/23</Text>
+    <Text>KILOGRAMS AND UP TO 62 LINEAR INCHES/158 LINEAR CENTIMETERS</Text>
+    <Text>BAG ALLOWANCE     -DXBBEY-02P/KU/EACH PIECE UP TO 50 POUNDS/23</Text>
+    <Text>KILOGRAMS AND UP TO 62 LINEAR INCHES/158 LINEAR CENTIMETERS</Text>
+    <Text>CARRY ON ALLOWANCE</Text>
+    <Text>BEYKWI KWIBEY-01P/ME</Text>
+    <Text>KWIDXB DXBKWI-01P/KU</Text>
+    <Text>01/CARRY ON HAND BAGGAGE</Text>
+    <Text>CARRY ON CHARGES</Text>
+    <Text>BEYKWI KWIBEY-ME-CARRY ON FEES UNKNOWN-CONTACT CARRIER</Text>
+    <Text>KWIDXB DXBKWI-KU-CARRY ON FEES UNKNOWN-CONTACT CARRIER</Text>
+    <Text>ADDITIONAL ALLOWANCES AND/OR DISCOUNTS MAY APPLY DEPENDING ON</Text>
+    <Text>FLYER-SPECIFIC FACTORS /E.G. FREQUENT FLYER STATUS/MILITARY/</Text>
+    <Text>CREDIT CARD FORM OF PAYMENT/EARLY PURCHASE OVER INTERNET,ETC./</Text>
+    <ValidatingCarrier Code="KU"/>
+   </HeaderInformation>
+   <SolutionInformation SolutionSequenceNmbr="1">
+    <BaseFareCurrencyCode>USD</BaseFareCurrencyCode>
+    <CurrencyCode>GBP</CurrencyCode>
+    <GrandTotalBaseFareAmount>259.00</GrandTotalBaseFareAmount>
+    <GrandTotalEquivFareAmount>330.00</GrandTotalEquivFareAmount>
+    <GrandTotalTaxes>81.30</GrandTotalTaxes>
+    <RequiresRebook>false</RequiresRebook>
+    <TicketNumber>0</TicketNumber>
+    <TotalAmount>340.30</TotalAmount>
+   </SolutionInformation>
+   <ValidatingCarrier NewValidatingProcess="true" SolutionSequenceNmbr="1">
+    <SettlementMethod>BSP</SettlementMethod>
+    <Ticket CarrierCode="KU" Type="ETKTREQ" ValidatingCarrierType="Default">
+     <InterlineAgreement CarrierCode="ME" Type="STD"/>
+    </Ticket>
+   </ValidatingCarrier>
+  </MiscInformation>
+  <PricedItinerary AlternativePricing="false" CurrencyCode="GBP" MultiTicket="false" TotalAmount="340.30">
+   <AirItineraryPricingInfo SolutionSequenceNmbr="1">
+    <BaggageProvisions RPH="1">
+     <Associations>
+      <CarrierCode RPH="1">KU</CarrierCode>
+      <CarrierCode RPH="2">KU</CarrierCode>
+      <CountForSegmentAssociatedID>2</CountForSegmentAssociatedID>
+      <DepartureDate RPH="1">2019-07-04</DepartureDate>
+      <DepartureDate RPH="2">2019-07-05</DepartureDate>
+      <DestinationLocation LocationCode="KWI" RPH="1"/>
+      <DestinationLocation LocationCode="DXB" RPH="2"/>
+      <FlightNumber RPH="1">6402</FlightNumber>
+      <FlightNumber RPH="2">677</FlightNumber>
+      <OriginLocation LocationCode="BEY" RPH="1"/>
+      <OriginLocation LocationCode="KWI" RPH="2"/>
+      <PNR_Segment RPH="1">2</PNR_Segment>
+      <PNR_Segment RPH="2">3</PNR_Segment>
+      <ResBookDesigCode RPH="1">Z</ResBookDesigCode>
+      <ResBookDesigCode RPH="2">Z</ResBookDesigCode>
+      <StatusCode RPH="1">SS</StatusCode>
+      <StatusCode RPH="2">SS</StatusCode>
+     </Associations>
+     <CarrierWhoseBaggageProvisionsApply>KU</CarrierWhoseBaggageProvisionsApply>
+     <NumPiecesBDI>2</NumPiecesBDI>
+     <NumPiecesITR>2</NumPiecesITR>
+     <ProvisionType>A</ProvisionType>
+     <SubCodeInfo>
+      <SubCodeForAllowance RPH="1">0GOACKU</SubCodeForAllowance>
+      <SubCodeForChargesOthers>0DFAAKU</SubCodeForChargesOthers>
+     </SubCodeInfo>
+    </BaggageProvisions>
+    <BaggageProvisions RPH="2">
+     <Associations>
+      <CarrierCode RPH="1">KU</CarrierCode>
+      <CarrierCode RPH="2">KU</CarrierCode>
+      <CountForSegmentAssociatedID>2</CountForSegmentAssociatedID>
+      <DepartureDate RPH="1">2019-07-08</DepartureDate>
+      <DepartureDate RPH="2">2019-07-08</DepartureDate>
+      <DestinationLocation LocationCode="KWI" RPH="1"/>
+      <DestinationLocation LocationCode="BEY" RPH="2"/>
+      <FlightNumber RPH="1">672</FlightNumber>
+      <FlightNumber RPH="2">6403</FlightNumber>
+      <OriginLocation LocationCode="DXB" RPH="1"/>
+      <OriginLocation LocationCode="KWI" RPH="2"/>
+      <PNR_Segment RPH="1">4</PNR_Segment>
+      <PNR_Segment RPH="2">5</PNR_Segment>
+      <ResBookDesigCode RPH="1">V</ResBookDesigCode>
+      <ResBookDesigCode RPH="2">V</ResBookDesigCode>
+      <StatusCode RPH="1">SS</StatusCode>
+      <StatusCode RPH="2">SS</StatusCode>
+     </Associations>
+     <CarrierWhoseBaggageProvisionsApply>KU</CarrierWhoseBaggageProvisionsApply>
+     <NumPiecesBDI>2</NumPiecesBDI>
+     <NumPiecesITR>2</NumPiecesITR>
+     <ProvisionType>A</ProvisionType>
+     <SubCodeInfo>
+      <SubCodeForAllowance RPH="1">0GOACKU</SubCodeForAllowance>
+      <SubCodeForChargesOthers>0DFAAKU</SubCodeForChargesOthers>
+     </SubCodeInfo>
+    </BaggageProvisions>
+    <BaggageProvisions RPH="3">
+     <Associations>
+      <CarrierCode RPH="1">KU</CarrierCode>
+      <CarrierCode RPH="2">KU</CarrierCode>
+      <CountForSegmentAssociatedID>2</CountForSegmentAssociatedID>
+      <DepartureDate RPH="1">2019-07-04</DepartureDate>
+      <DepartureDate RPH="2">2019-07-08</DepartureDate>
+      <DestinationLocation LocationCode="KWI" RPH="1"/>
+      <DestinationLocation LocationCode="BEY" RPH="2"/>
+      <FlightNumber RPH="1">6402</FlightNumber>
+      <FlightNumber RPH="2">6403</FlightNumber>
+      <OriginLocation LocationCode="BEY" RPH="1"/>
+      <OriginLocation LocationCode="KWI" RPH="2"/>
+      <PNR_Segment RPH="1">2</PNR_Segment>
+      <PNR_Segment RPH="2">5</PNR_Segment>
+      <ResBookDesigCode RPH="1">Z</ResBookDesigCode>
+      <ResBookDesigCode RPH="2">V</ResBookDesigCode>
+      <StatusCode RPH="1">SS</StatusCode>
+      <StatusCode RPH="2">SS</StatusCode>
+     </Associations>
+     <CarrierWhoseBaggageProvisionsApply>ME</CarrierWhoseBaggageProvisionsApply>
+     <NumPiecesBDI>1</NumPiecesBDI>
+     <ProvisionType>B</ProvisionType>
+     <SubCodeInfo>
+      <SubCodeForChargesOthers>0LNABME</SubCodeForChargesOthers>
+     </SubCodeInfo>
+    </BaggageProvisions>
+    <BaggageProvisions RPH="4">
+     <Associations>
+      <CarrierCode RPH="1">KU</CarrierCode>
+      <CarrierCode RPH="2">KU</CarrierCode>
+      <CountForSegmentAssociatedID>2</CountForSegmentAssociatedID>
+      <DepartureDate RPH="1">2019-07-05</DepartureDate>
+      <DepartureDate RPH="2">2019-07-08</DepartureDate>
+      <DestinationLocation LocationCode="DXB" RPH="1"/>
+      <DestinationLocation LocationCode="KWI" RPH="2"/>
+      <FlightNumber RPH="1">677</FlightNumber>
+      <FlightNumber RPH="2">672</FlightNumber>
+      <OriginLocation LocationCode="KWI" RPH="1"/>
+      <OriginLocation LocationCode="DXB" RPH="2"/>
+      <PNR_Segment RPH="1">3</PNR_Segment>
+      <PNR_Segment RPH="2">4</PNR_Segment>
+      <ResBookDesigCode RPH="1">Z</ResBookDesigCode>
+      <ResBookDesigCode RPH="2">V</ResBookDesigCode>
+      <StatusCode RPH="1">SS</StatusCode>
+      <StatusCode RPH="2">SS</StatusCode>
+     </Associations>
+     <CarrierWhoseBaggageProvisionsApply>KU</CarrierWhoseBaggageProvisionsApply>
+     <NumPiecesBDI>1</NumPiecesBDI>
+     <NumPiecesITR>1</NumPiecesITR>
+     <ProvisionType>B</ProvisionType>
+     <SubCodeInfo>
+      <SubCodeForAllowance RPH="1">0L5ACKU</SubCodeForAllowance>
+      <SubCodeForChargesOthers>0LNABKU</SubCodeForChargesOthers>
+     </SubCodeInfo>
+    </BaggageProvisions>
+    <FareCalculation>
+     <Text>BEY KU X/KWI KU DXB Q BEYDXB60.00 90.00KU X/KWI KU BEY Q DXBBEY60.00 99.50Q BEYBEY20.00NUC329.50END ROE1.00</Text>
+    </FareCalculation>
+    <FareCalculationBreakdown>
+     <Departure AirlineCode="KU" AirportCode="BEY" ArrivalAirportCode="KWI" ArrivalCityCode="KWI" CityCode="BEY" GenericInd="X"/>
+     <FareBasis Cabin="Y" Code="ZRTLB1" FilingCarrier="KU"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+     <Surcharges Ind="Q" Type="SEA">60.00</Surcharges>
+     <Surcharges Ind="Q" Type="UNK">20.00</Surcharges>
+    </FareCalculationBreakdown>
+    <FareCalculationBreakdown>
+     <Branch FirstJointCarrier="KU" PCC="02DH"/>
+     <Departure AirlineCode="KU" AirportCode="KWI" ArrivalAirportCode="DXB" ArrivalCityCode="DXB" CityCode="KWI" GenericInd="O"/>
+     <FareBasis Cabin="Y" Code="ZRTLB1" FareAmount="90.00" FarePassengerType="ADT" FareType="P" FilingCarrier="KU" GlobalInd="EH" Market="BEYDXB" TripTypeInd="R"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+     <RuleCategoryIndicator>4</RuleCategoryIndicator>
+     <RuleCategoryIndicator>5</RuleCategoryIndicator>
+     <RuleCategoryIndicator>7</RuleCategoryIndicator>
+     <RuleCategoryIndicator>8</RuleCategoryIndicator>
+     <RuleCategoryIndicator>9</RuleCategoryIndicator>
+     <RuleCategoryIndicator>10</RuleCategoryIndicator>
+     <RuleCategoryIndicator>12</RuleCategoryIndicator>
+     <RuleCategoryIndicator>15</RuleCategoryIndicator>
+     <RuleCategoryIndicator>16</RuleCategoryIndicator>
+     <RuleCategoryIndicator>18</RuleCategoryIndicator>
+     <RuleCategoryIndicator>23</RuleCategoryIndicator>
+    </FareCalculationBreakdown>
+    <FareCalculationBreakdown>
+     <Departure AirlineCode="KU" AirportCode="DXB" ArrivalAirportCode="KWI" ArrivalCityCode="KWI" CityCode="DXB" GenericInd="X"/>
+     <FareBasis Cabin="Y" Code="VRTLB1" FilingCarrier="KU"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+    </FareCalculationBreakdown>
+    <FareCalculationBreakdown>
+     <Branch FirstJointCarrier="KU" PCC="02DH"/>
+     <Departure AirlineCode="KU" AirportCode="KWI" ArrivalAirportCode="BEY" ArrivalCityCode="BEY" CityCode="KWI" GenericInd="O"/>
+     <FareBasis Cabin="Y" Code="VRTLB1" FareAmount="99.50" FarePassengerType="ADT" FareType="P" FilingCarrier="KU" GlobalInd="EH" Market="BEYDXB" TripTypeInd="R"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+     <RuleCategoryIndicator>4</RuleCategoryIndicator>
+     <RuleCategoryIndicator>5</RuleCategoryIndicator>
+     <RuleCategoryIndicator>7</RuleCategoryIndicator>
+     <RuleCategoryIndicator>8</RuleCategoryIndicator>
+     <RuleCategoryIndicator>9</RuleCategoryIndicator>
+     <RuleCategoryIndicator>10</RuleCategoryIndicator>
+     <RuleCategoryIndicator>12</RuleCategoryIndicator>
+     <RuleCategoryIndicator>15</RuleCategoryIndicator>
+     <RuleCategoryIndicator>16</RuleCategoryIndicator>
+     <RuleCategoryIndicator>18</RuleCategoryIndicator>
+     <RuleCategoryIndicator>23</RuleCategoryIndicator>
+     <Surcharges Ind="Q" Type="SEA">60.00</Surcharges>
+    </FareCalculationBreakdown>
+    <ItinTotalFare NonRefundableInd="O">
+     <BaggageInfo>
+      <NonUS_DOT_Disclosure>
+       <Text>BAG ALLOWANCE     -BEYDXB-02P/KU/EACH PIECE UP TO 50 POUNDS/23</Text>
+       <Text>KILOGRAMS AND UP TO 62 LINEAR INCHES/158 LINEAR CENTIMETERS</Text>
+       <Text>BAG ALLOWANCE     -DXBBEY-02P/KU/EACH PIECE UP TO 50 POUNDS/23</Text>
+       <Text>KILOGRAMS AND UP TO 62 LINEAR INCHES/158 LINEAR CENTIMETERS</Text>
+       <Text>CARRY ON ALLOWANCE</Text>
+       <Text>BEYKWI KWIBEY-01P/ME</Text>
+       <Text>KWIDXB DXBKWI-01P/KU</Text>
+       <Text>01/CARRY ON HAND BAGGAGE</Text>
+       <Text>CARRY ON CHARGES</Text>
+       <Text>BEYKWI KWIBEY-ME-CARRY ON FEES UNKNOWN-CONTACT CARRIER</Text>
+       <Text>KWIDXB DXBKWI-KU-CARRY ON FEES UNKNOWN-CONTACT CARRIER</Text>
+       <Text>ADDITIONAL ALLOWANCES AND/OR DISCOUNTS MAY APPLY DEPENDING ON</Text>
+       <Text>FLYER-SPECIFIC FACTORS /E.G. FREQUENT FLYER STATUS/MILITARY/</Text>
+       <Text>CREDIT CARD FORM OF PAYMENT/EARLY PURCHASE OVER INTERNET,ETC./</Text>
+      </NonUS_DOT_Disclosure>
+     </BaggageInfo>
+     <BaseFare Amount="330.00" CurrencyCode="USD"/>
+     <Construction Amount="329.50" CurrencyCode="NUC" RateOfExchange="1.000000"/>
+     <Endorsements>
+      <Text>NON END/NON REF/VALID ON KU ONLY</Text>
+     </Endorsements>
+     <EquivFare Amount="259.00" CurrencyCode="GBP"/>
+     <Taxes TotalAmount="81.30">
+      <Tax Amount="15.60" TaxCode="YRI" TaxName="SERVICE FEE - CARRIER-IMPOSED" TicketingTaxCode="YR"/>
+      <Tax Amount="26.70" TaxCode="LB" TaxName="BEIRUT AIRPORT EMBARKATION TAX" TicketingTaxCode="LB"/>
+      <Tax Amount="0.60" TaxCode="H4" TaxName="API PNR SECURITY CHARGE DEPARU" TicketingTaxCode="H4"/>
+      <Tax Amount="5.20" TaxCode="GZ" TaxName="AIRPORT SERVICE CHARGE  INTERN" TicketingTaxCode="GZ"/>
+      <Tax Amount="1.20" TaxCode="YX" TaxName="PASSENGER SERVICE CHARGE" TicketingTaxCode="YX"/>
+      <Tax Amount="5.20" TaxCode="L2" TaxName="TRANSFER FEE" TicketingTaxCode="L2"/>
+      <Tax Amount="16.00" TaxCode="AE4" TaxName="PASSENGER SERVICE CHARGE INTER" TicketingTaxCode="AE"/>
+      <Tax Amount="1.10" TaxCode="TP" TaxName="PASSENGER SECURITY AND SAFETY" TicketingTaxCode="TP"/>
+      <Tax Amount="2.20" TaxCode="ZR" TaxName="INTERNATIONAL ADVANCED PASSENG" TicketingTaxCode="ZR"/>
+      <Tax Amount="7.50" TaxCode="F62" TaxName="PASSENGER FACILITIES CHARGE" TicketingTaxCode="F6"/>
+     </Taxes>
+     <TotalFare Amount="340.30" CurrencyCode="GBP"/>
+    </ItinTotalFare>
+    <PassengerTypeQuantity Code="ADT" Quantity="1"/>
+    <PTC_FareBreakdown>
+     <Cabin>Y</Cabin>
+     <FareBasis Code="ZRTLB1" FilingCarrier="KU"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+     <Surcharges Ind="Q" Type="SEA">60.00</Surcharges>
+     <Surcharges Ind="Q" Type="UNK">20.00</Surcharges>
+    </PTC_FareBreakdown>
+    <PTC_FareBreakdown>
+     <Cabin>Y</Cabin>
+     <FareBasis Code="ZRTLB1" FareAmount="90.00" FarePassengerType="ADT" FareType="P" FilingCarrier="KU" GlobalInd="EH" Market="BEYDXB"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+    </PTC_FareBreakdown>
+    <PTC_FareBreakdown>
+     <Cabin>Y</Cabin>
+     <FareBasis Code="VRTLB1" FilingCarrier="KU"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+    </PTC_FareBreakdown>
+    <PTC_FareBreakdown>
+     <Cabin>Y</Cabin>
+     <FareBasis Code="VRTLB1" FareAmount="99.50" FarePassengerType="ADT" FareType="P" FilingCarrier="KU" GlobalInd="EH" Market="BEYDXB"/>
+     <FreeBaggageAllowance>PC002</FreeBaggageAllowance>
+     <Surcharges Ind="Q" Type="SEA">60.00</Surcharges>
+    </PTC_FareBreakdown>
+   </AirItineraryPricingInfo>
+  </PricedItinerary>
+ </PriceQuote></OTA_AirPriceRS><TravelItineraryReadRS><TravelItinerary><CustomerInfo/><ItineraryInfo><ItineraryPricing><PriceQuote RPH="1"><MiscInformation><SignatureLine ExpirationDateTime="00:00" Source="SYS" Status="ACTIVE"><Text>02DH 02DH*AWS 0817/25JUN19</Text></SignatureLine></MiscInformation><PricedItinerary DisplayOnly="false" InputMessage="WPP1ADT¥RQ" RPH="1" StatusCode="A" TaxExempt="false" ValidatingCarrier="KU" StoredDateTime="2019-06-25T08:17"><AirItineraryPricingInfo><ItinTotalFare><BaseFare Amount="330.00" CurrencyCode="USD"/><EquivFare Amount="259.00" CurrencyCode="GBP"/><Taxes><Tax Amount="81.30" TaxCode="XT"/><TaxBreakdownCode TaxPaid="false">15.60YR</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">26.70LB</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">0.60H4</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">5.20GZ</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">1.20YX</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">5.20L2</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">16.00AE</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">1.10TP</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">2.20ZR</TaxBreakdownCode><TaxBreakdownCode TaxPaid="false">7.50F6</TaxBreakdownCode></Taxes><TotalFare Amount="340.30" CurrencyCode="GBP"/><Totals><BaseFare Amount="330.00"/><EquivFare Amount="259.00"/><Taxes><Tax Amount="81.30"/></Taxes><TotalFare Amount="340.30"/></Totals></ItinTotalFare><PassengerTypeQuantity Code="ADT" Quantity="01"/><PTC_FareBreakdown><Endorsements><Endorsement type="PRICING_PARAMETER"><Text>WPP1ADT$RQ</Text></Endorsement><Endorsement type="WARNING"><Text>VALIDATING CARRIER - KU</Text></Endorsement><Endorsement type="WARNING"><Text>CAT 15 SALES RESTRICTIONS FREE TEXT FOUND - VERIFY RULES</Text></Endorsement><Endorsement type="SYSTEM_ENDORSEMENT"><Text>NON END/NON REF/VALID ON KU ONLY</Text></Endorsement></Endorsements><FareBasis Code="ZRTLB1/ZRTLB1/VRTLB1/VRTLB1"/><FareCalculation><Text>BEY KU X/KWI KU DXB Q BEYDXB60.00 90.00KU X/KWI KU BEY Q DXBBEY60.00 99.50Q BEYBEY20.00NUC329.50END ROE1.00</Text></FareCalculation><FareSource>ATPC</FareSource><FlightSegment ConnectionInd="O" DepartureDateTime="07-04T18:00" FlightNumber="6402" ResBookDesigCode="Z" SegmentNumber="1" Status="OK"><BaggageAllowance Number="02P"/><FareBasis Code="ZRTLB1"/><MarketingAirline Code="KU" FlightNumber="6402"/><OriginLocation LocationCode="BEY"/><ValidityDates><NotValidAfter>2019-07-04</NotValidAfter><NotValidBefore>2019-07-04</NotValidBefore></ValidityDates></FlightSegment><FlightSegment ConnectionInd="X" DepartureDateTime="07-05T01:50" FlightNumber="677" ResBookDesigCode="Z" SegmentNumber="2" Status="OK"><BaggageAllowance Number="02P"/><FareBasis Code="ZRTLB1"/><MarketingAirline Code="KU" FlightNumber="677"/><OriginLocation LocationCode="KWI"/><ValidityDates><NotValidAfter>2019-07-05</NotValidAfter><NotValidBefore>2019-07-05</NotValidBefore></ValidityDates></FlightSegment><FlightSegment ConnectionInd="O" DepartureDateTime="07-08T13:10" FlightNumber="672" ResBookDesigCode="V" SegmentNumber="3" Status="OK"><BaggageAllowance Number="02P"/><FareBasis Code="VRTLB1"/><MarketingAirline Code="KU" FlightNumber="672"/><OriginLocation LocationCode="DXB"/><ValidityDates><NotValidAfter>2019-07-08</NotValidAfter><NotValidBefore>2019-07-08</NotValidBefore></ValidityDates></FlightSegment><FlightSegment ConnectionInd="X" DepartureDateTime="07-08T21:15" FlightNumber="6403" ResBookDesigCode="V" SegmentNumber="4" Status="OK"><BaggageAllowance Number="02P"/><FareBasis Code="VRTLB1"/><MarketingAirline Code="KU" FlightNumber="6403"/><OriginLocation LocationCode="KWI"/><ValidityDates><NotValidAfter>2019-07-08</NotValidAfter><NotValidBefore>2019-07-08</NotValidBefore></ValidityDates></FlightSegment><FlightSegment><OriginLocation LocationCode="BEY"/></FlightSegment><FareComponent FareBasisCode="ZRTLB1" FareDirectionality="FROM" Amount="9000" TicketDesignator="" GoverningCarrier="KU" FareComponentNumber="1"><Location Origin="BEY" Destination="DXB"/><Dates DepartureDateTime="07-04T18:00" ArrivalDateTime="07-05T04:40"/><FlightSegmentNumbers><FlightSegmentNumber>1</FlightSegmentNumber><FlightSegmentNumber>2</FlightSegmentNumber></FlightSegmentNumbers></FareComponent><FareComponent FareBasisCode="VRTLB1" FareDirectionality="TO" Amount="9950" TicketDesignator="" GoverningCarrier="KU" FareComponentNumber="2"><Location Origin="DXB" Destination="BEY"/><Dates DepartureDateTime="07-08T13:10" ArrivalDateTime="07-08T23:35"/><FlightSegmentNumbers><FlightSegmentNumber>3</FlightSegmentNumber><FlightSegmentNumber>4</FlightSegmentNumber></FlightSegmentNumbers></FareComponent></PTC_FareBreakdown></AirItineraryPricingInfo></PricedItinerary><ResponseHeader><Text>FARE - PRICE RETAINED</Text><Text>FARE USED TO CALCULATE DISCOUNT</Text><Text>FARE NOT GUARANTEED UNTIL TICKETED</Text></ResponseHeader><PriceQuotePlus DomesticIntlInd="I" PricingStatus="S" VerifyFareCalc="false" ItineraryChanged="false" ManualFare="false" NegotiatedFare="false" SystemIndicator="S" NUCSuppresion="false" SubjToGovtApproval="false" IT_BT_Fare="BT" DisplayOnly="false" DiscountAmount="0"><TicketingInstructionsInfo/></PriceQuotePlus></PriceQuote><PriceQuoteTotals><BaseFare Amount="330.00"/><EquivFare Amount="259.00"/><Taxes><Tax Amount="81.30"/></Taxes><TotalFare Amount="340.30"/></PriceQuoteTotals></ItineraryPricing><ReservationItems><Item RPH="1"><FlightSegment AirMilesFlown="0801" ArrivalDateTime="07-04T20:15" DayOfWeekInd="4" DepartureDateTime="2019-07-04T18:00" ElapsedTime="02.15" eTicket="true" FlightNumber="6402" NumberInParty="01" ResBookDesigCode="Z" SegmentNumber="0001" SmokingAllowed="false" SpecialMeal="false" Status="SS" StopQuantity="00" IsPast="false" CodeShare="true" Id="3"><DestinationLocation LocationCode="KWI" Terminal="KUWAIT AIRPORT PASSENGER" TerminalCode="M"/><Equipment AirEquipType="320"/><MarketingAirline Code="KU" FlightNumber="6402" ResBookDesigCode="Z"><Banner>MARKETED BY KUWAIT AIRWAYS CORP</Banner></MarketingAirline><Meal Code="M"/><OperatingAirline Code="ME" FlightNumber="0402" ResBookDesigCode="Z"><Banner>OPERATED BY MIDDLE EAST AIRLINES</Banner></OperatingAirline><OperatingAirlinePricing Code="ME"/><DisclosureCarrier Code="ME" DOT="true"><Banner>MIDDLE EAST AIRLINES</Banner></DisclosureCarrier><OriginLocation LocationCode="BEY"/><SupplierRef ID="DCKU"/><UpdatedArrivalTime>07-04T20:15</UpdatedArrivalTime><UpdatedDepartureTime>07-04T18:00</UpdatedDepartureTime></FlightSegment><Product><ProductDetails productCategory="AIR"><ProductName type="AIR"/><Air sequence="1" segmentAssociationId="2"><DepartureAirport>BEY</DepartureAirport><ArrivalAirport>KWI</ArrivalAirport><ArrivalTerminalName>KUWAIT AIRPORT PASSENGER</ArrivalTerminalName><ArrivalTerminalCode>M</ArrivalTerminalCode><OperatingAirlineCode>ME</OperatingAirlineCode><EquipmentType>320</EquipmentType><MarketingAirlineCode>KU</MarketingAirlineCode><MarketingFlightNumber>6402</MarketingFlightNumber><MarketingClassOfService>Z</MarketingClassOfService><MealCode>M</MealCode><ElapsedTime>135</ElapsedTime><AirMilesFlown>801</AirMilesFlown><FunnelFlight>false</FunnelFlight><ChangeOfGauge>false</ChangeOfGauge><DisclosureCarrier Code="ME" DOT="true"><Banner>MIDDLE EAST AIRLINES</Banner></DisclosureCarrier><AirlineRefId>DCKU</AirlineRefId><Eticket>true</Eticket><DepartureDateTime>2019-07-04T18:00:00</DepartureDateTime><ArrivalDateTime>2019-07-04T20:15:00</ArrivalDateTime><FlightNumber>6402</FlightNumber><ClassOfService>Z</ClassOfService><ActionCode>SS</ActionCode><NumberInParty>1</NumberInParty></Air></ProductDetails></Product></Item><Item RPH="2"><FlightSegment AirMilesFlown="0530" ArrivalDateTime="07-05T04:45" DayOfWeekInd="5" DepartureDateTime="2019-07-05T01:50" ElapsedTime="01.55" eTicket="true" FlightNumber="0677" NumberInParty="01" ResBookDesigCode="Z" SegmentNumber="0002" SmokingAllowed="false" SpecialMeal="false" Status="SS" StopQuantity="00" IsPast="false" CodeShare="false" Id="4"><DestinationLocation LocationCode="DXB" Terminal="TERMINAL 1" TerminalCode="1"/><Equipment AirEquipType="320"/><MarketingAirline Code="KU" FlightNumber="0677" ResBookDesigCode="Z"><Banner>MARKETED BY KUWAIT AIRWAYS CORP</Banner></MarketingAirline><Meal Code="B"/><Meal Code="M"/><OperatingAirline Code="KU" FlightNumber="0677" ResBookDesigCode="Z"><Banner>OPERATED BY KUWAIT AIRWAYS CORP</Banner></OperatingAirline><OperatingAirlinePricing Code="KU"/><DisclosureCarrier Code="KU" DOT="false"><Banner>KUWAIT AIRWAYS CORP</Banner></DisclosureCarrier><OriginLocation LocationCode="KWI" TerminalCode="4"/><SupplierRef ID="DCKU"/><UpdatedArrivalTime>07-05T04:40</UpdatedArrivalTime><UpdatedDepartureTime>07-05T01:50</UpdatedDepartureTime></FlightSegment><Product><ProductDetails productCategory="AIR"><ProductName type="AIR"/><Air sequence="2" segmentAssociationId="3"><DepartureAirport>KWI</DepartureAirport><DepartureTerminalCode>4</DepartureTerminalCode><ArrivalAirport>DXB</ArrivalAirport><ArrivalTerminalName>TERMINAL 1</ArrivalTerminalName><ArrivalTerminalCode>1</ArrivalTerminalCode><EquipmentType>320</EquipmentType><MarketingAirlineCode>KU</MarketingAirlineCode><MarketingFlightNumber>677</MarketingFlightNumber><MarketingClassOfService>Z</MarketingClassOfService><MealCode>B</MealCode><MealCode>M</MealCode><ElapsedTime>115</ElapsedTime><AirMilesFlown>530</AirMilesFlown><FunnelFlight>false</FunnelFlight><ChangeOfGauge>false</ChangeOfGauge><DisclosureCarrier Code="KU" DOT="false"><Banner>KUWAIT AIRWAYS CORP</Banner></DisclosureCarrier><AirlineRefId>DCKU</AirlineRefId><Eticket>true</Eticket><DepartureDateTime>2019-07-05T01:50:00</DepartureDateTime><ArrivalDateTime>2019-07-05T04:40:00</ArrivalDateTime><FlightNumber>677</FlightNumber><ClassOfService>Z</ClassOfService><ActionCode>SS</ActionCode><NumberInParty>1</NumberInParty></Air></ProductDetails></Product></Item><Item RPH="3"><FlightSegment AirMilesFlown="0530" ArrivalDateTime="07-08T14:00" DayOfWeekInd="1" DepartureDateTime="2019-07-08T13:10" ElapsedTime="01.50" eTicket="true" FlightNumber="0672" NumberInParty="01" ResBookDesigCode="V" SegmentNumber="0003" SmokingAllowed="false" SpecialMeal="false" Status="SS" StopQuantity="00" IsPast="false" CodeShare="false" Id="5"><DestinationLocation LocationCode="KWI" TerminalCode="4"/><Equipment AirEquipType="320"/><MarketingAirline Code="KU" FlightNumber="0672" ResBookDesigCode="V"><Banner>MARKETED BY KUWAIT AIRWAYS CORP</Banner></MarketingAirline><Meal Code="M"/><OperatingAirline Code="KU" FlightNumber="0672" ResBookDesigCode="V"><Banner>OPERATED BY KUWAIT AIRWAYS CORP</Banner></OperatingAirline><OperatingAirlinePricing Code="KU"/><DisclosureCarrier Code="KU" DOT="false"><Banner>KUWAIT AIRWAYS CORP</Banner></DisclosureCarrier><OriginLocation LocationCode="DXB" Terminal="TERMINAL 1" TerminalCode="1"/><SupplierRef ID="DCKU"/><UpdatedArrivalTime>07-08T13:55</UpdatedArrivalTime><UpdatedDepartureTime>07-08T13:10</UpdatedDepartureTime></FlightSegment><Product><ProductDetails productCategory="AIR"><ProductName type="AIR"/><Air sequence="3" segmentAssociationId="4"><DepartureAirport>DXB</DepartureAirport><DepartureTerminalName>TERMINAL 1</DepartureTerminalName><DepartureTerminalCode>1</DepartureTerminalCode><ArrivalAirport>KWI</ArrivalAirport><ArrivalTerminalCode>4</ArrivalTerminalCode><EquipmentType>320</EquipmentType><MarketingAirlineCode>KU</MarketingAirlineCode><MarketingFlightNumber>672</MarketingFlightNumber><MarketingClassOfService>V</MarketingClassOfService><MealCode>M</MealCode><ElapsedTime>110</ElapsedTime><AirMilesFlown>530</AirMilesFlown><FunnelFlight>false</FunnelFlight><ChangeOfGauge>false</ChangeOfGauge><DisclosureCarrier Code="KU" DOT="false"><Banner>KUWAIT AIRWAYS CORP</Banner></DisclosureCarrier><AirlineRefId>DCKU</AirlineRefId><Eticket>true</Eticket><DepartureDateTime>2019-07-08T13:10:00</DepartureDateTime><ArrivalDateTime>2019-07-08T13:55:00</ArrivalDateTime><FlightNumber>672</FlightNumber><ClassOfService>V</ClassOfService><ActionCode>SS</ActionCode><NumberInParty>1</NumberInParty></Air></ProductDetails></Product></Item><Item RPH="4"><FlightSegment AirMilesFlown="0801" ArrivalDateTime="07-08T23:35" DayOfWeekInd="1" DepartureDateTime="2019-07-08T21:15" ElapsedTime="02.20" eTicket="true" FlightNumber="6403" NumberInParty="01" ResBookDesigCode="V" SegmentNumber="0004" SmokingAllowed="false" SpecialMeal="false" Status="SS" StopQuantity="00" IsPast="false" CodeShare="true" Id="6"><DestinationLocation LocationCode="BEY"/><Equipment AirEquipType="320"/><MarketingAirline Code="KU" FlightNumber="6403" ResBookDesigCode="V"><Banner>MARKETED BY KUWAIT AIRWAYS CORP</Banner></MarketingAirline><Meal Code="M"/><OperatingAirline Code="ME" FlightNumber="0403" ResBookDesigCode="V"><Banner>OPERATED BY MIDDLE EAST AIRLINES</Banner></OperatingAirline><OperatingAirlinePricing Code="ME"/><DisclosureCarrier Code="ME" DOT="true"><Banner>MIDDLE EAST AIRLINES</Banner></DisclosureCarrier><OriginLocation LocationCode="KWI" Terminal="KUWAIT AIRPORT PASSENGER" TerminalCode="M"/><SupplierRef ID="DCKU"/><UpdatedArrivalTime>07-08T23:35</UpdatedArrivalTime><UpdatedDepartureTime>07-08T21:15</UpdatedDepartureTime></FlightSegment><Product><ProductDetails productCategory="AIR"><ProductName type="AIR"/><Air sequence="4" segmentAssociationId="5"><DepartureAirport>KWI</DepartureAirport><DepartureTerminalName>KUWAIT AIRPORT PASSENGER</DepartureTerminalName><DepartureTerminalCode>M</DepartureTerminalCode><ArrivalAirport>BEY</ArrivalAirport><OperatingAirlineCode>ME</OperatingAirlineCode><EquipmentType>320</EquipmentType><MarketingAirlineCode>KU</MarketingAirlineCode><MarketingFlightNumber>6403</MarketingFlightNumber><MarketingClassOfService>V</MarketingClassOfService><MealCode>M</MealCode><ElapsedTime>140</ElapsedTime><AirMilesFlown>801</AirMilesFlown><FunnelFlight>false</FunnelFlight><ChangeOfGauge>false</ChangeOfGauge><DisclosureCarrier Code="ME" DOT="true"><Banner>MIDDLE EAST AIRLINES</Banner></DisclosureCarrier><AirlineRefId>DCKU</AirlineRefId><Eticket>true</Eticket><DepartureDateTime>2019-07-08T21:15:00</DepartureDateTime><ArrivalDateTime>2019-07-08T23:35:00</ArrivalDateTime><FlightNumber>6403</FlightNumber><ClassOfService>V</ClassOfService><ActionCode>SS</ActionCode><NumberInParty>1</NumberInParty></Air></ProductDetails></Product></Item></ReservationItems></ItineraryInfo><ItineraryRef AirExtras="false" InhibitCode="U" PartitionID="AA" PrimeHostID="1S"><Header>PRICE QUOTE RECORD EXISTS - SYSTEM</Header><Source PseudoCityCode="02DH"/></ItineraryRef><OpenReservationElements><OpenReservationElement id="3" elementId="pnr-or-3"/><OpenReservationElement id="3" elementId="pnr-or-3"/><OpenReservationElement id="4" elementId="pnr-or-4"/><OpenReservationElement id="4" elementId="pnr-or-4"/><OpenReservationElement id="5" elementId="pnr-or-5"/><OpenReservationElement id="5" elementId="pnr-or-5"/><OpenReservationElement id="6" elementId="pnr-or-6"/><OpenReservationElement id="6" elementId="pnr-or-6"/></OpenReservationElements></TravelItinerary></TravelItineraryReadRS></EnhancedAirBookRS></soap-env:Body></soap-env:Envelope>

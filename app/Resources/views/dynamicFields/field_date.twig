@@ -1,0 +1,15 @@
+{% if containerDiv is defined and containerDiv %}
+    <div id="{{ (containerDivId is defined and containerDivId != '')  ? containerDivId : '' }}" class="{{ (containerDivClass is defined and containerDivClass != '')  ? containerDivClass : '' }}">
+    {% endif %}
+
+    {% if fieldLabel is defined and fieldLabel != '' %}
+	<b>{{ fieldLabel }}</b><br />
+    {% endif %}
+
+    {% for oKey,oVal in options %}
+	<input id="{{ (fieldId is defined and fieldId != '')  ? fieldId : '' }}" type="text" name="{{ fieldName }}" value="{{ oVal }}" class="{{ (fieldClass is defined and fieldClass != '')  ? fieldClass : '' }}" /> {{ oVal }} <br />
+    {% endfor %}
+
+    {% if containerDiv is defined and containerDiv %}
+    </div>
+{% endif %}

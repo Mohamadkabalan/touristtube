@@ -1,0 +1,76 @@
+TTBundle\Entity\Campaign:
+    type: entity
+    table: campaign
+    repositoryClass: TTBundle\Repository\TTRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        creationDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: creation_date
+        startDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: end_date
+        currencyId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                default: '0'
+            column: currency_id
+        discountId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: discount_id
+        sourceEntityTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: source_entity_type_id
+        targetEntityTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: target_entity_type_id        
+        isActive:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: true
+                default: true
+            column: is_active
+        marketingLabel:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

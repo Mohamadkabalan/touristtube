@@ -1,0 +1,89 @@
+<!-- Import Touristtube Virtual Tour engine libraries -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://www.touristtube.com/assets/common/tt/js/vtour/tt_360_tour.min.js"></script>
+
+<!-- VTour Example 1 -->
+<div id="tt_vtour" style="width: 45%; height: 500px; float: left;">
+	<noscript>
+		<div style="width: 100%; text-align:center;">
+			ERROR:<br/><br/>Javascript not activated<br/><br/>
+		</div>
+	</noscript>
+</div>
+
+<!-- VTour Example 2 -->
+<div id="tt_vtour2" style="width: 45%; height: 500px; float: left; margin-left: 50px;">
+	<noscript>
+		<div style="width: 100%; text-align:center;">
+			ERROR:<br/><br/>Javascript not activated<br/><br/>
+		</div>
+	</noscript>
+</div>
+
+
+<script>
+
+	window.TT_VTOUR_INFO = "<p>- Room size: 25sqm</p>";
+
+	var ttTour = null;
+	var ttTour2 = null;
+	$(document).ready(function(){
+		ttTour = new TTTour("tt_vtour", {
+			fullTour:{
+				active: true,
+				linkOrigin: null,
+				linkText: "Full Tour",
+				linkPosition: {valign: "top", halign: "right"},
+				url: null,
+				width: "80%",
+				height: "80%"
+			}
+			, usePositionAbsolute: false
+			, autoload: true
+			, params: {
+				id: 101581
+				, type: "hotels"
+				, name: "Hotel XXX Beirut"
+				, countrycode: "LB"
+				, group: "1"
+				, groupName: "Lobby"
+				, division: "1"
+				, divisionName: "Lobby"
+				, subdivision: 15
+				, showInfo : true
+			}
+		});
+		
+		
+		
+		
+		
+		ttTour = new TTTour("tt_vtour2", {
+			fullTour:{
+				active: true,
+				linkOrigin: null,
+				linkText: "Full Tour",
+				linkPosition: {valign: "top", halign: "right"},
+				url: null,
+				width: "80%",
+				height: "80%"
+			}
+			, usePositionAbsolute: false
+			, autoload: true
+			, params: {
+				id: 101581
+				, type: "hotels"
+				, name: "Hotel XXXXX Beirut"
+				, countrycode: "LB"
+				, group: "1"
+				, groupName: "Lobby"
+				, division: "1"
+				, divisionName: "Lobby"
+				, subdivision: 15
+				, showInfo : true
+			}
+		});
+
+		
+	});
+</script>

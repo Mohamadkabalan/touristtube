@@ -1,0 +1,161 @@
+TTBundle\Entity\CmsFlash:
+    type: entity
+    table: cms_flash
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        longitude:
+            columns:
+                - longitude
+        latitude:
+            columns:
+                - latitude
+        flash_ts:
+            columns:
+                - flash_ts
+        reply_to:
+            columns:
+                - reply_to
+        city_id:
+            columns:
+                - city_id
+                - location_id
+        location_id:
+            columns:
+                - location_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        flashText:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: flash_text
+        flashLink:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: flash_link
+        flashLocation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: flash_location
+        picFile:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: pic_file
+        vpath:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        longitude:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        latitude:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        flashTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: flash_ts
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_comments
+        nReplies:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: n_replies
+        nReflashes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: n_reflashes
+        replyTo:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                comment: 'this post is a reply to which post?'
+            column: reply_to
+        cityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_id
+        locationId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: location_id
+        locationName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: location_name
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

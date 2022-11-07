@@ -1,0 +1,40 @@
+@import "elements.less";
+@fFamily: arial;
+@titleColor: #E7BA20;
+@gray1Color: #626262;
+@gray2Color: #5c5c5d;
+@bgcolor: #f4f4f4;
+.relative{margin:0;
+    padding:0;
+    float:left;
+    position:relative;
+    display:block}
+.absolute{display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    text-align:left}
+#mediaUploadedCon,#networkGrowthCon,#contentDistCon{font:bold 12px @fFamily}
+.mediaUploadedLabel{.relative;
+    width:60px;
+    margin:50px 0 0 20px;
+    word-spacing:22px;
+    font:14px/17px @fFamily;
+    height:auto;
+}
+.contentDistLabel,.networkGrowthLabel{.relative;
+    width:60px;
+    margin:80px 0 0 4px;
+    word-spacing:22px;
+    font:14px/17px @fFamily;
+    height:auto;
+}
+.currVal{
+    top:118px;
+}
+.min1Val{
+    top:70px;
+}
+.min2Val{
+    top:23px;
+}

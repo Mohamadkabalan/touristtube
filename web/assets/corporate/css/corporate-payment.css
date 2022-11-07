@@ -1,0 +1,362 @@
+@font-face {
+    font-family: 'FRADMCN';
+    src: url('fonts/FRADMCN.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.nopad{
+    padding: 0;
+}
+.warningtextstyle{
+    font-size: 14px;
+    color: black;
+}
+.Secureresume{
+    color: black;
+    font-size: 16px;
+}
+.padzsmdiv{
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.sndcolmarg{
+    margin-left: 16px;
+}
+.downinputtext {
+    color: #848484;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-top: 0;
+    height: 75px;
+    line-height: 75px;
+    margin-bottom: 0;
+}
+.downinputtext_corppayment{
+    color: #010101;
+    font-size: 16px;
+    padding-top: 20px;
+}
+.box-container {
+    border: 5px solid rgb(232, 232, 232);
+    margin-bottom: 5px;
+    padding: 20px 37px;
+}
+.paymentresume {
+    color: black;
+    font-size: 32px;
+    margin-top: 10px;
+    padding-left: 12px;
+}
+.selectback2 {
+    background: rgb(234, 234, 234) url("/media/images/secureresume.png") no-repeat scroll 94% 50%;
+    border-radius: 0;
+    padding-left: 4px;
+}
+.corporateinput_corppayment {
+    padding-left: 31px; 
+}
+.form-control {
+    background-color: rgb(234, 234, 234);
+    border: medium none;
+    border-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.form-control_corppayment {
+    border: medium none;
+    color: white;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    background-color: #a6acb0;
+    border-radius: 20px;
+}
+.form-control_corppayment::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.form-control_corppayment:-moz-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.form-control_corppayment::-moz-placeholder { 
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.form-control_corppayment:-ms-input-placeholder {  
+    color: #ffffff;
+}
+.mar-left-20{
+    margin-left: 20px;
+}
+.bluesbmit{
+    float: left;
+    margin-right: 0;
+    width: 100%;
+    height: 75px;
+    background-color: #1e262a;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 20px;
+}
+
+.labelstyle {
+    color: black;
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    max-width: 100%;
+}
+.botborder{
+    border-bottom: 1px solid rgb(217,217,217);
+    float: left;
+    width: 100%;
+}
+
+label.error{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 0 2px;
+}
+.clear{
+    clear:both;
+}
+.alert-danger{
+    padding: 5px 17px;
+}
+.terms-wrap{
+    margin-left: 18px;
+}
+.terms-wrap dev{
+    position: relative;
+}
+.terms-wrap label.error{
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    top: 15px;
+    left: 0;
+}
+.select-expiry-date {
+    background: rgb(234, 234, 234) url("/media/images/flech-out.png") no-repeat scroll right 5px center;
+    border: medium none;
+    border-radius: 0;
+    color: #555;
+    font-size: 14px;
+    height: 35px;
+    line-height: 1.42857;
+    margin-right: 2px;
+    padding-left: 5px;
+    padding-right: 16px;
+    width: 100%;
+}
+.expiry-date-wrap{
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.payservices{
+    padding: 15px 0;
+}
+.payservices p{
+    margin-bottom: 10px;
+}
+.payservices img {
+    cursor: pointer;
+    margin-right: 5px;
+}
+.upload-overlay-loading-fix{
+    display: block;
+}
+
+/*New css:
+===============================*/
+.headerstyle_corp{
+    color: #1e262a;
+}
+.submitbut_corporatepayment{
+    width: 76px;
+    height: 75px;
+    padding-left:10px;
+    margin-top: 0px;
+    border: none;
+    background: rgba(0, 0, 0, 0) url("/media/images/corporate-payment/paymentsubmitbut_corppayment.png") no-repeat scroll center center;
+}
+.paddingbut30{
+    padding-bottom: 30px;
+}
+.paddongtopbut40{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.form-control.corporateinput_corppayment{
+    padding-left: 31px;
+}
+.form-control.corporateinputwithback{
+    background: rgb(166, 172, 176) url("/media/images/corporate-payment/whitelockimg_corppayment.png") no-repeat scroll 94% 50%;
+}
+.form-group {
+    margin-bottom: 0;
+}
+.newpadcorpinput_corpayment{
+    padding: 5px;
+}
+.selectcomm_copayment {
+    display: block;
+    border: medium none;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    height: 75px;
+    line-height: 75px;
+    margin-right: 0px;
+    padding-left: 26px;
+    padding-right: 0px;
+    width: 100%;
+    background-image: url("/media/images/corporate-flight/fldwn_corpfl.png");
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+    background-color: #a6acb0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.selectcomm_copayment::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.selectcomm_copayment:-moz-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.selectcomm_copayment::-moz-placeholder { 
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.selectcomm_copayment:-ms-input-placeholder {  
+    color: #ffffff;
+}
+.cvv_corppayment::-webkit-input-placeholder {
+    color: black;
+    opacity: 1 !important;
+}
+
+.cvv_corppayment:-moz-placeholder {
+    color: black;
+    opacity: 1 !important;
+}
+
+.cvv_corppayment::-moz-placeholder { 
+    color: black;
+    opacity: 1 !important;
+}
+
+.cvv_corppayment:-ms-input-placeholder {  
+    color: black;
+}
+.cvv_corppayment{
+    border: 2px solid #e1e3e5;
+    color: black;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    background-color: white;
+    border-radius: 20px;
+    padding-left: 14px;
+}
+.padbut0_corppayment{
+    padding-bottom: 0;
+}
+.expiredatetextwizborder_corppayment{
+    height: 75px;
+    line-height: 75px;
+    padding-left: 26px;
+    border-radius: 20px;
+    width: 100%;
+    border: 2px solid #e1e3e5; 
+    font-size: 16px;
+    color: #e1e3e5;
+    margin-bottom: 0;
+}
+.cvvtext_corppayment{
+    margin-bottom: 0;
+    color: #8b9398;
+    font-size: 14px;
+    height: 75px;
+    line-height: 75px;
+}
+/*=======================================*/
+
+
+@media (min-width:768px) and (max-width:991px){
+    .padzsmdiv{
+        margin-top: 4px;
+    }
+    .smalfont{
+        font-size: 11px;
+    }
+    .cvvtext_corppayment {
+	height: 25px;
+	line-height: 25px;
+    }
+}
+@media  (max-width:767px){
+    .sndcolmarg{
+        margin-left: 0px;
+    }
+    .marleftxs0{
+        margin-left: 0 !important;
+    }
+    .xspads0{
+        padding: 0;
+    }
+    .box-container {
+	padding: 20px 5px;
+    }
+    .text-align-center-xs{
+	text-align: center;
+    }
+    .headerstyle_corp {
+	font-size: 23px;
+    }
+    .downinputtext {
+	height: 30px;
+	line-height: 30px;
+    }
+}
+@media (min-width:320px) and (max-width:477px){
+    .smalfont{
+        font-size: 11px;
+    }
+}
+@media (min-width:320px) and (max-width:384px){
+    .widthcvv100xs{
+	width: 100%;
+    }
+    .cvvtext_corppayment {
+	height: 25px;
+	line-height: 25px;
+    }
+}

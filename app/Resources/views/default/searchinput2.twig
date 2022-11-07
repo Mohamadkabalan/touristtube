@@ -1,0 +1,271 @@
+{% if hideblocksearchButtons ==0 %}
+    {% if hotelblocksearchIndex ==1 %}<div class="bouttonSearchTabs hoteltab boutton-1">{{'Hotels'|trans}}</div>{% endif %}
+    {% if flightblocksearchIndex ==1 %}<div class="bouttonSearchTabs flighttab boutton-2">{{'Flights'|trans}}</div>{% endif %}
+    {% if dealblocksearchIndex ==1 %}<div class="bouttonSearchTabs holidaytab boutton-3">{{'Deals'|trans}}</div>{% endif %}    
+{% endif %}
+{% set defaultValues = {'hotelCityName': '', 'hotelCityId': 0, 'locationId': 0, 'entityType':0, 'hotelId':0, 'longitude':0, 'latitude':0 } %}
+{% set input = defaultValues|merge(input) %}
+<div class="clearBoth"></div>
+<div class="searchcontainerfilter">
+    {% if hotelblocksearchIndex ==1 %}
+	{% if pageSrc is defined and pageSrc == HOTEL_CONSTANTS.page_src.hotels %}
+	    {% set route = '_hotel_booking_results_tt' %}
+	{% else %}
+	    {% set route = '_hotel_booking_results' %}
+	{% endif %}
+	<div class="trip_search_box hotelscontent">
+	    <div class="seacr_pannel blacksearch greybluesearch">
+		<div class="search-bar" id="searchcontid2">
+		    <form id="hotelform" name="hotelform" class="hotelform" method="get" action="{{ generateLangRoute(LanguageGet,route) }}" autocomplete="off">
+			<div id="searchhrscontainer" class="bag-search">
+			    <span class="tt-sprites i-search-map"></span>
+			    <input id="searchdiscover" name="city" type="text" data-link="" placeholder="{{'City / Hotel'|trans}}" class="input-search hotelsinputsearch" value="{{input.hotelCityName}}">
+			    <input id="hotelCityName" class="inputData" name="hotelCityName" value="{{input.hotelCityName}}" type="hidden">
+			    <input id="hotelCityName" class="inputData" name="city[name]" value="{{input.hotelCityName}}" type="hidden">
+			    <input id="hotelCityName" class="inputData" name="city[id]" value="{{input.hotelCityId}}" type="hidden">
+			    <input id="hotelId" class="inputData" name="hotelId" value="{% if input.hotelId is defined %}{{input.hotelId}}{% endif %}" type="hidden">
+			    <input id="locationId" class="inputData" name="locationId" value="{{input.locationId}}" type="hidden">
+			    <input id="country" class="inputData" name="country" value="{% if input.country is defined %}{{input.country}}{% endif %}" type="hidden">
+			    <input id="longitude" class="inputData" name="longitude" value="{% if input.longitude is defined %}{{input.longitude}}{% endif %}" type="hidden">
+			    <input id="latitude" class="inputData" name="latitude" value="{% if input.latitude is defined %}{{input.latitude}}{% endif %}" type="hidden">
+			    <input id="entityType" class="inputData" name="entityType" value="{{input.entityType}}" type="hidden">
+			    <input id="stars" class="inputData" name="stars" value="{% if input.stars is defined %}{{input.stars}}{% endif %}" type="hidden">
+			</div>
+			<span id="datesContainerH" class="datesContainerSpan floatleft">
+			    <div id="fromContainerH" class="bag-search margin0 marginrightten firstdate">
+				<input autocomplete='off' type="text" id="fromDateH" name="fromDate" class="datesearch"  placeholder="{{'Check-In'|trans}}" value="">
+			    </div>
+			    <div id="toContainerH" class="bag-search seconddate">
+				<input autocomplete='off' id="toDateH" type="text" name="toDate" class="datesearch"  placeholder="{{'Check-Out'|trans}}" value="">
+			    </div>
+			</span>
+			<div class="bag-search last margin0 findbut butmarleft bag-searchflight">
+			    <button name="" type="submit" class="search-btn search-btnClick yellowbut searchtext searchtext2">{{'Find'|trans}} <span>&raquo;</span></button>
+			</div>
+			<div class="revieclearboth">
+			    <div class="searchsndmarginxs">
+				<div class="inputsearchFlechCNT inputsearchFlechCNT1">
+				    <span id="decrement-1" class="decbut"></span>
+				    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 nopad inputsearchFlech">
+					<input type="text" id="singleRooms" class="inputData inputsearch inputsearchplus" name="singleRooms" onkeypress="return isNumberKey(event);" placeholder="" value="0" max="9">
+					<span>{{'Single rooms'|trans}}</span>
+				    </div>
+				    <span id="increment-1" class="incbut"></span>
+				</div>
+				<div class="inputsearchFlechCNT inputsearchFlechCNT2">
+				    <span id="decrement-2" class="decbut"></span>
+				    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 nopad inputsearchFlech">
+					<input type="text" id="doubleRooms" class="inputData inputsearch inputsearchplus" name="doubleRooms" onkeypress="return isNumberKey(event);"  placeholder="" value="1" max="9">
+					<span>{{'Double rooms'|trans}}</span>
+				    </div>
+				    <span id="increment-2" class="incbut"></span>
+				</div>
+				<div class="inputsearchFlechCNT inputsearchFlechCNT3">
+				    <span id="decrement-3" class="decbut"></span>
+				    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 nopad inputsearchFlech">
+					<input type="text" id="adultCount" class="inputData inputsearch inputsearchplus" name="adultCount" onkeypress="return isNumberKey(event);" placeholder="" value="2">
+					<span>{{'Adults'|trans}}</span>
+				    </div>
+				    <span id="increment-3" class="incbut"></span>
+				</div>
+				<div class="inputsearchFlechCNT clearbothclasss inputsearchFlechCNT4">
+				    <span id="decrement-4" class="decbut"></span>
+				    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 nopad inputsearchFlech">
+					<input type="text" id="childCount" class="inputData inputsearch inputsearchplus" name="childCount" onkeypress="return isNumberKey(event);" placeholder="" value="0">
+					<span>{{'Children'|trans}}</span>
+				    </div>
+				    <span id="increment-4" class="incbut"></span>
+				</div>
+				<div id="guest-option">
+				    {% set maxChildCount = HOTEL_CONSTANTS.max_child_count %}
+				    {% set maxChildAge = HOTEL_CONSTANTS.max_child_age %}
+				    {% for x in 1..maxChildCount %}
+					{% set index = (x - 1) %}
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 nopad displaynone form-childdisplay form-child{{x}}">
+					    <label class="col-xs-12 childtext">{{'Child'|trans}} {{x}}</label>
+					    <div class="col-xs-12 paddingbottom1 childAgeCnt">
+						<span class="textinsideinput">{{'Age'|trans}}</span>
+						<select name="childAge{{x}}" id="childAge{{x}}" class="inputsearch childAgeSelect" onchange="return checkBedForAge({{x}})">
+						    {% for i in 0..maxChildAge %}
+							<option value="{{i}}" {% if attribute(child, index) is defined and attribute(child, index).age == i %} selected="selected" {% endif %}>{{i}}</option>
+						    {% endfor %}
+						</select>
+						<select name="childBed{{x}}" id="childBed{{x}}" class="inputsearch margintop6">
+						    <option value="parentsBed" {% if attribute(child, index) is defined and attribute(child, index).bed == 'parentsBed' %} selected="selected" {% endif %}>{{"In parents' bed"|trans}}</option>
+						    <option value="extraBed" {% if attribute(child, index) is defined and attribute(child, index).bed == 'extraBed' %} selected="selected" {% endif %}>{{'In extra bed'|trans}}</option>
+						</select>
+					    </div>
+					</div>
+				    {% endfor %}
+				</div>
+			    </div>
+			</div>
+		    </form>
+		</div>
+	    </div>
+	</div>
+    {% endif %}
+    {% if flightblocksearchIndex ==1 %}
+        <div class="trip_search_box flightcontent">
+            <div class="seacr_pannel blacksearch greybluesearch">
+                <div class="search-bar" id="searchcontid">
+                    <form id="airplaneform" name="airplaneform" method="post" action="flight-booking-result" autocomplete="off">
+                        <div class="col-xs-12 nopad">
+                            <ul class="typeflighttabs">
+                                <li class="flight_buts roundtripclass active">{{'Roundtrip'|trans}}</li>
+                                <li class="flight_buts onewayclass">{{'One way'|trans}}</li>
+                                <li class="flight_buts multipledestclass">{{'Multiple destinations'|trans}}</li>
+                            </ul>
+                            <ul id="flexibleDateContainer" class="checkboxul">
+                                <li class=""><label><input class="flexibledate" name="flexibledate" value="1" type="checkbox"> {{'My dates are flexible (lowest prices on + / - 3 days)'|trans}}</label></li>
+                            </ul>
+                        </div>
+                        <div id="departurecontainer" class="bag-search newsmalsize departuresmal">
+                            <span class="tt-sprites i-search-map"></span>
+                            <span class=" tt-sprites i-search-crose">{{'clean'|trans}}</span>
+                            <input type="text" id="departureairport" name="departureairport" placeholder="{{'Departure airport / city'|trans}}" value="" class="input-search newsmalsizeinput departurearrivalinput">
+                            <input type="hidden" id="departureairportC" name="departureairportC" value="">
+                        </div>
+                        <div id="arrivalcontainer" class="bag-search newsmalsize arrivalsmal">
+                            <span class="tt-sprites i-search-map"></span>
+                            <span class=" tt-sprites i-search-crose">{{'clean'|trans}}</span>
+                            <input type="text" id="arrivalairport" name="arrivalairport" placeholder="{{'Arrival airport / city'|trans}}" value="" class="input-search newsmalsizeinput departurearrivalinput">
+                            <input type="hidden" id="arrivalairportC" name="arrivalairportC" value="">
+                        </div>
+			<span id="datesContainer" class="datesContainerSpan floatleft">
+			    <div id="fromContainer" class="bag-search margin0 marginrightten firstdate newsmalsize marselectz">
+				<input autocomplete='off' type="text" id="fromDate" name="fromDateC" placeholder="{{'Departure date'|trans}}" value="" class="datesearch newsmalsizeinput">
+			    </div>
+			    <div id="toContainer" class="bag-search seconddate newsmalsize marselectz marginzsmall xxsmalmargintop">
+				<input autocomplete='off' type="text" id="toDate" name="toDateC" placeholder="{{'Return date'|trans}}" value="" class="datesearch newsmalsizeinput">
+			    </div>
+			</span>
+                        <div class="bag-search last margin0 findbut butmarleft bag-searchflight">
+                            <input id="oneway" class="oneway" name="oneway" value="" type="hidden">
+                            <input id="multiDestination" class="multi-destination" name="multidestination" value="" type="hidden">
+                            <button name="search-flights" type="submit" class="find_flights search-btn search-btnClick yellowbut multiflightfindxs">{{'Find'|trans}} <span>&raquo;</span></button>
+                        </div>
+                        <div id="" class="bag-search newsmalsize flightclass firstselctclass marselectz">
+                            <select id="cabinselect" name="cabinselect" tabindex="1" class="input-search selectclass">
+                                <option value="">{{'Select class'|trans}}</option>
+                                <option value="Y">{{'Economy class'|trans}}</option>
+                                <option value="S">{{'Premium Economy'|trans}}</option>
+                                <option value="C">{{'Business class'|trans}}</option>
+                                <option value="F">{{'First class'|trans}}</option>
+                            </select>
+                        </div>
+                        <div id="" class="bag-search newsmalsize adultclass secondselctclass marselectz">
+                            <select id="adultsselect" name="adultsselect" class="input-search selectadultclass">
+                                <option value="1">{{'1 adult (12+ year)'|trans}}</option>
+                                <option value="2">{{'2 Adults'|trans}}</option>
+                                <option value="3">{{'3 Adults'|trans}}</option>
+                                <option value="4">{{'4 Adults'|trans}}</option>
+                                <option value="5">{{'5 Adults'|trans}}</option>
+                                <option value="6">{{'6 Adults'|trans}}</option>
+                                <option value="7">{{'7 Adults'|trans}}</option>
+                                <option value="8">{{'8 Adults'|trans}}</option>
+                            </select>
+                        </div>
+                        <div id="" class="bag-search newsmalsize adultclass firstselctclass marselectz">
+                            <select id="childsselect" name="childsselect" class="input-search selectadultclass">
+                                <option value="0">{{'children (2-12 year)'|trans}}</option>
+                                <option value="1">{{'1 child'|trans}}</option>
+                                <option value="2">{{'2 children'|trans}}</option>
+                                <option value="3">{{'3 children'|trans}}</option>
+                                <option value="4">{{'4 children'|trans}}</option>
+                                <option value="5">{{'5 children'|trans}}</option>
+                                <option value="6">{{'6 children'|trans}}</option>
+                                <option value="7">{{'7 children'|trans}}</option>
+                                <option value="8">{{'8 children'|trans}}</option>
+                            </select>
+                        </div>
+                        <div id="" class="bag-search newsmalsize adultclass secondselctclass marselectz marginright0">
+                            <select id="infantsselect" name="infantsselect" class="input-search selectadultclass">
+                                <option value="0">{{'infants (0-2 year)'|trans}}</option>
+                                <option value="1">{{'1 infant'|trans}}</option>
+                                <option value="2">{{'2 infants'|trans}}</option>
+                                <option value="3">{{'3 infants'|trans}}</option>
+                                <option value="4">{{'4 infants'|trans}}</option>
+                                <option value="5">{{'5 infants'|trans}}</option>
+                                <option value="6">{{'6 infants'|trans}}</option>
+                                <option value="7">{{'7 infants'|trans}}</option>
+                                <option value="8">{{'8 infants'|trans}}</option>
+                            </select>
+                        </div>
+                        <div id="multiDestinationContainer" class="multi-destination-container">
+                            <div class="flilghtmulti col-xs-12 nopad">
+                                <div class="col-xs-12 nopad moreflightstyle">{{'flight 2'|trans}}</div>
+                                <div id="departurecontainer-0" class="bag-search newsmalsize departuresmal">
+                                    <span class="tt-sprites i-search-map"></span>
+                                    <span class=" tt-sprites i-search-crose">{{'clean'|trans}}</span>
+                                    <input type="text" id="departureairport-0" name="departureairport-0" placeholder="{{'Departure airport / city'|trans}}" value="" class="input-search newsmalsizeinput departurearrivalinput">
+                                    <input type="hidden" id="departureairport-0C" name="departureairportC-0" value="">
+                                </div>
+                                <div id="arrivalcontainer-0" class="bag-search newsmalsize arrivalsmal">
+                                    <span class="tt-sprites i-search-map"></span>
+                                    <span class=" tt-sprites i-search-crose">{{'clean'|trans}}</span>
+                                    <input type="text" id="arrivalairport-0" name="arrivalairport-0" placeholder="{{'Arrival airport / city'|trans}}" value="" class="input-search newsmalsizeinput departurearrivalinput">
+                                    <input type="hidden" id="arrivalairport-0C" name="arrivalairportC-0" value="">
+                                </div>
+                                <div id="fromContainer-0" class="bag-search margin0 firstdate newsmalsize marselectz">
+                                    <input autocomplete='off' type="text" id="fromDate-0" name="fromDateC-0" placeholder="{{'Departure date'|trans}}" value="" class="datesearch newsmalsizeinput xxsmalmarbut">
+                                </div>
+                            </div>
+                            <div class="flilghtmulti col-xs-12 nopad">
+                                <div class="col-xs-12 nopad moreflightstyle">{{'flilght 3'|trans}}</div>
+                                <div id="departurecontainer-1" class="bag-search newsmalsize departuresmal">
+                                    <span class="tt-sprites i-search-map"></span>
+                                    <span class=" tt-sprites i-search-crose">{{'clean'|trans}}</span>
+                                    <input type="text" id="departureairport-1" name="departureairport-1" placeholder="{{'Departure airport / city'|trans}}" value="" class="input-search newsmalsizeinput departurearrivalinput">
+                                    <input type="hidden" id="departureairport-1C" name="departureairportC-1" value="">
+                                </div>
+                                <div id="arrivalcontainer-1" class="bag-search newsmalsize arrivalsmal">
+                                    <span class="tt-sprites i-search-map"></span>
+                                    <span class=" tt-sprites i-search-crose">{{'clean'|trans}}</span>
+                                    <input type="text" id="arrivalairport-1" name="arrivalairport-1" placeholder="{{'Arrival airport / city'|trans}}" value="" class="input-search newsmalsizeinput departurearrivalinput">
+                                    <input type="hidden" id="arrivalairport-1C" name="arrivalairportC-1" value="">
+                                </div>
+                                <div id="fromContainer-1" class="bag-search margin0 firstdate newsmalsize marselectz">
+                                    <input autocomplete='off' type="text" id="fromDate-1" name="fromDateC-1" placeholder="{{'Departure date'|trans}}" value="" class="datesearch newsmalsizeinput xxsmalmarbut">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if dealblocksearchIndex ==1 %}		    
+        <div class="trip_search_box dealcontent">
+            <div class="seacr_pannel blacksearch greybluesearch">
+                <div class="search-bar">
+		    <form id="dealsform" name="dealsform"  method="post" action="{{ (dealSearchFormAction is defined)  ? dealSearchFormAction : generateLangRoute(LanguageGet,'_dealSearch') }}" autocomplete="off">
+			<div class="search-bar" id="searchcontidDeals">
+			    <div id="searchdestination_id" class="bag-search">
+				<span class="tt-sprites i-search-map"></span>
+				<span class=" tt-sprites i-search-crose">clean</span>
+				<input id="deal_search" name="city" type="text"  value="{{ (city is defined)  ? city }}" placeholder="{{'Search for your destination'|trans}}" class="input-search" data-id="0" data-city="" data-state="" data-contryc="" data-type="" >
+				<input id="cityName" class="inputData" name="cityName" value="{{ (city is defined)  ? city }}" type="hidden">
+				<input id="dealId" class="inputData" name="dealId" value="" type="hidden">
+                                <input id="cityId" class="inputData" name="cityId" value="{{ (cityId is defined)  ? cityId }}" type="hidden">
+				<input id="attractionName" class="inputData" name="attractionName" value="" type="hidden">
+			    </div>
+				<span id="datesDealsContainer" class="floatleft">
+			<div id="fromContainerD" class="bag-search margin0 marginrightten firstdate">
+			    <input autocomplete='off' type="text" id="startDate" name="startDate" class="datesearch"  placeholder="{{'dd/mm/yy'|trans}}" value="{{ (startDate is defined)  ? startDate }}">
+                    </div>
+			<div id="toContainerD" class="bag-search seconddate">
+			    <input autocomplete='off' id="endDate" type="text" name="endDate" class="datesearch"  placeholder="{{'dd/mm/yy'|trans}}" value="{{ (endDate is defined)  ? endDate }}">
+			</div>
+		    </span>
+                    <div class="bag-search last margin0 findbut butmarleft">
+			<input id="webgeo_city" type="hidden" value="{{ (webgeoCityId is defined)  ? webgeoCityId }}" name="webgeo_city">
+			<input id="type" type="hidden" value="all_types" name="types">
+                        <button name="search" type="submit" class="search-btn search-btnClick yellowbut">{{'Find'|trans}} <span>&raquo;</span></button>
+                    </div>
+		</form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

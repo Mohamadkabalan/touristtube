@@ -1,0 +1,38 @@
+<div class="container room-gallery-container">
+    <div class="col-xs-12 ulcontainerroom">
+	<div class="closebut-room" data-counter="{{'#{counter}'}}"></div>
+    </div>
+    <div class="col-xs-12 nopad">
+	<div class="col-md-8 col-xs-12 with_image_hldr">
+	    <div data-unique="{{'#{counter}'}}" class="slider-for-{{'#{counter}'}} col-xs-12 fpadtop slider-for padding0 images_preview_hldr">
+		<div style="background-image: url('#{image1}'); height:100%; background-repeat: no-repeat;" class=""></div>
+	    </div>
+	    <div class="swiper-container-{{'#{counter}'}} col-xs-12 nopad hidden-xs swiper-container">
+		<div class="slider-nav-{{'#{counter}'}} slider-nav swiper-wrapper images_thumb_hldr">    
+		    <div class="mediathumb swiper-slide">
+			<div class="mediathumbcontainer"><img src="#{image0}" alt="img" /></div>
+			<div class="mediathumbbk"></div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="col-md-8 col-xs-12 no_image_hldr">
+	    <div data-unique="{{'#{counter}'}}" class="slider-for-{{'#{counter}'}} col-xs-12 fpadtop slider-for padding0">
+		<div style="background-image: url('{{ generateMediaURL('/media/images/no-room.jpg') }}'); height:100%;" class=""></div>
+	    </div>
+	</div>
+	<div class="col-md-4 col-xs-12 facilities_hldr">
+	    <div class="col-xs-12 nopad">
+		<h2 class="roomdetailtitle">{{'#{name}'}}</h2>
+	    </div>
+	    <div class="col-xs-12 nopad">
+		<div class="col-xs-12 nopad">
+		    <p class="normalgreytext margintop_room facilities_hldr">
+			<span class="boldtext-room">{{'Room facilities'|trans}}:</span>
+			{{'#{facilities}'}}
+		    </p>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>

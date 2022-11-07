@@ -1,0 +1,31 @@
+imports:
+    - { resource: @PaymentBundle/Resources/config/payment_parameters.yml }
+parameters:
+     paytabs:
+          keyValidationUrl: https://www.paytabs.com/apiv2/validate_secret_key
+          createPayPageUrl: https://www.paytabs.com/apiv2/create_pay_page
+          verifyPaymentUrl: https://www.paytabs.com/apiv2/verify_payment_transaction
+          refundTransactionUrl: https://www.paytabs.com/apiv2/refund_process
+          merchant_email: cazzi@paravision.org
+          merchant_id: 10027396
+          secret_key: vslQLNyjPFIFK1WMZM54s33IsdgwuhD0JYQvLoPB3xhOzdAy0GCtJFbcSsImJlnskdX6CMHFkZuTc4sdL4GuKSGDlpZ4Lnx5Aucc
+          callback_url: http://www.%domain%/payment-paytabs-callback
+          corpo_callback_url: http://corporate.%domain%/payment-paytabs-callback
+     areeba:
+          gatewayHost: https://ap-gateway.mastercard.com/api/nvp/version/48
+          gatewayCheckoutURL: https://ap-gateway.mastercard.com/checkout/version/48/checkout.js
+          # To override the hosted checkout popup title, change the merchant_name
+          merchant_name: "Amount"
+          merchant_email: info@touristtube.com
+          merchant_phone: +9614533461
+          merchant_logo: https://www.touristtube.com/media/images/Logo.png
+          merchant_id: TEST222202410001
+          apiUsername: merchant.TEST222202410001
+          apiPassword: 66cfc87cd5593fe4da64450e7ce8a203
+          paymentAttempts: 3
+     commands:
+          bypassCommand: BYPASSED
+          refundCommand: REFUNDED
+twig:
+    globals: 
+        areeba: %areeba%

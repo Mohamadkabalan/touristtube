@@ -1,0 +1,3575 @@
+<definitions name='HRSService' targetNamespace='com.hrs.soap.hrs' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='com.hrs.soap.hrs' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+    <documentation>HRSService v046</documentation>
+    <types>
+	<schema targetNamespace='com.hrs.soap.hrs' xmlns='http://www.w3.org/2001/XMLSchema' xmlns:tns='com.hrs.soap.hrs'>
+	    <complexType name='HRSException'>
+		<sequence>
+		    <element name='code' type='xsd:int'/>
+		    <element name='type' type='xsd:string'/>
+		    <element minOccurs='0' name='message' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='detailMessage' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='trace' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='traceId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='transactionId' nillable='true' type='tns:HRSIdType'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCredentials'>
+		<sequence>
+		    <element name='clientType' type='xsd:string'/>
+		    <element name='clientKey' type='xsd:string'/>
+		    <element name='clientPassword' type='xsd:string'/>
+		    <element minOccurs='0' name='customerKey' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICredentials'>
+		<sequence>
+		    <element minOccurs='0' name='corporateClient' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='corporateClientConfigurationId' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSCredentials'>
+		<sequence>
+		    <element name='user' type='xsd:string'/>
+		    <element name='password' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSRememberMeToken'>
+		<sequence>
+		    <element name='rememberMeToken' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSLanguage'>
+		<sequence>
+		    <element name='iso3Language' type='xsd:string'/>
+		    <element minOccurs='0' name='variantISO3Country' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSLocale'>
+		<sequence>
+		    <element name='language' type='tns:HRSLanguage'/>
+		    <element name='iso3Country' type='xsd:string'/>
+		    <element name='isoCurrency' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSGenericCriterion'>
+		<sequence>
+		    <element name='key' type='xsd:string'/>
+		    <element name='value' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSRequest'>
+		<sequence>
+		    <element name='credentials' type='tns:HRSCredentials'/>
+		    <element minOccurs='0' name='myHRSCredentials' nillable='true' type='tns:HRSMyHRSCredentials'/>
+		    <element minOccurs='0' name='myHRSRememberMeToken' nillable='true' type='tns:HRSMyHRSRememberMeToken'/>
+		    <element name='locale' type='tns:HRSLocale'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='genericCriteria' nillable='true' type='tns:HRSGenericCriterion'/>
+		    <element minOccurs='0' name='timeoutMillis' nillable='true' type='xsd:long'/>
+		    <element minOccurs='0' name='transactionId' nillable='true' type='tns:HRSIdType'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element minOccurs='0' name='ciCredentials' nillable='true' type='tns:HRSCICredentials'/>
+			    <element minOccurs='0' name='mainCustomerKey' nillable='true' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSGenericData'>
+		<sequence>
+		    <element minOccurs='0' name='key' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='values' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSResponse'>
+		<sequence>
+		    <element maxOccurs='unbounded' minOccurs='0' name='genericData' nillable='true' type='tns:HRSGenericData'/>
+		    <element name='responseTimeMillis' type='xsd:long'/>
+		    <element name='resultCode' type='xsd:int'/>
+		    <element minOccurs='0' name='traceId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='transactionId' nillable='true' type='tns:HRSIdType'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSPingRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='echoData' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSPingResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='echoData' nillable='true' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSServiceStatusRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'/>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSServiceStatusResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element name='pci' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSVersionRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'/>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSVersionResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element name='version' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSConstantTypesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'/>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSConstantTypesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='constantTypeKeys' nillable='true' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSConstantTypeValuesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='constantTypeKey' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSConstantTypeValue'>
+		<sequence>
+		    <element minOccurs='0' name='name' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='type' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='values' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSConstantTypeValuesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='constantTypeValues' nillable='true' type='tns:HRSConstantTypeValue'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSLocationSearchRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element minOccurs='0' name='fuzzySearch' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='locationName' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='iataCode' nillable='true' type='xsd:string'/>
+			    <element name='locationLanguage' type='tns:HRSLanguage'/>
+			    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSLocationType'>
+		<restriction base='xsd:string'>
+		    <pattern value='city|district|region|poi|cityCenter|fair|companyLocation|airport|highway|trainStation|publicTransport|iata|unknown|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSGeoPosition'>
+		<sequence>
+		    <element name='latitude'>
+			<simpleType>
+			    <restriction base='double'>
+				<minInclusive value='-90.00'/>
+				<maxInclusive value='90.00'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element name='longitude'>
+			<simpleType>
+			    <restriction base='double'>
+				<minInclusive value='-180.00'/>
+				<maxInclusive value='180.00'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSLocation'>
+		<sequence>
+		    <element minOccurs='0' name='locationType' nillable='true' type='tns:HRSLocationType'/>
+		    <element minOccurs='0' name='locationName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationLanguage' nillable='true' type='tns:HRSLanguage'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='poiId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='geoPosition' nillable='true' type='tns:HRSGeoPosition'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSLocationSearchResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='locations' nillable='true' type='tns:HRSLocation'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelAvailPaginationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element maxOccurs='1' minOccurs='0' name='pageNumber' nillable='true' type='xsd:integer'/>
+			    <element maxOccurs='1' minOccurs='0' name='pageSize' nillable='true' type='xsd:integer'/>
+			    <element minOccurs='0' name='searchKey' nillable='true' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='negotiatedHotelKeys' nillable='true' type='xsd:string'/>
+			    <element name='searchCriterion' type='tns:HRSHotelSearchCriterionPagination'/>
+			    <element name='availCriterion' type='tns:HRSHotelAvailCriterion'/>
+			    <element minOccurs='0' name='pictureCriterion' nillable='true' type='tns:HRSHotelPictureCriterion'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelAvailPaginationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSHotelAvailResponse'>
+			<sequence>
+			    <element maxOccurs='1' minOccurs='1' name='pageNumber' nillable='false' type='xsd:int'/>
+			    <element maxOccurs='1' minOccurs='1' name='maxPageNumber' nillable='false' type='xsd:int'/>
+			    <element maxOccurs='1' minOccurs='1' name='searchKey' nillable='false' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSLocationCriterion'>
+		<sequence>
+		    <element minOccurs='0' name='fuzzySearch' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='locationName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='iataCode' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationLanguage' nillable='true' type='tns:HRSLanguage'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='poiId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='geoPosition' nillable='true' type='tns:HRSGeoPosition'/>
+		    <element minOccurs='0' name='perimeter' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelType'>
+		<restriction base='xsd:string'>
+		    <pattern value='beach|castle|design|golf|luxury|resort|ski|wellness|city|hiking|conference|family|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelCRSCriterionMode'>
+		<restriction base='xsd:string'>
+		    <pattern value='include|exclude|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelCRSCriterionCRS'>
+		<restriction base='xsd:string'>
+		    <pattern value='hrs|external|pegasus|accor|chateaux|citotel|dhm|gef|hilton|ihg|indp|interhotel|ldf|marriott|minotel|nh|rezidorsas|silence|solmelia|symboles|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelCRSCriterion'>
+		<sequence>
+		    <element name='mode' type='tns:HRSHotelCRSCriterionMode'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='crses' nillable='true' type='tns:HRSHotelCRSCriterionCRS'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAmenityCriterionGroup'>
+		<sequence>
+		    <element maxOccurs='unbounded' minOccurs='1' name='amenityCriteria' type='tns:HRSHotelAmenityCriterion'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAmenityCriterion'>
+		<sequence>
+		    <element name='amenityKey' type='xsd:string'/>
+		    <element minOccurs='0' name='negate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='value' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='struct' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelSearchCriterion'>
+		<sequence>
+		    <element minOccurs='0' name='locationCriterion' nillable='true' type='tns:HRSLocationCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelKeys' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelChains' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelChainKeys' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelNames' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelTypes' nillable='true' type='tns:HRSHotelType'/>
+		    <element minOccurs='0' name='crsCriterion' nillable='true' type='tns:HRSHotelCRSCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='acceptedCreditCards' nillable='true' type='tns:HRSCreditCardOrganisationType'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='amenityCriterionGroups' nillable='true' type='tns:HRSHotelAmenityCriterionGroup'/>
+		    <element minOccurs='0' name='minCategory' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='maxCategory' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='minAverageRating' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='maxResults' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelSearchCriterionPagination'>
+		<sequence>
+		    <element minOccurs='0' name='locationCriterion' nillable='true' type='tns:HRSLocationCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='acceptedCreditCards' nillable='true' type='tns:HRSCreditCardOrganisationType'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='amenityCriterionGroups' nillable='true' type='tns:HRSHotelAmenityCriterionGroup'/>
+		    <element minOccurs='0' name='minCategory' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='maxCategory' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='minAverageRating' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='maxResults' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelOrderCriterionOrderKey'>
+		<restriction base='xsd:string'>
+		    <pattern value='crsType|price|category|distance|hotelName|averageRating|locationPriceElseDistance|hrsRecommendation|locationHrsRecommendationElseDistance|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelOrderCriterionOrderDirection'>
+		<restriction base='xsd:string'>
+		    <pattern value='ascending|descending|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelOrderCriterion'>
+		<sequence>
+		    <element name='orderKey' type='tns:HRSHotelOrderCriterionOrderKey'/>
+		    <element name='orderDirection' type='tns:HRSHotelOrderCriterionOrderDirection'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSPrice'>
+		<sequence>
+		    <element minOccurs='0' name='amount' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='isoCurrency' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelRoomType'>
+		<restriction base='xsd:string'>
+		    <pattern value='single|double|double+1|double+2|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelChildAccommodation'>
+		<restriction base='xsd:string'>
+		    <pattern value='parentsBed|extraBed|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelChildAccommodationCriterion'>
+		<sequence>
+		    <element name='childAge' type='xsd:int'/>
+		    <element name='childAccommodation' type='tns:HRSHotelChildAccommodation'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAvailRoomCriterion'>
+		<sequence>
+		    <element name='id' type='xsd:int'/>
+		    <element name='roomType' type='tns:HRSHotelRoomType'/>
+		    <element name='adultCount' type='xsd:int'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='childAccommodationCriteria' nillable='true' type='tns:HRSHotelChildAccommodationCriterion'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAvailCriterion'>
+		<sequence>
+		    <element name='from' type='xsd:date'/>
+		    <element name='to' type='xsd:date'/>
+		    <element minOccurs='0' name='minPrice' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='maxPrice' nillable='true' type='tns:HRSPrice'/>
+		    <element name='includeBreakfastPriceToDetermineCheapestOffer' type='xsd:boolean'/>
+		    <element maxOccurs='unbounded' minOccurs='1' name='roomCriteria' type='tns:HRSHotelAvailRoomCriterion'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelPictureCropMode'>
+		<restriction base='xsd:string'>
+		    <pattern value='original|scaleLayout|fitToMax|bestFit|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelPictureQualityType'>
+		<restriction base='xsd:string'>
+		    <pattern value='low|medium|high|max|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelPictureConfiguration'>
+		<sequence>
+		    <element minOccurs='0' name='width' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='height' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='cropMode' nillable='true' type='tns:HRSHotelPictureCropMode'/>
+		    <element minOccurs='0' name='quality' nillable='true' type='tns:HRSHotelPictureQualityType'/>
+		    <element minOccurs='0' name='frameColor' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='scaleUpToRequestedSize' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='useHTTP' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelPictureCriterion'>
+		<sequence>
+		    <element minOccurs='0' name='pictureConfiguration' nillable='true' type='tns:HRSHotelPictureConfiguration'/>
+		    <element minOccurs='0' name='thumbnailPictureConfiguration' nillable='true' type='tns:HRSHotelPictureConfiguration'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAvailRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='searchCriterion' type='tns:HRSHotelSearchCriterion'/>
+			    <element name='availCriterion' type='tns:HRSHotelAvailCriterion'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='orderCriteria' nillable='true' type='tns:HRSHotelOrderCriterion'/>
+			    <element minOccurs='0' name='pictureCriterion' nillable='true' type='tns:HRSHotelPictureCriterion'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelMediaType'>
+		<restriction base='xsd:string'>
+		    <pattern value='image|webcam|360|video|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelMediaLocation'>
+		<restriction base='xsd:string'>
+		    <pattern value='none|exteriorView|room|juniorSuite|suite|apartment|bathroom|conferenceRoom|breakfastRoom|restaurant|restaurantBreakfastRoom|kitchen|buffet|reception|hall|inside|bar|banquet|shop|cosmetic|wellness|wellnessFitness|fitness|garden|outlook|swimmingPool|terrace|surrounding|certificate|comfortRoom|businessRoom|familyRoom|roomWithBalcony|roomWithTerrace|roomWithSeaView|roomWithMountainsView|roomWithLakeView|roomWithPoolView|roomWithRiverView|singleRoomStandard|singleRoomComfort|doubleRoomStandard|doubleRoomComfort|standardRoom|threeBedRoom|fourBedRoom|kitchenInRoom|roomWithGardenView|hotelOutdoorArea|beach|hotelIndoorArea|readingRoom|televisionRoom|restaurant1|restaurant2|cafeBistro|hotelKitchen|sauna|rasulBath|whirlpool|hamam|sanarium|massageRoom|steamBath|beautyCenter|brineBath|quietArea|sportsFacilities|tennisCourt|manege|skittlingAlley|bowlingAlley|golfCourse|conferences|meetingRoom|events|businessCenter|conferenceFoyer|roomSketch|seatingPlan|groupRoom|conferenceOffice|seminarRoom|trainingRoom|congressHall|ballRoom|exhibitionArea|info|approachMap|economyRoom|singleRoomEconomy|doubleRoomEconomy|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelMedia'>
+		<sequence>
+		    <element minOccurs='0' name='mediaId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='type' nillable='true' type='tns:HRSHotelMediaType'/>
+		    <element minOccurs='0' name='location' nillable='true' type='tns:HRSHotelMediaLocation'/>
+		    <element minOccurs='0' name='mainMedia' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='thumbnailWidth' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='thumbnailHeight' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='thumbnailURL' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='mediaWidth' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='mediaHeight' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='mediaURL' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hdContentAvailable' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='maxWidth' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='maxHeight' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelRatingType'>
+		<restriction base='xsd:string'>
+		    <pattern value='average|comfortFactor|hotelAtmosphere|friendlinessOfReception|serviceOfHotelEmployees|hotelFacilities|roomSize|roomFacilities|sanitaryEquipment|cleanliness|breakfastQuality|restaurantQuality|wellness|package|priceValue|ranking|freeServices|hotelDescription|hotelDescriptionRealistic|hotelLocationRealistic|bedQuality|soundproofingRoom|hotelRecommendation|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelRatingPersonType'>
+		<restriction base='xsd:string'>
+		    <pattern value='average|unknown|private|youngCouple|elderCouple|familyWithSmallChildren|familyWithOlderChildren|group|business|conference|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelRating'>
+		<sequence>
+		    <element minOccurs='0' name='ratingType' nillable='true' type='tns:HRSHotelRatingType'/>
+		    <element minOccurs='0' name='ratingPersonType' nillable='true' type='tns:HRSHotelRatingPersonType'/>
+		    <element minOccurs='0' name='ratingCount' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='averageRating' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='recommendationRatePercent' nillable='true' type='xsd:double'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelDistanceTargetKey'>
+		<restriction base='xsd:string'>
+		    <pattern value='city|trainStation|airport|highway|location|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelDistance'>
+		<sequence>
+		    <element minOccurs='0' name='targetKey' nillable='true' type='tns:HRSHotelDistanceTargetKey'/>
+		    <element minOccurs='0' name='targetName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='distance' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotel'>
+		<sequence>
+		    <element minOccurs='0' name='hotelChain' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelChainKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelChainBrand' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelChainBrandKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='category' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='street' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='postalCode' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='city' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='district' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='region' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='geoPosition' nillable='true' type='tns:HRSGeoPosition'/>
+		    <element minOccurs='0' name='utcOffsetMinutes' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='atmosphereDescription' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='localityDescription' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='specialsDescription' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='freeServices' nillable='true' type='tns:HRSHotelEquipment'/>
+		    <element minOccurs='0' name='topQualitySeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='seniorComfortSeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='chinaFriendlySeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='recommendationIndex' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='parking' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='restaurant' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='internetAccessInRoom' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='wellness' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='noSmokingRoom' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='customerPreference' nillable='true' type='xsd:int'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='ratings' nillable='true' type='tns:HRSHotelRating'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='media' nillable='true' type='tns:HRSHotelMedia'/>
+		    <element minOccurs='0' name='video' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='hrsVideo' nillable='true' type='xsd:boolean'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='distances' nillable='true' type='tns:HRSHotelDistance'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='genericData' nillable='true' type='tns:HRSGenericData'/>
+		    <element minOccurs='0' name='promoHotel' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelBreakfastType'>
+		<restriction base='xsd:string'>
+		    <pattern value='exclusive|unknown|notAvailable|variant|inclusive|inclusiveHalfBoard|inclusiveFullBoard|allInclusive|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelCRSType'>
+		<restriction base='xsd:string'>
+		    <pattern value='hrs|pegasus|accor|chateaux|citotel|dhm|gef|hilton|ihg|indp|interhotel|ldf|marriott|minotel|nh|rezidorsas|silence|solmelia|symboles|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelPackageType'>
+		<restriction base='xsd:string'>
+		    <pattern value='none|beauty|events|gourmet|culture|season|sport|wellness|weekend|other|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelPackage'>
+		<sequence>
+		    <element minOccurs='0' name='packageType' nillable='true' type='tns:HRSHotelPackageType'/>
+		    <element minOccurs='0' name='name' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelRebateType'>
+		<restriction base='xsd:string'>
+		    <pattern value='none|company|earlyBird|lastMinute|longTerm|freeNights|mobileSpecial|opaque|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelRoomDescriptionType'>
+		<restriction base='xsd:string'>
+		    <pattern value='standard|comfort|juniorSuite|suite|apartment|family|business|terrace|balcony|ocean|lake|river|pool|mountain|economy|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelRoomDescription'>
+		<sequence>
+		    <element minOccurs='0' name='roomDescriptionType' nillable='true' type='tns:HRSHotelRoomDescriptionType'/>
+		    <element minOccurs='0' name='roomDescription' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='roomDescriptionDetailsLong' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='roomDescriptionDetailsShort' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelOffer'>
+		<sequence>
+		    <element minOccurs='0' name='soapOfferId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='differentRoomType' nillable='true' type='tns:HRSHotelRoomType'/>
+		    <element minOccurs='0' name='crsType' nillable='true' type='tns:HRSHotelCRSType'/>
+		    <element minOccurs='0' name='customerContract' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='package' nillable='true' type='tns:HRSHotelPackage'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='roomDescriptions' nillable='true' type='tns:HRSHotelRoomDescription'/>
+		    <element minOccurs='0' name='taxesAndFees' nillable='true' type='tns:HRSHotelTaxesAndFees'/>
+		    <element minOccurs='0' name='restrictedRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='prepayRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='cancellationDeadline' nillable='true' type='xsd:dateTime'/>
+		    <element minOccurs='0' name='creditCardReservationOnly' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='averagePriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averagePriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='minAveragePriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='minAveragePriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='maxAveragePriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='maxAveragePriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='breakfastType' nillable='true' type='tns:HRSHotelBreakfastType'/>
+		    <element minOccurs='0' name='averageBreakfastPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageBreakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageCalculativeBreakfastPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageCalculativeBreakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceInclusiveHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceInclusiveCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalWasPriceInclusiveHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalWasPriceInclusiveCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='includedRebateType' nillable='true' type='tns:HRSHotelRebateType'/>
+		    <element minOccurs='0' name='includedRebatePercent' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='includedRebateFreeNights' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='negotiatedRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='corporateClubRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='hotDeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='flexOffer' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='basicOffer' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='exclusiveRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='hrsDeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='economyRoom' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='roomsLeft' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='creditCardSecurityCodeRequired' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelRoomOffer'>
+		<sequence>
+		    <element minOccurs='0' name='room' nillable='true' type='tns:HRSHotelAvailRoomCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='offers' nillable='true' type='tns:HRSHotelOffer'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAvailHotelOffer'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotel' nillable='true' type='tns:HRSHotel'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='roomOffers' nillable='true' type='tns:HRSHotelRoomOffer'/>
+		    <element minOccurs='0' name='primaryClusterResult' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSEvent'>
+		<sequence>
+		    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='eventName' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAvailResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='primaryClusterResults' nillable='true' type='xsd:int'/>
+			    <element minOccurs='0' name='exclusiveRatePercent' nillable='true' type='xsd:double'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='hotelAvailHotelOffers' nillable='true' type='tns:HRSHotelAvailHotelOffer'/>
+			    <element minOccurs='0' name='maxHotelLocationDistance' nillable='true' type='xsd:int'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='events' nillable='true' type='tns:HRSEvent'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='locations' nillable='true' type='tns:HRSLocation'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelDetailAvailRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='1' name='hotelKeys' type='xsd:string'/>
+			    <element name='availCriterion' type='tns:HRSHotelAvailCriterion'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='orderCriteria' nillable='true' type='tns:HRSHotelOrderCriterion'/>
+			    <element minOccurs='0' name='pictureCriterion' nillable='true' type='tns:HRSHotelPictureCriterion'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelRoom'>
+		<sequence>
+		    <element minOccurs='0' name='roomType' nillable='true' type='tns:HRSHotelRoomType'/>
+		    <element minOccurs='0' name='roomCount' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelApproachKey'>
+		<restriction base='xsd:string'>
+		    <pattern value='publicTransport|highway|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelApproach'>
+		<sequence>
+		    <element minOccurs='0' name='approachKey' nillable='true' type='tns:HRSHotelApproachKey'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelEquipmentCategory'>
+		<restriction base='xsd:string'>
+		    <pattern value='hotelInformation|location|hotelConfiguration|roomConfiguration|service|payment|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelEquipment'>
+		<sequence>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='amenityKey' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelEquipmentGroup'>
+		<sequence>
+		    <element minOccurs='0' name='category' nillable='true' type='tns:HRSHotelEquipmentCategory'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='equipments' nillable='true' type='tns:HRSHotelEquipment'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAmenity'>
+		<sequence>
+		    <element minOccurs='0' name='amenityKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='struct' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='index' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='type' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='value' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelAmenityGroup'>
+		<sequence>
+		    <element minOccurs='0' name='amenityGroupKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='amenities' nillable='true' type='tns:HRSHotelAmenity'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSCreditCardOrganisationType'>
+		<restriction base='xsd:string'>
+		    <pattern value='VISA|MASTER|AMEX|DINERS|JCB Int|CUP-Debit|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelDetail'>
+		<complexContent>
+		    <extension base='tns:HRSHotel'>
+			<sequence>
+			    <element minOccurs='0' name='phone' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='fax' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='email' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='constructionYear' nillable='true' type='xsd:int'/>
+			    <element minOccurs='0' name='renovationYear' nillable='true' type='xsd:int'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='rooms' nillable='true' type='tns:HRSHotelRoom'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='approaches' nillable='true' type='tns:HRSHotelApproach'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='equipmentGroups' nillable='true' type='tns:HRSHotelEquipmentGroup'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='amenities' nillable='true' type='tns:HRSHotelAmenityGroup'/>
+			    <element minOccurs='0' name='reception1From' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='reception1To' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='reception2From' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='reception2To' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='receptionWeekend1From' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='receptionWeekend1To' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='receptionWeekend2From' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='receptionWeekend2To' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='checkInEarliest' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='checkOutLatest' nillable='true' type='xsd:time'/>
+			    <element minOccurs='0' name='vacationCloseDown1From' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='vacationCloseDown1To' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='vacationCloseDown2From' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='vacationCloseDown2To' nillable='true' type='xsd:date'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='acceptedCreditCards' nillable='true' type='tns:HRSCreditCardOrganisationType'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelRoomPriceType'>
+		<restriction base='xsd:string'>
+		    <pattern value='perNight|perStay|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelOptionalRebateType'>
+		<restriction base='xsd:string'>
+		    <pattern value='senior|native|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelOptionalRebate'>
+		<sequence>
+		    <element minOccurs='0' name='optionalRebateType' nillable='true' type='tns:HRSHotelOptionalRebateType'/>
+		    <element minOccurs='0' name='minimumAge' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='rebatePercent' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelRate'>
+		<sequence>
+		    <element minOccurs='0' name='rateKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='rateLabel' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='package' nillable='true' type='tns:HRSHotelPackage'/>
+		    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='roomPriceType' nillable='true' type='tns:HRSHotelRoomPriceType'/>
+		    <element minOccurs='0' name='roomPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='roomPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='priceComment' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='breakfastType' nillable='true' type='tns:HRSHotelBreakfastType'/>
+		    <element minOccurs='0' name='breakfastPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='calculativeBreakfastPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='breakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='calculativeBreakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='prepaymentPercent' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='cancellationFeePercent' nillable='true' type='xsd:double'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='optionalRebates' nillable='true' type='tns:HRSHotelOptionalRebate'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='privateData' nillable='true' type='tns:HRSGenericData'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelTaxAndFeeType'>
+		<restriction base='xsd:string'>
+		    <pattern value='vat|serviceTax|cityTax|localTax|visitorTax|otherTax|lodgingTax|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelTaxScope'>
+		<restriction base='xsd:string'>
+		    <pattern value='meal|overnightStay|mealAndOvernightStay|other|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelTaxChargeUnit'>
+		<restriction base='xsd:string'>
+		    <pattern value='perPersonPerNight|perPersonPerStay|perRoomPerNight|perRoomPerStay|perBooking|other|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelTaxAndFeeDetail'>
+		<sequence>
+		    <element minOccurs='0' name='taxAndFeeType' nillable='true' type='tns:HRSHotelTaxAndFeeType'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='inclusive' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='scope' nillable='true' type='tns:HRSHotelTaxScope'/>
+		    <element minOccurs='0' name='percentageTotal' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='amountTotalHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='amountPerChargeUnitHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='amountTotalCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='amountPerChargeUnitCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='chargeUnit' nillable='true' type='tns:HRSHotelTaxChargeUnit'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelTaxesAndFees'>
+		<sequence>
+		    <element maxOccurs='unbounded' minOccurs='0' name='taxAndFeeDetails' nillable='true' type='tns:HRSHotelTaxAndFeeDetail'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='ServiceInformation'>
+		<sequence>
+		    <element minOccurs='0' name='isParkingIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isWLANIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isInternetIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isBottleOfWaterIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isTransferAirportIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isTransferOfficeIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isFitnessRoomIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isFurtherServicesIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isFurtherCustomServicesIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='isSharedServicesIncluded' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:ServiceInformationExtensionType'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='ServiceInformationExtensionType'>
+		<sequence>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelOfferDetail'>
+		<sequence>
+		    <element minOccurs='0' name='soapOfferId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='differentRoomType' nillable='true' type='tns:HRSHotelRoomType'/>
+		    <element minOccurs='0' name='crsType' nillable='true' type='tns:HRSHotelCRSType'/>
+		    <element minOccurs='0' name='customerContract' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='package' nillable='true' type='tns:HRSHotelPackage'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='roomDescriptions' nillable='true' type='tns:HRSHotelRoomDescription'/>
+		    <element minOccurs='0' name='averageRoomPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageRoomPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='breakfastType' nillable='true' type='tns:HRSHotelBreakfastType'/>
+		    <element minOccurs='0' name='averageBreakfastPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageCalculativeBreakfastPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageBreakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='averageCalculativeBreakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceInclusiveHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalPriceInclusiveCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalWasPriceInclusiveHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='totalWasPriceInclusiveCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='includedRebateType' nillable='true' type='tns:HRSHotelRebateType'/>
+		    <element minOccurs='0' name='includedRebatePercent' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='includedRebateFreeNights' nillable='true' type='xsd:int'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='optionalRebates' nillable='true' type='tns:HRSHotelOptionalRebate'/>
+		    <element minOccurs='0' name='averagePrepaymentPercent' nillable='true' type='xsd:double'/>
+		    <element minOccurs='0' name='averageCancellationFeePercent' nillable='true' type='xsd:double'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='rates' nillable='true' type='tns:HRSHotelRate'/>
+		    <element minOccurs='0' name='taxesAndFees' nillable='true' type='tns:HRSHotelTaxesAndFees'/>
+		    <element minOccurs='0' name='restrictedRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='seniorRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='prepayRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='depositRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='nonRefundableRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='cancelable' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='cancellationDeadline' nillable='true' type='xsd:dateTime'/>
+		    <element minOccurs='0' name='creditCardReservationOnly' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='guaranteedReservationOnly' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='negotiatedRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='corporateClubRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='hotDeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='exclusiveRate' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='hrsDeal' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='flexOffer' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='basicOffer' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='economyRoom' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='roomsLeft' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='checkInLatest' nillable='true' type='xsd:time'/>
+		    <element minOccurs='0' name='highSeason' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='minimumStay' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='serviceInformation' nillable='true' type='tns:ServiceInformation'/>
+		    <element minOccurs='0' name='creditCardSecurityCodeRequired' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelRoomOfferDetail'>
+		<sequence>
+		    <element minOccurs='0' name='room' nillable='true' type='tns:HRSHotelAvailRoomCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='offerDetails' nillable='true' type='tns:HRSHotelOfferDetail'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelReservationCapability'>
+		<restriction base='xsd:string'>
+		    <pattern value='oneRateKey|multipleRateKeys|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelDetailAvailHotelOffer'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelDetail' nillable='true' type='tns:HRSHotelDetail'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='roomOfferDetails' nillable='true' type='tns:HRSHotelRoomOfferDetail'/>
+		    <element minOccurs='0' name='reservationCapability' nillable='true' type='tns:HRSHotelReservationCapability'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelDetailAvailResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='exclusiveRatePercent' nillable='true' type='xsd:double'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='detailAvailHotelOffers' nillable='true' type='tns:HRSHotelDetailAvailHotelOffer'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelSearchRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='searchCriterion' type='tns:HRSHotelSearchCriterion'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='orderCriteria' nillable='true' type='tns:HRSHotelOrderCriterion'/>
+			    <element minOccurs='0' name='pictureCriterion' nillable='true' type='tns:HRSHotelPictureCriterion'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelSearchHotel'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotel' nillable='true' type='tns:HRSHotel'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelSearchResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='searchHotels' nillable='true' type='tns:HRSHotelSearchHotel'/>
+			    <element minOccurs='0' name='maxHotelLocationDistance' nillable='true' type='xsd:int'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='locations' nillable='true' type='tns:HRSLocation'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelDetailSearchRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='1' name='hotelKeys' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='orderCriteria' nillable='true' type='tns:HRSHotelOrderCriterion'/>
+			    <element minOccurs='0' name='pictureCriterion' nillable='true' type='tns:HRSHotelPictureCriterion'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelDetailSearchHotel'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelDetail' nillable='true' type='tns:HRSHotelDetail'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelDetailSearchResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='detailSearchHotels' nillable='true' type='tns:HRSHotelDetailSearchHotel'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelVideoType'>
+		<restriction base='xsd:string'>
+		    <pattern value='video|panorama|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelVideoEncoding'>
+		<restriction base='xsd:string'>
+		    <pattern value='flash|h264|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelVideosRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='hotelKey' type='xsd:string'/>
+			    <element minOccurs='0' name='videoType' nillable='true' type='tns:HRSHotelVideoType'/>
+			    <element minOccurs='0' name='encoding' nillable='true' type='tns:HRSHotelVideoEncoding'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelVideoChapterType'>
+		<restriction base='xsd:string'>
+		    <pattern value='rooms|roomsSingleStandard|roomsSingleSuperior|roomsDoubleStandard|roomsDoubleSuperior|roomsTriple|roomsFourBed|roomsBusiness|roomsJuniorSuite|roomsSuite|roomsFamily|roomsApartment|roomsBathroom|roomsWithBalcony|roomsWithTerrace|roomsWithGardenView|roomsWithSeaView|roomsWithHillsMountainsView|roomsWithLakeView|roomsWithPoolView|roomsWithRiverView|conferences|conferencesFoyer|conferencesRoom|conferencesEvents|meetingRoomSuperior|restaurant|restaurant1|restaurant2|restaurantAndBreakfastRoom|breakfastBuffet|breakfastRoom|cafeBistro|sportsFacilities|sportsFacilitiesBowlingAlley|sportsFacilitiesFitnessRoom|sportsFacilitiesGolfCourse|sportsFacilitiesRidingArena|sportsFacilitiesSkittleAlley|sportsFacilitiesSwimmingPool|sportsFacilitiesTennisCourt|massageRoomSuperior|wellness|wellnessBeautyParlour|wellnessBrineBath|wellnessCosmetics|wellnessHamam|wellnessRasul|wellnessRestArea|wellnessSanarium|wellnessSauna|wellnessSteamBath|wellnessWhirlpool|hotelInterior|hotelInteriorHotelBar|hotelInteriorInteriorView|hotelInteriorKitchen|hotelInteriorLobby|hotelInteriorReadingRoom|hotelInteriorReception|hotelInteriorShop|hotelInteriorTvRoom|hotelExterior|hotelExteriorView|hotelExteriorGarden|hotelExteriorSurroundings|hotelExteriorTerrace|hotelExteriorOutlook|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelVideoChapter'>
+		<sequence>
+		    <element minOccurs='0' name='chapterType' nillable='true' type='tns:HRSHotelVideoChapterType'/>
+		    <element minOccurs='0' name='startTimeMillis' nillable='true' type='xsd:long'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelVideo'>
+		<sequence>
+		    <element minOccurs='0' name='videoType' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='encoding' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='aspectRatio' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='durationMillis' nillable='true' type='xsd:long'/>
+		    <element minOccurs='0' name='lowDefinitionURL' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='highDefinitionURL' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='videoChapters' nillable='true' type='tns:HRSHotelVideoChapter'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelVideosResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='videos' nillable='true' type='tns:HRSHotelVideo'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelPicturesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element maxOccurs='unbounded' name='hotelKeys' type='xsd:string'/>
+			    <element name='pictureConfiguration' type='tns:HRSHotelPictureConfiguration'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelPicture'>
+		<sequence>
+		    <element minOccurs='0' name='pictureId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='location' nillable='true' type='tns:HRSHotelMediaLocation'/>
+		    <element minOccurs='0' name='width' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='height' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='url' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelPictures'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='pictures' nillable='true' type='tns:HRSHotelPicture'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelPicturesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='hotelPictures' nillable='true' type='tns:HRSHotelPictures'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelRatingVote'>
+		<sequence>
+		    <element minOccurs='0' name='ratingType' nillable='true' type='tns:HRSHotelRatingType'/>
+		    <element minOccurs='0' name='ratingValue' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelRatingPersonAgeType'>
+		<restriction base='xsd:string'>
+		    <pattern value='upTo29|upTo39|upTo49|upTo59|over60|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelRatingTextType'>
+		<restriction base='xsd:string'>
+		    <pattern value='positiveHotel|negativeHotel|positiveHRS|negativeHRS|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelRatingText'>
+		<sequence>
+		    <element name='ratingTextType' type='tns:HRSHotelRatingTextType'/>
+		    <element minOccurs='0' name='text' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelUserRatingText'>
+		<complexContent>
+		    <extension base='tns:HRSHotelRatingText'>
+			<sequence>
+			    <element minOccurs='0' name='hotelierCommentary' nillable='true' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelUserRating'>
+		<sequence>
+		    <element minOccurs='0' name='publicUserName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='ratingTextLanguage' nillable='true' type='tns:HRSLanguage'/>
+		    <element minOccurs='0' name='ratingPersonType' nillable='true' type='tns:HRSHotelRatingPersonType'/>
+		    <element minOccurs='0' name='ratingPersonAgeType' nillable='true' type='tns:HRSHotelRatingPersonAgeType'/>
+		    <element minOccurs='0' name='arrivalDate' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='departureDate' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='ratingDate' nillable='true' type='xsd:date'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='ratingVotes' nillable='true' type='tns:HRSHotelRatingVote'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='userRatingTexts' nillable='true' type='tns:HRSHotelUserRatingText'/>
+		    <element minOccurs='0' name='externalRating' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelRatingOrderCriterionOrderKey'>
+		<restriction base='xsd:string'>
+		    <pattern value='creationDate|arrivalDate|averageRating|language|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelRatingOrderCriterion'>
+		<sequence>
+		    <element name='orderKey' type='tns:HRSHotelRatingOrderCriterionOrderKey'/>
+		    <element minOccurs='0' name='orderDirection' nillable='true' type='tns:HRSHotelOrderCriterionOrderDirection'/>
+		    <element minOccurs='0' name='language' nillable='true' type='tns:HRSLanguage'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelRatingsRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element minOccurs='1' name='hotelKey' type='xsd:string'/>
+			    <element minOccurs='0' name='ratingPersonType' nillable='true' type='tns:HRSHotelRatingPersonType'/>
+			    <element minOccurs='0' name='ratingOrderCriterion' nillable='true' type='tns:HRSHotelRatingOrderCriterion'/>
+			    <element minOccurs='0' name='maxResults' nillable='true' type='xsd:int'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelRatingsResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='userRatings' nillable='true' type='tns:HRSHotelUserRating'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelPaymentMode'>
+		<restriction base='xsd:string'>
+		    <pattern value='direct|onCompanyAccount|onCreditCard|onExternalCompanyAccount|onVirtualCreditCard|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelReservationMode'>
+		<restriction base='xsd:string'>
+		    <pattern value='standard|guaranteed|guaranteedByCompany|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSStoredCreditCardType'>
+		<restriction base='xsd:string'>
+		    <pattern value='myHRSCreditCard|ciCreditCard|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSCreditCard'>
+		<sequence>
+		    <element minOccurs='0' name='cardHolder' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='100'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='number' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='16'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='organisation' nillable='true' type='tns:HRSCreditCardOrganisationType'/>
+		    <element minOccurs='0' name='valid' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='5'/>
+				<pattern value='(0?[1-9]/[0-9]?[0-9])|(1[0-2]/[0-9]?[0-9])'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='securityCode' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='4'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='storedCreditCardType' nillable='true' type='tns:HRSStoredCreditCardType'/>
+		    <element minOccurs='0' name='storedCreditCardKey' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSSalutationType'>
+		<restriction base='xsd:string'>
+		    <pattern value='mr|mrs|miss|none|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSHotelBedType'>
+		<restriction base='xsd:string'>
+		    <pattern value='regularBed|extraBed|parentsBed|childExtraBed|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelReservationPerson'>
+		<sequence>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element name='firstName' type='xsd:string'/>
+		    <element minOccurs='0' name='middleName' nillable='true' type='xsd:string'/>
+		    <element name='lastName' type='xsd:string'/>
+		    <element minOccurs='0' name='dateOfBirth' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='salutationType' nillable='true' type='tns:HRSSalutationType'/>
+		    <element name='bedType' type='tns:HRSHotelBedType'/>
+		    <element minOccurs='0' name='email' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelReservationRoomOfferDetailCriterion'>
+		<sequence>
+		    <element minOccurs='1' name='room' type='tns:HRSHotelAvailRoomCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='1' name='reservationPersons' type='tns:HRSHotelReservationPerson'/>
+		    <element minOccurs='1' name='offerDetail' type='tns:HRSHotelOfferDetail'/>
+		    <element minOccurs='0' name='optionalRebateType' nillable='true' type='tns:HRSHotelOptionalRebateType'/>
+		    <element minOccurs='0' name='checkInTime' nillable='true' type='xsd:time'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelReservationCriterion'>
+		<sequence>
+		    <element name='from' type='xsd:date'/>
+		    <element name='to' type='xsd:date'/>
+		    <element maxOccurs='unbounded' minOccurs='1' name='reservationRoomOfferDetailCriteria' type='tns:HRSHotelReservationRoomOfferDetailCriterion'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelPerson'>
+		<sequence>
+		    <element minOccurs='0' name='company' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='department' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element name='firstName' type='xsd:string'/>
+		    <element minOccurs='0' name='middleName' nillable='true' type='xsd:string'/>
+		    <element name='lastName' type='xsd:string'/>
+		    <element minOccurs='0' name='dateOfBirth' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='street' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='postalCode' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='city' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='phone' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='fax' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='email' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSBillingAddress'>
+		<sequence>
+		    <element minOccurs='0' name='company' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='department' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='firstName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='lastName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='street' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='postalCode' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='city' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSHotelCustomerNotificationType'>
+		<restriction base='xsd:string'>
+		    <pattern value='email|fax|sms|mms|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelCustomerNotification'>
+		<sequence>
+		    <element name='type' type='tns:HRSHotelCustomerNotificationType'/>
+		    <element name='address' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIReservationInputField'>
+		<sequence>
+		    <element minOccurs='0' name='inputFieldDescriptionKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='value' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='selectListValueKey' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSPaymentConfigurationType'>
+		<restriction base='xsd:string'>
+		    <pattern value='airPlusCompanyAccount|airPlusVirtualCreditCard|amExVirtualCreditCard|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSUatpCard'>
+		<sequence>
+		    <element name='number'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<minLength value='12'/>
+				<maxLength value='20'/>
+				<pattern value='\d*'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element name='validUntil'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='5'/>
+				<pattern value='(0?[1-9]/[0-9]?[0-9])|(1[0-2]/[0-9]?[0-9])'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='holder' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='100'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSPaidHotelServiceCategory'>
+		<restriction base='xsd:string'>
+		    <pattern value='ADM|BRE|BUS|DEP|ENT|FAB|INT|KOM|LOG|LTA|NOS|PAR|ROR|SON|STR|TAG|TKO|TLM|TPO|TPU|TRA|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSExternalPaymentConfiguration'>
+		<sequence>
+		    <element name='paymentConfigurationType' type='tns:HRSPaymentConfigurationType'/>
+		    <element minOccurs='0' name='cardPoolName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='externalId' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='64'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='name' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='64'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='uatpCard' nillable='true' type='tns:HRSUatpCard'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='paidHotelServices' nillable='true' type='tns:HRSPaidHotelServiceCategory'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelReservationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='hotelKey' type='xsd:string'/>
+			    <element name='paymentMode' type='tns:HRSHotelPaymentMode'/>
+			    <element name='reservationMode' type='tns:HRSHotelReservationMode'/>
+			    <choice minOccurs='0'>
+				<element minOccurs='0' name='externalPaymentConfiguration' nillable='true' type='tns:HRSExternalPaymentConfiguration'/>
+				<element minOccurs='0' name='paymentConfigurationId' nillable='true' type='tns:HRSIdType'/>
+			    </choice>
+			    <element minOccurs='0' name='ciMainCustomerKey' nillable='true' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='ciReservationInputFields' nillable='true' type='tns:HRSCIReservationInputField'/>
+			    <element minOccurs='0' name='creditCard' nillable='true' type='tns:HRSCreditCard'/>
+			    <element name='reservationCriterion' type='tns:HRSHotelReservationCriterion'/>
+			    <element minOccurs='0' name='reservationWish' nillable='true' type='xsd:string'/>
+			    <element name='orderer' type='tns:HRSHotelPerson'/>
+			    <element minOccurs='0' name='billingAddress' nillable='true' type='tns:HRSBillingAddress'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='customerNotifications' nillable='true' type='tns:HRSHotelCustomerNotification'/>
+			    <element minOccurs='0' name='ratingEmail' nillable='true' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='bonusCard' nillable='true' type='tns:HRSBonusCard'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationRoomOfferDetail'>
+		<sequence>
+		    <element minOccurs='0' name='reservationKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='crsReservationKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='predecessorReservationKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='cancellationKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='room' nillable='true' type='tns:HRSHotelAvailRoomCriterion'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='reservationPersons' nillable='true' type='tns:HRSHotelReservationPerson'/>
+		    <element minOccurs='0' name='offerDetail' nillable='true' type='tns:HRSHotelOfferDetail'/>
+		    <element minOccurs='0' name='reservationRoomResultMessage' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='reservationRoomResultCode' nillable='true' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSIdType'>
+		<restriction base='xsd:string'>
+		    <maxLength value='36'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelPaymentConfiguration'>
+		<sequence>
+		    <element name='paymentMode' type='tns:HRSHotelPaymentMode'/>
+		    <element name='paymentConfigurationType' type='tns:HRSPaymentConfigurationType'/>
+		    <element name='paymentConfigurationId' type='tns:HRSIdType'/>
+		    <element name='name' type='xsd:string'/>
+		    <element minOccurs='0' name='paymentInfoText' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='paidHotelServices' nillable='true' type='tns:HRSPaidHotelServiceCategory'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelReservationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='reservationProcessKey' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='reservationProcessPassword' nillable='true' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='reservationRoomOfferDetails' nillable='true' type='tns:HRSHotelReservationRoomOfferDetail'/>
+			    <element minOccurs='0' name='externalPaymentConfiguration' nillable='true' type='tns:HRSExternalPaymentConfiguration'/>
+			    <element minOccurs='0' name='paymentConfiguration' nillable='true' type='tns:HRSHotelPaymentConfiguration'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationModificationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSHotelReservationRequest'>
+			<sequence>
+			    <element name='reservationProcessKey' type='xsd:string'/>
+			    <element name='reservationProcessPassword' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationModificationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSHotelReservationResponse'>
+			<sequence></sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationCancellationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='reservationProcessKey' type='xsd:string'/>
+			    <element name='reservationProcessPassword' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='customerNotifications' nillable='true' type='tns:HRSHotelCustomerNotification'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationCancellationStatus'>
+		<sequence>
+		    <element minOccurs='0' name='reservationKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='cancellationKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='cancellationDescription' nillable='true' type='xsd:string'/>
+		    <element name='cancellationResultCode' type='xsd:int'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelReservationCancellationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='cancellationStatus' nillable='true' type='tns:HRSHotelReservationCancellationStatus'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationInformationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='reservationProcessKey' type='xsd:string'/>
+			    <element name='reservationProcessPassword' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelReservationStatus'>
+		<restriction base='xsd:string'>
+		    <pattern value='reserved|reservedChanged|canceled|variant|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelReservationInformationRoomDetail'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='customerKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='paymentMode' nillable='true' type='tns:HRSHotelPaymentMode'/>
+		    <element minOccurs='0' name='reservationMode' nillable='true' type='tns:HRSHotelReservationMode'/>
+		    <element minOccurs='0' name='creditCard' nillable='true' type='tns:HRSCreditCard'/>
+		    <element minOccurs='0' name='reservationStatus' nillable='true' type='tns:HRSHotelReservationStatus'/>
+		    <element minOccurs='0' name='reservation' nillable='true' type='xsd:dateTime'/>
+		    <element minOccurs='0' name='cancellation' nillable='true' type='xsd:dateTime'/>
+		    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='reservationWish' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='hotelDetail' nillable='true' type='tns:HRSHotelDetail'/>
+		    <element minOccurs='0' name='reservationRoomOfferDetail' nillable='true' type='tns:HRSHotelReservationRoomOfferDetail'/>
+		    <element minOccurs='0' name='orderer' nillable='true' type='tns:HRSHotelPerson'/>
+		    <element minOccurs='0' name='billingAddress' nillable='true' type='tns:HRSBillingAddress'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='customerNotifications' nillable='true' type='tns:HRSHotelCustomerNotification'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='ciReservationInputFields' nillable='true' type='tns:HRSCIReservationInputField'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelReservationInformationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='reservationProcessKey' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='reservationProcessPassword' nillable='true' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='reservationInformationRoomDetails' nillable='true' type='tns:HRSHotelReservationInformationRoomDetail'/>
+			    <element minOccurs='0' name='externalPaymentConfiguration' nillable='true' type='tns:HRSExternalPaymentConfiguration'/>
+			    <element minOccurs='0' name='paymentConfiguration' nillable='true' type='tns:HRSHotelPaymentConfiguration'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationConfirmationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='reservationProcessKey' type='xsd:string'/>
+			    <element name='reservationProcessPassword' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='customerNotifications' nillable='true' type='tns:HRSHotelCustomerNotification'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelReservationConfirmationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserAvailRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='1' name='hotelKeys' type='xsd:string'/>
+			    <element name='from' type='xsd:date'/>
+			    <element name='to' type='xsd:date'/>
+			    <element name='singleRoom' type='xsd:boolean'/>
+			    <element name='doubleRoom' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserAvailOffer'>
+		<sequence>
+		    <element minOccurs='0' name='roomType' nillable='true' type='tns:HRSHotelRoomType'/>
+		    <element minOccurs='0' name='averageRoomPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='breakfastType' nillable='true' type='tns:HRSHotelBreakfastType'/>
+		    <element minOccurs='0' name='averageBreakfastPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserAvailHotelOffer'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='teaserAvailOffers' nillable='true' type='tns:HRSHotelTeaserAvailOffer'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserAvailResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='teaserAvailHotelOffers' nillable='true' type='tns:HRSHotelTeaserAvailHotelOffer'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserPricesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='1' name='hotelKeys' type='xsd:string'/>
+			    <element name='from' type='xsd:date'/>
+			    <element name='to' type='xsd:date'/>
+			    <element name='singleRoom' type='xsd:boolean'/>
+			    <element name='doubleRoom' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserPricesOffer'>
+		<sequence>
+		    <element minOccurs='0' name='roomType' nillable='true' type='tns:HRSHotelRoomType'/>
+		    <element minOccurs='0' name='firstReservableDate' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='minPrice' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='breakfastType' nillable='true' type='tns:HRSHotelBreakfastType'/>
+		    <element minOccurs='0' name='breakfastPrice' nillable='true' type='tns:HRSPrice'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserPricesHotelOffer'>
+		<sequence>
+		    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='teaserPricesOffers' nillable='true' type='tns:HRSHotelTeaserPricesOffer'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelTeaserPricesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+			    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='teaserPricesHotelOffers' nillable='true' type='tns:HRSHotelTeaserPricesHotelOffer'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSHotelDealsRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='hotelKey' type='xsd:string'/>
+			    <element name='from' type='xsd:date'/>
+			    <element name='to' type='xsd:date'/>
+			    <element name='singleRoom' type='xsd:boolean'/>
+			    <element name='doubleRoom' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSHotelDealRoomAvailabilityType'>
+		<restriction base='xsd:string'>
+		    <pattern value='notAvailable|standard|hotDeal|hrsDeal|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSHotelDealRoom'>
+		<sequence>
+		    <element minOccurs='0' name='roomAvailabilityType' nillable='true' type='tns:HRSHotelDealRoomAvailabilityType'/>
+		    <element minOccurs='0' name='roomPriceHotel' nillable='true' type='tns:HRSPrice'/>
+		    <element minOccurs='0' name='roomPriceCustomer' nillable='true' type='tns:HRSPrice'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelDeal'>
+		<sequence>
+		    <element minOccurs='0' name='hotelDealDate' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='singleRoomDeal' nillable='true' type='tns:HRSHotelDealRoom'/>
+		    <element minOccurs='0' name='doubleRoomDeal' nillable='true' type='tns:HRSHotelDealRoom'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSHotelDealsResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='hotelDeals' nillable='true' type='tns:HRSHotelDeal'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='hotDeals' nillable='true' type='tns:HRSHotelDeal'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element minOccurs='0' name='myHRSUserAccountSearchBy' nillable='true' type='tns:HRSMyHRSUserAccountSearchBy'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountSearchBy'>
+		<sequence>
+		    <element minOccurs='0' name='user' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='email' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserPerson'>
+		<sequence>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element name='firstName' type='xsd:string'/>
+		    <element minOccurs='0' name='middleName' nillable='true' type='xsd:string'/>
+		    <element name='lastName' type='xsd:string'/>
+		    <element minOccurs='0' name='dateOfBirth' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='street' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='postalCode' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='city' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='phone' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='phoneLocation' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='phoneCountry' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='mobile' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='mobileLocation' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='mobileCountry' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='fax' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='faxLocation' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='faxCountry' nillable='true' type='xsd:string'/>
+		    <element name='email' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSMyHRSNewsletter'>
+		<restriction base='xsd:string'>
+		    <pattern value='none|text|html|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSMyHRSUserAccount'>
+		<sequence>
+		    <element name='userId' type='xsd:int'/>
+		    <element name='user' type='xsd:string'/>
+		    <element name='password' type='xsd:string'/>
+		    <element minOccurs='0' name='customerKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='myHRSUserPerson' nillable='true' type='tns:HRSMyHRSUserPerson'/>
+		    <element minOccurs='0' name='myHRSNewsletter' nillable='true' type='tns:HRSMyHRSNewsletter'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='clientShortName' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='bonusCard' nillable='true' type='tns:HRSBonusCard'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIUserAccount'>
+		<sequence>
+		    <element name='userId' type='xsd:int'/>
+		    <element name='user' type='xsd:string'/>
+		    <element name='password' type='xsd:string'/>
+		    <element name='customerKey' type='xsd:string'/>
+		    <element minOccurs='0' name='ciUserPerson' nillable='true' type='tns:HRSMyHRSUserPerson'/>
+		    <element minOccurs='0' name='ciNewsletter' nillable='true' type='tns:HRSMyHRSNewsletter'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserCompany'>
+		<sequence>
+		    <element name='name' type='xsd:string'/>
+		    <element minOccurs='0' name='street' type='xsd:string'/>
+		    <element minOccurs='0' name='zipCode' type='xsd:string'/>
+		    <element minOccurs='0' name='vat' type='xsd:string'/>
+		    <element minOccurs='0' name='city' type='xsd:string'/>
+		    <element minOccurs='0' name='webpage' type='xsd:string'/>
+		    <element minOccurs='0' name='areaCode' type='xsd:string'/>
+		    <element minOccurs='0' name='phone' type='xsd:string'/>
+		    <element minOccurs='0' name='fax' type='xsd:string'/>
+		    <element minOccurs='0' name='email' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserCompanyWithSMEData'>
+		<complexContent>
+		    <extension base='tns:HRSMyHRSUserCompany'>
+			<sequence>
+			    <element name='companyId' type='xsd:string'/>
+			    <element name='department' type='xsd:string'/>
+			    <element name='iso3Country' type='xsd:string'/>
+			    <element name='language' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSBusinessAccount'>
+		<complexContent>
+		    <extension base='tns:HRSMyHRSUserAccount'>
+			<sequence>
+			    <element minOccurs='0' name='freelancer' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='company' nillable='true' type='tns:HRSMyHRSUserCompany'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSBusinessAccountWithSMEData'>
+		<complexContent>
+		    <extension base='tns:HRSMyHRSUserAccount'>
+			<sequence>
+			    <element minOccurs='0' name='freelancer' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='company' nillable='true' type='tns:HRSMyHRSUserCompanyWithSMEData'/>
+			    <element name='smeAccountStatus' type='tns:SMEStatus'/>
+			    <element name='smeAccountValidityPeriod' type='xsd:unsignedInt'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='accounts' nillable='true' type='tns:HRSMyHRSUserAccount'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountSaveRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSUserAccount' type='tns:HRSMyHRSUserAccount'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIUserAccountSaveRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='ciUserAccount' type='tns:HRSCIUserAccount'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountSaveResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIUserAccountSaveResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountDeleteRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSUserAccountEmailAddress' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountDeleteResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountPasswordResetRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSUserAccountEmailAddress' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountPasswordResetResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSBusinessAccountCreationRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSBusinessAccount' type='tns:HRSMyHRSBusinessAccount'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='SMEStatus'>
+		<restriction base='xsd:string'>
+		    <pattern value='REQUESTED_BY_FORM|REQUEST_AUTOMATICALLY_SUBMITTED|VALIDATION_IN_PROGRESS|SME_AGREED_WAITING_FOR_CONFIRMATION|SME_AGREED_CONFIRMATION_TIMEOUT|SME_COMPLETED|REQUEST_CANCELED|NO_SME_REQUEST_REJECTED|NO_SME_CI_CLIENT|VALIDATION_IN_PROGR_CI_POTENTIAL_CHK|SME_TEMPORARILY_REGISTERED|SME_DATA_COMMITED|SME_INTERESTED_WITHOUT_VATNUMBER|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSMyHRSBusinessAccountCreationResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element name='smeAccountStatus' type='tns:SMEStatus'/>
+			    <element name='smeAccountValidityPeriod' type='xsd:unsignedInt'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountUpgradeRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element minOccurs='0' name='freelancer' nillable='true' type='xsd:boolean'/>
+			    <element name='company' type='tns:HRSMyHRSUserCompany'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSUserAccountUpgradeResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element name='smeAccountStatus' type='tns:SMEStatus'/>
+			    <element name='smeAccountValidityPeriod' type='xsd:unsignedInt'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationProfilesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationPerson'>
+		<sequence>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='firstName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='middleName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='lastName' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelOrdererPerson'>
+		<sequence>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='firstName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='middleName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='lastName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='phone' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='phoneCountry' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='email' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationBillingAddress'>
+		<sequence>
+		    <element minOccurs='0' name='company' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='title' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='firstName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='middleName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='lastName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='street' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='postalCode' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='city' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='MyHRSCreditCard'>
+		<sequence>
+		    <element minOccurs='0' name='creditCardKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='cardHolder' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='100'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='number' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='16'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		    <element minOccurs='0' name='organisation' nillable='true' type='tns:HRSCreditCardOrganisationType'/>
+		    <element minOccurs='0' name='valid' nillable='true'>
+			<simpleType>
+			    <restriction base='xsd:string'>
+				<maxLength value='5'/>
+				<pattern value='(0?[1-9]/[0-9]?[0-9])|(1[0-2]/[0-9]?[0-9])'/>
+			    </restriction>
+			</simpleType>
+		    </element>
+		</sequence>
+	    </complexType>
+	    <complexType name='MyHRSExtendedCreditCard'>
+		<complexContent>
+		    <extension base='tns:MyHRSCreditCard'>
+			<sequence>
+			    <element name='token' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationProfile'>
+		<sequence>
+		    <element minOccurs='0' name='profileName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='standardProfile' nillable='true' type='xsd:boolean'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='myHRSHotelReservationPersons' nillable='true' type='tns:HRSMyHRSHotelReservationPerson'/>
+		    <element minOccurs='0' name='myHRSHotelOrdererPerson' nillable='true' type='tns:HRSMyHRSHotelOrdererPerson'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='myHRSCreditCards' nillable='true' type='tns:MyHRSCreditCard'/>
+		    <element minOccurs='0' name='myHRSHotelReservationBillingAddress' nillable='true' type='tns:HRSMyHRSHotelReservationBillingAddress'/>
+		    <element minOccurs='0' name='reservationWish' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='predefinedReservationWishes' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='confirmationInDestinationLanguage' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='confirmationFax' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='confirmationEmail' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='confirmationSMS' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='ciReservationInputFields' nillable='true' type='tns:HRSCIReservationInputField'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationExtendedProfile'>
+		<sequence>
+		    <element minOccurs='0' name='profileName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='standardProfile' nillable='true' type='xsd:boolean'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='myHRSHotelReservationPersons' nillable='true' type='tns:HRSMyHRSHotelReservationPerson'/>
+		    <element minOccurs='0' name='myHRSHotelOrdererPerson' nillable='true' type='tns:HRSMyHRSHotelOrdererPerson'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='myHRSCreditCards' nillable='true' type='tns:MyHRSExtendedCreditCard'/>
+		    <element minOccurs='0' name='myHRSHotelReservationBillingAddress' nillable='true' type='tns:HRSMyHRSHotelReservationBillingAddress'/>
+		    <element minOccurs='0' name='reservationWish' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='confirmationInDestinationLanguage' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='confirmationFax' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='confirmationEmail' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='confirmationSMS' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationProfilesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='privateMyHRSHotelReservationProfiles' nillable='true' type='tns:HRSMyHRSHotelReservationProfile'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='companyMyHRSHotelReservationProfiles' nillable='true' type='tns:HRSMyHRSHotelReservationProfile'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationExtendedProfilesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='privateMyHRSHotelReservationProfiles' nillable='true' type='tns:HRSMyHRSHotelReservationExtendedProfile'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='companyMyHRSHotelReservationProfiles' nillable='true' type='tns:HRSMyHRSHotelReservationExtendedProfile'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSMyHRSHotelReservationProfileType'>
+		<restriction base='xsd:string'>
+		    <pattern value='private|company|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSMyHRSHotelReservationProfileSaveRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSHotelReservationProfileType' type='tns:HRSMyHRSHotelReservationProfileType'/>
+			    <element name='myHRSHotelReservationProfile' type='tns:HRSMyHRSHotelReservationProfile'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationProfileSaveResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationProfileDeleteRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSHotelReservationProfileType' type='tns:HRSMyHRSHotelReservationProfileType'/>
+			    <element name='profileName' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationProfileDeleteResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationHistoryRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationHistory'>
+		<sequence>
+		    <element minOccurs='0' name='reservationProcessKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='reservationProcessPassword' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelKeys' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='reservationStatus' nillable='true' type='tns:HRSHotelReservationStatus'/>
+		    <element minOccurs='0' name='from' nillable='true' type='xsd:date'/>
+		    <element minOccurs='0' name='to' nillable='true' type='xsd:date'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelReservationHistoryResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='privateMyHRSHotelReservationHistory' nillable='true' type='tns:HRSMyHRSHotelReservationHistory'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='companyMyHRSHotelReservationHistory' nillable='true' type='tns:HRSMyHRSHotelReservationHistory'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelFavoritesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelFavorite'>
+		<sequence>
+		    <element maxOccurs='unbounded' minOccurs='0' name='hotelKey' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelFavoritesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='1' minOccurs='0' name='myHRSHotelFavorites' nillable='true' type='tns:HRSMyHRSHotelFavorite'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSMyHRSHotelFavoriteType'>
+		<restriction base='xsd:string'>
+		    <pattern value='private|company|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSMyHRSHotelFavoriteSaveRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='myHRSHotelFavoriteType' type='tns:HRSMyHRSHotelFavoriteType'/>
+			    <element name='hotelKey' type='xsd:string'/>
+			    <element name='favorite' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelFavoriteSaveResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelRatingSaveRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='hotelKey' type='xsd:string'/>
+			    <element name='reservationKey' type='xsd:string'/>
+			    <element minOccurs='0' name='publicUserName' nillable='true' type='xsd:string'/>
+			    <element name='ratingPersonType' type='tns:HRSHotelRatingPersonType'/>
+			    <element minOccurs='0' name='ratingPersonAgeType' nillable='true' type='tns:HRSHotelRatingPersonAgeType'/>
+			    <element maxOccurs='unbounded' minOccurs='1' name='ratingVotes' type='tns:HRSHotelRatingVote'/>
+			    <element maxOccurs='unbounded' minOccurs='0' name='ratingTexts' nillable='true' type='tns:HRSHotelRatingText'/>
+			    <element minOccurs='0' name='externalRating' nillable='true' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSMyHRSHotelRatingSaveResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'></extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIValidateCustomerKeyRequest'>
+		<complexContent>
+		    <extension base='tns:HRSRequest'>
+			<sequence>
+			    <element name='customerKey' type='xsd:string'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='CILastProfileUpdateRequestExtensionType'>
+		<sequence>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIValidateCustomerKeyResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='customerKeyValid' nillable='true' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCILastProfileUpdateRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:CILastProfileUpdateRequestExtensionType'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCILastProfileUpdateResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='lastProfileUpdate' nillable='true' type='xsd:date'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='CIPropertiesRequestExtensionType'>
+		<sequence>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIPropertiesRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:CIPropertiesRequestExtensionType'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIPropertiesResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='reservationOnCompanyAccountPossible' nillable='true' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='CILayoutRequestExtensionType'>
+		<sequence>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCILayoutRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:CILayoutRequestExtensionType'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSCIMediaType'>
+		<restriction base='xsd:string'>
+		    <pattern value='image|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSCIMedia'>
+		<sequence>
+		    <element minOccurs='0' name='type' nillable='true' type='tns:HRSCIMediaType'/>
+		    <element minOccurs='0' name='mediaWidth' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='mediaHeight' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='mediaURL' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCILayoutResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='headerFooterColor' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='logoSmall' nillable='true' type='tns:HRSCIMedia'/>
+			    <element minOccurs='0' name='logoLarge' nillable='true' type='tns:HRSCIMedia'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='CICompanyLocationsRequestExtensionType'>
+		<sequence>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICompanyLocationsRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:CICompanyLocationsRequestExtensionType'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSCICompanyLocationNodeType'>
+		<restriction base='xsd:string'>
+		    <pattern value='root|continent|country|city|location|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSCICompanyLocationNode'>
+		<sequence>
+		    <element minOccurs='0' name='companyLocationNodeType' nillable='true' type='tns:HRSCICompanyLocationNodeType'/>
+		    <element minOccurs='0' name='companyLocationNodeName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='companyLocationStreet' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='companyLocationZIP' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationLanguage' nillable='true' type='tns:HRSLanguage'/>
+		    <element minOccurs='0' name='iso3Country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='locationId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='poiId' nillable='true' type='xsd:int'/>
+		    <element minOccurs='0' name='geoPosition' nillable='true' type='tns:HRSGeoPosition'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='childCompanyLocationNodes' nillable='true' type='tns:HRSCICompanyLocationNode'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICompanyLocationsResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='rootCompanyLocationNode' nillable='true' type='tns:HRSCICompanyLocationNode'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='CICompanyCostCentersRequestExtensionType'>
+		<sequence>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICompanyCostCentersRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:CICompanyLocationsRequestExtensionType'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <simpleType name='HRSCICompanyCostCenterNodeType'>
+		<restriction base='xsd:string'>
+		    <pattern value='root|[1-9]|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSCICreditCard'>
+		<sequence>
+		    <element minOccurs='0' name='creditCardKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='description' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICompanyCostCenterNode'>
+		<sequence>
+		    <element minOccurs='0' name='companyCostCenterNodeType' nillable='true' type='tns:HRSCICompanyCostCenterNodeType'/>
+		    <element minOccurs='0' name='companyCostCenterNodeName' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='customerKey' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='creditCards' nillable='true' type='tns:HRSCICreditCard'/>
+		    <element maxOccurs='1' minOccurs='0' name='nodeId' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='1' minOccurs='0' name='parentNodeId' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='address' nillable='true' type='tns:HRSCICompanyCostCenterNodeAddress'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='childCompanyCostCenterNodes' nillable='true' type='tns:HRSCICompanyCostCenterNode'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICompanyCostCenterNodeAddress'>
+		<sequence>
+		    <element minOccurs='0' name='country' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='city' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='street' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='zipCode' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCICompanyCostCentersResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='rootCompanyCostCenterNode' nillable='true' type='tns:HRSCICompanyCostCenterNode'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIPriceLimitRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element minOccurs='0' name='location' nillable='true' type='tns:HRSLocation'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIPriceLimitResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element minOccurs='0' name='priceLimitCI' nillable='true' type='tns:HRSPrice'/>
+			    <element minOccurs='0' name='priceLimitCustomer' nillable='true' type='tns:HRSPrice'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIReservationInputFieldDescriptionsRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'/>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIReservationInputFieldListValue'>
+		<sequence>
+		    <element minOccurs='0' name='value' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='valueKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='default' nillable='true' type='xsd:boolean'/>
+		</sequence>
+	    </complexType>
+	    <simpleType name='HRSCIReservationInputFieldType'>
+		<restriction base='xsd:string'>
+		    <pattern value='textField|singleSelectList|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <simpleType name='HRSCIReservationInputFieldValueType'>
+		<restriction base='xsd:string'>
+		    <pattern value='text|email|numeric|selection|date|paymentCardLuhnNumber|globalTradeItemNumber|airBerlinTopBonusNumber|enelPremiaNumber|(.)*'/>
+		</restriction>
+	    </simpleType>
+	    <complexType name='HRSCIReservationInputFieldDescription'>
+		<sequence>
+		    <element minOccurs='0' name='inputFieldDescriptionKey' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='fieldType' nillable='true' type='tns:HRSCIReservationInputFieldType'/>
+		    <element minOccurs='0' name='valueType' nillable='true' type='tns:HRSCIReservationInputFieldValueType'/>
+		    <element minOccurs='0' name='label' nillable='true' type='xsd:string'/>
+		    <element minOccurs='0' name='textFieldValue' nillable='true' type='xsd:string'/>
+		    <element maxOccurs='unbounded' minOccurs='0' name='listValues' nillable='true' type='tns:HRSCIReservationInputFieldListValue'/>
+		    <element minOccurs='0' name='mandatory' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='visible' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='showOnReservationConfirmation' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='showOnCustomerEmailReservationConfirmation' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='showOnHotelEmailReservationConfirmation' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='extensionPoint' nillable='true' type='tns:CIReservationInputFieldDescriptionExtensionType'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='CIReservationInputFieldDescriptionExtensionType'>
+		<sequence>
+		    <element name='attributeName' type='xsd:string'/>
+		    <element name='type' type='tns:HRSCIReservationInputFieldValueType'/>
+		    <element minOccurs='0' name='minLength' type='xsd:int'/>
+		    <element minOccurs='0' name='maxLength' type='xsd:int'/>
+		    <element minOccurs='0' name='formatPattern' type='xsd:string'/>
+		    <element name='defaultValue' type='xsd:string'/>
+		    <element name='showOnBookingPage' type='xsd:boolean'/>
+		    <any maxOccurs='unbounded' minOccurs='0' namespace='##targetNamespace' processContents='lax'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIReservationInputFieldDescriptionsResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' minOccurs='0' name='reservationInputFieldDescriptions' nillable='true' type='tns:HRSCIReservationInputFieldDescription'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCustomBookingAttributesUpdateRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element name='attributeKey' type='xsd:string'/>
+			    <element minOccurs='0' name='showOnHotelConfirmation' type='xsd:boolean'/>
+			    <element minOccurs='0' name='shownOnCustomerConfirmation' type='xsd:boolean'/>
+			    <element minOccurs='0' name='showOnBookingPage' type='xsd:boolean'/>
+			    <element minOccurs='0' name='defaultValue' type='xsd:string'/>
+			    <element minOccurs='0' name='label' type='xsd:string'/>
+			    <element minOccurs='0' name='maxLength' type='xsd:int'/>
+			    <element minOccurs='0' name='minLength' type='xsd:int'/>
+			    <element minOccurs='0' name='required' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCustomBookingAttributesUpdateResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'/>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIPaymentOptionsRequest'>
+		<complexContent>
+		    <extension base='tns:HRSCIRequest'>
+			<sequence>
+			    <element name='hotelId' type='xsd:string'/>
+			    <element name='arrivalDate' type='xsd:date'/>
+			    <element name='departureDate' type='xsd:date'/>
+			    <element minOccurs='0' name='restrictedRate' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='guaranteedReservationOnly' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='privateBooking' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='guaranteedReservationSelected' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='paymentChoice' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedPaymentConfigurationType' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedPaymentConfigurationId' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedCreditCardId' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedPaymentConfigurationIdForGuarantee' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedCostCenterId' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedCostCenterIdHasChanged' nillable='true' type='xsd:boolean'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIPaymentOptionsResponse'>
+		<complexContent>
+		    <extension base='tns:HRSResponse'>
+			<sequence>
+			    <element maxOccurs='unbounded' name='paymentOptions' type='tns:HRSCIPaymentOption'/>
+			    <element minOccurs='0' name='selectedPaymentChoice' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='selectedPaymentConfigurationId' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='showCreditCardSelection' nillable='true' type='xsd:boolean'/>
+			    <element minOccurs='0' name='showCreditCardFields' nillable='true' type='xsd:boolean'/>
+			    <element maxOccurs='unbounded' name='creditCards' type='tns:HRSCIPaymentOption'/>
+			    <element minOccurs='0' name='selectedPaymentConfigurationIdForCreditCard' nillable='true' type='xsd:string'/>
+			    <element minOccurs='0' name='billingAddressHandling' nillable='true' type='tns:HRSCIBillingAddressHandling'/>
+			</sequence>
+		    </extension>
+		</complexContent>
+	    </complexType>
+	    <complexType name='HRSCIBillingAddressHandling'>
+		<sequence>
+		    <element minOccurs='0' name='hide' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='readonly' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='fillWithCostCenterAddress' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='useCostCenterAddressInReservation' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='costCenterId' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSCIPaymentOption'>
+		<sequence>
+		    <element name='name' type='xsd:string'/>
+		    <element name='displayName' type='xsd:string'/>
+		    <element name='paymentChoice' type='xsd:string'/>
+		    <element name='paymentMode' type='tns:HRSHotelPaymentMode'/>
+		    <element name='paymentConfigurationType' type='xsd:string'/>
+		    <element name='paymentConfigurationId' type='xsd:string'/>
+		    <element minOccurs='0' name='usePaymentConfigurationIdInReservation' nillable='true' type='xsd:boolean'/>
+		    <element minOccurs='0' name='creditCardId' nillable='true' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <complexType name='HRSBonusCard'>
+		<sequence>
+		    <element name='cardNumber' type='xsd:string'/>
+		    <element name='cardType' type='xsd:string'/>
+		    <element name='firstName' type='xsd:string'/>
+		    <element name='lastName' type='xsd:string'/>
+		</sequence>
+	    </complexType>
+	    <element name='HRSException' type='tns:HRSException'/>
+	</schema>
+    </types>
+    <message name='HRSSoapService_ciPaymentOptionsRequest' xmlns='http://schemas.xmlsoap.org/wsdl/'>
+	<part name='ciPaymentOptionsRequest' type='tns:HRSCIPaymentOptionsRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelVideosResponse'>
+	<part name='hotelVideosResponse' type='tns:HRSHotelVideosResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelAvailRequest'>
+	<part name='hotelAvailRequest' type='tns:HRSHotelAvailRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelAvailPaginationRequest'>
+	<part name='hotelAvailPaginationRequest' type='tns:HRSHotelAvailPaginationRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciCompanyCostCentersResponse'>
+	<part name='ciCompanyCostCentersResponse' type='tns:HRSCICompanyCostCentersResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationProfileDeleteResponse'>
+	<part name='myHRSHotelReservationProfileDeleteResponse' type='tns:HRSMyHRSHotelReservationProfileDeleteResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationConfirmationRequest'>
+	<part name='hotelReservationConfirmationRequest' type='tns:HRSHotelReservationConfirmationRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelDetailSearchRequest'>
+	<part name='hotelDetailSearchRequest' type='tns:HRSHotelDetailSearchRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelDealsResponse'>
+	<part name='hotelDealsResponse' type='tns:HRSHotelDealsResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationConfirmationResponse'>
+	<part name='hotelReservationConfirmationResponse' type='tns:HRSHotelReservationConfirmationResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationProfilesResponse'>
+	<part name='myHRSHotelReservationProfilesResponse' type='tns:HRSMyHRSHotelReservationProfilesResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelSearchResponse'>
+	<part name='hotelSearchResponse' type='tns:HRSHotelSearchResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelRatingsResponse'>
+	<part name='hotelRatingsResponse' type='tns:HRSHotelRatingsResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountRequest'>
+	<part name='myHRSUserAccountRequest' type='tns:HRSMyHRSUserAccountRequest'></part>
+    </message>
+    <message name='HRSSoapService_versionRequest'>
+	<part name='versionRequest' type='tns:HRSVersionRequest'></part>
+    </message>
+    <message name='HRSSoapService_serviceStatusRequest'>
+	<part name='serviceStatusRequest' type='tns:HRSServiceStatusRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelTeaserAvailRequest'>
+	<part name='hotelTeaserAvailRequest' type='tns:HRSHotelTeaserAvailRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationExtendedProfilesResponse'>
+	<part name='myHRSHotelReservationExtendedProfilesResponse' type='tns:HRSMyHRSHotelReservationExtendedProfilesResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountPasswordResetRequest'>
+	<part name='myHRSUserAccountPasswordResetRequest' type='tns:HRSMyHRSUserAccountPasswordResetRequest'></part>
+    </message>
+    <message name='HRSException'>
+	<part element='tns:HRSException' name='HRSException'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountDeleteRequest'>
+	<part name='myHRSUserAccountDeleteRequest' type='tns:HRSMyHRSUserAccountDeleteRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelAvailPaginationResponse'>
+	<part name='hotelAvailPaginationResponse' type='tns:HRSHotelAvailPaginationResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelTeaserPricesResponse'>
+	<part name='hotelTeaserPricesResponse' type='tns:HRSHotelTeaserPricesResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationCancellationResponse'>
+	<part name='hotelReservationCancellationResponse' type='tns:HRSHotelReservationCancellationResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelRatingSaveResponse'>
+	<part name='myHRSHotelRatingSaveSaveResponse' type='tns:HRSMyHRSHotelRatingSaveResponse'></part>
+    </message>
+    <message name='HRSSoapService_pingResponse'>
+	<part name='pingResponse' type='tns:HRSPingResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationCancellationRequest'>
+	<part name='hotelReservationCancellationRequest' type='tns:HRSHotelReservationCancellationRequest'></part>
+    </message>
+    <message name='HRSSoapService_constantTypesRequest'>
+	<part name='constantTypesRequest' type='tns:HRSConstantTypesRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationProfileSaveRequest'>
+	<part name='myHRSHotelReservationProfileSaveRequest' type='tns:HRSMyHRSHotelReservationProfileSaveRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelFavoritesRequest'>
+	<part name='myHRSHotelFavoritesRequest' type='tns:HRSMyHRSHotelFavoritesRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciPriceLimitResponse'>
+	<part name='ciPriceLimitResponse' type='tns:HRSCIPriceLimitResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciValidateCustomerKeyResponse'>
+	<part name='ciValidateCustomerKeyResponse' type='tns:HRSCIValidateCustomerKeyResponse'></part>
+    </message>
+    <message name='HRSSoapService_locationSearchRequest'>
+	<part name='locationSearchRequest' type='tns:HRSLocationSearchRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelFavoriteSaveRequest'>
+	<part name='myHRSHotelFavoriteSaveRequest' type='tns:HRSMyHRSHotelFavoriteSaveRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciValidateCustomerKeyRequest'>
+	<part name='ciValidateCustomerKeyRequest' type='tns:HRSCIValidateCustomerKeyRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelAvailResponse'>
+	<part name='hotelAvailResponse' type='tns:HRSHotelAvailResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationProfilesRequest'>
+	<part name='myHRSHotelReservationProfilesRequest' type='tns:HRSMyHRSHotelReservationProfilesRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciLastProfileUpdateRequest'>
+	<part name='ciLastProfileUpdateRequest' type='tns:HRSCILastProfileUpdateRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountSaveRequest'>
+	<part name='myHRSUserAccountSaveRequest' type='tns:HRSMyHRSUserAccountSaveRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciUserAccountSaveResponse'>
+	<part name='ciUserAccountSaveResponse' type='tns:HRSCIUserAccountSaveResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationHistoryRequest'>
+	<part name='myHRSHotelReservationHistoryRequest' type='tns:HRSMyHRSHotelReservationHistoryRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountDeleteResponse'>
+	<part name='myHRSUserAccountDeleteResponse' type='tns:HRSMyHRSUserAccountDeleteResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelSearchRequest'>
+	<part name='hotelSearchRequest' type='tns:HRSHotelSearchRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelDetailAvailRequest'>
+	<part name='hotelDetailAvailRequest' type='tns:HRSHotelDetailAvailRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationModificationRequest'>
+	<part name='hotelReservationModificationRequest' type='tns:HRSHotelReservationModificationRequest'></part>
+    </message>
+    <message name='HRSSoapService_pingRequest'>
+	<part name='pingRequest' type='tns:HRSPingRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelPicturesResponse'>
+	<part name='hotelPicturesResponse' type='tns:HRSHotelPicturesResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciPropertiesResponse'>
+	<part name='ciPropertiesResponse' type='tns:HRSCIPropertiesResponse'></part>
+    </message>
+    <message name='HRSSoapService_serviceStatusResponse'>
+	<part name='serviceStatusResponse' type='tns:HRSServiceStatusResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciCompanyCostCentersRequest'>
+	<part name='ciCompanyCostCentersRequest' type='tns:HRSCICompanyCostCentersRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationResponse'>
+	<part name='hotelReservationResponse' type='tns:HRSHotelReservationResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationProfileSaveResponse'>
+	<part name='myHRSHotelReservationProfileSaveResponse' type='tns:HRSMyHRSHotelReservationProfileSaveResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciLayoutRequest'>
+	<part name='ciLayoutRequest' type='tns:HRSCILayoutRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelDetailSearchResponse'>
+	<part name='hotelDetailSearchResponse' type='tns:HRSHotelDetailSearchResponse'></part>
+    </message>
+    <message name='HRSSoapService_constantTypeValuesRequest'>
+	<part name='constantTypeValuesRequest' type='tns:HRSConstantTypeValuesRequest'></part>
+    </message>
+    <message name='HRSSoapService_constantTypeValuesResponse'>
+	<part name='constantTypeValuesResponse' type='tns:HRSConstantTypeValuesResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountPasswordResetResponse'>
+	<part name='myHRSUserAccountPasswordResetResponse' type='tns:HRSMyHRSUserAccountPasswordResetResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciPriceLimitRequest'>
+	<part name='ciPriceLimitRequest' type='tns:HRSCIPriceLimitRequest'></part>
+    </message>
+    <message name='HRSSoapService_customBookingAttributesUpdateRequest'>
+	<part name='customBookingAttributesUpdateRequest' type='tns:HRSCustomBookingAttributesUpdateRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciReservationInputFieldDescriptionsResponse'>
+	<part name='ciReservationInputFieldDescriptionsResponse' type='tns:HRSCIReservationInputFieldDescriptionsResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciReservationInputFieldDescriptionsRequest'>
+	<part name='ciReservationInputFieldDescriptionsRequest' type='tns:HRSCIReservationInputFieldDescriptionsRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciUserAccountSaveRequest'>
+	<part name='ciUserAccountSaveRequest' type='tns:HRSCIUserAccountSaveRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountUpgradeResponse'>
+	<part name='myHRSUserAccountUpgradeResponse' type='tns:HRSMyHRSUserAccountUpgradeResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountSaveResponse'>
+	<part name='myHRSUserAccountSaveResponse' type='tns:HRSMyHRSUserAccountSaveResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelFavoritesResponse'>
+	<part name='myHRSHotelFavoritesResponse' type='tns:HRSMyHRSHotelFavoritesResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationProfileDeleteRequest'>
+	<part name='myHRSHotelReservationProfileDeleteRequest' type='tns:HRSMyHRSHotelReservationProfileDeleteRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationRequest'>
+	<part name='hotelReservationRequest' type='tns:HRSHotelReservationRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciPropertiesRequest'>
+	<part name='ciPropertiesRequest' type='tns:HRSCIPropertiesRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelTeaserPricesRequest'>
+	<part name='hotelTeaserPricesRequest' type='tns:HRSHotelTeaserPricesRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountUpgradeRequest'>
+	<part name='myHRSUserAccountUpgradeRequest' type='tns:HRSMyHRSUserAccountUpgradeRequest'></part>
+    </message>
+    <message name='HRSSoapService_versionResponse'>
+	<part name='versionResponse' type='tns:HRSVersionResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelReservationHistoryResponse'>
+	<part name='myHRSHotelReservationHistoryResponse' type='tns:HRSMyHRSHotelReservationHistoryResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationModificationResponse'>
+	<part name='hotelReservationModificationResponse' type='tns:HRSHotelReservationModificationResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciPaymentOptionsResponse'>
+	<part name='ciPaymentOptionsResponse' type='tns:HRSCIPaymentOptionsResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelDealsRequest'>
+	<part name='hotelDealsRequest' type='tns:HRSHotelDealsRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciLastProfileUpdateResponse'>
+	<part name='ciLastProfileUpdateResponse' type='tns:HRSCILastProfileUpdateResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelRatingsRequest'>
+	<part name='hotelRatingsRequest' type='tns:HRSHotelRatingsRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationInformationRequest'>
+	<part name='hotelReservationInformationRequest' type='tns:HRSHotelReservationInformationRequest'></part>
+    </message>
+    <message name='HRSSoapService_hotelPicturesRequest'>
+	<part name='hotelPicturesRequest' type='tns:HRSHotelPicturesRequest'></part>
+    </message>
+    <message name='HRSSoapService_ciCompanyLocationsRequest'>
+	<part name='ciCompanyLocationsRequest' type='tns:HRSCICompanyLocationsRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSBusinessAccountCreationResponse'>
+	<part name='myHRSBusinessAccountCreationResponse' type='tns:HRSMyHRSBusinessAccountCreationResponse'></part>
+    </message>
+    <message name='HRSSoapService_locationSearchResponse'>
+	<part name='locationSearchResponse' type='tns:HRSLocationSearchResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSBusinessAccountCreationRequest'>
+	<part name='myHRSBusinessAccountCreationRequest' type='tns:HRSMyHRSBusinessAccountCreationRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelRatingSaveRequest'>
+	<part name='myHRSHotelRatingSaveRequest' type='tns:HRSMyHRSHotelRatingSaveRequest'></part>
+    </message>
+    <message name='HRSSoapService_customBookingAttributesUpdateResponse'>
+	<part name='customBookingAttributesUpdateResponse' type='tns:HRSCustomBookingAttributesUpdateResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciCompanyLocationsResponse'>
+	<part name='ciCompanyLocationsResponse' type='tns:HRSCICompanyLocationsResponse'></part>
+    </message>
+    <message name='HRSSoapService_constantTypesResponse'>
+	<part name='constantTypesResponse' type='tns:HRSConstantTypesResponse'></part>
+    </message>
+    <message name='HRSSoapService_myHRSHotelFavoriteSaveResponse'>
+	<part name='myHRSHotelFavoriteSaveResponse' type='tns:HRSMyHRSHotelFavoriteSaveResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelTeaserAvailResponse'>
+	<part name='hotelTeaserAvailResponse' type='tns:HRSHotelTeaserAvailResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelReservationInformationResponse'>
+	<part name='hotelReservationInformationResponse' type='tns:HRSHotelReservationInformationResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelDetailAvailResponse'>
+	<part name='hotelDetailAvailResponse' type='tns:HRSHotelDetailAvailResponse'></part>
+    </message>
+    <message name='HRSSoapService_ciLayoutResponse'>
+	<part name='ciLayoutResponse' type='tns:HRSCILayoutResponse'></part>
+    </message>
+    <message name='HRSSoapService_hotelVideosRequest'>
+	<part name='hotelVideosRequest' type='tns:HRSHotelVideosRequest'></part>
+    </message>
+    <message name='HRSSoapService_myHRSUserAccountResponse'>
+	<part name='myHRSUserAccountResponse' type='tns:HRSMyHRSUserAccountResponse'></part>
+    </message>
+    <portType name='HRSSoapService'>
+	<operation name='serviceStatus'>
+	    <input message='tns:HRSSoapService_serviceStatusRequest'></input>
+	    <output message='tns:HRSSoapService_serviceStatusResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ping'>
+	    <input message='tns:HRSSoapService_pingRequest'></input>
+	    <output message='tns:HRSSoapService_pingResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='version'>
+	    <input message='tns:HRSSoapService_versionRequest'></input>
+	    <output message='tns:HRSSoapService_versionResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='constantTypes'>
+	    <input message='tns:HRSSoapService_constantTypesRequest'></input>
+	    <output message='tns:HRSSoapService_constantTypesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='constantTypeValues'>
+	    <input message='tns:HRSSoapService_constantTypeValuesRequest'></input>
+	    <output message='tns:HRSSoapService_constantTypeValuesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='locationSearch'>
+	    <input message='tns:HRSSoapService_locationSearchRequest'></input>
+	    <output message='tns:HRSSoapService_locationSearchResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelAvailPagination'>
+	    <input message='tns:HRSSoapService_hotelAvailPaginationRequest'></input>
+	    <output message='tns:HRSSoapService_hotelAvailPaginationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelAvail'>
+	    <input message='tns:HRSSoapService_hotelAvailRequest'></input>
+	    <output message='tns:HRSSoapService_hotelAvailResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelDetailAvail'>
+	    <input message='tns:HRSSoapService_hotelDetailAvailRequest'></input>
+	    <output message='tns:HRSSoapService_hotelDetailAvailResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelSearch'>
+	    <input message='tns:HRSSoapService_hotelSearchRequest'></input>
+	    <output message='tns:HRSSoapService_hotelSearchResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelDetailSearch'>
+	    <input message='tns:HRSSoapService_hotelDetailSearchRequest'></input>
+	    <output message='tns:HRSSoapService_hotelDetailSearchResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelVideos'>
+	    <input message='tns:HRSSoapService_hotelVideosRequest'></input>
+	    <output message='tns:HRSSoapService_hotelVideosResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelPictures'>
+	    <input message='tns:HRSSoapService_hotelPicturesRequest'></input>
+	    <output message='tns:HRSSoapService_hotelPicturesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelRatings'>
+	    <input message='tns:HRSSoapService_hotelRatingsRequest'></input>
+	    <output message='tns:HRSSoapService_hotelRatingsResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelReservation'>
+	    <input message='tns:HRSSoapService_hotelReservationRequest'></input>
+	    <output message='tns:HRSSoapService_hotelReservationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelReservationModification'>
+	    <input message='tns:HRSSoapService_hotelReservationModificationRequest'></input>
+	    <output message='tns:HRSSoapService_hotelReservationModificationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelReservationCancellation'>
+	    <input message='tns:HRSSoapService_hotelReservationCancellationRequest'></input>
+	    <output message='tns:HRSSoapService_hotelReservationCancellationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelReservationInformation'>
+	    <input message='tns:HRSSoapService_hotelReservationInformationRequest'></input>
+	    <output message='tns:HRSSoapService_hotelReservationInformationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelReservationConfirmation'>
+	    <input message='tns:HRSSoapService_hotelReservationConfirmationRequest'></input>
+	    <output message='tns:HRSSoapService_hotelReservationConfirmationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelTeaserAvail'>
+	    <input message='tns:HRSSoapService_hotelTeaserAvailRequest'></input>
+	    <output message='tns:HRSSoapService_hotelTeaserAvailResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelTeaserPrices'>
+	    <input message='tns:HRSSoapService_hotelTeaserPricesRequest'></input>
+	    <output message='tns:HRSSoapService_hotelTeaserPricesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='hotelDeals'>
+	    <input message='tns:HRSSoapService_hotelDealsRequest'></input>
+	    <output message='tns:HRSSoapService_hotelDealsResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSUserAccount'>
+	    <input message='tns:HRSSoapService_myHRSUserAccountRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSUserAccountResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSUserAccountSave'>
+	    <input message='tns:HRSSoapService_myHRSUserAccountSaveRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSUserAccountSaveResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciUserAccountSave'>
+	    <input message='tns:HRSSoapService_ciUserAccountSaveRequest'></input>
+	    <output message='tns:HRSSoapService_ciUserAccountSaveResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSUserAccountDelete'>
+	    <input message='tns:HRSSoapService_myHRSUserAccountDeleteRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSUserAccountDeleteResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSUserAccountPasswordReset'>
+	    <input message='tns:HRSSoapService_myHRSUserAccountPasswordResetRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSUserAccountPasswordResetResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSBusinessAccountCreation'>
+	    <input message='tns:HRSSoapService_myHRSBusinessAccountCreationRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSBusinessAccountCreationResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSUserAccountUpgrade'>
+	    <input message='tns:HRSSoapService_myHRSUserAccountUpgradeRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSUserAccountUpgradeResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelReservationProfiles'>
+	    <input message='tns:HRSSoapService_myHRSHotelReservationProfilesRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelReservationProfilesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelReservationExtendedProfiles'>
+	    <input message='tns:HRSSoapService_myHRSHotelReservationProfilesRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelReservationExtendedProfilesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelReservationProfileSave'>
+	    <input message='tns:HRSSoapService_myHRSHotelReservationProfileSaveRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelReservationProfileSaveResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelReservationProfileDelete'>
+	    <input message='tns:HRSSoapService_myHRSHotelReservationProfileDeleteRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelReservationProfileDeleteResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelReservationHistory'>
+	    <input message='tns:HRSSoapService_myHRSHotelReservationHistoryRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelReservationHistoryResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelFavorites'>
+	    <input message='tns:HRSSoapService_myHRSHotelFavoritesRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelFavoritesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelFavoriteSave'>
+	    <input message='tns:HRSSoapService_myHRSHotelFavoriteSaveRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelFavoriteSaveResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='myHRSHotelRatingSave'>
+	    <input message='tns:HRSSoapService_myHRSHotelRatingSaveRequest'></input>
+	    <output message='tns:HRSSoapService_myHRSHotelRatingSaveResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciValidateCustomerKey'>
+	    <input message='tns:HRSSoapService_ciValidateCustomerKeyRequest'></input>
+	    <output message='tns:HRSSoapService_ciValidateCustomerKeyResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciLastProfileUpdate'>
+	    <input message='tns:HRSSoapService_ciLastProfileUpdateRequest'></input>
+	    <output message='tns:HRSSoapService_ciLastProfileUpdateResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciProperties'>
+	    <input message='tns:HRSSoapService_ciPropertiesRequest'></input>
+	    <output message='tns:HRSSoapService_ciPropertiesResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciLayout'>
+	    <input message='tns:HRSSoapService_ciLayoutRequest'></input>
+	    <output message='tns:HRSSoapService_ciLayoutResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciCompanyLocations'>
+	    <input message='tns:HRSSoapService_ciCompanyLocationsRequest'></input>
+	    <output message='tns:HRSSoapService_ciCompanyLocationsResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciCompanyCostCenters'>
+	    <input message='tns:HRSSoapService_ciCompanyCostCentersRequest'></input>
+	    <output message='tns:HRSSoapService_ciCompanyCostCentersResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciPriceLimit'>
+	    <input message='tns:HRSSoapService_ciPriceLimitRequest'></input>
+	    <output message='tns:HRSSoapService_ciPriceLimitResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciReservationInputFieldDescriptions'>
+	    <input message='tns:HRSSoapService_ciReservationInputFieldDescriptionsRequest'></input>
+	    <output message='tns:HRSSoapService_ciReservationInputFieldDescriptionsResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='customBookingAttributesUpdate'>
+	    <input message='tns:HRSSoapService_customBookingAttributesUpdateRequest'></input>
+	    <output message='tns:HRSSoapService_customBookingAttributesUpdateResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+	<operation name='ciPaymentOptions'>
+	    <input message='tns:HRSSoapService_ciPaymentOptionsRequest'></input>
+	    <output message='tns:HRSSoapService_ciPaymentOptionsResponse'></output>
+	    <fault message='tns:HRSException' name='HRSException'></fault>
+	</operation>
+    </portType>
+    <binding name='HRSSoapServiceBinding' type='tns:HRSSoapService'>
+	<soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+	<operation name='serviceStatus'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ping'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='version'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='constantTypes'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='constantTypeValues'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='locationSearch'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelAvail'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelDetailAvail'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelSearch'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelDetailSearch'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelVideos'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelPictures'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelRatings'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelReservation'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelReservationModification'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelReservationCancellation'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelReservationInformation'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelReservationConfirmation'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelTeaserAvail'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelTeaserPrices'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelDeals'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSUserAccount'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSUserAccountSave'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciUserAccountSave'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSUserAccountDelete'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSUserAccountPasswordReset'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSBusinessAccountCreation'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSUserAccountUpgrade'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelReservationProfiles'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelReservationExtendedProfiles'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelReservationProfileSave'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelReservationProfileDelete'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelReservationHistory'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelFavorites'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelFavoriteSave'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='myHRSHotelRatingSave'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciValidateCustomerKey'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciLastProfileUpdate'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciProperties'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciLayout'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciCompanyLocations'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciCompanyCostCenters'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciPriceLimit'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciReservationInputFieldDescriptions'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='customBookingAttributesUpdate'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='ciPaymentOptions'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+	<operation name='hotelAvailPagination'>
+	    <soap:operation soapAction=''/>
+	    <input>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </input>
+	    <output>
+		<soap:body namespace='com.hrs.soap.hrs' use='literal'/>
+	    </output>
+	    <fault name='HRSException'>
+		<soap:fault name='HRSException' use='literal'/>
+	    </fault>
+	</operation>
+    </binding>
+    <service name='HRSService'>
+	<port binding='tns:HRSSoapServiceBinding' name='HRSSoapServicePort'>
+	    <soap:address location=''/>
+	</port>
+    </service>
+</definitions>

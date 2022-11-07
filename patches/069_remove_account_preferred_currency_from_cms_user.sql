@@ -1,0 +1,1 @@
+ALTER TABLE `cms_users` DROP `account_preferred_currency`;

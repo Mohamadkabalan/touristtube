@@ -1,0 +1,253 @@
+
+.firststep, .sndstep {
+    background: rgba(255, 255, 255, 0) url("/media/images/corporate/bordergrey_bookingsteps.png") no-repeat scroll right 12px;
+}
+.sndstep .bullet, .thirdstep .bullet {
+    margin-left: 7px;
+}
+.thirdstep .number-step-text {
+    background-image: none;
+    padding-right: 0;
+}
+.bullet {
+    background: rgba(255, 255, 255, 0) url("/media/images/grey_bullet.png") no-repeat scroll center center;
+    color: white;
+    display: inline-block;
+    float: left;
+    font-size: 25px;
+    font-weight: bold;
+    height: 59px;
+    line-height: 59px;
+    text-align: center;
+    width: 58px;
+}
+.number-step-text {
+    background: rgba(255, 255, 255, 0) url("/media/images/greyff_hoteldetail.png") no-repeat scroll right center;
+    color: #777879;
+    float: left;
+    font-size: 22px;
+    line-height: 59px;
+    min-height: 59px;
+    padding-left: 6px;
+    padding-right: 20px;
+}
+.thirdstep.activestep .number-step-text {
+    background-image: none;
+}
+.green_bullet .bullet {
+    background: rgba(255, 255, 255, 0) url("/media/images/green_bullet.png") no-repeat scroll center center;
+}
+.activestep .bullet {
+    background: rgba(255, 255, 255, 0) url("/media/images/corporate/blackactivestep.png") no-repeat scroll center center;
+}
+.green_bullet .number-step-text {
+    background: rgba(255, 255, 255, 0) url("/media/images/greenff_hoteldetailed.png") no-repeat scroll right center;
+    color: #82c04b;
+}
+.activestep .number-step-text {
+    background: rgba(255, 255, 255, 0) url("/media/images/blueff_hoteldetail.png") no-repeat scroll right center;
+    color: #1e262a;
+}
+.makeabokk_bst{
+    font-size: 28px;
+    color: #00304c;
+    padding: 0;
+    margin: 0;
+    line-height: 28px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.startchosshotel_bst{
+    font-size: 27px;
+    color: #00304c;
+    padding: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-top: 0;
+    line-height: 28px;
+}
+.choosehotelsmaltxt_bts{
+    font-size: 14px;
+    color: #1e262a;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 20px;
+    line-height: 20px;
+}
+.bordergreyallw_bts{
+    float: left;
+    width: 100%;
+    border-top: 2px solid #eaeef0;
+    margin-bottom: 40px;
+}
+.bluemenulinktext_bts{
+    color: #00304c;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0 18px 10px 0;
+    text-decoration: underline;
+    float: left;
+    width: auto;
+}
+.bluemenulinktextspan_bts{
+    color: #00304c;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0 18px 10px 0;
+    float: left;
+    width: auto;
+}
+.bluemenulinktext_bts:hover{
+    color: #00304c;
+}
+.bluemenulinktextspan_bts span.bluemenuyellowitem{
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+}
+.bluemenulinktextspan_bts span.bluetextlinkinfo_bts{
+    color: #00b7d9;
+    font-size: 11px;
+}
+.bluemenulinktextspan_bts span.spanblueunderline a{
+    text-decoration: underline;
+    color: #00304c;
+}
+.bluemenulinktextspan_bts span.spanblueunderline:hover{
+    color: #00304c;
+}
+.bluemenulinktextspan_bts span.blueff_bts{
+    font-size: 16px;
+    color: #00b7d9;
+}
+.lefttextcom{
+    float: left;
+    padding: 0;
+    margin:0;
+    line-height: 30px;
+    font-size: 15px;
+}
+.righttextcom{
+    float: right;
+    padding: 0;
+    margin:0;
+    line-height: 30px;
+    font-size: 15px;
+}
+.greytext{
+    color: #606060;
+}
+.font-weight-bold{
+    font-weight: bold;
+}
+.blacktext{
+    color: black;
+}
+.padright10{
+    padding-right: 10px;
+}
+.abluerightconttext{
+    float: right;
+    padding: 0;
+    margin:0;
+    line-height: 30px;
+    font-size: 17px; 
+    font-weight: bold;
+    text-decoration: underline;
+    color: #00304c;
+}
+.abluerightconttext:hover{
+    color: #00304c;
+}
+.marbutz{
+    margin-bottom: 0;
+}
+.yshnewfntsize{
+    font-size: 22px;
+}
+.datetxt_bst{
+    padding: 0;
+    margin: 0;
+    line-height: 15px;
+    font-size: 17px;
+    color: #00304c;
+}
+.yshdwnarrow{
+  padding-left: 6px;  
+}
+.padbut_0{
+    padding-bottom: 0;
+}
+.padtop_0{
+    padding-top: 0;
+}
+.bordergreyallw_bts.smal-margin-border{
+    margin-bottom: 0;
+}
+.abluerightconttext.change-hotel-left{
+    float: left;
+}
+@media (min-width:1200px){
+    .firststep, .sndstep {
+        width: 32%;
+    }
+}
+@media (min-width:1449px)  and (max-width:1477px){
+    .number-step-text {
+        font-size: 20px;
+    }
+}
+@media (min-width:1200px)  and (max-width:1300px){
+    .number-step-text {
+        font-size: 20px;
+    }
+}
+@media  (max-width:1199px){
+    .firststep ,.sndstep ,.thirdstep{
+        display: none;
+    }
+    .activestep{
+        width: 100%;
+        display: block;
+    }
+    .sndstep .bullet, .thirdstep .bullet {
+        margin-left: 0px;
+    }
+    .firststep, .sndstep {
+        background: none;
+    }
+}
+.margin-left-min{margin-left: -5px;}
+.makeabokk_bst.margin-left-zero{margin-left: 0;}
+/*to remove:
+============*/
+.maginbut-100{
+    margin-bottom: 100px;
+}
+.newboxstyle{
+    min-height: 65px;
+    margin-top: 0px;
+    border: 2px solid #00b7d9;
+}
+/*hotel+image section : 
+===========================*/
+.hotel-left-img{float: left;padding-right: 10px;width: 100%;}
+.hotelname-ndimage h1{float: left;font-size: 27px;font-weight: bold;line-height: 40px;margin: 0;padding: 0;}
+.hotelname-ndimage h2{font-size: 11px;font-weight: normal;line-height: 20px;margin: 0;padding: 0;}
+.hotelname-ndimage .locationplus-text_container{width: 61%;float: left;}
+.hotelname-ndimage .location-logo{float: left;padding-right: 7px;}
+.hotelname-ndimage .starsimg{float: left;margin-left: 25px;}
+.hotelname-ndimage {padding-bottom: 40px;}
+.hotelname-ndimage.hdnopad-butom{padding-bottom: 10px;}
+.clearfix {display: block;content: "";clear: both;}
+.heart-rating-review{width: 75px;height: 65px;margin-top: 10px;float: right;}
+.heart-rating-review img{position: absolute;}
+.heart-rating-review .ratetext{position: absolute;font-size: 22px;font-weight: bold;color: #00304c;width: 75px;line-height: 65px;text-align: center;font-weight: bold;}
+.heartratecontainer .based-text-review a{color: #00304c;font-size: 12px;line-height: 20px;margin: 0;padding: 0;float: right;width: 100%;text-align: right;}
+.heartratecontainer .based-text-review a:hover{text-decoration: none;}
+.hotelname-ndimage .heartratecontainer{width: 39%;float: left;position: absolute;right: 0;}
+.margin-top-5{margin-top: 5px;}

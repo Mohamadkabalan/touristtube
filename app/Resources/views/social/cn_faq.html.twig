@@ -1,0 +1,158 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>FAQ</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何注册？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">只需设置您的电子邮件和密码，我们就会为您创建帐户，以享受所有TouristTube功能。您可以在方便时填写个人资料信息。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何更改密码？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后. 转到 <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_account_settings') }}{% endif %}" title="{{ 'account info / Account settings'|trans }}" class="afaqMainStyle">“帐户信息/帐户设置”.</a> 填写旧密码和新密码。</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何修改隐私设置？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/privacy') }}{% endif %}" title="{{ 'account info / Privacy'|trans }}" class="afaqMainStyle">“帐户信息/隐私”</a> 修改您的设置</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">用户可以使用的最大空间是多少？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">TouristTube注册用户享有个人的1Tb专用私有云空间。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">TouristTube的主要功能有哪些？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <ul class="faq_lit">
+                            <li>
+                                <p>游客频道 - 满足旅游专业人士和旅游组织的在线业务需求</p>
+                            </li>     <li>
+                                <p>游客直播 - 网络摄像机从选定的有利位置直播</p>
+                            </li>    <li>
+                                <p>游客回声 - 即时将您的观点和评论发布到您的小组</p>
+                            </li>  <li>
+                                <p>视频聊天</p>
+                            </li>   <li>
+                                <p>多媒体共享 - 上传您的视频和照片、相册和旅行日志</p>
+                            </li>   <li>
+                                <p>视频、照片、相册和旅行日志的在线编辑工具</p>
+                            </li>  <li>
+                                <p>移动应用程序，可在Android上下载</p>
+                            </li>  <li>
+                                <p>和同小组值得你信赖的人分享评论和评分</p>
+                            </li><li>
+                                <p>利用人工智能（AI）算法在后台工作的建议，建立社区并根据共同兴趣关联别人。</p>
+                            </li>    
+                        </ul>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何上传照片和视频？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，选择上传，从你的设备中选择照片和视频，然后上传。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何搜索媒体？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">单击搜索栏并指定照片，视频或tubers。通过选择主题/类别来调整您的搜索。</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何在touristtube.com上找到你的朋友、关注者和你关注的人？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到 <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/network/friends') }}{% endif %}" title="{{ 'network'|trans }}" class="afaqMainStyle"> “网络”</a>. 即可找到你的朋友、关注者和你关注的人.</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何编辑照片？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到 <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/photos') }}{% endif %}" title="{{ 'My Photos'|trans }}" class="afaqMainStyle">“我的照片”</a>. 选定照片并点击编辑。您可以编辑文本属性和照片外观。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何编辑视频？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/videos') }}{% endif %}" title="{{ 'My Videos'|trans }}" class="afaqMainStyle">“我的视频”</a>. 选定视频并点击编辑。您可以编辑所选视频的文本属性。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何创建相册？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/albums') }}{% endif %}" title="{{ 'My Albums'|trans }}" class="afaqMainStyle">“我的相册”</a>. 您可以创建相册并编辑其内容和属性。</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何创建日志？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到 <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/journal') }}{% endif %}" title="{{ 'My Journals'|trans }}" class="afaqMainStyle">“我的日志”</a>. 您可以创建日志并编辑其属性。</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何设置信息源？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到 <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/newsfeed') }}{% endif %}" title="{{ 'news feeds'|trans }}" class="afaqMainStyle">“信息源”</a> 通过选择人员和活动来设置页面上显示的信息源。</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何在其他社交媒体上分享内容？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，转到 <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/sharing') }}{% endif %}" title="{{ 'account info / Sharing'|trans }}" class="afaqMainStyle">“账户信息/共享”</a> 选择社交媒体，关联到TouristTube并开始共享。</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何在touristtube.com上创建频道？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，在“游客频道”，选择“创建频道”并填写你的资料信息。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何在touristtube.com上查看你的频道？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">登陆后，在“游客频道”，选择下拉箭头并选择查看我的所有频道。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何创建一个子频道？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">从“我的频道”视图中选择置顶频道，然后点击嵌入频道;然后填写子频道的信息。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何给酒店/餐馆点评和评分？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">选择/搜索你想点评的场所。填写你的点评和评分并提交。</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">如何报告问题？<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title"> 请通过 <a href="mailto:info@touristtube.com" class="afaqMainStyle" title="{{ 'info@touristtube.com' }}">info@touristtube.com</a>与我们联系</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

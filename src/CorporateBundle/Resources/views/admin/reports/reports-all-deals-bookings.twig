@@ -1,0 +1,36 @@
+<div class="row no-margin">
+    <div class="col-xs-12 nopad">
+	<div class="row no-margin margin_top_20 margin_bottom_20">
+	    <div class="col-sm-9 col-xs-12 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<p class="font-16 black float-left padding_right_10">{{travel.name|raw}}</p>
+			<p class="font-16 grey_dark float-left padding_right_10">{{'Booking number:'|trans}} <span>{{travel.reservationId|raw}}</span></p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p class="font-13 grey_light float-left padding_right_10 font-bold">{{'CHECK-IN'|trans}} <span class="black font-16">{{travel.fromdate|date('j M Y')}}</span> <span class="black">{{travel.fromdate|date('l')}}</span></p>
+			<p class="font-13 grey_light float-left padding_right_10 font-bold">{{'CHECK-OUT'|trans}} <span class="black font-16">{{travel.todate|date('j M Y')}}</span> <span class="black">{{travel.todate|date('l')}}</span></p>
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<p class="font-14 grey_light">{{'Requested By:'|trans}} {{travel.userName|raw}}</p>
+			<p class="font-14 grey_light">{{'Requested On: '|trans}}{{travel.transactionDate|date("l, F, d Y")}}</p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-sm-3 col-xs-12 nopad">
+		<div class="row no-margin">
+		    <div class="col-xs-12 nopad">
+			<p class="ttl_price float-right price-convert" data-price="{{ travel.amount|raw }}"><span class="currency-convert-text">{{travel.currency|raw}}</span> <span class="price-convert-text">{{travel.amount|raw|number_format(2, '.', ',')}}</span></p>
+			<img class="float-right" src="{{ generateMediaURL('/media/images/corporate_new/room_service_logo.png') }}" alt="{{'room_service_logo'|trans}}">
+		    </div>
+		    <div class="col-xs-12 nopad">
+			<ul class="vc_list">
+			    <li><a type="button" class="vd_li" data-toggle="modal1" data-target="#myModal1" onclick="detailPopup('{{ path('_corporate_hotel_reservation_request_details', {'reservationId':travel.reservationId})}}')">{{'View details'|trans}}</a></li>
+			</ul>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row no-margin bordered_row_1"></div>
+    </div>
+</div>

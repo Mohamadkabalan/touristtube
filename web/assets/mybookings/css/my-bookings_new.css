@@ -1,0 +1,295 @@
+.my_bookings_container .right_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;left:0px;top:0px;}
+.my_bookings_container .left_panel:after{content:" ";position: absolute;width: 5px; height: 100%;background:#f1f1f1;right:-5px;top:0px;}
+.my_bookings_container .right_panel{padding-right: 0;}
+@media (max-width:991px){
+    /*CSS Right Panel */
+    .my_bookings_container .right_panel:after,.left_panel:after{display: none;}
+}
+@media (min-width:768px) and (max-width:991px){
+    /*CSS Right Panel */
+    .my_bookings_container .right_panel{padding-left: 0px;}
+}
+@media (max-width:767px){
+    /*CSS Right Panel */
+    .my_bookings_container .right_panel{padding-left: 15px;padding-right: 15px;}
+    /*=============================================*/
+}
+.a_price.a_price1{display: none;}
+.margin_top_20{margin-top: 20px;}
+.margin_top_45{margin-top: 45px;}
+.my_bookings_container .blue{color: #00b7d9;}
+.my_bookings_container .font-24{font-size: 24px;}
+.my_bookings_container .line-height-26{line-height: 26px;}
+.my_bookings_container .leftmenue_subtitles{color: #606060;font-size: 13px;font-weight: bold;text-transform: uppercase;}
+.my_bookings_container .leftmenue_subtitles i{padding-right: 8px;color: #00b7d9;}
+.my_bookings_container .form-check label{font-size: 14px;color: #606060;font-weight: normal;padding-left: 10px;margin-bottom: 0;}
+.my_bookings_container .form-check input{margin-left: 17px;}
+.my_bookings_container .mybookinginput input{cursor: unset;height: 56px; width: 100%; border: 1px solid #d5d6d8;text-align: center;webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);box-shadow: inset 0 1px 1px rgba(0,0,0,0);background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px; border-radius: 5px;}
+.my_bookings_container .mybookinginput input::placeholder {color: #000000;opacity: 1;font-weight: bold;font-size: 16px;}
+.my_bookings_container .mybookinginput input:-ms-input-placeholder {color: #000000;font-weight: bold;font-size: 16px;}
+.my_bookings_container .mybookinginput input::-ms-input-placeholder {color: #000000;font-weight: bold;font-size: 16px;}
+.my_bookings_container .mybookinginput {margin-bottom: 10px;}
+.my_bookings_container .yellow_search_common_button{width: 100%;height: 56px;border: none;color: #201b1d;background-color: #eac31a;font-size: 22px;}
+.my_bookings_container .pad17{padding-left: 17px;padding-right: 17px;}
+.relative_column{position: relative;}
+#my-bookings-flight .checkin_checkout_container{height:101px;}
+.my_bookings_container .button_price_container.visible-lg, #my-bookings-flight .button_price_container{position: absolute; right: 0; bottom: 0;text-align: right;}
+.my_bookings_container .button_price_container.hidden-lg,
+.my_bookings_container .button_price_container.hidden-lg p{margin-top: 10px;} 
+
+.my_bookings_container .button_price_container p{font-size: 16px; color: black;line-height: 22px;margin-bottom: 5px; text-align:right;}
+.my_bookings_container .button_price_container p span{padding-left: 5px;font-size: 22px;}
+.my_bookings_container .pink_bookagain_button{
+    background-color: #db3a69;
+    border: medium none;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px;
+    width: auto;
+    float: right;
+}
+.my_bookings_container .flight_my_bookings_title{font-size: 17px;color: black;font-weight: bold;text-transform: uppercase;}
+.my_bookings_container .flight_my_bookings_title span{font-size: 16px;text-transform: none;}
+.my_bookings_container .flight_my_bookings_title img{margin-right: 5px;}
+.my_bookings_container .flight_my_bookings_dep_arr {font-size: 14px; color: #00b7d9;margin-bottom: 0;}
+.my_bookings_container .flight_details_list_mb {list-style: none;padding-left: 0;}
+.my_bookings_container .flight_details_list_mb li{border-right: 2px solid #db3a69;padding-right: 20px;padding-left: 20px;font-size: 14px;color: #000000;display: inline-table;}
+.my_bookings_container .flight_details_list_mb li.noborder_right{border-right: none;}
+.my_bookings_container .flight_details_list_mb li.border_left{border-left: 2px solid #db3a69;}
+.my_bookings_container .flight_details_list_mb li:first-child{padding-left: 0;}
+.my_bookings_container .flight_details_list_mb li:last-child{padding-right: 0;border-right: none;}
+.my_bookings_container .flight_details_list_mb li .bold{font-weight: bold;}
+.my_bookings_container .mbsmall_margin{margin-left:-5px;margin-right:-5px;}
+.my_bookings_container .mbsmall_padding{padding-left:5px; padding-right:5px;}
+.my_bookings_container .background_color_white_container{padding: 45px 20px 45px 20px;background: #FFFFFF;}
+.my_bookings_container .header_title{font-size: 35px; color: #1e262a; line-height:35px;}
+.my_bookings_container .header_title span{font-size: 17px; color: #000000; text-transform: uppercase;}
+.my_bookings_container .inputs_row{min-height: 88px;}
+.my_bookings_container .inputs_row p{color: black; font-weight: bold; font-size:13px; line-height: 75px;text-transform: uppercase; padding-right: 23px;}
+.my_bookings_container .inputs_row .row_items{float: left;}
+.my_bookings_container .inputs_row .form-group select{height: 75px; width: 145px; border-radius: 15px; border: 2px solid #e1e3e5;-webkit-appearance: none;-moz-appearance: none; appearance: none;box-shadow: inset 0 0px 0px rgba(0,0,0,.0);margin-right: 10px; font-size: 16px; color: black;}
+.my_bookings_container .inputs_row .form-group input{height: 75px; width: 175px; border-radius: 15px; border: 2px solid #e1e3e5;box-shadow: inset 0 0px 0px rgba(0,0,0,.0);margin-right: 10px; font-size: 16px; color: black;}
+.my_bookings_container .inputs_row .submit_button button{width: 76px;height: 75px;padding: 0;margin-top: 0px;border: none;}
+.my_bookings_container .inputs_row .form-group input::placeholder {color: black;opacity: 1;font-size: 16px;}
+.my_bookings_container .inputs_row .form-group input:-ms-input-placeholder, .inputs_row .form-group input::-ms-input-placeholder {color: black;font-size: 16px;}
+.my_bookings_container .border-top-2{border-top: 2px solid #dadada;}
+.my_bookings_container .border-bottom-2{border-bottom: 2px solid #dadada;}
+.my_bookings_container .img_container {overflow: hidden;}
+.my_bookings_container .img_container img {width: 100%;height:auto;}
+.my_bookings_container .hotel_name{float: left; font-size: 17px; color: black; line-height: 22px;width: 80%;margin-bottom: 5px;font-weight: bold;}
+.my_bookings_container .hotel_name span{padding-left: 6px;}
+.my_bookings_container .booking_number ,.my_bookings_container .pin_code{float: left; font-size: 17px; color: #535353;}
+.my_bookings_container .booking_number span{padding-left: 5px; padding-right: 15px; color: #010101;}
+.my_bookings_container .pin_code span.pin{padding-left: 5px; color: #010101;}
+.my_bookings_container .pin_code span.lock img{padding-left: 6px;}
+.my_bookings_container .clearfix {display: block;content: "";clear: both;}
+.my_bookings_container .view_details_link {position: absolute; right: 0px; top: 0px; font-size: 16px;text-decoration: underline;color: #00b7d9;text-align: right;}
+.my_bookings_container .button_price_container p span.currency-convert-text{ font-size: 15px; padding: 0}
+.my_bookings_container .button_price_container p span.price-convert-text{ font-size: 19px; padding: 0}
+.my_bookings_container .booking_number.font-15{ font-size: 15px;}
+.my_bookings_container .custom_form p {width: 100%; margin-bottom: 0;}
+
+.my_bookings_container .hidden-lg .view_details_link {position: relative;margin-top: 10px;}
+
+.my_bookings_container .custom_form .form-group select{margin-top: 10px;height: 20px; width: 140px; border-radius: 0px; border: none;-webkit-appearance: none;-moz-appearance: none; appearance: none;padding: 0 0 0 3px;box-shadow: inset 0 0px 0px rgba(0,0,0,.0); font-size: 14px; color: white;}
+.my_bookings_container .pagerWrapper {padding-right: 4px;padding-bottom: 5px;padding-top: 28px; cursor: pointer;}
+.my_bookings_container .pagerWrapper ul li{list-style: none;float: left;font-weight: bold;}
+.my_bookings_container .pagerWrapper ul li span{display: inline-block}
+.my_bookings_container .pagerWrapper ul li a{color:#5e5e5e;display: inline-block;padding: 0 2px; font-size: 15px; font-weight: normal;}
+.my_bookings_container .pagerWrapper ul li.active a{color:#2d2d2d; font-weight: bold; cursor: default;}
+.my_bookings_container .pagerWrapper ul li a:hover{color:#2d2d2d;display: inline-block;padding: 0 2px}
+.my_bookings_container .absolutebackground{ position: absolute;width: 100%;height: 100%;background-color: white;opacity: 0.6;z-index: 1;}
+.my_bookings_container .margin_top_arrival{margin-top: 30px;}
+.my_bookings_container .pink_cancelled_button{
+    background-color: white;
+    border: 2px solid #f8d8e1;
+    color: #db3a69;
+    display: none;
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 20px;
+    width: auto;
+}
+.my_bookings_container .canceldivoverback .pink_cancelled_button{display: block;}
+.my_bookings_container .canceldivoverback .pink_bookagain_button{display: none;}
+.my_bookings_container .canceldivoverback .view_details_link{z-index: 2;}
+.my_bookings_container .canceldivoverback .button_price_container{margin-top: 138px;}
+.my_bookings_container .pagerWrapper ul li {
+    float: left;
+    font-weight: bold;
+    list-style: outside none none;
+}
+.my_bookings_container .pagerWrapper ul li span {
+    display: inline-block;
+}
+.my_bookings_container .pagerWrapper ul li.active a {
+    color: #2d2d2d;
+}
+.my_bookings_container .pagination.pagerWrapper{
+    padding: 0;
+}
+
+.my_bookings_container .pagination li{
+    list-style: none;
+    float: left;
+    cursor: pointer;
+}
+.my_bookings_container .pagination{
+    float: right;
+    margin-top: 6px;
+    margin-bottom: 15px;
+}
+.my_bookings_container .prev_pg {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-origin: padding-box;
+    background-size: auto auto;
+    height: 15px;
+    width: 12px;
+}
+.my_bookings_container .first_pg {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-origin: padding-box;
+    background-size: auto auto;
+    height: 15px;
+    width: 12px;
+    padding-left: 0;
+}
+.my_bookings_container .next_pg {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-origin: padding-box;
+    background-size: auto auto;
+    height: 15px;
+    width: 12px;
+}
+.my_bookings_container .last_pg {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-origin: padding-box;
+    background-size: auto auto;
+    height: 15px;
+    width: 12px;
+}
+.my_bookings_container .booking_price{font-size: 20px; color: black; line-height: 20px;}
+.my_bookings_container .booking_price span{font-size: 16px; padding-left: 5px;}
+.my_bookings_container .hotel_info_row .form-group{margin-bottom: 10px;}
+.my_bookings_container .links_container .hotel_details{color: black; font-size: 14px; text-decoration: none; line-height: 14px; cursor: pointer;}
+.my_bookings_container .links_container p{padding-left: 15px;padding-right: 15px; float: left;color: black; font-size: 14px;line-height: 14px;margin-bottom: 0;}
+.my_bookings_container .links_container .hotel_details:hover{color: black;text-decoration: none; cursor: pointer;}
+.my_bookings_container .links_container .book_again{ color: white; font-size: 14px;width: auto;padding: 4px 8px; text-decoration: none; line-height: 14px; background-color: #00b7d9;margin-top: -4px;}
+.my_bookings_container .checkin_checkout_container{padding-left:10px;padding-top: 5px;background-color: #f1f1f1;padding-right: 5px;padding-bottom: 5px}
+.my_bookings_container .checkin_checkout_container .in_out{color: #00b7d9; font-size: 11px; font-weight: bold;line-height: 11px;text-transform: uppercase;}
+.my_bookings_container .checkin_checkout_container .date{color: #c6c6c6; font-size: 30px;line-height: 20px;font-weight: bold;}
+.my_bookings_container .checkin_checkout_container .month_day{color: #000000; font-size: 13px;line-height: 15px;}
+.my_bookings_container .flight_info_row .conatiner_header{font-size: 22px;color: black;line-height: 22px;}
+.my_bookings_container .flight_info_row .conatiner_header span img{padding-right: 17px;}
+.my_bookings_container.flight_info_row .conatiner_header span.small_font{font-size: 16px;}
+.my_bookings_container .flight_info_row .flight_info_conent p{font-size: 14px;line-height: 14px; color: black;padding-right: 25px;float: left;margin-bottom: 5px;}
+.my_bookings_container .blue_text{color: #00b7d9;}
+.my_bookings_container .terminal_span{color: #535353;line-height: 21px;}
+.my_bookings_container .flight_view_container{padding-bottom: 0;padding-top: 0;}
+.my_bookings_container .flight_price_container p{font-size: 22px; color: black;line-height: 22px;font-weight: bold;}
+.my_bookings_container .flight_info_row .bag_fees{font-size: 13px; line-height: 16px;color: #6a6969;margin-bottom: 0;}
+.my_bookings_container.padding_left_container{padding-left: 53px;}
+.margin_top_40{margin-top: 40px;}
+.margin_top_10{margin-top: 10px;}
+.margin_top_20{margin-top: 20px;}
+.margin_top_15{margin-top: 15px;}
+.margin_bottom_28{margin-bottom: 28px;}
+.margin_bottom_60{margin-bottom: 60px;}
+.margin_bottom_10{margin-bottom: 10px;}
+.padding_left_53{padding-left: 53px;}
+.margin_top_38{margin-top: 38px;}
+.margin_top_35{margin-top: 35px;}
+.margin_top_70{margin-top: 70px;}
+.margin_botttom_10{margin-bottom: 10px;}
+.margin_bottom_6{margin-bottom: 6px;}
+.my_bookings_container .mbsmall_padding.padding_left_70{padding-left: 7.6%;}
+.my_bookings_container .links_container{margin-top: 70px;}
+.my_bookings_container .border-left-1{border-left:1px solid #b6b6b6;}
+.my_bookings_container .padright5{padding-right: 5px;}
+.flight_price2{ display: none; }
+.flight_price2 p {margin-top: 10px;}
+
+@media (min-width: 1199px){
+    .my_bookings_container .width_35_perc{width:30%;}
+}
+@media (max-width: 1199px){
+    #my-bookings-flight .button_price_container{position: relative; right: initial; bottom: initial;}
+    .my_bookings_container .view_details_link_flight{margin-top: 6px; position: relative; float:left; }
+    .my_bookings_container .button_price_container{ margin-top: 10px; }
+    .flight_price1{ display: none; }
+    .flight_price2{ display: block; }
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    .my_bookings_container .canceldivoverback .button_price_container{margin-top: 20px;}
+    .my_bookings_container .pink_bookagain_button, .my_bookings_container .pink_cancelled_button{ margin-left: 10px;}
+    .my_bookings_container .hidden-lg .view_details_link{ margin-top: 6px;}
+    .my_bookings_container .links_container{margin-top: 8px;}
+    .my_bookings_container .width_35_perc{width:34.5%;}
+    .my_bookings_container .checkin_checkout_container .date{margin-bottom: 5px;}
+}
+@media (max-width:992px){
+    .my_bookings_container .pink_bookagain_button, .my_bookings_container .pink_cancelled_button{ margin-left: 10px;}
+    .my_bookings_container .hidden-lg .view_details_link{ margin-top: 6px;}
+    .my_bookings_container .width_35_perc{width:123;}
+    .my_bookings_container .padding_left_70{padding-left: 0;}
+    .my_bookings_container .flight_my_bookings_title{margin-top: 10px;}
+    .my_bookings_container .margin_top_arrival{margin-top: 20px;}
+    .my_bookings_container .canceldivoverback .button_price_container{margin-top: 20px;}
+    .my_bookings_container .button_price_container{ position: relative; }
+}
+@media (min-width:768px)  and (max-width:991px){
+    #my-bookings-flight .checkin_checkout_container{height:111px;}
+    .my_bookings_container .inputs_row p {padding-right: 10px;}
+    .my_bookings_container .inputs_row .form-group select{width: 115px;background-position: right 8px center;font-size: 14px;}  
+    .my_bookings_container .inputs_row .form-group input{width: 115px;}
+    .my_bookings_container .links_container { margin-top: 0px;}
+    .my_bookings_container .checkin_checkout_container .checkin_container{height: 75px;}
+    .my_bookings_container .checkin_checkout_container .checkout_container{height: 75px;top: 79px;}
+    .my_bookings_container .checkin_checkout_container .in_out ,.checkin_checkout_container .date {margin-bottom: 5px;}
+    .my_bookings_container .checkin_checkout_container .month_day {line-height: 13px;margin-bottom: 5px;}
+    .my_bookings_container .img_container img {/*min-height: 176px;*/}
+}
+@media (max-width:767px){
+    .flight_price2{ display: none; }
+    .flight_price1{ display: block; }
+    .a_price0{ display: none;}
+    .a_price.a_price1{ width: 100%; float: right; display: block;}
+    #my-bookings-flight .button_price_container{position: relative; bottom: initial; right: initial;}
+    .my_bookings_container .mbsmall_padding.padding_left_70{padding-left: 0;}
+    .my_bookings_container .mobile_margin_top_10{margin-top:10px;}
+    .my_bookings_container .inputs_row .row_items {width: 100%;text-align: center;}
+    .my_bookings_container .inputs_row .form-group select{width: 100%;}
+    .my_bookings_container .inputs_row .form-group input{width: 100%;}
+    .my_bookings_container .links_container{margin-top: 10px;}
+    .my_bookings_container .hotel_name {margin-top: 10px;}
+    .my_bookings_container .links_container p{margin-bottom: 10px;}
+    .my_bookings_container .checkin_checkout_container .checkout_container {position: relative;top: 0;float: left; margin-top: 10px; }
+    .my_bookings_container .checkin_checkout_container .checkin_container {position: relative;float: left; margin-right: 10px;margin-top: 10px;}
+    .my_bookings_container .padding_left_container{padding-left: 0px;}
+    .my_bookings_container .flight_view_container {padding-left: 0;margin-bottom: 10px;}
+    .my_bookings_container .links_container .hotel_details{font-size: 13px; cursor: pointer;}
+    .my_bookings_container .links_container .book_again{font-size: 13px;}
+    .my_bookings_container .pagerWrapper {
+        padding-bottom: 15px;
+        padding-right: 4px;
+        padding-top: 0;
+    }
+    .my_bookings_container .pagerWrapper ul li a{font-size: 17px; }
+    .my_bookings_container .margin_top_25 {
+        margin-top: 0px;
+    }
+    .my_bookings_container .button_price_container{ position: relative; }
+    .my_bookings_container .img_container{margin-top: 10px;margin-bottom: 10px;}
+    .my_bookings_container .flight_details_list_mb li{padding-right: 7px;padding-left: 7px}
+    .my_bookings_container .canceldivoverback .button_price_container{margin-top: 20px;}
+}

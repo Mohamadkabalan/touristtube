@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="{{ lang_local }}">
+    <head itemscope itemtype="http://schema.org/WebSite">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ 'media/images/favicon.ico'|link }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!--        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">-->
+        <title itemprop='name'>{{ seoPageTitle|raw }}</title>
+        <meta name="description" content="{{ seoPageDescription|raw }}"/>
+        <meta property="og:title" content="{{ seoPageTitle|raw }}" />
+        <meta property="og:url" content="{{ OriginalUrl|raw }}" />
+        {% if containFCBShare == true %}
+            <meta property="og:image" content="{{ fbimg|raw }}" />
+        {% endif %}
+        {{ ur_arraydata|raw }}
+        <!--<link rel="publisher" href="https://www.google.com/+Touristtubepage" />-->
+        <link rel="stylesheet" type="text/css" href="{{("css/css.css?v="~CHAT_CSS_V)|link}}" />
+        <link rel="stylesheet" type="text/css" href="{{ ("css/jquery-ui-1.10.0.custom.css")|link }}" />
+        {% if notContainIndex == true %}
+            <link rel="stylesheet" type="text/css" href="{{ ("css/jquery.jscrollpane.css")|link }}" />
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{ ("css/jquery.fancybox-new.css")|link }}"/>
+        {{ includePartCss|raw }}
+        {{ tmzone|raw }}
+	<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js"></script>
+        <script type="text/javascript" src="/bundles/bazingajstranslation/js/translator.min.js"></script>
+        <script type="text/javascript" src="/translations/client?locales={{ lang_local|raw }}"></script>
+        
+        <script type="text/javascript" src="{{ ("js/jquery-migrate-1.1.1.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/pofile/dist/pofile.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/jquery.cookie.js")|link }}"></script>
+       
+        <script type="text/javascript" src="{{ ("assets/common/js/utils.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/init.js")|link }}"></script>
+        {% if notContainVideo == true %}
+            <script type="text/javascript" src="{{ ("js/hammer4.js")|link }}"></script>
+        {% endif %}
+        <script type="text/javascript" src="{{ ("js/jquery.mousewheel_latest.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/jquery.jscrollpane.js")|link }}"></script>
+        {% if notContainIndex == true %}
+            {% if notContainVideoOnly == true %}
+                <script type="text/javascript" src="{{ ("js/jquery.tools.js")|link }}"></script>
+                <script type="text/javascript" src="{{ ("js/AC_RunActiveContent.js")|link }}"></script>
+            {% endif %}
+            {% if notContainVideo == true %}
+                <script type="text/javascript" src="{{ ("js/jquery.hammer.js")|link }}"></script>
+                <script type="text/javascript" src="{{ ("js/jquery.noselect.js")|link }}"></script>
+                <script type="text/javascript" src="{{ ("js/jquery.sizes.js")|link }}"></script>
+                <script type="text/javascript" src="{{ ("js/scroll-fix.js")|link }}"></script>
+            {% endif %}
+        {% endif %}
+        <script type="text/javascript" src="{{ ("assets/uploads/js/plupload.full.js")|link }}"></script>
+        <script type="text/javascript" src="{{ ("js/jquery.preloader2.js")|link }}"></script>
+        {% if notContainIndex == true %}
+            {% if notContainVideo == true %}
+                <script type="text/javascript" src="{{ ("js/placeholders.jquery.js")|link }}"></script>
+            {% endif %}
+        {% endif %}
+        <script type="text/javascript">
+            var userIsLogged = {{ '1'|cond(userIsLogged == 1,'0') }};
+            var ServerMaxFileSize = '{{ uploadMaxFileSize|raw }}';
+            var USER_IS_LOGGED = {{ 'true'|cond(userIsLogged == 1,'false') }};
+            {% if containVideo == true %}
+                var ORIGINAL_MEDIA_ID = {{ currentid|raw }};
+                var ORIGINAL_ENTITY_TYPE = {{ entitytype|raw }};
+                var is_owner = '{{ isowner|raw }}';
+                var user_Is_channel = '{{ userIsChannel|raw }}';
+                var user_is_logged = '{{ userislogged2|raw }}';
+                var pagename="media_page";
+                var COMMENT_TYPE = "m";
+                ThumbPath = '';
+                channelGlobalID('{{ channelGlobId|raw }}');
+            {% endif %}
+            flagme = 1;
+       </script>
+       
+       
+
+       {% if notContainVideoIndex == true %}
+            {% if sectionCond == true %}
+                <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v3{{MAP_KEY|raw}}&amp;sensor=false"></script>
+            {% endif %}
+        {% endif %}
+            
+        {% if notContainMapIndex == true %}
+            {# comments files #}
+            <script type="text/javascript" src="{{ ("js/underscore-min.js")|link }}"></script>
+            <script type="text/javascript" src="{{ ("js/jquery.elastic.js")|link }}"></script>
+            {% if notContainVideo == true %}
+                <script type="text/javascript" src="{{ ("js/jquery.timeentry.js")|link }}"></script>
+            {% endif %}
+            <script type="text/javascript" src="{{ ("js/jquery.mentionsInput.js")|link }}"></script>
+            <script type="text/javascript" src="{{ ("js/jquery.raty.js")|link }}"></script>
+            {# end comments files #}
+        {% endif %}
+        <script  type="text/javascript">
+            $(document).ready(function(){
+                $.ajax({
+                  url: ReturnLink('i18n/{{ js_local|raw }}/LC_MESSAGES/_{{ lang_local|raw }}.json') ,
+                  async: false, 
+                  type:'get',
+                  success: function(i18n_dict) {
+                       $.i18n.load(i18n_dict);
+                  }
+                });
+            });
+        </script>
+        {{ includePartJs|raw }}
+        <script type="text/javascript" src="{{ ("js/jquery.fancybox.js")|link }}"></script>
+        <script>
+        
+        function closeFancy(){
+            $.fancybox.close();
+        }
+        function closeFancyOpenRegister(){
+            $.fancybox.close();
+            $('.TopRegisterLink').click();
+        }
+        
+        </script>
+        <script type="text/javascript" src="{{ ("js/jcarousellite_1.0.1c5.js")|link}}"></script>         
+    </head>
+    <body>
+        <div id="popup_creatid" class="popup_creat bag_popup"></div>
+        <a rel="nofollow" href="https://www.facebook.com/pages/Tourist-Tube/1635194046710440?fref=ts" rel="nofollow" title="facebook" class="displaynone"></a>
+        <div id="TopMenu">
+            <div id="InsideTopMenu">
+                <a href="{{ ''|link }}" id="Logo"></a>
+                <div id="TopMenuContainer">
+                    <div id="RightTopMenuInside">
+                {% if userIsLogged != 0 %}
+                        <a id="uploadLink" class="requestinvite" href="{{ 'upload'|link }}">{{ 'upload'|lang }}</a>
+			&nbsp; | &nbsp;
+                {% endif %}
+                {% if userIsLogged == 0 %}
+                            <a class="TopRegisterLink" href="{{ 'register'|link }}">{{ 'register'|lang }}</a>
+                {% else %}
+                            <a id="WelcomeStringComb" href="{{ 'myprofile'|link }}">
+                                <span id="WelcomeString">{{ 'Welcome'|lang }}</span> - <span id="WelcomeUserName">{{ userGetName|raw }}</span>
+                            </a>
+                {% endif %}
+			{% if userIsLogged == 0 %}
+			    <a href="{{login_page_link|raw}}" title="{{ 'SIGN IN'|lang }}" id="SignInBtn">{{ 'SIGN IN'|lang }}<div id="SignInBtnbk"></div></a>
+			{% else %}
+			    <div id="SignOutBtn"></div>
+			    <div id="TopProfileDiv">
+                                {% if channelListAllcnt > 0 %}
+                                <div style="display:none;" id="OtherChannelsPop" class="OtherChannelsPopIndex">
+				    <div class="main">
+					<div class="top">
+					    MY CHANNELS <span class="yellowbold11">({{ channelListAll|raw }})</span>
+					    <div class="next {{ channelDisabled|raw }}">{{"next"|lang}}</div>
+					    <div class="prev disabled">{{"previous"|lang}}</div>
+					    <div class="close showChannels"></div>
+					</div>
+					<div class="containertop caouselother">
+					    <ul>
+						<li>
+						    {% for c in channelAll %}
+						    {{ c.li|raw }}
+						    <div class="insideli" data-id="{{ c.top_channel_id|raw }}">
+							<a href="{{ c.top_channel_url|raw }}" title="{{ c.top_channel_name_stan|raw }}"><div class="TopProfileDivIcon">{{ c.top_channel_logo|raw }}</div><div class="TopProfileDivText {{ c.classnew|raw }}">{{ c.top_channel_name|raw }}</div></a>
+						    </div>
+						    {% endfor %}
+						</li>
+					    </ul>
+					</div>
+				    </div>
+				</div>
+                                {% endif %}
+				<ul>
+				    {% if userIsChannel == false %}
+					<li><a href="{{ 'account/info'|link }}"><div class="TopProfileDivIcon TopProfileDivAccountIcon"></div><div class="TopProfileDivText">{{ 'Account Info'|lang }}</div></a></li>
+				    {% endif %}
+                                {% if channelListAllcnt > 0 %}
+                                    <li><a href="javascript:;" class="showChannels"><div class="TopProfileDivIcon TopProfileDivChannelsIcon"></div><div class="TopProfileDivText">{{ 'Channels'|lang }}</div></a></li>
+                                {% endif %}
+				    <li><a href="{{ 'myprofile/photos'|link }}"><div class="TopProfileDivIcon TopProfileDivPhotosIcon"></div><div class="TopProfileDivText">{{ 'Photos'|lang }}</div></a></li>
+				    <li><a href="{{ 'myprofile/videos'|link }}"><div class="TopProfileDivIcon TopProfileDivVideosIcon"></div><div class="TopProfileDivText">{{ 'Videos'|lang }}</div></a></li>
+				    <li><a href="{{ 'myprofile/albums'|link }}"><div class="TopProfileDivIcon TopProfileDivAlbumsIcon"></div><div class="TopProfileDivText">{{ 'Albums'|lang }}</div></a></li>
+				    <li><a href="{{ 'logout'|link }}"><div class="TopProfileDivIcon"></div><div class="TopProfileDivText">{{ 'sign out'|lang }}</div></a></li>
+				</ul>
+			    </div>
+			{% endif %}
+                    </div>
+                    <div id="TopSearchArea">
+                        <form id="SearchForm" enctype="application/x-www-form-urlencoded" class="desk_search" name="SearchForm" action="{{ searchLink|raw }}" method="post">
+                            <div id="SearchCategoryList">
+                                <ul>
+                                    <li data-type="a" id="SearchCategory1">{{ 'All Media'|lang }}</li>
+                                    <li data-type="i" id="SearchCategory2">{{ 'Photos'|lang }}</li>
+                                    <li data-type="v" id="SearchCategory3">{{ 'Videos'|lang }}</li>
+                                    <li data-type="i" id="SearchCategory7" style="display:none;"></li>
+                                    <li data-type="v" id="SearchCategory8" style="display:none;"></li>
+                                    <li data-type="u" id="SearchCategory4">{{ 'Friends'|lang }}</li>
+                                </ul>
+                            </div>
+                            <div class="SearchCategoryBtn">
+                                {{ searchCategoryBtn|raw }}
+                                <span class="SearchCategoryIcon"></span>
+                            </div>
+                            <div class="SearchCategorySep"></div>
+                            <div class="SearchField">
+                                <input type="text" id="SearchField" onkeypress="return checkSubmitSearchHome(event)" data-id="{{ c|raw }}" rel="{{ category_id|raw }}" name="qr" placeholder="{{"Search"|lang}} {{ c|raw }}" value="{{ q|raw }}" data-name="{{ category_names|raw }}"/>
+                                <input type="hidden" name="t" id="t" value="{{ t|raw }}" />
+                                <input type="hidden" name="orderby" id="orderby" value="{{ order|raw }}" />
+                                <input type="hidden" name="c" id="c" value="{{ c|raw }}" />
+                            </div>
+                            <div class="SearchSubmit"></div>
+                        </form>
+                        
+              
+                    </div>
+                </div>                    
+            </div>
+        </div>
+        <div id="MiddleTop" class="visited">
+            <div class="profileimagesbuttonsOver">
+                <div class="ProfileHeaderOverin"></div>
+                <div class="icons-overtik"></div>
+            </div>
+
+            <div id="InsideMiddelTop">
+                <div id="ArrowMiddleTop">
+                </div>
+                {% include "slotMachine.html" %}
+            </div>
+        </div>
+  {% if RESPONSIVE == true %}      
+        <!-- nav -->
+<div id="nav_bar"> 
+   <script>
+      function menushow()
+		{
+			$("#mobile_tabsmain").slideToggle();
+		}
+		
+    </script>
+          <div id="nav_bar_mobile"> 
+              <a href="#" class="menu-toggle" onClick="menushow();"> 
+                  <span class="text">{{ 'Menu'|lang }}</span> 
+                  <span class="i_bar_btn"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span> 
+              </a>
+    <ul id="mobile_tabsmain" style="display:none">       
+        <li>
+            <a class="tabsofive requestinvite" href="{{ SlotMachine_ThingstodoLink|raw }}" title="{{ SlotMachine_ThingstodoTxt|raw }}">
+                <span class="mntxt">{{ SlotMachine_ThingstodoTxt|raw }}</span>
+                <span class="sepright {{ SlotMachine_cond10 }} "></span>
+            </a>
+        </li>
+              <li class="largecell3"><a class="tabsofive requestinvite" href="{{channels_page_link|raw}}" title="{{"Tourist Channels"|lang}}">
+                
+                <span>{{"Tourist Channels"|lang}}</span></a></li>
+              <li class=""> <a class="tabsofour requestinvite" href="{{'live'|link}}" title="{{"Tourist Live"|lang}}">
+                
+                <span>{{"Tourist Live"|lang}}</span></a></li>
+              
+              <li class=""><a class="tabsofour requestinvite" href="{{'review'|link}}" title="{{"Review & Rate"|lang}}">
+                <div></div>
+                <span>{{"Review & Rate"|lang}}</span></a></li>
+                {% if userIsLogged == 1 %}
+<!--              <li class=""><a class="tabsofour requestinvite" href="{{'account/invite'|link}}" title="{{"Send Invitation"|lang}}">
+                <div></div>
+                <span>{{"Send Invitation"|lang}}</span></a></li>-->
+                {% endif%}
+            </ul>
+  </div>
+  </div>
+<!-- Nav -->
+  {% endif %}      
+        
+        <div id="TTAlertContainer">
+            <div id="TTAlertContainerInside">
+                <div id="TTAlertContainerInside_data">
+                    <div id="TTAlert_content">
+                        <div class="TTAlert_text"></div>
+                    </div>
+                    <div id="TTAlert_shadow"></div>
+                    <div id="TTAlert_button_container">
+                        <div class="TTAlert_buts1 TTAlert_buts">{{ 'cancel'|lang }}</div>
+                        <div class="TTAlert_seperator"></div>
+                        <div class="TTAlert_buts2 TTAlert_buts">{{ 'register'|lang }}</div>
+                    </div>
+                    <div id="TTAlert_close"></div>
+                </div>
+            </div>
+            <div class="TTAlert_back_fix"></div>
+        </div>

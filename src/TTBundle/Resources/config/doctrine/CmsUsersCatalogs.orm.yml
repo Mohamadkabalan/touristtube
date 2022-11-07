@@ -1,0 +1,232 @@
+TTBundle\Entity\CmsUsersCatalogs:
+    type: entity
+    table: cms_users_catalogs
+    repositoryClass: TTBundle\Repository\PhotosVideosRepository
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        location_id:
+            columns:
+                - location_id
+        cityid:
+            columns:
+                - cityid
+        cityname:
+            columns:
+                - cityname
+        country:
+            columns:
+                - country
+        latitude:
+            columns:
+                - latitude
+        longitude:
+            columns:
+                - longitude
+        is_public:
+            columns:
+                - is_public
+        category:
+            columns:
+                - category
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        catalogName:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: catalog_name
+        nMedia:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: n_media
+        placetakenat:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        catalogTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: catalog_ts
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: like_value
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_comments
+        nbViews:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_views
+        nbRatings:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_ratings
+        rating:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_shares
+        vpath:
+            type: string
+            nullable: false
+            length: 16
+            options:
+                fixed: false
+        locationId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: location_id
+        cityid:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        cityname:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: true
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        isPublic:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: is_public
+        keywords:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        category:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        channelid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        albumUrl:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: album_url
+        canComment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_comment
+        canShare:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_share
+        canRate:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_rate
+        canLike:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_like
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+    lifecycleCallbacks: {  }

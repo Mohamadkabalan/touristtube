@@ -1,0 +1,44 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/css/jquery.auto-complete.css')|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/autocomplete/TTAutocomplete.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/form/TTFormValidator.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/js/jquery.autocomplete.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/form_validator/validator.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-departmentEdit.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Departments Add/Edit'|trans}}{% endblock %}
+{% block body %}
+    {% set defaultValues = {'p_id': 0, 'p_name': '', 'p_accountId': 0, 'accountName': '' } %}
+
+    {% set department = defaultValues|merge(department) %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Departments Add/Edit'|trans}}</h1>
+	    </div></br>
+	    <form id="formId" method="POST" action="{{ generateLangRoute(LanguageGet, '_corpo_departments_addSubmit') }}">
+		<input type="hidden" class="id" name="id" value="{{department.p_id|raw}}">
+		<div class="inputFields"><label id="nameLabel">{{'Name'|trans}} </label></div>
+		<input type="text" class="inputForm" name="name" value="{{department.p_name|raw}}" required label="#nameLabel"> 
+		<div class="clear"></div>
+		<div class="inputFields"><label id="accountNameLabel">{{'Account'|trans}}
+ </label></div>
+		<input type="text" class="inputForm" name="accountName" data-toggle="ttautocompleteAccount" id="accountName" value="{{department.accountName|raw}}" placeholder="{{'Search for parent account'|trans}}
+" required label="#accountNameLabel"/>
+		{% if department.p_accountId %}
+		    <input type="hidden" id="accountNameCode" name="accountId" value="{{department.p_accountId|raw}}">
+		{% endif %}
+		<div class="clear"></div>
+		<div class="inputFields tt_buttons_bar"><button data-role="button" data-type="validate" type="submit">{{'Submit'|trans}}
+</button></div>
+	    </form>
+	</div>
+    </section>
+{% endblock %}

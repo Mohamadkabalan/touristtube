@@ -1,0 +1,110 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deal_header_with_backimg.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deals_common_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js") }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container deals_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_10">
+                    <div class="col-xs-12 nopad sort_by_tabs">
+                        <div class="row no-margin filters-group">
+
+                            <div class="sort-options">
+                                <a href="{{ generateLangRoute(LanguageGet,'_deals') }}" title="{{'Deals'|trans}}" class="active sort_item col-sm-2 col-xs-3">{{'Default'|trans}}</a>
+                                <a href="{{ generateLangRoute(LanguageGet,'_dealSearch_tours') }}" title="{{'Tours'|trans}}" class="sort_item col-sm-2 col-xs-3">{{'Tours'|trans}}</a>
+                                <a href="{{ generateLangRoute(LanguageGet,'_dealSearch_activities') }}" title="{{'Activities'|trans}}" class="sort_item col-sm-2 col-xs-3">{{'Activities'|trans}}</a>
+                                <a href="{{ generateLangRoute(LanguageGet,'_dealSearch_attractions') }}" title="{{'Attractions'|trans}}" class="sort_item col-sm-2 col-xs-3">{{' Attractions'|trans}}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+		{% for itemMain in mainEntityArray %}
+		    <div class="row no-margin">
+			<div class="col-xs-12 nopad">
+			    <div class="row no-margin">
+				<div class="col-xs-12 nopad">
+				    <h2 class="row_title_deals">{{itemMain.name|raw}}{% if loop.index==1 %} | <span>{{'DISCOVER GREAT ACTIVITIES JUST A CLICK AWAY'|trans}}</span>{% endif %}</h2>
+				</div>
+			    </div>
+			    <div class="row deals_new_margin">
+				{% for subItemMain in itemMain.subItem %}
+				    <a href="{{ subItemMain.link|raw }}" title="{{ subItemMain.namealt|raw }}" class="col-md-3 col-sm-6 col-xs-12 deals_new_padding container_min_height">
+					<div class="row no-margin">
+					    <img class="width-100" src="{{ subItemMain.img }}" alt="{{ subItemMain.namealt|raw }}">
+					    <h3 class="under_image_title col-xs-12 nopad">{{ subItemMain.name|raw }}{% if subItemMain.tours_number>0 %}<span>. {{ subItemMain.tours_number|raw }} {{'tours and activities'|trans}}</span>{% endif %}</h3>
+					</div>
+				    </a>
+				{% endfor %}
+				{#<div class="col-md-3 col-sm-6 col-xs-12 deals_new_padding container_min_height">
+				    <div class="row no-margin">
+					<a href="#" class="col-xs-12 nopad">
+					    <img class="width-100" src="/images/deals/destinations/paris.jpg" alt="paris">
+					    <h3 class="image_title">{{'paris'|trans}}</h3>
+					</a>
+					<h3 class="under_image_title col-xs-12 nopad">{{'Paris '|trans}}<span>{{'. 199 tours and activities'|trans}}</span></h3>
+				    </div>
+				</div>#}
+				<div class="col-xs-12 deals_new_padding pad_but_z">
+				    <div class="border_grey_1"></div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		{% endfor %}
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <h2 class="row_title_deals">{{'Top deals'|trans}}</h2>
+                            </div>
+                        </div>
+                        <div class="row deals_new_margin">
+			    {% for item in deals %}
+				{% if  isMobile == 1  and (loop.index == 1 or loop.index == 5 or loop.index == 9) %}
+				    <div class="col-xs-12">
+				    {% endif %}
+				    <div class="col-md-3 col-sm-6 col-xs-12 deals_new_padding">
+					<div class="row no-margin">
+					    <a href="{{ item.urlPath|raw }}" title="{{item.dealName|raw}}" class="col-xs-12 nopad grey_img_and_txt_container">
+						<div class="row no-margin">
+						    <div class="col-xs-12 nopad image_style_container">
+							<img class="width-100" src="{{ item.imagePath|raw }}" alt="{{item.dealName|raw}}">
+							<div class="discount_img"><p>-5%</p></div>
+						    </div>
+						    <div class="col-xs-12 nopad text_style_container">
+							<h4 class="image_txt_subtitle">
+							    {% if item.dealNameTrans is defined and item.dealNameTrans %}
+								{{item.dealNameTrans|trans}}
+							    {% else %}
+								{{item.dealName|trans}}
+							    {% endif %}
+							</h4>
+							<p class="travelers_recommendation">{{'86% of travelers recommend'|trans}}</p>
+							<p class="price_pink">
+							    <span class="a_price price-convert" data-price="{{ item.priceBeforePromo|raw }}"><span class="currency-convert-text">{{item.currency|raw}}</span> <span class="price-convert-text">{{ item.formattedPriceBeforePromo|raw }}</span></span>
+							</p>
+						    </div>
+						</div>
+					    </a>
+					</div>
+				    </div>
+				    {% if isMobile == 1 and (loop.index == 4 or loop.index == 8 or loop.index == 12) %}
+				    </div>
+				{% endif %}
+			    {% endfor %}
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </section>
+{% endblock %}

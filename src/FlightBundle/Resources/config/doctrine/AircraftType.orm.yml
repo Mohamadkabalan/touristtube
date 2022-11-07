@@ -1,0 +1,35 @@
+FlightBundle\Entity\AircraftType:
+    type: entity
+    table: aircraft_type
+    indexes:
+        iata_code:
+            columns:
+                - iata_code
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        manufacturer:
+            type: string
+            nullable: false
+            length: 50
+        model:
+            type: string
+            nullable: false
+            length: 50
+        wake:
+            type: string
+            nullable: true
+            length: 1
+        iataCode:
+            type: string
+            nullable: false
+            length: 3
+            column: iata_code
+    lifecycleCallbacks: {  }

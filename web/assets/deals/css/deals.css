@@ -1,0 +1,453 @@
+html {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    width:100%;
+    height:100%;
+    font-family: arial;
+}
+a.dest{
+    
+    color: #2e2e2e;
+    font-size: 13px;
+    text-decoration: underline;
+    text-transform:capitalize;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("/media/images/ico_breadcrumb.png");
+    background-origin: padding-box;
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    display: block;
+    padding-left: 23px;
+    padding-right: 10px;
+}
+a.dest.first{
+    background: none;
+    text-transform: none;
+}
+a.dest:hover, a.dest:focus{
+    color: #eac31a;
+}
+padding0{
+    padding: 0;
+}
+.bookdeal_top button{
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #eac31a;
+    border:none;
+    width: 100%;
+    font-weight: bold;
+    height: 110px;
+}
+.deal_title h2{
+    width: auto;
+    float: left;
+    font-size: 28px;
+    text-transform:capitalize;
+    color: #fff;
+    padding: 8px;
+}
+.deal_title{
+    height: 50px;
+    background-color: #5763bd;
+}
+.soustitle{
+    padding: 14px;
+    color:#fff;
+     font-size: 16px;
+    text-transform: uppercase;
+}
+.deal_map img{
+    width: 100%;
+}
+.dealinfo-title{
+    font-size: 15px;
+    text-transform: capitalize;
+    color:#5763bd;
+    text-align: left;
+}
+.dealinfo-txt{
+    
+}
+.price{
+    font-size: 19px;
+    font-weight: bold;
+    color:#5763bd;
+}
+.deal_info{
+    background-color: #dde0f2;
+   height: 117px;
+    padding: 5px;
+    line-height: 20px;
+    width: 98%;
+    display: table;
+}
+.paddingbottom0{
+    padding-bottom: 0px;
+}
+.paddingtop0{
+    padding-top: 0px;
+}
+.courtdescp{
+    background-color: #5763bd;
+    color:#fff;
+    padding: 50px;
+    padding-left: 100px;
+}
+.courtdescp p{
+    font-size: 16px;
+}
+.courtdesc-title{
+    font-size: 23px;
+    padding-bottom: 15px;
+}
+.tab-title{
+    font-size:23px;
+    color:#5763bd;
+    padding-bottom:15px;
+}
+.tab-soustitle{
+    font-size: 19px;
+    color:#000;
+}
+#tabs p{
+    color:#8f8e8e;
+    font-size: 16px;
+    line-height: 20px;
+}
+#tabs .ui-state-default, #tabs .ui-widget-content .ui-state-default,#tabs .ui-widget-header .ui-state-default{
+    background-color: #5763bd;
+    border: none;
+}
+.ui-state-default{
+    background-color: none !important;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr{
+    border-top-right-radius:0px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl{
+   border-top-left-radius:0px; 
+}
+#tabs .ui-state-active,#tabs .ui-widget-content .ui-state-active,#tabs .ui-widget-header .ui-state-active{
+    background-color: #eac31a;
+    color:#fff;
+}
+.ui-widget-header{
+    background-color: transparent;
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited,.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited{
+    color: #fff;
+}
+.daydescp{
+    border: 5px solid #eeeff8;
+    padding-bottom: 30px;
+    padding-left: 90px;
+    padding-right: 50px;
+    padding-top: 5px;
+}
+.block-title{
+    background-image: url("/media/images/block_icon.png");
+    background-repeat: no-repeat;
+    padding-left: 45px;
+    font-size: 23px;
+    color: #5763bd;
+    background-position: 0 50%;
+}
+h2{
+    font-size: 23px;
+}
+.block-content li{
+    font-size: 16px;
+    color: #6a6969;
+    background-image: url("/media/images/list-blue.png");
+    padding-left: 44px;
+     background-position: left 14px;
+    background-repeat: no-repeat;
+    list-style: none;
+    line-height: 25px;
+    
+}
+.block-content{
+    padding-top: 10px;
+}
+.condition p{
+    font-size: 16px;
+    color:#6a6969;
+}
+.month{
+    background-image: url("/media/images/month-bckg.png");
+    background-repeat: no-repeat;  
+    color: #fff;
+    font-size: 15px;
+    height: 30px;
+    padding-left: 45px;
+    text-transform: uppercase;
+    line-height: 30px;
+}
+.date-descp{
+    font-size: 17px;
+    color: #6a6969;
+    text-transform: capitalize;
+}
+.date {
+    height: 90px;
+}
+.country-name{
+    font-size: 17px;
+    color: #6a6969;
+    background-color: #e6e6e6;
+    height: 30px;
+    text-transform: capitalize;
+    text-align: center;
+}
+.country-hotel{
+    font-size: 17px;
+    color: #6a6969;
+    background-color: #f2f2f2;
+    height: 30px;
+    text-transform: capitalize;
+    padding-left: 15px;
+}
+.padding0{
+    padding:0;
+}
+.block-soustitle{
+     font-size: 17px;
+    color: #5763bd;
+}
+.ui-selected .cell{
+    background-color: #f39814;
+}
+.cell{
+    background-color: #e6e6e6;
+    height: 30px;
+    color:#6a6969;
+    padding-left: 20px;
+    font-size: 17px;
+}
+.padding1{
+    padding: 1px;
+}
+.cell select{
+    width: 98%;
+    background-color: #fff;
+    margin: 1px;
+    border: none;
+    height: 42px;
+    background-image: url("/media/images/flech-out.png");
+}
+
+.roomsrow .cell{
+    height: 45px;
+    padding-left: 20px;
+}
+.cell.country{
+    color: #5763bd;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.cell.selectcell{
+    padding-left: 0;
+}
+
+
+ #selectable .ui-selected { background: #F39814; color: white; }
+
+
+.slick-slide {
+    padding-bottom: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 0 !important;
+    padding-top: 5px !important;
+}
+.slick-slider{
+    margin-top: 0px !important;
+}
+.slick-prev, .slick-next{
+    display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.horizon-swiper.arrows{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.horizon-swiper{
+    background-color: transparent;
+}
+.horizon-item {
+    width: 25%;
+    /*height: 117px !important;
+    top:-24px;
+}
+*/
+.dealinfo-txt{
+    text-align: left;
+    white-space: normal;
+     font-size: 15px;
+    color:#000;
+    width: 95%;
+}
+
+
+
+    
+
+
+
+.dropdown {
+  position: relative;
+  margin: 0 auto;
+  width: 15em;
+}
+
+.dropdown > .outer-list {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+}
+
+.dropdown > .outer-list.top {
+  align-items: flex-start;
+  transform-origin: 50% 0;
+}
+
+.dropdown > .outer-list.left { justify-content: flex-start; }
+
+.dropdown > .outer-list.bottom {
+  align-items: flex-end;
+  transform-origin: 50% 100%;
+}
+
+.dropdown > .outer-list.right { justify-content: flex-end; }
+
+.dropdown > .outer-list > ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  border-radius: .2em;
+}
+
+.dropdown > .outer-list > ul li {
+  padding: .25em 3em;
+  margin: .25em;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.35s ease;
+}
+
+.dropdown > .outer-list > ul li:hover { background: rgba(0, 0, 0, 0.07); }
+.btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #03A9F4;
+  color: #fff;
+  padding: 1em;
+  border-radius: .15em;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+.btn:after {
+  content: '';
+  position: absolute;
+  bottom: -50%;
+  right: -50%;
+  z-index: 1;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: all 0.35s ease;
+}
+
+.btn:active:after,
+.btn.dropdown-open:after {
+  width: 200%;
+  height: 200%;
+}
+
+.btn:hover { box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1); }
+
+.btn.dropdown-open + .outer-list {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen  and (max-width:767px){ 
+.horizon-item {
+    width: 84%;
+}
+.courtdescp{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+}
+@media (min-width:768px)  and (max-width:1199px){ 
+.horizon-item {
+    width: 35%;
+    top:0;
+}
+
+}
+
+
+

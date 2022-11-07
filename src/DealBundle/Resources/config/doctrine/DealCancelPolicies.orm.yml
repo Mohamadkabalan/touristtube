@@ -1,0 +1,45 @@
+DealBundle\Entity\DealCancelPolicies:
+    type: entity
+    table: deal_cancel_policies
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealBookingId:
+            type: integer
+            nullable: true
+            column: deal_booking_id
+        penaltyAmount:
+            type: string
+            nullable: true
+            length: 100
+            column: penalty_amount
+        validTo:
+            type: string
+            nullable: true
+            length: 100
+            column: valid_to
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+    lifecycleCallbacks: {  }

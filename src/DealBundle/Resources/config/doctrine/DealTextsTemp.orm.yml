@@ -1,0 +1,43 @@
+DealBundle\Entity\DealTextsTemp:
+    type: entity
+    table: deal_texts_temp
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        activityId:
+            type: string
+            nullable: true
+            column: activity_id
+        activityName:
+            type: string
+            nullable: true
+            column: activity_name        
+        activityHighlights:
+            type: string
+            nullable: true
+            column: activity_highlights
+        activityDescription:
+            type: string
+            nullable: true
+            column: activity_description            
+        activityCity:
+            type: string
+            nullable: true
+            column: activity_city
+        activityType:
+            type: string
+            nullable: true
+            column: activity_type            
+    lifecycleCallbacks: {  }

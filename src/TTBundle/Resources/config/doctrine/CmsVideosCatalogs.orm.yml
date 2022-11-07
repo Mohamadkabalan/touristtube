@@ -1,0 +1,42 @@
+TTBundle\Entity\CmsVideosCatalogs:
+    type: entity
+    table: cms_videos_catalogs
+    repositoryClass: TTBundle\Repository\PhotosVideosRepository
+    indexes:
+        video_id:
+            columns:
+                - video_id
+                - catalog_id
+        catalog_id:
+            columns:
+                - catalog_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        videoId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: video_id
+        catalogId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: catalog_id
+        defaultPic:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: default_pic
+    lifecycleCallbacks: {  }

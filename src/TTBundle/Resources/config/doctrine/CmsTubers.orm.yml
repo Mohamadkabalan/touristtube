@@ -1,0 +1,70 @@
+TTBundle\Entity\CmsTubers:
+    type: entity
+    table: cms_tubers
+    repositoryClass: TTBundle\Repository\UserLoginRepository
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    uniqueConstraints:
+        uid:
+            columns:
+                - uid
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        uid:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        userId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: user_id
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        logTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: log_ts
+        clientType:
+            type: boolean
+            nullable: false
+            column: client_type
+        expiryDate:
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+            column: expiry_date
+        keepMeLogged:
+            type: boolean
+            nullable: false
+            column: keep_me_logged
+        socialToken:
+            type: string
+            nullable: false
+            length: 255
+            column: social_token
+    lifecycleCallbacks: {  }

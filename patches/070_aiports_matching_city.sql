@@ -1,0 +1,11 @@
+update airport a set a.city_id = 1240736 WHERE a.id = 1266;
+update airport a set a.city_id = 945672 WHERE a.id = 7935;
+update airport a set a.city_id = 878364 WHERE a.id = 8060;
+update airport a set a.city_id = 950445 WHERE a.id = 8542;
+update airport a set a.city_id = 951152 WHERE a.id = 8839;
+update airport a set a.city_id = 944408 WHERE a.id = 8916;
+update airport a set a.city_id = 950919 WHERE a.id = 8919;
+update airport a set a.city_id = 921062 WHERE a.id = 8971;
+update airport a set a.city_id = 925640 WHERE a.id = 8984;
+update airport a set a.city_id = 934947 WHERE a.id = 8994;
+update airport a set a.city_id = 924160 WHERE a.id = 9006;

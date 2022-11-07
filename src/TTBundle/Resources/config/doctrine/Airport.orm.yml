@@ -1,0 +1,192 @@
+TTBundle\Entity\Airport:
+    type: entity
+    table: airport
+    repositoryClass: TTBundle\Repository\ReviewsRepository
+
+    indexes:
+        country_abbreviation:
+            columns:
+                - country
+                - city
+        world_area_code:
+            columns:
+                - world_area_code
+                - city
+        city:
+            columns:
+                - city
+        country_abbreviation_2:
+            columns:
+                - country
+        longitude_dec:
+            columns:
+                - longitude
+        latitude_dec:
+            columns:
+                - latitude
+        state_code:
+            columns:
+                - state_code
+        city_2:
+            columns:
+                - city
+    uniqueConstraints:
+        airport_code:
+            columns:
+                - airport_code
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        airportCode:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: airport_code
+        worldAreaCode:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+            column: world_area_code
+        country:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+        runwayLength:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: runway_length
+        runwayElevation:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: runway_elevation
+        city:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        zoomOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: zoom_order
+        showOnMap:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: show_on_map
+        stateCode:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: state_code
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        gmtOffset:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: gmt_offset
+        telephone:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fax:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        website:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        stars:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        cityId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: city_id
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+    lifecycleCallbacks: {  }

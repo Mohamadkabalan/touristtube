@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block pagenewcss %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/tours.css")|raw }}" >
+    <style>
+        .redz{
+            border: 1px solid red;
+        }
+        .tourSubmit{
+            color: #fff;
+            background-color: #eac31a;
+            border: none;
+            border-radius: 0;
+            text-shadow: none;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <section class="container">
+        <div class="col-xs-12">
+            <div class="overview">
+                <div class="fl bg">
+                    <h1 class="padd">{{'Booking Details'|trans}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 nopad">  
+            <div class="col-lg-4 col-md-4 col-sm-10 col-xs-12 nopad">
+                <div class="details_img">
+                    <img class="width-100" src="../images/picex1.png">
+                </div>
+                <div class="col-xs-12"><b>{{ 'PNR No.:'|trans }}</b> {{ details.b_pnrNo|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Status:'|trans }}</b> {{ details.b_pnrStatus|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Service Date:'|trans }}</b> {{ details.b_serviceDate|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Nationality:'|trans }}</b> {{ details.b_nationality|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'Title:'|trans }}</b> {{ details.b_title|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'FirstName:'|trans }}</b> {{ details.b_firstName|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'LastName:'|trans }}</b> {{ details.b_lastName|raw }} </div>
+                <div class="col-xs-12"><b>{{ 'TotalPrice:'|trans }}</b> {{ details.b_totalPrice|raw }} </div>
+            </div>       
+        </div>                
+    </section>
+{% endblock %}

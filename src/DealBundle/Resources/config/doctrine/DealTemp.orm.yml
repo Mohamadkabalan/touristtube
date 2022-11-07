@@ -1,0 +1,75 @@
+DealBundle\Entity\DealTemp:
+    type: entity
+    table: deal_temp
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        activityStartingPlace:
+            type: string
+            nullable: true
+            column: activity_starting_place
+        activityHighlights:
+            type: string
+            nullable: true
+            column: activity_highlights
+        activityId:
+            type: string
+            nullable: true
+            column: activity_id
+        activityName:
+            type: string
+            nullable: true
+            column: activity_name
+        activityImgMain:
+            type: string
+            nullable: true
+            column: activity_img_main
+        activityPriceAdult:
+            type: string
+            nullable: true
+            column: activity_price_adult
+        activityPriceCurrency:
+            type: string
+            nullable: true
+            column: activity_price_currency
+        activityDuration:
+            type: string
+            nullable: true
+            column: activity_duration
+        activityDurationText:
+            type: string
+            nullable: true
+            column: activity_duration_text
+        activityAvailabilityType:
+            type: string
+            nullable: true
+            column: activity_availability_type
+        activityCountry:
+            type: string
+            nullable: true
+            column: activity_country
+        activityCity:
+            type: string
+            nullable: true
+            column: activity_city
+        cancelCount:
+            type: string
+            nullable: true
+            column: cancel_count
+        percentage:
+            type: string
+            nullable: true
+            column: percentage
+    lifecycleCallbacks: {  }

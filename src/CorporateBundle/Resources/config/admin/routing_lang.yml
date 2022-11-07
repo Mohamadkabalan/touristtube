@@ -1,0 +1,1097 @@
+_corpo_search_account_type_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/searchAccountType"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeCombo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"  
+
+_corpo_admin_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/corporateAdmin"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdmin:landingPage, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_transactions_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:accountTransactions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_transactions_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_transactions_datatableSum_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions/datatablesum"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:getDataTableSum, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_transactions_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:accountTransactionsAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: ""  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_transactions_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:accountTransactionsAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_transactions_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:accountTransactionsDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_transactions_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/transactions/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:accountTransactionsAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/account"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:account, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", slug: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_search_account_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/searchAccount"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:accountCombo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_affiliate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/affiliate"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:users, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", slug: "affiliate" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_accountslist_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/{slug}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:account, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/account/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:accountAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", slug: ""  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_add_withslug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/add-{slug}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%"  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:accountAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:accountDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/account/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccount:accountAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "", slug: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_edit_withslug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/account/edit-{slug}/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%"  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_define_services_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/services"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDefineServices:defineServices, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_define_services_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/services/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDefineServices:defineServicesAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_define_services_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/services/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDefineServices:defineServicesAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_define_services_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/services/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDefineServices:defineServicesDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_define_services_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/services/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDefineServices:defineServicesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_profiles_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/profiles"
+    defaults: { _controller: CorporateBundle:Admin\CorpoProfiles:profiles, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_profiles_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/profiles/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoProfiles:profilesAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_profiles_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/profiles/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoProfiles:profilesAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_profiles_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/profiles/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoProfiles:profilesDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_profiles_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/profiles/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoProfiles:profilesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_departments_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/departments"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDepartments:departments, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_departments_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/departments/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDepartments:departmentsAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_departments_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/departments/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDepartments:departmentsAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_departments_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/departments/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDepartments:departmentsDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_departments_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/departments/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDepartments:departmentsAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_search_department_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/searchDepartment"
+    defaults: { _controller: CorporateBundle:Admin\CorpoDepartments:adminSearchDepartment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_users_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:users, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", slug: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_users_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_users_add_withslug:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/add-{slug}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"        
+
+_corpo_users_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_users_delete_withslug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/delete-{slug}/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersDelete, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: "",  slug: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersDelete, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_edit_withslug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/edit-{slug}/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"        
+
+_corpo_users_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:usersAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_disallow_withslug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/disallow-{slug}/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:userDisallow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "", slug: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_disallow_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/disallow/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:userDisallow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_allow_withslug_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/allow-{slug}/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:userAllow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "", slug: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_users_allow_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/allow/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:userAllow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_search_user_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/users/searchUser"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:adminSearchUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_approval_flow_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/approvalFlow"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:approvalFlow, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_approval_flow_add_start_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/approvalFlow/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:approvalFlowAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "", type: "1" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+        type: ".*"
+
+_corpo_approval_flow_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/approvalFlow/add/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:approvalFlowAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "", type: "1" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+        type: ".*"
+
+_corpo_approval_flow_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/approvalFlow/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:approvalFlowAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_approval_flow_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/approvalFlow/delete"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:approvalFlowDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_approval_flow_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/approvalFlow/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:approvalFlowAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "", type: "2" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+        type: ".*"
+
+_corpo_employee_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/employees"
+    defaults: { _controller: CorporateBundle:Admin\CorpoEmployee:employee, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_employee_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/employees/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoEmployee:employeeAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_employee_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/employees/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoEmployee:employeeAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_employee_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/employees/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoEmployee:employeeDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_employee_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/definitions/employees/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoEmployee:employeeAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_request_services_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/AdminRequestServices"
+    defaults: { _controller: CorporateBundle:Admin\CorpoRequestServices:requestServices, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_request_services_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/AdminRequestServicesAdd"
+    defaults: { _controller: CorporateBundle:Admin\CorpoRequestServices:requestServicesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_request_services_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/AdminRequestServicesAddSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoRequestServices:requestServicesAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_request_services_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/AdminRequestServicesDelete-{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoRequestServices:requestServicesDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_request_services_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/AdminRequestServicesEdit-{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoRequestServices:requestServicesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_get_approval_users_tree_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/getApprovalUsersTree"
+    defaults: { _controller: CorporateBundle:Admin\CorpoApprovalFlow:getApprovalUsersTree, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_agencies_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:agencies, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_agencies_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_agencies_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:agenciesAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_agencies_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:agenciesAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_agencies_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:agenciesDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_agencies_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:agenciesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_search_agencies_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/agencies/searchAgency"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAgencies:agencyCombo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_user_search_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/users/searchUser"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:userCombo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_check_user_duplicate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/Users/check-duplicate"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:checkDuplicateUser, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_is_corporate_send_email_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/Users/sendEmail"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:isCorporateSendEmail, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_notification_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/notification"
+    defaults: { _controller: CorporateBundle:Admin\CorpoNotification:notification, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_notification_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/notification/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoNotification:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_notification_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/notification/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoNotification:notificationAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%"  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_notification_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/notification/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoNotification:notificationAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_notification_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/notification/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoNotification:notificationDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_notification_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/notification/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoNotification:notificationAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_routing_admin_ajax_lang:
+    resource: "routing_admin_ajax_lang.yml"
+
+_corpo_account_type_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountType, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_type_search_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/searchAccountType"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeCombo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_type_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_check_accountType_duplicate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/check-duplicate"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:checkAccountTypeDuplicate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_accountType_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%"  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_accountType_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_accountType_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_accountType_deactivate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/deactivate/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeDeactivate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_accountType_activate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/activate/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeActivate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_accountType_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/accountType/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountType:accountTypeAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_user_profiles_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfiles, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_search_user_profile_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/users/searchUserProfile"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfileCombo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_user_profiles_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_user_profiles_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfilesAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%"  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_user_profiles_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfilesSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_user_profiles_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfilesAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_user_profiles_unpublish_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/unpublish/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfileUnpublish, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+    
+_corpo_user_profiles_publish_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/publish/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:userProfilePublish, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_user_profiles_duplicate_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/userProfiles/check-duplicate"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfiles:checkUserProfileDuplicate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_user_profiles_permissions_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/user-profiles-permissions"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfilePermissions:profilesPermissions, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_user_profiles_permissions_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/admin/user-profiles-permissions/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUserProfilePermissions:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_manage_bookings_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/booking/manage-bookings"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:manageBookings, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_manage_bookings_approve_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/booking/manage-bookings/approve/{reservationId}-{moduleId}-{accountId}-{transactionUserId}-{requestServicesDetailsId}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:approve, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", moduleId: "", accountId: "", transactionUserId: "", requestServicesDetailsId: "", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_manage_bookings_filter_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/booking/manage-bookings/filter"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:filter, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_manage_bookings_totals_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/booking/manage-bookings/gettotal"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:getTotal, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_payment_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:accountPayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_payment_datatable_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment/datatable"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:getDataTable, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_payment_add_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment/add"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:accountPaymentAddEdit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: ""  }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_payment_addSubmit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment/addSubmit"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:accountPaymentAddSubmit, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%"}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+
+_corpo_account_payment_delete_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment/delete/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:accountPaymentDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "" }
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+
+_corpo_account_payment_edit_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment/edit/{id}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:accountPaymentAddEdit, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+        autoClose: ".*"
+
+_corpo_account_payment_totals_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/accounting/payment/totals"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountPayment:accountPaymentTotals, _locale: "%locale%", domain: "%domain%", id: "", subdomain_suffix: "%subdomain_suffix%", id: ""}
+    requirements:
+        domain: "[^/]+"
+        _locale:  "%config_locales%"
+        subdomain_suffix: ".*"
+        id: ".*"
+        autoClose: ".*"

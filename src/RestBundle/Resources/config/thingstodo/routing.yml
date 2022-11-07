@@ -1,0 +1,33 @@
+_rest_thingstodo_divisions:
+    path:      "/api/thingstodo/divisions/{ttdId}"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:divisions, ttdId: "" }
+    requirements:
+        methods: GET
+        
+#Things To Do in Region URL 
+_rest_things_region:
+    path: "/api/discover/thingstodo_region"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoRegion }
+    requirements: 
+        methods: GET
+        
+#Things To Do in Country URL 
+_rest_things_country:
+    path: "/api/discover/thingstodo_country"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoCountry }
+    requirements: 
+        methods: GET
+
+# Things To Do Url
+_rest_things_search:
+    path: "/api/discover/thingstodo"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoSearch }
+    requirements: 
+        methods: GET
+        
+# Things To Do Details
+_rest_things_details:
+    path: "/api/discover/thingstodo_details"
+    defaults: { _controller: RestBundle:thingstodo\Thingstodo:thingstodoDetails }
+    requirements: 
+        methods: GET

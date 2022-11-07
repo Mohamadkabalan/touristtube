@@ -1,0 +1,71 @@
+<div class="row no-margin">
+    <div class="col-md-12 col-sm-4 col-xs-12 nopad xs_margin_top">
+	<div class="row no-margin">
+	    <div class="col-xs-12 nopad text-allign-center-xs">
+		<img class="fix_width_logo" src="{{channelslogo|raw}}" alt="{{namealt|raw}}"/>
+	    </div>
+	</div>
+    </div>
+    <div class="col-md-12 col-sm-8 col-xs-12 nopad">
+	<div class="row no-margin">
+	    <div class="col-xs-12 nopad pad_left_right_10 text_container_margin">
+		<div class="fix_width mar_auto">
+		    <h3 class="bluetitle">{{'Info'|trans}}</h3>
+		    {% if creaton !='' %}
+			<p class="greytext">{{'created on'|trans}}</p>
+			<p class="blacktext">{{creaton|raw}}</p>
+		    {% endif %}
+		    {% if creatby !='' %}
+			<p class="greytext">{{'created  by'|trans}}</p>
+			<p class="blacktext">{{creatby|raw}}</p>
+		    {% endif %}
+		    {% if channelcateg !='' %}
+			<p class="greytext">{{'category'|trans}}</p>
+			<p class="blacktext">{{channelcateg|raw}}</p>
+		    {% endif %}
+		    <p class="greytext">{{'location'|trans}}</p>
+		    <p class="blacktext margin-bottom-0">{{city|raw}} - {{country_name|raw}}</p>
+		    {% if street !='' %}
+			<p class="blacktext">{{street|raw}}</p>
+		    {% endif %}
+		    {% if phone !='' %}
+			<p class="blacktext">{{'Phone:'|trans}} {{phone|raw}}</p>
+		    {% endif %}
+		    {% if zipcode !='' %}
+			<p class="blacktext">{{'Zipcode:'|trans}} {{zipcode|raw}}</p>
+		    {% endif %}
+		    {% if defaultLink !='' %}
+			<a href="{{defaultLink|raw}}" title="{{namealt|raw}}" class="blacktext">{{defaultLink|raw}}</a>
+		    {% endif %}
+		    {% if links_array|length>0 %}
+			<div class="row no-margin">
+			    <div class="col-xs-12 nopad margin_top_15">
+				{% for item in links_array %}
+				    <div class="socialsection">
+					<a href="{{item.link|raw}}" title="{{item.titlealt|raw}}" class="{% if item.social_type=='www' %}web_link_grey{% else %}fa fa-{{ item.social_type|raw }} fa-2x{% endif %}">{% if item.social_type=='www' %}www{% endif %}</a>
+				    </div>
+				{% endfor %}
+			    </div>
+			</div>
+		    {% endif %}
+		</div>
+	    </div>
+	</div>
+    </div>
+    {% if is_owner==1 %}
+	<div class="col-xs-12 nopad margin_top_20">
+	    <div class="row no-margin">
+		{% if settings!='' %}
+		    <a rel="nofollow" href="{{settings|raw}}" title="{{'Channel settings'|trans}} {{namealt|raw}}" class="col-md-12 col-sm-4 col-xs-12 nopad newpadbtn">
+			<p class="btn default_btn_style margin_bottom_0">{{'Channel settings'|trans}}</p>
+		    </a>
+		{% endif %}
+		{% if channel_upload!='' %}
+		    <a href="{{channel_upload|raw}}" title="{{'Channel upload'|trans}} {{namealt|raw}}" class="col-md-12 col-sm-4 col-xs-12 nopad newpadbtn">
+			<p class="btn default_btn_style margin_bottom_0">{{'Add content'|trans}}</p>
+		    </a>
+		{% endif %}
+	    </div>
+	</div>
+    {% endif %}
+</div>

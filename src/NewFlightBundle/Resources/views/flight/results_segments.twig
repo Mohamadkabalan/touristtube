@@ -1,0 +1,156 @@
+<div class="row no-margin margin-top-10 my-shuffle-container shuffle" style="position: relative; overflow: hidden; height: 0px; transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;">
+  <figure class="col-xs-12 nopad flight_details_row margin_bottom_10 picture-item price-convert figure1 shuffle-item shuffle-item--hidden" data-idx="1" data-other="refundable_only" data-stops="0" data-airlines="PR" data-departure_time="morning" data-arrival_time="morning" data-departure_airports="CEB" data-title="1" data-price="50.786684490377" data-price-raw="50" data-arrival_timestamp="09:15" data-departure_timestamp="08:30" data-duration="45" data-duration-format="45m" data-miles="98" style="position: absolute; top: 0px; left: 0px; visibility: hidden; will-change: transform; opacity: 0; transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity; transform: translate(0px, 0px) scale(0.001);" aria-hidden="true">
+    <div class="row no-margin">
+      <div class="col-md-2 col-xs-12 nopad first_div">
+        <div class="row no-margin">
+          <div class="col-xs-12 nopad">
+            <div class="ailines-logos">
+              <div>
+                <img src="{{ generateMediaURL('/media/images/airline-logos/PR.jpg') }}" alt="Philippine Airlines">
+              </div>
+              <div>PR2236</div>
+            </div>
+          </div>
+        </div>
+        <div class="row no-margin">
+          <div class="col-xs-12 nopad">
+          </div>
+        </div>
+        <div class="absolute_txt_flight_numb">1</div>
+      </div>
+      <div class="col-md-8 col-xs-12 nopad snd_div">
+        <div class="row no-margin">
+          <div class="col-md-9 col-xs-12 nopad snd_grey_back">
+            <div class="row no-margin first_row">
+              <div class="col-xs-4 nopad">
+                <p>
+                  <span>CEB</span>08:30
+                </p>
+              </div>
+              <div class="col-xs-4 nopad">
+                <div class="full_width_conatiner">
+                  <img src="{{ generateMediaURL('/media/images/flights_new/plane_direction.png') }}" alt="plane_direction">
+                </div>
+              </div>
+              <div class="col-xs-4 nopad">
+                <p>
+                  <span>TAC</span>09:15
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-12 nopad snd_div_div2">
+            <div class="row no-margin">
+              <div class="col-xs-12 nopad snd_div_div2_firstrow">
+                <p>
+                  <span>45m</span>
+                  <a rel="nofollow" href="#popup" title="Non-stop" class="flight_stops nonstop" data-id=".figure1">Non-stop</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-12 nopad newpad_flight_details_row">
+        <div class="row no-margin">
+          <form method="post" action="/flight-review-trip" id="form_1">
+
+            <input type="hidden" name="flightrequest" value="">
+            <div class="main_serializer">
+              <input type="hidden" name="response[departureCityAirport]" value="Cebu city">
+              <input type="hidden" name="response[arrivalCityAirport]" value="Tacloban">
+              <input type="hidden" name="response[fromDate]" value="14 Dec 2018">
+              <input type="hidden" name="response[toDate]" value="14 Dec 2018">
+              <input type="hidden" name="response[cabinName]" value="Economy class">
+              <input type="hidden" name="response[ADT]" value="1 Adult">
+              <input type="hidden" name="ADT" value="{{ response['ADT']|number_format }}"/>
+              <input type="hidden" name="response[CNN]" value="">
+              <input type="hidden" name="CNN" value="{{ response['CNN']|number_format }}"/>
+              <input type="hidden" name="response[INF]" value="">
+              <input type="hidden" name="INF" value="{{ response['INF']|number_format }}"/>
+              <input type="hidden" name="penaltiesInfo" value="{{ segmentsItem['penaltiesInfo'] }}"/>
+
+              <div class="col-xs-12 nopad third_div">
+
+
+                <a rel="nofollow" href="javascript:;" title="SELECT" class="col-xs-12 nopad third_div book_now" id="form_1">
+                  <div class="book_now_txt" id="form_1">SELECT</div>
+                  <p>
+                    <span class="currency-convert-text">USD</span>
+                    <span class="price-convert-text" style="font-size:19px">50.79</span>
+                  </p>
+                </a>
+              </div>
+
+              <input type="hidden" name="number_in_party" value="1">
+              <input type="hidden" name="original_price" value="186.54">
+              <input type="hidden" name="currency" value="AED">
+              <input type="hidden" name="multi_destination" value="0">
+              <input type="hidden" name="one_way" value="1">
+              <input class="price-convert-val" type="hidden" name="price_attr" value="50.786684490377">
+              <input class="price-convert-val" type="hidden" name="price" value="50.79">
+              <input class="currency-convert-val" type="hidden" name="currency_code" value="USD">
+              <input type="hidden" name="original_base_fare" value="220">
+              <input type="hidden" name="original_taxes" value="40">
+              <div class="airlines_refine" data-price="39.90">
+                <input class="price-convert-val" type="hidden" name="base_fare" value="39.90">
+              </div>
+              <div class="airlines_refine" data-price="39.896433715127">
+                <input class="price-convert-val" type="hidden" name="base_fare_attr" value="39.896433715127">
+              </div>
+              <div class="airlines_refine" data-price="10.89">
+                <input class="price-convert-val" type="hidden" name="taxes" value="10.89">
+              </div>
+              <div class="airlines_refine" data-price="10.89025077525">
+                <input class="price-convert-val" type="hidden" name="taxes_attr" value="10.89025077525">
+              </div>
+
+              <input type="hidden" name="ADT" value="1">
+              <input type="hidden" segment="1" id="leaving_baggage_info_ADT_1" name="leaving_baggage_info_ADT" value="10kg">
+              <input type="hidden" name="fare_calc_line_ADT" value="CEB PR TAC59.00USD59.00END">
+              <input type="hidden" name="sec_token" value="61Enma5vt3FrY">
+            </div>
+
+            <div class="seg_serializer">
+              <input type="hidden" id="flight_number-0" name="flight_number" value="2236">
+              <input type="hidden" id="airline_code-0" name="airline_code" value="PR">
+              <input type="hidden" id="operating_airline_code-0" name="operating_airline_code" value="PR">
+              <input type="hidden" id="airline_name-0" name="airline_name" value="Philippine Airlines">
+              <input type="hidden" id="operating_airline_name-0" name="operating_airline_name" value="Philippine Airlines">
+              <input type="hidden" id="origin_location-0" name="origin_location" value="CEB">
+              <input type="hidden" id="origin_location_city-0" name="origin_location_city" value="Cebu city">
+              <input type="hidden" id="origin_location_airport-0" name="origin_location_airport" value="Mactan-Cebu International">
+              <input type="hidden" id="destination_location-0" name="destination_location" value="TAC">
+              <input type="hidden" id="destination_location_city-0" name="destination_location_city" value="Tacloban">
+              <input type="hidden" id="destination_location_airport-0" name="destination_location_airport" value="D.Z. Romualdez">
+              <input type="hidden" id="total_flight_segments-0" name="total_flight_segments" value="1">
+              <input type="hidden" id="departure_date_time-0" name="departure_date_time" value="2018-12-14T08:30:00">
+              <input type="hidden" id="arrival_date_time-0" name="arrival_date_time" value="2018-12-14T09:15:00">
+              <input type="hidden" id="res_book_desig_code-0" name="res_book_desig_code" value="T">
+              <input type="hidden" id="fare_basis_code-0" name="fare_basis_code" value="TIPH">
+              <input type="hidden" id="flight_type-0" name="flight_type" value="leaving">
+              <input type="hidden" id="cabin-0" name="cabin" value="Economy class">
+              <input type="hidden" id="cabin_code-0" name="cabin_code" value="Y">
+              <input type="hidden" id="flight_duration-0" name="flight_duration" value="45m">
+              <input type="hidden" id="stop_duration-0" name="stop_duration" value="0">
+              <input type="hidden" id="stop_indicator-0" name="stop_indicator" value="0">
+              <input type="hidden" class="segment_number" id="segment_number" value="0">
+              <input type="hidden" class="segment_index" id="segment_index" value="1">
+              <input type="hidden" id="airline_logo-0" value="/media/images/airline-logos/PR.jpg">
+              <input type="hidden" name="departure_terminal_id" id="departure_terminal_id-0" value="1">
+              <input type="hidden" name="arrival_terminal_id" id="arrival_terminal_id-0" value="">
+              <input type="hidden" name="aircraft_type" id="aircraft_type-0" value="De Havilland Canada - DHC-8 Dash 8">
+              <input type="hidden" name="sec_token" value="61Enma5vt3FrY">
+              <input type="hidden" name="refundable" value="1">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <div class="col-xs-1 my-sizer-element shuffle-item shuffle-item--hidden" style="position: absolute; top: 0px; left: 0px; visibility: hidden; will-change: transform; opacity: 0; transform: translate(0px, 445px) scale(0.001); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity;" aria-hidden="true"></div>
+  <input type="hidden" id="arrivalcity" value="Tacloban" class="shuffle-item shuffle-item--hidden" style="position: absolute; top: 0px; left: 0px; visibility: hidden; will-change: transform; opacity: 0; transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity;" aria-hidden="true">
+  <input type="hidden" id="arrivalcode" value="TAC" class="shuffle-item shuffle-item--hidden" style="position: absolute; top: 0px; left: 0px; visibility: hidden; will-change: transform; opacity: 0; transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity;" aria-hidden="true">
+</div>

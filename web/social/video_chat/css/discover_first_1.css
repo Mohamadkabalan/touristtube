@@ -1,0 +1,256 @@
+#MiddleMainLive {
+    position:relative;
+    left:0px;
+    width:100%;
+    min-height: 205px;
+    background:#000;
+}
+#mapLiveCam{
+    position:relative;
+    left:0px;
+    width:100%;
+    height: 171px;
+}
+#mapLiveCam.full{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width :100%;
+    height : 100%;
+    z-index: 100;
+}
+#mapLiveCam.middle{
+    height: 480px;
+}
+#googlemap_places{
+    height: 100%; 
+    width: 100% ! important; 
+    position: relative; 
+    background-color: #e5e3df; 
+    overflow: hidden;
+}
+.mtooltipbig{
+    top:0;
+    width:86px;
+    height:56px;
+    left:11px;
+    top:-10px;
+}
+.liveBar{
+    width:100%;
+    float:left;
+    margin: 0;
+    padding:0;
+    height: 34px;
+    background:#000;
+    position: relative;
+    min-width: 1005px;
+    z-index: 101;
+}
+.liveBarIn{
+    height: 650px;
+    margin: 0 auto;
+    padding:0;
+    height: 34px;
+    position: relative;
+    width: 1005px;
+}
+.liveBar.full{
+     position: fixed;
+     z-index: 101;
+     bottom: 0;
+}
+.liveMapOptions{
+    position: relative;
+    float:left;
+    display:block;
+    margin:7px 0 0 24px;
+    padding:0;
+    width:130px;
+}
+.liveMapOptions span{
+    position: relative;
+    float:left;
+    display:block;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:20px;
+    font:normal 11px/20px Arial, Helvetica, sans-serif;
+    text-indent:30px;
+    color:#c7c7c7;
+    cursor:pointer;
+    background: #3f3f3f url(/media/images/discover/mapGlobeGray.png) no-repeat 7px 1px;
+}
+.liveMapOptions .arrowDown{
+    position:absolute;
+    top:9px;
+    right:12px;
+    width:7px;
+    height:4px;
+    background:url(/media/images/discover/liveOptArrowDwn.png) no-repeat 0 0;
+}
+.liveMapOptionsCont{
+    position: absolute;
+    bottom:27px;
+    left:0;
+    background: #3f3f3f;
+    width:130px;
+    height:63px;
+    display:none;
+}
+.liveMapOpt{
+    position: relative;
+    float: left;
+    height:21px;
+    width:100%;
+    clear: both;
+    font:normal 11px/21px Arial, Helvetica, sans-serif;
+    text-indent:30px;
+    color:#c7c7c7;
+    cursor:pointer; 
+}
+.liveMapOpt:hover{
+    background:#c7c7c7;
+    color: #3f3f3f;
+}
+#menu_discover_content{
+    height: auto;
+    margin: 0 auto;
+    padding-left: 30px;
+    padding-top: 39px;    
+    position: relative;
+    width: 986px;
+}
+.avb_discover_item{
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: normal;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 318px;
+    margin-right: 10px;
+    color: #808080;
+    font-family: Arial,Helvetica,sans-serif;
+}
+.avb_discover_yellowline{
+    position: relative;
+    display: block;
+    float: left;
+    width: 6px;
+    height: 2px;
+    background-color: #e3b721;
+    margin-right: 5px;
+    margin-top: 11px;
+}
+span.item_black_bold {
+    color: #000000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.avb_discover_item:hover{
+	color:#e3b721;
+}
+.avb_discover_item:hover > span.item_black_bold{
+	color:#e3b721;
+}
+.mtooltip {
+    display: block;
+    height: auto;
+    left: -18px;
+    top: -45px;
+    position: absolute;
+    width: 142px;
+    height: 63px;
+}
+.mtooltipin {
+    background-color: #333333;
+    display: block;
+    padding: 3px 9px;
+    position: absolute;
+    width: 124px;
+    z-index: 10;
+    height: 57px;
+}
+.mtooltip_title {
+    clear: both;
+    color: #b5b5b5;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 13px;
+    position: relative;
+    text-align: left;
+    width: 122px;
+    z-index: 4;
+    overflow: hidden;
+}
+.mtooltip_title span.mtooltip_title_white{
+    font-size: 12px;
+    color: #ffffff;
+    margin-top: 1px;
+}
+.anchor_bk {
+    background: url("/media/images/discover/toRightPin.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    top: 28px;
+    display: block;
+    height: 7px;
+    position: absolute;
+    right: -4px;
+    width: 4px;
+    z-index: 1;
+}
+.clsgoo {
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    height: 13px;
+    line-height: 13px;
+    overflow: hidden;
+    position: absolute;
+    right: 2px;
+    text-align: center;
+    top: 0px;
+    width: auto;
+    z-index: 20;
+}
+.mtooltip_buttons{
+    position: absolute;
+    display: block;
+    background-color: #000000;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 19px;
+    z-index: 10;
+}
+.mtooltip_buts{
+    position: relative;
+    display: block;
+    float: left;
+    width: auto;
+    cursor: pointer;
+    font-family: Arial;
+    height: 19px;
+    line-height: 19px;
+    font-size: 9px;
+    color: #e3b721;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.mtooltip_buts:hover{
+    color: #ffffff;
+}
+.marginleft9{
+    margin-left: 9px;
+}

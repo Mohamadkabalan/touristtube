@@ -1,0 +1,68 @@
+CorporateBundle\Entity\CorpoApprovalFlow:
+    type: entity
+    table: corpo_aproval_flow
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoAdminApprovalFlowRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id
+        userId:
+            type: integer
+            nullable: false
+            column: user_id    
+        parentId:
+            type: integer
+            nullable: false
+            column: parent_id 
+        approvalFlowParent:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: approval_flow_parent
+        approvalFlowRoot:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: approval_flow_root
+        approvalFlowUser:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: approval_flow_user
+        approveAllUsers:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: approve_all_users
+        mainUserId:
+            type: integer
+            nullable: false
+            column: main_user_id  
+        otherUserId:
+            type: integer
+            nullable: false
+            column: other_user_id 
+        path:
+            type: string
+            nullable: true
+            length: 50
+            column: path 
+    lifecycleCallbacks: {  }

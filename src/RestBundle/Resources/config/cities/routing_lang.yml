@@ -1,0 +1,6 @@
+_rest_cities_lang:
+    path:      "/{_locale}/api/cities/search"
+    defaults: { _controller: RestBundle:cities\Cities:search, _locale: "%locale%" }
+    requirements:
+        _locale:  "%config_locales%"
+        methods: GET

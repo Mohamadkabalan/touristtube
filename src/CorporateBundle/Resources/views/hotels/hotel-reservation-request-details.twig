@@ -1,0 +1,141 @@
+<div class="row margin_top_30">
+    <div class="col-xs-12">
+	<p class="font-22 black font-bold"><i class="fas fa-angle-right pink_font-awsome_logo"></i>{{'Booking Details'|trans}}</p>
+    </div>
+    <div class="col-xs-12 margin_top_30">
+	<div class="row">
+	    <div class="col-xs-12">
+		<p class="font-17 black font-bold">{{hotelDetails.name}}</p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+		<p class="location_div font-14 grey location_txt"><i class="fas fa-map-marker-alt"></i>{{hotelDetails.address}}</p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-12">
+		{% if hotelDetails.category > 0 %}
+		    <p class="stars_block"><span class="star_rating" data-rating="{{hotelDetails.category}}" data-font="11" data-color="#eac31a"></span></p>
+		    {% endif %}
+	    </div>
+	</div>
+	<div class="row margin_top_15">
+	    <div class="col-lg-6 col-xs-12">
+		<div class="row">
+		    <div class="col-sm-4 col-xs-5">
+			<p class="font-16 grey">{{'Reservation Date'|trans}}</p>
+		    </div>
+		    <div class="col-sm-8 col-xs-7">
+			<p class="font-16 black">{{reservationDetails.reservationDate}}</p>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-sm-4 col-xs-5">
+			<p class="font-16 grey">{{'Reservation Details'|trans}}</p>
+		    </div>
+		    <div class="col-sm-8 col-xs-7">
+			<p class="font-16 black">{{reservationDetails.nbrRooms ~ ' room'}}{% if (reservationDetails.nbrRooms > 1) %}s{% endif %}{% if showTravelDate %}{{', ' ~ reservationDetails.nbrNights ~ ' night'}}{% if (reservationDetails.nbrNights > 1) %}s{% endif %}{% endif %}</p>
+		    </div>
+		</div>
+		{% if showTravelDate %}
+		    <div class="row">
+			<div class="col-sm-4 col-xs-5">
+			    <p class="font-16 grey">{{'Check-In'|trans}}</p>
+			</div>
+			<div class="col-sm-8 col-xs-7">
+			    <p class="font-16 black">{{reservationDetails.checkIn ~ ' (from ' ~ hotelDetails.checkInEarliest ~ ')'}}</p>
+			</div>
+		    </div>
+		    <div class="row">
+			<div class="col-sm-4 col-xs-5">
+			    <p class="font-16 grey">{{'Check-Out'|trans}}</p>
+			</div>
+			<div class="col-sm-8 col-xs-7">
+			    <p class="font-16 black">{{reservationDetails.checkOut ~ ' (until ' ~ hotelDetails.checkOutLatest ~ ')'}}</p>
+			</div>
+		    </div>
+		{% endif %}
+	    </div>
+	    <div class="col-xs-12">
+		<div class="row margin_top_20">
+		    <div class="col-md-4 col-sm-5 col-xs-12">
+			<div class="row">
+			    <div class="col-xs-6">
+				<p class="grey font-16"><i class="fas fa-check yellow_font-awsome_logo"></i>{{reservationDetails.nbrRooms ~ ' room'}}{% if (reservationDetails.nbrRooms > 1) %}s{% endif %}</p>
+			    </div>
+			    <div class="col-xs-6">
+				<p class="font-16 black {{cancelledPrice}}">{{reservationDetails.grandTotalPriceInclusiveHotelDisplay|raw}}</p>
+			    </div>
+			</div>
+			{% if reservationDetails.prePaymentRequired is defined and not reservationDetails.prePaymentRequired %}
+			    <div class="row">
+				<div class="col-xs-6">
+				    <p class="grey font-16"><i class="fas fa-check yellow_font-awsome_logo"></i>{{'Today you will pay'|trans}}</p>
+				</div>
+				<div class="col-xs-6">
+				    <p class="font-16 black">
+					<span class="price-convert"><span class="currency-convert-text">{{reservationDetails.grandTotalPriceInclusiveCustomerCurrency}}</span></span>
+					    {{' 0.00'}}
+				    </p>
+				</div>
+			    </div>
+			{% endif %}
+		    </div>
+		    <div class="col-md-8 col-sm-7 col-xs-12 mobile_margin_top_40">
+			<div class="row">
+			    <div class="col-md-3 col-sm-5 col-xs-5 col-xss">
+				<p class="pink font-22 line-height-31"><i class="fas fa-angle-right yellowsmal_font-awsome_logo"></i>{{'Price'|trans}}</p>
+			    </div>
+			    <div class="col-md-5 col-sm-7 col-xs-7 col-xss no-margin no-padding">
+				<p class="price_common_bigtxt line-height-31 {{ cancelledPrice|raw }}">
+				    <span class="normaltxt">{{'approx.'|trans}}</span>
+				    {{reservationDetails.grandTotalPriceInclusiveCustomerDisplay|raw}}
+				</p>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>
+<div class="row border_top_but_row_3 margin_top_20"></div>
+<div class="row margin_top_20">
+    <div class="col-xs-12">
+	<p class="font-22 black font-bold"><i class="fas fa-angle-right pink_font-awsome_logo"></i>{{'Property Details'|trans}}</p>
+    </div>
+    <div class="col-xs-12">
+	<div class="row margin_top_15">
+	    <div class="col-md-6 col-xs-12">
+		<div class="row font-16 black">
+		    <div class="col-xs-4">
+			<p class="grey">{{'Address'|trans}}</p>
+		    </div>
+		    <div class="col-xs-8">
+			<p>{{hotelDetails.address}}</p>
+		    </div>
+		</div>
+		{% if hotelDetails.phone is defined and hotelDetails.phone is not empty %}
+		    <div class="row font-16 black">
+			<div class="col-xs-4">
+			    <p class="grey">{{'Phone'|trans}}</p>
+			</div>
+			<div class="col-xs-8">
+			    <p class="margin_bottom_0">{{hotelDetails.phone}}<br></p>
+			</div>
+		    </div>
+		{% endif %}
+		<div class="row font-16 grey">
+		    <div class="col-xs-4">
+			<p>{{'GPS Coordinates'|trans}}</p>
+		    </div>
+		    <div class="col-xs-8">
+			<p class="black">N {{hotelDetails.gpsLatitude}}, E {{hotelDetails.gpsLongitude}}</p>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>
+<div class="row border_top_but_row_3 margin_top_20"></div>

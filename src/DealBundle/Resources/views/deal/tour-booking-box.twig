@@ -1,0 +1,95 @@
+{# empty Twig template #}
+{% if errorMessage is defined %}
+    <div class="col-xs-12 nopad padtop25">
+	<div class="col-xs-12 bookingBoxError">
+	    {{errorMessage|trans}}
+	</div>
+	<div class="col-xs-12 bookingBoxError">
+	    {{'Please select another date.'|trans}}
+	</div>
+    </div>
+{% else %}
+    {% set bookingPrice = 0 %}
+    {% set bookingPriceId = 0 %}
+    {% set bookingTime = '' %}
+    {% set firstItemClass = 'showOption' %}
+    <div class="col-xs-12 nopad margin_top_20">
+	<p class="font-16 font-bold blue underline"><span class="no-underline">{{'2-'|trans}} </span>{{'Enter number of travelers'|trans}}</p>
+	<input type="hidden" id="prevMaxPax" name="prevMaxPax" value="0" />
+    </div>
+    {% for activityPriceIdKey,activityPriceIdVal in ActivityPriceId %}
+	{% set activityPriceId = activityPriceIdVal['activityPriceId'] %}
+	{% set priceId = activityPriceIdVal['priceId'] %}
+	<div id="{{activityPriceId}}_{{priceId}}_numOfTravelerContainer" class="{{firstItemClass}} numOfTravelerContainer">
+	    {% for unitKey,unitVal in activityPriceIdVal['Units'] %}
+		{% set unitLabel = unitVal['unitLabel']|capitalize %}
+		{% set unitId = unitVal['unitId'] %}
+		<div class="col-xs-12 nopad">
+		    <div class="row no-margin">
+			<div class="col-xs-9 nopad">
+			    <p class="black font-16 font-bold padding_left_15 vertical_centered_text">{{unitLabel|trans}} ({{unitVal['ageText']|trans}})</p>
+			</div>
+			<div class="col-xs-3 nopad centeredtext_selectbox">
+			    <input type="hidden" name="{{activityPriceId}}_{{priceId}}_unitId[]" value="{{unitVal['unitId']}}" />
+			    <input type="hidden" name="{{activityPriceId}}_{{priceId}}_requiredOtherUnits[]" value="{{unitVal['requiredOtherUnits']}}" />
+			    <input type="hidden" name="{{activityPriceId}}_{{priceId}}_unitLabel[]" value="{{unitLabel}} ({{unitVal['ageText']|trans}})" />
+			    <select id="{{unitId}}" class="seadatetextoptions_Select {{activityPriceId}}_{{priceId}}_bbNumOfTraveler" name="{{activityPriceId}}_{{priceId}}_unit[]" required="required" onchange="updateBookingChoices('{{activityPriceId}}', '{{priceId}}');">
+				{% for i in 0..99 %}
+				    <option value="{{i}}">{{i}}</option>
+				{% endfor %}
+			    </select>
+			</div>
+		    </div>
+		</div>
+		{% set firstItemClass = 'hideOption' %}
+	    {% endfor %}
+	</div>
+    {% endfor %}
+    <div class="col-xs-12 nopad margin_top_20">
+	<p class="font-16 font-bold blue underline"><span class="no-underline">{{'3-'|trans}} </span>{{'Choose your options'|trans}}</p>
+	<input type="hidden" id="prevMaxPax" name="prevMaxPax" value="0" />
+    </div>
+    <div class="col-xs-12 nopad">
+	{% for activityPriceIdKey,activityPriceIdVal in ActivityPriceId %}
+	    {% set activityPriceId = activityPriceIdVal['activityPriceId'] %}
+	    {% set priceId = activityPriceIdVal['priceId'] %}
+	    <div id="{{activityPriceId}}_{{priceId}}_priceIdRadio" class="row no-margin seadatetextbold_datt2 priceIdRadioBox grey font-bold">
+		<div class="col-xs-12 nopad">
+		    <input id="{{activityPriceId}}_{{priceId}}_radio" type="radio" name="activityPriceId" class="bbFields bbActivityPriceId" value="{{activityPriceId}}" onclick="updateBookingChoices('{{activityPriceId}}', '{{priceId}}');" />
+		    {{activityPriceIdVal['optionLabel']}}
+		</div>
+	    </div>
+	{% endfor %}
+    </div>
+
+    <div id="bookingErrorMsgBox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	    <span id="bookingErrorMsg">&nbsp;</span>
+	</div>
+    </div>
+
+
+    <div class="col-xs-12 nopad margin_top_20">
+	<p class="red font-17 margin_bottom_0">{{'Starting at'|trans}}</p>
+    </div>
+    <div class="col-xs-12 nopad">
+	<p class="font-35 red line-height-35"><span id="bookingTotalConverted" class="a_price price-convert" data-price="{{convertedDealPrice}}"><span class="currency-convert-text">{{dealCurrency}}</span> <span id="bookingPrice" class="price-convert-text">{{formattedDealPrice}}</span></span></p>
+    </div>
+
+    <div class="col-xs-12 nopad margin_top_4">
+	<p class="green font-14 font-bold"><img class="padding_right_5" src="{{ generateMediaURL('/media/images/deals-details_new/best_price_logo.png') }}" alt="best price">Best Price Guaranteed</p>
+    </div>
+    <div class="col-xs-12 nopad ">
+	<p class="black font-14 font-bold">{{'Please select your desired tour date'|trans}}</p>
+    </div>
+    <div id="bbSavedFields" class="col-xs-12 nopad margin_top_20">
+	<input type="hidden" id="priceId" name="priceId" value="" />
+	<input type="hidden" id="quoteKey" name="quoteKey" value="" />
+	<input type="hidden" id="totalPrice" name="totalPrice" value="{{dealPrice}}" />
+	<input type="hidden" id="numOfPassenger" name="numOfPassenger" value="" />
+	<input type="hidden" id="currency" name="currency" value="USD" />
+	<button id="bbBuyNowButton" name="bbBuyNowButton" type="submit" class="btn pink_button_60_center">{{'buy now'|trans}}</button>
+	<button id="bbVerifyPriceButton" name="bbVerifyPriceButton" type="button" class="btn pink_button_60_center" onclick="getQuotation(this);">{{'verify price'|trans}}</button>
+    </div>
+</form>
+{% endif %}

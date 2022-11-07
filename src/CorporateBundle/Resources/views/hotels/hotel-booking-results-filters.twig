@@ -1,0 +1,234 @@
+{% if bookingresults is defined and bookingresults == true %}
+    <div class="row hidden-sm hidden-xs">
+	<div class="col-xs-12">
+	    <h3 class="refine_title">{{'Filters'|trans}}<span class="filter-count">(<span class="total-hotel">0</span>)</span></h3>
+	</div>
+    </div>
+    {% if (input.fromDate is not empty) and (input.toDate is not empty) %}
+	{% set nbrStars = 0 %}
+	{% if input.stars is defined and input.stars > 0 %}
+	    {% set nbrStars = input.stars %}
+	{% endif %}
+
+	<div class="row margin-bottom-38 checkboxcontainer">
+	    <div class="col-xs-12">
+		<div class="row">
+		    <div class="col-xs-12">
+			<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'CATEGORY'|trans}}</p>
+		    </div>
+		    <div class="col-xs-12">
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-star filter-hotel-star-1" data-value="hotel_class" id="filter_stars_1" value="1" {% if nbrStars == 1 %} checked="true" {% endif %}/>
+				    <label class="form-check-label" for="filter_stars_1"><span class="star_rating" data-rating="1" data-font="11" data-color="#eac31a"></span></label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-star filter-hotel-star-2" data-value="hotel_class" id="filter_stars_2" value="2" {% if nbrStars == 2 %} checked="true" {% endif %}/>
+				    <label class="form-check-label" for="filter_stars_2"><span class="star_rating" data-rating="2" data-font="11" data-color="#eac31a"></span></label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-star filter-hotel-star-3" data-value="hotel_class" id="filter_stars_3" value="3" {% if nbrStars == 3 %} checked="true" {% endif %}/>
+				    <label class="form-check-label" for="filter_stars_3"><span class="star_rating" data-rating="3" data-font="11" data-color="#eac31a"></span></label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-star filter-hotel-star-4" data-value="hotel_class" id="filter_stars_4" value="4" {% if nbrStars == 4 %} checked="true" {% endif %}/>
+				    <label class="form-check-label" for="filter_stars_4"><span class="star_rating" data-rating="4" data-font="11" data-color="#eac31a"></span></label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-star filter-hotel-star-5" data-value="hotel_class" id="filter_stars_5" value="5" {% if nbrStars == 5 %} checked="true" {% endif %}/>
+				    <label class="form-check-label" for="filter_stars_5"><span class="star_rating" data-rating="5" data-font="11" data-color="#eac31a"></span></label>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row margin-bottom-38 checkboxcontainer">
+	    <div class="col-xs-12">
+		<div class="row">
+		    <div class="col-xs-12">
+			<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'POPULAR'|trans}}</p>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-12">
+			<div class="form-check">
+			    <input type="checkbox" class="form-check-input filter-hotel-360" data-value="other" id="filter_has_360" value="has_360">
+			    <label class="form-check-label" for="filter_has_360">{{'Virtual Tour'|trans}}</label>
+			</div>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-12">
+			<div class="form-check">
+			    <input type="checkbox" class="form-check-input filter-hotel-cancelable" data-value="other" id="filter_free_cancellation" value="free_cancelation">
+			    <label class="form-check-label" for="filter_free_cancellation">{{'Free cancellation'|trans}}</label>
+			</div>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-12">
+			<div class="form-check">
+			    <input type="checkbox" class="form-check-input filter-hotel-breakfast" data-value="other" id="filter_breakfast_included" value="breakfast_included">
+			    <label class="form-check-label" for="filter_breakfast_included">{{'Breakfast included'|trans}}</label>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row margin-bottom-38 checkboxcontainer filter-budget_range">
+	    <div class="col-xs-12">
+		<div class="row">
+		    <div class="col-xs-12">
+			<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'ROOM AVG. PER NIGHT'|trans}}</p>
+		    </div>
+		    <div class="col-xs-12">
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-budget filter-hotel-budget-0-90" name="budgetRange" data-value="budget_range" id="filter_avg_per_night_0_90" value="0-90">
+				    <label class="form-check-label" for="filter_avg_per_night_0_90">
+					<span class="price-convert" data-price="0">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">0</span>
+					</span>
+					&nbsp;-&nbsp;
+					<span class="price-convert" data-price="90">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">90</span>
+					</span>
+				    </label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-budget filter-hotel-budget-90-170" name="budgetRange" data-value="budget_range" id="filter_avg_per_night_90_170" value="90-170">
+				    <label class="form-check-label" for="filter_avg_per_night_90_170">
+					<span class="price-convert" data-price="90">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">90</span>
+					</span>
+					&nbsp;-&nbsp;
+					<span class="price-convert" data-price="170">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">170</span>
+					</span>
+				    </label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-budget filter-hotel-budget-170-280" name="budgetRange" data-value="budget_range" id="filter_avg_per_night_170_280" value="170-280">
+				    <label class="form-check-label" for="filter_avg_per_night_170_280">
+					<span class="price-convert" data-price="170">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">170</span>
+					</span>
+					&nbsp;-&nbsp;
+					<span class="price-convert" data-price="280">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">280</span>
+					</span>
+				    </label>
+				</div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="form-check">
+				    <input type="checkbox" class="form-check-input filter-hotel-budget filter-hotel-budget-280-plus" name="budgetRange" data-value="budget_range" id="filter_avg_per_night_280_+" value="280-+">
+				    <label class="form-check-label" for="filter_avg_per_night_280_+">
+					<span class="price-convert" data-price="280">
+					    <span class="currency-convert-text">USD</span>
+					    <span class="price-convert-text">280</span>
+					</span>
+					&nbsp;+
+				    </label>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row margin-bottom-38 checkboxcontainer filter-price_range hidden">
+	    <div class="col-xs-12">
+		<div class="row">
+		    <div class="col-xs-12">
+			<p class="refine_subtitles price-convert"><i class="fas fa-angle-right fa-lg"></i>{{'TOTAL BUDGET'|trans}} (<span class="currency-convert-text">USD</span>)</p>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-12 bigpad_right price-slider">
+			<div class="price-convert"><div class="hidden price-slider-maxPrice price-convert-text">0</div></div>
+			<div class="price-convert"><div class="hidden price-slider-minValue price-convert-text">0</div></div>
+			<div class="price-convert"><div class="hidden price-slider-maxValue price-convert-text">0</div></div>
+			<span id="{{ prefix }}{{ random('abcd') }}_{{ random('123') }}" class="low hidden">Example low value</span>
+			<span id="{{ prefix }}{{ random('efgh') }}_{{ random('456') }}" class="high hidden">Example high value</span>
+			<input id="{{ prefix }}{{ random('ijkl') }}_{{ random('789') }}" class="budgetslider" data-value="budget" type="text"/>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    {% endif %}
+    <div class="row margin-bottom-38 checkboxcontainer filter-distance_range hidden">
+	<div class="col-xs-12">
+	    <div class="row">
+		<div class="col-xs-12">
+		    <p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'DISTANCE FROM CITY CENTER'|trans}} <span>(KM)</span></p>
+		</div>
+	    </div>
+	    <div class="row">
+		<div class="col-xs-12 bigpad_right">
+		    <span id="{{ prefix }}{{ random('mnop') }}_{{ random('123') }}" class="low hidden">Example low value</span>
+		    <span id="{{ prefix }}{{ random('qrst') }}_{{ random('456') }}" class="high hidden">Example high value</span>
+		    <input id="{{ prefix }}{{ random('uvwx') }}_{{ random('789') }}" class="distanceslider" data-value="distance" type="text"/>
+		</div>
+	    </div>
+	</div>
+    </div>
+    {% if districts is defined and districts is not empty %}
+	<div class="row margin-bottom-38 checkboxcontainer">
+	    <div class="col-xs-12">
+		<div class="row">
+		    <div class="col-xs-12">
+			<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'district'|trans}}</p>
+		    </div>
+		</div>
+		{% for value, label in districts %}
+		    {% set counter = (counter|default(0)) + 1 %}
+		    <div class="row">
+			<div class="col-xs-12">
+			    <div class="form-check">
+				<input type="checkbox" class="form-check-input filter-hotel-district filter-hotel-district-{{value|replace({' ': ''})}}" data-value="district" id="filter_district_{{counter}}" value="{{value}}">
+				<label class="form-check-label" for="filter_district_{{counter}}">{{label}}</label>
+			    </div>
+			</div>
+		    </div>
+		{% endfor %}
+	    </div>
+	</div>
+    {% endif %}
+{% endif %}

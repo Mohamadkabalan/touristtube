@@ -1,0 +1,82 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#cmsreport_msg').html('');
+        });
+    </script>
+{% endblock %}	
+{% block body %}
+    <section class="support">
+        <div class="container">
+            <div class="row no-margin">
+                <div class="col-xs-12 nopad">
+                    <div id="MiddleBody">
+                        <div class="StaticBody">
+                            <div class="report_bug">
+                                <div class="row no-margin margin_top_20 margin_bottom_40">
+                                    <div class="col-xs-12 nopad">
+                                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>समर्थन</h1>
+                                    </div>
+                                </div>
+                                <form name="supportFRM" action="support" method="post" autocomplete="off">
+                                    <div class="StaticTxt row no-margin">
+                                        <div id="FeedbackForm" class="col-xs-12 nopad">
+                                            <div class="row no-margin">                                                
+                                                {# 'Success Message'#}
+                                                {% if flashMessage !='' %}
+                                                    <div class="divSupportMainStyle2">
+                                                        <b>{{ flashMessage|raw }}</b>
+                                                    </div>
+                                                {% endif %}
+                                                {# 'End Success Message'#}
+
+                                                {# 'Error Message'#}
+                                                {% if flashMessage2 !='' %}
+                                                    <div class="divSupportMainStyle3">
+                                                        <b>{{ flashMessage2|raw }}</b>
+                                                    </div> 
+                                                {% endif %}
+                                                {# 'End Error Message'#}
+
+                                                <div class="col-md-9 col-xs-12 nopad">
+                                                    {# 'Create Form Fields'#}
+                                                    <div class="row margin-5">
+                                                        <div id="cmsreport">
+                                                            <div class="col-sm-4 col-xs-12 padding-5 support_input">
+                                                                <input id="cmsreport_first" name="cmsreport[first_name]" required="required" placeholder="पहला नाम*" class="FeedbackForm" value="" type="text">
+                                                            </div>
+                                                            <div class="col-sm-4 col-xs-12 padding-5 support_input">
+                                                                <input id="cmsreport_last" name="cmsreport[last_name]" required="required" placeholder="अंतिम नाम*" class="FeedbackForm" value="" type="text">
+                                                            </div>
+                                                            <div class="col-sm-4 col-xs-12 padding-5 support_input">
+                                                                <input id="cmsreport_email" name="cmsreport[email]" required="required" class="email" value="" placeholder="ईमेल पता*" type="email">
+                                                            </div>
+                                                            <div class="col-xs-12 padding-5">
+                                                                <label for="cmsreport_msg" class="required">प्रतिक्रिया</label>
+                                                                <textarea id="cmsreport_msg" name="cmsreport[msg]" required="required" placeholder="आपका सन्देश*" cols="50" rows="5" class="message support_textarea"></textarea>
+                                                            </div>
+                                                            <input id="cmsreport__token" name="cmsreport[_token]" value="" type="hidden">
+                                                        </div>
+                                                    </div>
+                                                    {# 'End Form Fields'#}
+                                                    <div class="col-xs-12 nopad">
+                                                        <button type="submit" class="feed_but_class">जोड़े</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

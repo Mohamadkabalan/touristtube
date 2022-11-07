@@ -1,0 +1,58 @@
+TTBundle\Entity\CmsSubscriptions:
+    type: entity
+    table: cms_subscriptions
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        subscriber_id:
+            columns:
+                - subscriber_id
+    id:
+        subscriptionId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: subscription_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        subscriberId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: subscriber_id
+        subscriptionDate:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: subscription_date
+        published:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        isVisible:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: is_visible
+        lastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: last_modified
+    lifecycleCallbacks: {  }

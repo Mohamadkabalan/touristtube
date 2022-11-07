@@ -1,0 +1,72 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css" >
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/signin_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/login.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container sign_in_container" id="sign_in_container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 nopad"> 
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Welcome to touristtube.com'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row no-margin signincontainer">                    
+                    <div class="col-xs-12 nopad">  
+                        <div class="row no-margin margin_top_30">
+				 <form data-toggle="validator" role="form" action="{{ path('_log_in') }}" method="post">
+                                <div class="col-xs-12 nopad">
+                                    <p class="font-27 black margin_bottom_0">{{'Reactivate your account'|trans}}</p>
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <div class="row newrowmargin5">
+                                        <div class="col-md-3 col-sm-6 col-xs-12 newcolpadding5 sign_in_input_common">
+					    
+                                            <input id="username" name="_username"  value="" type="text" class="required" data-alert="{{'Contact Details email / username'|trans}}" placeholder="{{'Email address / username'|trans}}*" />
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12 newcolpadding5 sign_in_input_common">					    
+                                            <input type="password" id="password" name="_password" class="required" data-alert="{{'Contact Details password'|trans}}" placeholder="{{'password'|trans}}*" />
+			    <input type="hidden" name="_target_path" value="/corporate" />
+			    <input type="hidden" id="latitude" name="_latitude" value="" />
+			    <input type="hidden" id="longitude" name="_longitude" value="" />
+                                        </div>
+                                    </div>                                    
+                                    <div class="row no-margin">
+                                        <div class="col-md-3 col-sm-5 col-xs-12 nopad margin-top-20">
+                                            <button id="LogInSignIn" class="btn submit_yellow" type="button" >{{'Sign in'|trans}}</button>
+                                        </div>
+                                    </div>
+				    <div class="row">
+					<div class="col-xs-12 margin_top_10">
+					    {% if error %}
+						<label class="login_error_msg wrong_credentialsmsg">{{ error.messageKey|trans(error.messageData, 'security') }}</label>
+					    {% elseif app.request.get('validation_error') %}
+						<label class="login_error_msg wrong_credentialsmsg">{{'Inactive user'|trans}}</label>
+					    {% endif %}
+					</div>
+				    </div>
+				    <div class="row">
+					<div class="col-xs-12 margin_top_10">
+					    <label class="wrong_credentialspass wrong_credentialsmsg"></label>
+					</div>
+				    </div>
+				    <div class="row">
+					<div class="col-xs-12 margin_top_10">
+					    <label class="wrong_credentials wrong_credentialsmsg">{{'invalid credentials'|trans}}</label>
+					</div>
+				    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

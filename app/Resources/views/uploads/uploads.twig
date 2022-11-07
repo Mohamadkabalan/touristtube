@@ -1,0 +1,83 @@
+{% extends 'baseFinal.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/photos_videos/js/add_album_media.js") }}"></script>
+    <script type="text/javascript">
+	var ServerMaxFileSize = {{upload_max_filesize|raw}};
+	channelGlobalID({{channel_id|raw}});
+        function createPopup(link, $title) {
+            ttModal1 = window.getTTModal("myModalZ", {url: {href: link}, width: 500, title: $title});
+            ttModal1.show();
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <section class="container channel-container">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_20">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{section_name|raw}} {{'upload'|trans}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_10">
+                    <div class="col-xs-12 nopad padding_left_79">
+                        <div class="float-left padding_right_70 blue_header_links margin_top_10 active upload_menu_btn" data-value="media">{{'Photos / Videos'|trans}}</div>
+                        <div class="float-left padding_right_70 blue_header_links margin_top_10 upload_menu_btn" data-value="albums">{{'Albums'|trans}}</div>
+                        <div onclick="createPopup('{{ generateLangRoute(LanguageGet,'_add_album') }}?channel_id={{channel_id|raw}}', '{{'Create new album'|trans}}')" class="float-left grey_create_link margin_top_10 create_new_album"><img alt="grey_add" src="{{ generateMediaURL('/media/images/channel_new/grey_add_button.png') }}" class="grey_add_button">{{'create new album'|trans}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_32">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 nopad channel_input_commun padding_left_79">
+                        <select name="album" class="channel_input_commun album_list_data" onchange="selectAlbum(this);">
+                            <option value="0">{{'Select existing album'|trans}}</option>
+			    {% for item in album_array %}
+				<option value="{{item.id|raw}}">{{item.name|raw}}</option>
+			    {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 nopad">
+                <div class="row border_top_but_row_7 margin_top_32 no-margin"></div>
+            </div>
+        </div>
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <div class="row no-margin margin_top_28 margin_bottom_28">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="sub_title_upload album_title_data">{{'Album name'|trans}}: <span></span></h2>
+                    </div>
+                </div>
+                <div class="row small_row_margin item_upload_container">
+		    <div class="col-xs-12 small_col_padding xxs_full_width">
+			<div style="" data-id="" class="upload-loading-txt-file marginright10"></div>
+			<div style="" class="upload-loading-sep"> - </div>
+			<div style="" class="stop_all_upload marginleft10">{{'cancel pending uploads'|trans}}</div>
+		    </div>                    
+                    <div id="uploads_content" class="col-lg-3 col-md-4 col-xs-6 small_col_padding xxs_full_width margin_bottom_40 success items_img">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div id="uploads_btn" class="background_grey_container">
+                                    <img alt="grey_backgroud_img" src="{{ generateMediaURL('/media/images/channel_new/grey_backgroud_img.jpg') }}" class="grey_backgroud_img">
+                                    <div class="absolute_container_add">
+                                        <div class="grey_add_logo">
+                                            <span>+</span>
+                                        </div>
+                                        <div class="text_relative_container">
+                                            <p class="add_text">{{'add photos / videos'|trans}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin min_height_30"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

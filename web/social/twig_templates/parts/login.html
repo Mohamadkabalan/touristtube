@@ -1,0 +1,157 @@
+<script type="text/javascript" src="{{ ("js/login.js")|link }}"></script>
+<table width="194" border="0" cellspacing="0" cellpadding="0" class="AjaxDiv" id="LoginDiv">			
+    <tr>
+            <td><input type="text" id="EmailField" name="username" value="{{ 'your email / username'|lang|raw }}" data-value="{{ 'your email / username'|lang|raw }}" class="SignInput" onfocus="removeValue2(this)" onblur="addValue2(this)"/></td>
+    </tr>
+    <tr>
+            <td style="height:25px;" valign="top"><span class="ExSigninEmail">{{ '(e.g. yourname@email.com)'|lang|raw }}</span></td>
+    </tr>
+    <tr>
+            <td><input type="password" name="password" autocomplete="off" id="PasswordField" value="Your Password" data-value="{{ 'Your Password'|lang|raw }}" class="SignInput" onfocus="removeValue2(this)" onblur="addValue2(this)"/></td>
+    </tr>
+    <tr>
+            <td style="height:48px;">
+    <table class="poptableclass">
+    <tr>
+    <td>
+        <table class="keepmelogged_tbl" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <td width="18"><input name="keepmelogged" id="keepmelogged" type="checkbox" /></td>
+                <td valign="middle"><label for="keepmelogged">{{ 'Keep me logged in'|lang|raw }}</label></td>
+            </tr>
+            <tr>
+                <td height="20" width="18"></td>
+                <td valign="middle"></td>
+            </tr>
+            <tr>
+                    <td colspan="2"><span id="wrong_credentials" class="wrong_credentials" style="margin-top:0;">{{ "Invalid credentials"|lang|raw }}</span>&nbsp;</td>
+            </tr>
+        </table>
+    </td>
+    <td width="55" align="right">
+            <span id="ForgotIt">{{ 'forgot it?'|lang|raw }}</span>
+        <br><br>
+        <img id="signin_loader" class="signin_loader" src="{{ '/css/fancybox_loading2.gif'|link }}" width="16" height="16" />                            
+        <div class="buttonLogincontainer">
+            <div id="LogInSignIn" class="login_but_class">{{ 'login'|lang|raw }}</div>
+        </div>
+    </td>
+    </tr>
+</table>
+            </td>
+    </tr>
+    <tr>
+            <td></td>
+    </tr>
+
+</table>
+		
+<div id="ForgetPassDiv2" class="AjaxDiv" style="display:none">
+    <table width="194" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+                <td style="height:25px;" valign="middle">
+              <span class="forgot_pass_lbl">{{ 'Forgot your password?'|lang|raw }}</span><br><br />{{ 'Type your email address or username<br/>below to reset your password'|lang|raw }}</td>
+            </tr>
+            <tr>
+                <td style="height:6px;"></td>
+            </tr>
+            <tr>
+                    <td style="height:25px;"><input type="text" id="EmailForgotForm" value="{{ 'your email / username'|lang|raw }}" class="SignInput"/></td>
+            </tr>
+            <tr>
+                <td style="height:10px;"></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="buttonLogincontainer">
+                        <div id="SendForgot" class="feed_but_class">{{ 'send'|lang|raw }}</div>
+                        <div id="CancelForgot" class="feed_but_class">{{ 'cancel'|lang|raw }}</div>
+                    </div>
+                </td>
+            </tr>
+    </table>
+</div>
+<div id="TryAgainDiv2" class="AjaxDiv" style="display:none">
+    <div>
+        <div class="TryAgainText">{{ 'Incorrect<br />User information'|lang|raw }} <p id="LoginTryAgain">{{ 'Please try again.'|lang|raw }}</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#ForgotIt').click(function(){
+                signflag = 0;
+                forgetflag = 0;
+                if(forgetflag == 0){
+                        $('#ForgetPassDiv2').fadeIn();
+                        $('#LoginDiv').hide()
+                        forgetflag = 1;
+                }else{
+                        $('#ForgetPassDiv2').fadeOut();
+                        $('#LoginDiv').show();
+                        forgetflag = 0;
+                }
+        });				
+
+        $('#LoginTryAgain').css({
+                cursor:'pointer'
+        }).click(function(){
+                $('#TryAgainDiv2').hide();
+                $('#LoginDiv').show();
+        });
+
+        $('#PasswordField').keydown(function(e) {
+                if(e.keyCode == 13) $('#LogInSignIn').click();
+        });
+
+        $('#EmailForgotForm').keydown(function(e) {
+                if(e.keyCode == 13) $('#SendForgot').click();
+        });
+        $('#CancelForgot').click(function(){
+                $('#ForgetPassDiv2').hide();
+                $('#LoginDiv').show();
+        });
+        $('#SendForgot').click(function(e){
+                var EmailForgotForm = $("#EmailForgotForm").val();
+                $('#EmailForgotForm').removeClass('InputErr');
+                if(EmailForgotForm == '' || EmailForgotForm == 'Your Email / Username' || !(EmailForgotForm.match(/([\<])([^\>]{1,})*([\>])/i) == null)){
+                        $('#EmailForgotForm').focus().addClass('InputErr');
+                }else{
+                        $('.upload-overlay-loading-fix').show();
+                        var dataString2 = 'EmailForgotForm='+ EmailForgotForm;
+
+                        $.ajax({
+                                type: "POST",
+                                url: ReturnLink('/ajax/passprocess.php'),
+                                data: dataString2,
+                                success: function(html2) {
+                                        var jresp;
+                                        try {
+                                                jresp = $.parseJSON(html2);
+                                        }catch(exception ){
+                                                $('.upload-overlay-loading-fix').hide();
+                                                return ;
+                                        }
+                                        $('.upload-overlay-loading-fix').hide();
+                                        if( !jresp ) return ;
+
+                                        if( jresp.status == 'ok' ){
+                                                $('#ForgetPassDiv2').html(jresp.msg);
+                                                $('#ForgetPassDiv2').append('<input class="CurvedCorner ArrowButton" id="CloseSign" type="button" value="Back"/>');
+
+                                                $('#CloseSign').click(function(){
+                                                        $('#ForgetPassDiv2').hide();
+                                                        $('#LoginDiv').show();
+                                                });
+                                        }else{
+                                                $('#ForgetPassDiv2').hide();
+                                                $('#TryAgainDiv2').show();
+                                        }
+
+                                }
+                        });
+                }
+        });
+    });
+</script>

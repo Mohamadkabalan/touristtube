@@ -1,0 +1,42 @@
+{% extends 'basecorporate.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-departmentList.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Departments List'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Departments List'|trans}}</h1>
+	    </div>
+	    </br>
+	    <div class="AddAdmin tt_buttons_bar_add">
+		<button data-role="button" data-type="add" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_departments_add') }}')">{{'Add'|trans}}</button>
+	    </div>
+	    <table class="accountTable">
+		<tr class="TopBar">
+		    <td class="topBarlist">{{'Id'|trans }}</td>
+		    <td class="topBarlist">{{'Department'|trans }}</td>
+		    <td class="topBarlist">{{'Account'|trans }}</td>
+		    <td class="topBarlist">{{'actions'|trans }}</td>
+		</tr>
+		{% for department in departmentsList %}
+		    <tr>
+			<td class="topBarlist">{{department.p_id|raw}}</td>
+			<td class="topBarlist alignLeft">{{department.p_name|raw}}</td>
+			<td class="topBarlist alignLeft">{{department.accountName|raw}}</td>
+			<td class="topBarlist actions">
+			    <div class="tt_buttons_bar">
+				<button data-role="button" data-type="modify" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_departments_edit', {'id':department.p_id}) }}')">{{'Edit'|trans}}</button>
+				<button data-role="button" data-type="delete" onclick="deleteDepartments({{department.p_id|raw}})">{{'Delete'|trans}}</button>
+			    </div>
+			</td>
+		    </tr>
+		{% endfor %}
+	    </table>
+	</div>
+    </section>
+{% endblock %}

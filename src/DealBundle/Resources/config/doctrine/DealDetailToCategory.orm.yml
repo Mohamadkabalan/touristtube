@@ -1,0 +1,27 @@
+DealBundle\Entity\DealDetailToCategory:
+    type: entity
+    table: deal_detail_to_category
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealCategoryId:
+            type: integer
+            nullable: true
+            column: deal_category_id
+        dealDetailsId:
+            type: integer
+            nullable: true
+            column: deal_details_id
+    lifecycleCallbacks: {  }

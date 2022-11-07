@@ -1,0 +1,54 @@
+DealBundle\Entity\DealHotel:
+    type: entity
+    table: deal_hotel
+    indexes:
+        deal_id:
+            columns:
+                - deal_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_id
+        stars:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        destinationId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: destination_id
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        path:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fileName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: file_name
+    lifecycleCallbacks: {  }

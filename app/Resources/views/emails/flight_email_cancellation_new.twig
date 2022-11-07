@@ -1,0 +1,441 @@
+<body>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="font-family: Arial; padding-left: 17px; padding-right: 17px; width:600px;">
+        <tbody>
+            {% include 'emails/header.twig' %}
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 19px; font-family: Arial; color: black; margin-top: 7px; line-height: 22px; margin-bottom: 5px;">{{'Your flight has been successfully cancelled for free'|trans}}!</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 19px; font-family: Arial; color: black; margin-top: 7px; line-height: 22px; margin-bottom: 0px;">{{'E-ticket'|trans}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 19px; font-family: Arial; color: black; margin-top: 0px; line-height: 22px; margin-bottom: 22px;">{{'Name'|trans}}: {{emailData.PassengerDetails[0].first_name}} {{emailData.PassengerDetails[0].surname}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="1" bgcolor="#e6e6e6">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 19px; font-family: Arial; color: black; margin-top: 19px; line-height: 22px; margin-bottom: 15px;">{{'Flight overview'|trans}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 14px; font-family: Arial; color: black; margin-top: 0px; line-height: 20px; margin-bottom: 0px;">{{'Your reservation is booked and confirmed'|trans}}. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 14px; font-family: Arial; color: black; margin-top: 0px; line-height: 20px; margin-bottom: 0px;">{{'There is no need to call us to reconfirm this reservation'|trans}}.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="12">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="178" height="32" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0; text-transform: uppercase; font-size: 14px;">{{'Confirmation'|trans}}</p>
+                                </td>
+                                <td style="font-size: 0; line-height: 0;" width="4">
+                                    &nbsp;
+                                </td>
+                                <td width="384" height="32" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    {% for pnr, airline in emailData.AirlinePnr %}
+                                        <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{ pnr|raw }} ({{ airline|raw }})</p>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="178" height="32" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0; text-transform: uppercase; font-size: 14px;">{{'Booking ID'|trans}} </p>
+                                </td>
+                                <td style="font-size: 0; line-height: 0;" width="4">
+                                    &nbsp;
+                                </td>
+                                <td width="384" height="32" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{ emailData.Pnr|raw }}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        {% for passengerDetail in emailData.PassengerDetails %}
+                            <tr>
+                                <td width="178" height="32" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color:#616161; padding-left: 0px; margin-bottom: 0;margin-top: 0; text-transform: uppercase; font-size: 14px;">{% if loop.index == 1 %}{{'Ticket'|trans}} #{% endif %} </p>
+                                </td>
+                                <td style="font-size: 0; line-height: 0;" width="4">
+                                    &nbsp;
+                                </td>
+                                <td width="384" height="32" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 16px;">{{ passengerDetail.ticket_number|raw }} ({{passengerDetail.first_name|raw}} {{passengerDetail.surname|raw}})</p>
+
+                                    <p style="color: #000000;text-align: left; margin-bottom: 5px; padding-left: 0px;margin-top: 5; font-size: 13px;">{{'Leaving Baggage'|trans}}: {{passengerDetail.leaving_baggage_info}} | {{'Returning Baggage'}}: {{passengerDetail.returning_baggage_info}}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="20">
+                        &nbsp;
+                    </td>
+                </tr>
+                {% for flight_segment in emailData.FlightSegments.leaving.flight_info %}
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="35" height="12" style="text-align: center; background-color: #ffffff; padding:0px; border: none;">
+                                    <img src="{{ generateMediaURL('/media/images/goplane.png', true)}}" alt="goplane" width="29" height="12" style="display: block;" />
+                                </td>
+                                <td width="531" height="12" style="background-color: #ffffff;padding:0px; border: none;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="font-size: 0; line-height: 0;" width="531" height="6" bgcolor="#42c2de">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 17px; font-family: Arial; color: black; margin-top: 13px; line-height: 12px; margin-bottom: 13px;">{{'Outbound'|trans}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="93" height="12" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color:#000000; padding-left: 0px; margin-bottom: 0;margin-top: 0; font-weight: bold; font-size: 17px;line-height: 12px;">{{flight_segment.departure_date|date('D d M')}}</p>
+                                </td>
+                                <td width="34" height="12" style="text-align: center; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color: #000000; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 17px;font-weight: bold;line-height: 12px;margin-top: -6px;">.</p>
+                                </td>
+                                <td width="439" height="12" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color: #000000;margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px;line-height: 12px;">{{flight_segment.airline_name|raw}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="32">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="157" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.airline_name|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.airline_code|raw}}{{flight_segment.flight_number|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.cabin|raw}}</p>
+                                </td>
+                                <td width="43" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 13px;padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.departure_time|raw}}</p>
+                                    <p style="color: #42c2de;text-align: left; margin-bottom: 13px; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">
+                                    {{'direct'|trans}}
+                                    </p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.arrival_time|raw}}</p>
+                                </td>
+                                <td width="30" height="120" style="text-align: center; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <img src="{{ generateMediaURL('/media/images/fromtologo.png', true)}}" alt="fromtologo" width="6" height="71" style="display: block; margin: 0 auto; margin-top: 3px;" />
+                                </td>
+                                <td width="286" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.origin_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.origin_airport|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 30px; font-size: 14px; line-height: 17px;">{{flight_segment.destination_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.destination_airport|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.arrival_terminal|raw}}</p>
+                                </td>
+                                <td width="60" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: right; margin-bottom: 0; padding-left: 0px;margin-top: 32px; font-size: 14px; line-height: 17px;">{% if flight_segment.stop_info is iterable %}
+                                    {{flight_segment.flight_duration_attr|raw}}
+                                    {% else %}
+                                    {{flight_segment.flight_duration|raw}}
+                                    {% endif %}
+                                    </p>
+                                </td>
+                            </tr>
+                            {% if flight_segment.stop_info is iterable %}
+                            <tr>
+                                <td></td>
+                                <td width="43" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #42c2de;text-align: left; margin-bottom: 25px; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">
+                                    1 {{'Stop'|trans}}
+                                    </p>                                </td>
+                                <td width="30" style="text-align: center; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    &nbsp;
+                                </td>
+                                <td width="286" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top; font-size: 14px; line-height: 17px;">
+                                    {{'in'|trans}} {{flight_segment.stop_info[0].origin_city|raw}} ({{flight_segment.stop_info[0].origin_airport_code|raw}})
+                                </td>
+                                <td width="60" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: right; margin-bottom: 0; padding-left: 0px;margin-top: 0px; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].stop_duration|raw}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="157" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].airline_name|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].airline_code|raw}}{{flight_segment.stop_info[0].flight_number|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.stop_info[0].cabin|raw}}</p>
+                                </td>
+                                <td width="43" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 13px;padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].departure_time|raw}}</p>
+                                    <p style="color: #42c2de;text-align: left; margin-bottom: 13px; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">
+                                    {{'direct'|trans}}
+                                    </p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].arrival_time|raw}}</p>
+                                </td>
+                                <td width="30" height="120" style="text-align: center; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <img src="{{ generateMediaURL('/media/images/fromtologo.png', true)}}" alt="fromtologo" width="6" height="71" style="display: block; margin: 0 auto; margin-top: 3px;" />
+                                </td>
+                                <td width="286" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].origin_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].origin_airport|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 30px; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].destination_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].destination_airport|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.stop_info[0].arrival_terminal|raw}}</p>
+                                </td>
+                                <td width="60" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: right; margin-bottom: 0; padding-left: 0px;margin-top: 32px; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].flight_duration_attr|raw}}</p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="color: #6a6969;margin-bottom: 22px; padding-left: 0px;margin-top: 0px; font-size: 13px; line-height: 17px;">
+                            {{'Bag fees'|trans}}: {{'Baggage fees when purchased at the airport (Prices may be cheaper if purchased'|trans}}<br/>
+                            {{'online with'|trans}} {{emailData.FlightSegments.leaving.main_airline|raw}})<br/>
+                            {{'Carry on'|trans}}: {{'No fee'|trans}}<br/>
+                            {{'1st checked bag'|trans}}: {{'No fee up to'|trans}} 30 kg<br/>
+                            {{'2nd checked bag'|trans}}: $19.00 per kg<br/>
+                            {{'Baggage Information'|trans}}: {{emailData.FlightSegments.leaving.main_airline|raw}}
+                        </p>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% if emailData.FlightSegments.returning is defined %}
+                {% for flight_segment in emailData.FlightSegments.returning.flight_info %}
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="35" height="12" style="text-align: center; background-color: #ffffff; padding:0px; border: none;">
+                                    <img src="{{ generateMediaURL('/media/images/returnplanelogo.png', true)}}" alt="returnplanelogo" width="29" height="12" style="display: block;" />
+                                </td>
+                                <td width="531" height="12" style="background-color: #ffffff;padding:0px; border: none;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="font-size: 0; line-height: 0;" width="531" height="6" bgcolor="#42c2de">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="font-size: 17px; font-family: Arial; color: black; margin-top: 13px; line-height: 12px; margin-bottom: 13px;">{{'Return'|trans}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="93" height="12" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color:#000000; padding-left: 0px; margin-bottom: 0;margin-top: 0; font-weight: bold; font-size: 17px;line-height: 12px;">{{flight_segment.departure_date|date('D d M')}}</p>
+                                </td>
+                                <td width="34" height="12" style="text-align: center; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color: #000000; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 17px;font-weight: bold;line-height: 12px;margin-top: -6px;">.</p>
+                                </td>
+                                <td width="439" height="12" style="text-align: left; background-color: #ffffff;font-family: Arial;">
+                                    <p style="color: #000000;margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px;line-height: 12px;">{{flight_segment.airline_name|raw}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="32">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="157" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.airline_name|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.airline_code|raw}}{{flight_segment.flight_number|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.cabin|raw}}</p>
+                                </td>
+                                <td width="43" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 13px;padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.departure_time|raw}}</p>
+                                    <p style="color: #42c2de;text-align: left; margin-bottom: 13px; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{'direct'|trans}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.arrival_time|raw}}</p>
+                                </td>
+                                <td width="30" height="120" style="text-align: center; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <img src="{{ generateMediaURL('/media/images/fromtologo.png', true)}}" alt="fromtologo" width="6" height="71" style="display: block; margin: 0 auto; margin-top: 3px;" />
+                                </td>
+                                <td width="286" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.origin_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.origin_airport|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 30px; font-size: 14px; line-height: 17px;">{{flight_segment.destination_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.destination_airport|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.arrival_terminal|raw}}</p>
+                                </td>
+                                <td width="60" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 32px; font-size: 14px; line-height: 17px;">
+                                    {% if flight_segment.stop_info is iterable %}
+                                    {{flight_segment.flight_duration_attr|raw}}
+                                    {% else %}
+                                    {{flight_segment.flight_duration|raw}}
+                                    {% endif %}
+                                    </p>
+                                </td>
+                            </tr>
+                            {% if flight_segment.stop_info is iterable %}
+                            <tr>
+                                <td></td>
+                                <td width="43" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #42c2de;text-align: left; margin-bottom: 25px; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">
+                                    1 {{'Stop'|trans}}
+                                    </p>                                </td>
+                                <td width="30" style="text-align: center; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    &nbsp;
+                                </td>
+                                <td width="286" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top; font-size: 14px; line-height: 17px;">
+                                    {{'in'|trans}} {{flight_segment.stop_info[0].origin_city|raw}} ({{flight_segment.stop_info[0].origin_airport_code|raw}})
+                                </td>
+                                <td width="60" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: right; margin-bottom: 0; padding-left: 0px;margin-top: 0px; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].stop_duration|raw}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="157" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].airline_name|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].airline_code|raw}}{{flight_segment.stop_info[0].flight_number|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.stop_info[0].cabin|raw}}</p>
+                                </td>
+                                <td width="43" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 13px;padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].departure_time|raw}}</p>
+                                    <p style="color: #42c2de;text-align: left; margin-bottom: 13px; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">
+                                    {{'direct'|trans}}
+                                    </p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].arrival_time|raw}}</p>
+                                </td>
+                                <td width="30" height="120" style="text-align: center; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <img src="{{ generateMediaURL('/media/images/fromtologo.png', true)}}" alt="fromtologo" width="6" height="71" style="display: block; margin: 0 auto; margin-top: 3px;" />
+                                </td>
+                                <td width="286" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].origin_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].origin_airport|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 30px; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].destination_airport_code|raw}}</p>
+                                    <p style="color: #000000;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].destination_airport|raw}}</p>
+                                    <p style="color: #6a6969;text-align: left; margin-bottom: 0; padding-left: 0px;margin-top: 0; font-size: 12px; line-height: 17px;">{{flight_segment.stop_info[0].arrival_terminal|raw}}</p>
+                                </td>
+                                <td width="60" height="120" style="text-align: left; background-color: #ffffff;font-family: Arial;vertical-align: top;">
+                                    <p style="color: #000000;text-align: right; margin-bottom: 0; padding-left: 0px;margin-top: 32px; font-size: 14px; line-height: 17px;">{{flight_segment.stop_info[0].flight_duration_attr|raw}}</p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p style="color: #6a6969;margin-bottom: 22px; padding-left: 0px;margin-top: 0px; font-size: 13px; line-height: 17px;">
+                            {{'Bag fees'|trans}}: {{'Baggage fees when purchased at the airport'|trans}} ({{'Prices may be cheaper if purchased'|trans}}<br/>
+                            {{'online with'|trans}} {{emailData.FlightSegments.returning.main_airline|raw}})<br/>
+                            {{'Carry on'|trans}}: {{'No fee'|trans}}<br/>
+                            {{'1st checked bag'|trans}}: {{'No fee up to'|trans}} 30 kg<br/>
+                            {{'2nd checked bag'|trans}}: $19.00 per kg<br/>
+                            {{'Baggage Information'|trans}}: {{emailData.FlightSegments.returning.main_airline|raw}}
+                        </p>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="1" bgcolor="#e6e6e6">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="399" height="132" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000; margin-bottom: 20px; padding-left: 0px;margin-top: 22px; font-size: 19px; line-height: 14px;">{{'Price summary'|trans}}</p>
+                                    <p style="color: #000000; margin-bottom: 10px; padding-left: 0px;margin-top: 0; font-size: 16px; line-height: 12px;font-weight: bold;">{{'Price breakdown'|trans}}</p>
+                                    <p style="color: #404141; margin-bottom: 11px; padding-left: 0px;margin-top: 0; font-size: 15px; line-height: 11px;">{{'Base Fare'|trans}}: {{emailData.Currency|raw}} {{emailData.BaseFare|number_format(2, '.', ',')}}</p>
+                                    <p style="color: #404141; margin-bottom: 0px; padding-left: 0px;margin-top: 0; font-size: 15px; line-height: 11px;">{{'Taxes and Fees'|trans}}: {{emailData.Currency|raw}} {{emailData.Taxes|number_format(2, '.', ',')}}</p>
+                                </td>
+                                <td width="167" height="132" style="text-align: left; background-color: #ffffff;font-family: Arial; vertical-align: top;">
+                                    <p style="color: #000000; margin-bottom: 0px;padding-left: 0px;margin-top: 58px; font-size: 35px; line-height: 30px;font-weight: bold;">{{emailData.Currency|raw}} {{emailData.Price|number_format(2, '.', ',')}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="5">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 0; line-height: 0;" height="1" bgcolor="#e6e6e6">
+                        &nbsp;
+                    </td>
+                </tr>
+		<tr>
+		    <td>
+			<p style="font-size: 14px; color: #000000; margin-bottom: 0px; margin-top: 0px ;">{{ 'This flight is fully refunded your money will be refunded within 5 to 10 days. For any inquiry, kindly send us an email at'|trans }} <a href="mailto:flights-support@touristtube.com" style="color: #00b7d9">flights-support@touristtube.com</a></p>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<p style="font-size: 13px; font-family: Arial; color: #808080; margin-bottom: 0; margin-top: 0px;">{{"Thank you for choosing TouristTube for your travel reservations. We're sorry your plans"|trans}} <br/>{{"didn't work out. When you're ready to book a new trip, we'll be happy to help."|trans}}<br/></p>
+		    </td>
+		</tr>
+            {% include 'emails/footer.twig' %}
+        </tbody>
+    </table>
+</body>

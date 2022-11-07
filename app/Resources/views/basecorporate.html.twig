@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title itemprop="name">{% block title %}{{ seotitle|raw }}{% endblock %}</title>
+        <meta name="description" content="{{ seodescription|raw }}"/>
+        <meta property="og:title" content="{{ seotitle|raw }}" />
+        <meta property="og:url" content="{{ canonicallink|raw }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="{{ fbdesc|raw }}"/>
+        <meta property="og:image" content="{{ fbimg|raw }}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="p:domain_verify" content="056eb74cdb3b22b0a5fac2556b434c47"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="google-site-verification" content="UA-37276506-1" />
+
+        {% stylesheets 'assets/vendor/bootstrap/css/bootstrap.css' 'assets/vendor/jquery/plugins/jquery-ui/css/jquery-ui-1.10.0.custom-new.css' 'assets/corporate/css/corporate-headerfooter.css' 'assets/vendor/jquery/plugins/fancybox/css/jquery.fancybox-new.css' 'assets/vendor/jquery/plugins/datatable/3.3.7/css/datatables.min.css' 'assets/vendor/jquery/plugins/datatable/3.3.7/css/dataTables.bootstrap.min.css' 'assets/corporate/css/corporate-login.css' 'assets/corporate/admin/css/corporate-headerfooter.css'  'assets/vendor/jquery/plugins/autocomplete/devbridge/css/jquery.auto-complete.css' 'assets/vendor/jquery/plugins/combogrid/1.6.3/css/jquery.ui.combogrid.css' 'assets/common/tt/js/combogrid/autoCompleteComboGrid.css' filter='uglifycss' output='generated/tt_old_corpo_all_base_main.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/3.2.0/animate.min.css')|raw }}"/>
+        {% endstylesheets %}
+
+        {% if corporate_background_theme is not defined %}
+            {% set corporate_background_theme = 1 %}
+        {% endif %}
+        {% if corporate_theme is not defined %}
+            {% set corporate_theme = 1 %}
+        {% endif %}
+        {% if accountPrefferedCurrency is not defined %}
+            {% set accountPrefferedCurrency = 'USD' %}
+            {% set accountCurrentBalance = 0 %}
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('/assets/corporate/css/corporate-background-theme'~corporate_background_theme~'.css')|raw }}"/>
+    </head>
+    <body>
+{% if webview !='webview' %}
+        <header>
+            <!-- Navbar start -->
+            <div class="container base_container1 nopad">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 headersMenu1"></div>
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header col-xs-12 headersMenu2">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="col-xs-12 nopad">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 nopad float-right">
+                                {% if isUserLoggedIn == 1 %}
+                                    <ul class="corporatehomemenue hidden-xs">
+                    <li class="menuHasChild">
+                        <p class="linkli_corporate weltext_corporate">{{ userNameWelcome|raw }}!</p>
+                                            <div class="myaccountcontainer_corporate menusubcontainer_corporate">
+                                                <img class="hederimgmyacc_corp" src="{{ generateMediaURL('/media/images/corporate/myaccheader_corp.png') }}" alt="{{'title'}}"/>
+                                                <ul class="myacclistul_corporate sub_menu_content">
+                                                    <li><a href="#" data-toggle="modal" data-target="#myModal" onclick="changePasword('{{ generateLangRoute(LanguageGet,'_corporate_change_password') }}')" title="{{'Change Password'|trans}}">{{'Change Password'|trans}}</a></li>
+                                                    <li><a title="{{'Profile settings'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corporate_profile_settings') }}">{{'Profile settings'|trans}}</a></li>
+                                                    <li><a id="logout_corp" title="{{'Sign Out'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corporate_logout') }}">{{'Sign Out'|trans}}</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                    {% if corporateAdminMenuList is defined %}
+                        <li><p class="linkseparater_corporate">|</p></li>
+                        <li class="menuHasChild">
+                        <p class="linkli_corporate">{{'Admin'|trans}}</p>
+                        <div class="myadmincontainer_corporate menusubcontainer_corporate">
+                            <img class="hederimgmyacc_corp" src="{{ generateMediaURL('/media/images/corporate/myaccheader_corp.png') }}" alt="{{'title'}}"/>
+                            <ul class="myadminlistul_corporate sub_menu_content">
+                            {% for menu in menuAdminList %}
+                                <li><a title="{{menu.m_name|raw}}" href="{{ generateLangURL(LanguageGet,menu.m_url,'corporate') }}">{{menu.m_name|raw}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        </li>
+                    {% endif %}
+                    {% if isUserLoggedIn == 1 %}
+                        <li><p class="linkseparater_corporate">|</p></li>
+                        <li class="menuHasChild"><a href="{{ generateLangRoute(LanguageGet,'_corporate') }}" title="tourist tube" class="linkli_corporate">{{'Home'|trans}}</a></li>
+                    {% endif %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nopad float-left hidden-xs">
+                                <div class="col-xs-12 nopad">
+                                    <a href="{{ generateLangRoute(LanguageGet,'_corporate') }}" title="tourist tube">
+                                        <img class="imglogo_corporate" src="{{ generateMediaURL('/media/images/corporate/ttlogo_corporate.png') }}" alt="tourist tube"/>
+                                    </a>
+                                </div>
+                            </div>
+                {% if isUserLoggedIn == 1 %}                  
+                <div class="col-xs-12 maincontainer_menu2 hidden-xs">
+                    <div class="col-xs-12 container_menu2">
+                    <ul class="corporatehomemenue2 hidden-xs">
+                        {% if corporateAdminMenu is defined %}
+                        <li class="current_balance_li"><a class="current_balance_a" title="{{'Due Amount'|trans}}" href="{{ generateLangRoute(LanguageGet,'_payment_due') }}"><span class="current_balance_text">{{'Due Amount'|trans}}</span> <span class="current_balance_pice">{{accountPrefferedCurrency|raw}} {{accountCurrentBalance|raw}}</span></a></li>
+                        <li><p class="linkseparater_corporatedot">.</p></li>
+                            {% for menu in menuDefinitionsList %}
+                            <li><a title="{{menu.m_name|raw}}" href="{{ generateLangURL(LanguageGet,menu.m_url,'corporate') }}">{{menu.m_name|raw}}</a></li>
+                            <li><p class="linkseparater_corporate">|</p></li>
+                            {% endfor %}
+                        {% endif %}
+                        <li><a title="{{'Travel approvals'|trans}}" href="{{ generateLangRoute(LanguageGet,'_travel_approvals') }}">{{'Travel approvals'|trans}}</a></li>
+                                            <li><p class="linkseparater_corporate">|</p></li>
+                        <li><a title="{{'My bookings'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corpo_manage_bookings') }}">{{'My bookings'|trans}}</a></li>
+                    </ul>  
+                    </div>
+                </div>
+                {% endif %}
+                        </div>
+                    </div>
+                    <a href="{{ generateLangRoute(LanguageGet,'_corporate') }}" title="tourist tube" class="visible-xs xslogostyle_corp">
+                        <img src="{{ generateMediaURL('/media/images/corporate/ttlogo_corporate.png') }}" alt="{{'title'}}"/>
+                    </a>
+                    <div id="navbar2" class="navbar-collapse collapse xsnavstyle">
+                        <ul class="nav navbar-nav navbar-right">
+                {% if isUserLoggedIn == 1 %}
+                <li class="visible-xs noborrderfirst_corp"><a href="{{ generateLangRoute(LanguageGet,'_corporate') }}" title="tourist tube" class="linkli_corporate">{{'Home'|trans}}</a></li>
+                {% if corporateAdminMenu is defined %}
+                    {% if corporateAdminMenuList is defined %}
+                    <li class="visible-xs noborrderfirst_corp"><p class="linkli_corporate myaccountpfirst padding10">{{'Admin'|trans}}</p></li>
+                        {% for menu in menuAdminList %}
+                        <li class="visible-xs"><a title="{{menu.m_name|raw}}" href="{{ generateLangURL(LanguageGet,menu.m_url,'corporate') }}" class="linkli_corporate">{{menu.m_name|raw}}</a></li>
+                        {% endfor %}
+                    {% endif %}
+
+                    <li class="visible-xs noborrderfirst_corp"><a title="{{'Due Amount'|trans}}" href="{{ generateLangRoute(LanguageGet,'_payment_due') }}" class="linkli_corporate">{{'Due Amount'|trans}}</a></li>
+                    {% for menu in menuDefinitionsList %}
+                    <li class="visible-xs"><a title="{{menu.m_name|raw}}" href="{{ generateLangURL(LanguageGet,menu.m_url,'corporate') }}">{{menu.m_name|raw}}</a></li>
+                    {% endfor %}
+                    {% endif %}   
+                                <li class="visible-xs"><a title="{{'Travel approvals'|trans}}" href="{{ generateLangRoute(LanguageGet,'_travel_approvals') }}" class="linkli_corporate">{{'Travel approvals'|trans}}</a></li>
+                                <li class="visible-xs"><a title="{{'My bookings'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corpo_manage_bookings') }}" class="linkli_corporate">{{'My bookings'|trans}}</a></li>                             
+                                <li class="visible-xs"><a href="#" data-toggle="modal" data-target="#myModal" onclick="changePasword('{{ generateLangRoute(LanguageGet,'_corporate_change_password') }}')" title="{{'Change Password'|trans}}" class="linkli_corporate">{{'Change Password'|trans}}</a></li>
+                                <li class="visible-xs"><a title="{{'Profile settings'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corporate_profile_settings') }}" class="linkli_corporate">{{'Profile settings'|trans}}</a></li>
+                {% endif %}
+                            <li class="visible-xs"><a title="{{ 'contact us'|trans }}" href="{{ generateLangRoute(LanguageGet,'_corporate_contact_us') }}" class="linkli_corporate xs-borderbut">{{'Contact Us'|trans}}</a></li>
+                            <li class="visible-xs"><a title="{{ 'about us'|trans }}" href="{{ generateLangRoute(LanguageGet,'_corporate_about_us') }}" class="linkli_corporate xs-borderbut">{{'About Us'|trans}}</a></li>
+                            <li class="visible-xs"><a title="{{ 'Terms of Service'|trans }}" href="{{ generateLangRoute(LanguageGet,'_corporate_terms_and_conditions') }}" class="linkli_corporate xs-borderbut">{{'Terms of Service'|trans}}</a></li>
+                            <li class="visible-xs"><a title="{{ 'Privacy Policy'|trans }}" href="{{ generateLangRoute(LanguageGet,'_corporate_privacy_policy') }}" class="linkli_corporate xs-borderbut">{{'Privacy Policy'|trans}}</a></li>
+                {% if isUserLoggedIn == 1 %}
+                <li class="visible-xs margintop40"><a id="logout_corp" title="{{'Sign Out'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corporate_logout') }}" class="linkli_corporate xs-borderbut">{{'Sign Out'|trans}}</a></li>
+                {% endif %}
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </nav>
+                <!-- Navbar end -->
+            </div>
+        </header>
+{% endif %}
+        <div class="container containerwhite">
+            <div id="TTAlertContainer">
+                <div id="TTAlertContainerInside" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="TTAlertContainerInside_data">
+                        <div id="TTAlert_content">
+                            <div class="TTAlert_text col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+                        </div>
+                        <div id="TTAlert_shadow"></div>
+                        <div id="TTAlert_button_container">
+                            <div class="TTAlert_buts1 TTAlert_buts">{{'cancel'|trans}}</div>
+                            <div class="TTAlert_seperator"></div>
+                            <div class="TTAlert_buts2 TTAlert_buts">{{'register'|trans}}</div>
+                        </div>
+                        <div id="TTAlert_close"></div>
+                    </div>
+                </div>
+                <div class="TTAlert_back_fix"></div>
+            </div>
+        </div>
+        <div class="bodyblocks">
+        {% block body %}{% endblock %}
+    </div>
+
+    <footer>
+    <div class="container currencyUpperContainer">
+        <section class="currencyContainer">
+        <div class="blueairptab mCustomScrollbar " data-mcs-theme="3d">
+            <div id="smallsizescroll" class=" col-xs-12">
+            <div class="perclbp">
+                <p class="bluedivtablbp">{{'top currencies'|trans}}</p>
+            </div>
+            <div class="col-xs-12 borderbutclass">
+                {% for currency in currencies %}
+                {% if currency.top_currency %}
+                    <div title="{{currency.name|raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code|raw}}" currency-symbol-data="{{currency.symbol|raw}}" currency-rate-data="{{currency.rate|raw}}">
+                    <p class="nodecstyle"><i>{{currency.symbol|raw}}</i><span>{{currency.name|raw}}</span></p>
+                    </div>
+                {%endif%}
+                {% endfor %}
+            </div>
+            <div class="perclbp">
+                <p class="bluedivtablbp">{{'all currencies'|trans}}</p>
+            </div>
+            <div class="col-xs-12">
+                {% for currency in currencies|sort %}
+                <div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.symbol | raw}}" currency-rate-data="{{currency.rate | raw}}">
+                    <p class="nodecstyle"><i>{{currency.symbol | raw}}</i><span>{{currency.name | raw}}</span></p>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+        </section>  
+    </div>
+        <div class="container base_container1 nopad">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 headersMenu1 hidden-xs"></div>
+            <div class="col-xs-12 headersMenu2">
+        <div class="currencyselectbox col-md-2 col-sm-4 col-xs-12 nopad">    
+            <p class="curtext_hp"><span class="countrycurtitle">{{'Currency'|trans}}: </span><span class="currency_val"><span>{{currency_symbol.symbol|raw}}</span> - {{selected_currency|raw}}</span></p>
+                </div>
+                <ul class="footerulstyle hidden-xs">
+            {% if isUserLoggedIn == 1 %}
+            <li class="menuHasChild">
+                <p class="change_theme_txt">{{'Change theme'|trans}}</p>
+                <div class="thememenuelistcontainer_corporate menusubcontainer_corporate">
+                <img class="hederimgmyacc_corp" src="{{ generateMediaURL('/media/images/corporate/myaccheader_corp.png') }}" alt="{{'title'}}"/>
+                <ul class="changecolorlist">
+                    <li class="floatnone" >{{'Background'|trans}}</li>
+                    <li class="floatnone" ><div class="change_theme_but_back theme_but change_theme_but_back1" data-theme="1"></div></li>
+                    <li class="floatnone" ><div class="change_theme_but_back theme_but change_theme_but_back2" data-theme="2"></div></li>
+                    <li class="floatnone changeclorrightborder" >|</li>
+                    <li class="floatnone" >{{'Color'|trans}}</li>
+                    <li class="floatnone" ><div class="change_theme_but theme_but change_theme_but1" data-theme="1"></div></li>
+                    <li class="floatnone" ><div class="change_theme_but theme_but change_theme_but3" data-theme="3"></div></li>
+                    <li class="floatnone" ><div class="change_theme_but theme_but change_theme_but2" data-theme="2"></div></li>
+                </ul>
+                </div>
+            </li>
+            <li class="theme_seperatorwhitestyle">|</li>
+            {% endif %}
+                    <li><a title="{{ 'contact us'|trans }}" href="{{ generateLangRoute(LanguageGet,'_corporate_contact_us') }}">{{'Contact Us'|trans}}</a></li>
+                    <li class="seperatorwhitestyle">|</li>
+                    <li><a title="{{'about us'|trans}}" href="{{ generateLangRoute(LanguageGet,'_corporate_about_us') }}">{{'About Us'|trans}}</a></li>
+            {% if isUserLoggedIn == 0 %}
+            <li class="seperatorwhitestyle">|</li>
+            <li><a href="{{ generateLangRoute(LanguageGet,'login') }}" title="{{'Corporate Login'|trans}}">{{'Corporate Login'|trans}}</a></li>
+            <li class="seperatorwhitestyle">|</li>
+            <li><a href="{{ generateLangRoute(LanguageGet,'_log_in') }}" title="{{'Partner Login'|trans}}">{{'Partner Login'|trans}}</a></li>
+            {% endif %}
+                    <li class="seperatorwhitestyle">|</li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_corporate_terms_and_conditions') }}" title="{{'terms & conditions'|trans}}">{{'Terms of Service'|trans}}</a></li>
+                    <li class="seperatorwhitestyle">|</li>
+                    <li><a href="{{ generateLangRoute(LanguageGet,'_corporate_privacy_policy') }}" title="{{'privacy policy'|trans}}">{{'Privacy Policy'|trans}}</a></li>
+                </ul>
+            </div>
+        </div>
+    {% block pagenewcss %}{% endblock %}
+    <script type="text/javascript" src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+    <script type="text/javascript" src="{{ path('bazinga_jstranslation_js', { 'domain': 'client' }) }}?locales={{ app.request.locale|split('_')[0] }}"></script>
+    {% javascripts 'assets/vendor/jquery/dist/jquery-3.3.1.min.js' 'assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js' 'assets/vendor/bootstrap/js/bootstrap.min.js' 'assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js' 'assets/vendor/jquery/plugins/datatable/3.3.7/js/datatables.min.js' 'assets/vendor/jquery/plugins/datatable/3.3.7/js/dataTables.bootstrap.min.js' 'assets/common/tt/js/datatable/datatable.js' 'assets/vendor/jquery/plugins/number/js/jquery.number.min.js' 'assets/vendor/jquery/plugins/mscroll/js/jquery.mscroll.min.js' 'assets/vendor/jquery/plugins/migrate/js/jquery-migrate-1.1.1.js' 'assets/common/js/utils.js' 'assets/vendor/jquery/plugins/fancybox/js/jquery.fancybox.js' 'assets/vendor/jquery/plugins/cookie/js/jquery.cookie.min.js' 'assets/corporate/js/corporate_headerfooternew.js' 'assets/vendor/bootstrap/plugins/notify/bootstrap-notify.min.js' 'assets/vendor/jquery/plugins/loading-overlay/gasparesganga/2.1.6/loadingoverlay.min.js' 'assets/vendor/jquery/plugins/autocomplete/devbridge/js/jquery.autocomplete.min.js' 'assets/vendor/jquery/plugins/form_validator/validator.min.js' 'assets/common/tt/js/utils/TTUtils.js' 'assets/common/tt/js/modal/TTModal.js' 'assets/common/tt/js/notify/TTNotify.js' 'assets/common/tt/js/form/TTFormValidator.js' 'assets/common/tt/js/overlay/TTOverlay.js' 'assets/common/tt/js/buttons/TTButtons.js' 'assets/common/tt/js/autocomplete/TTAutocomplete.js' 'assets/vendor/jquery/plugins/combogrid/1.6.3/jquery.ui.combogrid-1.6.3.js' 'assets/common/tt/js/combogrid/autoCompleteComboGrid.js' filter='uglifyjs2' output='generated/tt_old_base_corporate_min.js' %}
+
+	<script type="text/javascript" src="{{ asset_url }}"></script> 
+    {% endjavascripts %}
+    <script type="text/javascript">
+        var ttModal;
+        var btnsInst;
+
+        function changePasword(link) {
+            ttModal = window.getTTModal("myModalZ", {url: {href: link}, width: 1024, title: "Change Password"});
+            ttModal.show();
+        }
+
+        $(document).ready(function () {
+            {% for type, flash_messages in app.session.flashBag.all %}
+                {% for flash_message in flash_messages %}
+                    var flash_message_json = {{ flash_message|raw }}; 
+                    var corporateNotificationArray = flash_message_json;
+
+                    if (!window.PAGE_LOADED)
+                    {
+                        window.PAGE_LOADED = true;
+                        ttNotification(corporateNotificationArray);
+                    }
+                {% endfor %}
+            {% endfor %}
+        });
+    </script>
+    
+{% block pagenewjs %}{% endblock %}
+</footer>
+</body>
+</html>

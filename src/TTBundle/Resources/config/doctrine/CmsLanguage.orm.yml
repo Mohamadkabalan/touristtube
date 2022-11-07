@@ -1,0 +1,45 @@
+TTBundle\Entity\CmsLanguage:
+    type: entity
+    table: cms_language
+    repositoryClass: TTBundle\Repository\TTRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+        webCode:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+            column: web_code
+        label:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        needsLogin:
+            type: integer
+            nullable: false
+            options:
+                default: '0'
+            column: needs_login
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

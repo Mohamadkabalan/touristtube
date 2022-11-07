@@ -1,0 +1,1 @@
+UPDATE cms_hotel SET district = '8th Arrondissement' WHERE id = 405176;

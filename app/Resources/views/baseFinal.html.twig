@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title itemprop="name">{% block title %}{{ seotitle|raw }}{% endblock %}</title>
+        <meta name="description" content="{{ seodescription|raw }}"/>
+        <meta property="og:title" content="{{ seotitle|raw }}" />
+        <meta property="og:url" content="{{ canonicallink|raw }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="{{ fbdesc|raw }}"/>
+        <meta property="og:image" content="{{ fbimg|raw }}"/>
+        {#<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">#}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="p:domain_verify" content="056eb74cdb3b22b0a5fac2556b434c47"/>
+
+        <link rel="shortcut icon" href="{{ generateMediaURL('/media/images/favicon.ico') }}" />
+        {% if canonicallink !='' %}
+            <link rel="canonical" href="{{canonicallink|raw}}" />
+        {% endif %}
+        {% if canonicalprevlink !='' %}
+            <link rel="prev" href="{{canonicalprevlink|raw}}" />
+        {% endif %}
+        {% if canonicalnextlink !='' %}
+            <link rel="next" href="{{canonicalnextlink|raw}}" />
+        {% endif %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="google-site-verification" content="UA-37276506-1" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        {{ ur_arraydata|raw }}
+        {% stylesheets 'assets/vendor/animate/3.6.0/animate.min.css' 'assets/vendor/bootstrap/css/bootstrap.css' 'assets/vendor/jquery/plugins/jquery-ui/css/jquery-ui-1.10.0.custom-new.css'  'assets/vendor/jquery/plugins/fancybox/css/jquery.fancybox-new.css' 'assets/vendor/jquery/plugins/date-range-picker/css/daterangepicker.css' 'assets/common/css/baseFinal.css' filter='uglifycss' output='generated/tt_general.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+        {% endstylesheets %}
+        {% include "default/css_images.twig" %}
+        {{ tmzone|raw }}
+        
+        <script type="application/ld+json">
+            {
+            "@context":"https://schema.org",
+            "@graph":
+                [
+                    {
+                    "@type" : "WebSite",
+                    "@id":"{{subdomain_link|raw}}/#website",
+                    "name" : "TouristTube",
+                    "alternateName":"TouristTube.com",
+                    "url" : "{{subdomain_link|raw}}/"
+                    },
+                    {
+                            "@type" : "WebPage",
+                            "@id" : "{{OriginalUrl|raw}}#webpage",
+                            "url" : "{{OriginalUrl|raw}}",
+                            "inLanguage" : "en",
+                            "name" : "TouristTube",
+                            "isPartOf":
+                            {
+                                "@id":"{{subdomain_link|raw}}/#website"
+                            },
+                            "description" : "{{ seodescription|raw }}"
+                    },                            
+                    {
+                        "@type": "Organization",
+                        "name": "TouristTube",
+                        "url": "{{subdomain_link|raw}}/",
+                        "logo": "{{ generateMediaURL('/media/images/Logo.png', true) }}",
+                        "contactPoint": [
+                            {
+                                "@type": "ContactPoint",
+                                "email": "info@touristtube.com",
+                                "contactType": "customer service",
+                                "availableLanguage": ["EN", "FR", "AR"] 
+                            }
+                        ],
+                        "sameAs": [
+                        "https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts",
+                        "https://twitter.com/TouristTube",
+                        "https://plus.google.com/u/0/+touristtubepage/posts",
+                        "https://www.pinterest.com/touristtube/"
+                        ]
+                    }
+                ]
+            }
+        </script>
+        {% if subdomain_suffix=='' %}
+            {% if isindexpage==1 %}
+                <link rel="publisher" href="https://plus.google.com/+touristtubepage"  />
+                <meta name="yandex-verification" content="8b32e194dbd2ec9f" />
+            {% endif %}
+            <!-- Facebook Pixel Code -->
+            <script>
+                !function (
+                        f,
+                        b,
+                        e,
+                        v,
+                        n,
+                        t,
+                        s) {
+                    if (f.fbq)
+                        return;
+                    n =
+                            f.fbq =
+                            function () {
+                                n.callMethod ?
+                                        n.callMethod.apply(
+                                                n,
+                                                arguments) :
+                                        n.queue.push(
+                                                arguments)
+                            };
+                    if (!f._fbq)
+                        f._fbq =
+                                n;
+                    n.push =
+                            n;
+                    n.loaded =
+                            !0;
+                    n.version =
+                            '2.0';
+                    n.queue =
+                            [
+                            ];
+                    t =
+                            b.createElement(
+                                    e);
+                    t.async =
+                            !0;
+                    t.src =
+                            v;
+                    s =
+                            b.getElementsByTagName(
+                                    e)[0];
+                    s.parentNode.insertBefore(
+                            t,
+                            s)
+                }(
+                        window,
+                        document,
+                        'script',
+                        'https://connect.facebook.net/en_US/fbevents.js');
+                fbq(
+                        'init',
+                        '100100533915167'); // Insert your pixel ID here.
+                fbq(
+                        'track',
+                        'PageView');
+            </script>
+            <noscript><img height="1" width="1" alt="facebook" style="display:none" src="https://www.facebook.com/tr?id=100100533915167&ev=PageView&noscript=1"/></noscript>
+            <!-- DO NOT MODIFY -->
+            <!-- End Facebook Pixel Code -->
+        {% endif %}
+</head>
+<body>
+    {% if SHOW_FLIGHTS_BLOCK is not defined %}
+	{% set SHOW_FLIGHTS_BLOCK = 1 %}
+    {% endif %}
+    <!-- Google Tag Manager -->
+    {#<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TC35VJ" height="0" width="0" style="display:none; visibility:hidden"></iframe></noscript>
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TC35VJ');
+    </script>#}
+    <!-- End Google Tag Manager -->
+{% block structureddatablock %}{% endblock %}
+<div id="popup_creatid" class="popup_creat bag_popup"></div>
+{% if popupOffers==1 %}
+    <a rel="nofollow" href="{{ generateLangRoute(LanguageGet,'_popup_offer') }}" title="{{'popup offers'|trans}}" class="popupOffers displaynone"></a>
+{% endif %}
+{% if webview !='webview' %}
+    <header class="regiser_login_links" data-logged="{{isUserLoggedIn|raw}}">
+        <!-- Navbar start -->
+        <nav class="navbar navbar-default home_new_navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{ generateLangRoute(LanguageGet,'_welcome') }}" title="tourist tube" class="navbar-brand navbar_brand_home_new"><img src="{{ generateMediaURL('/media/images/index/touristtubelogo.png') }}" alt="{{'tourist tube logo'|trans}}"></a>
+                        {#<div class="hotelflightsleftmenu hidden">
+                                <a href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}" title="{{'Book your flight'|trans}}" class="hotelflightstext firstdivpadleftright">{{'Flights'|trans}}</a>
+                                <a href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}" title="{{'Book your hotel'|trans}}" class="hotelflightstext">{{'Hotels'|trans}}</a>
+                        </div>#}
+                    <ul class="langxs visible-xs">
+                        <li class="dropdown dropxslang dropxslang_{{LanguageGet|raw}}">
+                            <a rel="nofollow" rel="noreferrer" href="#" class="flagbacklangbarBut"><span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown_menu_flag">
+                                {% for item in lang_arraydata %}
+                                    <li><a class="flag_lang flag_lang_{{item.lang_key|raw}}" href="{{item.link|raw}}">{{item.name|raw}}</a></li>
+                                    {% endfor%}
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="tourbagxs visible-xs">
+                        <li><a rel="nofollow" class="sprite tourbagimg{% if isUserLoggedIn==0 %} bagdisaable{% endif %}" rel="noreferrer" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_bags') }}{% endif %}"></a></li>
+                    </ul>
+                </div>
+                <div id="navbar2" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right margin-top-20">
+                        {#{% if is_corporate_account %}#}
+                        {#<li><a class="less_padding large_margin_right_40" href="{{ generateLangURL(LanguageGet,'/corporate/login','corporate') }}" title="{{'Corporate Login'|trans}}" target="_blank">{{'Corporate Login'|trans}}</a></li>#}
+                            {#{% endif %}#}
+			    <li class="itemspecialstyleli hidden-xs"><a class="less_padding itemspecialstylea" href="{{ generateLangRoute(LanguageGet,'_best_hotels_in_the_world') }}" title="{{'Best Hotels'|trans}}">{{'Get your property in'|trans}}</a></li>
+			    <li class="itemspecialstyleli visible-xs"><a class="less_padding itemspecialstylea" href="{{ generateLangRoute(LanguageGet,'_best_hotels_in_the_world') }}" title="{{'Best Hotels'|trans}}">{{'Get your property in 360'|trans}}</a></li>
+			{% if SHOW_FLIGHTS_BLOCK==1 %}
+			    <li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}" title="{{'Book your Flight'|trans}}">{{'Book your Flight'|trans}}</a></li>
+			{% endif %}
+                        <li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}" title="{{'Book your Hotel'|trans}}">{{'Book your Hotel'|trans}}</a></li>
+			{% if SHOW_DEALS_BLOCK==1 %}
+                            <li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_deals') }}" title="{{'Attractions'|trans}}">{{'Attractions'|trans}}</a></li>
+			{% endif %}
+                        <li><a class="less_padding" href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}" title="{{'Things To Do'|trans}}">{{'Things To Do'|trans}}</a></li>
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_best_restaurants_restaurants') }}" title="{{'Best restaurants in 360'|trans}}">{{'Best restaurants in 360'|trans}}</a></li>
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_discover') }}" title="{{'Discover'|trans}}">{{'Discover'|trans}}</a></li>
+
+                        <li class="visible-xs"><a title="{{'About us'|trans}}" href="{{ generateLangRoute(LanguageGet,'_about-us') }}">{{'About'|trans}}</a></li>
+                        <li class="visible-xs"><a title="{{'Contact'|trans}}" href="{{ generateLangRoute(LanguageGet,'_contact') }}">{{'Contact'|trans}}</a></li>
+                        <li class="visible-xs"><a title="{{'Support'|trans}}" href="{{ generateLangRoute(LanguageGet,'_support') }}">{{'Support'|trans}}</a></li>
+                        {#<li class="visible-xs"><a title="{{'Help'|trans}}" href="{{ generateLangRoute(LanguageGet,'_help') }}">{{'Help'|trans}}</a></li> 
+                        <li class="visible-xs"><a title="{{'faq'|trans}}" href="{{ generateLangRoute(LanguageGet,'_faq') }}">{{'Faq'|trans}}</a></li>#}
+                        <li class="visible-xs"><a title="{{'disclaimer'|trans}}" href="{{ generateLangRoute(LanguageGet,'_disclaimer') }}">{{'Disclaimer'|trans}}</a></li>
+
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_channels') }}" title="{{'Channels'|trans}}">{{'Channels'|trans}}</a></li>
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_photo_video_sharing_media') }}" title="{{'Photo Video Sharing'|trans}}">{{'Photo video sharing'|trans}}</a></li>
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_live') }}" title="{{'Hotels 360'|trans}}">{{'Hotels 360'|trans}}</a></li>
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'Review & Rate'|trans}}">{{'Review and rate'|trans}}</a></li>
+                        {#<li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_nearby_general') }}" title="{{'Nearby'|trans}}">{{'Nearby'|trans}}</a></li>#}
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_where_is_general') }}" title="{{'Where is'|trans}}">{{'Where is'|trans}}</a></li>
+                        <li class="visible-xs"><a href="http://blog.touristtube.com/" title="{{'Travel blog'|trans}}" target="_blank">{{'Travel blog'|trans}}</a></li>
+                        <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie policy'|trans}}">{{'Cookie policy'|trans}} </a></li>
+			{% if isUserLoggedIn == 0 %}
+                            <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_register') }}" title="{{ 'join our community'|trans }}">{{'Register'|trans}}</a></li>
+			{% endif %}
+
+                        <li class="hidden-sm hidden-xs"><span class="home_new_sep">|</span></li>                            
+                            {% if isUserLoggedIn == 0 %}
+                            <li><a href="{{ generateLangRoute(LanguageGet,'_log_in') }}" title="{{'Sign In'|trans}}" class="login-button">{{'User Login'|trans}}</a></li>
+                            {% else %}
+                            <li class="menuHasChild hidden-xs">
+                                <p class="less_padding">{{ userNameWelcome|raw }}!</p>
+                                <div class="menusubcontainer">
+                                    <img class="hederimgmyacc" src="{{ generateMediaURL('/media/images/corporate/myaccheader_corp.png') }}" alt="{{'title'}}"/>
+                                    <ul class="sub_menu_content">
+                                        <li><a href="{{ generateLangRoute(LanguageGet,'_account_info') }}" title="{{'Personal Info'|trans}}">{{'My Account'|trans}}</a></li>
+                                        <li><a href="{{ generateLangRoute(LanguageGet,'_my_bookings') }}" title="{{'My Bookings'|trans}}">{{'My Bookings'|trans}}</a></li>
+                                        <li><a id="logout_corp" title="{{'Sign Out'|trans}}" href="{{ generateLangRoute(LanguageGet,'_logout') }}">{{'Sign Out'|trans}}</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_account_info') }}" title="{{'My Account'|trans}}">{{'My Account'|trans}}</a></li>
+                            <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_my_bookings') }}" title="{{'My Bookings'|trans}}">{{'My Bookings'|trans}}</a></li>
+                            <li class="visible-xs"><a href="{{ generateLangRoute(LanguageGet,'_logout') }}" title="{{'Sign Out'|trans}}" class="login-button">{{'Sign Out'|trans}}</a></li>
+                            {% endif %}
+
+                        <li class="hidden-xs"><a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_bags') }}{% endif %}" class="sprite tourbagimg{% if isUserLoggedIn==0 %} bagdisaable{% endif %}" title="{{'tour bag'|trans}}"></a></li>
+                        <li class="dropdown hidden-xs">
+                            <a rel="nofollow" rel="noreferrer" href="#" class="flagbacklangbarBut flagbacklangbar flagbacklangbar_{{LanguageGet|raw}}"></a>
+                            <ul class="dropdown-menu dropdown_menu_flag">
+                                {% for item in lang_arraydata %}
+                                    <li><a class="flag_lang flag_lang_{{item.lang_key|raw}}" href="{{item.link|raw}}">{{item.name|raw}}</a></li>
+                                    {% endfor%}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                {% if isUserLoggedIn == 1 %}
+                    <div class="row visible-xs">
+                        <div class="col-xs-12 text-right user_title">{{ userNameWelcome|raw }}!</div>
+                    </div>
+                {% endif %}
+                <!--/.nav-collapse -->
+                <!--/.container-fluid -->
+            </div>
+        </nav>
+        <!-- Navbar end -->
+
+    {% block refine_your_search %}{% endblock %}
+{% block filter_your_search %}{% endblock %}
+<section class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="curnewtab_top" data-mcs-theme="3d">
+                <div id="smallsizescroll" class="col-xs-12">
+                    <div class="curtitlefullwidth">
+                        <p class="titlestylecur">{{'top currencies'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12 borderbutcur">
+                        {% for currency in currencies %}
+                            {% if currency.top_currency %}
+                                <div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.code | raw}}">
+                                    <p class="curcontenttext"><i>{{currency.code | raw}}</i><span>{{currency.name | raw}}</span></p>
+                                </div>
+                            {%endif%}
+                        {% endfor %}
+                    </div>
+                    <div class="curtitlefullwidth">
+                        <p class="titlestylecur">{{'all currencies'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12">
+                        {% for currency in currencies|sort %}
+                            <div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.code | raw}}">
+                                <p class="curcontenttext"><i>{{currency.code | raw}}</i><span>{{currency.name | raw}}</span></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</header>
+{% endif %}
+<div class="upload-overlay-loading-fix"><div></div></div>
+<section id="TTAlertContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="TTAlertContainerInside">
+                    <div id="TTAlertContainerInside_data">
+                        <div id="TTAlert_content">
+                            <div class="row">
+                                <div class="TTAlert_text col-xs-10"></div>
+                            </div>
+                        </div>
+                        <div id="TTAlert_shadow"></div>
+                        <div id="TTAlert_button_container">
+                            <div class="TTAlert_buts1 TTAlert_buts">{{'cancel'|trans}}</div>
+                            <div class="TTAlert_seperator"></div>
+                            <div class="TTAlert_buts2 TTAlert_buts">{{'register'|trans}}</div>
+                        </div>
+                        <div id="TTAlert_close"></div>
+                    </div>
+                </div>
+                <div class="TTAlert_back_fix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if use_cookie == 0 %}
+    <section>
+        <div id="TTCookieContainer">
+            <div class="TTCookie_text">{{'We use cookies to help us deliver our online services. By using our website or by closing this message box, you agree to our use of cookies as described in our'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie policy'|trans}}"><u>{{'Cookie policy'|trans}}</u></a>.</div>
+            <div class="TTCookie_buts">{{'use'|trans}}</div>	
+            <div class="TTCookie_close"></div>
+        </div>
+    </section>
+{% endif %}
+
+{% if isindexpage==1 %}
+    <section id="smallsectiondisplay" class="smallsectiondisplay container-fluid mainpage_backimg"{% if pageBannerImage!='' %}style="background-image: url('{{ pageBannerImage|raw }}');"{% endif %}>
+	{% if pageBannerImage =='' %}
+	    {% include "default/pano_home.twig" %}
+	{% endif %}
+	{% if hideblocksearch !=1 %}
+	    <div class="row">
+		<div class="container">
+		    <div class="row">
+			<div class="percent_90_width">
+			    <div class="col-xs-12 hidden-xs">
+				{% if pageBannerH2!='' %}
+				    <h1 class="header_backimg_title">{{pageBannerH2|raw}}</h1>
+				    {% if pageBannerH3!='' %}
+					<h2 class="header_backimg_sub_title">{{pageBannerH3|raw}}</h2>
+				    {% endif %}
+				{% else %}
+				    {% if SHOW_DEALS_BLOCK==1 %}				    
+					{% if SHOW_FLIGHTS_BLOCK==1 %}
+					    <h1 class="header_backimg_title">{{'Flights, Hotels and Attractions'|trans}}</h1>
+					{% else %}
+					    <h1 class="header_backimg_title">{{'Hotels and Attractions'|trans}}</h1>
+					{% endif %}
+				    {% else %}
+					{% if SHOW_FLIGHTS_BLOCK==1 %}
+					    <h1 class="header_backimg_title">{{'Book your'|trans}}<br/>{{'Flights and Hotels'|trans}}</h1>
+					{% else %}
+					    <h1 class="header_backimg_title">{{'Hotels'|trans}}</h1>
+					{% endif %}
+				    {% endif %}
+				    {#<h4 class="header_backimg_sub_title">{{'Organize your trip from A to Z'|trans}}</h4>#}							
+				{% endif %}
+			    </div>
+			    <div class="col-xs-12 searchcontainer_homep searchcontainer_content">
+				{% include "default/searchinput3.twig" %}
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	{% endif %}
+        {% if pageBannerPano == 'hotel_360' %}
+	    {{ render(path('_get_your_property_in_360')) }}
+        {% endif %}
+    </section>
+{% endif %}
+<div class="bodyblocks" id="bodyblocks">
+{% block body %}{% endblock %}
+</div>
+	<footer>
+	    {% if webview !='webview' %}
+		{% if showfooter==1 %}
+		    <section class="container paddingtop20">
+			<div>
+			    <div class="row hidden-xs">
+				<div class="col-md-3">
+				    <a href="{{ generateLangRoute(LanguageGet,'_welcome') }}" title="tourist tube">
+					<img src="{{ generateMediaURL('/media/images/Logo.png') }}" alt="{{'tourist tube logo'|trans}}">
+				    </a>
+				</div>
+			    </div>
+			    <div class="row paddingtop20 paddingbottom20">
+				<div class="col-md-9 col-sm-12 hidden-xs">
+				    <div class="position_relative_div footer_div row">
+					<div class="col-lg-3 col-sm-6">
+					    <ul class="prefooterul_hp">
+						<li class="boldultitle_hp">{{'Company'|trans}}</li>
+						<li><a title="{{'About us'|trans}}" href="{{ generateLangRoute(LanguageGet,'_about-us') }}">{{'About'|trans}}</a></li>
+						<li><a title="{{'Contact'|trans}}" href="{{ generateLangRoute(LanguageGet,'_contact') }}">{{'Contact'|trans}}</a></li>
+						<li><a title="{{'Support'|trans}}" href="{{ generateLangRoute(LanguageGet,'_support') }}">{{'Support'|trans}}</a></li>
+						{#<li><a title="{{'Help'|trans}}" href="{{ generateLangRoute(LanguageGet,'_help') }}">{{'Help'|trans}}</a></li> 
+						<li><a title="{{'faq'|trans}}" href="{{ generateLangRoute(LanguageGet,'_faq') }}">{{'FAQ'|trans}}</a></li>#}
+						<li><a title="{{'disclaimer'|trans}}" href="{{ generateLangRoute(LanguageGet,'_disclaimer') }}">{{'Disclaimer'|trans}}</a></li>
+					    </ul>
+					</div> 
+					<div class="col-lg-3 col-sm-6">
+					    <ul class="prefooterul_hp">
+						<li class="boldultitle_hp">{{'Main Sections'|trans}}</li>
+						{% if SHOW_FLIGHTS_BLOCK==1 %}
+						    <li><a title="{{'Book your Flight'|trans }}" href="{{ generateLangRoute(LanguageGet,'_flight_booking') }}">{{'Book your Flight'|trans}}</a></li>
+						{% endif %}
+						<li><a title="{{'Book your Hotel'|trans}}" href="{{ generateLangRoute(LanguageGet,'_hotel_booking') }}">{{'Book your Hotel'|trans}}</a></li>
+						    {% if SHOW_DEALS_BLOCK==1 %}
+						    <li><a title="{{'Attractions'|trans}}" href="{{ generateLangRoute(LanguageGet,'_deals') }}">{{'Attractions'|trans}}</a></li>
+						    {% endif %}
+						<li><a title="{{'Things to do'|trans}}" href="{{ generateLangRoute(LanguageGet,'_thingsToDo') }}">{{'Things to do'|trans}}</a></li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_best_restaurants_restaurants') }}" title="{{'Best restaurants in 360'|trans}}">{{'Best restaurants in 360'|trans}}</a></li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_discover') }}" title="{{'Discover'|trans}}">{{'Discover'|trans}}</a></li>
+					    </ul>				
+					</div> 
+					<div class="col-lg-3 col-sm-6">
+					    <ul class="prefooterul_hp">
+						<li class="boldultitle_hp">&nbsp;{#{'More'|trans}#}</li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_channels') }}" title="{{'Channels'|trans}}">{{'Channels'|trans}}</a></li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_photo_video_sharing_media') }}" title="{{'Photo Video Sharing'|trans}}">{{'Photo video sharing'|trans}}</a></li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_live') }}" title="{{'Hotels 360'|trans}}">{{'Hotels 360'|trans}}</a></li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_review') }}" title="{{'Review & Rate'|trans}}">{{'Review and rate'|trans}}</a></li>
+					    </ul>
+					</div> 
+					<div class="col-lg-3 col-sm-6">
+					    <ul class="prefooterul_hp">
+						<li class="boldultitle_hp">&nbsp;{#{'More'|trans}#}</li>
+						{#<li><a href="{{ generateLangRoute(LanguageGet,'_nearby_general') }}" title="{{'Nearby'|trans}}">{{'Nearby'|trans}}</a></li>#}
+						<li><a href="{{ generateLangRoute(LanguageGet,'_where_is_general') }}" title="{{'Where is'|trans}}">{{'Where is'|trans}}</a></li>
+						<li><a href="http://blog.touristtube.com/" title="{{'Travel blog'|trans}}" target="_blank">{{'Travel blog'|trans}}</a></li>
+						<li><a href="{{ generateLangRoute(LanguageGet,'_cookie-policy') }}" title="{{'Cookie policy'|trans}}">{{'Cookie policy'|trans}} </a></li>
+						{% if isUserLoggedIn == 0 %}
+						    <li><a href="{{ generateLangRoute(LanguageGet,'_register') }}" title="{{ 'join our community'|trans }}">{{'Register'|trans}}</a></li>
+						{% endif %}
+					    </ul>
+					</div> 
+				    </div>
+				</div>
+
+				<div class="col-md-3 col-sm-12">
+				    <p class="countrycurtitle">{{'Currency'|trans}}</p>
+				    <div class="currencyselectbox">
+					<div id="" name="" tabindex="" class="select_prefooter">
+					    <p class="curtext_hp"><span>{{currency_symbol.symbol|raw}}</span> {{selected_currency|raw}}</p>
+                                             <span class="sprite gray_arrow"></span>
+					</div>
+				    </div>
+				</div> 
+			    </div>  
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="curnewtab" data-mcs-theme="3d">
+				    <div id="smallsizescroll" class="col-xs-12">
+					<div class="curtitlefullwidth">
+					    <p class="titlestylecur">{{'top currencies'|trans}}</p>
+					</div>
+					<div class="col-xs-12 borderbutcur">
+					    {% for currency in currencies %}
+						{% if currency.top_currency %}
+						    <div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.code | raw}}">
+							<p class="curcontenttext"><i>{{currency.code | raw}}</i><span>{{currency.name | raw}}</span></p>
+						    </div>
+						{%endif%}
+					    {% endfor %}
+					</div>
+					<div class="curtitlefullwidth">
+					    <p class="titlestylecur">{{'all currencies'|trans}}</p>
+					</div>
+					<div class="col-xs-12">
+					    {% for currency in currencies|sort %}
+						<div title="{{currency.name | raw}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 xsmallwidth currency-item {% if currency.code ==  selected_currency %} selected {% endif %}" currency-code-data="{{currency.code | raw}}" currency-symbol-data="{{currency.code | raw}}">
+						    <p class="curcontenttext"><i>{{currency.code | raw}}</i><span>{{currency.name | raw}}</span></p>
+						</div>
+					    {% endfor %}
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </section>
+
+		    <div class="footermaincontainer container-fluid footer_home_new">
+			<div class ="container">
+			    <div class ="row">
+				<div class="col-md-3 col-sm-12"></div>
+				<div class="col-md-3 col-sm-6 textaligncenter">
+				    <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'Terms & conditions'|trans}}" class="policy_menu">{{'Terms and conditions'|trans}}</a>
+				</div>
+				<div class="col-md-3 col-sm-6 textaligncenter">
+				    <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'Privacy policy'|trans}}" class="policy_menu">{{'Privacy policy'|trans}}</a>
+				</div>
+				<div class="col-md-3 col-sm-12"></div>
+			    </div>
+			    <div class ="row">
+				<div class="col-md-1 col-sm-12"></div>
+				<div class ="col-md-10 col-sm-12 text_allign_center auto_hyphens">
+				    {% if SHOW_FLIGHTS_BLOCK==1 %}
+					<p class="footer_text">{{'Flights and hotels. Popular international flights.'|trans}}</p>
+				    {% endif %}
+				</div>
+				<div class="col-md-1 col-sm-12"></div>
+			    </div>
+			    <div class ="row">
+				<div class="col-md-4 col-sm-12"></div>
+				<div class="col-md-4 col-sm-12 padding-top-25">
+				    <div class="social_footer_holder">
+                                        <a href="https://www.facebook.com/pages/TouristTube/1635194046710440?fref=ts" rel="nofollow" target="_blank" title="facebook" class="social_sprite sprite fb_footer_icon"></a>
+					<a href="https://twitter.com/TouristTube" rel="nofollow" target="_blank" title="twitter"  class="social_sprite sprite twitter_footer_icon"></a>
+					<a href="https://www.linkedin.com/company/touristtube/" class="social_sprite sprite linkedin_footer_icon"></a>
+					<a href="https://www.youtube.com/channel/UC5jrAYpw6MBKuuvUcHhVRVg" rel="nofollow" target="_blank" title="you tube" class="social_sprite sprite youtube_footer_icon" ></a>
+					<a href="https://www.instagram.com/touristtube" rel="nofollow" target="_blank" title="instagram" class="social_sprite sprite insta_footer_icon"></a>
+				    </div>
+				</div>
+				<div class="col-md-4 col-sm-12"></div>
+			    </div>
+			</div>
+		    </div>
+		{% endif %}
+	    {% endif %}
+
+	    {# Hotels Uglified CSS Files #}
+	    {% if (uglifyHotelBookingAssets is defined and uglifyHotelBookingAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-booking.css' filter='uglifycss' output='generated/tt_new_hotel-booking.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelBookingResultsAssets is defined and uglifyHotelBookingResultsAssets == 1) %}
+		{% stylesheets 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css' 'assets/hotels/css/hotel-booking-results.css' filter='uglifycss' output='generated/tt_new_hotel-booking-results.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelDetailsAssets is defined and uglifyHotelDetailsAssets == 1) %}
+		{% stylesheets 'assets/vendor/jquery/plugins/swiper/3.2.6/css/swiper.min.css' 'assets/vendor/jquery/plugins/slick/css/slick.css' 'assets/vendor/jquery/plugins/slick/css/slick-theme.css' 'assets/hotels/css/hotel-room-gallery.css' 'assets/hotels/css/hotel-detail.css' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css' filter='uglifycss' output='generated/tt_new_hotel-details.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelBookAssets is defined and uglifyHotelBookAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-form-common.css' 'assets/hotels/css/hotel-payment.css' 'assets/hotels/css/hotel-booking-details.css' 'assets/hotels/css/hotel-book.css' filter='uglifycss' output='generated/tt_new_hotel-book.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelReservationAssets is defined and uglifyHotelReservationAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-booking-details.css' 'assets/hotels/css/hotel-print.css' filter='uglifycss' output='generated/tt_new_hotel-reservation.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelReviewsAssets is defined and uglifyHotelReviewsAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-reviews.css' filter='uglifycss' output='generated/tt_new_hotel-reviews.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelModificationAssets is defined and uglifyHotelModificationAssets == 1) %}
+		{% stylesheets 'assets/vendor/jquery/plugins/swiper/3.2.6/css/swiper.min.css' 'assets/hotels/css/hotel-form-common.css' 'assets/hotels/css/hotel-payment.css' 'assets/hotels/css/hotel-book.css' 'assets/hotels/css/hotel-print.css' filter='uglifycss' output='generated/tt_new_hotel-modification.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelReservationModificationAssets is defined and uglifyHotelReservationModificationAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-booking-details.css' 'assets/hotels/css/hotel-print.css' filter='uglifycss' output='generated/tt_new_hotel-reservation-modification.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelCancelAssets is defined and uglifyHotelCancelAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-form-common.css' 'assets/hotels/css/hotel-payment.css' 'assets/hotels/css/hotel-book.css' filter='uglifycss' output='generated/tt_new_hotel-cancel.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelCancelConfirmationAssets is defined and uglifyHotelCancelConfirmationAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-booking-details.css' 'assets/hotels/css/hotel-print.css' filter='uglifycss' output='generated/tt_new_hotel-cancel-confirmation.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% if (uglifyHotelBookingDetailsAssets is defined and uglifyHotelBookingDetailsAssets == 1) %}
+		{% stylesheets 'assets/hotels/css/hotel-booking-details.css' filter='uglifycss' output='generated/tt_new_hotel-booking-details.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+	    {% if flightPageName is defined and flightPageName %}
+		{% if flightPageName=='flight-index' %}
+		    {% stylesheets 'assets/flights/css/flight-common.css' 'assets/flights/css/flight-booking_new.css' filter='uglifycss' output='generated/tt_flight_index.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		    {% endstylesheets %}
+		{% elseif flightPageName=='flight-search-results' %}
+		    {% stylesheets 'assets/flights/css/flight-common.css' 'assets/corporate/css/corporate-flight-search.css' 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/css/bootstrap-slider.css' 'assets/vendor/jquery/plugins/slick/css/slick.css' 'assets/vendor/jquery/plugins/slick/css/slick-theme.css' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css' 'assets/flights/css/flights_new.css' 'assets/flights/css/departure_detailed_popup.css' filter='uglifycss' output='generated/tt_flight_search_results.css'  %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		    {% endstylesheets %}
+		{% elseif flightPageName=='flight-book-flight' %}
+		    {% stylesheets 'assets/flights/css/flight-common.css' 'assets/flights/css/book-flights_new.css' filter='uglifycss' output='generated/tt_flight_book_flight.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		    {% endstylesheets %}
+		{% elseif flightPageName=='flight-review' %}
+		    {% stylesheets 'assets/flights/css/flight-common.css' 'assets/flights/css/flight-review-trip.css' filter='uglifycss' output='generated/tt_flight_review.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		    {% endstylesheets %}
+		{% elseif flightPageName=='flight-booking-details' %}
+		    {% stylesheets 'assets/flights/css/flight-common.css' 'assets/flights/css/flight-details_new.css' filter='uglifycss' output='generated/tt_flight_booking_details.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		    {% endstylesheets %}
+		{% endif %}    
+	    {% endif %}
+
+	    {% if datapagename=='things_to_do' %}
+		{% stylesheets 'assets/common/css/things_to_do.css' filter='uglifycss' output='generated/tt_things_to_do.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='things_to_do_360' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css' 'assets/common/css/things_to_do.css' filter='uglifycss' output='generated/tt_things_to_do_360.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='restaurant_360' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.min.css' 'assets/common/css/things_to_do.css' filter='uglifycss' output='generated/tt_restaurant_360.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='channels' %}
+		{% stylesheets 'assets/channel/css/channels.css' filter='uglifycss' output='generated/tt_channels.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='channel_photos_videos' %}
+		{% stylesheets 'assets/channel/css/channel.css' filter='uglifycss' output='generated/tt_channel_photos_videos.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='uploads_page' %}
+		{% stylesheets 'assets/channel/css/channel.css' filter='uglifycss' output='generated/tt_uploads_page.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='channel_add' %}
+		{% stylesheets 'assets/channel/css/channel.css' filter='uglifycss' output='generated/tt_channel_add.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='create_channel' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/cropperjs/cropper.css' 'assets/channel/css/channel.css' filter='uglifycss' output='generated/tt_create_channel.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='channel_page' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/swiper/3.2.6/css/swiper.min.css' 'assets/channel/css/channel.css' filter='uglifycss' output='generated/tt_channel_page.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='photos_videos' %}
+		{% stylesheets 'assets/photos_videos/css/photos_videos.css' filter='uglifycss' output='generated/tt_photos_videos.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='album' %}
+		{% stylesheets 'assets/photos_videos/css/photos_videos.css' filter='uglifycss' output='generated/tt_album.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='media_page' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/swiper/3.2.6/css/swiper.min.css' 'assets/photos_videos/css/media.css' filter='uglifycss' output='generated/tt_media_page.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='touristtube_video' %}
+		{% stylesheets 'assets/photos_videos/css/media.css' filter='uglifycss' output='generated/tt_touristtube_video.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='rate_review' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/slick/css/slick.css' 'assets/vendor/jquery/plugins/slick/css/slick-theme.css' 'assets/pages/css/review_details.css' 'assets/pages/css/popup.css' filter='uglifycss' output='generated/tt_rate_review.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% elseif datapagename=='discover_detailed' %}
+		{% stylesheets 'assets/vendor/jquery/plugins/swiper/3.2.6/css/swiper.min.css' 'assets/pages/css/discover_detailed.css' filter='uglifycss' output='generated/tt_discover_detailed.css' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" media="all"/>
+		{% endstylesheets %}
+	    {% endif %}
+
+	    {% block pagenewcss %}{% endblock %}
+	    {% javascripts 'bundles/bazingajstranslation/js/translator.min.js' 'assets/vendor/jquery/dist/jquery-1.9.1.min.js' 'assets/vendor/jquery/plugins/jquery-ui/js/jquery-ui-1.10.0.custom.js' 'assets/vendor/bootstrap/plugins/notify/bootstrap-notify.min.js' 'assets/vendor/jquery/plugins/form_validator/validator.min.js' 'assets/vendor/jquery/plugins/loading-overlay/gasparesganga/2.1.5/loadingoverlay.min.js' 'assets/common/tt/js/utils/TTUtils.js' 'assets/common/tt/js/form/TTFormValidator.js' 'assets/common/tt/js/overlay/TTOverlay.js' 'assets/common/tt/js/notify/TTNotify.js' 'assets/common/tt/js/modal/TTModal.js' 'assets/vendor/bootstrap/js/bootstrap.js' 'assets/vendor/jquery/plugins/il8n/js/jquery.i18n.js' 'assets/vendor/jquery/plugins/number/js/jquery.number.min.js' 'assets/vendor/jquery/plugins/mscroll/js/jquery.mscroll.min.js' 'assets/vendor/jquery/plugins/migrate/js/jquery-migrate-1.1.1.js' 'assets/common/js/utils.js' 'assets/common/js/topHeader.js' 'assets/vendor/jquery/plugins/fancybox/js/jquery.fancybox.js' 'assets/vendor/jquery/plugins/jcarousellite/js/jcarousellite_1.0.1c5.js' 'assets/vendor/jquery/plugins/dateRangePicker/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'assets/vendor/jquery/plugins/cookie/js/jquery.cookie.min.js' 'assets/vendor/jquery/plugins/jquery.lazy-master/jquery.lazy.min.js' 'assets/vendor/jquery/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js' filter='uglifyjs2' output='generated/tt_new_baseFinal1-min.js' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	    {% endjavascripts %}
+
+	    <script type="text/javascript" src="{{ path('bazinga_jstranslation_js', { 'domain': 'client' }) }}?locales={{ app.request.locale|split('_')[0] }}"></script>
+
+	    {% if datapagename=='things_to_do_360' %}
+		{% javascripts 'assets/common/tt/js/vtour/tt_360_tour.js' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js' filter='uglifyjs2' output='generated/tt_new_things_to_do_360_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='restaurant_360' %}
+		{% javascripts 'assets/common/tt/js/vtour/tt_360_tour.js' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js' filter='uglifyjs2' output='generated/tt_new_restaurant_360_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='album' %}
+		{% javascripts 'assets/pages/js/album.js' filter='uglifyjs2' output='generated/tt_new_album_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='channel_photos_videos' %}
+		{% javascripts 'assets/channel/js/channel-photos-videos.js' filter='uglifyjs2' output='generated/tt_new_channel_photos_videos_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='channel_add' %}
+		{% javascripts 'assets/channel/js/channel-add.js' filter='uglifyjs2' output='generated/tt_new_channel_add_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='create_channel' %}
+		{% javascripts 'assets/vendor/jquery/plugins/cropperjs/cropper.js' 'assets/uploads/js/tt-cropper.js' 'assets/channel/js/channel-create.js' filter='uglifyjs2' output='generated/tt_new_create_channel_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='uploads_page' %}
+		{% javascripts 'assets/uploads/js/plupload.full.js' 'assets/uploads/js/uploads.js' filter='uglifyjs2' output='generated/tt_new_uploads_page_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='channel_page' %}
+		{% javascripts 'assets/vendor/jquery/plugins/swiper/3.2.6/js/swiper.min.js' 'assets/channel/js/channel.js' filter='uglifyjs2' output='generated/tt_new_channel_page_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='media_page' %}
+		<script type="text/javascript" src="{{ asset('/assets/photos_videos/jwplayer/jwplayer.js?v=7.8.2')|raw }}"></script>
+		<script type="text/javascript">jwplayer.key ="5BF7jaLushMRXxwL4oDpC1ldCscI8upqkfv5Uu68J44=";</script>
+		{% javascripts 'assets/vendor/jquery/plugins/swiper/3.2.6/js/swiper.min.js' 'assets/photos_videos/js/video-page-behavior.js' 'assets/photos_videos/js/media.js' filter='uglifyjs2' output='generated/tt_new_media_page_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='touristtube_video' %}
+		<script type="text/javascript" src="{{ asset('/assets/photos_videos/jwplayer/jwplayer.js?v=7.8.2')|raw }}"></script>
+		<script type="text/javascript">jwplayer.key ="5BF7jaLushMRXxwL4oDpC1ldCscI8upqkfv5Uu68J44=";</script>
+		{% javascripts 'assets/photos_videos/js/video-page-behavior.js' filter='uglifyjs2' output='generated/tt_new_touristtube_video_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='rate_review' %}
+		{% javascripts 'assets/vendor/jquery/plugins/slick/js/slick.min.js' 'assets/uploads/js/plupload.full.js' 'assets/uploads/js/home-upload-behavior.js' 'assets/pages/js/review_details.js' filter='uglifyjs2' output='generated/tt_new_rate_review_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% elseif datapagename=='discover_detailed' %}
+		{% javascripts 'assets/vendor/jquery/plugins/swiper/3.2.6/js/swiper.min.js' 'assets/pages/js/discover_detailed.js' filter='uglifyjs2' output='generated/tt_new_discover_detailed_min.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {# Hotels Uglified JS Files #}
+	    <script type="text/javascript">
+		window.page_type = 'www';
+
+		{% if route_paths is defined and route_paths is not empty %}
+		    {% for key, route_path in route_paths %}
+			window.{{'hotel_route_path_' ~ key}} = '{{route_path}}'; 
+		    {% endfor %}
+		{% endif %}
+	    </script>
+	    {% if (uglifyHotelBookingResultsAssets is defined and uglifyHotelBookingResultsAssets == 1) %}
+		{% javascripts 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js' 'assets/vendor/jquery/plugins/shuffle/js/shuffle.js' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js' 'assets/hotels/js/hotel-booking-results.js' filter='uglifyjs2' output='generated/tt_new_hotel-booking-results.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelDetailsAssets is defined and uglifyHotelDetailsAssets == 1) %}
+		{% javascripts 'assets/common/tt/js/vtour/tt_360_tour.js' 'assets/vendor/jquery/plugins/swiper/3.2.6/js/swiper.min.js' 'assets/common/js/slick.min.js' 'assets/vendor/jquery/plugins/readmore/js/readmore.js' 'assets/hotels/js/hotel-detail.js' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js' filter='uglifyjs2' output='generated/tt_new_hotel-details.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelBookAssets is defined and uglifyHotelBookAssets == 1) %}
+		{% javascripts 'assets/hotels/js/hotel-form-validation.js' 'assets/hotels/js/hotel-book.js' filter='uglifyjs2' output='generated/tt_new_hotel-book.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelReservationAssets is defined and uglifyHotelReservationAssets == 1) %}
+		{% javascripts 'assets/hotels/js/hotel-booking-detail.js' filter='uglifyjs2' output='generated/tt_new_hotel-reservation.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelReviewsAssets is defined and uglifyHotelReviewsAssets == 1) %}
+		{% javascripts 'assets/uploads/js/plupload.full.js' 'assets/uploads/js/home-upload-behavior.js' 'assets/hotels/js/hotel-reviews.js' filter='uglifyjs2' output='generated/tt_new_hotel-reviews.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelModificationAssets is defined and uglifyHotelModificationAssets == 1) %}
+		{% javascripts 'assets/vendor/jquery/plugins/swiper/3.2.6/js/swiper.min.js' 'assets/vendor/jquery/plugins/validator/1.17/jquery.validate.min.js' 'assets/hotels/js/hotel-form-validation.js' 'assets/hotels/js/hotel-book.js' filter='uglifyjs2' output='generated/tt_new_hotel-modification.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelReservationModificationAssets is defined and uglifyHotelReservationModificationAssets == 1) %}
+		{% javascripts 'assets/hotels/js/hotel-booking-detail.js' filter='uglifyjs2' output='generated/tt_new_hotel-reservation-modification.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelCancelAssets is defined and uglifyHotelCancelAssets == 1) %}
+		{% javascripts 'assets/vendor/jquery/plugins/validator/1.17/jquery.validate.min.js' 'assets/hotels/js/hotel-form-validation.js' filter='uglifyjs2' output='generated/tt_new_hotel-cancel.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelCancelConfirmationAssets is defined and uglifyHotelCancelConfirmationAssets == 1) %}
+		{% javascripts 'assets/hotels/js/hotel-booking-detail.js' filter='uglifyjs2' output='generated/tt_new_hotel-cancel-confirmation.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if (uglifyHotelBookingDetailsAssets is defined and uglifyHotelBookingDetailsAssets == 1) %}
+		{% javascripts 'assets/hotels/js/hotel-booking-detail.js' filter='uglifyjs2' output='generated/tt_new_hotel-booking-details.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	    {% endif %}
+
+	    {% if flightPageName is defined and flightPageName %}
+		{% if flightPageName=='flight-index' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' filter='uglifyjs2' output='generated/tt_flight_index.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif flightPageName=='flight-search-results' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js' 'assets/vendor/jquery/plugins/slick/js/slick.min.js' 'assets/vendor/jquery/plugins/shuffle/js/shuffle.js' 'assets/flights/js/shuffle-list.js' 'assets/flights/js/sessionTimeout.js' 'assets/vendor/jquery/plugins/fancybox/dist/jquery.fancybox.js' 'assets/flights/js/flights_new.js' filter='uglifyjs2' output='generated/tt_flight_search_results.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif flightPageName=='flight-book-flight' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'assets/vendor/jquery/plugins/session/js/jquery.sessionTimeout.min.js' 'assets/flights/js/book-flight.js' filter='uglifyjs2' output='generated/tt_flight_book_flight.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif flightPageName=='flight-review' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'assets/flights/js/flight-review-trip.js' filter='uglifyjs2' output='generated/tt_flight_review.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif flightPageName=='flight-booking-details' %}
+		    {% javascripts 'assets/flights/js/flight-details_new.js' filter='uglifyjs2' output='generated/tt_flight_booking_details.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% endif %}    
+	    {% endif %}  
+	    {% if dealsPageName is defined and dealsPageName %}
+		{% if dealsPageName=='deals-index' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' filter='uglifyjs2' output='generated/tt_deals_index.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif dealsPageName=='deals-search-results' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.3/bootstrap-slider.js' 'assets/deals/js/deals-list.js' filter='uglifyjs2' output='generated/tt_deals_search_results.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif dealsPageName=='deals-details' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'assets/common/js/slick.min.js' 'assets/deals/js/deals_details.js' filter='uglifyjs2' output='generated/tt_deals_details.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif dealsPageName=='deals-book-now' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'assets/deals/js/secure-booking.js' filter='uglifyjs2' output='generated/tt_deals_book_now.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+		{% elseif dealsPageName=='deals-mandatory-fields' %}
+		    {% javascripts 'assets/common/js/moment.min.js' 'assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js' 'assets/deals/js/mandatory-fields.js' filter='uglifyjs2' output='generated/tt_deals_mandatory_fields.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}        
+		{% elseif dealsPageName=='deals-booking-details' %}   
+		    {% javascripts 'assets/deals/js/deals-booking-details.js' filter='uglifyjs2' output='generated/tt_deals_booking_details.css' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}        
+		{% endif %}
+	    {% endif %}
+
+	    {% block pagenewjs %}{% endblock %}
+	    {% block googlemaps %}{% endblock %}
+	    <script>
+		if (navigator.userAgent.match(
+			/IEMobile\/10\.0/)) {
+		    var msViewportStyle =
+			    document.createElement(
+				    "style");
+		    msViewportStyle.appendChild(
+			    document.createTextNode(
+				    "@-ms-viewport{width:auto!important}"));
+		    document.getElementsByTagName(
+			    "head")[0].appendChild(
+			    msViewportStyle)
+		}
+	    </script>
+	    <script type="text/javascript">
+		$(document).ready(function () {
+		    var opt = {
+			behavior: 'circle',
+			mouseover: function (
+				o) {
+			    o.stop();
+			    o.css(
+				    {
+					cursor: 'pointer'
+				    });
+			},
+			mouseout: function (
+				o) {
+			    o.start();
+			}
+		    }
+		    $(document).on('change','.language_switcher select',function () {
+			var optionvalue = $(this).val();
+			window.location = optionvalue;
+		    });
+		    $('.menu-toggle').click(function () {
+			$("#mobile_tabsmain").slideToggle(500);
+		    });
+		    window.ttUtilsInst = new TTUtils( window, document);
+
+		    // to prevent many loading of this notification when loading this twig because it already loading many times
+		    {#{% if corporateNotificationArray is defined %}#}
+
+		    {#{% endif %}#}
+
+		    // var flash_message_array = new Array();
+		    {% for type, flash_messages in app.session.flashBag.all %}
+			{% for flash_message in flash_messages %}
+			    var flash_message_json = {{ flash_message|raw }}; //{"type": "{{ type }}", "mssg":"{{ flash_message|raw }}", "delay": 0, "title": null};
+
+			    // var myJsonString = JSON.stringify(flash_message_array);
+			    var corporateNotificationArray = flash_message_json;
+
+			    if (!window.PAGE_LOADED)
+			    {
+				window.PAGE_LOADED = true;
+				ttNotification(corporateNotificationArray);
+			    }
+			{% endfor %}
+		    {% endfor %}
+		});
+	    </script>
+
+	    {% javascripts 'assets/common/js/baseFinal.js' filter='uglifyjs2' output='generated/tt_new_baseFinal-min.js' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	    {% endjavascripts %}
+
+	    {% if subdomain_suffix=='' %}
+		<!-- Start Alexa Certify Javascript -->
+		<script type="text/javascript">
+		    _atrk_opts =
+			    {
+				atrk_acct: "bOo2l1aIF5y3L7",
+				domain: "touristtube.com",
+				dynamic: true
+			    };
+		    (function () {
+			var as =
+				document.createElement(
+					'script');
+			as.type =
+				'text/javascript';
+			as.async =
+				true;
+			as.src =
+				"https://d31qbv1cthcecs.cloudfront.net/atrk.js";
+			/*var s = document.getElementsByTagName('script')[0];*/var s =
+				document.getElementsByTagName(
+					'script');
+			s =
+				s[s.length -
+					1];
+			s.parentNode.insertBefore(
+				as,
+				s);
+		    })();
+		</script>
+		{#<script type="text/javascript">
+		    adroll_adv_id = "QWWBD7EIEZDBRNAAINJJ5V";
+		    adroll_pix_id = "BNYANFRM7RHHPLKTY473TZ";
+
+		    adroll_email = "ad@touristtube.com";
+		    (function () {
+			var _onload = function () {
+			    if (document.readyState && !/loaded|complete/.test(document.readyState)) {
+				setTimeout(_onload, 10);
+				return
+			    }
+			    if (!window.__adroll_loaded) {
+				__adroll_loaded = true;
+				setTimeout(_onload, 50);
+				return
+			    }
+			    var scr = document.createElement("script");
+			    var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+			    scr.setAttribute('async', 'true');
+			    scr.type = "text/javascript";
+			    scr.src = host + "/j/roundtrip.js";
+			    ((document.getElementsByTagName('head') || [null])[0] ||
+				    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+			};
+			if (window.addEventListener) {
+			    window.addEventListener('load', _onload, false);
+			} else {
+			    window.attachEvent('onload', _onload)
+			}
+		    }());
+		</script>#}
+		<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=bOo2l1aIF5y3L7" style="display:none" height="1" width="1" alt="CDN" /></noscript>
+		<!-- End Alexa Certify Javascript -->
+	    {% endif %}
+		{#{% if subdomain_suffix=='' %}#}
+			<!-- Google Analytics -->
+			<!--
+			https://developers.google.com/analytics/devguides/collection/analyticsjs/
+			-->
+			<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];
+			a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-37276506-1', 'auto');
+			ga('send', 'pageview');
+			</script>
+		<!-- End Google Analytics -->
+		{#{% endif %}#}
+	</footer>
+	{% block googleConversion %}{% endblock %}
+    </body>
+</html>

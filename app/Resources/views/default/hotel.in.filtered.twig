@@ -1,0 +1,31 @@
+{% for hotel_item in hotels_array %}
+    <figure class="col-xs-12 nopad margin-top-60">
+        <div class="row no-margin ">
+            <div class="col-md-4 col-xs-12 nopad image_container">
+                <a class="nopad pointer pointerImgContainer" href="{{ hotel_item.detail_link|raw }}" title="{{ hotel_item.titlealt|raw }}">
+                    <img  src="{{ hotel_item.image|raw }}" alt="{{hotel_item.titlealt|raw}}">
+                </a>
+            </div>
+            <div class="col-md-8 col-xs-12 nopad ">
+                <div class="row no-margin first_row">
+                    <a class="displayPagination col-xs-9 nopad" href="{{ hotel_item.detail_link|raw }}" title="{{ hotel_item.titlealt|raw }}">
+                        <h3 class="hotel_title">{{ hotel_item.title|raw }}</h3>
+                    </a>
+                    <div class="col-xs-3 nopad rating_container">
+                        <p class="pull-right ">
+                            <span class="star_rating" data-rating="{{ hotel_item.stars|raw }}" data-font="11" data-color="#eac31a"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row no-margin snd_row">
+                    <div class="col-xs-12 nopad">
+                        <a rel="nofollow" href="{{ hotel_item.show_on_map|raw }}" title="{{ 'show map'|trans }}" class="location_div location_txt showOnMap">
+                            <i class="fas fa-map-marker-alt"></i>{{ hotel_item.location|raw }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ hotel_item.detail_link|raw }}" title="{{ hotel_item.titlealt|raw }}" class="col-md-2 col-sm-2 col-xs-12 nopad btn book_room_button">{{'VIEW DETAILS'|trans}}</a>
+        </div>
+    </figure>
+{% endfor %}

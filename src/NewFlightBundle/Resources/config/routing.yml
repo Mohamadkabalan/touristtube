@@ -1,0 +1,23 @@
+_flight_search_result:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/search/result"
+    defaults: { _controller: NewFlightBundle:Flight:flightBookingResult, page: 1, _locale: "%locale%", domain: "%domain%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_flight_cancel:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/cancel"
+    defaults: { _controller: NewFlightBundle:Flight:flightCancellation}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_flight_details_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/flight-details"
+    defaults: { _controller: NewFlightBundle:Flight:flightDetails, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

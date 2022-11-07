@@ -1,0 +1,866 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deals_common_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/date-range-picker/js/daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/plugins/form_validator/validator.min.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/deals-booking-steps_new.js")|raw }}"></script>
+{% endblock %}
+{% block title %}
+    {{ 'Attractions Booking Steps'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section class="container deals_container">
+        <div class="row margin_top_30">
+            <div class="col-xs-12">
+                <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Attractions: review and book'|trans}}</h1>
+            </div>
+        </div>
+        <div class="row margin_top_45">
+            <div class="col-md-3 col-xs-12 right_panel col-md-push-9 sm_right_panel">
+                <div class="row">
+                    <div class="col-xs-12 margin_bottom_10">
+                        <p class="font-22 pink"><i class="fas fa-angle-right yellow_right_arrow_font-awsome_logo"></i>{{'Beautiful Cairns: Hiking, 
+                            Nature, and Epic Views - 
+                            Small Group Tour'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <img src="{{ generateMediaURL('/media/images/booking_steps_new/car_img_van.jpg') }}" alt="cost_spread">
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row no-margin">
+                            <div class="col-md-12 col-xs-4 nopad">
+                                <p class="font-16 blue margin_bottom_0 line-height-20">{{'Arrival travelers: 1'|trans}}</p>
+                                <p class="font-16 black line-height-20">{{'Date of Transfer: 18/07/2018'|trans}}</p>
+                            </div>
+                            <div class="col-md-12 col-xs-4 nopad">
+                                <p class="font-16 blue margin_bottom_0 line-height-20">{{'Departure travelers:1'|trans}}</p>
+                                <p class="font-16 black line-height-20">{{'Date of Transfer: 15/08/2018'|trans}}</p>
+                            </div>
+                            <div class="col-md-12 col-xs-4 nopad">
+                                <p class="font-22 pink margin_bottom_0"><i class="fas fa-angle-right yellow_right_arrow_font-awsome_logo"></i>{{'Price'|trans}}</p>
+                                <p class="font-16 black margin_bottom_20"><span class="font-22">$39.9/</span> {{'per person'|trans}}</p>
+                            </div>
+                            <div class="col-md-12 col-xs-4 nopad">
+                                <p class="font-16 grey">{{'3 adults'|trans}}</p>
+                            </div>
+                            <div class="col-md-12 col-xs-4 nopad">
+                                <p class="font-16 pink margin_bottom_0">{{'total'|trans}}</p>
+                                <p class="font-30 pink">$119.7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="xs_sm-border_buttom_4"></div>
+            </div>
+            <div class="col-md-9 col-xs-12 left_panel col-md-pull-3">
+                <div id="destination_select_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step0 /</span> Choose your destination country</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_42">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad deals_select_country">
+                                <select name="" id="" class="">
+                                    <option value="1">France</option>
+                                    <option value="2">Lebanon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="destination_select_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="destination_city_select_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step00 /</span> Choose your destination city</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_42">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad deals_select_country">
+                                <select name="" id="" class="">
+                                    <option value="1">paris</option>
+                                    <option value="2">Beirut</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="destination_city_select_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="destination_city_select_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="transfer_type_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step1 /</span> Choose your type of transfer</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_20">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin margin_top_20">
+                                            <div class="col-sm-8 col-xs-12 nopad">
+                                                <p class="font-24 black margin_bottom_0">Roundtrip</p>
+                                                <p class="font-16 grey">From Airport / Station / Port to Dropoff point and back</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-sm-8 col-xs-12 nopad margin_top_10">
+                                                <div class="border_bottom_2_grey"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin margin_top_20">
+                                            <div class="col-sm-8 col-xs-12 nopad">
+                                                <p class="font-24 black margin_bottom_0">One way from Airport</p>
+                                                <p class="font-16 grey">From Airport / Station / Port to Dropoff point</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-sm-8 col-xs-12 nopad margin_top_10">
+                                                <div class="border_bottom_2_grey"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin margin_top_20">
+                                            <div class="col-sm-8 col-xs-12 nopad">
+                                                <p class="font-24 black margin_bottom_0">One way from Airport</p>
+                                                <p class="font-16 grey">From Airport / Station / Port to Dropoff point</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-sm-8 col-xs-12 nopad margin_top_10">
+                                                <div class="border_bottom_2_grey"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="transfer_type_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="transfer_type_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="airport_select_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step2 /</span> Select your Airport / Port / 
+                                            Train Station</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_40">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <ul class="airport_select_list">
+                                    <div class="row no-margin">
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Roissy Charles de Gaulle Airport</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Orly Airport</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Beauvais Airport</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris North Station - Gare du Nord</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris Austerlitz Station - Gare d’Austerlitz</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris Bercy Station - Gare de Bercy</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris Est Station -Gare de l’Est</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris Lyon Station - Gare de Lyon</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris Montparnasse Station - Gare Montparnasse</a><span class="double_border_right hidden-xs"></span></li>
+                                        <li class="col-md-3 col-sm-4 col-xs-12 nopad"><a href="#">Paris Saint Lazare Station - Gare Saint-Lazare</a><span class="double_border_right hidden-xs"></span></li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row no-margin xs-margin_top_15">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="airport_select_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="airport_select_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="hotel_detination_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step3 /</span> Enter your destination hotel or address</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_40">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-md-6 col-sm-8 col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad common_selectbox_deals">
+                                        <select name="" id="" class="">
+                                            <option value="1">Westin</option>
+                                            <option value="2">Westin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin margin_top_4">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="pink_titlesection_div">Hotels</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_blue"><i class="fas fa-arrow-right blue_arrow_right"></i>The Westin Paris - Vendome</p>
+                                                    <p class="text_row_common_grey">3 Rue de Castiglone, Paris</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_blue"><i class="fas fa-arrow-right blue_arrow_right"></i>Westin Paris</p>
+                                                    <p class="text_row_common_grey">3 Rue de Castiglione, Paris</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_blue"><i class="fas fa-arrow-right blue_arrow_right"></i>Bar Tuileries</p>
+                                                    <p class="text_row_common_grey">3 Rue de Castiglione, Paris</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_blue"><i class="fas fa-arrow-right blue_arrow_right"></i>Hotel Dabicam Paris SNC</p>
+                                                    <p class="text_row_common_grey">3 Rue de Castiglione, Paris</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_blue"><i class="fas fa-arrow-right blue_arrow_right"></i>Le Meridien Etoile</p>
+                                                    <p class="text_row_common_grey">81 Boulevard Gouvion-Saint-Cyr, Paris</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="pink_titlesection_div">Addresses</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_grey_adress"><i class="fas fa-arrow-right blue_arrow_right"></i>Rue Westinghouse, Le Havre, France</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container">
+                                                    <p class="text_row_common_grey_adress"><i class="fas fa-arrow-right blue_arrow_right"></i>Boulevard Westinghouse, Sevra, France</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="text_rows_commun_container container_border_but">
+                                                    <a href="#" class="black_common_dnf">Can’t find your destination? Click here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_40">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="hotel_detination_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="hotel_detination_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="schedule_select_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step4 /</span> Select your schedule</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_40">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-md-6 col-sm-8 col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-24 black">Your arrival schedule</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <label>Enter your arrival date</label>
+                                                <div class="form-group new_input_deals_common height-small">
+                                                    <input type="text" name="fromDateDeals" class="form-control fromDate range_picker picker_single" placeholder="Enter your arrival date*" autocomplete="off" data-error="" required>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row deals_new_margin">
+                                            <div class="col-xs-12 deals_new_padding centeredtext_selectbox">
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-xs-12 deals_new_padding padding_bottom_0">
+                                                        <label>Enter your arrival time</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-xs-6 deals_new_padding padding_top_0">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">hours</option>
+                                                            <option value="2">1</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding padding_top_0">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">minutes</option>
+                                                            <option value="2">2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin margin_top_30">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="font-24 black">Your departure schedule</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <label>Enter your departure date</label>
+                                                <div class="form-group new_input_deals_common height-small">
+                                                    <input type="text" name="toDateDeals" class="form-control toDate range_picker picker_single" placeholder="Enter your departure date*" autocomplete="off" data-error="" required>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row deals_new_margin">
+                                            <div class="col-xs-12 deals_new_padding centeredtext_selectbox">
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-xs-12 deals_new_padding padding_bottom_0">
+                                                        <label>Enter your departure time</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-xs-6 deals_new_padding padding_top_0">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">hours</option>
+                                                            <option value="2">1</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding padding_top_0">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">minutes</option>
+                                                            <option value="2">2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_40">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="schedule_select_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="schedule_select_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="passengers_numbers_select_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step5 /</span> Choose the number of passengers</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_42">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad deals_select_country">
+                                <select name="" id="" class="">
+                                    <option value="1">Choose the #</option>
+                                    <option value="2">1</option>
+                                    <option value="3">2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_20">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="passengers_numbers_select_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="passengers_numbers_select_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="transport_type_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step6 /</span> Select your type of transport</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_20">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_top_45">
+                                    <div class="col-md-8 col-sm-10 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-4 nopad">
+                                                <img src="{{ generateMediaURL('/media/images/booking_steps_new/car_img_van.jpg') }}" alt="cost_spread">
+                                            </div>
+                                            <div class="col-xs-8 nopad xss_width_100">
+                                                <div class="right_txt_img_container">
+                                                    <p class="font-19 pink">Shared</p>
+                                                    <p class="font-16 blue">Mercedes Benz or equivlent</p>
+                                                    <p class="font-16 black">An affordable, convenient and secure solution.</p>
+                                                    <button class="btn add_to_cart_btn margin_top_20">US$ 89.82 - add to cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 nopad margin_top_40">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin margin_top_45">
+                                    <div class="col-md-8 col-sm-10 col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-4 nopad">
+                                                <img src="{{ generateMediaURL('/media/images/booking_steps_new/car_img_mercedes.jpg') }}" alt="cost_spread">
+                                            </div>
+                                            <div class="col-xs-8 nopad xss_width_100">
+                                                <div class="right_txt_img_container">
+                                                    <p class="font-19 pink">Private</p>
+                                                    <p class="font-16 blue">Mercedes Benz or equivlent</p>
+                                                    <p class="font-16 black">A comfortable, deluxe option with a dedicated driver 
+                                                        ready for your safe transfer.</p>
+                                                    <button class="btn add_to_cart_btn margin_top_20">US$ 89.82 - add to cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin margin_top_40">
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                <button id="transport_type_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                <button id="transport_type_step_next_button" class="btn next_yellow_button">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="secure_booking_step" class="row no-margin booking_steps_container">
+                    <div class="col-xs-12 nopad">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <p class="black font-27"><span class="pink">Step7 /</span> Secure booking. Only takes 2 minutes!</p>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_20">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-sm-6 col-xs-12 nopad margin_top_10">
+                                        <p class="black font-24">Already have an account?</p>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 nopad margin_bottom_20">
+                                        <button class="btn pink_buttoon">Sign in</button>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad margin_bottom_30">
+                                        <div class="border_bottom_2_grey"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <form data-toggle="validator" role="form">
+                                        <div class="col-xs-12 nopad">
+                                            <div class="row no-margin">
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad">
+                                                        <p class="black font-24 margin_bottom_0">Lead Traveler’s Information</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-sm-4 col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="email" class="form-control" placeholder="First name*" data-error="Please enter a first name using letters only" required>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="email" class="form-control" placeholder="Last name*" data-error="Please enter a last name using letters only" required>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-xs-12 deals_new_padding common_selectbox_deals select_big_bold">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">Country of residence</option>
+                                                            <option value="2">usa</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-sm-4 col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Mobile +961">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="email" class="form-control" placeholder="Email">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-xs-12 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="email" class="form-control" placeholder="Cedit card billing address">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad margin_bottom_30 margin_top_20">
+                                                        <div class="border_bottom_2_grey"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-margin">
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad">
+                                                        <p class="black font-24 margin_bottom_0">Arrival transfer</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Arrival company or flight number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Arriving from">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Complete destination address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding common_selectbox_deals select_big_bold">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">Number of hand luggages</option>
+                                                            <option value="2">1</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding common_selectbox_deals select_big_bold">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">Number of checked-in luggages</option>
+                                                            <option value="2">1</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad margin_bottom_30 margin_top_20">
+                                                        <div class="border_bottom_2_grey"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-margin">
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad">
+                                                        <p class="black font-24 margin_bottom_0">Departure transfer</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row deals_new_margin">
+                                                    <div class="col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Dpearture company or flight number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Going to">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 deals_new_padding">
+                                                        <div class="form-group new_input_deals_common">
+                                                            <input type="text" class="form-control" placeholder="Complete pickup address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding common_selectbox_deals select_big_bold">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">Number of hand luggages</option>
+                                                            <option value="2">1</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-6 deals_new_padding common_selectbox_deals select_big_bold">
+                                                        <select name="" id="" class="">
+                                                            <option value="1">Number of checked-in luggages</option>
+                                                            <option value="2">1</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-12 nopad margin_bottom_30 margin_top_20">
+                                                        <div class="border_bottom_2_grey"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-margin">
+                                                <div class="col-xs-12 nopad">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <h2 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Payment'|trans}}</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-margin">
+                                                        <div class="col-xs-12 nopad">
+                                                            <div class="row no-margin">
+                                                                <div class="col-sm-6 col-xs-12 nopad margin_top_10">
+                                                                    <p class="black font-24">Have a gift certificate or promocode?</p>
+                                                                </div>
+                                                                <div class="col-sm-6 col-xs-12 nopad margin_bottom_20">
+                                                                    <button class="btn pink_buttoon">Redeem your discount</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-sm-6 col-xs-12 deals_new_padding common_selectbox_deals select_big_bold paymentselect_newstyle">
+                                                            <select name="" id="" class="">
+                                                                <option value="1">Card type *</option>
+                                                                <option value="2">1</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+                                                            <div class="form-group new_input_deals_common">
+                                                                <input type="text" class="form-control" placeholder="Cardholder *">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-sm-6 col-xs-12 deals_new_padding paymentselect_newstyle">
+                                                            <div class="form-group new_input_deals_common">
+                                                                <input type="text" class="form-control" placeholder="Card number *">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-sm-6 col-xs-12 deals_new_padding">
+                                                            <div class="row deals_new_margin">
+                                                                <div class="col-sm-4 col-xs-12 deals_new_padding">
+                                                                    <div class="form-group new_input_deals_common paymentselect_newstyle">
+                                                                        <input type="text" class="form-control" placeholder="Expiry date *" disabled="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 col-xs-6 deals_new_padding common_selectbox_deals select_big_bold paymentselect_newstyle select_grey">
+                                                                    <select name="" id="" class="">
+                                                                        <option value="1">Month</option>
+                                                                        <option value="2">1</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-4 col-xs-6 deals_new_padding common_selectbox_deals select_big_bold paymentselect_newstyle select_grey">
+                                                                    <select name="" id="" class="">
+                                                                        <option value="1">Year</option>
+                                                                        <option value="2">1</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-12 nopad hidden-xs lock_img_container">
+                                                            <img src="{{ generateMediaURL('/media/images/hotel_payment_new/lock_logo.png') }}" alt="lock_logo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-sm-6 col-xs-12 deals_new_padding">
+                                                            <div class="form-group new_input_deals_common paymentselect_newstyle">
+                                                                <input type="text" class="form-control" placeholder="CVC code">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-xs-12 deals_new_padding">
+                                                            <p class="font-27 black margin_bottom_0">Special requirements</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-xs-12 deals_new_padding">
+                                                            <textarea id="" name="" class="deals_textarea" placeholder="Do you have special requests for your booking? Tell us and we will glasgly accomodate"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row deals_new_margin">
+                                                        <div class="col-xs-12 deals_new_padding label_terms_cond_agree">
+                                                            <label for="agree_terms">
+                                                                <input name="terms" id="terms" value="1" type="checkbox">
+                                                                By selecting to cmplete this booking, I acknowledge that<br>I have read and accept the  <span><a target="_blank" href="/terms-and-conditions" title="Terms and Conditions" class="">terms and conditions </a></span>and the  <span><a target="_blank" href="/privacy-policy" title="Privacy Policy" class="termsncond">privacy policy</a></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-margin margin_top_20">
+                                                <div class="col-md-3 col-sm-5 col-xs-12 nopad margin_right_10">
+                                                    <button id="secure_booking_step_prev_button" class="btn prev_grey_button">Prev Step</button>
+                                                </div>
+                                                <div class="col-md-3 col-sm-5 col-xs-12 nopad">
+                                                    <button id="" class="btn next_yellow_button" type="submit" >submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="col-xs-12 nopad images_payment_sponser margin_top_15">
+                                        <img src="{{ generateMediaURL('/media/images/booking_steps_new/payment_sponsers.png') }}" alt="thawte_logo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

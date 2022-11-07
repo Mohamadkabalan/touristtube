@@ -1,0 +1,132 @@
+{% if hotels is defined %}
+    {% for hotel in hotels %}
+	{% set bestOnly = ((input.fromDate is empty) and (input.toDate is empty)) ? true : false %}
+	{% set sourceTT = (hotel.hotelSource == 'tt') ? true : false %}
+	{% set highlight = ((hotel.price > 0) or (bestOnly == true)) ? '' : 'highlighted' %}
+
+	{% set selected = (loop.first and input.hotelId > 0 and input.hotelId == hotel.hotelId) ? 'selected_hotel' : '' %}
+	{% set submitPath = generateLangRoute(LanguageGet, '_corporate_hotel_details', {"name":hotel.hotelNameURL, "id":hotel.hotelId}) ~ "?hotelSearchRequestId=" ~ hotel.hotelSearchRequestId ~ "&hotelNameURL=" ~ hotel.hotelNameURL ~ "&hotelCityName=" ~ input.city.name ~ "&hotelCode=" ~ hotel.hotelCode ~ "&hotelCityCode=" ~ input.city.code ~ "&hotelId=" ~ input.hotelId ~ "&fromDate=" ~ input.fromDate ~ "&toDate=" ~ input.toDate ~ "&singleRooms=" ~ input.singleRooms ~ "&doubleRooms=" ~ input.doubleRooms ~ "&adultCount=" ~ input.adultCount ~ "&childCount=" ~ input.childCount ~ "&childAge=" ~ input.childAge|json_encode() %}
+
+	{% set formId = 'hotel-'~hotel.hotelCode %}
+	{% set formAction = '_corporate_hotel_details' %}
+
+	{% set hotelCity = hotel.city.name %}
+	{% set hotelCityName = input.city.name %}
+	{% set currencyCode = hotel.currencyCode %}
+
+	<figure class="col-xs-12 nopad margin-top-60" data-counter="{{loop.index}}" data-counter="{{loop.index}}" data-star="{{hotel.category}}" data-price="{{hotel.price|raw}}">
+	    <form method="get" class="formclass" id="{{formId}}" action="{{ generateLangRoute(LanguageGet, formAction, {'name':hotel.hotelNameURL, 'id':hotel.hotelId}) }}" target="_blank" autocomplete="off">
+		<input type="hidden" name="hotelSearchRequestId" value="{{hotel.hotelSearchRequestId}}">
+		<input type="hidden" name="hotelNameURL" value="{{hotel.hotelNameURL}}">
+		<input type="hidden" name="hotelCityName" value="{{hotelCityName}}">
+		<input type="hidden" name="hotelId" value="{{input.hotelId}}">
+		<input type="hidden" name="fromDate" value="{{input.fromDate}}">
+		<input type="hidden" name="toDate" value="{{input.toDate}}">
+		<input type="hidden" name="singleRooms" value="{{input.singleRooms}}">
+		<input type="hidden" name="doubleRooms" value="{{input.doubleRooms}}">
+		<input type="hidden" name="adultCount" value="{{input.adultCount}}">
+		<input type="hidden" name="childCount" value="{{input.childCount}}">
+		<input type="hidden" name="hotelCode" value="{{hotel.hotelCode}}">
+		<input type="hidden" name="hotelCityCode" value="{{input.city.code}}">
+		<input type="hidden" name="childAge" value="{{input.childAge|json_encode()}}">
+		<div class="row no-margin {{selected}}">
+		    <div class="col-md-4 col-xs-12 nopad image_container">
+			{% set image %}<img src="{{hotel.mainImage}}" title="{{hotel.hotelName}}" alt="{{hotel.hotelName}}" onerror="loadDefaultImg(this, '{{ generateMediaURL('/media/images/hotel-icon-image4.jpg') }}');">{% endset %}
+			<a href="{{submitPath}}" target="_blank" class="nopad pointer pointerImgContainer">{{image|raw}}</a>
+		    </div>
+		    <div class="col-md-8 col-xs-12 nopad">
+			<div class="row no-margin first_row">
+			    <a href="{{submitPath}}" target="_blank" class="displayPagination col-md-9 col-xs-12 nopad">
+				<h3 class="hotel_title">{{hotel.hotelName}}</h3>
+			    </a>
+			    <div class="col-md-3 col-xs-12 nopad rating_container">				
+				<p>
+				    {% if hotel.category > 0 %}
+					<span class="star_rating" data-rating="{{hotel.category}}" data-font="11" data-color="#eac31a"></span>
+				    {% endif %}
+				</p>
+				{% if hotel.has360 is defined and hotel.has360 == 1 %}
+				    <p>
+					<img alt="{{'360 logo'|trans}}" src="{{ generateMediaURL('/media/images/360-photos-virtual-tour/360_logo_gray.png') }}">
+				    </p>
+				{% endif %}
+			    </div>
+			</div>
+			<div class="row no-margin snd_row">
+			    <div class="col-xs-12 nopad">
+				<a rel="nofollow" class="location_div location_txt showOnMap" href="{{ hotel.mapImageUrl }}" title="{{'Show On Map'|trans}}">
+				    <i class="fas fa-map-marker-alt"></i>{% if hotel.district is not empty %}{{hotel.district}}, {% endif %}{{hotelCity}}, {{hotel.country}}
+				</a>
+			    </div>
+			</div>
+			<div class="row no-margin third_row">
+			    <div class="col-md-9 col-xs-12 nopad">
+				<ul class="tabs_transportation">
+				    {% if hotel.distances is defined %}
+					{% for poi, location in hotel.distances %}
+					    {% set poi_img = '' %}
+					    {% set poi_imgAlt = '' %}
+
+					    {% if poi == 'downtown' %}
+						{% set poi_img = 'location_small_grey.png' %}
+						{% set poi_imgAlt = 'location_small_grey' %}
+					    {% elseif poi == 'airport' %}
+						{% set poi_img = 'plane_transport_grey.png' %}
+						{% set poi_imgAlt = 'plane_transport_grey.png' %}
+					    {% elseif poi == 'train' %}
+						{% set poi_img = 'train_transport_grey.png' %}
+						{% set poi_imgAlt = 'train_transport_grey.png' %}
+					    {% endif %}
+
+					    <li>
+						<a rel="nofollow" title="{{location.name}}" href="#">
+						    <img src="{{ generateMediaURL('/media/images/hotel_search_new') }}/{{poi_img}}" alt="{{poi_imgAlt}}">{{location.distance}} Km
+						</a>
+					    </li>
+					{% endfor %}
+				    {% endif %}
+				</ul>
+			    </div>
+			    {% if (hotel.price > 0) or (bestOnly == true) %}
+				<div class="col-md-3 col-xs-12 price_txt_container">
+				    <p class="blue_night_price_txt price_txt_common">
+					{% if (bestOnly != true) %}
+					    {{'Price for'|trans}} {{nightsCount|raw}} {{'night'|trans}}{% if (nightsCount > 1) %}s{% endif %}
+					{% endif %}
+				    </p>
+				    <p class="black_night_price price-convert price_txt_common" data-price="{{hotel.price|raw}}">
+					{% if (bestOnly == true) %}
+					    <span class="price-after-price-style price-convert-text">{{hotel.priceTxt|raw}}</span>
+					{% else %}
+					    <span class="price-after-unit-style currency-convert-text">{{currencyCode}} </span>
+					    <span class="price-after-price-style price-convert-text">{{hotel.price|round(0, 'floor')|number_format()}}</span>
+					{% endif %}
+				    </p>
+				</div>
+			    {% endif %}			    
+			</div>
+			<div class="row no-margin forth_row">				
+			    <div class="col-xs-12 nopad">
+				{% set book_room_button_txt = '' %}
+				{% set non_avail = false %}
+
+				{% if (hotel.price > 0) or (bestOnly == true) %}
+				    {% set book_room_button_txt = 'Book your room'|trans %}
+				{% else %}
+				    {% set non_avail = true %}
+				    {% if hotel.has360 is defined and hotel.has360 == 1 %}
+					{% set book_room_button_txt = 'View in 360'|trans %}
+				    {% else %}
+					{% set book_room_button_txt = 'View details'|trans %}
+				    {% endif %}
+				{% endif %}
+
+				<a href="{{submitPath}}" target="_blank" class="btn book_room_button {% if non_avail %}non-avail{% endif %}">{{book_room_button_txt}}</a>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </form>
+	</figure>
+    {% endfor %}
+{% endif %}

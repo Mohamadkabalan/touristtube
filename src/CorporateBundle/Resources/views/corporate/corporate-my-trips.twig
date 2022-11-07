@@ -1,0 +1,289 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-my-trips.css")|raw }}"/>
+{% endblock %}
+{% block title %}{{'My Trips'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad padleftright20">
+            <h1 class="mytripsheadertitle">{{'My trips'|trans}}</h1>
+            <p class="subtitlesmal_mt">{{'corporate name:'|trans}}</p>
+            <p class="compname_mt">{{'Paravision'|trans}}</p>
+        </div>
+        <div class="col-xs-12 nopad padleftright20">
+            <ul class="listmytripsoptions">
+                <li>{{'1- add a new trip'|trans}}</li>
+                <li class="bordoredpadsep_mt">|</li>
+                <li>{{'2- name it '|trans}}</li>
+                <li class="bordoredpadsep_mt">|</li>
+                <li>{{'3- add items to your trip '|trans}}</li>
+            </ul>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <a rel="nofollow" title="{{ 'add a new trip'|trans }}" href="#addNewTrip" class="sectionsimagescontainer-mt buttonsAddTripFancy">
+                    <img alt="{{'back item add'|trans}}" src="{{ generateMediaURL('/media/images/corporate/backitemadd_mt.png') }}" class="imagecommunstyle-mt">
+                    <img alt="{{'add to bag'|trans}}" src="{{ generateMediaURL('/media/images/corporate/addtobagbut_mt.png') }}" class="addtobagbut_mt">
+                    <img alt="{{'add item logo'|trans}}" src="{{ generateMediaURL('/media/images/corporate/additemlogo-mt.png') }}" class="additemlogo-mt">
+                    <p class="addnewtripabsolutetext-mt">{{'add a new trip'|trans}}</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="sectionsimagescontainer-mt">
+                    <a class="" href="#">
+                        <img alt="triptoparisimg_mt" src="{{ generateMediaURL('/media/images/corporate/triptoparisimg_mt.png') }}" class="imagecommunstyle-mt">
+                        <div class="transparentblacktopbackground_mt">
+                            <div class="bagroungcolorcontainer_mt">
+                                <p class="textintransback_mt">{{'Trip to Paris'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="topblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivtop_mt">
+                                <p class="frtobluetext-mt">{{'from'|trans}}</p>
+                                <p class="datebignumber-mt">{{'16'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'sunday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="botomblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivbot_mt">
+                                <p class="frtobluetext-mt">{{'to'|trans}}</p>
+                                <p class="datebignumber-mt">{{'20'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'thursday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="numberofitemcircle_mt">
+                            <div class="numberofitemcirclebackground_mt">
+                                <p class="incirclenum-mt">{{'13'|trans}}</p>
+                                <p class="incercletext-mt">{{'items'|trans}}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="sectionsimagescontainer-mt">
+                    <a class="" href="#">
+                        <img alt="triptoparisimg_mt" src="{{ generateMediaURL('/media/images/corporate/triptomadridimg-mt.png') }}" class="imagecommunstyle-mt">
+                        <div class="transparentblacktopbackground_mt">
+                            <div class="bagroungcolorcontainer_mt">
+                                <p class="textintransback_mt">{{'Trip to Madrid'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="topblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivtop_mt">
+                                <p class="frtobluetext-mt">{{'from'|trans}}</p>
+                                <p class="datebignumber-mt">{{'16'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'sunday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="botomblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivbot_mt">
+                                <p class="frtobluetext-mt">{{'to'|trans}}</p>
+                                <p class="datebignumber-mt">{{'20'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'thursday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="numberofitemcircle_mt">
+                            <div class="numberofitemcirclebackground_mt">
+                                <p class="incirclenum-mt">{{'31'|trans}}</p>
+                                <p class="incercletext-mt">{{'items'|trans}}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="sectionsimagescontainer-mt">
+                    <a class="" href="#">
+                        <img alt="triptoparisimg_mt" src="{{ generateMediaURL('/media/images/corporate/triptodelhiimg-mt.png') }}" class="imagecommunstyle-mt">
+                        <div class="transparentblacktopbackground_mt">
+                            <div class="bagroungcolorcontainer_mt">
+                                <p class="textintransback_mt">{{'Trip to Delhi'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="topblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivtop_mt">
+                                <p class="frtobluetext-mt">{{'from'|trans}}</p>
+                                <p class="datebignumber-mt">{{'16'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'sunday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="botomblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivbot_mt">
+                                <p class="frtobluetext-mt">{{'to'|trans}}</p>
+                                <p class="datebignumber-mt">{{'20'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'thursday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="numberofitemcircle_mt">
+                            <div class="numberofitemcirclebackground_mt">
+                                <p class="incirclenum-mt">{{'11'|trans}}</p>
+                                <p class="incercletext-mt">{{'items'|trans}}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="sectionsimagescontainer-mt">
+                    <a class="" href="#">
+                        <img alt="triptoparisimg_mt" src="{{ generateMediaURL('/media/images/corporate/triptogreeceimg-mt.png') }}" class="imagecommunstyle-mt">
+                        <div class="transparentblacktopbackground_mt">
+                            <div class="bagroungcolorcontainer_mt">
+                                <p class="textintransback_mt">{{'Trip to Greece'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="topblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivtop_mt">
+                                <p class="frtobluetext-mt">{{'from'|trans}}</p>
+                                <p class="datebignumber-mt">{{'16'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'sunday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="botomblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivbot_mt">
+                                <p class="frtobluetext-mt">{{'to'|trans}}</p>
+                                <p class="datebignumber-mt">{{'20'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'thursday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="numberofitemcircle_mt">
+                            <div class="numberofitemcirclebackground_mt">
+                                <p class="incirclenum-mt">{{'7'|trans}}</p>
+                                <p class="incercletext-mt">{{'items'|trans}}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="sectionsimagescontainer-mt">
+                    <a class="" href="#">
+                        <img alt="triptoparisimg_mt" src="{{ generateMediaURL('/media/images/corporate/triptoeuropeimg-mt.png') }}" class="imagecommunstyle-mt">
+                        <div class="transparentblacktopbackground_mt">
+                            <div class="bagroungcolorcontainer_mt">
+                                <p class="textintransback_mt">{{'Trip to Europe'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="topblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivtop_mt">
+                                <p class="frtobluetext-mt">{{'from'|trans}}</p>
+                                <p class="datebignumber-mt">{{'16'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'sunday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="botomblackdivcontainer_mt">
+                            <div class="blackcommunabsoluterightdivbot_mt">
+                                <p class="frtobluetext-mt">{{'to'|trans}}</p>
+                                <p class="datebignumber-mt">{{'20'|trans}}</p>
+                                <p class="datemoyear-mt">{{'Oct 2016'|trans}}</p>
+                                <p class="dateday-mt">{{'thursday'|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="numberofitemcircle_mt">
+                            <div class="numberofitemcirclebackground_mt">
+                                <p class="incirclenum-mt">{{'25'|trans}}</p>
+                                <p class="incercletext-mt">{{'items'|trans}}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 nopad">
+            <div id="editThisItem" class="popupcontainer_mt displaynone"> 
+                <p class="edittextpopup-mt">{{'edit this item'|trans}}</p>
+                <div class="col-xs-12 nopad margintop40 marginbut10-mt">
+                    <div class="tripsectioncontainer-mt">
+                        <p class="tripsection-mt">{{'trip'|trans}}</p>
+                    </div>
+                    <div class="selecttripselectboxcontainer-mt">
+                        <select id="cabinselect" name="cabinselect" class="selecttripselectbox-mt">
+                            <option value="">{{'europe trip 2015'|trans}}</option>
+                            <option value="Y">{{'greece trip 2015'|trans}}</option>
+                            <option value="S">{{'delhi trip 2015'|trans}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad marginbut10-mt">
+                    <button name="" type="" class="deleteitem-mt">{{'delete item'|trans}}</button>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <button name="" type="" class="cancelitem-mt">{{'cancel'|trans}}</button>
+                    <button name="" type="" class="saveitem-mt">{{'save'|trans}}</button>
+                </div>
+            </div>
+            <div id="editYourTrip" class="popupcontainer_mt displaynone"> 
+                <p class="edittextpopup-mt">{{'edit your trip'|trans}}</p>
+                <div class="col-xs-12 nopad margintop10 marginbut10-mt">
+                    <div class="selecttripselectboxcontainer-mt newselectsizebag">
+                        <select id="cabinselect" name="cabinselect" class="selecttripselectbox-mt newtextfonteditbag-mt">
+                            <option value="">{{'Paris'|trans}}</option>
+                            <option value="Y">{{'greece trip 2015'|trans}}</option>
+                            <option value="S">{{'delhi trip 2015'|trans}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad marginbut10-mt">
+                    <button name="" type="" class="deleteitem-mt">{{'delete item'|trans}}</button>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <button name="" type="" class="cancelitem-mt">{{'cancel'|trans}}</button>
+                    <button name="" type="" class="saveitem-mt">{{'save'|trans}}</button>
+                </div>
+            </div>
+            <div id="addNewTrip" class="popupcontainer_mt displaynone"> 
+                <p class="edittextpopup-mt">{{'create a new trip'|trans}}</p>
+                <div class="col-xs-12 nopad margintop10 marginbut10-mt">
+                    <div class="selecttripselectboxcontainer-mt">
+                        <select id="cabinselect" name="cabinselect" class="selecttripselectbox-mt addtobagpopupselectsize">
+                            <option value="">{{'Paris'|trans}}</option>
+                            <option value="Y">{{'greece trip 2015'|trans}}</option>
+                            <option value="S">{{'delhi trip 2015'|trans}}</option>
+                        </select>
+                    </div>
+                    <button name="" type="" class="addtripitem-mt">{{'add'|trans}}</button>
+                </div>
+                <div class="col-xs-12 nopad borderedsepearator-mt"></div>
+                <div class="col-xs-12 nopad">
+                    <p class="edittextpopup-mt">{{'add to your existing bags'|trans}}</p>
+                </div>
+                <div class="col-xs-12 nopad margintop10">
+                    <p class="leftpopuptext-mt">{{'europe trip 2015'|trans}}</p>
+                    <img alt="plusaddlogo-mt" src="{{ generateMediaURL('/media/images/corporate/plusaddlogo-mt.png') }}" class="plusaddlogo-mt">
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="leftpopuptext-mt">{{'shopping in Paris'|trans}}</p>
+                    <img alt="plusaddlogo-mt" src="{{ generateMediaURL('/media/images/corporate/plusaddlogo-mt.png') }}" class="plusaddlogo-mt">
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="leftpopuptext-mt">{{'things to do in Madrid'|trans}}</p>
+                    <img alt="plusaddlogo-mt" src="{{ generateMediaURL('/media/images/corporate/plusaddlogo-mt.png') }}" class="plusaddlogo-mt">
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="leftpopuptext-mt">{{'Cuisine of the world'|trans}}</p>
+                    <img alt="plusaddlogo-mt" src="{{ generateMediaURL('/media/images/corporate/plusaddlogo-mt.png') }}" class="plusaddlogo-mt">
+                </div>
+                <div class="col-xs-12 nopad">
+                    <p class="leftpopuptext-mt">{{'my summer trip'|trans}}</p>
+                    <img alt="plusaddlogo-mt" src="{{ generateMediaURL('/media/images/corporate/plusaddlogo-mt.png') }}" class="plusaddlogo-mt">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

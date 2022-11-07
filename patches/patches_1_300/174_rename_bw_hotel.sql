@@ -1,0 +1,1 @@
+UPDATE `amadeus_hotel` SET `property_name`='BEST WESTERN PREMIER AGUNG RESORT UBUD' WHERE `id`='248918';

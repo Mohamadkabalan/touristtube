@@ -1,0 +1,266 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/deals/css/deals_common_new.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/deals-booking-details-new.js")|raw }}"></script>
+{% endblock %}
+{% block title %}
+    {{ 'Attractions Booking Details'|trans }}{{ ' | TouristTube' }}
+{% endblock %}
+{% block body %}
+    <section id="dealsContainer" class="container deals_container">
+	<form method="post" action="" autocomplete="off">
+	    <input name="cancel" type="hidden" value="true">
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <div class="circlimg_arrow"><i class="fas fa-angle-right"></i></div>
+		    <h1 class="search_title">{{'Attractions’ booking detail'|trans}}</h1>
+		</div>
+	    </div>
+	    {% if bookingDetails['success'] is defined %}
+		<div class="col-xs-12 nopad">
+		    <div class="activateMsg">
+			{{bookingDetails['success']|trans}}
+		    </div>
+		</div>
+		<div class="col-xs-12">{{'Please check your inbox for an email confirming your cancellation.'|trans}}</div>
+	    {% endif %}
+	    <div class="row margin_top_15 padding_left_bookingdetails_container">
+		<div class="col-xs-12">
+		    <div class="row">
+			<div class="col-md-6 col-sm-4 col-xs-12">
+			    <a href="{{ generateLangRoute(LanguageGet,'_deals_new') }}" class="font-13 font-bold blue underline xs_style"><i class="fas fa-angle-double-left blue_font-awsome_logo"></i>{{'Book your next place to stay'|trans}}</a>
+			</div>
+			<div class="col-md-6 col-sm-8 col-xs-12 text-right-style-container">
+			    <div class="row no-margin">
+				<!--<div class="col-md-5 col-sm-6 col-xs-6 nopad pull-right right-separation">
+				    <p class="cursor_pointer font-bold blue font-13"><i class="fas fa-mobile-alt blue_font-awsome_logo"></i>{{'Save confirmation to phone'|trans}}</p>
+				</div>-->
+				<div class="col-md-5 col-sm-6 col-xs-6 nopad pull-right">
+				    <p class="cursor_pointer font-bold blue font-13 xss-width_80" onclick="window.print();"><i class="fas fa-print blue_font-awsome_logo"></i>{{'Print confirmation'|trans}}</p>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		    <div class="row margin_top_30">
+			<div class="col-xs-12">
+			    <button class="btn view_booking">{{'View booking'|trans}}</button>
+			</div>
+		    </div>
+		    {% if userIsLogged == 0 %}
+			<div class="row">
+			    <div class="col-xs-12">
+				<p class="grey font-13 signin_txt">{{'Tip: You can make changes to this booking anytime by'|trans}} <a href="{{ generateLangRoute(LanguageGet,'_log_in') }}">{{'signing in'|trans}}</a></p>
+			    </div>
+			</div>
+		    {% endif %}
+		    <div class="row">
+			<div class="col-xs-12">
+			    <p class="margin_top_15 font-22 black font-bold title_style-xs">{{'Congratulations! Your booking is now confirmed.'|trans}}</p>
+			</div>
+		    </div>
+		    <div class="row">
+			<div class="col-xs-12 grey font-16 booking_confirmation_txt">
+
+			    <div class="margin_bottom_7">
+				<div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+				<div class="side-right-icon">
+				    {{"We've sent the confirmation email to"|trans}} <a href="mailto:msfeir@paravision.org">{{bookingDetails['db_email']|trans}} </a>
+				</div>
+			    </div>
+			    {% if bookingDetails['tourDetailsUrl'] is defined and bookingDetails['tourDetailsUrl'] %}
+				<div class="margin_bottom_7">
+				    <div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+				    <div class="side-right-icon">
+					{{'Your ticket to'|trans}} <a href="{{bookingDetails['tourDetailsUrl']|raw}}">{{bookingDetails['db_dealName']|trans}} </a> {{'is already confirmed'|trans}}
+				    </div>
+				</div>
+			    {% else %}
+				<div class="margin_bottom_7">
+				    <div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+				    <div class="side-right-icon">
+					{{'Your ticket to'|trans}} <a href="#" onclick="return false;">{{bookingDetails['dcn_countryName']|trans}} </a> {{'is already confirmed'|trans}}
+				    </div>
+				</div>
+			    {% endif %}
+			    {% if bookingDetails['bookingStatus']|lower != 'cancelled' and bookingDetails['bookingStatus']|lower != 'processing' %}
+				<div class="margin_bottom_7">
+				    <div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+				    <div class="side-right-icon">
+					{{'You can'|trans}} <a class="underline" href="#" onclick="cancelBooking(this);return false;">{{'cancel your booking'|trans}} </a>{{'at any time'|trans}}
+				    </div>
+				</div>
+			    {% endif %}
+			    <div class="margin_bottom_7">
+				<div class="side-left-icon"><i class="fas fa-check yellow_font-awsome_logo"></i></div>
+				<div class="side-right-icon">
+				    {{'Get paperless confirmation when you'|trans}}<a class="underline" href="#"> {{'download the app'|trans}}</a>
+				</div>
+			    </div>
+
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row margin_top_45">
+		<div class="col-xs-12">
+		    <div class="border_top_but_row"></div>
+		</div>
+	    </div>
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <p class="font-22 black font-bold"><i class="fas fa-angle-right pink_font-awsome_logo"></i>{{'Check your details'|trans}}</p>
+		</div>
+		<div class="col-xs-12 margin_top_15">
+		    <div class="row">
+			<div class="col-xs-12">
+			    <p class="font-17 black font-bold">{{bookingDetails['db_dealName']|trans}}</p>
+			</div>
+		    </div>
+		    {% if bookingDetails['dc_cityCode'] is defined and bookingDetails['dc_cityCode'] %}
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="location_div"><i class="fas fa-map-marker-alt"></i></div>
+				<p class="font-14 grey location_txt">{{bookingDetails['dc_cityCode']|raw}}</p>
+			    </div>
+			</div>
+		    {% endif %}
+		    <div class="row">
+			<div class="col-xs-12">
+			    <p class="stars_block"><span class="star_rating" data-rating="4" data-font="11" data-color="#eac31a"></span></p>
+			</div>
+		    </div>
+		    <div class="row margin_top_15">
+			<div class="col-lg-6 col-xs-12">
+			    <div class="row">
+				<div class="col-sm-4 col-xs-5">
+				    <p class="font-16 grey">{{'Reference number'|trans}}</p>
+				</div>
+				<div class="col-sm-8 col-xs-7">
+				    <p class="font-16 black">{{bookingDetails['db_bookingReference']|raw}}</p>
+				</div>
+			    </div>
+			    <div class="row">
+				<div class="col-sm-4 col-xs-5">
+				    <p class="font-16 grey">{{'Booking status'|trans}}</p>
+				</div>
+				<div class="col-sm-8 col-xs-7">
+				    <p class="font-16 black">{% if bookingDetails['bookingStatus']|lower == 'processing' %} {{'Cancellation is '|trans}} {% endif %} {{bookingDetails['bookingStatus']|trans}}</p>
+				</div>
+			    </div>
+			    <div class="row">
+				<div class="col-sm-4 col-xs-5">
+				    <p class="font-16 grey">{{'Booking date'|trans}}</p>
+				</div>
+				<div class="col-sm-8 col-xs-7">
+				    <p class="font-16 black">{{bookingDetails['db_bookingDate']|date("F d, Y")}}</p>
+				</div>
+			    </div>
+			    <div class="row">
+				<div class="col-sm-4 col-xs-5">
+				    <p class="font-16 grey">{{'Name of passenger'|trans}}</p>
+				</div>
+				<div class="col-sm-8 col-xs-7">
+				    <p class="font-16 black">{{bookingDetails['db_title']|raw}} {{bookingDetails['db_firstName']|raw}} {{bookingDetails['db_lastName']|raw}}</p>
+				</div>
+			    </div>
+			    {% if bookingDetails['db_numOfAdults'] is defined and bookingDetails['db_numOfAdults'] %}
+				<div class="row">
+				    <div class="col-sm-4 col-xs-5">
+					<p class="font-16 grey">{{'Number of adults'|trans}}</p>
+				    </div>
+				    <div class="col-sm-8 col-xs-7">
+					<p class="font-16 black">{{bookingDetails['db_numOfAdults']|raw}}</p>
+				    </div>
+				</div>
+			    {% endif %}
+			    {% if bookingDetails['dc_cityCode'] is defined and bookingDetails['dc_cityCode'] %}
+				<div class="row">
+				    <div class="col-sm-4 col-xs-5">
+					<p class="font-16 grey">{{'Departs from'|trans}}</p>
+				    </div>
+				    <div class="col-sm-8 col-xs-7">
+					<p class="font-16 black">{{bookingDetails['dc_cityCode']|raw}}</p>
+				    </div>
+				</div>
+			    {% endif %}
+			    {% if bookingDetails['db_startingPlace'] is defined and bookingDetails['db_startingPlace'] %}
+				<div class="row">
+				    <div class="col-sm-4 col-xs-5">
+					<p class="font-16 grey">{{'Meeting point'|trans}}</p>
+				    </div>
+				    <div class="col-sm-8 col-xs-7">
+					<p class="font-16 black">{{bookingDetails['db_startingPlace']|raw}}</p>
+				    </div>
+				</div>
+			    {% endif %}
+			    {% if bookingDetails['db_duration'] is defined and bookingDetails['db_duration'] %}
+				<div class="row">
+				    <div class="col-sm-4 col-xs-5">
+					<p class="font-16 grey">{{'Duration'|trans}}</p>
+				    </div>
+				    <div class="col-sm-8 col-xs-7">
+					<p class="font-16 black">{{bookingDetails['db_duration']|capitalize}}</p>
+				    </div>
+				</div>
+			    {% endif %}
+			    {% if bookingDetails['db_dealCode'] is defined and bookingDetails['db_dealCode'] %}
+				<div class="row">
+				    <div class="col-sm-4 col-xs-5">
+					<p class="font-16 grey">{{'Product code'|trans}}</p>
+				    </div>
+				    <div class="col-sm-8 col-xs-7">
+					<p class="font-16 black">{{bookingDetails['db_dealCode']|raw}}</p>
+				    </div>
+				</div>
+			    {% endif %}
+			    <div class="row">
+				<div class="col-sm-4 col-xs-5">
+				    <p class="font-16 grey">{{'Total price'|trans}}</p>
+				</div>
+				<div class="col-sm-8 col-xs-7">
+				    <p class="font-28 pink"><span class="a_price newprice_dat price-convert" data-price="{{bookingDetails['convertedTotalPrice']}}"><span class="currency-convert-text font-16">{{bookingDetails['selectedCurrency']}}</span> <span class="price-convert-text">{{bookingDetails['formattedTotalPrice']}}</span></span></p>
+				</div>
+			    </div>
+			    <div class="row">
+				<div class="col-sm-4 col-xs-5">
+				    <p class="font-16 grey">{{'Languages'|trans}}</p>
+				</div>
+				<div class="col-sm-8 col-xs-7">
+				    <img src="/images/index/enflag.png" alt="enflag_logo">
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <div class="border_top_but_row_3"></div>
+		</div>
+	    </div>
+	    <div class="row margin_top_30">
+		<div class="col-xs-12">
+		    <p class="font-22 black font-bold"><i class="fas fa-angle-right pink_font-awsome_logo"></i>{{'Your payment details'|trans}}</p>
+		</div>
+		{% if cancellationDetails['cancellationPolicy'] is defined %}
+		    {% for info in cancellationDetails['cancellationPolicy'] %}
+			<div class="col-xs-12 margin_top_10">
+			    <a href="#" onclick="return false;" class="blue font-16 font-bold">{{info|raw}}</a>
+			</div>
+		    {% endfor %}
+		{% endif %}
+		{% if bookingDetails['bookingStatus']|lower != 'cancelled' and bookingDetails['bookingStatus']|lower != 'processing' %}
+		    <div class="col-xs-12">
+			<button type="button" onclick="cancelBooking(this);" class="btn cancel_booking margin_top_20 margin_bottom_15">{{'Cancel your booking'|trans}}</button>
+		    </div>
+		{% endif %}
+		<div class="col-xs-12">
+		    <a href="#" class="underline blue font-13 font-bold">{{'Need help?'|trans}}</a>
+		</div>
+	    </div>
+	</form>
+    </section>
+{% endblock %}

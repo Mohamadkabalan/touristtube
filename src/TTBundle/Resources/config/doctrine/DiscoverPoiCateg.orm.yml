@@ -1,0 +1,19 @@
+TTBundle\Entity\DiscoverPoiCateg:
+    type: entity
+    table: discover_poi_categ
+    id:
+        categId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: categ_id
+        poiId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: poi_id
+    lifecycleCallbacks: {  }

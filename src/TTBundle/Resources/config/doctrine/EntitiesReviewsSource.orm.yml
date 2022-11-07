@@ -1,0 +1,40 @@
+TTBundle\Entity\EntitiesReviewsSource:
+    type: entity
+    table: entities_reviews_source
+
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityId:
+            type: integer
+            nullable: false
+            length: 11
+            options:
+                unsigned: true
+        moduleId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+        vendorId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+        vendorReviewId:
+            type: string
+            length: 50
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

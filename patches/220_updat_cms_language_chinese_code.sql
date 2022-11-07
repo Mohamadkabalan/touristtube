@@ -1,0 +1,1 @@
+UPDATE `cms_language` SET `code` = 'zh' WHERE `cms_language`.`id` = 4;

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{{namealt|raw}}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset("/assets/vendor/bootstrap/css/bootstrap.css")|raw }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset("/assets/hotels/css/hotel-review-popup.css")|raw }}" >
+    </head>
+    <body id="body">
+        <div class="col-xs-12 bodyDataContent">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nopad hotelsContainer" data-id="{{id|raw}}">
+                <p class="reviewscoretext">{{'Review Score'|trans}}</p>
+                {% for toRate in toRateArr %}
+                    <div class="col-xs-12 marbut8ht" data-type="{{toRate.id|raw}}">
+                        <div class="bluecoloredtextbackht">{{toRate.name|raw}}</div>
+			<div class="review_options_glob{% if toRate.val >= 1 %} active {% endif %}" data-value="1" data-text="{{ 'Terrible'|trans }}"></div>
+			<div class="review_options_glob{% if toRate.val >= 2 %} active {% endif %}" data-value="2" data-text="{{ 'poor'|trans }}"></div>
+			<div class="review_options_glob{% if toRate.val >= 3 %} active {% endif %}" data-value="3" data-text="{{ 'Average'|trans }}"></div>
+                        <div class="review_options_glob{% if toRate.val >= 4 %} active {% endif %}" data-value="4" data-text="{{ 'Very good'|trans }}"></div>
+                        <div class="review_options_glob{% if toRate.val >= 5 %} active {% endif %}" data-value="5" data-text="{{ 'Excellent'|trans }}"></div>
+                        <div class="review_options_over"><div class="review_options_overtxt"></div></div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <p class="yourreviewtext">{{'Your Review'|trans}}</p>
+                <div class="form-group">
+                    <textarea class="form-control reviewhttextarea rev_description" rows="5" id="comment"></textarea>
+                </div>
+                <input type="button" class="btn submitreview" value="{{'submit your review'|trans}}">
+            </div>
+        </div>
+        <footer>
+            <script type="text/javascript" src="{{ asset("/assets/vendor/jquery/dist/jquery-1.9.1.min.js")|raw }}"></script>
+	    <script type="text/javascript" src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+	    <script type="text/javascript" src="{{ path('bazinga_jstranslation_js', { 'domain': 'client' }) }}?locales={{ app.request.locale|split('_')[0] }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/common/js/utils.js")|raw }}"></script>
+            <script type="text/javascript" src="{{ asset("/assets/vendor/bootstrap/js/bootstrap.js")|raw }}"></script>
+            <script type="text/javascript">
+		$(document).ready(function () {
+		    $(document).on('mouseover', ".review_options_glob", function () {
+			var val_txt = $(this).attr('data-text');
+			var parents = $(this).parent();
+			parents.find('.review_options_over .review_options_overtxt').html(val_txt);
+			parents.find('.review_options_over').show();
+		    });
+		    $(document).on('mouseout', ".review_options_glob", function () {
+			var parents = $(this).parent();
+			parents.find('.review_options_over').hide();
+		    });
+		    $(document).on('click', ".review_options_glob", function () {
+			var $index = $(this).index();
+			var $this = $(this);
+			var $parents = $this.closest('.marbut8ht');
+			var data_value = $(this).attr('data-value');
+			var activedata_value = $parents.find('.review_options_glob.active:last').attr('data-value');
+			if ($parents.find('.review_options_glob.active:last').length > 0 && activedata_value == data_value) {
+			    data_value = 0;
+			    $index = -1;
+			}
+			
+			$('.upload-overlay-loading-fix').show();
+			console.log(generateLangURL('/ajax/add_rate', 'empty'));
+			$.ajax({
+			    url: generateLangURL('/ajax/add_rate', 'empty'),
+			    data: {
+				entity_id: $('.hotelsContainer').attr('data-id'),
+				entity_type: 28,
+				rate_type: $parents.attr('data-type'),
+				score: data_value
+			    },
+			    type: 'post',
+			    success: function (data) {
+				$('.upload-overlay-loading-fix').hide();
+				var jres = null;
+				try {
+				    jres = data;
+				    var status = jres.status;
+				} catch (Ex) {
+				}
+				if (!jres) {
+				    return;
+				}	    
+
+				if (jres.status == 'ok') {
+				    $parents.find('.review_options_glob').removeClass('active');
+				    $this.addClass('active');
+				    $parents.find(".review_options_glob").each(function () {
+					var newindex = $(this).index();
+					if (newindex <= $index) {
+					    $(this).addClass('active');
+					} else {
+					    $(this).removeClass('active');
+					}
+				    });
+				}		
+			    }
+			});			
+		    });
+		    $(document).on('click', ".submitreview", function () {
+			var revTxt = $('.rev_description').val();
+			
+			$('.upload-overlay-loading-fix').show();
+			$.ajax({
+			    url: generateLangURL('/ajax/add_review', 'empty'),
+			    data: {
+				id: $('.hotelsContainer').attr('data-id'),
+				data_type: SOCIAL_ENTITY_HOTEL_HRS,
+				txt: revTxt
+			    },
+			    type: 'post',
+			    success: function (data) {
+				$('.upload-overlay-loading-fix').hide();
+				var jres = null;
+				try {
+				    jres = data;
+				    var status = jres.status;
+				} catch (Ex) {
+				}
+				if (!jres) {
+				    return;
+				}	    
+
+				parent.window.closeFancyBoxReview();
+			    }
+			});
+		    });
+		});
+            </script>
+        </footer>
+    </body>
+</html>

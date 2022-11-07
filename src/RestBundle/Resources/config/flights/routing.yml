@@ -1,0 +1,91 @@
+_rest_flights_book:
+    path:      "/api/flights/book"
+    defaults: { _controller: RestBundle:flights\Flights:book }
+    requirements:
+        methods: POST
+
+_rest_flights_create_pnr:
+    path:      "/api/flights/create/pnr"
+    defaults: { _controller: RestBundle:flights\Flights:createPnr }
+    requirements:
+        methods: POST
+        
+# Common Routes
+_rest_flights_search:
+    path:      "/api/flights/search"
+    defaults: { _controller: RestBundle:flights\Flights:search }
+    requirements:
+        methods: POST
+
+_rest_flights_search_airport:
+    path:      "/api/flights/search-airport"
+    defaults: { _controller: RestBundle:flights\Flights:searchAirport }
+    requirements:
+        methods: GET
+
+_rest_flights_search_flights:
+    path:      "/api/v1/flights/search-flights"
+    defaults:  { _controller: RestBundle:flights\Flights:searchFlights}
+    requirements:
+        methods: POST
+
+_rest_flights_Air_Book:
+    path:      "/api/v1/flights/Air-Book"
+    defaults:  { _controller: RestBundle:flights\Flights:airBook }
+    requirements:
+        methods: POST
+
+_rest_flights_Pnr_Creation:
+    path:      "/api/v1/flights/create-pnr"
+    defaults:  { _controller: RestBundle:flights\Flights:PnrCreation }
+    requirements:
+        methods: POST
+
+
+_rest_flights_retrieve_Itinerary:
+    path:      "/api/v1/flights/retrieve-Itinerary"
+    defaults:  { _controller: RestBundle:flights\Flights:retrieveItinerary}
+    requirements:
+        methods: POST
+
+_rest_flights_get_Itinerary:
+    path:      "/api/v1/flights/get-Itinerary"
+    defaults:  { _controller: RestBundle:flights\Flights:getItinerary}
+    requirements:
+        methods: POST
+
+_rest_flights_Air_Ticket:
+    path:      "/api/v1/flights/Air-Ticket"
+    defaults:  { _controller: RestBundle:flights\Flights:AirTicket}
+    requirements:
+        methods: POST
+
+_rest_flights_View_Flight_Detail:
+    path:      "/api/v1/flights/View-Flight-Detail"
+    defaults:  { _controller: RestBundle:flights\Flights:viewFlightDetail }
+    requirements:
+        methods: POST
+
+_rest_flights_Cancel_Flight:
+    path:      "/api/v1/flights/Cancel-Flight"
+    defaults:  { _controller: RestBundle:flights\Flights:cancelFlight }
+    requirements:
+        methods: POST
+
+_rest_flights_issue_ticket:
+    path:      "/api/flights/issue/ticket/"
+    defaults: { _controller: RestBundle:flights\Flights:issueAirTicket }
+    requirements:
+        methods: GET
+        
+_rest_flights_details:
+    path:      "/api/flights/details/"
+    defaults: { _controller: RestBundle:flights\Flights:details }
+    requirements:
+        methods: GET
+
+_rest_flights_Bookings:
+    path:      "/api/v1/flights/bookings"
+    defaults:  { _controller: RestBundle:flights\Flights:myBookingFlights }
+    requirements:
+        methods: POST

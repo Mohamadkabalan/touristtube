@@ -1,0 +1,126 @@
+ {% include "head.html" %}
+ <script type="text/javascript" src="//google-maps-utility-library-v3.googlecode.com/svn-history/r290/trunk/infobox/src/infobox_packed.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var markersArrayData =[];
+    var boxText = document.createElement("div");
+    var myOptions = {
+        content: boxText
+        , disableAutoPan: false
+        , maxWidth: 0
+        , pixelOffset: new google.maps.Size(-140, 0)
+        , zIndex: null
+        , boxStyle: {
+             opacity: 0.9
+            , width: "120px"
+            , height: "140px"
+        }
+        , closeBoxURL: ""
+        , infoBoxClearance: new google.maps.Size(1, 1)
+        , isHidden: false
+        , pane: "floatPane"
+        , enableEventPropagation: false
+    };
+
+    ib = new InfoBox(myOptions);
+    var image = new google.maps.MarkerImage(ReturnLink("/images/map_marker.png"));							
+    var mapOptions = {
+      center: new google.maps.LatLng( 46.227638 , 2.213749 ),
+      zoom: 4,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("googlemap_places"),mapOptions);
+    
+    {% for media_pin in media_pinArray %}
+        markersArrayData.push(Array(map,'{{ media_pin.name|raw }}', '{{ media_pin.page_link|raw }}', {{ media_pin.lat|raw }}, {{ media_pin.log|raw }} ));     
+    {% endfor %}
+        
+        setTimeout(function() {
+            for (var k = 0; k < markersArrayData.length; k++) {
+                var data_arr = markersArrayData[k];
+                drawmarkers( data_arr[0] , data_arr[1] , data_arr[2] , data_arr[3] , data_arr[4] );
+            }
+        }, 3000);
+        function drawmarkers( map , title, page_link , la , lo ) {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(la, lo),
+                map: map,
+                icon: image,
+                title: title
+            });
+
+            //Setting the onclick marker function
+            var base_url = '';
+            var onMarkerClick = function() {
+                ib.close();
+                var marker_c = this;
+
+                var content = '<div class="mtooltip"><div class="mtooltipin"><div class="clsgoo" onClick="ib.close();">X</div>';
+
+                content += '<div class="mtooltip_title">' + title + '</div>';
+
+                content += '</div><div class="anchor_bk"></div><div class="mtooltip_buttons"><a class="mtooltip_buts marginleft9" href="'+page_link+'">'+t('view')+'</a></div></div>';
+                
+                boxText.innerHTML = content;
+                ib.open(map, marker_c);
+            };
+            google.maps.event.addListener(marker, 'click', onMarkerClick);
+        }
+        google.maps.event.addListener(map, 'click', function() {
+            ib.close();
+        });
+    });
+</script>
+
+<div class="upload-overlay-loading-fix"><div></div></div>
+<div id="MiddleBody">
+    <div class="liveBar">
+        <div class="liveBarIn">
+            <div id="collapsemenu">
+                <div id="filtercmb">
+                    <div class="collapse_thumb"><img src="{{ image_link|raw }}" alt=""/></div>
+                    <select name="filterby" id="filterby" class="select3" style="width:130px;" onchange="changeFilter(this);">
+                        <option value="1"  selected="selected">{{ 'SMALL MAP'|lang }}</option>
+                        <option value="2" >{{ 'HALF SCREEN'|lang }}</option>
+                        <option value="3" >{{ 'FULLSCREEN'|lang }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="MiddleMainLive">
+        <div id="mapLiveCam">            
+            <div id="googlemap_places"></div>
+        </div>
+    </div>
+    <div id="MainContent">
+        <div id="menu_discover_content">
+            <div class="menu_discover_contentleft"> 
+                <div class="discover_left_line"><span>Trending Destinations</span></div>
+                    <ul class="products">
+                    {% for country in contry_info %}
+                        <li>
+                            <a class="avb_discover_item" href="{{ country.page_link|raw }}">
+                                <img src="{{ country.imglink|raw }}" class="discover_img" width="104" height="104" />
+                                <h4>{{ country.titre|raw }}</h4>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+            </div>
+            <div class="menu_discover_contentright">
+                <div class="menu_discover_contentrightSRCH">
+                    <div class="discover_heading">{{ 'DISCOVER YOUR DESTINATION'|lang }}</div>
+                    <input type="text" id="inputArea" value="" placeholder="..." onkeypress="return checkSubmitcatadd(event)"/>
+                    <div class="discover_button">{{ 'search'|lang }}</div>
+                </div>
+                <div class="menu_discover_contentrightTXT">
+                    <div class="t_discover">{{ 'T Discover'|lang }}<br />{{ 'A helpful tool for anyone who is making travel plans.'|lang }}</div>
+                    <div class="discover">{{ 'Discover a new country,'|lang }}</div>
+                    <div class="discover">{{ 'Save your favorite restaurants, hotels and touristic places'|lang }}</div>
+                    <div class="discover">{{ action_text|raw }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

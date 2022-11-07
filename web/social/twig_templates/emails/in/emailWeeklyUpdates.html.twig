@@ -1,0 +1,266 @@
+{# empty Twig template #}
+<body>
+<table width="633" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tbody>
+    {{displayTopHead}}
+    <tr>
+<td width="633" valign="top">
+<table cellspacing="0" cellpadding="0" width="633" border="0">
+<tr>
+<td bgcolor="#FFFFFF" width="43"></td>
+<td>
+<table width="478" border="0" cellspacing="0" cellpadding="0">
+<tr><td height="3" valign="top"></td></tr>
+<tr>
+<td width="478" align="left" height="62" valign="top">
+    <font face="Arial, Helvetica, sans-serif" size="3" color="#1f1f1f">Hello  {{owner_name|raw}},</font></td>
+</tr>
+<tr><td valign="top" align="left" height="39">
+        <span style="color: #1f1f1f; font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+            Find out what's happening on your Tourist Tube Channel {{channel_name}}</span></td></tr>
+<tr><td></td></tr>
+<tr><td height="24"></td></tr>
+</table>
+</td>
+<td bgcolor="#FFFFFF" width="20" valign="top"></td>
+<td bgcolor="#FFFFFF" width="92" valign="top"><img src="{{ttpath}}comachannels.jpg" width="58" height="59" /></td>
+</tr>
+</table>
+</td>
+</tr>
+{% if newconnec_channels_Arr|length > 0 %}
+<tr>
+<td width="494" align="left" height="3" valign="top" style="padding-left:36px">
+    <span style="color: #000000; font-family:Arial, Helvetica, sans-serif; padding-left:8px; 
+          font-size:13px;"><strong>new connections<font color="#e9c21b"> ({{newconnecNum}})</font></strong></span></td>
+</tr>
+<tr>
+<td>
+<table width="546" valign="top" border="0">
+<tr>
+<td valign="top" width="494">
+{% set paddingtb =38 %}
+{% set columns =3 %}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-left:{{paddingtb}}px;">
+<tr>
+{% if newconnec_channels_Arr|length > 6 %}
+{% set maxcount = newconnec_channels_Arr|length %}
+{% else %}
+{% set maxcount = 6 %}
+{% endif %}
+{% for i in 0..maxcount %}
+{% if newconnec_channels_Arr[i][2] > 1 %}
+{% set followers = " followers" %}
+{% else %}
+{% set followers = " follower" %}
+{% endif %}
+
+{% if newconnec_channels_Arr[i][3] > 1 %}
+{% set friends = " friends" %}
+{% else %}
+{% set friends = " friend" %}
+{% endif %}
+<td width="33%">
+<table  valign="top">
+<tr>
+<td align="left" valign="top"><img width="50px" height="50px"  src="{{newconnec_channels_Arr[i][0]}}" /></td>
+<td>
+<table>
+<tr>
+<td  align="left" valign="top"><span style="color: #797979; font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:3px;">{{newconnec_channels_Arr[i][1]}}</span></td>
+</tr>
+<tr>
+<td align="left" valign="top"><span style="color: #aaaaaa; font-family:Arial, Helvetica, sans-serif; font-size:10px;">{{newconnec_channels_Arr[i][3]}}  {{friends}} </span></td>
+</tr>
+<tr>
+<td align="left" valign="top"><span style="color: #aaaaaa; font-family:Arial, Helvetica, sans-serif; font-size:10px;line-height:3px;">{{newconnec_channels_Arr[i][2]}} {{followers}} </span></td>
+</tr>
+<tr><td align="left" valign="top" height="0"></td></tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+{% set i = i+1 %}
+{% if i % columns ==0 %}
+<td height="0"></td>
+{% endif %}
+
+{% endfor %}
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="left"><span style="color: #e9c21b; font-family:Arial, Helvetica, sans-serif; padding-left:43px; font-size:11px;"><u><strong><i><a href="{{checkout_new_lnk}}" target="_blank" style="text-decoration: none; color:#e8c11f">check out more...</a></i></strong></u></span></td>
+</tr>
+<tr><td height="44"></td></tr>
+
+{% endif %}
+{% if disconnec_channels_Arr|length > 0%}
+<tr>
+<td width="494" align="left" height="3" valign="top" style="padding-left:36px"><span style="color: #000000; font-family:Arial, Helvetica, sans-serif; padding-left:8px; font-size:13px;"><strong>disconnections <font color="#e9c21b"> ({{disconnecNum}})</font></strong></span></td>
+</tr>
+<tr>
+<td>
+<table width="546" valign="top" border="0">
+<tr>
+<td valign="top" width="494">
+{% set paddingtb = 38 %}
+{% set columns = 3 %}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-left:{{paddingtb}}px;">
+<tr>
+{% for i in 0..disconnec_channels_Arr|length %}  
+{% if disconnec_channels_Arr[i][2] > 1 %}
+{% set followers = " followers" %}
+{% else %}
+{% set followers = " follower" %}
+{% endif %}
+{% if disconnec_channels_Arr[i][3] > 1 %}
+{% set friends = " friends" %}
+{% else %}
+{% set friend = " friend" %}
+{% endif %}
+<td width="33%">
+<table  valign="top">
+<tr>
+<td align="left" valign="top"><img width="50px" height="50px"  src="{{disconnec_channels_Arr[i][0]}}" /></td>
+<td>
+<table>
+<tr>
+<td  align="left" valign="top"><span style="color: #797979; font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:3px;">{{disconnec_channels_Arr[i][1] }}</span></td>
+</tr>
+<tr>
+<td align="left" valign="top"><span style="color: #aaaaaa; font-family:Arial, Helvetica, sans-serif; font-size:10px;">{{disconnec_channels_Arr[i][3]}} {{friends}} </span></td>
+</tr>
+<tr>
+<td align="left" valign="top"><span style="color: #aaaaaa; font-family:Arial, Helvetica, sans-serif; font-size:10px;line-height:3px;">{{disconnec_channels_Arr[i][2]}} {{followers}} </span></td>
+</tr>
+<tr>
+<td align="left" valign="top" height="0"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+{% set i = i+1 %}
+{% if i% columns == 0 %}
+<td height="0"></td>
+{% endif %}
+
+{% endfor %}
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td align="left"></td></tr>
+<tr><td height="44"></td></tr>
+{% endif %}
+{% if sponsors_Arr|length > 0 %}
+<tr>
+<td width="494" align="left" height="15" valign="top" style="padding-left:36px"><span style="color: #000000; font-family:Arial, Helvetica, sans-serif; padding-left:8px; font-size:13px;"><strong> new sponsors <font color="#e9c21b"> ({{viewNum}})</font></strong></span></td>
+</tr>
+<tr>
+<td width="474" valign="top">
+<table width="546" valign="top" border="0">
+<tr>
+<td valign="top" width="494">
+{% set paddingtb = 38 %}
+{% set columns = 3 %}    
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-left:{{paddingtb}}px;">
+<tr>
+{% if sponsors_Arr < 6 %}
+{% set maxcount = sponsors_Arr %}
+{% else %}
+{% set maxcount = 6 %}
+{% endif %}
+{% for i in 0..maxcount %}
+{% if sponsors_Arr[i][2] > 1 %}
+{% set connections = " connections" %}
+{% else %}
+{% set connections = " connection" %}
+{% endif %}
+<td width="33%">
+<table  valign="top">
+<tr>
+<td align="left" valign="top"><img width="50px" height="50px"  src="{{sponsors_Arr[i][0]}}" /></td>
+<td>
+<table>
+<tr>
+<td  align="left" valign="top"><span style="color: #797979; font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:3px;">{{sponsors_Arr[i][1]}}</span></td>
+</tr>
+<tr>
+<td align="left" valign="top"><span style="color: #aaaaaa; font-family:Arial, Helvetica, sans-serif; font-size:10px;">{{sponsors_Arr[i][2] }} {{connections}} </span></td>
+</tr>
+<tr>
+<td align="left" valign="top"><a href="{{sponsors_Arr[i][4]}}" target="_blank" style="text-decoration: none; color: #797979; font-size:10px;"> sponsor  </a></td>
+</tr>
+<tr>
+<td align="left" valign="top" height="0"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+{% set i=i+1 %}
+{% if i% columns == 0 %}
+<td height="0"></td>
+{% endif %}
+{% endfor %}
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="left"><span style="color: #e9c21b; font-family:Arial, Helvetica, sans-serif; padding-left:43px; font-size:11px;"><u><strong><i><a href="{{checkout_views_lnk}}" target="_blank" style="text-decoration: none; color:#e8c11f">check out more...</a></i></strong></u></span></td>
+</tr>
+<tr><td height="39"></td></tr>
+{% endif %}
+<tr>
+<td align="left" style="padding-top:6px"><span style="color: #e9c21b; font-family:Arial, Helvetica, sans-serif; padding-left:43px; font-size:11px;"><u><strong><i><a href="{{channel_lnk}}" target="_blank" style="text-decoration: none; color:#e8c11f">go to my channels</a></i></strong></u></span></td>
+</tr>
+<tr><td height="15"></td></tr>
+<tr>
+<td width="633" valign="top">
+<table cellspacing="0" cellpadding="0" width="633" border="0">
+<tr>
+<td valign="top" width="43"></td>
+<td width="459" align="right" valign="middle"><img src="{{ttpath}}arrowchannels.jpg" width="3" height="5"/></td>
+<td width="3"></td>
+<td width="115" align="right" valign="top">
+    <font face="Arial, Helvetica, sans-serif" size="2" color="#e9c21b"><a href="https://www{{subdomain_suffix|raw}}.touristtube.com" target="_blank" style="text-decoration: none; color:#e8c11f">www.touristtube.com</a></font></td>
+<td valign="top" width="16"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width="633" valign="top">
+<table cellspacing="0" cellpadding="0" width="633" border="0">
+<tr>
+<td scope="row" height="1" width="16" bgcolor="#FFFFFF"></td>
+<td colspan="3" scope="row" width="601" height="1" bgcolor="#dedede"></td>
+<td scope="row" height="1" width="16" bgcolor="#FFFFFF"></td>
+</tr>
+<tr>
+<td height="19" bgcolor="#FFFFFF" colspan="5"></td>
+</tr>
+</table>
+</td>
+</tr>
+{{displayfoot}}
+</tbody>
+</table>
+<br><br>
+</body>

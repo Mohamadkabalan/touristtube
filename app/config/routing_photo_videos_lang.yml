@@ -1,0 +1,8 @@
+_media_new_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/media_new"
+    defaults:  { _controller: TTBundle:PhotoVideos:mediaNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

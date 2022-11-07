@@ -1,0 +1,238 @@
+PaymentBundle\Entity\Payment:
+    type: entity
+    table: payment
+    repositoryClass: PaymentBundle\Repository\PaymentRepository
+    indexes:
+        merchantReference:
+            columns:
+                - merchant_reference
+        fortId:
+            columns:
+                - fort_id
+        userId:
+            columns:
+                - user_id
+    oneToMany:
+        paymentTransactionFeedbackList:
+            targetEntity: PaymentTransactionFeedback
+            mappedBy: payment
+            cascade: [persist]
+
+    id:
+        uuid:
+            type: string
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+    oneToOne:
+        passengerNameRecord:
+            targetEntity: FlightBundle\Entity\PassengerNameRecord
+            mappedBy: payment
+            cascade: [persist]
+    fields:
+        merchantReference:
+            type: string
+            length: 20
+            nullable: true
+            column: merchant_reference
+        fortId:
+            type: string
+            length: 20
+            nullable: true
+            column: fort_id
+        userId:
+            type: integer
+            nullable: true
+            options:
+                default: 0
+                unsigned: true
+            column: user_id
+        command:
+            type: string
+            length: 45
+            options:
+                fixed: false
+        tokenName:
+            type: string
+            length: 100
+            options:
+                fixed: false
+            column: token_name
+        customerIp:
+            type: string
+            length: 45
+            options:
+                fixed: false
+            column: customer_ip               
+        language:
+            type: string
+            length: 2
+            options:
+                fixed: true
+        status:
+            type: string
+            length: 2
+            options:
+                fixed: true
+        responseCode:
+            type: string
+            column: response_code
+            length: 2
+        responseMessage:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            column: response_message
+        rememberMe:
+            type: boolean
+            nullable: false
+        type:
+            type: string
+            length: 10
+            options:
+                fixed: false
+            column: type
+        creditCardNumber:
+            type: string
+            length: 255
+            nullable: true
+            options:
+                fixed: false
+            column: credit_card_number
+        customerName:
+            type: string
+            length: 255
+            nullable: true
+            column: customer_name
+        deviceFingerPrint:
+            type: text
+            options:
+                fixed: false
+            column: device_fingerprint
+        mobileSdk:
+            type: boolean
+            nullable: false
+        userAgent:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            column: user_agent
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        updatedDate:
+            type: datetime
+            nullable: false
+            column: updated_date
+        currency:
+            type: string
+            nullable: false
+            length: 3
+        originalAmount:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: original_amount
+        amount:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+        displayCurrency:
+            type: string
+            nullable: false
+            length: 3
+            column: display_currency
+        displayOriginalAmount:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: display_original_amount
+        displayAmount:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: display_amount
+        campaignId:
+            type: integer
+            nullable: true
+            options:
+                default: 0
+                unsigned: true
+            column: campaign_id
+        couponCode:
+            type: string
+            length: 100
+            options:
+                fixed: false
+            column: coupon_code
+        email:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: email
+        moduleTransactionId:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: module_transaction_id
+        paymentProvider:
+            type: integer
+            nullable: true
+            column: payment_provider
+        moduleId:
+            type: integer
+            nullable: true
+            column: module_id
+        paymentType:
+            type: string
+            length: 25
+            nullable: true
+            column: payment_type
+        amountFBC:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_fbc
+        amountSBC:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_sbc
+        accountCurrency:
+            type: string
+            length: 3
+            nullable: true
+            column: account_currency      
+        accountCurrencyAmount:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: true
+            column: account_currency_amount
+        moduleCurrency:
+            type: string
+            lenght: 3
+            nullable: true
+            column: module_currency
+        moduleAmount:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: true
+            column: module_amount  
+                 
+    lifecycleCallbacks: {  }

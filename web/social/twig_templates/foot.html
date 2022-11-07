@@ -1,0 +1,132 @@
+<!-- <div id="BottomSlider"> -->
+{% if userIsLogged == 1%}
+    <div class="footer_style_blank" data-case="1"></div>
+{% else %}
+    <div class="footer_style_blank" data-case="2"></div>
+{% endif %}    
+    
+<div class="footer_container_all">
+    
+    
+       <div id="BottomContainer">
+    <div class="footer_top_bar">
+              <a title="{{ 'tourist tube'|lang }}" href="{{ ''|link }}" class="logo_bottom"></a>
+              <nav>
+        <ul>
+                  <li><a title="{{ 'home'|lang }}" href="{{ ''|link }}">{{ 'home'|lang }}</a></li>
+                </ul>
+      </nav>
+              <div class="top_scroll">
+        <ul>
+                  <li>
+            <div class="FooterBottomBackTop1"> 
+                <a id="BackToTop" style="position: absolute; right: 0px" href="#"> {{ 'Back To Top'|lang }} </a>
+            </div>
+          </li>
+                  <li> <a id="FooterCollaspeExpand" href="{{ ''|link }}">
+                    <div class="FooterCollaspeExpandOver">
+                    <div class="ProfileHeaderOverin">{{ 'open menu'|lang }}</div>
+                    <div class="icons-overtik"></div>
+                  </div>
+                    <div class="BottomFooterButton BottomFooterButtonExpand" id="BottomFooterButton"> </div>
+                    </a> </li>
+                </ul>
+      </div>
+            </div>
+    <!--end footer top bar --> 
+    
+  </div>
+       <div id="BottomContainer2" style="display:none; height: 0;">
+           
+    <div class="BottomContainer2Over">
+        <div class="ProfileHeaderOverin"></div>
+        <div class="icons-overtik"></div>
+    </div>
+    <div id="BottomContainerLinks">
+      <ul>
+        <li>
+            <h1>{{ 'touristtube.com'|lang }} </h1>
+             <ul>
+			<li> <a title="{{ 'about touristtube.com'|lang }}" data-title="{{ 'about touristtube.com'|lang }}" href="{{ 'about-us'|link }}" class="requestinvite ttmenuclass"> {{ 'about us'|lang }} </a> </li>
+			<li> <a title="{{ 'Things to do'|lang }}" data-title="{{ 'Things to do'|lang }}" href="{{ 'things-to-do'|link }}" class="requestinvite ttmenuclass"> {{ 'Things to do'|lang }} </a> </li>
+			<li> <a title="{{ 'Access our partners\' channels'|lang }}" data-title="{{ 'Access our partners\' channels'|lang }}" href="{{channels_page_link|raw}}" class="requestinvite ttmenuclass"> {{ 'TT channels'|lang }} </a> </li>
+			<li> <a title="{{ 'Tourist Live'|lang }}" data-title="{{ 'Tourist Live'|lang }}" href="{{ 'live'|link }}" class="requestinvite ttmenuclass"> {{ 'Tourist Live'|lang }} </a> </li>
+			
+			<li> <a title="{{ 'Review and Rate Hotels and Restaurants'|lang }}" data-title="{{ 'Review and Rate Hotels and Restaurants'|lang }}" href="{{ 'review'|link }}" class="requestinvite ttmenuclass"> {{ 'review & rate'|lang }} </a> </li>
+			
+                        {% if userIsLogged == false %}
+                            <li> <a title="{{ 'register'|lang }}" data-title="{{ 'register'|lang }}" href="{{ 'register'|link }}" class="requestinvite ttmenuclass"> {{ 'register'|lang }} </a> </li>
+                        {% else %}
+<!--                            <li> <a title="{{ 'send invitation'|lang }}" data-title="{{ 'send invitation'|lang }}" href="{{ 'account/invite'|link }}" class="requestinvite ttmenuclass"> {{ 'send invitation'|lang }} </a> </li>                            -->
+                        {% endif %}
+                        <li> <a title="{{ 'touristtube blog'|lang }}" data-title="{{ 'touristtube blog'|lang }}" href="http://blog.touristtube.com" target="_blank" class="requestinvite ttmenuclass"> {{ 'touristtube blog'|lang }} </a> </li>                            
+          </ul>
+        </li>
+        <li>
+        <h2>{{ 'Legal'|lang }}</h2>
+          <ul>
+                <li><a title="{{ 'privacy policy'|lang }}" data-title="{{ 'privacy policy'|lang }}" href="{{ 'privacy-policy'|link }}" class="ttmenuclass">{{ 'privacy policy'|lang }}</a> </li>
+                <li><a title="{{ 'terms & conditions'|lang }}" data-title="{{ 'terms & conditions'|lang }}" href="{{ 'terms-and-conditions'|link }}" class="ttmenuclass">{{ 'terms & conditions'|lang }}</a></li>
+                <li><a title="{{ 'disclaimer'|lang }}" data-title="{{ 'disclaimer'|lang }}" href="{{ 'disclaimer'|link }}" class="ttmenuclass">{{ 'disclaimer'|lang }}</a></li>
+          </ul>
+        </li>
+        <li>
+        <h2>{{ 'support & contact'|lang }}</h2>
+        <ul>
+            <li><a title="{{ 'Support'|lang }}" data-title="{{ 'Support'|lang }}" href="{{ 'support'|link }}" class="ttmenuclass">{{ 'support'|lang }}</a></li>
+            <li><a title="{{ 'contact us'|lang }}" data-title="{{ 'contact us'|lang }}" href="{{ 'contact'|link }}" class="ttmenuclass">{{ 'contact us'|lang }}</a></li>
+            <li><a title="{{ 'help'|lang }}" data-title="{{ 'help'|lang }}" href="{{ 'help'|link }}" class="ttmenuclass">{{ 'help'|lang }}</a></li>
+	    <li><a title="{{ 'faq'|lang }}" data-title="{{ 'faq'|lang }}" href="{{ 'faq'|link }}" class="ttmenuclass">{{ 'faq'|lang }}</a></li>
+          </ul>
+       </li>
+{% if userIsLogged == false %}
+        <li>
+                  <h2>{{ 'Account Info'|lang }}</h2>
+                  <ul>
+            <li> <a title="{{ 'register'|lang }}" data-title="{{ 'register'|lang }}" href="{{ 'register'|link }}" class="requestinvite ttmenuclass">{{ 'register'|lang }}</a> </li>
+            <li> <a title="{{ 'sign in'|lang }}" data-title="{{ 'sign in'|lang }}" id="footer_sign_in" href="javascript:;" class="ttmenuclass">{{ 'sign in'|lang }}</a> </li>
+          </ul>
+                </li>
+{% endif %}
+      </ul>
+            </div>
+  </div>
+    
+</div>
+
+<script>
+    function BottomFooterButton(){
+        $("#BottomContainer2").slideToggle();}
+
+
+// 17 March **********************************
+//------------------------------------------------------------------
+/*
+$(document).ready(function(){
+        var height  =   $(document).height()-$('#TopMenu').height()-$('#nav_bar').height();
+   alert(height+'-'+$('#TopMenu').height()+'-'+$('#nav_bar').height());
+        var wid =   jQuery(window).width();
+        if(wid<768){
+            $('#MiddleInside, #MiddleInsideNormal, #MiddleBody').css('min-height',height+'px');
+        }
+});
+*/
+
+// New add 23 March **********************************
+  $(document).ready(function(){
+      var wid = jQuery(window).width();
+	    if(wid<768){
+        $(document).scroll(function () {
+            var y = $(this).scrollTop();
+             if(y >800 ) {
+              //$('.footer_container_all').fadeIn();
+				$('.footer_container_all').show();
+            } else {
+                $('.footer_container_all').hide();
+            }
+        });
+	  }
+    });
+
+</script>
+{% include "closing-footer.twig" %}

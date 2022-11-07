@@ -1,0 +1,1 @@
+UPDATE `main_entity_type` SET `name` = 'Landmarks and Attractions in 360 virtual tour' WHERE `main_entity_type`.`id` = 4;

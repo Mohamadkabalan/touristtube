@@ -1,0 +1,234 @@
+<div class="row hidden-sm hidden-xs">
+	<div class="col-xs-12">
+		<h3 class="refine_title">{{'Refine your search'|trans}}</h3>
+	</div>
+</div>
+<form autocomplete="on">
+	<div class="row margin-bottom-38 checkboxcontainer">
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-8">
+					<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Departure airports'|trans}}</p>
+				</div>
+				<div class="col-xs-4">
+					<p class="refine_subtitles pull-right from_subtitles">{{'from'|trans}}</p>
+				</div>
+			</div>
+			{% for code, deptair in results['departureAirports'] %}
+				<div class="row airlines_refine" data-price="{{deptair['price']}}">
+					<div class="col-xs-7">
+						<div class="form-check">
+							<input type="checkbox" id="search_{{loop.index}}_{{refine_search|raw}}" class="form-check-input" data-value="departure_airports" value="{{code}}">
+							<label for="search_{{loop.index}}_{{refine_search|raw}}" class="form-check-label"> {{code}} ({{deptair['city']}})</label>
+						</div>
+					</div>
+					<div class="col-xs-5">
+						<p class="checkboxright_text pull-right">
+							<label for="" class="form-check-label price-convert">
+								<span class="currency-convert-text">{{ bargainRequest.currencyCode }}</span>
+								<span class="price-convert-text">{{deptair['price']}}</span>
+							</label>
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+<div class="row margin-bottom-38 checkboxcontainer">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'departure time'|trans}} - {{ bargainRequest.originLocation.city.name }}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="departure_time" id="early_morningID_{{refine_search|raw}}" value="early_morning">
+					<label class="form-check-label" for="early_morningID_{{refine_search|raw}}">{{'early morning'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">00:00-04:59</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="departure_time" id="morningID_{{refine_search|raw}}" value="morning">
+					<label class="form-check-label" for="morningID_{{refine_search|raw}}">{{'morning'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">05:00-11:59</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="departure_time" id="afternoonID_{{refine_search|raw}}" value="afternoon">
+					<label class="form-check-label" for="afternoonID_{{refine_search|raw}}">{{'afternoon'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">12:00-17:59</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="departure_time" id="eveningID_{{refine_search|raw}}" value="evening">
+					<label class="form-check-label" for="eveningID_{{refine_search|raw}}">{{'evening'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">18:00-23:59</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row margin-bottom-38 checkboxcontainer">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'arrival time'|trans}} - {{ bargainRequest.destinationLocation.city.name }}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="arrival_time" id="morningI_{{refine_search|raw}}" value="morning">
+					<label class="form-check-label" for="morningI_{{refine_search|raw}}">{{'morning'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">05:00-11:59</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="arrival_time" id="afternoonI_{{refine_search|raw}}" value="afternoon">
+					<label class="form-check-label" for="afternoonI_{{refine_search|raw}}">{{'afternoon'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">12:00-17:59</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="arrival_time" id="eveningI_{{refine_search|raw}}" value="evening">
+					<label class="form-check-label" for="eveningI_{{refine_search|raw}}">{{'evening'|trans}}</label>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right">18:00-23:59</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row margin-bottom-38 checkboxcontainer">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'airlines included'|trans}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="select_input_div">{{'Select airlines'|trans}}</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-xs-4 col-xs-push-8">
+						<p class="refine_subtitles pull-right from_subtitles">{{'from'|trans}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{#
+		{% for airline_code, airline in response['airlines'] %}
+		<div class="row airlines_refine" data-price="{{airline['amount_attr']}}">
+			<div class="col-xs-7 no-padding-right margin-bottom-5">
+				<div class="form-check">
+					<div class="pull-left checkbox_holder">
+						<input autocomplete="on" type="checkbox" class="form-check-input" data-value="airlines" id="airline_{{airline['name']|raw}}_{{refine_search|raw}}" value="{{airline_code|raw}}">
+					</div>
+					<div class="pull-left label_holder">
+						<label class="form-check-label" for="airline_{{airline['name']|raw}}_{{refine_search|raw}}">{{airline['name']|raw}}</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<p class="checkboxright_text pull-right price-convert"><span class="currency-convert-text">{{response['currency_code']|raw}}</span> <span class="price-convert-text">{{airline['amount']|raw}}</span></p>
+			</div>
+		</div>
+		{% endfor %}
+		#}
+
+	</div>
+</div>
+<div class="row margin-bottom-38 checkboxcontainer">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'stops'|trans}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 bigpad_right">
+				<span id="{{ refine_search }}_11" class="low hidden">{{'Example low value'|trans}}</span>
+				<span id="{{ refine_search }}_12" class="high hidden">{{'Example high value'|trans}}</span>
+				<input id="{{ refine_search }}_13" class="stopsslider" data-value="stops" type="text"/>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row margin-bottom-38 checkboxcontainer">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="refine_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'Price'|trans}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 bigpad_right">
+				<span id="{{ refine_search }}_14" class="low hidden">{{'Example low value'|trans}}</span>
+				<span id="{{ refine_search }}_15" class="high hidden">{{'Example high value'|trans}}</span>
+				<input id="{{ refine_search }}_16" class="priceslider" data-value="price" type="text"/>
+			</div>
+		</div>
+
+	</div>
+</div>
+<div class="row checkboxcontainer">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="other" id="best_combination_{{refine_search|raw}}" value="best_combination">
+					<label class="form-check-label" for="best_combination_{{refine_search|raw}}">{{'Best combination'|trans}}</label>
+				</div>
+			</div>
+		</div>
+    {% if enable_refundable %}
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" data-value="other" id="refundable_only_{{refine_search|raw}}" value="refundable_only">
+					<label class="form-check-label" for="refundable_only_{{refine_search|raw}}">{{'Refundable only'|trans}}</label>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+</form>

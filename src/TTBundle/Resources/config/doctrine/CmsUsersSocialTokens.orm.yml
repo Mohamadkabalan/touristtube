@@ -1,0 +1,51 @@
+TTBundle\Entity\CmsUsersSocialTokens:
+    type: entity
+    table: cms_users_social_tokens
+    repositoryClass: TTBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        accountType:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: account_type
+        socialId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: social_id
+        oauthToken:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: oauth_token
+        oauthTokenSecret:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: oauth_token_secret
+        status:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

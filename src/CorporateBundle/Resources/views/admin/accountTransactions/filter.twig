@@ -1,0 +1,108 @@
+{% if filterSuffix is not defined %}
+	{% set filterSuffix = "" %}
+{% endif %}
+{% if searchAccountId is not defined %}
+	{% set searchAccountId = "" %}
+{% endif %}
+{% if searchUserId is not defined %}
+    {% set searchUserId = "" %}
+{% endif %}
+
+<div class="row no-margin margin_bottom_20">
+    <div class="col-xs-12 nopad">
+        <p class="blue font-24 line-height-26 padding_left_17"><span class="toggledtitle">{{'Filters'|trans}}</span><i class="fas fa-angle-double-left angleleft_style"></i><i class="fas fa-angle-double-right angleright_style"></i></p> 
+    </div>
+</div>
+
+<div class="row no-margin toggledmenu">
+    <div class="col-xs-12 nopad">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By date Interval'|trans}}</p>
+            </div>
+        </div>
+        <div class="row no-margin">
+            <div id="dateRange" class="col-xs-12 dateRangeContainer nopad">
+                <div class="row no-margin">
+                    <div id="fromContainer" class="col-xs-12 nopad mybookinginput">
+    					<input type="text" name="firstDay" id="firstDay" value="{{firstDay|raw}}" class="col-xs-12 account_range_picker fromDate" readonly="readonly" placeholder="{{'from'|trans}}">
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div id="toContainer" class="col-xs-12 nopad mybookinginput">
+                        <input type="text" name="lastDay" id="lastDay" value="{{lastDay|raw}}" class="col-xs-12 account_range_picker toDate" readonly="readonly" placeholder="{{'to'|trans}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if role is defined %}
+    <div class="row no-margin toggledmenu">
+    	<div class="col-xs-12 nopad">
+    	    <div class="row no-margin">
+        		<div class="col-xs-12 nopad">
+        		    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by name of account'|trans}}</p>
+        		</div>
+    	    </div>
+    	    <div class="row no-margin">
+        		<div id="" class="col-xs-12 nopad mybookinginput">
+        		    <input type="text" class="col-xs-12" id="account{{ filterSuffix }}" name="accountId" {% if accountName is defined %}value="{{accountName|raw}}"{% else %}value=""{% endif %} data-value-id="{{searchAccountId|raw}}" onDropDownSelect="onAccountFilterSelected" data-toggle="ttautocompleteAccount" placeholder="{{'Search name of account'|trans}}"/>
+        		</div>
+    	    </div>
+    	    <div class="row no-margin">
+        		<div class="col-xs-12 nopad">
+        		    <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by user'|trans}}</p>
+        		</div>
+    	    </div>
+    	    <div class="row no-margin">
+        		<div id="" class="col-xs-12 nopad mybookinginput">
+        		    <input type="text" class="col-xs-12" id="user{{ filterSuffix }}" name="userId" {% if searchUserName is defined %}value="{{searchUserName|raw}}"{% else %}value=""{% endif %} data-value-id="{{searchUserId|raw}}" onDropDownSelect="onUserFilterSelected" data-toggle="ttautocompleteUser" placeholder="{{'Search for User'|trans}}"/>
+        		</div>
+    	    </div>
+    	</div>
+    </div>
+{% endif %}
+
+<div class="row no-margin margin_top_20 toggledmenu">
+    <div class="col-xs-12 nopad">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'by currency'|trans}}</p>
+            </div>
+        </div>
+        <div class="row no-margin">
+            <div id="" class="col-xs-12 nopad mybookinginput">
+        		<input type="text" id="currency{{ filterSuffix }}" name="currencyCode" data-toggle="ttautocompleteCurrency" value="" data-value-id="" onDropDownSelect="onCurrencyFilterSelected" placeholder="{{'Search for currency'|trans}}" class="col-xs-12"/>
+            </div>
+        </div>		    
+    </div>
+</div>
+<div class="row no-margin margin_top_20 toggledmenu">
+    <div class="col-xs-12 nopad">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+                <p class="leftmenue_subtitles"><i class="fas fa-angle-right fa-lg"></i>{{'By Service'|trans}}</p>
+            </div>
+        </div>
+        <div class="row no-margin">
+            <div id="curr" class="col-xs-12 nopad mybookinginput">
+        		<select name="types" id="types{{ filterSuffix }}">
+        		    {% for module in modules %}
+        			<option value="{{module.id|raw}}">{{module.name|raw}}</option>
+        		    {% endfor %}
+        		</select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row no-margin margin_top_20 toggledmenu">
+    <div class="col-xs-12 nopad">
+        <div class="row no-margin">
+            <div class="col-xs-12 nopad">
+		<button data-role="button" data-type="default" onclick="filterInfo()" class="btn yellow_search_common_button">{{'Search'|trans}}</button>
+            </div>
+        </div>
+    </div>
+</div> 

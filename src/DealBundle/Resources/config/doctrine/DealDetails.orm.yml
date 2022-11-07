@@ -1,0 +1,121 @@
+DealBundle\Entity\DealDetails:
+    type: entity
+    table: deal_details
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealCode:
+            type: string
+            nullable: true
+            length: 45
+            column: deal_code
+        dealName:
+            type: string
+            nullable: true
+            length: 100
+            column: deal_name
+        description:
+            type: string
+            nullable: true
+            length: 500
+            column: description
+        startTime:
+            type: datetime
+            nullable: true
+            column: start_time
+        endTime:
+            type: datetime
+            nullable: true
+            column: end_time
+        countryId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: country_id
+        dealCityId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: deal_city_id
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+        dealTypeId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: deal_type_id
+        dealApiId:
+            type: bigint
+            nullable: true
+            length: 20
+            column: deal_api_id
+        price:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: price
+        currency:
+            type: string
+            nullable: true
+            length: 100
+            column: currency
+        published:
+            type: integer
+            nullable: false
+            column: published
+        priority:
+            type: integer
+            nullable: false
+            column: priority
+        priceBeforePromo:
+            type: integer
+            nullable: false
+            options:
+            unsigned: false
+            column: price_before_promo
+        longitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: longitude
+        latitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: latitude
+        duration:
+            type: string
+            nullable: true
+            length: 100
+            column: duration
+        #supplier:
+            #type: string
+            #nullable: true
+            #length: 255
+            #column: supplier
+    lifecycleCallbacks: {  }

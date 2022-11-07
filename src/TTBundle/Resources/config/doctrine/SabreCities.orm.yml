@@ -1,0 +1,35 @@
+TTBundle\Entity\SabreCities:
+    type: entity
+    table: sabre_cities
+    indexes:
+        code:
+            columns:
+                - code
+    id:
+        code:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                unsigned: true
+            id: true
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        countryCode:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+            column: country_code
+    oneToOne:
+        sabreAirport:
+            targetEntity: SabreAirports
+            mappedBy: sabreCity
+            cascade: [persist]
+    lifecycleCallbacks: {  }

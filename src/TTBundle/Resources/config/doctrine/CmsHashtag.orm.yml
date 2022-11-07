@@ -1,0 +1,32 @@
+TTBundle\Entity\CmsHashtag:
+    type: entity
+    table: cms_hashtag
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityType:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_type
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        key:
+            type: string
+            nullable: false
+            length: 140
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,59 @@
+_corpo_search_city_lang:
+    path:      "/{_locale}/corporate/SearchCity/{countryCode}"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:cityCombo, "countryCode": "" ,_locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_search_country_lang:
+    path:      "/{_locale}/corporate/SearchCountry"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:countryCombo, _locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_search_currency_lang:
+    path:      "/{_locale}/corporate/SearchCurrency"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:currencyCombo, _locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_get_city_info_lang:
+    path:      "/{_locale}/corporate/getCityInfo"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAdminAjax:getCityInfo, _locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_filterBy_account_transactions_lang:
+    path:      "/{_locale}/corporate/admin/filterAccountTransaction"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:filterAccountTransaction, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_show_account_transaction_detail_lang:
+    path:      "/{_locale}/corporate/admin/showAccountTransactionDetail"
+    defaults: { _controller: CorporateBundle:Admin\CorpoAccountTransactions:showAccountTransactionDetail, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_filter_user_payment_lang:
+    path:      "/{_locale}/corporate/admin/filterUser"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:filterUser, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_reset_password_lang:
+    path:      "/{_locale}/corporate/users/resetPassword"
+    defaults: { _controller: CorporateBundle:Admin\CorpoUsers:resetPassword, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_manage_bookings_reject_lang:
+    path:      "/{_locale}/corporate/booking/manage-bookings/reject"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:reject, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+
+_corpo_manage_bookings_cancel_lang:
+    path:      "/{_locale}/corporate/booking/manage-bookings/cancel"
+    defaults: { _controller: CorporateBundle:Admin\CorpoManageBookings:cancel, _locale: "%locale%", seotitle: "", seodescription: "",   seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"

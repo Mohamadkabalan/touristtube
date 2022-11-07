@@ -1,0 +1,27 @@
+TTBundle\Entity\ElasticUpdateLog:
+    type: entity
+    table: elastic_update_log
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        indexname:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: indexName
+        lastupdated:
+            type: datetime
+            nullable: true
+            options:
+                default: CURRENT_TIMESTAMP
+            column: lastUpdated
+    lifecycleCallbacks: {  }

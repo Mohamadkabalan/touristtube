@@ -1,0 +1,14 @@
+<div class="rblk col-lg-12 categoriesWrapper">
+	<div class="btitle ">
+		<div class="bg"></div>
+		<div class="px"></div>
+		<div class="padd categories"><span class="visible-lg">{{ 'categories'|trans }}</span></div>
+	</div>
+	<div class="categoryListWrapper">
+		<ul>
+		{% for category in catArray %}            
+            <li><a href="{{ category.link|raw }}" title="{{ category.name|raw }}">{{ category.name|raw }}</a></li>           
+        {% endfor %} 
+		</ul>
+	</div>
+</div>

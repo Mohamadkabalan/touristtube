@@ -1,0 +1,1 @@
+ALTER TABLE `cms_users` ADD `allow_approval_all_user` BOOLEAN NOT NULL AFTER `parent_user_id`;

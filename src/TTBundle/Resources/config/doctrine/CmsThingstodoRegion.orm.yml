@@ -1,0 +1,95 @@
+TTBundle\Entity\CmsThingstodoRegion:
+    type: entity
+    table: cms_thingstodo_region
+    repositoryClass: TTBundle\Repository\DiscoverQueryRQRepository
+    indexes:
+        id:
+            columns:
+                - id
+        id_2:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        aliasId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: alias_id
+        h3:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p3:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        h4:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        p4:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false	
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        image:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        mobileImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: mobile_image
+        showMain:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: show_main
+    lifecycleCallbacks: {  }

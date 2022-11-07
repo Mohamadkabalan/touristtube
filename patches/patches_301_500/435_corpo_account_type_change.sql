@@ -1,0 +1,1 @@
+ALTER TABLE `corpo_account` CHANGE `account_type_id` `account_type_id` INT(11) NULL;

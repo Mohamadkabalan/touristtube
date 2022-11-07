@@ -1,0 +1,42 @@
+TTBundle\Entity\Timezone:
+    type: entity
+    table: timezone
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        countryCode:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: false
+            column: country_code
+        timezoneid:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        gmtoffset:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        dstoffest:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        rawoffset:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    lifecycleCallbacks: {  }

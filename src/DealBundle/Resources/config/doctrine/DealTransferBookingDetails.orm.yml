@@ -1,0 +1,120 @@
+DealBundle\Entity\DealTransferBookingDetails:
+    type: entity
+    table: deal_transfer_booking_details
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealBookingId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_booking_id
+        arrivalPriceId:
+            type: string
+            nullable: true
+            length: 30
+            column: arrival_price_id
+        departurePriceId:
+            type: string
+            nullable: true
+            length: 30
+            column: departure_price_id
+        airportName:
+            type: string
+            nullable: false
+            length: 255
+            column: airport_name
+        airportCode:
+            type: string
+            nullable: false
+            length: 30
+            column: airport_code
+        address:
+            type: string
+            nullable: false
+            length: 255
+            column: address
+        serviceCode:
+            type: string
+            nullable: false
+            length: 5
+            column: service_code
+        arrivalDate:
+            type: date
+            nullable: true
+            column: arrival_date
+        arrivalTime:
+            type: string
+            nullable: true
+            length: 20
+            column: arrival_time
+        departureDate:
+            type: date
+            nullable: true
+            column: departure_date
+        arrivalFlightDetails:
+            type: string
+            nullable: true
+            length: 255
+            column: arrival_flight_details
+        arrivalFrom:
+            type: string
+            nullable: true
+            length: 255
+            column: arrival_from
+        arrivalDestinationAddress:
+            type: string
+            nullable: true
+            length: 255
+            column: arrival_destination_address
+        departureFlightDetails:
+            type: string
+            nullable: true
+            length: 255
+            column: departure_flight_details
+        departTo:
+            type: string
+            nullable: true
+            length: 255
+            column: depart_to
+        departurePickupAddress:
+            type: string
+            nullable: true
+            length: 255
+            column: departure_pickup_address
+        serviceType:
+            type: string
+            nullable: true
+            length: 45
+            column: service_type
+        carModel:
+            type: string
+            nullable: true
+            length: 255
+            column: car_model
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+    lifecycleCallbacks: {  }

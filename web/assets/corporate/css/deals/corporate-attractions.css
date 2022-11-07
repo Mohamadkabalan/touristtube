@@ -1,0 +1,70 @@
+.deparrival_corphotel .deparrival_input_corphotel{
+    height: 75px;
+    line-height: 75px;
+    border: none;
+    font-size: 16px;
+    padding-left: 20px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: none;  
+}
+.deparrival_input_corphotel::-webkit-input-placeholder ,.deparrival_input_corpfl::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.deparrival_input_corphotel:-moz-placeholder ,.deparrival_input_corpfl:-moz-placeholder {
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.deparrival_input_corphotel::-moz-placeholder ,.deparrival_input_corpfl::-moz-placeholder { 
+    color: #ffffff;
+    opacity: 1 !important;
+}
+
+.deparrival_input_corphotel:-ms-input-placeholder ,.deparrival_input_corpfl:-ms-input-placeholder{  
+    color: #ffffff;
+}
+
+.deparrival_corpflight .deparrival_input_corpfl{
+    height: 75px;
+    line-height: 75px;
+    border: none;
+    font-size: 16px;
+    padding-left: 40px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: none; 
+    background-image: url("/media/images/corporate-flight/locationiconyellow_corpfl.png");
+    background-position: 15px 28px;
+    background-repeat: no-repeat;
+}
+#leftmenuecorpcontainer{
+    display: block;
+}
+.menuestyle_leftmenue-click{
+    display: none;
+}
+@media  (max-width:767px){
+    .inputwizbut_corp {
+        text-align: center;
+    }  #leftmenuecorpcontainer{
+        display: none;
+    }
+    .menuestyle_leftmenue-click{
+        display: block;
+    }
+    .width100 {
+        max-height: 250px;
+    }
+
+}
+
+.display-error-msg {
+    color: red;
+    font-size: 18px;
+    line-height: 17px;
+    padding-top: 20px;
+    padding-left: 10px;
+}

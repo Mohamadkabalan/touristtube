@@ -1,0 +1,79 @@
+HotelBundle\Entity\HotelRoomReservation:
+    type: entity
+    table: hotel_room_reservation
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelReservationId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_reservation_id
+        reservationProcessKey:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: reservation_process_key
+        reservationProcessPassword:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: reservation_process_password
+        reservationKey:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: reservation_key
+        hotelRoomPrice:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: hotel_room_price
+        customerRoomPrice:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: false
+            column: customer_room_price
+        guests:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: guests
+        roomStatus:
+            type: string
+            nullable: false
+            options:
+                fixed: false
+            column: room_status
+        roomInfo:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: room_info
+        roomOfferDetail:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: room_offer_detail
+    lifecycleCallbacks: {  }

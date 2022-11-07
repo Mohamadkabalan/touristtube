@@ -1,0 +1,1 @@
+ALTER TABLE `flight_details_selected_search_result` ADD `type` VARCHAR(11) NULL DEFAULT NULL AFTER `arrival_datetime`;

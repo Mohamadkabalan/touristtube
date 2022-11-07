@@ -1,0 +1,1 @@
+ALTER TABLE `deal_details` DROP `is_featured` ;

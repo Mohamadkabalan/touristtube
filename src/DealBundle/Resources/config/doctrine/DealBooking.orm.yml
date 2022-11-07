@@ -1,0 +1,223 @@
+DealBundle\Entity\DealBooking:
+    type: entity
+    table: deal_booking
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealDetailsId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_details_id
+        apiId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: api_id
+        paymentUuid:
+            type: string
+            nullable: false
+            length: 36
+            column: payment_uuid
+        bookingReference:
+            type: string
+            nullable: true
+            length: 100
+            column: booking_reference
+        bookingStatus:
+            type: string
+            nullable: true
+            length: 45
+            column: booking_status
+        bookingDate:
+            type: string
+            nullable: true
+            length: 45
+            column: booking_date
+        numOfAdults:
+            type: integer
+            nullable: true
+            column: num_of_adults
+        numOfInfants:
+            type: integer
+            nullable: true
+            column: num_of_infants
+        numOfChildren:
+            type: integer
+            nullable: true
+            column: num_of_children
+        userId:
+            type: integer
+            nullable: true
+            column: user_id
+        email:
+            type: string
+            nullable: false
+            length: 255
+            column: email
+        dialingCode:
+            type: integer
+            nullable: true
+            column: dialing_code
+        mobilePhone:
+            type: string
+            nullable: false
+            length: 45
+            column: mobile_phone
+        title:
+            type: string
+            nullable: false
+            length: 45
+            column: title
+        firstName:
+            type: string
+            nullable: false
+            length: 45
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 45
+            column: last_name
+        address:
+            type: string
+            nullable: false
+            length: 255
+            column: address
+        postalCode:
+            type: string
+            nullable: true
+            length: 25
+            column: postal_code
+        bookingNotes:
+            type: string
+            nullable: true
+            column: booking_notes
+        activityPriceId:
+            type: integer
+            nullable: false
+            column: activity_price_id
+        totalPrice:
+            type: decimal
+            nullable: true
+            column: total_price
+        dealName:
+            type: string
+            nullable: true
+            length: 255
+            column: deal_name
+        dealDescription:
+            type: string
+            nullable: true
+            length: 500
+            column: deal_description
+        startTime:
+            type: datetime
+            nullable: true
+            column: start_time
+        endTime:
+            type: datetime
+            nullable: true
+            column: end_time
+        voucherInformation:
+            type: string
+            nullable: true
+            column: voucher_information
+        cancellationPolicy:
+            type: string
+            nullable: true
+            column: cancellation_policy
+        dealCode:
+            type: string
+            nullable: true
+            length: 45
+            column: deal_code
+        countryId:
+            type: integer
+            nullable: true
+            column: country_id
+        dealCityId:
+            type: integer
+            nullable: true
+            column: deal_city_id
+        dealTypeId:
+            type: integer
+            nullable: true
+            column: deal_type_id
+        currency:
+            type: string
+            nullable: false
+            length: 100
+            column: currency
+        duration:
+            type: string
+            nullable: false
+            length: 100
+            column: duration
+        startingPlace:
+            type: string
+            nullable: false
+            length: 100
+            column: starting_place
+        dealHighlights:
+            type: text
+            nullable: false
+            column: deal_highlights
+        departureTime:
+            type: string
+            nullable: false
+            length: 100
+            column: departure_time
+        amountFbc:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_fbc
+        amountSbc:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: false
+            column: amount_sbc
+        accountCurrencyAmount:
+            type: decimal
+            precision: 20
+            scale: 5
+            nullable: true
+            column: account_currency_amount
+        transactionSourceId:
+            type: integer
+            nullable: false
+            column: transaction_source_id
+        dealBookingQuoteId:
+            type: integer
+            nullable: true
+            column: deal_booking_quote_id
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: updated_at
+    lifecycleCallbacks: {  }

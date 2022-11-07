@@ -1,0 +1,1 @@
+ALTER TABLE `flight_detail` ADD `fare_basis_code` VARCHAR( 30 ) NULL DEFAULT NULL ;

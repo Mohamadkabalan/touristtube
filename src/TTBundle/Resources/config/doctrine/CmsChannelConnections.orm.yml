@@ -1,0 +1,45 @@
+TTBundle\Entity\CmsChannelConnections:
+    type: entity
+    table: cms_channel_connections
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        channelid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        createTs:
+            type: datetime
+            nullable: false
+            column: create_ts
+        isVisible:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+            column: is_visible
+        notify:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

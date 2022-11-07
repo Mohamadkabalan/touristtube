@@ -1,0 +1,45 @@
+TTBundle\Entity\CmsUsersVisitedPlaces:
+    type: entity
+    table: cms_users_visited_places
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        location:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        createTs:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: create_ts
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        lattitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        published:
+            type: integer
+            nullable: false
+    lifecycleCallbacks: {  }

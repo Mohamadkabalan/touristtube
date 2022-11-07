@@ -1,0 +1,328 @@
+#JMSTranslationBundle_ui:
+#    resource: @JMSTranslationBundle/Controller/
+#    type:     annotation
+#    prefix:   /_trans
+
+_my_bookings_filter_new:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/my-bookings-filter_new"
+    defaults: { _controller: TTBundle:MyBookings:myBookingsFilterNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Tourist Tube | Hotels and Flight Booking | 360 View", seodescription: "View the world attractions through a new 360 degree perspective, plan your next travel escape while booking your flight and hotel with Tourist Tube, today.", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_index:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/index"
+    defaults: { _controller: TTBundle:Default:index, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_virtual_tour:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/360-landmarks-virtual-tour"
+    defaults: { _controller: TTBundle:Default:virtualTour, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Landmarks and Attractions in 360 virtual tour | Tourist Tube", seodescription: "Visit tourist tube and get to have a virtual tour by checking our 360 photos. check Paris 360, Dubai 360, Delhi 360 and so many other countries.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_360_photos_pano:
+    path:     "/360-photos/tour/{type}/{entityName}/{countryCode}/{entityId}/{catId}/{divId}"
+    defaults: { _controller: TTBundle:Default:photos360Pano, seotitle: "360 photos", seodescription: "", seokeywords: "", type: "", entityName: "", countryCode: "", entityId: "", catId: "", divId: "" }
+    requirements:
+        srch: ".*"
+
+_video_360:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/video-360/{videoName}"
+    defaults: { _controller: TTBundle:Default:video360, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_live:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/live"
+    defaults: { _controller: TTBundle:Default:live, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Hotels 360 | Tourist Tube", seodescription: "Things to do in Paris; Discover Barcelona, Los Angeles; Ancient Rome; Best of Istanbul; Hotels 360; Points of Interest; Plan Trip and virtual 360 Tours", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_addLiveCam:
+    path:      "/addLiveCam"
+    defaults: { _controller: TTBundle:Default:liveRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_live_Redirect:
+    path:      "/live/{srch}"
+    defaults: { _controller: TTBundle:Default:liveRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_live_cam_Redirect:
+    path:      "/live-cam/{srch}"
+    defaults: { _controller: TTBundle:Default:liveRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_echoes_Redirect:
+    path:      "/echoes/{srch}"
+    defaults: { _controller: TTBundle:Default:liveRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_popup_offer:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/popup-offers"
+    defaults: { _controller: TTBundle:Default:popupOffers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube popup offers", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_my_bookings:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/my-bookings"
+    defaults: { _controller: TTBundle:MyBookings:myBookings, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "My Bookings | TouristTube", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_my_test:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/test"
+    defaults: { _controller: TTBundle:Default:test, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_check_db:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/check-db"
+    defaults: { _controller: TTBundle:Default:checkDB, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_my_bookings_search:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/my-bookings-search"
+    defaults: { _controller: TTBundle:MyBookings:myBookingsSearch, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_forgot_password:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/user/password/forgot/emails/{key}"
+    defaults: { _controller: TTBundle:Security:forgotPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_update_user_password:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/user/password/update"
+    defaults: { _controller: TTBundle:Security:updateForgotPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_reset_user_password:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/user/password/reset"
+    defaults: { _controller: TTBundle:Security:resetPassword, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_tell_us:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/user/tell-us/emails/{key}"
+    defaults: { _controller: TTBundle:Security:tellUs, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", key: "", seotitle: "Tell Us | Tourist Tube", seodescription: "", seokeywords: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        key: ".*"
+
+_where_is_home:
+    host: "where-is{subdomain_suffix}.{domain}"
+    path:      "/"
+    defaults: { _controller: TTBundle:Default:whereIsHome, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "where is | Tourist Tube", seodescription: "wondering where is Paris? searching for locations? find everything you need to know about tourist locations on tourist tube.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_where_is_general:
+    host: "where-is{subdomain_suffix}.{domain}"
+    path:      "/where-is"
+    defaults: { _controller: TTBundle:Default:whereIsGeneral, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "where is | Tourist Tube", seodescription: "wondering where is Paris? searching for locations? find everything you need to know about tourist locations on tourist tube.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_where_is_general_redirect:
+    path:      "/where-is"
+    defaults: { _controller: TTBundle:Default:whereIsGeneralRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_nearby_home:
+    host: "nearby{subdomain_suffix}.{domain}"
+    path:      "/"
+    defaults: { _controller: TTBundle:Default:nearbyGeneralHome, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Near by | Tourist Tube", seodescription: "find the best hotels, the best restaurants and the best tourist attractions on tourist tube. visit us now and plan your next trip.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_nearby_general:
+    host: "nearby{subdomain_suffix}.{domain}"
+    path:      "/nearby"
+    defaults: { _controller: TTBundle:Default:nearbyGeneral, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Near by | Tourist Tube", seodescription: "find the best hotels, the best restaurants and the best tourist attractions on tourist tube. visit us now and plan your next trip.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_nearby_general_redirect:
+    path:      "/nearby"
+    defaults: { _controller: TTBundle:Default:nearbyGeneralRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_where_is:
+    host: "where-is{subdomain_suffix}.{domain}"
+    path:      "/where-is{srch}"
+    defaults: { _controller: TTBundle:Default:whereIs, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "where is %s  Tourist Tube", seodescription: "where is %1$s, check places to visit in %2$s, tourist tube", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_where_is_redirect:
+    path:      "/where-is{srch}"
+    defaults: { _controller: TTBundle:Default:whereIsRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_discover:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/discover"
+    defaults: { _controller: TTBundle:Default:discover, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Discover The World - Discover Australia  Tourist Tube", seodescription: "discover the best places, find the most beautiful attractions and touristic locations on tourist tube web.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_discover1:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/discover/"
+    defaults: { _controller: TTBundle:Default:discover, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Discover The World - Discover Australia  Tourist Tube", seodescription: "discover the best places, find the most beautiful attractions and touristic locations on tourist tube web.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_discover_detailed:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/discover-{srch1}-{srch2}"
+    defaults: { _controller: TTBundle:Default:discoverDetailed, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "discover %s  Tourist Tube", seodescription: "lost and don’t know what to do in %1$s? discover %1$s and the most popular %1$s sightseeing on tourist tube.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_log_in:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/login"
+    defaults: { _controller: TTBundle:Security:login, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "login Tourist Tube", seodescription: "Welcome to touristtube.com. Do not have an account yet? Sign up now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_log_in_success:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/login_success"
+    defaults: { _controller: TTBundle:Security:loginSuccess, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "login Tourist Tube", seodescription: "Welcome to touristtube.com. Do not have an account yet? Sign up now!", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_register:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/register"
+    defaults: { _controller: TTBundle:Default:register, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "register Tourist Tube", seodescription: "visit our tourist tube web form now  and register to our website. We provide you with everything you need to know about tourism.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_register_success:
+    path:      "/register-success/{channel}"
+    defaults: { _controller: TTBundle:Default:registerSuccess, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", channel: "", seotitle: "Register Success | Tourist Tube", seodescription: "register success, visit our web form now tourist tube and register to our website.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        channel: ".*"
+
+_attractions_near:
+    host: "nearby{subdomain_suffix}.{domain}"
+    path:      "/attractions-near-by{dest}"
+    defaults: { _controller: TTBundle:Default:attractionsNearBy, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s nearby attractions Tourist Tube", seodescription: "looking for %1$s nearby attractions? searching for touristic places? visit tourist tube web and find the best attractions nearby %1$s on our platform. Don't forget to book your next flight on tourist tube.", seokeywords: "", dest: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        dest: ".*"
+
+_attractions_near_redirect:
+    path:      "/attractions-near-by{dest}"
+    defaults: { _controller: TTBundle:Default:attractionsNearByRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", dest: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        dest: ".*"
+
+_logout:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/logout"
+    defaults: { _controller: TTBundle:Default:logout, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_secure_login:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/secure_login"
+    defaults: { _controller: TTBundle:Default:secureLogin, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", all: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_flight_booking_email_to_admin:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/flight_email_admin"
+    defaults: { _controller: TTBundle:Default:flightEmailToAdmin, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", all: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_invoice-receipt_for_admin:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/invoice-receipt_for_admin"
+    defaults: { _controller: TTBundle:Default:invoiceReceiptForAdmin, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", all: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"

@@ -1,0 +1,80 @@
+CorporateBundle\Entity\CorpoRequestServices:
+    type: entity
+    table: corpo_request_services
+    repositoryClass: CorporateBundle\Repository\Admin\CorpoRequestServicesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 100
+            column: title
+        accountId:
+            type: integer
+            nullable: false
+            column: account_id 
+        fromDate:
+            type: date
+            nullable: false
+            column: from_date  
+        toDate:
+            type: date
+            nullable: false
+            column: to_date    
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false 
+        destinationCityId:
+            type: integer
+            nullable: false
+            column: destination_city_id   
+        departureCityId:
+            type: integer
+            nullable: false
+            column: departure_city_id   
+        countryId:
+            type: integer
+            nullable: false
+            column: country_id  
+        isApproved:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_approved 
+        approvedBy:
+            type: integer
+            nullable: false
+            column: approved_by 
+        approvedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: approved_at
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at   
+        createdBy:
+            type: integer
+            nullable: false
+            column: created_by   
+    lifecycleCallbacks: {  }

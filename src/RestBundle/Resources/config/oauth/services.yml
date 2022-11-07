@@ -1,0 +1,12 @@
+services:
+    api_key_user_provider:
+        class:  RestBundle\Services\ApiKeyUserProvider
+        arguments: ['@doctrine.orm.entity_manager','@service_container']
+        public: false
+    OAuth2TokenController:
+        class: RestBundle\Controller\oauth\OAuth2TokenController
+        calls:
+            - [ setContainer, [ @service_container ]]
+    OauthHelperServices:
+        class: RestBundle\Services\OauthHelperServices
+        arguments: [ '@OAuth2TokenController' ]

@@ -1,0 +1,52 @@
+_payment_lang:
+    path:      "/{_locale}/payment"
+    defaults: { _controller: TTBundle:Payment:payment, _locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+        
+_payment_operation_lang:
+    path:      "/{_locale}/payment-operation"
+    defaults: { _controller: TTBundle:Payment:paymentOperation, _locale: "%locale%"}
+    requirements:
+        _locale:  "%config_locales%"
+
+_payment_success_lang:
+    path:      "/{_locale}/payment-success"
+    defaults: { _controller: TTBundle:Payment:PaymentSuccess, _locale: "%locale%", seotitle: "Most Visited Tourist Attractions Suggested By Best Travel Advisor", seodescription: "Our travel sites are showing you what are the most-visited tourist attractions in the world And can 91 million people be wrong? Read Explanation of our travel advisor.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        
+_sdk_token_lang:
+    path:      "/{_locale}/sdk-token"
+    defaults: { _controller: TTBundle:Payment:getSdkToken, _locale: "%locale%"}
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%"
+        
+_payment_operation_api_lang:
+    path:      "/{_locale}/payment-operation-api"
+    defaults: { _controller: TTBundle:Payment:paymentOperationApi, _locale: "%locale%"}
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%"
+        
+_capture_refund_lang:
+    path:      "/{_locale}/capture-refund"
+    defaults: { _controller: TTBundle:Payment:captureRefund, _locale: "%locale%"}
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%"
+        
+_direct_transaction_feedback_lang:
+    path:      "/{_locale}/direct-transaction-feedback"
+    defaults: { _controller: TTBundle:Payment:directTransactionFeedback, _locale: "%locale%"}
+    methods:  [GET, POST]
+    requirements:
+        _locale:  "%config_locales%"
+
+_device_finger_print_api_lang:
+    path:      "/{_locale}/api/device_fingerprint"
+    defaults: { _controller: TTBundle:Payment:deviceFingerPrint, _locale: "%locale%"}
+    methods:  [POST]
+    requirements:
+        _locale:  "%config_locales%"

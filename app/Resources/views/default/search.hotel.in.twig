@@ -1,0 +1,37 @@
+{% for hotel_item in hotels_array %}
+<div class="allHotelInfo col-lg-12 col-md-12 " data-id="{{ hotel_item.id|raw }}" data-type="{{ hotel_item.type|raw }}" data-country="{{ hotel_item.country|raw }}" data-city="{{ hotel_item.city|raw }}">
+    <div class="img col-lg-4 col-md-4 col-xs-4 ">
+        <a href="{{ hotel_item.detail_link|raw }}" title="{{ hotel_item.titlealt|raw }}">
+            <img src="{{ hotel_item.image|raw }}" class="img-responsive img-search" alt="{{hotel_item.titlealt|raw}}">
+        </a>
+    </div>
+    
+    <div class="middle col-lg-5 col-md-5 col-xs-5 ">
+        <div class="middle_inner">
+        <h2><a href="{{ hotel_item.detail_link|raw }}" title="{{ hotel_item.titlealt|raw }}">{{ hotel_item.title|raw }}</a></h2>
+        <div class="stars">{{ hotel_item.stars|raw }}</div>
+        <div class="address">{{ hotel_item.location|raw }}</div>
+{#        <div class="per_night">{{ 'Price for 3 nights' }}</div>#}
+{#        <div class="price"><a href="{{ hotel_item.detail_link|raw }}" title="{{ hotel_item.price|raw }}" class="blue-font">{{'Starting'|trans}} {{ hotel_item.price|raw }}</a></div>#}
+        </div>
+    </div> 
+    <div class="extra-detail col-lg-3 col-md-3 col-xs-3 ">
+           <div>
+            <div class="showonmap">
+                <a rel="nofollow" href="{{ hotel_item.show_on_map|raw }}" title="{{ 'show map'|trans }}" class="showOnMap">{{'show map'|trans}}</a>
+            </div>
+            <div class="viewdetail">
+                <a href="{{ hotel_item.detail_link|raw }}" title="{{ 'VIEW DETAILS'|trans }}">{{'VIEW DETAILS'|trans}}</a>
+            </div>
+            {#<a rel="nofollow" data-id="{{ hotel_item.id|raw }}" title="{{ 'add to tour bag'|trans }}" data-type="{{ entity_type|raw }}" href="#popup_creatid" class="addtobag addtobaginactive{{isUserLoggedIn|raw}}">{{'add to tour bag'|trans}}</a>#}
+            <div class="clearfix"></div>
+        </div> 
+    </div>
+   <div class="clearfix"></div>
+</div>     
+
+
+   
+    
+
+{% endfor %}

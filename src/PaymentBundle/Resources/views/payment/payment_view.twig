@@ -1,0 +1,133 @@
+{# app/Resources/views/blog/index.html.twig #}
+
+<html>
+    {% block pagenewcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/bootstrap.min.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/fontello.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/normalize.css")|raw }}" >
+	<link rel="stylesheet" type="text/css" href="{{ asset("assets/payment/css/style.css")|raw }}" >
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+    {% endblock %}
+    {% block pagenewjs %}
+	<script type="text/javascript" src="{{ asset("assets/payment/vendors/jquery.min.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("assets/payment/js/jquery.creditCardValidator.js")|raw }}"></script>
+	<script type="text/javascript" src="{{ asset("assets/payment/js/checkout.js")|raw }}"></script>
+	<script>
+	    var redirectURL = '/flight-booking?timedOut=1';
+
+	</script>
+    {% endblock %}
+    <header>
+	<div class="logo">
+	    <img src="assets/payment/img/logo.png" alt="">
+	</div>
+    </header>
+    <div class="wrapper">
+	{% block body %}
+
+	    <div class="container containerFirstAll">
+		<section class="nav">
+		    <ul>
+			<li class="active lead"> {{ 'Payment Method' | trans }}</li>
+			<li class="lead"> Pay</li>
+			<li class="lead"> Done</li>
+		    </ul>
+		</section>
+		<section class="order-info">
+		    <ul class="items">
+			<span>
+			    <i class="icon icon-bag"></i>
+			    <label class="lead" for="">{{'Your Order' | trans}}</label>
+			</span>
+			<li>{{ payment.type }}</li>
+			<li>{{ 'Description of Payment here' | trans }}</li>
+		    </ul>
+		    <ul>
+			<li>
+			    <div class="v-seperator"></div>
+			</li>
+		    </ul>
+		    <ul class="price">
+			<span>
+			    <i class="icon icon-tag"></i>
+			    <label class="lead" for="">price</label>
+			</span>
+
+			<li><span class="curreny">{{ payment.currency }}</span> {{ payment.amount }}</li>
+		    </ul>
+		</section>
+
+		<div class="h-seperator"></div>
+		<section class="payment-method">
+
+			{% if form.server_error_callback.vars.errors|length %}
+				<div class="alert alert-danger" role="alert">
+	  				{{ form_errors(form.server_error_callback) }}
+				</div>
+			{% endif %}	
+
+			<form action="" method="POST" novalidate="">
+				<div class="row">
+				  <div class="form-group col-md-6 mb-3 {% if form.cardholder.vars.errors|length %}has-error {% endif %} ">
+				    <label class="control-label" for="cc-name"><b>Name on card</b></label>
+				    {{ form_widget(form.cardholder, {'attr': { 'class':'form-control  selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback'}})}}
+					<div {% if form.cardholder.vars.errors|length %} style="color:red" {% endif %}>
+						{{ form_errors(form.cardholder) }}
+					</div>	
+				  </div>
+				</div>
+				<div class="row">  
+				  <div class="form-group col-md-6 mb-3 {% if form.cardnumber.vars.errors|length %}has-error {% endif %} ">
+				    <label class="control-label" for="cc-number"><b>Credit card number</b></label>
+				    {{ form_widget(form.cardnumber, {'attr': { 'class':'form-control selectback2 form-control_corppayment corporateinput_corppayment corporateinputwithback'}})}}
+				    <div {% if form.cardnumber.vars.errors|length %} style="color:red" {% endif %}>
+				      {{ form_errors(form.cardnumber) }}
+				    </div>
+				  </div>
+				</div>
+				<div class="row">  
+				  <div class="form-group col-md-3 mb-3 {% if form.cvv.vars.errors|length %}has-error {% endif %} ">
+				    <label class="control-label" for="cc-expiration"><b>CVV</b></label>
+				    {{ form_widget(form.cvv, {'attr': { 'class':'form-control smaldivmargin padsm cvv_corppayment'}})}}
+				    <div {% if form.cvv.vars.errors|length %} style="color:red" {% endif %}>
+				      {{ form_errors(form.cvv) }}
+				    </div>
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="form-group col-md-4 {% if form.card_expire_month.vars.errors|length %}has-error {% endif %} ">
+				    <label class="control-label" for="cc-expiration"><b>Expiration</b></label>
+				    {{ form_widget(form.card_expire_month, {'attr': { 'class':'form-control expire-month select-expiry-date selectcomm_copayment'}})}}
+				    <div {% if form.card_expire_month.vars.errors|length %} style="color:red" {% endif %}>
+				      {{ form_errors(form.card_expire_month) }}
+				    </div>
+				  </div>
+				  <div class="form-group col-md-4 {% if form.card_expire_year.vars.errors|length %}has-error {% endif %} ">
+				  	<label class="control-label" for="cc-expiration">&nbsp;</label>
+				    {{ form_widget(form.card_expire_year, {'attr': { 'class':'form-control expire-year select-expiry-date selectcomm_copayment'}})}}
+				    <div {% if form.card_expire_year.vars.errors|length %} style="color:red" {% endif %}>
+				      {{ form_errors(form.card_expire_year) }}
+				    </div>
+				  </div>
+				</div>
+				<hr class="mb-4">
+				{# Token CSRF #}
+				{{ form_widget(form._token) }}
+				
+				<a class="back" href="#">{{ 'Back' | trans }}</a>
+				<button class="btn btn-primary" id="btn_continue" type="submit">{{ 'Continue' | trans }}</button>
+			</form>
+
+		</section>
+
+	    </div>
+	</section>
+    {% endblock %}
+</div>
+<footer>
+    Touristtube &copy {{'now'|date('Y')}}
+</footer>
+</body>
+</html>

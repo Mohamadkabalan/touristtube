@@ -1,0 +1,114 @@
+TTBundle\Entity\PoiFrance:
+    type: entity
+    table: poi_france
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        poiName:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: poi_name
+        poiDescription:
+            type: text
+            nullable: true
+            length: 16777215
+            options:
+                fixed: false
+            column: poi_description
+        poiAbout:
+            type: text
+            nullable: true
+            length: 16777215
+            options:
+                fixed: false
+            column: poi_about
+        poiWebsite:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: poi_website
+        poiAddress:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: poi_address
+        city:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        countryName:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: country_name
+        countryCode:
+            type: string
+            nullable: true
+            length: 5
+            options:
+                fixed: false
+            column: country_code
+        poiContact:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: poi_contact
+        poiLatitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: poi_latitude
+        poiLongitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: poi_longitude
+        poiImagelink:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: poi_imagelink
+        poiLink:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: poi_link
+        openingHr:
+            type: string
+            nullable: true
+            length: 300
+            options:
+                fixed: false
+            column: opening_hr
+        status:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+    lifecycleCallbacks: {  }

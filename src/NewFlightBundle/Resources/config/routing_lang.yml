@@ -1,0 +1,8 @@
+_flight_details_new_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/flight-details"
+    defaults: { _controller: NewFlightBundle:Flight:flightDetails, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "flight details Tourist Tube", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

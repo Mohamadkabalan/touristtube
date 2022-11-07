@@ -1,0 +1,55 @@
+TTBundle\Entity\BoUsers:
+    type: entity
+    table: bo_users
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        lname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        username:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        lastLogin:
+            type: date
+            nullable: false
+            column: last_login
+        isAdmin:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: is_admin
+        role:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

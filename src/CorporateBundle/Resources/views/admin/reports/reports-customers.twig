@@ -1,0 +1,71 @@
+{% extends 'basecorporateFinal.html.twig' %}
+
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/corporate/corporate/js/corporate-reports-filter.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/corporate/corporate/js/corporate-reports-customers.js')|raw }}"></script>
+    <script type="text/javascript">
+        {% if searchUserId is defined %}
+	    window.userId = {{searchUserId}};
+        {% endif %}
+        {% if searchAccountId is defined %}
+	    window.accountId = {{searchAccountId}};
+        {% endif %}
+        {% if currencyCode is defined %}
+	    window.currencyCode = "{{currencyCode}}";
+	    if (window.currencyCode == "")
+		window.currencyCode = null;
+        {% endif %}
+        {% if acctType is defined %}
+	    window.acctType = {{acctType}};
+        {% endif %}
+    </script>
+{% endblock %}
+
+{% block title %}{{'Customers Reports'|trans}}{% endblock %}
+{% block body %}
+    {% set report_menu = 'customers' %}
+    <section class="container corporate_common_new_container">
+        <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+            <div class="container-fluid nopad filters-group">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+                        {{'Filters'|trans}}
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+                    <div class="row no-margin">
+                        <div class="col-xs-12 nopad">
+                            {% include '@Corporate/admin/reports/filter.twig' %}
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="row no-margin">
+            {% include '@Corporate/admin/reports/reports_header.twig' %}
+            <div class="col-xs-12">
+                <div class="row margin_top_60">
+                    <div class="col-md-3 col-xs-12 left_panel hidden-sm hidden-xs">
+                        {% set filterSuffix = "_2" %}
+                        {% include '@Corporate/admin/reports/filter.twig' %}
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        <div class="row no-margin">
+                            {% include '@Corporate/admin/reports/reports_menu.twig' %}
+                            <div class="col-xs-12 nopad">
+                                <img class="width-100" src="{{ generateMediaURL('/media/images/corporate_new/reports_img.jpg') }}" alt="reports_img">
+                            </div>
+			    <div class="col-xs-12 margin_top_50">
+				{% include '@Corporate/admin/accountTransactions/accountCustomersTableList.twig' %}
+			    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

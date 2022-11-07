@@ -1,0 +1,22 @@
+{% if containerDiv is defined and containerDiv %}
+    <div id="{{ (containerDivId is defined and containerDivId != '')  ? containerDivId : '' }}" class="{{ (containerDivClass is defined and containerDivClass != '')  ? containerDivClass : '' }}">
+    {% endif %}
+
+    {% if label is defined and label != '' %}
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopad">
+	    <p class="afn_atf"> {{label|trans}} </p>
+	</div>
+    {% endif %}
+
+    {% set counter = 1 %}
+    {% for oKey,oVal in options %}
+	<div class="radio-item">
+	    <input type="radio" id="{{ (fieldId is defined and fieldId != '')  ? fieldId : '' }}_{{counter}}" name="{{ fieldName }}" value="{{ oVal }}"  class="{{ (fieldClass is defined and fieldClass != '')  ? fieldClass : '' }}" {{ (counter == 1)  ? 'checked' : '' }}>
+	    <label class="bluelabeltxt_atf" for="{{ (fieldId is defined and fieldId != '')  ? fieldId : '' }}_{{counter}}">{{oVal|trans}}</label>
+	</div>
+	{% set counter = counter + 1 %}
+    {% endfor %}
+
+    {% if containerDiv is defined and containerDiv %}
+    </div>
+{% endif %}

@@ -1,0 +1,50 @@
+TTBundle\Entity\DiscoverPoiImages:
+    type: entity
+    table: discover_poi_images
+    repositoryClass: TTBundle\Repository\ReviewsRepository
+    indexes:
+        poi_id:
+            columns:
+                - poi_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: user_id
+        filename:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        defaultPic:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: default_pic
+    manyToOne:
+        poi:
+            targetEntity: DiscoverPoi
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: images
+            joinColumns:
+                poi_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,122 @@
+.logo{
+    padding-left: 2%;
+}
+.title{
+    color: #fff;
+    background-color: #eac31a;
+    font-size: 30px;
+    margin-top: 40px;
+    text-align: center;
+    margin-left: 10px;
+    text-align: left;
+    width: auto;
+    line-height: 1;
+    padding: 5px 10px;
+}
+.description{
+    font-size: 16px;
+    color: #444444;
+    margin-top: 18px;
+    margin-bottom: 0;
+    padding-left: 13px;
+}
+.searchDesc{
+    font-size: 17px;
+    color: #000000;
+    font-weight: bold;
+}
+.checkbox{
+    margin: 0 0 0 0;
+    padding-left: 8px;
+}
+.form-group {
+  margin-bottom: 0;
+}
+.checkbox_label{
+    color: #000;
+    font-size: 17px;
+    margin-bottom: 0;
+}
+.radio{
+    margin-bottom: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    font-weight: normal;
+}
+form{
+    margin-top: 15px;  
+    
+}
+form label{
+padding-left: 11px;
+margin-bottom: 0;
+}
+.form-control{
+    
+    margin-left: 3px;
+    border-radius: 0;
+}
+.form-control:focus{
+    box-shadow: none;
+    border-color: #ccc;
+}
+
+.other_add{
+    color: #444444;
+    font-size: 16px;
+    padding-left: 11px;
+    margin-top: 20px;
+}
+.other_add a{
+    color: #000;
+    text-decoration: underline !important;
+    font-size: 16px;
+}
+.reviewSearch .ui-menu {
+    background-color: #ffffff;
+    text-align:left;
+    max-height: 264px;
+    overflow-y: scroll;
+}
+.reviewSearch .ui-menu .ui-menu-item a {
+    border-bottom: 1px solid #dadada;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 16px;
+    margin-top: 9px;
+    min-height: 35px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-top: 1px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+.reviewSearch .ui-menu .ui-menu-item a.ui-state-focus {
+    text-decoration: underline;
+}
+.desc{
+    color: #6b6b6b;
+    display: inline-block;
+    font-size: 14px;
+    margin: 3px 0;
+    padding-left: 16px;
+    text-align: justify;
+}
+.descTitle{
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+    padding-left: 16px;
+}
+
+
+@media ( max-width : 768px ){
+    .title{margin-top: 41px;}
+    .description{ margin-top: 29px;}
+    .checkbox_label {margin-bottom: 0;}
+     
+    .checkbox { margin-top: 0;}
+}

@@ -1,0 +1,128 @@
+_corporate_hotel_search_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/search"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_search_results_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/search-results"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelBookingResults, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_avail_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/avail"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelAvail, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_details_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/details-{name}-{id}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_offers_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/offers-{name}-{id}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelOffers, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_book_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/book"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelBook, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_reservation_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/reservation"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelReservation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_proceed_payment_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/proceed/payment/{module_id}/{reservation_id}/{user_id}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelProceedPayment, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_booking_details_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/booking-details-{reference}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:bookingDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+
+_corporate_hotel_reservation_cancellation_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/reservation-cancellation-{reference}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelReservationCancellation, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        reference: ".*"
+
+_corporate_hotel_reviews_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/reviews-{name}-{id}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:hotelReviews, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", name: "", id: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_reservation_approve_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/reservation/approve/{reservationId}/{accountId}/{userId}/{transactionUserId}/{requestServicesDetailsId}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:checkReservationAvailability, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "", accountId: "", userId: "", transactionUserId: "", requestServicesDetailsId: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_corporate_hotel_reservation_request_details_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels/reservation/approval/{reservationId}"
+    defaults: { _controller: CorporateBundle:HotelsCorpo:getReservationRequestDetails, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", reservationId: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+# Map Routes
+_corporate_hotels_show_on_map_lang:
+    host: "corporate{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/corporate/hotels-show-on-map"
+    defaults: { _controller: HotelBundle:Hotels:showOnMap, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

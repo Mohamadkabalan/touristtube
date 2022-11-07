@@ -1,0 +1,151 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>FAQ</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">HCOMMENT S´ENREGISTRER ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Il vous suffit de renseigner votre adresse email et de définir un mot de passe. Nous créerons pour vous un compte qui vous permettra d´utiliser toutes les fonctionnalités de Tourist Tube. Vous pouvez renseigner votre profil à votre convenance.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT MODIFIER VOTRE MOT DE PASSE ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller à <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_account_settings') }}{% endif %}" title="{{ 'information du compte / Paramétrage du compte.'|trans }}" class="afaqMainStyle">information du compte / Paramétrage du compte.</a>Renseigner son ancien et nouveau mot de passe.</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT MODIFIER SES PARAMETRES DE CONFIDENTIALITÉ ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller à  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/privacy') }}{% endif %}" title="{{ 'information du compte / Confidentialité.'|trans }}" class="afaqMainStyle">information du compte / Confidentialité.</a> Modifier vos paramètres.</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">QUEL EST L´ESPACE DE STOCKAGE MAXIMUM PAR UTILISATEUR ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Nous vous offrons en tant qu´utilisateur d´un compte Tourist Tube un espace cloud de stockage dédié de 1 To.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">QUELLES SONT LES CARACTERISTIQUES PRINCIPALES DE TOURIST TUBE ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <ul class="faq_lit">
+                            <li>
+                                <p>Tourist Channels – répondez aux besoins en ligne des acteurs du Tourisme</p>
+                            </li>
+			    <li>
+                                <p>Partage multimédia - téléchargez vos vidéos, photos et albums</p>
+                            </li>    <li>
+                                <p>Application Mobile, téléchargeable sur Android</p>
+                            </li>  <li>
+                                <p>Suivez les avis et les notes des personnes partageant les mêmes intérêts </p>
+                            </li><li>
+                                <p>Construisez des communautés, connectez-vous avec des gens en fonction d'intérêts communs, en utilisant les suggestions appuyées par de l´Intelligence Artificielle (AI).</p>
+                            </li>    
+                        </ul>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT TÉLÉCHARGER DES PHOTOS ET VIDÉOS ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Sélectionner Télécharger. Sélectionner les photos et vidéos à télécharger depuis votre terminal.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT CHERCHER DES MEDIAS ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Cliquer sur la barre de recherche et spécifiez photos, vidéos ou Tubers. Affinez votre recherche en sélectionnant un thème / une catégorie</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT TROUVER VOS AMIS, LES PERSONNES QUI VOUS SUIVENT ET VOS ABONNEMENTS SUR TOURISTTUBE.COM ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/network/friends') }}{% endif %}" title="{{ 'réseau'|trans }}" class="afaqMainStyle"> réseau</a>. Vous pouvez trouver et contacter tous vos amis, suiveurs et abonnements..</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT EDITER UNE PHOTO ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/photos') }}{% endif %}" title="{{ 'Mes Photos'|trans }}" class="afaqMainStyle">Mes Photos</a>. Sélectionner la photo et cliquer sur Modifier. Vous pouvez modifier les attributs de texte et l'aspect de la photo.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT EDITER UNE VIDEO ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/videos') }}{% endif %}" title="{{ 'Mes Vidéos'|trans }}" class="afaqMainStyle">Mes Vidéos</a>. Sélectionner la vidéo et cliquer sur Modifier. Vous pouvez modifier les attributs de texte de la vidéo sélectionnée.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT CRÉER UN ALBUM ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/albums') }}{% endif %}" title="{{ 'Mes Albums'|trans }}" class="afaqMainStyle">Mes Albums</a>. Vous pouvez créer des albums et modifier leur contenu et leurs propriétés.</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT CRÉER UN JOURNAL ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/journal') }}{% endif %}" title="{{ 'Mes Journaux'|trans }}" class="afaqMainStyle">Mes Journaux</a>. Vous pouvez créer des journaux et éditer leurs propriétés.</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT CONFIGURER VOS FILS D´ACTUALITÉ ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/newsfeed') }}{% endif %}" title="{{ 'fils d´actualité'|trans }}" class="afaqMainStyle">fils d´actualité.</a> Définir les sources d’actualités affichées sur votre page de fils d´actualité en sélectionnant des personnes et des activités.</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT PARTAGER LE CONTENU SUR D'AUTRES RÉSEAUX SOCIAUX ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Aller sur <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/sharing') }}{% endif %}" title="{{ 'information du compte / Partage'|trans }}" class="afaqMainStyle">information du compte / Partage.</a> Sélectionner le réseau social, établissez une connexion avec Tourist Tube.</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT CONFIGURER VOTRE TCHANNEL SUR TOURISTTUBE.COM ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Dans Tourist Channels, sélectionner créer votre Tchannel et remplir vos informations.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT VISUALISER VOS TCHANNELS SUR TOURISTTUBE.COM ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Se connecter. Dans Tourist Channels, sélectionner la flèche déroulante et sélectionnez voir toutes mes Tchannels..</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT CRÉER UN TCHANNEL ANNEXE ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sélectionner le Tchannel principal dans Mes Tchannels et cliquer sur Incorporer le Tchannel. Puis remplir les informations pour le Tchannel annexe.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT ÉVALUER ET NOTER UN HÔTEL / RESTAURANT ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sélectionner / Rechercher le lieu que vous souhaitez noter. Remplissez vos commentaires et évaluations et soumettez-les.</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">COMMENT SIGNALER UN PROBLÈME ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Contactez-nous sur <a href="mailto:info@touristtube.com" class="afaqMainStyle" title="{{ 'info@touristtube.com' }}">info@touristtube.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,134 @@
+PaymentBundle\Entity\PaymentTransactionFeedback:
+    type: entity
+    table: payment_transaction_feedback
+    indexes:
+        merchantReference:
+            columns:
+                - merchant_reference
+        fortId:
+            columns:
+                - fort_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        payment:
+            targetEntity: Payment
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: paymentTransactionFeedbackList
+            joinColumns:
+                payment_uuid:
+                    referencedColumnName: uuid
+            orphanRemoval: false
+
+    fields:
+        paymentUUID:
+            type: string
+            nullable: false
+            length: 36
+            options:
+                fixed: false
+            column: payment_uuid
+        merchantReference:
+            type: string
+            length: 20
+            nullable: true
+            column: merchant_reference
+        fortId:
+            type: string
+            length: 20
+            nullable: true
+            column: fort_id
+        command:
+            type: string
+            length: 45
+            nullable: true
+            options:
+                fixed: false
+        tokenName:
+            type: string
+            length: 100
+            nullable: true
+            options:
+                fixed: false
+            column: token_name
+        customerIp:
+            type: string
+            length: 45
+            nullable: true
+            options:
+                fixed: false
+            column: customer_ip               
+        language:
+            type: string
+            length: 2
+            nullable: true
+            options:
+                fixed: true
+        status:
+            type: string
+            length: 2
+            nullable: true
+            options:
+                fixed: true
+        responseCode:
+            type: string
+            column: response_code
+            nullable: true
+            length: 2
+        responseMessage:
+            type: string
+            length: 255
+            nullable: true
+            options:
+                fixed: false
+            column: response_message
+        rememberMe:
+            type: boolean
+            nullable: true
+        eci:
+            type: string
+            length: 16
+            nullable: true
+            options:
+                fixed: false
+            column: eci
+        customerEmail:
+            type: string
+            length: 255
+            nullable: true
+            column: customer_email
+        currency:
+            type: string
+            length: 3
+            nullable: true
+            options:
+                fixed: false
+            column: currency
+        amount:
+            type: string
+            length: 10
+            nullable: true
+            options:
+                fixed: false
+            column: amount
+        paymentOption:
+            type: string
+            length: 10
+            nullable: true
+            options:
+                fixed: false
+            column: payment_option
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+    lifecycleCallbacks: {  }

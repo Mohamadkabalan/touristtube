@@ -1,0 +1,50 @@
+DealBundle\Entity\DealImage:
+    type: entity
+    table: deal_image
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        deal_id:
+            columns:
+                - deal_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        path:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        imageDescription:
+            type: string
+            nullable: true
+            length: 255
+            column: image_description
+        dealDetailId:
+            type: integer
+            nullable: true
+            column: deal_detail_id
+        isDefault:
+            type: integer
+            nullable: true
+            column: is_default
+        dealId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: deal_id
+        imageOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: image_order
+    lifecycleCallbacks: {  }

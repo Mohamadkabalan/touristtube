@@ -1,0 +1,41 @@
+{% extends 'basecorporate.html.twig' %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/4.0/assets/popper.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js')|raw }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/buttons/TTButtons.js')|raw }}"></script>
+	<script type="text/javascript" src="{{ asset('/assets/corporate/admin/js/corporate-defineServicesList.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Define Services List'|trans}}{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+	<div class="allaccountlist col-xs-12">
+	    <div class="pageName">
+		<h1>{{'Define Services List'|trans}}</h1>
+	    </div></br>
+	    <div class="AddAdmin tt_buttons_bar_add">
+		<button data-role="button" data-type="add" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_define_services_add') }}')">{{'Add'|trans}}</button>
+	    </div>
+	    <table class="accountTable">
+		<tr class="TopBar">
+		    <td class="topBarlist">{{'Id'|trans }}</td>
+		    <td class="topBarlist">{{'Name'|trans }}</td>
+		    <td class="topBarlist">{{'Active'|trans }}</td>
+		    <td class="topBarlist">{{'actions'|trans }}</td>
+		</tr>
+		{% for defineService in defineServicesList %}
+		    <tr>
+			<td class="topBarlist">{{defineService.ds_id|raw}}</td>
+			<td class="topBarlist alignLeft">{{defineService.ds_name|raw}}</td>
+			<td class="topBarlist alignLeft">{% if defineService.ds_active == 1 %} {{'Active'|trans}} {%  else %} {{'Not Active'|trans}} {% endif %}</td>
+			<td class="topBarlist actions">
+			    <div class="tt_buttons_bar">
+				<button data-role="button" data-type="modify" onclick="goToLinkNew('{{ generateLangRoute(LanguageGet, '_corpo_define_services_edit', {'id':defineService.ds_id}) }}')">{{'Edit'|trans}}</button>
+				<button data-role="button" data-type="delete" onclick="deleteService({{defineService.ds_id|raw}})">{{'Delete'|trans}}</button>
+			    </div>
+			</td>
+		    </tr>
+		{% endfor %}
+	    </table>
+	</div>
+    </section>
+{% endblock %}

@@ -1,0 +1,40 @@
+
+_rest_currency_get_fbc_sbc:
+    path:      "/api/currencies/fbcsbc"
+    defaults: { _controller: RestBundle:currency\Currency:getFbcSbc, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_currency_get_currency_list:
+    path:      "/api/currencies"
+    defaults: { _controller: RestBundle:currency\Currency:getCurrencyList, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_currency_currency_conversion_rate:
+    path:      "/api/currencies/rate/{fromCurrency}/{toCurrency}"
+    defaults: { _controller: RestBundle:currency\Currency:currencyConversionRate, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: GET
+
+_rest_currency_exchange_amount:
+    path:      "/api/currencies/exchange"
+    defaults: { _controller: RestBundle:currency\Currency:exchangeAmount, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "", seokeywords: "", title: "", srch: "" }
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+        methods: POST

@@ -1,0 +1,373 @@
+{#{% set data = decodeJSON(selectedRequest) %}#}
+
+<div class="row no-margin margin-top-10 my-shuffle-container">
+
+
+  {% if segmentType is not empty %}
+    {% set fx_departure_code = '' %}
+    {% set fx_arrival_code = '' %}
+    {% for segmentsItem in segmentType %}
+
+      {% set segmentsItemIndex = loop.index %}
+
+      {% if segmentsItem['selected_price'] is defined  and segmentsItem['selected_price'] %}
+    {% set price = segmentsItem['selected_price']|raw %}
+    {% set price_attr = segmentsItem['selected_price_attr']|raw %}
+    {% set base_fare = segmentsItem['selected_base_fare']|raw %}
+    {% set base_fare_attr = segmentsItem['selected_base_fare_attr']|raw %}
+    {% set taxes = segmentsItem['selected_taxes']|raw %}
+      {% else %}
+    {% set price = segmentsItem['segmentsGlob']['price']|raw  %}
+    {% set price_attr = segmentsItem['segmentsGlob']['price_attr']|raw %}
+    {% set base_fare = segmentsItem['base_fare']|raw %}
+    {% set base_fare_attr = segmentsItem['base_fare_attr']|raw %}
+    {% set taxes = segmentsItem['taxes']|raw %}
+    {% set seats_remaining = segmentsItem['seats_remaining']|raw %}
+      {% endif %}
+
+      <figure
+        class="col-xs-12 nopad flight_details_row margin_bottom_10 picture-item price-convert figure{{ segmentsItemIndex }}"
+        data-idx="{{ segmentsItemIndex }}" data-other="{{ segmentsItem['other_data']|trans }}"
+        data-stops="{{ segmentsItem['segmentsGlob']['stops']|raw }}"
+        data-airlines="{{ segmentsItem['segmentsGlob']['airline']|raw }}"
+        data-departure_time="{{ segmentsItem['segmentsGlob']['departureTimeOfDay']|raw }}"
+        data-arrival_time="{{ segmentsItem['segmentsGlob']['arrivalTimeOfDay']|raw }}"
+        data-departure_airports="{{ segmentsItem['segmentsGlob']['departure_airport_code']|raw }}"
+        data-title="{{ segmentsItemIndex }}" data-price="{{ price_attr|raw }}"
+        data-price-raw="{{ price_attr|round(0, 'floor') }}"
+        data-arrival_timestamp="{{ segmentsItem['segmentsGlob']['arrival_time']|raw }}"
+        data-departure_timestamp="{{ segmentsItem['segmentsGlob']['departure_time']|raw }}"
+        data-duration="{{ segmentsItem['segmentsGlob']['flight_duration_attr']|raw }}"
+        data-duration-format="{{ segmentsItem['segmentsGlob']['flight_duration']|raw }}"
+        data-miles="{{ segmentsItem['segmentsGlob']['mileage_amount']|raw }}">
+        <div class="row no-margin">
+	    {% set segmentIndex = 0 %}
+	    {% set myIndex = segmentsItem['segments']|length %}
+	  
+            <div class="col-md-10 col-xs-12 nopad print_width">
+		{% for segItem in segmentsItem['segments'] %}
+
+		    <div class="row no-margin">
+			<div style="clear:both"></div>
+			<div class="col-sm-2 col-xs-12 nopad first_div">
+			  <div class="row no-margin">
+			      <div class="col-xs-12 nopad">
+			      <div class="ailines-logos">
+				<div>
+				  <img src="{{ segItem[0]['airline_logo']|raw }}" alt="{{ segItem[0]['airline_name']|raw }}">
+				</div>
+				<div>{{ segItem[0]['airline']|raw }}{{ segItem[0]['flight_number']|raw }}</div>
+			      </div>
+			      </div>
+			  </div>
+			<div class="row no-margin">
+			  <div class="col-xs-12 nopad">
+			  </div>
+			</div>
+
+				{% if segmentIndex == 0 %}
+				<div class="absolute_txt_flight_numb">{{ segmentsItemIndex }}</div>
+				{% endif %}
+
+			<div style="clear:both"></div>
+			</div>
+			<div class="col-sm-10 col-xs-12 nopad snd_div">
+			  <div class="row no-margin">
+			    <div class="col-sm-9 col-xs-12 nopad snd_grey_back">
+			      <div class="row no-margin first_row">
+				<div class="col-xs-4 nopad">
+				  <p>
+				    <span>{{ segItem[0]['departure_airport_code']|raw }}</span>{{ segItem[0]['departure_time']|raw }}
+				    {% set fx_departure_code = segItem[0]['departure_airport_code']|raw %}
+				  </p>
+				</div>
+				<div class="col-xs-4 nopad">
+				  <div class="full_width_conatiner">
+				    <img src="{{ generateMediaURL('/media/images/flights_new/plane_direction.png') }}" alt="plane_direction">
+				    {% if segmentsItem['refundable'] %}
+            {% set var_refundable = 
+            'refundable'|trans %}
+					<span style="font-size: 11px; color: #747474; position: absolute; left: 0px; right: 0px; height: 15px; bottom: 23px;">{{'refundable'|trans}}</span>
+				    {% else %}
+            {% set var_refundable = 
+            'non-refundable'|trans %}
+					<span style="font-size: 11px; color: #747474; position: absolute; left: 0px; right: 0px; height: 15px; bottom: 23px;">{{'non-refundable'|trans}}</span>
+				    {% endif %}
+				  </div>
+				</div>
+				<div class="col-xs-4 nopad">
+				  {% set fx_arrival_airport_code = '' %}
+				  {% set fx_arrival_time = '' %}
+				  {% for segItem1 in segItem %}
+				    {% set fx_arrival_airport_code = segItem1['arrival_airport_code'] %}
+				    {% set fx_arrival_time = segItem1['arrival_time'] %}
+				  {% endfor %}
+				  <p>
+				    <span>{{ fx_arrival_airport_code }}</span>{{ fx_arrival_time|raw }}
+				    {% set fx_arrival_code = fx_arrival_airport_code|raw %}
+				  </p>
+				</div>
+			      </div>
+			    </div>
+			    {% if segItem[0]['stops'] > 0 %}
+			      {% if segItem[0]['stops'] > 1 %}
+				{% set stop = [segItem[0]['stops'], 'Stops']|join(' ')|trans %}
+			      {% else %}
+				{% set stop = [segItem[0]['stops'], 'Stop']|join(' ')|trans %}
+			      {% endif %}
+			    {% else %}
+			      {% set stop = 'Non-stop'|trans %}
+			    {% endif %}
+			    <div class="col-sm-3 col-xs-12 nopad snd_div_div2">
+			      <div class="row no-margin">
+				<div class="col-xs-12 nopad snd_div_div2_firstrow">
+				  <p>
+				    <span>{{ segItem[0]['flight_duration']|raw }}</span><br/>
+				    <a rel="nofollow" href="#popup" title="{{ stop|raw }}" class="flight_stops nonstop" data-id=".figure{{ segmentsItemIndex }}" data-segmentSequence="{{ segmentIndex }}" data-refundable="{{var_refundable}}" data-seats="{{seats_remaining}} {{'seats left'|trans}}">{{ stop|raw }}</a>
+				  </p>
+				</div>
+
+		      {% set segmentIndex = segmentIndex + segItem[0]['stops'] + 1 %}
+
+			      </div>
+			    </div>
+			  </div>
+			</div>	    
+		    </div>	    
+		    <div clas="row no-margin"><div style="margin-top:1px;"></div></div>
+		{% endfor %}	    
+	    </div>
+	    <div class="col-md-2 col-xs-12 nopad newpad_flight_details_row print_width">
+
+            <div class="row no-margin">
+
+              {% set reviewTripRoute = '_flight_review_trip' %}
+              {#% set nextFlightRoute = '_multiple_destination_view' %#}
+              {% set nextFlightRoute = '_flight_review_trip' %}
+
+              {% if isCorporate is defined %}
+                {% set reviewTripRoute = '_corporate_flight_review_trip' %}
+                {#% set nextFlightRoute = '_corporate_next_flight' %#}
+                {% set nextFlightRoute = '_corporate_flight_review_trip' %}
+              {% endif %}
+
+              {% if isbooking is defined  and isbooking == 1 %}
+                <form method="post" action="{{ generateLangRoute(LanguageGet, reviewTripRoute) }}" id="form_{{ segmentsItemIndex }}">
+              {% else %}
+                <form method="post" action="{{ generateLangRoute(LanguageGet, nextFlightRoute) }}" id="form_{{ segmentsItemIndex }}">
+              {% endif %}
+
+                  {#				    <form method="post" action="{{path('_book_flight_json_new')}}" id="form_{{segmentsItemIndex}}">#}
+
+                  <input type="hidden" name="flightrequest" value=""/>
+                  <div class='main_serializer'>
+                    <input type="hidden" name="response[departureCityAirport]" value="{{ response['departureCityAirport']|raw }}"/>
+                    <input type="hidden" name="response[arrivalCityAirport]" value="{{ response['arrivalCityAirport']|raw }}"/>
+                    <input type="hidden" name="response[fromDate]" value="{{ response['fromDate']|date('d M Y') }}"/>
+                    <input type="hidden" name="response[toDate]" value="{{ response['toDate']|date('d M Y') }}"/>
+                    <input type="hidden" name="response[cabinName]" value="{{ response['cabinName']|raw }}"/>
+                    <input type="hidden" name="response[ADT]" value="{{ response['ADT']|raw }}"/>
+                    <input type="hidden" name="ADT" value="{{ response['ADT']|number_format }}"/>
+                      <input type="hidden" name="response[CNN]" value="{{ response['CNN']|raw }}"/>
+                      <input type="hidden" name="CNN" value="{{ response['CNN']|number_format }}"/>
+                      <input type="hidden" name="response[INF]" value="{{ response['INF']|raw }}"/>
+                      <input type="hidden" name="INF" value="{{ response['INF']|number_format }}"/>
+                      <input type="hidden" name="penaltiesInfo" value='{{ segmentsItem['penaltiesInfo']|raw }}'/>
+                    <div class="col-xs-12 nopad third_div">
+                        {% set isLast = false %}
+                        {#% if is_corporate_account_with_self_approval %#}
+                            {% if isbooking is defined  and isbooking == 1 %}
+                                {% set isLast = true %}
+                                {% set bookActionTitle = 'SELECT '|trans %}
+                            {% else %}
+                                {% set bookActionTitle = 'SELECT '|trans %}
+                            {% endif %}
+                        {# Disabled for none corporate user #}
+                        {% if false and not is_corporate_account %} {# and isLast %} #}
+			    <div style="height:{{ 65.5*myIndex }}px;" class="col-xs-12 nopad third_div book_now_disabled">
+				<div class="table-wrapper">
+				    <div class="table-cell">
+					<div class="book_now_txt" id="form_{{ segmentsItemIndex }}">{{ bookActionTitle|raw }}</div>
+					<p{% if response['request']['oneway'] %} style="line-height: 16px;"{% endif %}>
+					  {% if (false and not response['request']['oneway'] and response['inbound'] is not defined) %}<span class="plus">+</span>{% endif %} 
+					  <span class="currency-convert-text">{{ response['currency_code']|raw }}</span>
+					  <span class="price-convert-text" style="font-size:19px">{{ segmentsItem['segmentsGlob']['price']|raw }}</span>
+					  <br/><span style="color: #747474; font-size: 12px;">{{seats_remaining}} {{'seats left'|trans}}</span>
+					</p>
+				    </div>
+				</div>
+			    </div>
+                        {% else %}
+			    <a style="height:{{ 65.5*myIndex }}px;" rel="nofollow" href="javascript:;" title="{{ bookActionTitle|raw }}" class="col-xs-12 nopad third_div book_now" id="form_{{ segmentsItemIndex }}">
+				<div class="table-wrapper">
+				    <div class="table-cell">
+					<div class="book_now_txt" id="form_{{ segmentsItemIndex }}">{{ bookActionTitle|raw }}</div>
+					<p{% if response['request']['oneway'] %} style="line-height: 16px;"{% endif %}>
+					  {% if (false and not response['request']['oneway'] and response['inbound'] is not defined) %}<span class="plus">+</span>{% endif %} 
+					  <span class="currency-convert-text">{{ response['currency_code']|raw }}</span>
+					  <span class="price-convert-text" style="font-size:19px">{{ segmentsItem['segmentsGlob']['price']|raw }}</span>
+					  <br/><span style="color: #747474; font-size: 12px;">{{seats_remaining}} {{'seats left'|trans}}</span>
+					</p>
+				    </div>
+				</div>
+			    </a>
+                        {% endif %}
+                      {#% endif %#}
+                    </div>
+                    {% set oneWay = response['one_way'] %}
+                    {% if oneWay is not defined or oneWay == "" %}
+                      {% set oneWay = 0 %}
+                    {% endif %}
+
+                    {% set multiDestination = response['multi_destination'] %}
+                    {% if multiDestination is not defined or multiDestination == "" %}
+                      {% set multiDestination = 0 %}
+                    {% endif %}
+                    <input type="hidden" name="number_in_party" value="{{ response['num_in_party'] }}"/>
+                    <input type="hidden" name="provider_price" value="{{ segmentsItem['segmentsGlob']['provider_price'] }}"/>
+                    <input type="hidden" name="original_price" value="{{ segmentsItem['segmentsGlob']['original_price'] }}"/>
+                    <input type="hidden" name="currency" value="{{ response['currency'] }}"/>
+                    <input type="hidden" name="multi_destination" value="{{ multiDestination }}"/>
+                    <input type="hidden" name="one_way" value="{{ oneWay }}"/>
+					<span class='price-convert' data-price="{{ segmentsItem['segmentsGlob']['price_attr']|raw }}">
+						<input class="price-convert-val" type="hidden" name="price_attr" value="{{ segmentsItem['segmentsGlob']['price_attr']|raw }}"/>
+					</span>
+					<span class='price-convert' data-price="{{ segmentsItem['segmentsGlob']['price_attr']|raw }}">
+						<input class="price-convert-val" type="hidden" name="price" value="{{ segmentsItem['segmentsGlob']['price']|raw }}"/>
+					</span>
+                    <input class="currency-convert-val" type="hidden" name="currency_code" value="{{ response['currency_code'] }}"/>
+                    <input type="hidden" name="original_base_fare" value="{{ segmentsItem['original_base_fare']|raw }}"/>
+                    <input type="hidden" name="original_taxes" value="{{ segmentsItem['original_taxes']|raw }}"/>
+                    <div class="airlines_refine" data-price="{{ base_fare_attr|raw }}">
+                      <input class="price-convert-val" type="hidden" name="base_fare" value="{{ base_fare|raw }}"/>
+                    </div>
+                    <div class="airlines_refine" data-price="{{ base_fare_attr }}">
+                      <input class="price-convert-val" type="hidden" name="base_fare_attr" value="{{ base_fare_attr }}"/>
+                    </div>
+                    <div class="airlines_refine" data-price="{{ segmentsItem['taxes_attr']|raw }}">
+                      <input class="price-convert-val" type="hidden" name="taxes" value="{{ taxes|raw }}"/>
+                    </div>
+                    <div class="airlines_refine" data-price="{{ segmentsItem['taxes_attr']|raw }}">
+                      <input class="price-convert-val" type="hidden" name="taxes_attr" value="{{ segmentsItem['taxes_attr']|raw }}"/>
+                    </div>
+
+                    {% for passenger in segmentsItem['passenger_info'] %}
+                      {#<input type="hidden" name="{{ passenger['type_code'] }}" value="{{ passenger['quantity']|raw }}"/>#}
+                      <input type="hidden" segment="{{ segmentsItemIndex }}" id="leaving_baggage_info_{{ passenger['type_code'] }}_{{ segmentsItemIndex }}" name="leaving_baggage_info_{{ passenger['type_code'] }}" value="{{ passenger['leaving_baggage_info']|raw }}"/>
+                      {% if passenger['returning_baggage_info'] is defined %}
+                        <input type="hidden" id="returning_baggage_info_{{ passenger['type_code'] }}_{{ segmentsItemIndex }}" name="returning_baggage_info_{{ passenger['type_code'] }}" value="{{ passenger.returning_baggage_info|raw }}"/>
+                      {% endif %}
+                      <input type="hidden" name="fare_calc_line_{{ passenger['type_code'] }}" value="{{ passenger['fare_calculation_line']|raw }}"/>
+                    {% endfor %}
+                    <input type="hidden" name="sec_token" value="{{ segmentsItem['sec_token']|raw }}"/>
+          {% if segmentsItem['combinedData'] is defined %}
+              <input type="hidden" name="combinedData" value="{{ segmentsItem['combinedData']|raw }}"/>
+          {% endif %}
+          {% if segmentsItem['sequence_number'] is defined %}
+              <input type="hidden" name="sequence_number" value="SequenceNumber {{ segmentsItem['sequence_number']|raw }}"/>
+          {% endif %}
+          {% if segmentsItem['related_one_way'] is defined %}
+              <textarea id="related_one_way" name="related_one_way" style="display:none;">{{segmentsItem['related_one_way']}}</textarea>
+          {% endif %}
+          {% if segmentsItem['selected_price_json'] is defined and segmentsItem['selected_price_json'] %}
+              <textarea id="selected_price" name="selected_price" style="display:none;">{{segmentsItem['selected_price_json']}}</textarea>
+          {% endif %}
+          {% if segmentsItem['selected_price_source'] is defined %}
+              <textarea id="selected_price" name="selected_price" style="display:none;">{{segmentsItem['selected_price_source']}}</textarea>
+          {% endif %}
+          {% if segmentsItem['departure_flight'] is defined and segmentsItem['departure_flight'] %}
+              <textarea id="departure_flight" name="departure_flight" style="display:none;">{{segmentsItem['departure_flight']}}</textarea>
+          {% endif %}
+          {% if segmentsItem['return_flight'] is defined and segmentsItem['return_flight'] %}
+              <textarea id="return_flight" name="return_flight" style="display:none;">{{segmentsItem['return_flight']}}</textarea>
+          {% endif %}
+          {% if segmentsItem['flight_type'] is defined and segmentsItem['flight_type'] %}
+              <textarea id="flight_type" name="flight_type" style="display:none;">{{segmentsItem['flight_type']}}</textarea>
+          {% endif %}
+                  </div>
+
+                  {% for segItem in segmentsItem['segments'] %}
+                      {% set segItem_loop = loop.index %}
+                    {% for segItemIn in segItem %}
+                      <div class='seg_serializer seg_serializer-{{ segItem_loop }}'>
+                        <input type="hidden" id="flight_number-{{segItemIn['segment_count']|raw}}" name="flight_number" value="{{ segItemIn['flight_number']|raw }}"/>
+                        <input type="hidden" id="airline_code-{{segItemIn['segment_count']|raw}}" name="airline_code" value="{{ segItemIn['airline']|raw }}"/>
+                        <input type="hidden" id="operating_airline_code-{{segItemIn['segment_count']|raw}}" name="operating_airline_code" value="{{ segItemIn['operating_airline']|raw }}"/>
+                        <input type="hidden" id="airline_name-{{segItemIn['segment_count']|raw}}" name="airline_name" value="{{ segItemIn['airline_name']|raw }}"/>
+                        <input type="hidden" id="operating_airline_name-{{segItemIn['segment_count']|raw}}" name="operating_airline_name" value="{{ segItemIn['operating_airline_name']|raw }}"/>
+                        <input type="hidden" id="origin_location-{{segItemIn['segment_count']|raw}}" name="origin_location" value="{{ segItemIn['departure_airport_code']|raw }}"/>
+                        <input type="hidden" id="origin_location_city-{{segItemIn['segment_count']|raw}}" name="origin_location_city" value="{{ segItemIn['departure_airport_city']|raw }}"/>
+                        <input type="hidden" id="origin_location_airport-{{segItemIn['segment_count']|raw}}" name="origin_location_airport" value="{{ segItemIn['departure_airport_name']|raw }}"/>
+                        <input type="hidden" id="destination_location-{{segItemIn['segment_count']|raw}}" name="destination_location" value="{{ segItemIn['arrival_airport_code'] }}"/>
+                        <input type="hidden" id="destination_location_city-{{segItemIn['segment_count']|raw}}" name="destination_location_city" value="{{ segItemIn['arrival_airport_city']|raw }}"/>
+                        <input type="hidden" id="destination_location_airport-{{segItemIn['segment_count']|raw}}" name="destination_location_airport" value="{{ segItemIn['arrival_airport_name']|raw }}"/>
+                        <input type="hidden" id="total_flight_segments-{{segItemIn['segment_count']|raw}}" name="total_flight_segments" value="{{ segItemIn['total_flight_segments']|raw }}"/>
+                        <input type="hidden" id="departure_date_time-{{segItemIn['segment_count']|raw}}" name="departure_date_time" value="{{ segItemIn['original_departure_date_time']|raw }}"/>
+                        <input type="hidden" id="arrival_date_time-{{segItemIn['segment_count']|raw}}" name="arrival_date_time" value="{{ segItemIn['original_arrival_date_time'] }}"/>
+                        <input type="hidden" id="res_book_desig_code-{{segItemIn['segment_count']|raw}}" name="res_book_desig_code" value="{{ segItemIn['res_book_desig_code']|raw }}"/>
+                        <input type="hidden" id="fare_basis_code-{{segItemIn['segment_count']|raw}}" name="fare_basis_code" value="{{ segItemIn['fare_basis_code']|raw }}"/>
+                        <input type="hidden" id="flight_type-{{segItemIn['segment_count']|raw}}" name="flight_type" value="{{ segItemIn['flight_type']|raw }}"/>
+                        <input type="hidden" id="cabin-{{segItemIn['segment_count']|raw}}" name="cabin" value="{{ segItemIn['cabin']|raw }}"/>
+                        <input type="hidden" id="cabin_code-{{segItemIn['segment_count']|raw}}" name="cabin_code" value="{{ segItemIn['cabin_code']|raw }}"/>
+                        <input type="hidden" id="flight_duration-{{segItemIn['segment_count']|raw}}" name="flight_duration" value="{{ segItemIn['flight_duration']|raw }}"/>
+                        <input type="hidden" id="stop_duration-{{segItemIn['segment_count']|raw}}" name="stop_duration" value="{{ segItemIn['stop_duration']|raw }}"/>
+                        <input type="hidden" id="stop_indicator-{{segItemIn['segment_count']|raw}}" name="stop_indicator" value="{{ segItemIn['stop_indicator'] }}"/>
+                        <input type="hidden" id="stops-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['stops']|raw }}"/>
+                        <input type="hidden" class="segment_number" id="segment_number" value="{{ segItemIn['segment_count']|raw }}"/>
+                        <input type="hidden" class="segment_index" id="segment_index" value="{{ segmentsItemIndex|raw }}"/>
+                        <input type="hidden" id="airline_logo-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['airline_logo'] }}"/>
+                        <input type="hidden" name="departure_terminal_id" id="departure_terminal_id-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['departure_terminal_id'] }}"/>
+                        <input type="hidden" name="arrival_terminal_id" id="arrival_terminal_id-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['arrival_terminal_id'] }}"/>
+                        <input type="hidden" name="aircraft_type" id="aircraft_type-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['aircraft_type'] }}"/>
+                        <input type="hidden" name="sec_token" value="{{ segmentsItem['sec_token']|raw }}"/>
+                        <input type="hidden" name="mile_distance" class="mile_distance" id="mile_distance-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['mile_distance'] }}"/>
+                        {% if segItemIn['stop_indicator'] == 1 %}
+                          {% set segc = segItemIn['segment_count']-1 %}
+                          <input type="hidden" id="prev_seg_arrival_airport-{{ segc|raw }}" value="{{ segItemIn['arrival_airport_city'] }}"/>
+                          <input type="hidden" id="prev_seg_arrival_airport_code-{{ segc|raw }}" value="{{ segItemIn['arrival_airport_code'] }}"/>
+                        {% endif %}
+                        {% if response['enableRefundable'] %}
+                          <input type="hidden" name="refundable" value="{{ segmentsItem['refundable']|raw }}"/>
+                        {% endif %}
+                        <input type="hidden" name="elapsedTime" class="elapsedTime" id="elapsedTime-{{segItemIn['segment_count']|raw}}" value="{{ segItemIn['elapsedTime'] }}"/>
+                      </div>
+                    {% endfor %}
+                  {% endfor %}
+                  <input type="hidden" value="{{ fx_departure_code }}" id="fx_departure_code-{{segmentsItemIndex}}">
+                  <input type="hidden" value="{{ fx_arrival_code }}" id="fx_arrival_code-{{segmentsItemIndex}}">
+                </form>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+
+    {% endfor %}
+
+  {% endif %}
+
+	<div class="col-xs-1 my-sizer-element"></div>
+
+      {% if isbooking is defined %}
+		<input type="hidden" id="isbooking" value="{{ isbooking }}"/>
+      {% endif %}
+
+      {% if isReturn is defined %}
+		<input type="hidden" id="isReturn" value="{{ isReturn }}"/>
+      {% endif %}
+
+  {# % if response['one_way'] == 1 and response['multi_destination'] == 0 %  #}
+
+		{% if (response['one_way'] == 1 and response['multi_destination'] == 0) or selectedRequest['main'] is not defined %}
+			<input type="hidden" id="arrivalcity" value="{{ response['arrivalCityAirport']|raw }}"/>
+			<input type="hidden" id="arrivalcode" value="{{ response['arrivalairport']|raw }}"/>
+		{% else %}
+
+			<input type="hidden" id="arrivalcity" value="{{ response['departureCityAirport']|raw }}"/> 
+			<input type="hidden" id="arrivalcode" value="{{ selectedRequest['main']['departureairportC'][0]|raw }}"/>
+
+		{% endif %}
+
+      {# % endif % #}
+	</div>
+

@@ -1,0 +1,43 @@
+@font-face {
+	font-family: 'FRADMCN';
+	src: url('fonts/FRADMCN.TTF') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.nopad {
+	padding: 0;
+}
+
+.corimgsclass_corp {
+	width: 100%;
+}
+
+.width100 {
+	width: 100%;
+}
+
+.absoluteindiv {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.textunimg_corp {
+	font-family: 'FRADMCN';
+	font-size: 25px;
+	position: absolute;
+	top: calc(50% + 37px);
+	text-align: center;
+	width: 100%;
+	line-height: 23px;
+	margin: 0;
+}
+
+@media ( max-width :550px) {
+	.menuCopr {
+		width: 100%;
+	}
+}

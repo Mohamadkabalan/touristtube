@@ -1,0 +1,79 @@
+TTBundle\Entity\CmsUsersPrivacyExtand:
+    type: entity
+    table: cms_users_privacy_extand
+    indexes:
+        entity_id:
+            columns:
+                - entity_id
+                - entity_type
+                - published
+        user_id:
+            columns:
+                - user_id
+        entity_id_2:
+            columns:
+                - entity_id
+        entity_type:
+            columns:
+                - entity_type
+        entity_id_3:
+            columns:
+                - entity_id
+                - entity_type
+        user_id_2:
+            columns:
+                - user_id
+                - entity_id
+                - entity_type
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        entityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: entity_id
+        entityType:
+            type: integer
+            nullable: false
+            column: entity_type
+        kindType:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: kind_type
+        users:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        usersList:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: users_list
+        published:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

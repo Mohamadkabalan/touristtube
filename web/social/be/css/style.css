@@ -1,0 +1,91 @@
+body {
+	background: #FFFFFF;
+	margin: 0px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #4f5252;
+	font-weight: 400;
+}
+
+
+/*	===================================================================
+   	RESET
+   	===================================================================   */
+
+html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul, dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object, a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span, strong, sub, sup, tt, var, legend, fieldset {
+	margin: 0;
+	padding: 0;
+}
+* {
+	padding:0;
+	margin:0;
+}
+ul, ol, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.btn.outlined {
+color: #5763bd;
+border: solid 2px #5763bd;
+border-radius: 3px;
+text-transform: uppercase;
+background: #fff;
+font-size: 18px;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+-webkit-appearance: button;
+cursor: pointer;
+overflow: visible;
+}
+.mleft_no {
+margin-left: 0;
+}
+.btn {
+padding: 10px 20px;
+margin: 15px;
+border: none;
+background: #666;
+color: #ccc;
+font-weight: bold;
+text-decoration: none;
+transition: all 0.35s;
+-moz-transition: all 0.35s;
+-webkit-transition: all 0.35s;
+-o-transition: all 0.35s;
+white-space: nowrap;
+}
+.btn.outlined:hover {
+color: #fff;
+border: solid 2px #5763bd;
+background: #3675B4;
+box-shadow: none;
+}
+
+.gallery{ width:100%; float:left; margin-top:100px;}
+
+.gallery ul{ margin:0; padding:0; list-style-type:none;}
+
+.gallery ul li{ padding:7px; border:2px solid #ccc; float:left; margin:10px 7px; background:none; width:auto; height:auto;}
+
+#reorder-helper{margin: 18px 10px;
+padding: 10px;}
+.light_box {
+background: #efefef;
+padding: 20px;
+margin: 10px 0;
+text-align: center;
+font-size: 1.2em;
+}
+.onoffswitch-checkbox{
+    width:80px;
+}
+
+/* NOTICE */
+.notice, .notice a{ color: #fff !important; }
+.notice { z-index: 8888; }
+.notice a { font-weight: bold; }
+.notice_error { background: #E46360; }
+.notice_success { background: #657E3F; }
+
+.gallery img{ width:250px;}

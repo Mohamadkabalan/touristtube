@@ -1,0 +1,25 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+     <link rel="stylesheet" type="text/css" href="{{ asset("/css/where-is-search.css")|raw }}" >   
+    
+{% endblock %}
+{% block pagenewjs %}
+    
+{% endblock %}
+{% block body %}
+    <section class="container">
+        <div class="title-row col-xs-12">
+            <h1>{{ 'where is'|trans }}</h1>
+        </div>
+        <div class="content col-xs-12">
+            <ul>
+                {% for whereis in whereisAll%}
+                      <li class=" col-lg-3 col-md-3 col-sm-6 col-xs-12 whliclass"><a href="{{ whereis.link|raw }}" title="{{ whereis.name|raw }}">{{ whereis.name|raw }}</a></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    
+{% endblock %}

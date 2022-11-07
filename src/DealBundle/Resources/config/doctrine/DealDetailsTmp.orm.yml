@@ -1,0 +1,24 @@
+DealBundle\Entity\DealDetailsTmp:
+    type: entity
+    table: deal_details_tmp
+    repositoryClass: DealBundle\Repository\Deal\PackagesRepository
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dealCode:
+            type: string
+            nullable: true
+            length: 45
+            column: deal_code
+    lifecycleCallbacks: {  }

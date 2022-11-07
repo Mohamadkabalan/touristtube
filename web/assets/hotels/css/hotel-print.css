@@ -1,0 +1,39 @@
+#printableArea {
+    display: none;
+}
+.addtobag.addtobagreservation{
+    height: auto;
+    color: #0896ff;
+    font-size: 13px;
+    line-height: 17px;
+    padding-left: 28px;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+    float: left;
+    margin-top: 4px;
+}
+@media print {
+    .container,
+    .container-fluid {
+        display: none;
+    }
+    #printableArea {
+        display: block;
+        position: absolute;
+        top: 0;
+    }
+    .noprint {
+        display: none;
+    }
+    .print-margin-top-18 {
+        margin-top: 18px;
+    }
+    .print-margin-top-13 {
+        margin-top: 13px;
+    }
+    .splineheight {
+        padding-top: 0;
+    }
+}

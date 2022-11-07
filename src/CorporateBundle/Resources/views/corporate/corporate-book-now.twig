@@ -1,0 +1,263 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-book-now.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-book-now.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container corporateloginwhitecontainer corporate_container1">
+        <div class="col-xs-12 nopad">
+            {% include '@Corporate/corporate/corporate-deals-common-header.twig' %}
+        </div> 
+
+        <div class="col-xs-12 nopad margintop100">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopad rightfourcontainer_sts">  
+                <div class="col-xs-12 nopad rightcontainerbordergrey_sts">
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+                        <div class="col-xs-12 nopad">
+                            <p class="location_sts commontextblack_sts">{{'Paris, FR'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="fromto_sts commontextblack_sts">{{'From Airport / Station / Port to Dropoff'|trans}}
+                                {{'point and back'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="commontextblack_sts">{{'Roissy Charles de Gaulle Airport'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="homelogo_sts commontextblack_sts">{{'The Westin Paris - Vendôme'|trans}}
+                                {{'3Rue de castiglione, Paris'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad smlabigpad">
+                        <div class="col-xs-12 nopad">
+                            <p class="commontextblack_sts">{{'Sat Jul 15 2017, 04:00'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="commontextblack_sts">{{'From Pickup point to'|trans}} <br>
+                                {{'Airport / Station / Port'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="commontextblack_sts">{{'Fri Jul 21 2017, 10:05'|trans}}</p>
+                            <div class="col-xs-12 nopad borderbetweendiv_sts"></div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="personlogo_sts commontextblack_sts">2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <a class="bookbut_sts" href="#">{{'Book now starting at'|trans}}
+                        US$ 11.92</a>
+                </div>
+                <div class="col-xs-12 nopad rightcontainerbordergrey_wtt_sts martop10">
+                    <div class="col-xs-12 nopad">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+                            <p class="resontt_sts">{{'Why ToursitTube?'|trans}}</p>
+                            <ul class="whyttlist_sts">
+                                <li class="">{{'Easy booking'|trans}}</li>
+                                <li class="">{{'Instant confirmation'|trans}}</li>
+                                <li class="">{{'Reschedule anytime'|trans}}</li>
+                                <li class="">{{'Best price guaranteed'|trans}}</li>
+                                <li class="">{{'24/5 Customer support'|trans}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+                            <div class="col-xs-12 nopad inhorborderstyle_sts"></div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopad">
+                            <p class="needhelp_sts">{{'Need Help?'|trans}}<span class="contus_sts"> <a href="#" class=""> {{'Contact Us'|trans}}</a></span></p>
+                            <div class="col-xs-12 nopad paddhorborder_sts hidden-sm">
+                                <div class="col-xs-12 nopad inhorborderstyle_sts extrabordmarbut_sts"></div>
+                            </div>
+                            <p class="secpay_sts">{{'Secure & simple payments'|trans}}</p>
+                            <p class="protectpay_sts">{{'All our card payments are protected'|trans}}
+                                {{'by thawte to give you peace of mind'|trans}}</p>
+                            <div class="col-xs-12 nopad textalligncenter">
+                                <div class="paymimgs_sts_cont">
+                                    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/visa_dat_img.png') }}" alt="{{'title'}}"/> </a>
+                                    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/mastercard_dat_img.png') }}" alt="{{'title'}}"/> </a>
+                                    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/americnexpress_dat_img.png') }}" alt="{{'title'}}"/> </a>
+                                    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/discover_dat_img.png') }}" alt="{{'title'}}"/> </a>
+                                    <a href="#" class="payimgssingle_sts"><img src="{{ generateMediaURL('/media/images/deals-attractive/jcb_dat_img.png') }}" alt="{{'title'}}"/> </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 nopad"> 
+                <div class="col-xs-12 nopad">
+                    <h1 class="seccon_sts">{{'Secure booking. Only takes 2 minutes!'|trans}}</h1>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <div class="col-xs-12 nopad borderedautowdsiv_sts">
+                        <p class="alrhaccpink_sts">{{'Already have an account?'|trans}}</p>
+                        <a class="signinbut_sts" href="#">{{'Sign in'|trans}}</a>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad">
+                                <p class="arrdepboldtext_sts">{{'Arrival Transfer'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="detbluetxt_sts">{{'Arrival company or flight number'|trans}}</p>
+                                <input id="" name="" data-link="" placeholder="{{'Departure company or flight number'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="detbluetxt_sts">{{'Arriving form'|trans}}</p>
+                                <input id="" name="" data-link="" placeholder="{{'Arriving form'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="detbluetxt_sts">{{'Complete Destination address in Paris'|trans}}</p>
+                                <input id="" name="" data-link="" placeholder="{{'3 rue de castiglione, Paris'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad">
+                                <p class="arrdepboldtext_sts">{{'Departure Transfer'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="detbluetxt_sts">{{'Departure company or flight number'|trans}}</p>
+                                <input id="" name="" data-link="" placeholder="{{'Departure company or flight number'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="detbluetxt_sts">{{'Going to'|trans}}</p>
+                                <input id="" name="" data-link="" placeholder="{{'Going to'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <p class="detbluetxt_sts">{{'Complete pickup address in Paris'|trans}}</p>
+                                <input id="" name="" data-link="" placeholder="{{'3 rue de castiglione, Paris'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+                        <p class="alrhaccpink_sts">{{'Lead Traveler’s Information'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad margintop30">
+                            <p class="detbluetxt_sts">{{'Contact name'|trans}}</p>
+                            <input id="" name="" data-link="" placeholder="{{'First name'|trans}}" class="firstnameinput_sts" value="" autocomplete="off" type="text">
+                            <input id="" name="" data-link="" placeholder="{{'Last name'|trans}}" class="firstnameinput_sts marginleft20" value="" autocomplete="off" type="text">
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="detbluetxt_sts">{{'Email address'|trans}}</p>
+                            <input id="" name="" data-link="" placeholder="{{'We’ll send you voucher there'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="detbluetxt_sts">{{'Credit card billing address'|trans}}</p>
+                            <input id="" name="" data-link="" placeholder="{{'your billing address'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="detbluetxt_sts">{{'Country code'|trans}}</p>
+                            <select class="selectboxlargestandard_sts">
+                                <option value="" selected="selected" >{{'Country'|trans}}</option>
+                                <option value="">leb</option>
+                                <option value="">USA</option>
+                                <option value="">UAE</option>
+                            </select> 
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="detbluetxt_sts">{{'Mobile phone number'|trans}}</p>
+                            <input id="" name="" data-link="" placeholder="{{'In case we need to reach you'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="detbluetxt_sts">{{'Do you have special requests for your booking?'|trans}}<br>
+                                {{'Tell us and we will glasgly accomodate!'|trans}}</p>
+                            <textarea class="textarea_sts">
+
+                            </textarea> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+                        <p class="alrhaccpink_sts">{{'Payment'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad">
+                                <p class="arrdepboldtext_sts flatleftstyle_sts">{{'Have a gift certificate or promocode?'|trans}}</p>
+                                <a class="redemdisc_sts flatleftstyle_sts" href="#">{{'Redeem your discount'|trans}}</a>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div class="col-xs-12 nopad">
+                                    <p class="detbluetxt_sts">{{'Cardholder Name'|trans}}</p>
+                                    <input id="" name="" data-link="" placeholder="{{'Name on the credit card'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                                    <div class="rightpaymnetimgscont_sts">
+                                        <img class="" src="{{ generateMediaURL('/media/images/stepseven/visalogo_sts.png') }}" alt="{{'title'}}"/>
+                                        <img class="redborderimgstylepad_sts" src="{{ generateMediaURL('/media/images/stepseven/redborderimg_sts.png') }}" alt="{{'title'}}"/>
+                                        <img class="" src="{{ generateMediaURL('/media/images/stepseven/mastercard_sts.png') }}" alt="{{'title'}}"/>
+                                        <img class="redborderimgstylepad_sts" src="{{ generateMediaURL('/media/images/stepseven/redborderimg_sts.png') }}" alt="{{'title'}}"/>
+                                        <img class="" src="{{ generateMediaURL('/media/images/stepseven/amexpress_sts.png') }}" alt="{{'title'}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <p class="detbluetxt_sts">{{'Debit / Credit card number'|trans}}</p>
+                                    <input id="" name="" data-link="" placeholder="{{'Card number'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <p class="detbluetxt_sts">{{'Expiration Date'|trans}}</p>
+                                    <select class="selectboxlargestandard_sts smalselectbox_sts">
+                                        <option value="" selected="selected" >January</option>
+                                        <option value="">FEB</option>
+                                        <option value="">MAR</option>
+                                    </select> 
+                                    <select class="selectboxlargestandard_sts smalselectbox_sts sndsboxstyle">
+                                        <option value="" selected="selected" >2017</option>
+                                        <option value="">2018</option>
+                                        <option value="">2019</option>
+                                    </select> 
+                                </div>
+                                <div class="col-xs-12 nopad">
+                                    <p class="detbluetxt_sts">{{'Security code'|trans}}</p>
+                                    <input id="" name="" data-link="" placeholder="CVC" class="arrdepstandardinput_sts smalselectbox_sts" value="" autocomplete="off" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 nopad">
+                    <div class="col-xs-12 nopad borderedautowdsiv_sts margintop20">
+                        <p class="alrhaccpink_sts">{{'Create your account'|trans}}</p>
+                    </div>
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad margintop30">
+                            <p class="detbluetxt_sts">{{'Create password'|trans}}</p>
+                            <input id="" name="" data-link="" placeholder="{{'Min, 8 chars'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="detbluetxt_sts">{{'Confirm password'|trans}}</p>
+                            <input id="" name="" data-link="" placeholder="{{'Enter it again!'|trans}}" class="arrdepstandardinput_sts" value="" autocomplete="off" type="text">
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <p class="termsandcondtext_sts">{{'By selecting to cpmplete this booking and / or joining TouristTube.com,'|trans}}<br>
+                                {{'I ackknowledge that I have read and accept the'|trans}} <span><a href="#" class="temcondurl_sts"> {{'Terms and Conditions'|trans}}</a></span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 nopad">
+                            <a class="compbookbluebut_sts" href="#">Complete Booking'|trans}}</a>
+                        </div>
+                        <div class="lastfloatleftsponimg_sts">
+                            <img class="" src="{{ generateMediaURL('/media/images/stepseven/trustwavelogo_sts.png') }}" alt="{{'title'}}"/>
+                            <img class="" src="{{ generateMediaURL('/media/images/stepseven/secby_sts.png') }}" alt="{{'title'}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

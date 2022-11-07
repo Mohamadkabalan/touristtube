@@ -1,0 +1,1 @@
+DELETE FROM hotel_to_hotel_divisions WHERE hotel_id=0 OR hotel_division_id=0;

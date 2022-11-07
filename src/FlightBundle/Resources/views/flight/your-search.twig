@@ -1,0 +1,47 @@
+<div class="col-md-4 col-sm-12 col-xs-12 bordered_div">
+{#		{{ dump() }}#}
+    <div class="row">
+        <div class="col-xs-5 smalcentered_p">
+            <p><span>{{ 'FROM'|trans }}</span><br>{{ response['departureCityAirport'] }}</p>
+        </div>
+        <div class="col-xs-2">
+            {% if not response['request']['oneway'] %}
+                <div class="image_blue_container">
+                    <div class="blue_circle_rightleft_arrow"><i class="fas fa-exchange-alt"></i></div>
+                </div>
+            {% else %}
+                <div class="dest_img_container">
+                    <div class="dest_img_arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-xs-5 right_p_span">
+            <p><span>{{ 'TO'|trans }}</span><br>{{ response['arrivalCityAirport'] }}</p>
+        </div>
+    </div>
+</div>
+<div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="row centered_divs">
+        <div class="col-md-2 col-sm-6 col-xs-12 bordered_div">
+            <p><span>{{ 'DEPARTING'|trans }}</span><br>{{ response['fromDate']|date('d M Y') }}</p>
+        </div>
+
+        {% if not response['request']['oneway'] %}
+            <div class="col-md-2 col-sm-6 col-xs-12 bordered_div no_left_border_small">
+                <p><span>{{ 'RETURNING'|trans }}</span><br>{{ response['toDate']|date('d M Y') }}</p>
+            </div>
+        {% endif %}
+
+        <div class="col-md-2 col-sm-6 col-xs-12 bordered_div">
+            <p><span>{{'CLASS'|trans}}</span><br>{{ response['cabinName'] }}</p>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12 bordered_div no_left_border_small">
+            <p><span>{{'PASSENGERS'|trans}}</span><br>
+            {{ response['ADT']|raw }}{% if response['CNN'] is not empty %}, {{ response['CNN']|raw }} {%endif%}{% if response['INF'] is not empty %}, {{ response['INF']|raw }} {%endif%}
+            </p>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12 bordered_div noborrdered_div">
+            <button class="btn btn-info update_search_button">{{'Update your search'|trans}}</button>
+        </div>
+    </div>
+</div>

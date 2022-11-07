@@ -1,0 +1,1 @@
+ALTER TABLE `corpo_account` ADD `account_type_id` INT NOT NULL;

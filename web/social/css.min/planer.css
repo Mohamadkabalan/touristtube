@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+
+.planerContainer {
+	position: relative;
+	margin: 0 auto;
+	text-align: left;
+	padding: 0 0 0 26px;
+	background: #fff;
+	width: 989px;
+	min-height: 800px;
+	background:url(../image/bg_1.png) no-repeat 49% 15%;
+	
+}
+div {
+	font-family: Arial, Helvetica, sans-serif;
+	
+}
+#plan {
+	height: 2000px;
+	width: 100%;
+	background: #FFF;
+	margin-top: 55px;
+}
+h1 {
+	text-transform: uppercase;
+	font: bold 12px/14px arial;
+	color: #cea113;
+}
+p {
+	text-transform: uppercase;
+	font-size: 13px;
+	color: #fff;
+	font-weight: bold;
+}
+#grid{
+	width:50%; display:inline-block; vertical-align:top; margin-top:50px;}
+#grid ul{
+	padding:0px;}
+#grid ul li {
+	display: inline-block;
+	padding: 5px 5px 5px 10px;
+	width: 20%;
+	color: #626262;
+	text-transform:capitalize;
+	font-size: 12px;
+	color: #626262;
+	font-weight: 400;
+	cursor:pointer;
+}
+
+#grid ul li.active{
+	color: #cea113;
+background: url(../image/x.png) no-repeat 0 9px;
+text-decoration-color: #cea113;
+text-decoration: underline;
+}
+#sidebar{
+	width:25%; display:inline-block; margin-top:50px;  }
+	#sidebar div:first-child{
+		background-color:#cea113; }
+		#sidebar h1{color:#FFF; padding-top:40px; padding-left:21px;}
+		#sidebar ul{
+			padding-left:0px; font-weight:bold; font-size:12px;}
+
+#sidebar ul li {
+	list-style: none;
+	padding-left: 23px;
+	color: #FFF;
+	text-decoration: underline;
+	line-height: 20px;
+	cursor:pointer;
+}
+#sidebar ul li:last-child {
+	list-style: none;
+	padding-left: 23px;
+	color: #FFF;
+	text-decoration: none;
+	line-height: 20px;
+}
+.destination{
+	 background:#e7e7e7; /* text-align: center; */ /* vertical-align: middle; */  padding: 7px; padding-left: 21px; margin-top: -10px;}
+	 .count{
+		 width:10%; font-size:44px; color:#cea113; display:inline-block; font-weight:bold;   text-align:right; margin-top:152px; vertical-align:top;}
+		 .trip{ background:#e7e7e7; /* text-align: center; */ /* vertical-align: middle; */padding: 7px; padding-left: 21px; margin-top: 1px;}
+		 .theme{ background:#e7e7e7; /* text-align: center; */ /* vertical-align: middle; */ padding: 7px; padding-left: 21px; margin-top: 1px;}
+		 .cuisine{
+			  background:#fff; /* text-align: center; */ /* vertical-align: middle; */   padding: 7px; padding-left: 21px; margin-top: 1px;}
+			  .validate{background:#cea113;  text-align: center; /* vertical-align: middle; */   padding:7px; padding-left: 21px; margin-top: 1px; border:1px solid #cea113; border-radius:10px;}
+
+

@@ -1,0 +1,141 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        our_db_provider:
+            chain:
+               providers: [db_username, db_email]
+        db_username:
+            entity:
+                class: TTBundle:CmsUsers
+                property: yourusername
+        db_email:
+            entity:
+                class: TTBundle:CmsUsers
+                property: youremail
+        api_key_user_provider:
+            id: api_key_user_provider
+
+    encoders:
+        TTBundle\Entity\CmsUsers:
+            id: app.sha256salted_encoderservices
+        
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js|translations)/
+            security: false
+
+        oauth_token:
+            pattern: ^/oauth/v2/token
+            security: false
+
+        api_secured_area:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+            anonymous: true
+
+        corporate_secured_area:
+            pattern:   ^/corporate
+            http_basic: ~
+            provider: our_db_provider
+            anonymous: ~
+            remember_me:
+                key:      '%secret%'
+                lifetime: 604800
+                path:     /
+                domain: '%CONFIG_COOKIE_PATH%'
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true  
+            form_login:
+                login_path: /corporate/login
+                check_path: /corporate/login
+                default_target_path: /corporate/login_success
+                always_use_default_target_path: true
+                failure_path: /corporate/login
+            logout:
+                path:   /corporate/logout
+                target: /corporate/login
+                success_handler: app.logout_success_handler
+                
+        user_secured_area:
+            pattern:   ^/
+            http_basic: ~
+            anonymous: ~
+            remember_me:
+                name: keepme_logged
+                key:  '%secret%'
+                lifetime: 604800
+                path:      /
+                domain: '%CONFIG_COOKIE_PATH%'
+            provider: our_db_provider
+            form_login:
+                login_path: /login
+                check_path: /login
+                default_target_path: /login_success
+                always_use_default_target_path: true
+                failure_path: /login
+            logout:
+                path:   /logout
+                target: /login
+                success_handler: app.logout_success_handler
+    role_hierarchy:
+        ROLE_SYSTEM:       [ROLE_ADMIN, ROLE_CORPORATE]
+        ROLE_CORPORATE:  [ROLE_API]
+        ROLE_ADMIN: [ROLE_API]
+    access_control:
+    - { path: ^/corporate/contact-us-webview, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/about-us-webview, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/terms-and-conditions-webview, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/privacy-policy-webview, roles: IS_AUTHENTICATED_ANONYMOUSLY }        
+    - { path: ^/corporate/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/password/forgot/emails, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/tell-us-corporate/emails, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/password/update-forgot, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/password/reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/corporate/admin/, roles: ROLE_ADMIN}
+    - { path: ^/corporate, roles: [ROLE_ADMIN, ROLE_CORPORATE]}
+    - { path: ^/api/corporate/users/sign-in, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/users/get-error, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/users/sign-in, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/users/facebook/sign-in, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/account/register, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/create-client, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/convert/currency, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/users/reset-password, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/hotels/divisions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/thingstodo/divisions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/restaurant/divisions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api/publish/video, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/api, roles: [ ROLE_API,ROLE_USER,ROLE_SYSTEM,ROLE_CORPORATE ] }
+
+#    - { path: ^/index, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#    - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+#        secured_area:
+#            anonymous: ~
+#            oauth:
+#                resource_owners:
+#                    facebook:           "/login/check-facebook"
+#                    google:             "/login/check-google"
+#                login_path:        /login
+#                use_forward:       false
+#                failure_path:      /login
+#
+#                oauth_user_provider:
+#                    service: my_user.oauth_user_provider
+#        access_control:
+#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

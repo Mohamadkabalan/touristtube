@@ -1,0 +1,50 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript">
+		channelGlobalID({{channel_id|raw}});
+    </script>
+    <script type="text/javascript" src="{{ asset("/assets/photos_videos/js/add_album_media.js") }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="container channel-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Channels'|trans}}</h1>
+                    </div>
+                </div>
+                <div class="row current_channel_media" data-id="{{channel_id|raw}}" data-pages="{{page_count|raw}}" data-type="{{type|raw}}">
+                    <div class="col-md-9 col-xs-12 right_panel col-md-push-3">
+                        <div class="row no-margin">
+                            {% include "channels/channel-header.twig" %}
+                        </div>
+                        <div class="row no-margin">
+			    {% if media_array|length>0 %}
+				<div class="col-xs-12 nopad">
+				    <div class="row no-margin">
+					<div class="col-xs-12 nopad ">
+					    <p class="font-27 black float_left line-height-38"><i class="fas fa-angle-right left_title_arrow"></i>{% if type=='v' %}{{'Videos'|trans}}{% elseif type=='albums' %}{{'Albums'|trans}}{% else %}{{'Photos'|trans}}{% endif %}</p> 
+					</div>
+					<div class="col-xs-12 nopad ">
+					    <div class="row channel_newmargin media_container">
+						{% include "channels/channel-photos-videos_in.twig" %}
+					    </div>
+					</div>
+				    </div> 
+				</div>
+			    {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 left_panel col-md-pull-9">
+                        {% include "channels/channel-left.twig" %}
+                    </div>
+                </div>		
+            </div>
+        </div>
+    </section>
+{% endblock %}

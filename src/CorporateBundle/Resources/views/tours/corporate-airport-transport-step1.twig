@@ -1,0 +1,7 @@
+<p class="titlest0black_sts">{{'Choose your destination city.'|trans}}</p>
+<select id="destinationCity" name="destinationCity" class="selectboxlargestandard_sts" onchange="updateCityOnChange();">
+    <option value="" selected="selected" >{{'Select your destination City'|trans}}</option>
+    {% for key,val in cityName %}
+	<option value="{{val}}">{{val}}</option>
+    {% endfor %}
+</select>

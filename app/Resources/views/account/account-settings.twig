@@ -1,0 +1,131 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/tuber/css/tuber_commun.css")|raw }}" >
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/tuber/js/account_common.js") }}"></script>
+{% endblock %}
+{% block title %}{{'Account Settings'|trans}} | Tourist Tube{% endblock %}
+{% block body %}
+    <section class="container tuuber-container">
+        <div class="row">
+            <div class="col-xs-12">
+		{% set account_header_name = 'account settings'|trans %}
+                {% include "account/account-header.twig" %}
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 left_panel">
+                        <div class="row no-margin">
+                            {% include "account/account-menu.twig" %}
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <h2 class="black_title">{{'Account settings'|trans}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-6 col-xs-12 margin_top_15">
+                                                <label class="labelstyle_account">{{'Username'|trans}}</label>
+                                                <input type="text" name="uname" value="{{uname|raw}}" autocomplete="off" class="accountinfo_input required" data-alert="{{'Please enter your Username'|trans}}" placeholder="{{'Username (edit)'|trans}}" value=""/>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 margin_top_15">
+                                                <label class="labelstyle_account">{{'Password'|trans}}</label>
+                                                <input type="password" name="old_pass" autocomplete="off" class="accountinfo_input" placeholder="{{'Password'|trans}}" value=""/>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 margin_top_15">
+                                                <label class="labelstyle_account">{{'New password'|trans}}</label>
+                                                <input type="password" name="new_pass" autocomplete="off" class="accountinfo_input" placeholder="{{'New password'|trans}}" value=""/>
+						<p class="password_hints">{{ 'should be at least 8 characters long'|trans }}<br />{{ 'and must be a combination of letters and numbers.'|trans }}</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 margin_top_15">
+                                                <label class="labelstyle_account">{{'Confrim new password'|trans}}</label>
+                                                <input type="password" name="new_pass2" autocomplete="off" class="accountinfo_input" placeholder="{{'Confrim new password'|trans}}" value=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin margin_top_30">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <h2 class="black_title">{{'Deactivate my account'|trans}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 margin_top_15">
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="desactempCheckBox" value="desactemp" id="desactemp" class="form-check-input desactemp">
+                                                    <label for="desactemp" class="form-check-label">
+                                                        {{'Deactivate temporarily'|trans}}
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="stopemailCheckBox"{% if notification_email==0 %} {{'checked="checked"'}}{% endif %} value="stopemail" id="stopemail" class="form-check-input stopemail">
+                                                    <label for="stopemail" class="form-check-label">
+                                                        {{'Stop recieving future emails for tourist tube'|trans}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <a href="#" class="learnmorelink learnmorelink_a more" for="learnmore_container">{{'Learn more'|trans}}</a>
+						<div style="height: 0px;" data-h="0"  class="learnmore_txt learnmore_container">
+						    <b>{{'Deactivate my account'|trans}}</b><br>
+						    {{'Checking this box will temporarily deactivate your account. Deactivating your account will disable your profile, hence your name will no longer be found on Tourist Tube. It will also remove for everyone access to your uploads on Tourist Tube. Some information may still be visible to others, such as your name in their friends list and messages you sent.'|trans}}<br><br>
+						    {{'You can reactivate your account at any time simply by logging in with your login email address and password.'|trans}}
+						    <br>
+						    <br>
+						    {{'Also stop receiving emails from Tourist Tube'|trans}}
+						    <br>
+						    <strong>{{'Delete my entire account'|trans}}</strong><br>
+						    {{'By selecting this box you will be asked for security check, which is followed by permanently deleting your Tourist Tube account and email with no option for recovery. Please keep in mind that you will not be able to reactivate your account or retrieve any of the information you have added or any of the content you have uploaded.'|trans}}
+						</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+				<div class="row no-margin margin_top_30">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <h2 class="black_title">{{'Delete my account'|trans}}</h2>
+                                            </div>
+                                        </div>
+					
+                                        <div class="row">
+					    <div class="col-xs-12 margin_top_15">
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="deleteCheckBox" value="delete" id="deleteemp" class="form-check-input deleteemp">
+                                                    <label for="deleteemp" class="form-check-label">
+                                                        {{'Are you sure you want to delete your account? This action cannot be undone.'|trans}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-margin margin_top_30">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-6 col-xs-12 margin_top_15">
+                                                <button class="btn accountinfo_but account-btn-settings-save">{{'Save'|trans}}</button>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 margin_top_15">
+                                                <button class="btn accountinfo_but account-btn-cancel">{{'Cancel'|trans}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+{% endblock %}

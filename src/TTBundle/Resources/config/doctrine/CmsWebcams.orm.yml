@@ -1,0 +1,166 @@
+TTBundle\Entity\CmsWebcams:
+    type: entity
+    table: cms_webcams
+    indexes:
+        url:
+            columns:
+                - url
+                - location_id
+                - city_id
+        location_id:
+            columns:
+                - location_id
+        city_id:
+            columns:
+                - city_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        url:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        locationId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: location_id
+        latitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        longitude:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        liveUrl:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: live_url
+        stillUrl:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: still_url
+        state:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        cityId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_id
+        nbViews:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_views
+        upVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: up_votes
+        downVotes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: down_votes
+        likeValue:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: '= up_votes - down_votes'
+                default: '0'
+            column: like_value
+        rating:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+        nbRatings:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_ratings
+        nbShares:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nb_shares
+        nbComments:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nb_comments
+        canComment:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_comment
+        canShare:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_share
+        canRate:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_rate
+        canLike:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+            column: can_like
+    lifecycleCallbacks: {  }

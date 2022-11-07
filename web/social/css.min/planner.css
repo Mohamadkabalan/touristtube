@@ -1,0 +1,1414 @@
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+img,table{
+    border:0;
+}
+a{
+    outline:none;
+}
+.marginleft12 {
+    margin-left: 12px;
+}
+.marginleft5 {
+    margin-left: 5px;
+}
+.marginTop8{
+    margin-top: 8px !important;
+}
+.marginTop4{
+    margin-top: 4px !important;
+}
+.marginTop12{
+    margin-top: 12px !important;
+}
+.marginTop17{
+    margin-top: 20px !important;
+}
+.marginTop20{
+    margin-top: 20px !important;
+}
+.marginTop31{
+    margin-top: 31px !important;
+}
+.tocenter{
+    position:relative;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    text-align: center;
+}
+.planerContainer{
+    position: relative;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 0 0 26px;
+    background: #fff;
+    width:989px;
+    min-height: 800px;
+}
+.plannerValidateButton_container{
+    position:relative;
+    float:left;
+    margin:5px 0 0;
+    padding:0;
+    width:989px;
+    height:47px;
+    background-color: #d1d1d1;
+}
+.plannerValidateButton{
+    position:relative;
+    float:left;
+    width:164px;
+    height:47px;
+    cursor: pointer;
+    background:url(../images/planner/validateBtn.png) no-repeat 0 0;
+}
+.bagcontainer_planner{
+    background: url("../images/discover/bag.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 25px;
+    right: 11px;
+    position: absolute;
+    top: 11px;
+    width: 38px;
+}
+.bag_count {
+    color: #FFFFFF;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 18px;
+}
+.plannerHotelContainer{
+    position:relative;
+    float:left;
+    margin:2px 0 0;
+    padding:0;
+    width:989px;
+    height:136px;
+    background:#f4f4f4;
+}
+.plannerFlightContainer{
+    position:relative;
+    float:left;
+    margin:6px 0 0;
+    padding:0;
+    width:989px;
+    height:188px;
+    background:#f4f4f4;
+}
+.search_result_container{
+    position:relative;
+	display:block;
+    float:left;
+    width:989px;
+    height:auto;
+}
+.plannerManageContainer{
+    position:relative;
+    float:left;
+    margin:9px 0 0;
+    padding:0;
+    width:989px;
+    height:59px;
+    background:#f4f4f4;
+}
+.plannerMapContainer{
+    position:relative;
+    float:left;
+    margin:5px 0 0;
+    padding:0;
+    width:989px;
+    height:637px;
+    background:#fff;
+}
+.plannerBottomBlockContainer{
+    position:relative;
+    float:left;
+    margin:13px 0 90px 0;
+    padding:0;
+    width:989px;
+    min-height:208px;
+    background:#f4f4f4;
+}
+.plannerThemes{
+    position:relative;
+    float:left;
+    margin:18px 0 0;
+    padding:0;
+    width:413px;
+    height:169px;
+}
+.plannerDate{
+    position:relative;
+    float:left;
+    margin:18px 0 0;
+    padding:0;
+    width:327px;
+    height:169px;
+}
+.plannerItinerary{
+    position:relative;
+    float:left;
+    margin:18px 0 0 9px;
+    padding:0;
+    width:237px;
+    height:169px;
+}
+.plannerThemesOptionContainer{
+    position:relative;
+    float:left;
+    margin:5px 0 0;
+    padding:0;
+    width:100%;
+    height:auto;
+}
+.plannerDesc{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:20px;
+    font:12px/20px arial;
+    color:#626262;
+}
+.plannerTitle{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:14px;
+    font:bold 12px/14px arial;
+    color:#cea113;
+}
+.plannerTitleLeft{
+    position:relative;
+    /*float:left;*/
+    margin:0;
+    padding:0;
+    width:120px;
+    height:14px;
+    font:bold 12px/14px arial;
+    color:#cea113;
+}
+.fromDateLabel{
+    position: relative;
+    margin: 12px 0 0 3px;
+    padding: 0;
+    font: 13px arial;
+    color: #000;
+    clear: both;
+    width: 120px;
+    heigth: auto;
+}
+.departDateContainer{
+    float: left;
+}
+.budgetContainer{
+    float: right;
+    margin-right: 30px;
+}
+.plannerTitleRight{
+    position:relative;
+    padding:0;
+    width:120px;
+    text-align: left;
+    height:14px;
+    font:bold 12px/14px arial;
+    color:#cea113;
+}
+.plannerDescRight{
+    position:relative;
+    margin-top: 5px;
+    padding:0;
+    width:120px;
+    text-align: center;
+    height:48px;
+    font: bold 13px/48px arial;
+    color:#fff;
+    background: transparent url(../images/planner/dailybudgetBg2.png) no-repeat 0 0;
+}
+.plannerThemesOption{
+    position:relative;
+    float:left;
+    margin:0 3px 3px 0;
+    padding:0;
+    width:100px;
+    height:50px;
+    font:bold 12px/50px arial;
+    color:#fff;
+    text-align: center;
+    cursor:pointer;
+    background: transparent url(../images/planner/plannerTheme.png) no-repeat 0 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.plannerThemesOptionSelected{
+    background: transparent url(../images/planner/plannerThemeSelected.png) no-repeat 0 0;
+}
+.plannerSuggestedFriendsTrips{
+    position:relative;
+    float:left;
+    margin:16px 0 0 30px;
+    padding:0;
+    width:462px;
+    height:auto;
+}
+.plannerSavedTrips{
+    position:relative;
+    float:left;
+    margin:16px 0 0 13px;
+    padding:0;
+    width:478px;
+    height:auto;
+}
+.plannerBottomBlockContainerTitle{
+    position:relative;
+    float:left;
+    margin:0 0 9px 0;
+    padding:0;
+    width:100%;
+    height:auto;
+    text-transform: uppercase;
+    font:bold 12px arial;
+    color:#cea113;
+}
+.plannerBottomTrips{
+    position:relative;
+    float:left;
+    margin:0 0 3px 0;
+    padding:0;
+    width:206px;
+    height:15px;
+    font:12px/15px arial;
+    color:#626262;  
+}
+.clearBoth{
+    clear:both;
+}
+.plannerStationSelect{
+    position:relative;
+    float:left;
+    display: block;
+    margin:5px 0 0;
+    padding:0 6px 0;
+    width:155px;
+    height:22px;
+    font:11px/22px arial;
+    color:#626262;
+    border:1px solid #e4e4e4;
+    background:#f4f4f4;
+}
+.plannerHotelInsideContainer{
+    position:relative;
+    float:left;
+    margin:15px 0 0 9px;
+    padding:0;
+    width:485px;
+    height:auto;
+}
+.plannerHotel{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:494px;
+    height:100%;
+}
+.plannerRestoInsideLeftContainer{
+    position:relative;
+    float:left;
+    margin:15px 0 0 9px;
+    padding:0;
+    width:232px;
+    height:auto;
+}
+.plannerRestoInsideRightContainer{
+    position:relative;
+    float:left;
+    margin:15px 0 0 9px;
+    padding:0;
+    width:240px;
+    height:auto;
+}
+.plannerResto{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:492px;
+    height:100%;
+    border-left:3px solid #fff;
+}
+.plannerSavedTripsCont{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:494px;
+    min-height: 208px;
+}
+.plannerSuggestedFriendsTripsCont{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:492px;
+    height:100%;
+    border-left: 3px solid #fff;
+    min-height: 208px;
+}
+.plannerDateFromTitle{
+    position:relative;
+    float:left;
+    margin:9px 0 0 0;
+    padding:0;
+    width:100%;
+    height:auto;
+    font:13px arial;
+    color:#686868;
+    display: none;
+}
+.plannerDateValueCont{
+    position:relative;
+    float:left;
+    margin:13px 0 0;
+    padding:0;
+    width:100%;
+    height:12px;
+    font:12px arial;
+    color:#626262;
+}
+#dateInput{
+    position:relative;
+    float:left;
+    display: block;
+    margin:0 1px;
+    padding:0;
+    width:22px;
+    height:12px;
+    border: 0;
+    background: transparent;
+    font:12px arial;
+    color:#000;
+}
+#dateInput2{
+    position:relative;
+    float:left;
+    display: block;
+    margin:0 1px;
+    padding:0;
+    width:22px;
+    height:12px;
+    border: 0;
+    background: transparent;
+    font:12px arial;
+    color:#000;
+}
+.dateSep{
+    position:relative;
+    float:left;
+    display: block;
+    margin:0;
+    padding:0;
+    width:10px;
+    height:12px;
+    border: 0;
+    background: transparent;
+    font:12px/12px arial;
+    color:#e7ba20;
+    text-align: center;
+}
+#dateInput3{
+    position:relative;
+    float:left;
+    display: block;
+    margin:0;
+    padding:0;
+    width:30px;
+    height:12px;
+    border: 0;
+    background: transparent;
+    font:12px arial;
+    color:#000;
+}
+.plannerNbDaysContainer{
+    position:absolute;
+    left:0;
+    top:0;
+    width:298px;
+    height:75px;
+}
+.plannerNbDaysContainer2{
+    position:absolute;
+    left:0;
+    top:76px;
+    width:298px;
+    height:75px;
+}
+.plannerNbDaysContainer3{
+    position:absolute;
+    left:0;
+    top:152px;
+    width:298px;
+    height:75px;
+}
+.plannerNbDaysBigContainer{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:398px;
+    height:65px;
+    overflow: hidden;
+}
+.plannerNbDaysContainerBlock{
+    position:relative;
+    float:left;
+    margin:2px 0 0;
+    padding:0;
+    width:398px;
+    height:50px;
+}
+.plannerADay{
+    position:relative;
+    float:left;
+    margin:0 2px 0 0;
+    padding:0;
+    width:48px;
+    height:48px;
+    font:bold 13px/48px arial;
+    color:#fff;
+    text-align: center;
+    background: url(../images/planner/day.png) no-repeat 0 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:pointer;
+}
+.plannerADaySel{
+    color:#8b8b8b !important;
+    cursor: default;
+    background: url(../images/planner/daySel.png) no-repeat 0 0 !important;
+}
+.plannerAddDay,.plannerRemDay{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:48px;
+    height:48px;
+    font:bold 13px/48px arial;
+    color:#cea113;
+    text-align: center;
+    background: url(../images/planner/daySel.png) no-repeat 0 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:pointer;
+}
+.tpopular{
+    position:absolute;
+    bottom:9px;
+    font:bold 10px arial;
+    color:#626262;
+}
+.starBlock{
+    position:relative;
+    float:left;
+    margin:11px 3px 0 0;
+    padding:0;
+    width:82px;
+    height:48px;
+    background:url(../images/planner/plannerStarBg.png) no-repeat 0 0;
+    text-align: center;
+    cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.starBlockSel{
+    background:url(../images/planner/plannerStarBgSel.png) no-repeat 0 0 !important;
+}
+.star{
+    position:relative;
+    margin:18px 1px;
+    padding:0;
+    width:11px;
+    height:10px;
+}
+.foodTypeSelect{
+    position:relative;
+    display: block;
+    float:left;
+    margin:5px 0 0;
+    padding:0 0 0 4px;
+    width:187px;
+    height:90px;
+    background: #f4f4f4;
+    font:11px arial;
+    color:#626262;
+    border:1px solid #e4e4e4;
+    overflow: auto;
+}
+.foodTypeOpt{
+    position:relative;
+    display: block;
+    float:left;
+    clear:both;
+    cursor:pointer;
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.foodTypeOpt:hover{
+    background:#CEA113;
+    color:#fff;
+}
+.foodTypeOptionDisp{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0 0 0 11px;
+    width:85px;
+    height:18px;
+    font:11px/18px arial;
+    cursor: pointer;
+    color:#626262;
+    background: url(../images/planner/myPlannerX.jpg) no-repeat 0 6px;
+}
+.foodTypeOptionDispCont{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:210px;
+    height:90px;
+    overflow-y: auto;
+    border: 1px solid #e4e4e4;
+}
+.plannerManageTitle{position:relative;float:left;margin:0;padding:0;width:80px;height:100%;text-align:center;font:bold 11px/58px arial;color:#484848}
+.plannerManageValue{position:relative;display:block;background:#fff;border:1px solid #b4b4b4;font:bold 11px arial;color:#484848;float:left;margin:15px 0 0;padding:0 9px;width:150px;height:26px}
+.plannerManageSaveBtn{position:relative;float:right;margin:5px 4px 0 0;font:bold 11px/50px arial;color:#fff;text-align: center;cursor:pointer;background: transparent url(../images/planner/plannerTheme.png) no-repeat 0 0;padding:0;width:100px;height:50px;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.plannerManageShareBtn{position:relative;float:right;margin:5px 4px 0 0;font:bold 12px/50px arial;color:#fff;text-align: center;cursor:pointer;background: transparent url(../images/planner/plannerTheme.png) no-repeat 0 0;padding:0;width:100px;height:50px;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.plannerManagePrintBtn{position:relative;float:right;margin:5px 8px 0 0;font:bold 12px/50px arial;color:#fff;text-align: center;cursor:pointer;background: transparent url(../images/planner/plannerTheme.png) no-repeat 0 0;padding:0;width:100px;height:50px;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.plannerMapLeft{position:relative;float:left;margin:0;padding:0;width:312px;height:659px;overflow:auto;background:#fff}
+.plannerMapRight{position:relative;float:left;margin:0;padding:0;width:677px;height:623px;background:#fff}
+
+.plannerManageSaveBtn:hover, .plannerManageShareBtn:hover, .plannerManagePrintBtn:hover{background: url(../images/planner/plannerThemeSelected.png) no-repeat 0 0}
+
+.mapPartSchedule{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#fff;background:#d4af38;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapParttripDates{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#626262;background:#dedede;cursor:pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapParthotels{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#626262;background:#f1eeee;cursor:pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapPartrestaurants{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#626262;background:#dedede;cursor:pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapPartattractions{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#626262;background:#f1eeee;cursor:pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapPartmyPlanner, .mapPartTuber{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#626262;background:#dedede;cursor:pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapPartttBag{position:relative;float:left;margin:0 0 1px 0;padding:0 0 0 9px;width:303px;height:23px;font:bold 12px/23px arial;color:#626262;background:#f1eeee;cursor:pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none}
+.mapPartSel{background:#a6a6a6 !important;color:#fff !important}
+
+.ContainermapPartSchedule{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:block}
+.ContainermapParttripDates{position:relative;float:left;margin:17px 0 0;padding:0;width:312px;height:440px;overflow:hidden;display:none;text-align:center}
+.ContainermapParthotels{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:none}
+.ContainermapPartrestaurants{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:none}
+.ContainermapPartattractions{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:none}
+.ContainermapPartmyPlanner{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:none}
+.ContainermapPartttBag{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:none}
+.ContainermapPartTuber{position:relative;float:left;margin:17px 0 0 9px;padding:0;width:300px;height:440px;overflow:hidden;display:none}
+
+.plannerMapLeft .jspDrag{
+	background:#a0a0a0;
+}
+.plannerMapLeft .jspTrack{
+	background:#d5d5d5;
+	border-radius: 4px 4px 4px 4px;
+}
+.stationContainer{
+    position:relative;
+    float:left;
+    margin:0 0 22px 0;
+    padding:0 0 15px 0;
+    width:279px;
+    min-height:82px;
+}
+.stationImg{
+    width:60px;
+    height: 60px;
+    border:1px solid #999999;
+    position: relative;
+    float: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.hotelBigImgstars {
+    display: block;
+    float: left;
+    height: 9px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 52px;
+}
+.FromToStars {
+    display: block;
+    float: left;
+    height: 9px;
+    margin: 3px 28px 0 0;
+    padding: 0;
+    position: relative;
+    width: 52px;
+}
+.stationDateCon{position:relative;float:right;margin:0;padding:0;width:212px;height:auto}
+.stationImgCon{position:relative;float:left;margin: 0 3px 0 0;padding:0;width:64px;height:auto}
+.stationDate{position:relative;float:left;margin:0;padding:0;width:auto;height:auto;font:bold 11px arial;color:#000}
+.stationChangeDuration{position:relative;float:left;margin:0 0 0 3px;padding:0 9px 0 0;width:auto;height:auto;font:11px arial;color:#2b5f8f;cursor:pointer;background:url(../images/planner/changeDuration.jpg) no-repeat right 2px}
+.stationTitle{position:relative;float:left;margin:0;padding:0;width:190px;height:auto;font:bold 13px arial;color:#000;text-decoration:underline; overflow:hidden;}
+.stationStars{position:relative;float:left;margin:4px 0 2px 0;padding:0;width:212px;height:auto}
+.stationKeywords{position:relative;float:left;margin:0;padding:0;width:212px;height:auto;font:11px arial;color:#888}
+.stationBag{position:absolute;top:0;right:0;width:22px;height:18px;background:url(../images/planner/bag.png) no-repeat 0 0;cursor:default}
+.stationSep{position:absolute;bottom:0;left:11px;padding:0;width:262px;height:1px;background:#909090}
+.stationSep_yellow{
+	background: none repeat scroll 0 0 #CEA113;
+    bottom: 0;
+    height: 1px;
+    left: 11px;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    padding: 0;
+    position: relative;
+    width: 262px;
+}
+
+.tripDatesTitle{position:relative;margin:0 auto;padding:0;width:auto;height:auto;font:bold 12px arial;color:#49494a}
+.tripDatesVal{position:relative;margin:8px auto 0 auto;padding:0;width:51px;height:44px;text-align:center;font:bold 21px/44px arial;color:#3b3b3b;border:1px solid #000}
+.tripDatesCalendarContainer{position:relative;margin:10px auto 0 auto;padding:0 0 0 8px;width:207px;height:203px}
+.tripDatesSmallDesc{position:relative;margin:9px auto;padding:0;width:207px;height:auto;font:12px arial;color:#3b3b3b;text-align:left}
+
+.stationSuggestion{
+    position:relative;
+    float:left;
+    margin:0 0 15px 0;
+    padding:0;
+    width:100%;
+    height:auto;
+    font:bold 12px arial;
+    color:#4a4a4b;
+}
+.stationAttrac{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:auto;
+    font:bold 12px arial;
+    color:#4a4a4b;
+}
+.stationFromTitle{
+    position:relative;
+    float:left;
+    margin:15px 0 0;
+    padding:0;
+    width:128px;
+    height:auto;
+    font:bold 12px arial;
+    color:#4a4a4b;
+}
+.stationSearch{
+    position:relative;
+    float:left;
+    margin:5px 0 0;
+    padding:0;
+    width:128px;
+    height:auto;
+    font:bold 12px arial;
+    color:#4a4a4b;
+    cursor:pointer;
+    clear:both;
+}
+.searInHotels{
+    position:relative;
+    float:left;
+    display: block;
+    margin:14px 0 0;
+    padding:0 3px;
+    width:160px;
+    height:20px;
+    border:1px solid #e4e4e4;
+    font:11px arial;
+    color:#626262;
+}
+.restoStars{
+    position:relative;
+    float:left;
+    display: block;
+    margin:0;
+    padding:0;
+    width:174px;
+    height:22px;
+}
+.marginbottom18{margin-bottom:18px !important}
+.attractionSelect{
+    position:relative;
+    display: block;
+    float:left;
+    margin:4px 0 14px 0;
+    padding:0 0 0 3px;
+    width:188px;
+    height:20px;
+    border:1px solid #e4e4e4;
+    font:11px arial;
+    color:#626262;
+}
+.myPlannerSelect{
+    position:relative;
+    display: block;
+    float:left;
+    margin:7px 0 11px 0;
+    padding:0 0 0 3px;
+    width:188px;
+    height:20px;
+    border:1px solid #e4e4e4;
+    font:11px arial;
+    color:#626262;
+    clear:both;
+}
+.myCurrencySelect{
+    position:relative;
+    display: block;
+    float:left;
+    margin:7px 0 0;
+    padding:0 0 0 3px;
+    width:170px;
+    height:20px;
+    border:1px solid #e4e4e4;
+    font:11px arial;
+    color:#626262;
+    clear:both;
+    background: #F4F4F4;
+}
+.myPlannerLabel{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:auto;
+    font:bold 12px arial;
+    color:#49494a;
+    clear:both;
+}
+.interestCategTitle{
+    position:relative;
+    float:left;
+    margin:0 0 7px 0;
+    padding:0;
+    width:100%;
+    height:14px;
+    font:bold 11px/14px arial;
+    color:#626262;
+    clear:both;
+}
+.interestCategoryOption{
+    position:relative;
+    float:left;
+    margin:0 0 7px 0;
+    padding:0 14px 0 0;
+    width:auto;
+    height:14px;
+    font:12px/14px arial;
+    color:#626262;
+    cursor:pointer;
+    clear:both;
+    background: url(../images/planner/myPlannerX.jpg) no-repeat right 4px;
+}
+.clearboth{
+	clear:both;
+}
+.googlemap{
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.scheduleSelectDay{
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    height:20px;
+    display: block;
+    width:55px;
+    background: #d4af38;
+    border:0;
+    font:bold 11px arial;
+    color:#484848;
+}
+.departdate{
+    position: relative;
+    float: left;
+    margin: 3px 0 0 3px;
+    padding: 0;
+    font:12px arial;
+    color:#626262;
+}
+.sharePopUp{
+    padding:0;
+    width:271px;
+    height:429px;
+    background:#f6f6f6;
+    display:none;
+}
+.sharePopUpRapper{
+    position:relative;
+    float:left;
+    margin:27px 13px 0 13px;
+    padding:0;
+    width:245px;
+    height:403px;
+}
+.sharePopUpTitle{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:245px;
+    font:bold 11px arial;
+    color:#e7ba20;
+    text-transform: uppercase;
+    clear:both;
+}
+.sharePopUpSeperator{
+    position:relative;
+    float:left;
+    margin:14px 0 0;
+    padding:0;
+    width:245px;
+    height:1px;
+    background:#ebebeb;
+    border-bottom:1px solid #dedede;
+    clear:both;
+}
+.sharePopUpEnableShareComment{
+    position:relative;
+    float:right;
+    margin:3px 10px 0 0;
+    padding:0 0 0 16px;
+    width:auto;
+    height:13px;
+    font:11px/13px arial;
+    color:#838383;
+    clear:both;
+}
+.sharePopUpLabel{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    width:245px;
+    clear:both;
+    font:11px arial;
+    color:#686868;
+}
+.sharePopUpTextField{
+    position:relative;
+    float:left;
+    margin:4px 0 0;
+    padding:0 5px;
+    width:234px;
+    height:22px;
+    clear:both;
+    background: #fff;
+    border-top:1px solid #abadb3;
+    border-left:1px solid #e2e3ea;
+    border-right:1px solid #dbdfe6;
+    border-bottom:1px solid #e3e9ef;
+    font:11px arial;
+    color:#000000;
+}
+.sharePopUpShareBtn{
+    position:relative;
+    float:right;
+    margin:4px 0 0;
+    padding:0;
+    width:auto;
+    height:auto;
+    clear:both;
+    font:11px arial;
+    color:#e7ba20;
+    display:none;
+}
+.sharePopUpTextArea{
+    position:relative;
+    float:left;
+    margin:6px 0 0;
+    padding:0 2px;
+    width:240px;
+    height:46px;
+    clear:both;
+    text-align: left;
+    background: #fff;
+    border-top:1px solid #abadb3;
+    border-left:1px solid #e2e3ea;
+    border-right:1px solid #dbdfe6;
+    border-bottom:1px solid #e3e9ef;
+    font:11px arial;
+    color:#000000;
+    resize:none;
+}
+
+.overdatabutntficon {
+    background: url(../images/Profile-friends-show.png) no-repeat 0 0;
+    height: 12px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 2px;
+    width: 12px;
+}
+.log_top_button {
+    color: #838383;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-size: 10px;
+    height: 12px;
+    line-height: 12px;
+    position: relative;
+    width: auto;
+}
+.overdatabutntficon.inactive {
+    background: url(../images/Profile-friends-hide.png) no-repeat 0 0;
+}
+.hotelsplus {
+    background: url("../images/discover/plus_btn.png") no-repeat center center;
+    cursor: pointer;
+    height: 18px;
+    right: 0;
+    position: absolute;
+    top: 0;
+    width: 22px;
+}
+#addmoretext, .addmoretext_css {
+    background-color: #B8B8B8;
+    border: none;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    height: 14px;
+    line-height: 14px;
+    margin: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    position: absolute;
+    width: 138px;
+    top: 0;
+    left: 0;
+}
+.addmore {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 152px;
+    height: 16px;
+}
+.emailcontainer {
+    border: 1px solid #BCBCBC;
+    display: block;
+    float:left;
+    height:auto;
+    margin:0;
+    min-height: 41px;
+    width:241px;
+    padding:2px;
+    position:relative;
+    z-index:2;
+}
+.formContainer100 {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.peoplecontainer {
+    background-color: #FFFFFF;
+    height: auto;
+    min-height: 102px;
+    position: relative;
+}
+.uploadinfocheckbox, .uploadinfocheckboxtellus, .uploadinfocheckbox_upload{
+    width:200px;
+    clear:both;
+}
+.friendscontainer {
+    border: 1px solid #DBDFE6;
+    display: block;
+    float: left;
+    height: 55px;
+    margin: -1px 0 0;
+    padding: 5px 0 0;
+    position: relative;
+    z-index: 1;
+}
+.account-btn-container {
+    clear: both;
+    float: right;
+    margin: 17px 0 0;
+    padding: 0;
+    position: relative;
+    text-align: right;
+}
+.account-btn-save, .account-btn-cancel {
+    color: #686868;
+    cursor: pointer;
+    float: right;
+    font: 10px Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: right;
+}
+.account-btn-seperator {
+    background-color: #F0D357;
+    display: block;
+    float: right;
+    height: 9px;
+    margin: 3px 4px 0;
+    position: relative;
+    width: 1px;
+}
+.shareMe{
+    outline: none;
+    text-decoration: none;
+}
+.peoplesdata {
+    background-color: #E7BA20;
+    display: block;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 3px 2px 0;
+    padding: 0 17px 0 5px;
+    position: relative;
+}
+.peoplesdatainside {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 16px;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: auto;
+}
+.peoplesdataclose {
+    background: url(../images/modal_profile_close.jpg) no-repeat 0 0;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 10px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 10px;
+}
+.peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#000000;
+	margin:0;
+	padding:0;
+}
+.peoplesearchtext{
+	position:absolute;
+	/*width:340px; */
+	width:auto; 
+	height:32px;
+	line-height:32px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#959595;
+	left:42px;
+	top:0;
+}
+.privacy_picker .ui-autocomplete{
+    border: 2px solid #e2e3ea;
+    max-height: 144px;
+	height: auto;
+    overflow: auto;
+    width: 218px !important;
+	left:-1px !important;
+}
+.privacy_picker #ui-id-1{
+    width: 218px !important;
+}
+.privacy_picker .ui-menu .ui-menu-item a{
+	background-color:#e2e3ea;
+	padding:0 !important;
+	padding:2px !important;
+	/*padding-left:4px !important;
+	padding-right:4px !important;*/
+	border:none !important;
+}
+.privacy_picker .ui-menu .ui-menu-item a.ui-state-focus{
+	background-color:#ffffff;
+}
+.privacy_picker .ui-menu .ui-menu-item{
+	background-color:#ebebeb;	
+}
+.privacy_picker .peoplesearch{
+	position:relative;
+	width:100%; 
+	height:32px; 
+	background-color:#ebebeb;
+	margin:0;
+	padding:0;
+}
+.peoplesdataemail_icon{
+	position:relative;
+	width:15px;
+	display:block;
+	float:left;
+	height:10px;
+	margin:0;
+	padding:0;
+    background-image: url("../images/email_icon.jpg");
+	background-repeat:no-repeat;
+	margin-right:3px;
+	margin-top:3px;	
+}
+.plannerMapRight_label{
+	position:absolute;
+	display:block;
+	background-color:#D4AF38;
+	width:auto;
+	padding: 0 7px;
+	height:23px;
+	line-height:23px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	top:0;
+	left:315px;
+	z-index:15;
+	color:#FFF;
+	cursor:default;
+}
+.plannerMapTrackInfo{
+	position:absolute;
+	display:block;
+	background-color:#D4AF38;
+	width:auto;
+	padding: 5px;
+	line-height:13px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	top:0;
+	right:0;
+	z-index:15;
+	color:#FFF;
+	cursor:default;
+}
+.mtooltip{
+    display: block;
+    position: absolute;
+    width: 120px;
+    height: auto;    
+    left: 80px;
+}
+.mtooltipin{
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: auto;    
+    left: 0;
+	bottom:52px;
+	padding:9px 3px 3px 3px;
+	background-color:#FFF;
+	z-index:10;
+}
+.anchor_bk{
+    position: absolute;
+    display: block;
+    width: 126px;
+    height: 14px;
+    left: 0;
+	bottom:38px;
+    background: url("../images/discover/anchor_bk.png") no-repeat scroll;
+	background-position:left bottom;
+	z-index:1;
+}
+.opacity90{   
+	opacity:0.9;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+    -khtml-opacity: 0.9;
+    -moz-opacity: 0.9;
+}
+.mtooltipbig{
+	position:relative;
+	display:block;
+	width:72px;
+	height:39px;
+	left:20px;
+	top:16px;
+	margin-bottom:5px;	
+	z-index:5;
+}
+.mtooltipbig_user{
+	position:relative;
+	display:block;
+	width:72px;
+	height:72px;
+	left:20px;
+	top:16px;
+	margin-bottom:5px;	
+	z-index:5;
+}
+.mtooltipbig_event{
+	position:relative;
+	display:block;
+	width:72px;
+	height:47px;
+	left:20px;
+	top:16px;
+	margin-bottom:5px;	
+	z-index:5;
+}
+.mtooltip_title{
+	position:relative;
+	display:block;
+	width:114px;
+	height:auto;
+	line-height:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#303030;
+	text-align:center;
+	font-weight:bold;
+	clear:both;
+	margin-top:3px;
+	z-index:4;
+}
+.anchor_star{
+	position:relative;
+	display:block;
+	width:114px;
+	height:10px;
+	margin-top:5px;
+	z-index:3;
+}
+.anchor_star1{
+    background: url("../images/discover/anchor_star1.png") no-repeat;
+	background-position:center center;
+}
+.anchor_star2{
+    background: url("../images/discover/anchor_star2.png") no-repeat;
+	background-position:center center;
+}
+.anchor_star3{
+    background: url("../images/discover/anchor_star3.png") no-repeat;
+	background-position:center center;
+}
+.anchor_star4{
+    background: url("../images/discover/anchor_star4.png") no-repeat;
+	background-position:center center;
+}
+.anchor_star5{
+    background: url("../images/discover/anchor_star5.png") no-repeat;
+	background-position:center center;
+}
+.clsgoo{
+    position: absolute;
+    display: block;
+    width: auto;
+    height: 13px;
+    top: 1px;
+    right: 2px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+    font-size:11px;
+    color:#303030;
+    line-height:13px;
+    overflow:hidden;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:20;
+}
+.textreviews{
+    position: relative;
+    display: block;
+    width: 114px;
+    height: 13px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+    font-size:10px;
+    color:#303030;
+    line-height:13px;
+    overflow:hidden;
+    font-weight:bold;
+    margin-top:4px;
+    z-index:2;
+}
+#plannerItinerary .ui-menu {
+    top: 22px;
+    width: 169px !important;
+    text-align:left;
+}
+#plannerItinerary .ui-menu .ui-menu-item a {
+    background-color: #363636;
+    border: medium none;
+    border-radius: 0;
+    color: #FEFEFE;
+    font-size: 11px;
+    margin: 0;
+    padding: 2px 14px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+#plannerItinerary .ui-menu .ui-menu-item a.ui-state-focus {
+    background-color: #D7D7D7;
+    background-image: none;
+    border: medium none;
+    border-radius: 0;
+    color: #363636;
+    margin: 0;
+}

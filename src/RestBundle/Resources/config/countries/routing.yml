@@ -1,0 +1,11 @@
+_rest_countries:
+    path:      "/api/countries"
+    defaults: { _controller: RestBundle:countries\Countries:getCountries }
+    requirements:
+        methods: GET
+        
+_rest_countries_dialing_codes:
+    path:      "/api/countries/dialing-codes"
+    defaults: { _controller: RestBundle:countries\Countries:getCountriesDialingCodes }
+    requirements:
+        methods: GET

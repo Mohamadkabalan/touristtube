@@ -1,0 +1,7 @@
+_media_new:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/media_new"
+    defaults:  { _controller: TTBundle:PhotoVideos:mediaNew, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

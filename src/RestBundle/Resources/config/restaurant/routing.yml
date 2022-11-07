@@ -1,0 +1,5 @@
+_rest_restaurant_divisions:
+    path:      "/api/restaurant/divisions/{restaurantId}"
+    defaults: { _controller: RestBundle:restaurant\Restaurant:divisions, restaurantId: "" }
+    requirements:
+        methods: GET

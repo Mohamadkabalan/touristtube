@@ -1,0 +1,1 @@
+UPDATE cms_hotel_city SET city_name = 'Buenos Aires (Distrito Federal)', city_id = 1108510 WHERE location_id = 31344;

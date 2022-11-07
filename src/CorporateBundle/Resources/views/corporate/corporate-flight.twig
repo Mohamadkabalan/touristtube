@@ -1,0 +1,33 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flight_theme"~corporate_theme~".css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightnew.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/flights/js/flight-booking.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Flight'|trans}}{% endblock %}
+{% block body %} 
+    {% set page_menu_name = 'flights' %}
+    <section class="container corporate_container1">
+        <div class="col-xs-12 nopad">
+            <div class="row rowspecialstyle">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 nopad leftmenuebackcolor_corp borderrightgrey_corpfl">
+		    {% include '@Corporate/corporate/corporate-leftmenu.twig' %}
+		</div>
+		<div class="col-lg-8 col-md-9 col-sm-8 col-xs-12 nopad contentbackcolor_corp">
+		    <div class="col-xs-12 nopad">
+			<h2 class="headerstyle_corp">{{'step1'|trans}} <span class="error_cnt_corporate"></span></h2>
+			{% include '@Corporate/corporate/flight-form.twig' %}	
+		    </div>
+		</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,30 @@
+<div class="col-xs-12 nopad sort_by_tabs">
+    <div class="filters-group">
+	<div class="col-xs-12 nopad btn-group sort-options">
+	    <a {% if report_menu=='sales' %}class="active"{% endif %} rel="nofollow" href="{{ generateLangRoute(LanguageGet, '_reports_sales') }}" title="{{'Sales'|trans}}">
+		<label class="sort_item">{{'Sales'|trans}}</label>
+		<div class="absolutetooltip_pink_container">
+		    <img class="absolutetooltip_pink" src="{{ generateMediaURL('/media/images/corporate_new/tooltip_pink.png') }}" alt="tooltip_pink">
+		</div>
+	    </a>
+	    <a {% if report_menu=='customers' %}class="active"{% endif %} rel="nofollow" href="{{ generateLangRoute(LanguageGet, '_reports_customers') }}" title="{{'Customers'|trans}}">
+		<label class="sort_item">{{'Customers'|trans}}</label>
+		<div class="absolutetooltip_pink_container">
+		    <img class="absolutetooltip_pink" src="{{ generateMediaURL('/media/images/corporate_new/tooltip_pink.png') }}" alt="tooltip_pink">
+		</div>
+	    </a>
+	    <a {% if report_menu=='payments' %}class="active"{% endif %} rel="nofollow" href="{{ generateLangRoute(LanguageGet, '_reports_payments') }}" title="{{'Payments'|trans}}">
+		<label class="sort_item">{{'Payments'|trans}}</label>
+		<div class="absolutetooltip_pink_container">
+		    <img class="absolutetooltip_pink" src="{{ generateMediaURL('/media/images/corporate_new/tooltip_pink.png') }}" alt="tooltip_pink">
+		</div>
+	    </a>
+	    <a {% if report_menu=='all_bookings' %}class="active"{% endif %} rel="nofollow" href="{{ generateLangRoute(LanguageGet, '_reports_allbookings') }}" title="{{'All bookings'|trans}}">
+		<label class="sort_item">{{'All bookings'|trans}}</label>
+		<div class="absolutetooltip_pink_container">
+		    <img class="absolutetooltip_pink" src="{{ generateMediaURL('/media/images/corporate_new/tooltip_pink.png') }}" alt="tooltip_pink">
+		</div>
+	    </a>
+	</div>
+    </div>
+</div>

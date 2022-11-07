@@ -1,0 +1,238 @@
+
+PUT tt
+{
+  "settings" : {
+    "index" : {
+      "analysis" : {
+        "analyzer" : {
+          "autocomplete_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "lowercase",
+            "filter"    : ["asciifolding", "name_ngram","stateName_ngram","countryName_ngram","countryThreeCode_ngram","countryFullname_ngram","countryISO3Code_ngram","hotelName_ngram"]
+          }
+        },
+        "filter" : {
+          "name_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "stateName_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "countryName_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "countryThreeCode_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "countryFullname_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "countryISO3Code_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "hotelName_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          },
+          "title_ngram" : {
+            "type" : "edgeNGram",
+            "min_gram" : 1,
+            "max_gram" : 10
+          }
+        }
+      }
+    }
+  }
+}
+
+PUT tt/_default_/_mapping
+{
+  "properties": {
+    "popularity": {
+      "type": "integer"
+    },
+    "country_popularity": {
+      "type": "integer"
+    },
+    "city_popularity": {
+      "type": "integer"
+    },
+    "propertyName":{
+      "index": "not_analyzed",
+      "type": "string"
+    },
+    "geolocation": {
+      "type": "geo_point"
+    },
+    "price": {
+      "type": "float"
+    },
+    "stars": {
+      "type": "float"
+    },
+    "nb_views": {
+      "type": "integer"
+    },
+    "category_labels": {
+      "index": "not_analyzed",
+      "type": "string"
+    }
+  }
+}
+
+PUT tt/locality/_mapping
+{
+  "properties": {
+    "name": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "state":{
+      "type": "object",
+      "properties" : {
+        "name": {
+          "type": "string",
+          "analyzer": "autocomplete_analyzer"
+        },
+        "state_name": {
+          "type": "string",
+          "analyzer": "autocomplete_analyzer"
+        },
+        "full_name": {
+          "type": "string",
+          "analyzer": "autocomplete_analyzer"
+        }
+      }
+    },
+    "stateName": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "countryName": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "countryThreeCode": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "countryFullname": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "countryISO3Code": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "popularity": {
+      "type": "integer"
+    }
+  }
+}
+
+
+PUT tt/media/_mapping
+{
+  "properties": {
+    "title2": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "title3": {
+      "index": "not_analyzed",
+      "type": "string"
+    },
+    "cityInfo":{
+      "type": "object",
+      "properties" : {
+        "geolocation": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}
+
+PUT tt/poi/_mapping
+{
+  "properties": {
+    "name2": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "cat": {
+      "index": "not_analyzed",
+      "type": "string"
+    }
+  }
+}
+
+PUT tt/hotel/_mapping
+{
+  "properties": {
+    "hotelName": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    },
+    "features":{
+      "type": "object",
+      "properties" : {
+        "title": {
+          "index": "not_analyzed",
+          "type": "string"
+        }
+      }
+    },
+    "imageExists": {
+      "type": "integer"
+    }
+  }
+}
+
+PUT tt/restaurant/_mapping
+{
+  "properties": {
+    "name": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    }
+  }
+}
+
+PUT tt/airport/_mapping
+{
+  "properties": {
+    "used_by_sabre": {
+      "type": "boolean"
+    }
+  }
+}
+
+PUT tt/HotelsCityNew/_mapping
+{
+  "properties": {
+    "hotelcount": {
+      "type": "integer"
+    },
+    "city_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "analyzer": "autocomplete_analyzer"
+    }
+  }
+}

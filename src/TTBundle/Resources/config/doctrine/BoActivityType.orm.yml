@@ -1,0 +1,27 @@
+TTBundle\Entity\BoActivityType:
+    type: entity
+    table: bo_activity_type
+    id:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        table:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,33 @@
+HotelBundle\Entity\HotelToHotelDivisionsCategories:
+    type: entity
+    table: hotel_to_hotel_divisions_categories
+    repositoryClass: HotelBundle\Repository\HotelRepository
+        
+    indexes:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            column: name
+        hotelId:
+            type: integer
+            nullable: false
+            column: hotel_id
+        hotelDivisionCategoryId:
+            type: integer
+            nullable: false
+            column: hotel_division_category_id
+    lifecycleCallbacks: {  }

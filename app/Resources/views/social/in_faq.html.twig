@@ -1,0 +1,158 @@
+{# app/Resources/views/social/en_faq.html.twig #}
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/social_pages_common.css")|raw }}"/>
+
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/pages/js/social_pages_common.js")|raw }}"></script>
+{% endblock %}
+{% block body %}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>FAQ</h1>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow collapseactiverow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">रजिस्टर कैसे करना है?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">बस अपने ईमेल और पासवर्ड सेट और आप सभी TouristTube सुविधाओं का आनंद उठाने के लिए हम आपके खाते उपलब्ध करेंगे । आप अपनी सुविधानुसार अपने प्रोफ़ाइल जानकारी में भर सकते हैं।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे अपना पासवर्ड परिवर्तित करना?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन करें <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangRoute(LanguageGet,'_account_settings') }}{% endif %}" title="{{ 'account info / Account settings'|trans }}" class="afaqMainStyle">account info / Account settings.</a> अपने पुराने और नए पासवर्ड में भरने के लिए जाओ।</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे अपनी गोपनीयता सेटिंग्स को संशोधित करें ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन करें। <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/privacy') }}{% endif %}" title="{{ 'account info / Privacy'|trans }}" class="afaqMainStyle">account info / Privacy.</a> अपनी सेटिंग्स को संशोधित करने के लिए जाओ।</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">उपयोगकर्ताओं के लिए उपलब्ध अधिकतम स्थान क्या है?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">आप अपने निजी इस्तेमाल के लिए एक TouristTube पंजीकृत उपयोगकर्ता 1TB समर्पित निजी बादल अंतरिक्ष के रूप में देने की पेशकश कर रहे हैं।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">TOURISTTUBE मुख्य विशेषताएं क्या हैं ??<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <ul class="faq_lit">
+                            <li>
+                                <p>पर्यटक चैनल - पर्यटन पेशेवरों और संगठनों के ऑनलाइन कारोबार की जरूरतों से संतुष्ट </p>
+                            </li>     <li>
+                                <p>पर्यटक लाइव - वेब कैमरा स्ट्रीमिंग चयनित सहूलियत अंक से जीना </p>
+                            </li>    <li>
+                                <p>पर्यटक इकोज - तुरंत अपने समूह के लिए अपने विचार और टिप्पणियां पोस्ट </p>
+                            </li>  <li>
+                                <p>वीडियो चैट </p>
+                            </li>   <li>
+                                <p>मल्टीमीडिया साझा - अपने वीडियो और तस्वीरें, एल्बम और यात्रा पत्रिकाओं अपलोड वीडियो, फोटो, एलबम और यात्रा पत्रिकाओं के लिए </p>
+                            </li>   <li>
+                                <p>ऑनलाइन संपादन उपकरण एंड्रॉयड पर </p>
+                            </li>  <li>
+                                <p>मोबाइल अनुप्रयोगों, डाउनलोड </p>
+                            </li>  <li>
+                                <p>    एक परिचित समूह से संबंधित विश्वस्त लोगों के लिए वापस ट्रेस समीक्षा और रेटिंग </p>
+                            </li><li>
+                                <p>पृष्ठभूमि में काम कर आर्टिफिशियल इंटेलिजेंस (एआई) एल्गोरिदम के सुझावों का उपयोग कर, समुदायों के निर्माण और साझा हितों पर आधारित लोगों को जोड़ने। </p>
+                            </li>    
+                        </ul>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">फ़ोटो और वीडियो अपलोड करने के लिए ?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">Sसाइन इन करें। अपलोड का चयन करें। अपने डिवाइस से फ़ोटो और वीडियो का चयन करें और उन्हें अपलोड करें।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे मीडिया के लिए खोज करने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">खोज पट्टी क्लिक करें और तस्वीरें, वीडियो, या टुबर्स निर्दिष्ट करें। एक विषय / श्रेणी का चयन करके अपनी खोज को परिष्कृत करना।</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">TOURISTTUBE.COM पर अपने मित्रों, अनुयायियों और फालोइंग को खोजने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन करें। <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/network/friends') }}{% endif %}" title="{{ 'network'|trans }}" class="afaqMainStyle">  नेटवर्क </a>. के लिए जाओ। आप पाते हैं और अपने सभी दोस्तों, अनुयायियों और फालोइंग संपर्क कर सकते हैं।</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे एक तस्वीर संपादित करने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/photos') }}{% endif %}" title="{{ 'My Photos'|trans }}" class="afaqMainStyle">My Photos</a>. के लिए जाओ। वीडियो का चयन करें और संपादित करें क्लिक करें। आप चयनित वीडियो की टेक्स्ट विशेषताओं को संपादित कर सकते हैं।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे एक वीडियो संपादित करने के लिए? <i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन   <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/videos') }}{% endif %}" title="{{ 'My Videos'|trans }}" class="afaqMainStyle">My Videos</a>. के लिए जाओ। वीडियो का चयन करें और संपादित करें क्लिक करें। आप चयनित वीडियो की टेक्स्ट विशेषताओं को संपादित कर सकते हैं।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे एक वीडियो संपादित करने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/albums') }}{% endif %}" title="{{ 'My Albums'|trans }}" class="afaqMainStyle">My Albums</a>. के लिए जाओ। वीडियो का चयन करें और संपादित करें क्लिक करें। आप चयनित वीडियो की टेक्स्ट विशेषताओं को संपादित कर सकते हैं।</p>
+                    </div>
+                </div>
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे एक एलबम बनाने के लिए? <i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/journal') }}{% endif %}" title="{{ 'My Journals'|trans }}" class="afaqMainStyle">My Journals</a>. के लिए जाओ। आप एलबम बनाने और उनकी सामग्री और गुणों को संपादित कर सकते हैं।</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे अपनी न्यूज़फीड सेट करने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन<a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/myprofile/newsfeed') }}{% endif %}" title="{{ 'news feeds'|trans }}" class="afaqMainStyle">news feeds.</a> करें। लोगों और गतिविधियों का चयन करके अपने फ़ीड पेज पर दिखाये खबर के सूत्रों के सेट पर जाएं।</p>
+                    </div>
+                </div>#}
+                {#<div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे अन्य सामाजिक मीडिया पर सामग्री साझा करने के?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन  <a rel="nofollow" href="{% if isUserLoggedIn==1 %}{{ generateLangURL(LanguageGet,'/account/sharing') }}{% endif %}" title="{{ 'account info / Sharing'|trans }}" class="afaqMainStyle">account info / Sharing.</a> करें। सामाजिक मीडिया, सेटअप TouristTube के साथ एक कनेक्शन का चयन करें और साझा करने के लिए शुरू हो जाने पर जाएं।</p>
+                    </div>
+                </div>#}
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे TOURISTTUBE.COM पर सेटअप आपके चैनल पर?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन करें। पर्यटक चैनलों में, अपने चैनल बनाने का चयन करें और आपकी जानकारी में भरें।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">TOURISTTUBE.COM से अपने चैनल देखने के लिए कैसे?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">साइन इन करें। पर्यटक चैनलों में, तीर ड्रॉप डाउन का चयन करें और अपने सभी चैनलों को देखने का चयन करें।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे एक उप चैनल बनाने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">मेरे चैनलों को देखने से शीर्ष चैनल का चयन करें और एम्बेड चैनल क्लिक करें; फिर उप चैनल के लिए जानकारी में भरें।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">समीक्षा कैसे और एक होटल / रेस्तरां दर करने के लिए?<i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">आप समीक्षा करना चाहते स्थल के लिए / खोज का चयन करें। आपकी समीक्षा और रेटिंग में भरें और उन्हें जमा करें।</p>
+                    </div>
+                </div>
+                <div class="row no-margin faq_collapsedrow">
+                    <div class="col-xs-12 nopad">
+                        <h2 class="faq_h2">कैसे समस्या को रिपोर्ट करने के लिए? <i class="fas fa-angle-right faq_blue_right_arrow"></i><i class="fas fa-angle-down faq_blue_down_arrow"></i></h2>
+                        <p class="faq_sub_header_title">पर हमसे संपर्क करें <a href="mailto:info@touristtube.com" class="afaqMainStyle" title="{{ 'info@touristtube.com' }}">info@touristtube.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

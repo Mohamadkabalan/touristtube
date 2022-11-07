@@ -1,0 +1,75 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate_theme"~corporate_theme~".css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-my-bookings.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/daterangepicker.min.css')|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/css/jquery.auto-complete.css')|raw }}"/>
+{% endblock %}
+
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/moment.2.16.0.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/dateRangePicker/v0.0.8/jquery.daterangepicker.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/vendor/jquery/plugins/autocomplete/devbridge/js/jquery.autocomplete.min.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/daterangepicker/TTDateRangePicker.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/common/tt/js/autocomplete/TTAutocomplete.js')|raw }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/corporate/corporate/js/corporate-myBookings.js')|raw }}"></script>
+{% endblock %}
+{% block title %}{{'My Bookings'|trans}}{% endblock %}
+{% block body %} 
+    <section class="container corporate_container1 corporate_fake_holder">
+        <div class="background_color_white_container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="header_title">{{'Booking history'|trans}} | {#<span>{{'Trip to Paris'|trans}}</span>#}</h2>
+                </div>
+            </div>
+
+            <div class="row margin_top_10">
+                <div class="col-xs-12 inputs_row">
+                    <p class="row_items">{{'filter by'|trans}}</p>
+			<input type="hidden" id="accountId" name="accountId" value="{{accountId|raw}}">
+                    <div class="form-group row_items">
+                        <select class="form-control" id="types">
+                            {% for module in modules %}
+                                <option value="{{module.id|raw}}">{{module.name|raw}}</option>
+                            {% endfor %}
+                        </select>
+                    </div> 
+                    <span class="daterangepicker_inputs">
+                        <div class="form-group row_items">
+                            <input type="text" class="form-control" name="fromDate" id="fromDate" placeholder="From" value="" />
+                        </div>
+                        <div class="form-group row_items">
+                            <input type="text" class="form-control" name="toDate" id="toDate" placeholder="To" value="" />
+                        </div>
+                    </span>   
+                    <div class="form-group row_items">
+                        <input type="text" class="form-control"  name="currency" data-toggle="ttautocompleteCurrency" id="currency" value="" placeholder="{{'Search for currency'|trans}}"/>
+		    <input type="hidden" id="currencyCode" name="currencyCode" value="">
+                    </div> 
+                    
+                    {% if role is defined %}
+                        <div class="form-group row_items">
+                            <input type="text" class="form-control"  name="user" data-toggle="ttautocompleteUser" id="user" value="" placeholder="{{'Search for User'|trans}}"/>
+                            <input type="hidden" id="userCode" name="userId" value="">
+                        </div>
+                    {% endif %}
+                    <div class="submit_button row_items">
+                        <button data-role="button" data-type="default" onclick="filterInfo()"></button>
+                    </div>
+                </div>
+            </div>
+                            
+            <div class="row margin_top_40">
+                <div class="col-xs-12">
+                    <div id="aprovalFlowList">
+                         {% include '@Corporate/corporate/corporate-my-bookingsInfo.twig' %}
+                    </div>
+                </div>
+                <div class="pagination pagerWrapper" id="paginationPages">
+                    {% include '@Corporate/corporate/corporate-my-bookingsPagination.twig' %}
+                </div>
+            </div>
+    </section>
+{% endblock %}

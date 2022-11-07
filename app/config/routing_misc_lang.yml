@@ -1,0 +1,26 @@
+_ft_hotels_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/fore_tech_hotels_tester"
+    defaults: { _controller: TTBundle:Default:foreTechHotelsTester, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_things_to_do_general_indi_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/{target1}-में-करने-योग्य-{target2}"
+    defaults: { _controller: TTBundle:Social:thingsToDoWrong, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_things_to_do_general_indi2_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/{target1}-में-करने-के-{target2}"
+    defaults: { _controller: TTBundle:Social:thingsToDoWrong, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "things to do in %1$s, places to visit in %1$s, everything you need tourist tube", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

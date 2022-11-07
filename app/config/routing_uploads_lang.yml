@@ -1,0 +1,46 @@
+_ajax_upload_file_lang:
+    path:      "/{_locale}/ajax/upload-file"
+    defaults: { _controller: TTBundle:Uploads:uploadFile, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_home_upload_file_lang:
+    path:      "/{_locale}/ajax/home-upload-file"
+    defaults: { _controller: TTBundle:Uploads:homeUploadFile, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_home_upload_fancy_lang:
+    path:      "/{_locale}/ajax/home-upload-fancy"
+    defaults: { _controller: TTBundle:Uploads:homeUploadFancy, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_resizer_pic_lang:
+    path:      "/{_locale}/resizer"
+    defaults: { _controller: TTBundle:Uploads:resizer, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_create_image_lang:
+    path:      "/{_locale}/create-image"
+    defaults: { _controller: TTBundle:Uploads:createImage, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_image_crop_save:
+    path:      "/ajax/image-crop-save"
+    defaults: { _controller: TTBundle:Uploads:imageCropSave, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

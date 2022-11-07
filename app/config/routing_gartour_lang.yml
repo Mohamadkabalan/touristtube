@@ -1,0 +1,44 @@
+_staticData_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/{_locale}/staticData"
+    defaults:  { _controller: TTBundle:Gartour:staticData, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_serviceList_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/{_locale}/serviceList"
+    defaults:  { _controller: TTBundle:Gartour:serviceList, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_serviceInfo_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/{_locale}/serviceInfo"
+    defaults:  { _controller: TTBundle:Gartour:serviceInfo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_pricesAvailability_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/{_locale}/pricesAvailability"
+    defaults:  { _controller: TTBundle:Gartour:pricesAvailability, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+         
+_ati_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path: "/{_locale}/ati"
+    defaults:  { _controller: TTBundle:Gartour:ati, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"

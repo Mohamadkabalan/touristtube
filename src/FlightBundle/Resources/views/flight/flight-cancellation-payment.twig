@@ -1,0 +1,406 @@
+{# app/Resources/views/default/flight-booking.twig #}
+{% extends 'base.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="/assets/flights/css/flight-detailed.css" >
+    <link rel="stylesheet" type="text/css" href="/assets/payment/css/payment-all.css" >         
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="/assets/flights/js/flight-detailed.js"></script>
+    <script type="text/javascript" src="/assets/vendor/jquery/plugins/validator/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/assets/payment/js/payment-all.js"></script>
+    <script type="text/javascript" src="/assets/payment/js/purl.js"></script>
+    <script type="text/javascript"> var io_bbout_element_id = 'device_fingerprint';</script>
+    <script type="text/javascript" src="https://mpsnare.iesnare.com/snare.js"></script>
+{% endblock %}
+
+{% block body %}
+    <section class="container containerresume">
+
+        <div class="col-xs-12 borderbluepadding">
+            <div class="borderbluediv"></div>
+        </div>
+        {% if isUserLoggedIn == 1 %}
+            <div class="col-xs-12 nopad padding-lr-10">
+                <a class="backtobooklist" href="{{ generateLangRoute(LanguageGet,'_my_bookings') }}"><< {{ 'back to booking list'|trans }}</a>
+            </div>
+            <div class="col-xs-12 nopad padding-lr-10">
+                <div class="greyborderdiv_hoteldetailed"></div>
+            </div>
+        {% endif %}
+        {% if flight is not empty %}
+
+            {% if flight.leaving is defined %}
+
+                {% if flight.leaving.multiDestination == 1 %}
+
+                    <div class="multi-destination-container">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12 nopad mar-top-40">
+                                <div id="left">
+                                    {% for flight_info in flight.leaving.flight_info %}
+                                        <a href="#target{{loop.index}}" rel="nofollow" class="tabslide">trip {{loop.index}}</a>
+                                        <div class="borderrdiv"></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 nopad">
+                                <div id="right">
+                                    {% for key, flight_info in flight.leaving.flight_info %}                    
+                                        <div class="tabslide slider" id="target{{loop.index}}">
+                                            <div class="col-xs-12 nopad">
+                                                <div class="col-xs-12 blueresume">
+                                                    <div class="col-xs-12 nopad">
+                                                        <div class="textdiv floatlefttext">
+                                                            <div class="departresume">departing from:</div>
+                                                            <div class="cityresume">{{flight_info.origin_city |raw}}</div>
+                                                        </div>
+                                                        <div class="newimgdiv">
+                                                            <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                                        </div>
+                                                        <div class="textdiv floatrighttext">
+                                                            <div class="destinationresume">destination:</div>
+                                                            <div class="destinationcityresume">
+                                                                {% if flight_info.stop_info is defined %}
+                                                                    {% set city = "" %}
+                                                                    {% for index, stop_segment in flight_info.stop_info %}
+                                                                        {% set city = stop_segment.destination_city |raw %}
+                                                                    {% endfor %}
+                                                                    {{city}}
+                                                                {% else %}
+                                                                    {{flight_info.destination_city |raw}}
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 greyresume">
+                                                    <div class="textdivresume">
+                                                        <div class="flight-fields">
+                                                            <div class="flight-field locdepartresume flight-bullet">{{flight_info.origin_airport|raw}}</div>
+                                                            <div class="flight-field firstnumbresume">{{flight_info.airline_name|raw}} - {{flight_info.airline_code|raw}}{{flight_info.flight_number|raw}}</div>
+                                                            <div class="flight-field firstnumbresume">{{flight_info.raw_departure_date|date('D d M')}} - {{flight_info.departure_time|raw}}</div>
+                                                            <div class="flights-border-link"></div>
+                                                            <div class="flight-field destresume flight-bullet {% if flight_info.stop_info is defined %} small-flight-bullet {% endif %}">
+                                                                <div class="compflimg">
+                                                                    <img class="chtimg" alt="{{flight_info.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{flight_info.airline_code|raw}}.jpg"/>
+                                                                </div>
+                                                                <div>{{flight_info.destination_airport|raw}}</div>
+                                                                <div class="firstnumbresume">{{flight_info.raw_arrival_date|date('D d M') }} - {{flight_info.arrival_time|raw}}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stop-flight-fields">
+                                                            {% if flight_info.stop_info is defined %}
+                                                                {% for stop_segment in flight_info.stop_info %}
+                                                                    <div class="stop-wrap">
+                                                                        <div class="stopsresume">Stop:<span class="spanfirstresume">{{stop_segment.stop_duration|raw}}</span></div>
+                                                                        <div class="stop-border-link"></div>
+                                                                    </div>
+                                                                    <div class="flight-fields">
+                                                                        <div class="flight-field locdepartresume flight-bullet small-flight-bullet">{{stop_segment.origin_airport|raw}}</div>
+                                                                        <div class="flight-field firstnumbresume">{{stop_segment.airline_name|raw}} - {{stop_segment.airline_code|raw}}{{stop_segment.flight_number|raw}}</div>
+                                                                        <div class="flight-field firstnumbresume">{{ stop_segment.raw_departure_date|date('D d M') }} - {{stop_segment.departure_time|raw}}</div>
+                                                                        <div class="flights-border-link"></div>
+                                                                        <div class="flight-field destresume flight-bullet small-flight-bullet">
+                                                                            <div class="compflimg">
+                                                                                <img class="chtimg" alt="{{stop_segment.airline_code|raw}}" src="{{ generateMediaURL('/media/images/airline-logos') }}/{{stop_segment.airline_code|raw}}.jpg"/>
+                                                                            </div>
+                                                                            <div>{{stop_segment.destination_airport|raw}}</div>
+                                                                            <div class="firstnumbresume">{{stop_segment.raw_arrival_date|date('D d M')}} - {{stop_segment.arrival_time|raw}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    {% if flight.returning is defined %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padlefresume">
+                        {% else %}
+                            <div class="col-xs-12 padlefresume">
+                            {% endif %}
+                            <div class="col-xs-12 blueresume">
+                                <div class="textdiv floatlefttext">
+                                    <div class="departresume">{{ 'departing from'|trans }}:</div>
+                                    <div class="cityresume">{{ flight.leaving.origin_city }}</div>
+                                </div>
+                                <div class="newimgdiv">
+                                    <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                </div>
+                                <div class="textdiv floatrighttext">
+                                    <div class="destinationresume">{{ 'destination'|trans }}:</div>
+                                    <div class="destinationcityresume">{{ flight.leaving.destination_city }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 greyresume">
+
+                                {% for info in flight.leaving.flight_info %}
+
+                                    <div class="textdivresume">
+                                        <div class="dateresume">{{ flight.leaving.raw_departure_main_date|date('D d M') }}</div>
+                                        <div class="flight-fields">
+                                            <div class="flight-field locdepartresume flight-bullet">{{ info.origin_airport|raw }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.airline_name|raw }} - {{info.airline_code|raw}}{{ info.flight_number|raw }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.raw_departure_date|date('D d M') }} - {{ info.departure_time|raw }}</div>
+                                            <div class="flights-border-link"></div>
+                                            <div class="flight-field destresume flight-bullet">
+                                                <div class="compflimg">
+                                                    <img class="chtimg" alt="{{ info.airline_code|raw }}" src="{{ flight.leaving.airline_logo|raw }}">
+                                                </div>
+                                                <div>{{ info.destination_airport }}</div>
+                                                <div class="firstnumbresume">{{ info.raw_arrival_date|date('D d M') }} - {{ info.arrival_time|raw }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if info.stop_info is defined %}
+
+                                        {% for stop_info in info.stop_info %}
+                                            <div class="textdivresume">
+                                                <div class="stopsresume">Stop:<span class="spanfirstresume">{{ stop_info.stop_duration }}</span></div>
+                                                <div class="stop-border-link"></div>
+                                                <div class="flight-fields">
+                                                    <div class="flight-field locdepartresume flight-bullet">{{ stop_info.origin_airport }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.airline_name }} - {{stop_info.airline_code|raw}}{{ stop_info.flight_number }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.raw_departure_date|date('D d M') }} - {{ stop_info.departure_time }}</div>
+                                                    <div class="flights-border-link"></div>
+                                                    <div class="flight-field destresume flight-bullet">
+                                                        <div class="compflimg">
+                                                            <img class="chtimg" alt="{{ stop_info.airline_code }}" src="{{ flight.leaving.airline_logo }}">
+                                                        </div>
+                                                        <div>{{ stop_info.destination_airport }}</div>
+                                                        <div class="firstnumbresume">{{ stop_info.raw_arrival_date|date('D d M') }} - {{ stop_info.arrival_time }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                    {% if flight.returning is defined %}
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padlefresume">
+                            <div class="col-xs-12 blueresume">
+                                <div class="textdiv floatlefttext">
+                                    <div class="departresume">{{ 'departing from'|trans }}:</div>
+                                    <div class="cityresume">{{ flight.returning.origin_city }}</div>
+                                </div>
+                                <div class="newimgdiv">
+                                    <img class="" src="{{ generateMediaURL('/media/images/airplanepic.png') }}" alt="airplane">
+                                </div>
+                                <div class="textdiv floatrighttext">
+                                    <div class="destinationresume">{{ 'destination'|trans }}:</div>
+                                    <div class="destinationcityresume">{{ flight.returning.destination_city }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 greyresume">
+
+                                {% for info in flight.returning.flight_info %}
+
+                                    <div class="textdivresume">
+                                        <div class="dateresume">{{ flight.returning.raw_departure_main_date|date('d D M') }}</div>
+                                        <div class="flight-fields">
+                                            <div class="flight-field locdepartresume flight-bullet">{{ info.origin_airport }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.airline_name }} - {{info.airline_code|raw}}{{ info.flight_number|raw }}</div>
+                                            <div class="flight-field firstnumbresume">{{ info.raw_departure_date|date('D d M') }} - {{ info.departure_time }}</div>
+                                            <div class="flights-border-link"></div>
+                                            <div class="flight-field destresume flight-bullet">
+                                                <div class="compflimg">
+                                                    <img class="chtimg" alt="{{ info.airline_code }}" src="{{ flight.returning.airline_logo }}">
+                                                </div>
+                                                <div>{{ info.destination_airport }}</div>
+                                                <div class="firstnumbresume">{{ info.raw_arrival_date|date('D d M') }} - {{ info.arrival_time }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if info.stop_info is defined %}
+                                        {% for stop_info in info.stop_info %}
+                                            <div class="textdivresume">
+                                                <div class="stopsresume">Stop:<span class="spanfirstresume">{{ stop_info.stop_duration }}</span></div>
+                                                <div class="stop-border-link"></div>
+                                                <div class="flight-fields">
+                                                    <div class="flight-field locdepartresume flight-bullet">{{ stop_info.origin_airport|raw }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.airline_name|raw }} - {{stop_info.airline_code|raw}}{{ stop_info.flight_number|raw }}</div>
+                                                    <div class="flight-field firstnumbresume">{{ stop_info.raw_departure_date|date('D d M') }} - {{ stop_info.departure_time|raw }}</div>
+                                                    <div class="flights-border-link"></div>
+                                                    <div class="flight-field destresume flight-bullet">
+                                                        <div class="compflimg">
+                                                            <img class="chtimg" alt="{{ stop_info.airline_code|raw }}" src="{{ flight.leaving.airline_logo|raw }}">
+                                                        </div>
+                                                        <div>{{ stop_info.destination_airport|raw }}</div>
+                                                        <div class="firstnumbresume">{{ stop_info.raw_arrival_date|date('D d M') }} - {{ stop_info.arrival_time|raw }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+
+                <!-- Payment goes here -->
+
+                <div class="col-xs-12">
+                    <p class="paymentresume">Cancellation Payment</p>
+                </div>   
+                {% if error != '' %}
+                    <div class="clear"></div>
+                    <div class="alert-danger">{{error |trans}}</div>
+                {% endif %}
+                <form method="POST" action="{{checkoutURL}}" id="payment" class="pay-form credit-card-payment" name="payment">
+                    <div class="box-container paymentcontainer col-xs-12">                    
+                        <div class="botborder">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                <img src="{{ generateMediaURL('/media/images/paymentpics.png') }}" alt="{{'payment'|trans}}">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="labelstyle smalfont" for="cardNumber">Card number</label>
+                                        <input class="form-control selectback2" id="cardNumber" type="text" value="" name="card_number" maxlength="16">
+                                        <p class="downinputtext">{{'No spaces or special characters'|trans}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="labelstyle smalfont" for="expiryDateMonth">{{'Expiry date'|trans}}</label>
+                                        {#<input placeholder="1705" class="form-control smaldivmargin padsm" id="expiry_date" value="" type="text" name="expiry_date" maxlength="4">#}
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 expiry-date-wrap">
+                                            <select name='expireMM' id='expireMM' class='expire-month select-expiry-date'>
+                                                <option value=''>Month</option>
+                                                <option value='01'>January</option>
+                                                <option value='02'>February</option>
+                                                <option value='03'>March</option>
+                                                <option value='04'>April</option>
+                                                <option value='05'>May</option>
+                                                <option value='06'>June</option>
+                                                <option value='07'>July</option>
+                                                <option value='08'>August</option>
+                                                <option value='09'>September</option>
+                                                <option value='10'>October</option>
+                                                <option value='11'>November</option>
+                                                <option value='12'>December</option>
+                                            </select> 
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 expiry-date-wrap">
+                                            <select name='expireYY' id='expireYY' class='expire-year select-expiry-date'>
+                                                <option value=''>Year</option>
+												{% for exp_year in range(card_expiration_year_start, card_expiration_year_start + 12) %}
+													<option value="{{ exp_year|slice(2, 2) }}">{{exp_year}}</option>
+												{% endfor %}
+                                            </select> 
+                                        </div>
+                                        <div class="clear"></div>
+                                        <input type="hidden" name="expiry_date" id="expiry_date" maxlength="4" value="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="labelstyle smalfont" for="cvv">{{'CVV'|trans}}</label>
+                                        <input type="text" id="cvv" value="" class="form-control smaldivmargin padsm" name="card_security_code" maxlength="3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% for name, value in parameters %}
+                            <input type="hidden" value="{{value}}" name="{{name}}">
+                        {% endfor %}
+                        <input id="remember_me" type="hidden" value="NO" name="remember_me">
+                        <div class="botborder payservices col-xs-12">
+                            <p class="warningtextstyle">{{'Or pay by using one of the following services:'|trans}}</p>
+                            <img id="masterPassImg" class="master-pass-img" src="{{ generateMediaURL('/media/images/master-pass.png') }}" alt="{{'MASTERPASS'|trans}}" title="{{'Masterpass'|trans}}" />
+                            <img id="visaCheckoutImg" class="visa-checkout-img" src="{{ generateMediaURL('/media/images/visa-checkout.png') }}" alt="{{'visa checkout'|trans}}" title="{{'visa checkout'|trans}}"/>
+                        </div>
+
+                        <div class="botborder col-xs-12">
+                            <div class="col-xs-12">
+                                <p class="Secureresume">{{'Secure payment with:'|trans}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 ">
+                                    <img class="" src="{{ generateMediaURL('/media/images/visamaster.png') }}" alt="{{'visa master'|trans}}">
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+                                    <p class="warningtextstyle">{{"if your card is set up with a protective password, you will be redirected to your bank's website to authorise the transaction."|trans}}</p>                          
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+                                <img class="" src="{{ generateMediaURL('/media/images/secureres.png') }}" alt="{{'secure'|trans}}">
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+                                <p class="warningtextstyle">{{"The data transmitted are coded using SSL (Secure Socket Layer) technology."|trans}} <br />
+                                    {{"The session in progress on this site is secure and protected by maximum privacy."|trans}}</p>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="terms-wrap">
+                            <div class="checkbox checkbox-terms form-group-wrap">
+                                <div>
+                                    {{'Flight tickets purchased may be canceled online with full refund if cancelled before 19.00 GMT on the same day of purchase.'|trans}}<br/>
+                                    {{'For flight tickets modifications and other cancellations airlines ticketing policies apply.'|trans}}<br/>
+                                    {{'Kindly Contact: '|trans}} <a href="mailto:flights-support@touristtube.com">flights-support@touristtube.com</a> - {{'Expected reply within 24 hours.'|trans}}
+                                    <br/>
+                                    <br/>
+                                    {{"By submitting this form, you confirm that you have read, agreed and accepted the"|trans}} <a href="{{ generateLangRoute(LanguageGet,'_terms-and-conditions') }}" title="{{'terms & conditions'|trans}}" target="_blank">{{"terms and conditions"|trans}}</a> {{"and the"|trans}} <a href="{{ generateLangRoute(LanguageGet,'_privacy-policy') }}" title="{{'privacy policy'|trans}}" target="_blank">{{"privacy policy"|trans}}</a>.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <input value="{{'submit'|trans}}" type="submit" class="bluesbmit">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+                <form action="{{checkoutURL}}" method="post" id="masterPass" class="pay-form masterpass" name="masterpass">
+
+                    {% for name, value in masterpass_parameters %}
+                        <input type="hidden" value="{{value}}" name="{{name}}">
+                    {% endfor %}
+                    {#                <input value="Pay Now Master Pass" type="submit">#}
+                </form>
+                <form action="{{checkoutURL}}" method="post" id="visaCheckout" class="pay-form visa-checkout" name="visa_checkout">
+
+                    {% for name, value in visa_checkout_parameters %}
+                        <input type="hidden" value="{{value}}" name="{{name}}">
+                    {% endfor %}
+                    {#                <input value="Pay Now Visa Checkout" type="submit">#}
+                </form>
+                <from action="#">
+                    <input id="device_fingerprint" type="hidden" value="" name="device_fingerprint" />
+                </from>
+
+
+            </div>
+
+        {% endif %}
+
+    </section>
+{% endblock %}

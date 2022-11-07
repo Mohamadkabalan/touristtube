@@ -1,0 +1,154 @@
+HotelBundle\Entity\CmsHotel:
+    type: entity
+    table: cms_hotel
+    repositoryClass: HotelBundle\Repository\HRSRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        address:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        street:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        district:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        zipCode:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: zip_code
+        city:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        cityId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+            column: city_id
+        latitude:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 6
+            options:
+                default: '0.000000'
+        longitude:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 6
+            options:
+                default: '0.000000'
+        iso3CountryCode:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: true
+            column: iso3_country_code
+        countryCode:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: true
+            column: country_code
+        stars:
+            type: smallint
+            nullable: false
+            length: 4
+            options:
+                default: '0'
+        logo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: logo
+        mapImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image
+        popularity:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        distanceFromDowntown:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        downtown:
+            type: string
+            nullable: true
+            options:
+                fixed: true
+        distanceFromAirport:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        airport:
+            type: string
+            nullable: true
+            options:
+                fixed: true
+        distanceFromTrainStation:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        trainStation:
+            type: string
+            nullable: true
+            options:
+                fixed: true
+            column: train_station
+        has360:
+            type: integer
+            nullable: false
+            column: has_360
+    lifecycleCallbacks: {  }

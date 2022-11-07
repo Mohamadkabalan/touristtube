@@ -1,0 +1,189 @@
+<body>
+    
+    <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        {{displayTopHead}}
+        {% set k = 0 %}
+        {% for Arr in array4loop %}
+            {% set count = Arr|length %}
+            {% if count > 0 %}
+                {{displayPartHeadProfileMentioned[k]}}
+                {% set first = 0 %}
+                
+                <tr>
+                    <td>
+                        <table width="633" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                            <tr>
+                                <td width="46"></td>
+                                <td>
+                                    <table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                                        {% for p in 0..count %}
+                                            <tr>
+                                                <td height="20"  width="552"></td>
+                                            </tr>
+                                            <tr>
+                                                <td  width="552">{{Arr[p]['partTitle']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td height="26" width="552"></td>
+                                            </tr>
+                                            {% if Arr[p]['mediaType'] is not null and Arr[p]['mediaType'] is not empty %}
+                                                <tr>
+                                                    <td width="552">                                                        
+                                                            <strong>
+                                                                <font face="Arial, Helvetica, sans-serif" size="2" color="#e9c21b">
+                                                                {{Arr[p]['mediaType']}}
+                                                                </font>
+                                                            </strong>
+
+                                                                <table cellpadding="0" cellspacing="0">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <table cellpadding="0" cellspacing="0">
+                                                                            <tr><td height="6" colspan="3"></td></tr>
+                                                                            <tr>
+                                                                            <td>
+                                                                            {% if Arr[p]['review_placeholder'] is not empty %}
+                                                                            <img width="90" height="56" src="{{Arr[p]['review_placeholder']}}" />
+                                                                            {% endif %}
+                                                                            </td>
+                                                                            <td width="20" valign="top"> 
+                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                    <tr>
+                                                                                        <td height="19" colspan="2"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td width="3"></td>
+                                                                                        <td><img src="{{link_path}}review_right_arrow.png" /></td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                
+                                                                            </td>
+                                                                            <td valign="top">
+                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                    <tr>
+                                                                                        <td colspan="2" height="14"></td>
+                                                                                    </tr>
+                                                                                <tr>
+                                                                                <td colspan="2">
+                                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#686868">
+                                                                                        {{Arr[p]['reviewed_item_title']|raw}}
+                                                                                    </font>
+                                                                                </td>
+                                                                                </tr>
+                                                                                
+                                                                                
+                                                                                <tr>
+                                                                                    <td colspan="2" height="28">
+                                                                                        {% if Arr[p]['rating_stars'] is not empty %}
+                                                                                            <img src="{{Arr[p]['rating_stars']}}" />
+                                                                                        {% endif %}
+                                                                                    </td>
+                                                                                </tr>
+                                                                                
+                                                                                {% if Arr[p]['reviewed_item_address'] is not empty %}
+                                                                                <tr>
+                                                                                <td>
+                                                                                    <img src="{{link}}images/review_marker.png" />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <font>{{'&nbsp'|raw}}</font>
+                                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#686868">
+                                                                                        {{Arr[p]['reviewed_item_address']|raw}}
+                                                                                    </font>
+                                                                                </td>
+                                                                                </tr>
+                                                                                {% endif %}
+                                                                                </table>
+                                                                            </td>
+                                                                            </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td>
+                                                                        <table cellpadding="0" cellspacing="0">
+                                                                            <tr>
+                                                                                <td height="25" valign="middle">
+                                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#e9c21b">
+                                                                                        <strong>review</strong>
+                                                                                    </font>
+                                                                                </td>
+                                                                                <td width="5"></td>
+                                                                                <td height="25" valign="middle">
+                                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                                                    <strong>{{Arr[p]['review_text']|raw}}</strong>
+                                                                                    </font>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                            
+                                                                    </td>
+                                                                    </tr>
+                                                                        
+                                                                        
+                                                                </table>
+                                                                    
+                                                                
+                                                                    
+                                                            
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="26"  width="552"></td>
+                                                </tr>
+                                            {% endif %}
+
+                                            {% if Arr[p].case == 1  %}
+                                                <tr height="51">
+                                                    <td height="51"  width="552">
+                                                        <table width="552" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+                                                            <tr>
+                                                                <td rowspan="2" width="51" height="51">
+                                                                    <a href="{{Arr[p]['friends'][0][5]}}" target="_blank"><img src="{{Arr[p]['friends'][0][0]}}" alt="{{Arr[p]['friends'][0][1]}}"
+                                                                         border="0" width="51" height="51"/></a>
+                                                                </td>
+                                                                <td width="6" rowspan="2"></td>
+                                                                <td valign="top" width="438" height="13">
+                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                                    <a href="{{Arr[p]['friends'][0][5]}}" target="_blank">{{Arr[p]['friends'][0][1]}}</a>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="56" rowspan="2"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="bottom" width="438" height="37">
+                                                                    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+                                                                    {{Arr[p]['friendComment']}}
+                                                                    </font>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr height="21">
+                                                    <td height="21"  width="552"></td>
+                                                </tr>
+                                            {% endif %}
+                                            {% if Arr[p]['case'] == 2 %}
+                                                {{displayFriends[p]}}
+                                            {% endif %}
+                                            {% if p < (count-1) %}
+                                                <tr height="1">
+                                                    <td height="1"  width="552" background="{{link_path}}separator.jpg"></td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </table>
+                                </td>
+                                <td width="37"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                                
+            {% endif %}
+            {% set k = k+1 %}
+        {% endfor %}
+        {{displayfoot}}
+    </table>
+</body>

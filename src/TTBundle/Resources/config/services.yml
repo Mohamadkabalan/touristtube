@@ -1,0 +1,4 @@
+services:
+    AwsS3Services:
+        class: TTBundle\Services\AwsS3Services
+        arguments: ['@service_container']

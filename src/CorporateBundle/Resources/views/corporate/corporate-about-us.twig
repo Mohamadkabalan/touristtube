@@ -1,0 +1,71 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-contact-us.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'About us'|trans}}{% endblock %}
+{% block body %} 
+    <section class="container containerwhite paddingBottom10">
+        <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 nopad">
+            <div class="col-xs-12 nopad">
+                <h1 class="contactustitle_cocus">{{'About us'|trans}}</h1>
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'The most elegant way to tell your journey'|trans}}</h1>
+                <p class="subtitletextblack_cocus">{{'We give you TouristTube™, a unique platform of appealing colors and original technology specially designed with a wide range of exclusive high end features.'|trans}} </p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Become a Tourist Tuber'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'And get a huge space to store your pictures and videos'|trans}} </p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Upload your content'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'And share them with your trusted groups '|trans}} </p>                 
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Build your Community'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'Text or Video chat with your friends in real time, anywhere '|trans}} </p>                
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Share your precious moments'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'Express your trip best moments with TT Journal '|trans}} </p>                 
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Plan your next Trip'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'Get recommendations from your trusted contacts and from experts on best trips with TT Planner'|trans}} </p>                 
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Express yourself on the fly'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'Tell your side of the story and comment on news with TT Echoes'|trans}} </p>                 
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'Pick your next Outing and Rate it!'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'Choose places for everyday going out with TT Discover and share you appreciations of restaurants, hotels, and venues you visited with Reviews and Ratings '|trans}} </p>                 
+                <br />
+                <p class="subtitletextblack_cocus"> {{'TouristTube™ brims with excellent content on global tourism sites and live scenes (TT Live) and brings together a worldwide community of tourists and related businesses (take a look at our TT Channels). '|trans}} </p>                 
+            </div>
+            <br /><br />
+            <div class="col-xs-12 nopad">
+                <h1 class="subtitleheader_cocus">{{'All with your Mobile!'|trans}}</h1>
+                <p class="subtitletextblack_cocus"> {{'Download out TT Mobile apps and get the full features of Tourist Tube '|trans}} </p> 
+                <br />
+                <p class="subtitletextblack_cocus"> {{'TouristTube™ is for everyone, certainly for tourists and also for home tourists.  '|trans}} </p>                 
+                <p class="subtitletextblack_cocus"> {{'TouristTube™ is free, spontaneous, and fun. '|trans}} </p>   
+                <br />
+                <p class="subtitletextblack_cocus"> {{'This website is owned and managed by Tourist Tube FZ-LLC. '|trans}} </p>                 
+            </div> 
+        </div>
+    </section>
+{% endblock %}

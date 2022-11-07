@@ -1,0 +1,96 @@
+{% extends 'baseFinal.html.twig' %}
+
+{% block pagenewjs %}
+    <script type="text/javascript">
+		channelGlobalID({{channel_id|raw}});
+    </script>
+    <script type="text/javascript" src="{{ asset("/assets/photos_videos/js/add_album_media.js") }}"></script>
+{% endblock %}
+{% block body %}
+    <a href="" id="picfancyboxbutton" rel="nofollow" class="hidden"></a>
+    <section class="container channels_container">
+	{% if category_list|length > 0 %}
+	    <nav class="navbar navbar-default navbar-fixed-bottom tt-bottom-nav visible-sm visible-xs">
+		<div class="container-fluid nopad filters-group">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bottomNavBar">
+			    {{'Albums'|trans}}
+			</button>
+		    </div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse filter-options" id="bottomNavBar">
+			<div class="row no-margin">
+			    <div class="col-xs-12 nopad">
+				<div class="row no-margin margin_bottom_20">
+				    <div class="col-xs-12 nopad">
+					<div class="row no-margin">
+					    <div class="col-xs-12 nopad">
+						<ul class="list_left_menue_ainfo">
+						    {% for item in category_list %}
+							<li class="col-md-12 col-sm-4 col-xs-6 categoryli{% if item.id==album_id and album_id !=0 %} active{% endif %}"><a href="{{ item.link|raw }}" title="{{item.titlealt|raw}}">{{item.title|raw}}</a></li>
+							{% endfor %}
+						</ul>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			    <!-- /.navbar-collapse -->
+			</div>
+		    </div>
+		</div>
+		<!-- /.container-fluid -->
+	    </nav>
+	{% endif %}
+        <div class="row current_album" data-id="{{album_id|raw}}" data-pages="{{page_count|raw}}">
+            <div class="col-xs-12">
+                <div class="row no-margin margin_top_20 margin_bottom_40">
+                    <div class="col-xs-12 nopad">
+                        <h1 class="search_title"><span class="circlimg_arrow"><i class="fas fa-angle-right"></i></span>{{'Album'|trans}}{% if realname!='' %} | <span>{{realname|raw}}</span> {% endif %}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 left_panel left_panel hidden-sm hidden-xs">
+                        <div class="row no-margin">
+                            <div class="col-xs-12 nopad">
+                                <div class="row no-margin margin_bottom_20">
+                                    <div class="col-xs-12 nopad">
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <p class="leftmenue_subtitles">{{'Albums'|trans}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 nopad">
+                                                <ul class="list_left_menue_ainfo">
+                                                    {% for item in category_list %}
+                                                        <li class="col-md-12 col-sm-4 col-xs-6 categoryli{% if item.id==album_id and album_id !=0 %} active{% endif %}"><a href="{{ item.link|raw }}" title="{{item.titlealt|raw}}">{{item.title|raw}}</a></li>
+                                                        {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12 right_panel">
+			{% if noresultfound==1 %}
+			    <div class="row new_margin">
+				<div class="noResult col-xs-12">
+				    {{"We are sorry for the inconvenience. Your result has not been found temporarily!"|trans}}</span>
+				</div>
+			    </div>
+			{% endif %}
+                        <div class="row new_margin">
+                            <div class="col-xs-12 media_container">
+                                {% include "photos_videos/album_data_in.twig" %} 
+                            </div>	    
+                        </div>                        
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+{% endblock %}

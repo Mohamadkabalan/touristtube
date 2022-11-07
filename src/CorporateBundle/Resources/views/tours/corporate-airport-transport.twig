@@ -1,0 +1,43 @@
+{% extends 'basecorporate.html.twig' %}
+
+{% block pagenewcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/common/css/daterangepicker.min.css")|raw }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-menu_theme"~corporate_theme~".css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/corporate-flightandmenue.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-deals-common-header.css")|raw }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/assets/corporate/css/deals/corporate-airport-transport.css")|raw }}"/>
+{% endblock %}
+{% block pagenewjs %}
+    <script type="text/javascript" src="{{ asset("/assets/common/js/moment.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/common/js/jquery.daterangepicker.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/corporate-flightandmenue.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/corporate/js/deals/corporate-airport-transport.js")|raw }}"></script>
+    <script type="text/javascript" src="{{ asset("/assets/deals/js/secure-booking.js")|raw }}"></script>
+{% endblock %}
+{% block title %}{{'Transport'|trans}}{% endblock %}
+{% block body %}
+    {% set page_menu_name = 'transport' %}
+    <section class="container corporate_container1">
+        <div class="col-xs-12 nopad">
+            <div class="row rowspecialstyle">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 nopad leftmenuebackcolor_corp borderrightgrey_corpfl">
+                    <div class="col-xs-12 nopad">
+                        {% include '@Corporate/corporate/corporate-leftmenu.twig' %}
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-10 col-sm-8 col-xs-12 nopad contentbackcolor_corp">
+                    <div class="col-xs-12 nopad">
+                        <div class="col-xs-12 nopad">
+                            <div class="col-xs-12">
+                                {% include '@Corporate/tours/corporate-deals-common-header.twig' %}
+                            </div>
+                            <div id="airportTransport" class="col-xs-12 padding10">
+				{% include '@Corporate/tours/corporate-airport-transport-form.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

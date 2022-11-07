@@ -1,0 +1,60 @@
+HotelBundle\Entity\CmsHotelSource:
+    type: entity
+    table: cms_hotel_source
+    repositoryClass: HotelBundle\Repository\HRSRepository
+
+    indexes:
+        source_hotel:
+            columns:
+                - source
+                - hotel_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: hotel_id
+        source:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+                default: ''
+        sourceId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: source_id
+        locationId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: location_id
+        trustyouId:
+            type: string
+            nullable: true
+            options:
+                fixed: false
+            column: trustyou_id
+        isActive:
+            type: smallint
+            nullable: false
+            options:
+                default: '1'
+            column: is_active
+    lifecycleCallbacks: {  }

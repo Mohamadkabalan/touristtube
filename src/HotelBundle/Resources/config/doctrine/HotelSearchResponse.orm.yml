@@ -1,0 +1,150 @@
+HotelBundle\Entity\HotelSearchResponse:
+    type: entity
+    table: hotel_search_response
+    repositoryClass: HotelBundle\Repository\HotelRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hotelSearchRequestId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_search_request_id
+        hotelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: hotel_id
+        hotelKey:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: hotel_key
+        hotelCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: hotel_code
+        hotelName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: hotel_name
+        hotelNameURL:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: hotel_name_clean_title
+        category:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        district:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+        isoCurrency:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+            column: iso_currency
+        price:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            options:
+                default: '0.00'
+        avgPrice:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            options:
+                default: '0.00'
+            column: avg_price
+        distance:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        distances:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        mapImageUrl:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: map_image_url
+        mainImage:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: main_image
+        mainImageMobile:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: main_image_mobile
+        cancelable:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        breakfast:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        has360:
+            type: integer
+            nullable: false
+            column: has_360
+    lifecycleCallbacks: {  }

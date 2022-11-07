@@ -1,0 +1,1722 @@
+_images_media_home_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharing, _locale: "%locale%", type: "h", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "photo video sharing Tourist Tube", seodescription: "looking for photo, video sharing Visit tourist tube platform. Share your photos and videos and let the world see the countries you have been", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_photo_video_sharing_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/photo-video-sharing"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "a", seotitle: "photo video sharing Tourist Tube", seodescription: "looking for photo, video sharing Visit tourist tube platform. Share your photos and videos and let the world see the countries you have been", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_photo_video_sharing_lang:
+    path:      "/{_locale}/photo-video-sharing"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharingRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "a", seotitle: "photo video sharing Tourist Tube", seodescription: "looking for photo, video sharing Visit tourist tube platform. Share your photos and videos and let the world see the countries you have been", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_touristtube_video_lang:
+    path:      "/{_locale}/touristtube-video"
+    defaults: { _controller: TTBundle:PhotosVideos:touristtubeVideo, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "TouristTube | Reviews, Connect, Travel and Archive your Trip", seodescription: "Things to do in Paris; Discover Barcelona, Los Angeles; Ancient Rome; Best of Istanbul; Hotels and Restaurants Reviews; Points of Interest; Plan Trip", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_videos_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-videos"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "v", seotitle: "best videos Tourist Tube", seodescription: "tourist tube provides you with the best videos on the net. Visit our platform now and discover new countries all over the world.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_videos_lang:
+    path:      "/{_locale}/best-videos"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharingRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "v", seotitle: "best videos Tourist Tube", seodescription: "tourist tube provides you with the best videos on the net. Visit our platform now and discover new countries all over the world.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_images_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-images"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharing, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "i", seotitle: "best images Tourist Tube", seodescription: "if you’re looking for the best images on the net. Tourist tube is the answer, our platform provides you with the best touristic images on the net.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_images_lang:
+    path:      "/{_locale}/best-images"
+    defaults: { _controller: TTBundle:PhotosVideos:photoVideoSharingRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", type: "i", seotitle: "best images Tourist Tube", seodescription: "if you’re looking for the best images on the net. Tourist tube is the answer, our platform provides you with the best touristic images on the net.", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_best_travel_images_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-travel-images/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:media, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_photo_lang:
+    path:      "/{_locale}/best-travel-images/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_best_travel_videos_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-travel-videos/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:media, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_video_lang:
+    path:      "/{_locale}/best-travel-videos/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_ajax_album_add_lang:
+    path:      "/{_locale}/ajax/album-add"
+    defaults: { _controller: TTBundle:PhotosVideos:updateAlbumAdd, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_media_add_lang:
+    path:      "/{_locale}/ajax/media-add"
+    defaults: { _controller: TTBundle:PhotosVideos:updateMediaAdd, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_increment_objects_views_lang:
+    path:      "/{_locale}/ajax/increment_objects_views"
+    defaults: { _controller: TTBundle:PhotosVideos:incrementObjectsViews, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_media_delete_lang:
+    path:      "/{_locale}/ajax/media_delete"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_media_temp_delete_lang:
+    path:      "/{_locale}/ajax/media_temp_delete"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaTempDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_album_delete_lang:
+    path:      "/{_locale}/ajax/album_delete"
+    defaults: { _controller: TTBundle:PhotosVideos:albumDelete, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_ajax_getVideoRelatedXML_lang:
+    path:      "/{_locale}/ajax/getVideoRelatedXML"
+    defaults: { _controller: TTBundle:Ajax:getVideoRelatedXML, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_ajax_getThumbRelatedVTT_lang:
+    path: "/{_locale}/ajax/getThumbRelatedVTT"
+    defaults: { _controller: TTBundle:PhotosVideos:getThumbRelatedVTT, _locale: "%locale%", domain: "%domain%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+
+_photo1_lang:
+    path:      "/{_locale}/photo/{srch}/{title}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_video1_lang:
+    path:      "/{_locale}/video/{srch}/{title}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_best_travel_videos_album_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-travel-videos-album/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:media, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_video_album_lang:
+    path:      "/{_locale}/best-travel-videos-album/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_video_album1_lang:
+    path:      "/{_locale}/video-album/{srch}/{title}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_photos_videos_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path: "/{_locale}/{qr}-{catName}-S{t}_{page}_{c}_{orderby}"
+    defaults: { _controller: TTBundle:PhotosVideos:photosVideos, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s  Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", qr: "", catName: "", t: "a", page: 1, c: "", orderby: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        page: "\d*"
+        c: "\d*"
+        t: "[a-z]?"
+        orderby: ".*"
+        catName: ".*"
+
+_photos_videos_lang:
+    path:      "/{_locale}/{qr}-{catName}-S{t}_{page}_{c}_{orderby}"
+    defaults: { _controller: TTBundle:PhotosVideos:photosVideosRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s  Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", qr: "", catName: "", t: "a", page: 1, c: "", orderby: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        page: "\d*"
+        c: "\d*"
+        t: "[a-z]?"
+        orderby: ".*"
+        catName: ".*"
+
+_photos_videos2_lang:
+    path:      "/{_locale}/{qr}-{catName}-s{t}_{page}_{c}_{orderby}"
+    defaults: { _controller: TTBundle:PhotosVideos:photosVideosRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s  Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", qr: "", catName: "", t: "a", page: 1, c: "", orderby: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        page: "\d*"
+        c: "\d*"
+        t: "[a-z]?"
+        orderby: ".*"
+        catName: ".*"
+
+_best_travel_images_album_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/best-travel-images-album/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:media, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_photo_album_lang:
+    path:      "/{_locale}/best-travel-images-album/{title}/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_photo_album1_lang:
+    path:      "/{_locale}/photo-album/{srch}/{title}"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", fromalbum: 1, seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_videoTest_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/video_test"
+    defaults: { _controller: TTBundle:PhotosVideos:mediaTest, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", title: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        title: ".*"
+        srch: ".*"
+
+_albums_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/albums"
+    defaults: { _controller: TTBundle:PhotosVideos:albums, _locale: "%locale%", page: 1, domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_albums_lang:
+    path:      "/{_locale}/albums"
+    defaults: { _controller: TTBundle:PhotosVideos:albumsRedirect, page: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_album_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/album/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:album, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube", seokeywords: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_album_lang:
+    path:      "/{_locale}/album/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:albumRedirect, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube", seokeywords: "", srch: ""  }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+
+_add_album_lang:
+    path:      "/{_locale}/add_album"
+    defaults: { _controller: TTBundle:PhotosVideos:addAlbum, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_add_media_lang:
+    path:      "/{_locale}/add_media"
+    defaults: { _controller: TTBundle:PhotosVideos:addMedia, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_edit_media_album_lang:
+    path:      "/{_locale}/edit_media_album"
+    defaults: { _controller: TTBundle:PhotosVideos:editMediaAlbum, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+
+_all_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/All"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "0" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_all_lang:
+    path:      "/{_locale}/All"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "0" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Architecture_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Architecture"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "28" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Architecture_lang:
+    path:      "/{_locale}/Architecture"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "28" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+       
+_Others_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Others"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "22" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+       
+_Others_lang:
+    path:      "/{_locale}/Others"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "22" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+ 
+_Celebrations_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Celebrations"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "38" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+ 
+_Celebrations_lang:
+    path:      "/{_locale}/Celebrations"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "38" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Coolest_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Coolest"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "18" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Coolest_lang:
+    path:      "/{_locale}/Coolest"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "18" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Vintage_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Vintage"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "37" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Vintage_lang:
+    path:      "/{_locale}/Vintage"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "37" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Arts_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Arts"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "36" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Arts_lang:
+    path:      "/{_locale}/Arts"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "36" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Business+travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_travel_lang:
+    path:      "/{_locale}/Business+travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Business travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_travel1_lang:
+    path:      "/{_locale}/Business travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Business+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_Travel_lang:
+    path:      "/{_locale}/Business+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Business Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Business_Travel1_lang:
+    path:      "/{_locale}/Business Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "21" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Water_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Water+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "14" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Water_Travel_lang:
+    path:      "/{_locale}/Water+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "14" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Water_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Water Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "14" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Water_Travel1_lang:
+    path:      "/{_locale}/Water Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "14" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Air_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Air+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "13" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Air_Travel_lang:
+    path:      "/{_locale}/Air+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "13" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Air_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Air Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "13" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Air_Travel1_lang:
+    path:      "/{_locale}/Air Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "13" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Land_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Land+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "12" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Land_Travel_lang:
+    path:      "/{_locale}/Land+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "12" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Land_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Land Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "12" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Land_Travel1_lang:
+    path:      "/{_locale}/Land Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "12" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Summer+travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_travel_lang:
+    path:      "/{_locale}/Summer+travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Summer travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_travel1_lang:
+    path:      "/{_locale}/Summer travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Summer+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_Travel_lang:
+    path:      "/{_locale}/Summer+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Summer Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Summer_Travel1_lang:
+    path:      "/{_locale}/Summer Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "35" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Winter_travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Winter+travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Winter_travel_lang:
+    path:      "/{_locale}/Winter+travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Winter_travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Winter travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Winter_travel1_lang:
+    path:      "/{_locale}/Winter travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Winter_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Winter+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Winter_Travel_lang:
+    path:      "/{_locale}/Winter+Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Winter_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Winter Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Winter_Travel1_lang:
+    path:      "/{_locale}/Winter Travel"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "34" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Well_being_Travel_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Well+Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Well_being_Travel_lang:
+    path:      "/{_locale}/Well+Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Well_being_Travel1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Well Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Well_being_Travel1_lang:
+    path:      "/{_locale}/Well Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Autos_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Autos"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "23" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Autos_lang:
+    path:      "/{_locale}/Autos"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "23" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Extreme-Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports1_lang:
+    path:      "/{_locale}/Extreme-Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Extreme+Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports_lang:
+    path:      "/{_locale}/Extreme+Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Sports+Extrêmes"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports_fr_lang:
+    path:      "/{_locale}/Sports+Extrêmes"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Extreme Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Extreme_Sports1_lang:
+    path:      "/{_locale}/Extreme Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "7" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Sports_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "6" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Sports_lang:
+    path:      "/{_locale}/Sports"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "6" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Animals_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Animals"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "10" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Animals_lang:
+    path:      "/{_locale}/Animals"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "10" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Parks_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Parks"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "33" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Parks_lang:
+    path:      "/{_locale}/Parks"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "33" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Parks_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Parcs"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "33" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Parks_fr_lang:
+    path:      "/{_locale}/Parcs"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "33" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Ecotourism_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Ecotourism"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "11" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Ecotourism_lang:
+    path:      "/{_locale}/Ecotourism"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "11" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Ecotourism_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Ecotourisme"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "11" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Ecotourism_fr_lang:
+    path:      "/{_locale}/Ecotourisme"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "11" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Adventure_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Adventure"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "32" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Adventure_lang:
+    path:      "/{_locale}/Adventure"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "32" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Adventure_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Aventure"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "32" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Adventure_fr_lang:
+    path:      "/{_locale}/Aventure"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "32" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Landscapes_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Landscapes"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "31" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Landscapes_lang:
+    path:      "/{_locale}/Landscapes"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "31" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nature_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Nature"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "9" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nature_lang:
+    path:      "/{_locale}/Nature"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "9" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Hotels_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Hotels"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "2" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Hotels_lang:
+    path:      "/{_locale}/Hotels"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "2" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Hotels_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Hôtels"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "2" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Hotels_fr_lang:
+    path:      "/{_locale}/Hôtels"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "2" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Restaurants_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Restaurants"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "1" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Restaurants_lang:
+    path:      "/{_locale}/Restaurants"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "1" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Landmarks_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Landmarks"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "3" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Landmarks_lang:
+    path:      "/{_locale}/Landmarks"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "3" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Landmarks_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Repères"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "3" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Landmarks_fr_lang:
+    path:      "/{_locale}/Repères"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "3" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Destination_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Destination"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "20" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Destination_lang:
+    path:      "/{_locale}/Destination"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "20" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Holidays_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Holidays"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "8" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Holidays_lang:
+    path:      "/{_locale}/Holidays"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "8" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Holidays_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Vacances"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "8" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Holidays_fr_lang:
+    path:      "/{_locale}/Vacances"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "8" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Festivals_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Festivals"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "4" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Festivals_lang:
+    path:      "/{_locale}/Festivals"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "4" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Cruises_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Cruises"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "29" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Cruises_lang:
+    path:      "/{_locale}/Cruises"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "29" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Croisières_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Croisières"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "29" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+    
+_Croisières_lang:
+    path:      "/{_locale}/Croisières"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "29" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Beaches_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Beaches"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "5" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Beaches_lang:
+    path:      "/{_locale}/Beaches"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "5" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Beaches_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Plages"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "5" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Beaches_fr_lang:
+    path:      "/{_locale}/Plages"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "5" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_People_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/People"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "16" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_People_lang:
+    path:      "/{_locale}/People"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "16" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Health+and+Spa"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa_lang:
+    path:      "/{_locale}/Health+and+Spa"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Well-Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa1_lang:
+    path:      "/{_locale}/Well-Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa2_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Well+Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa2_lang:
+    path:      "/{_locale}/Well+Being"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Bien+Être"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa_fr_lang:
+    path:      "/{_locale}/Bien+Être"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Health and Spa"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_and_Spa1_lang:
+    path:      "/{_locale}/Health and Spa"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_Spa_Wrong_lang:
+    path:      "/{_locale}/Health+Spa"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaWrong, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Health_Spa_Wrong1_lang:
+    path:      "/{_locale}/Health Spa"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaWrong, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "19" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Journalist_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Journalist"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "25" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Journalist_lang:
+    path:      "/{_locale}/Journalist"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "25" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nightlife_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Nightlife"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "24" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nightlife_lang:
+    path:      "/{_locale}/Nightlife"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "24" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nightlife_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Vie+Nocturne"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "24" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nightlife_fr_lang:
+    path:      "/{_locale}/Vie+Nocturne"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "24" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nightlife_fr2_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Vie nocturne"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "24" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Nightlife_fr2_lang:
+    path:      "/{_locale}/Vie nocturne"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "24" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Food+and+drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink_lang:
+    path:      "/{_locale}/Food+and+drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink_fr_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Boissons+Et+Nourriture"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink_fr_lang:
+    path:      "/{_locale}/Boissons+Et+Nourriture"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink1_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Food and drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink1_lang:
+    path:      "/{_locale}/Food and drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink2_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Food+and+Drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink2_lang:
+    path:      "/{_locale}/Food+and+Drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink21_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Food and Drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Food_and_drink21_lang:
+    path:      "/{_locale}/Food and Drink"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "15" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Shopping_media_lang:
+    host: "media{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/Shopping"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMedia, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "30" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_Shopping_lang:
+    path:      "/{_locale}/Shopping"
+    defaults: { _controller: TTBundle:PhotosVideos:categoryMediaRedirect, seotitle: "%s Tourist Tube", seodescription: "want to know about %s?  visit us on tourist tube web and find everything you need to know about your next trip.", seokeywords: "", _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", id: "30" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_old_photo_album_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/photo-album/{srch}-{id}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldmedia, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_old_video_album_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/video-album/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldmedia4, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube %s", seokeywords: "", srch: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_old_photo_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/photo/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldmedia2, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube-%s", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube", seokeywords: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_old_video_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/video/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldmedia3, fromalbum: 1, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s-tourist tube-%s", seodescription: "enjoy the best collection of %s and travel pictures and best videos of the web, tourist tube", seokeywords: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_search_old_media_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/search{all}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldSearchMedia, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", all: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        all: ".*"
+        
+_old_search_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/search/SearchCategory/{t}/ss/{qr}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldSearch, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", t: "", qr: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        t: ".*"
+        qr: ".*"
+        
+_old_category_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/category/{srch}"
+    defaults: { _controller: TTBundle:PhotosVideos:oldCategory, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: "", srch: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        srch: ".*"
+        
+_oldfestival_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/category/Festivals"
+    defaults: { _controller: TTBundle:PhotosVideos:oldfestival, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "", seodescription: "", seokeywords: ""}
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        
+_photos_videos_wrong_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/{qr}-{catName}-S{t}_{orderby}"
+    defaults: { _controller: TTBundle:PhotosVideos:photosVideosWrong, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", qr: "", catName: "", t: "a", page: 1, c: "", orderby: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        t: "[a-z]?"
+        orderby: ".*"
+        catName: ".*"
+        
+_photos_videos_wrong2_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/{qr}-S{t}_{page}_{c}_{orderby}"
+    defaults: { _controller: TTBundle:PhotosVideos:photosVideosWrong2, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", qr: "", catName: "", t: "", page: 1, c: "", orderby: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        page: "\d*"
+        c: "\d*"
+        t: "[a-z]?"
+        orderby: ".*"
+        catName: ".*"
+        
+_photos_videos_wrong3_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/{qr}-{catName}-S{t}/orderby/{orderby}"
+    defaults: { _controller: TTBundle:PhotosVideos:photosVideosWrong2, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "%s Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "", qr: "", catName: "", t: "", page: 1, c: "", orderby: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
+        qr: ".*"
+        page: "\d*"
+        c: "\d*"
+        t: "[a-z]?"
+        orderby: ".*"
+        catName: ".*"
+
+_issue_lang:
+    host: "www{subdomain_suffix}.{domain}"
+    path:      "/{_locale}/San-Diego-"
+    defaults: { _controller: TTBundle:PhotosVideos:issue, _locale: "%locale%", domain: "%domain%", subdomain_suffix: "%subdomain_suffix%", seotitle: "photos videos %s Tourist Tube", seodescription: "%s, enjoy the best collection of travel pictures and best videos of the web, tourist tube", seokeywords: "" }
+    requirements:
+        _locale:  "%config_locales%"
+        domain: "[^/]+"
+        subdomain_suffix: ".*"
